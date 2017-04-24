@@ -5,10 +5,10 @@ warnings_are_errors: false
 sudo: required
 
 install:
-  - Rscript -e 'install.packages("devtools", repos = "http://cran.rstudio.com")'
-  - Rscript -e 'install.packages("R2jags", repos = "http://cran.rstudio.com")'
-  - Rscript -e 'install.packages("R2OpenBUGS", repos = "http://cran.rstudio.com")'
-  - Rscript -e 'install.packages("ggplot2", repos = "http://cran.rstudio.com")'
-  - Rscript -e 'install.packages("ldr", repos = "http://cran.rstudio.com")'
-  - Rscript -e 'install.packages("splancs", repos = "http://cran.rstudio.com")'
-  - Rscript -e 'install.packages("INLA",repos="https://www.math.ntnu.no/inla/R/stable")'
+  - ./travis-tool.sh install_r "devtools"
+  - ./travis-tool.sh install_r "R2jags"
+  - ./travis-tool.sh install_r "R2OpenBUGS"
+  - ./travis-tool.sh install_r "ggplot2"
+  - ./travis-tool.sh install_r "ldr"
+  - ./travis-tool.sh install_r "splancs"
+  - Rscript -e 'install.packages("INLA", repos="https://www.math.ntnu.no/inla/R/stable")'
