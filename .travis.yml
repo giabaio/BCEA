@@ -3,7 +3,12 @@
 language: R
 sudo: false
 cache: packages
-warnings_are_errors: false,
 
-#before_install:
-#  Rscript -e 'update.packages(ask = FALSE)'
+addons:
+  apt:
+    packages:
+      - libv8-dev
+      - libssl-dev 
+      - libsasl2-dev
+install:
+  -  Rscript -e 'Sys.setlocale(locale="C")'
