@@ -1,14 +1,23 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
+cache: packages
 warnings_are_errors: false
 sudo: required
 
+r: 
+  - release
+  - devel
+
 install:
-  - ./travis-tool.sh install_r "devtools"
-  - ./travis-tool.sh install_r "R2jags"
-  - ./travis-tool.sh install_r "R2OpenBUGS"
-  - ./travis-tool.sh install_r "ggplot2"
-  - ./travis-tool.sh install_r "ldr"
-  - ./travis-tool.sh install_r "splancs"
+  - Rscript -e 'install.packages("devtools",repos="https://cran.rstudio.org")'
+  - Rscript -e 'install.packages("R2jags",repos="https://cran.rstudio.org")'
+  - Rscript -e 'install.packages("R2OpenBUGS",repos="https://cran.rstudio.org")'
+  - Rscript -e 'install.packages("ldr",repos="https://cran.rstudio.org")'
+  - Rscript -e 'install.packages("splancs",repos="https://cran.rstudio.org")'
   - Rscript -e 'install.packages("INLA", repos="https://www.math.ntnu.no/inla/R/stable")'
+
+addons:
+  apt:
+    packages:
+      - libv8-dev
