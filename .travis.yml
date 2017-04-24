@@ -11,4 +11,5 @@ addons:
       - libssl-dev 
       - libsasl2-dev
 install:
-  -  Rscript -e 'Sys.setlocale(locale="C")'
+  -  Rscript -e 'update.packages(ask = FALSE)'
+
