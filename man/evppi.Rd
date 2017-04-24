@@ -144,13 +144,13 @@ Anna Heath, Gianluca Baio
 # Bayesian model and economic problem
 #
 # Load the processed results of the MCMC simulation model
-data(Vaccine)
+# data(Vaccine)
 # 
 # Runs the health economic evaluation using BCEA
-m <- bcea(e,c,ref=2,interventions=treats)
+# m <- bcea(e,c,ref=2,interventions=treats)
 #
 # Computes the EVPPI for a bunch of parameters
-inp <- CreateInputs(vaccine)
+# inp <- CreateInputs(vaccine)
 # Computes the EVPPI using INLA/SPDE
 # x0 <- evppi(parameter=c(38:40),input=inp$mat,he=m)
 # Now uses GAM regression
