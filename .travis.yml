@@ -11,13 +11,10 @@ r:
 
 install:
   - Rscript -e 'install.packages("devtools",repos="https://cran.rstudio.org")'
-  - Rscript -e 'install.packages("R2jags",repos="https://cran.rstudio.org")'
+  - Rscript -e 'install.packages("R2jags",repos="https://cran.rstudio.org",dependencies=TRUE)'
+  - Rscript -e 'install.packages("ggplot2",repos="https://cran.rstudio.org")'
   - Rscript -e 'install.packages("R2OpenBUGS",repos="https://cran.rstudio.org")'
   - Rscript -e 'install.packages("ldr",repos="https://cran.rstudio.org")'
   - Rscript -e 'install.packages("splancs",repos="https://cran.rstudio.org")'
-  - Rscript -e 'install.packages("INLA", repos="https://www.math.ntnu.no/inla/R/stable")'
+  - Rscript -e 'install.packages("INLA", repos="https://www.math.ntnu.no/inla/R/stable",dependencies=TRUE)'
 
-addons:
-  apt:
-    packages:
-      - libv8-dev
