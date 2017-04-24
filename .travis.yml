@@ -9,4 +9,4 @@ before_install:
 ###- sudo apt-get install -y libproj-dev libgdal-dev
 
 r_github_packages:
-- hadley/devtools
+- hadley/devtools@efa894ffa
