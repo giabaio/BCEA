@@ -7,12 +7,3 @@ warnings_are_errors: false,
 
 before_install:
   Rscript -e 'update.packages(ask = FALSE)'
-
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - devtools
-      - R2jags
-      - R2OpenBUGS
