@@ -10,7 +10,7 @@ install.packages("BCEA")
 ```
 The second way involves using the "development" version of `BCEA` - this will usually be updated more frequently and may be continuously tested. On Windows machines, you need to install a few dependencies, including [Rtools](https://cran.r-project.org/bin/windows/Rtools/) first, e.g. by running
 ```R
-pkgs <- c("MASS","devtools")
+pkgs <- c("MASS","Rtools","devtools")
 repos <- c("https://cran.rstudio.com", "https://www.math.ntnu.no/inla/R/stable") 
 install.packages(pkgs,repos=repos,dependencies = "Depends")
 ```
