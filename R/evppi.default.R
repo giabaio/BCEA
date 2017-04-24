@@ -152,7 +152,7 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
   fit.gp <- function(parameter, inputs, x, n.sim) {
     tic <- proc.time()
     p <- length(parameter)
-    input.matrix <- as.matrix(input[, parameter, drop = FALSE])
+    input.matrix <- as.matrix(inputs[, parameter, drop = FALSE])
     colmin <- apply(input.matrix, 2, min)
     colmax <- apply(input.matrix, 2, max)
     colrange <- colmax - colmin
@@ -651,8 +651,9 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
           mesh <- robust <- NULL
           cat("\n")
           cat("Calculating fitted values for the GP regression \n")
+          # If the number of simulations to be used to estimate the hyperparameters is set then use that, else use N/2
           if (!exists("n.sim", where = exArgs)) {
-            n.sim = 500
+            n.sim = N/2
           }
           else {
             n.sim = exArgs$n.sim
@@ -767,7 +768,7 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
       res <- list(evppi = comp$EVPPI, index = parameters, 
                   k = he$k, evi = he$evi, parameters = name, time = time, 
                   method = exArgs$method, fitted.costs = fit.full[[2]], 
-                  fitted.effects = fit.full[[1]])
+                  fitted.effects = fit.full[[1]],select=exArgs$select)
     }
     else {
       res <- list(evppi = comp$EVPPI, index = parameters, 

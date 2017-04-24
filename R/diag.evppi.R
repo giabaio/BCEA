@@ -10,11 +10,11 @@ diag.evppi <- function(x,y,diag=c("residuals","qqplot"),int=1){
     par(mfrow=c(1,2))
     n <- dim(x$fitted.costs)[1]
     fitted <- x$fitted.costs[,int]
-    residual <- as.matrix(y$delta.c)[1:n,int]-fitted
+    residual <- as.matrix(y$delta.c)[x$select,int]-fitted
     plot(fitted,residual,xlab="Fitted values",
          ylab="Residuals",main="Residual plot for costs",cex=.8);abline(h=0)
     fitted <- x$fitted.effects[,int]
-    residual <- as.matrix(y$delta.e)[1:n,int]-fitted
+    residual <- as.matrix(y$delta.e)[x$select,int]-fitted
     plot(fitted,residual,xlab="Fitted values",
          ylab="Residuals",main="Residual plot for effects",cex=.8);abline(h=0)
   }else{
