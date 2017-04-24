@@ -9,7 +9,12 @@ r:
   - release
   - devel
 
+before_install:
+  - echo "options(repos = c(CRAN='http://cran.rstudio.com'))" > ~/.Rprofile
+  - sudo apt-get update
+  - sudo apt-get install r-cran-rjags r-cran-R2jags
+
 install:
   - Rscript -e 'install.packages("devtools", repos = "http://cran.rstudio.com")'
-  - Rscript -e 'install.packages(c("ggplot2", "R2OpenBUGS", "ldr", "R2jags", "splancs","rjags"), repos = "http://cran.rstudio.com")'
+  - Rscript -e 'install.packages(c("ggplot2", "R2OpenBUGS", "ldr", "splancs"), repos = "http://cran.rstudio.com")'
   - Rscript -e 'install.packages("INLA", repos = c("http://www.math.ntnu.no/inla/R/stable", "http://cran.rstudio.com"))'
