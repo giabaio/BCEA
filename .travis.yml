@@ -10,10 +10,10 @@ r:
   - devel
 
 before_install:
+  - sudo echo "deb http://gb.archive.ubuntu.com/ubuntu/ xenial universe" > /etc/apt/sources.list
   - echo "options(repos = c(CRAN='http://cran.rstudio.com'))" > ~/.Rprofile
   - sudo apt-get update
-#  - sudo apt-get install r-cran-rjags r-cran-R2jags
-  - sudo apt-get install r-cran-R2jags
+  - sudo apt-get install r-cran-rjags r-cran-R2jags
 
 install:
   - Rscript -e 'install.packages("devtools", repos = "http://cran.rstudio.com")'
