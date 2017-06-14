@@ -1,8 +1,28 @@
 ############mce.plot###################################
-mce.plot <- function(mce,pos=c(1,0.5),graph=c("base","ggplot2")){
+mce.plot <- function(mce,pos=c(1,0.5),graph=c("base","ggplot2"),...){
   alt.legend <- pos
   base.graphics <- ifelse(isTRUE(pmatch(graph,c("base","ggplot2"))==2),FALSE,TRUE) 
   
+  exArgs <- list(...)
+  # Allows to specify colours for the plots
+  # If the user doesn't specify anything, use defaults
+  if(!exists("color",exArgs)) {
+    color <- rep(1,(mce$n.comparators+1)); lwd <- 1
+    if (mce$n.comparators>7) {
+      cl <- colors()
+      color <- cl[floor(seq(262,340,length.out=mce$n.comparators))]	# gray scale
+      lwd <- 1.5
+    }  
+  } 
+  # If the user specify colours, then use but check they are the right number
+  if(exists("color",exArgs)) {
+     color <- exArgs$color; lwd <- 1
+     if(mce$n.comparators>7) {lwd=1.5}
+     if (length(color)!=(mce$n.comparators))	 {
+        message(paste0("You need to specify ",(mce$n.comparators)," colours. Falling back to default\n"))
+     }
+  } 
+
   if(base.graphics) {
     
     if(is.numeric(alt.legend)&length(alt.legend)==2){
@@ -26,12 +46,12 @@ mce.plot <- function(mce,pos=c(1,0.5),graph=c("base","ggplot2")){
         alt.legend="right"
     }
     
-    color <- rep(1,(mce$n.comparators+1)); lwd <- 1
-    if (mce$n.comparators>7) {
-      cl <- colors()
-      color <- cl[floor(seq(262,340,length.out=mce$n.comparators))]	# gray scale
-      lwd <- 1.5
-    }
+#    color <- rep(1,(mce$n.comparators+1)); lwd <- 1
+#    if (mce$n.comparators>7) {
+#      cl <- colors()
+#      color <- cl[floor(seq(262,340,length.out=mce$n.comparators))]	# gray scale
+#      lwd <- 1.5
+#    }
     
     plot(mce$k,mce$m.ce[,1],t="l",col=color[1],lwd=lwd,lty=1,xlab="Willingness to pay",
          ylab="Probability of most cost effectiveness",ylim=c(0,1),

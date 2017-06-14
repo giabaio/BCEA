@@ -8,7 +8,7 @@ Plots the probability that each of the n_int interventions being analysed is the
 cost-effective.
 }
 \usage{
-mce.plot(mce,pos=c(1,0.5),graph=c("base","ggplot2"))
+mce.plot(mce,pos=c(1,0.5),graph=c("base","ggplot2"),...)
 }
 \arguments{
   \item{mce}{
@@ -27,6 +27,13 @@ A string used to select the graphical engine to use for plotting. Should
 (partial-)match the two options \code{"base"} or \code{"ggplot2"}. Default value is 
 \code{"base"}.
   }
+ \item{...}{
+Optional arguments. For example, it is possible to specify the colours to be used 
+in the plot. This is done in a vector \code{color=c(...)}. The length of the
+vector colors needs to be the same as the number of comparators included in the
+analysis, otherwise \code{BCEA} will fall back to the default values (all black,
+or shades of grey)
+}
 }
 \value{
 \item{mceplot}{
