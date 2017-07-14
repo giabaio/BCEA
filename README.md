@@ -1,4 +1,5 @@
-# BCEA [![Travis-CI Build Status](https://travis-ci.org/giabaio/BCEA.svg?branch=master)](https://travis-ci.org/giabaio/BCEA)[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/giabaio/BCEA?branch=master&svg=true)](https://ci.appveyor.com/project/giabaio/BCEA)
+# BCEA [![Travis-CI Build Status](https://travis-ci.org/giabaio/BCEA.svg?branch=master)](https://travis-ci.org/giabaio/BCEA)[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/giabaio/BCEA?branch=master&svg=true)](https://ci.appveyor.com/project/giabaio/BCEA)[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/BCEA)](https://cran.r-project.org/package=BCEA)[![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/BCEA)](https://cran.r-project.org/package=BCEA)
+
 ## Bayesian Cost-Effectiveness Analysis
 
 Given the results of a Bayesian model (possibly based on MCMC) in the form of simulations from the posterior distributions of suitable variables of costs and clinical benefits for two or more interventions, produces a health economic evaluation. Compares one of the interventions (the "reference") to the others ("comparators"). Produces many summary and plots to analyse the results
