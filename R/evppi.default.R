@@ -1,13 +1,13 @@
 evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T,...) {
-  
-  # This function has been completely changed and restructured to make it possible to change regression method.  
-  # The method arguement can now be given as a list. The first element element in the list is a vector giving the 
-  # regression method for the effects. The second gives the regression method for the costs. The `method' argument 
-  # can also be given as before which then uses the same regression method for all curves. All other exArgs can be 
-  # given as before. 'int.ord' can be updated using the list forumlation above to give the interactions for each 
-  # different curve. The formula arguement for GAM can only be given once, either 'te()' or 's()+s()' as this is 
+
+  # This function has been completely changed and restructured to make it possible to change regression method.
+  # The method arguement can now be given as a list. The first element element in the list is a vector giving the
+  # regression method for the effects. The second gives the regression method for the costs. The `method' argument
+  # can also be given as before which then uses the same regression method for all curves. All other exArgs can be
+  # given as before. 'int.ord' can be updated using the list forumlation above to give the interactions for each
+  # different curve. The formula arguement for GAM can only be given once, either 'te()' or 's()+s()' as this is
   # for computational reasons rather than to aid fit. You can still plot the INLA mesh elements but not output the meshes.
-  
+
   if (is.null(colnames(input))) {
     colnames(input) <- paste0("theta",1:dim(input)[2])
   }
@@ -24,10 +24,10 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
   if (is.null(N)) {
     N <- he$n.sim
   }
-  
+
   robust <- NULL
   exArgs <- list(...)
-  
+
   if (!exists("select", where=exArgs) & N == he$n.sim) {
     exArgs$select <- 1:he$n.sim
   }
@@ -35,8 +35,8 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
     exArgs$select <- sample(1:he$n.sim, size = N, replace = F)
   }
   inputs <- data.frame(input)[exArgs$select,]
-  
-  
+
+
   if (length(parameter) == 1 & !exists("method", where = exArgs)) {
     exArgs$method <- list(rep("GAM",he$n.comparators-1),rep("GAM",he$n.comparators-1))
   }
@@ -56,20 +56,20 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
       }
     }
   }
-  
+
   if(class(exArgs$method)=="list"){
     if(length(exArgs$method[[1]])+length(exArgs$method[[2]])!=2*(he$n.comparators-1)){
       stop(paste("The argument 'method' must be a list of length 2 with",he$n.comparators-1,"elements each."))
     }
   }
-  
+
   if(!exists("int.ord",where=exArgs)){
-    exArgs$int.ord <- list(rep(1,he$n.comparators-1),rep(1,he$n.comparators-1)) 
+    exArgs$int.ord <- list(rep(1,he$n.comparators-1),rep(1,he$n.comparators-1))
   }
   if(class(exArgs$int.ord)!="list"){
-    exArgs$int.ord <- list(rep(exArgs$int.ord[1],he$n.comparators-1),rep(exArgs$int.ord[2],he$n.comparators-1)) 
+    exArgs$int.ord <- list(rep(exArgs$int.ord[1],he$n.comparators-1),rep(exArgs$int.ord[2],he$n.comparators-1))
   }
-  
+
   prep.x<-function(he,select,k,l){
     if(k==1){
       x<-as.matrix(he$delta.e)[select,l]
@@ -79,13 +79,13 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
     }
     return(x)
   }
-  
+
   ###GAM Fitting
   fit.gam <- function(parameter, inputs, x, form) {
     tic <- proc.time()
     N<-nrow(inputs)
     p<-length(parameter)
-    model <- mgcv::gam(update(formula(x ~ .), 
+    model <- mgcv::gam(update(formula(x ~ .),
                               formula(paste(".~", form))), data = data.frame(inputs))
     hat <- model$fitted
     formula <- form
@@ -96,11 +96,11 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
     names(time) = "Time to fit GAM regression (seconds)"
     list(fitted=hat,formula = formula, fit = model,time = time)
   }
-  
-  ###GP Fitting  
+
+  ###GP Fitting
   post.density <- function(hyperparams, parameter, x, input.matrix) {
     dinvgamma <- function(x, alpha, beta) {
-      (beta^alpha)/gamma(alpha) * x^(-alpha - 1) * 
+      (beta^alpha)/gamma(alpha) * x^(-alpha - 1) *
         exp(-beta/x)
     }
     N <- length(x)
@@ -113,7 +113,7 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
     b.nu <- 1
     delta <- exp(hyperparams)[1:p]
     nu <- exp(hyperparams)[p + 1]
-    A <- exp(-(as.matrix(dist(t(t(input.matrix)/delta), 
+    A <- exp(-(as.matrix(dist(t(t(input.matrix)/delta),
                               upper = TRUE, diag = TRUE))^2))
     Astar <- A + nu * diag(N)
     T <- chol(Astar)
@@ -121,12 +121,12 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
     x. <- backsolve(t(T), H, upper.tri = FALSE)
     tHAstarinvH <- t(x.) %*% (x.)
     betahat <- solve(tHAstarinvH) %*% t(x.) %*% y
-    residSS <- y %*% y - t(y) %*% x. %*% betahat - t(betahat) %*% 
+    residSS <- y %*% y - t(y) %*% x. %*% betahat - t(betahat) %*%
       t(x.) %*% y + t(betahat) %*% tHAstarinvH %*% betahat
-    prior <- prod(dnorm(log(delta), 0, sqrt(1e+05))) * 
+    prior <- prod(dnorm(log(delta), 0, sqrt(1e+05))) *
       dinvgamma(nu, a.nu, b.nu)
-    l <- -sum(log(diag(T))) - 1/2 * log(det(tHAstarinvH)) - 
-      (N - q + 2 * a.sigma)/2 * log(residSS/2 + b.sigma) + 
+    l <- -sum(log(diag(T))) - 1/2 * log(det(tHAstarinvH)) -
+      (N - q + 2 * a.sigma)/2 * log(residSS/2 + b.sigma) +
       log(prior)
     names(l) <- NULL
     return(l)
@@ -135,12 +135,12 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
     p <- length(parameter)
     initial.values <- rep(0, p + 1)
     repeat {
-      log.hyperparameters <- optim(initial.values, 
-                                   fn = post.density,parameter=parameter, x = x[1:n.sim], 
-                                   input.matrix = input.matrix[1:n.sim, ], 
-                                   method = "Nelder-Mead", control = list(fnscale = -1, 
+      log.hyperparameters <- optim(initial.values,
+                                   fn = post.density,parameter=parameter, x = x[1:n.sim],
+                                   input.matrix = input.matrix[1:n.sim, ],
+                                   method = "Nelder-Mead", control = list(fnscale = -1,
                                                                           maxit = 10000, trace = 0))$par
-      if (sum(abs(initial.values - log.hyperparameters)) < 
+      if (sum(abs(initial.values - log.hyperparameters)) <
           0.01) {
         hyperparameters <- exp(log.hyperparameters)
         break
@@ -157,7 +157,7 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
     colmax <- apply(input.matrix, 2, max)
     colrange <- colmax - colmin
     input.matrix <- sweep(input.matrix, 2, colmin, "-")
-    input.matrix <- sweep(input.matrix, 2, colrange, 
+    input.matrix <- sweep(input.matrix, 2, colrange,
                           "/")
     N <- nrow(input.matrix)
     H <- cbind(1, input.matrix)
@@ -165,7 +165,7 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
     hyperparameters <- estimate.hyperparameters(x = x,input = input.matrix, parameter = parameter, n.sim = n.sim)
     delta.hat <- hyperparameters[1:p]
     nu.hat <- hyperparameters[p + 1]
-    A <- exp(-(as.matrix(dist(t(t(input.matrix)/delta.hat), 
+    A <- exp(-(as.matrix(dist(t(t(input.matrix)/delta.hat),
                               upper = TRUE, diag = TRUE))^2))
     Astar <- A + nu.hat * diag(N)
     Astarinv <- chol2inv(chol(Astar))
@@ -177,12 +177,12 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
     betahat <- tHAHinv %*% (tHAstarinv %*% x)
     Hbetahat <- H %*% betahat
     resid <- x - Hbetahat
-    fitted<- Hbetahat + A %*% (Astarinv %*% 
+    fitted<- Hbetahat + A %*% (Astarinv %*%
                                  resid)
     AAstarinvH <- A %*% t(tHAstarinv)
-    sigmasqhat <- as.numeric(t(resid) %*% Astarinv %*% 
+    sigmasqhat <- as.numeric(t(resid) %*% Astarinv %*%
                                resid)/(N - q - 2)
-    rm(A, Astarinv, AstarinvY, tHAstarinv, tHAHinv, 
+    rm(A, Astarinv, AstarinvY, tHAstarinv, tHAHinv,
        Hbetahat, resid, sigmasqhat)
     gc()
     toc <- proc.time() - tic
@@ -190,7 +190,7 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
     names(time) = "Time to fit GP regression (seconds)"
     list(fitted = fitted,time = time, fit=NULL,formula = NULL)
   }
-  
+
   ###INLA Fitting
   make.proj <- function(parameter,inputs, x,k,l) {
     tic <- proc.time()
@@ -225,11 +225,11 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
   plot.mesh <- function(mesh, data, plot) {
     if (plot == TRUE || plot == T) {
       cat("\n")
-      choice <- select.list(c("yes", "no"), title = "Would you like to save the graph?", 
+      choice <- select.list(c("yes", "no"), title = "Would you like to save the graph?",
                             graphics = F)
       if (choice == "yes") {
         exts <- c("jpeg", "pdf", "bmp", "png", "tiff")
-        ext <- select.list(exts, title = "Please select file extension", 
+        ext <- select.list(exts, title = "Please select file extension",
                            graphics = F)
         name <- paste0(getwd(), "/mesh.", ext)
         txt <- paste0(ext, "('", name, "')")
@@ -246,7 +246,7 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
       points(data, col = "blue", pch = 19, cex = 0.8)
     }
   }
-  make.mesh <- function(data, convex.inner, convex.outer, 
+  make.mesh <- function(data, convex.inner, convex.outer,
                         cutoff,max.edge) {
     tic <- proc.time()
     inner <- suppressMessages({
@@ -255,55 +255,55 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
     outer <- INLA::inla.nonconvex.hull(data, convex = convex.outer)
     mesh <- INLA::inla.mesh.2d(
       loc=data, boundary=list(inner,outer),
-      max.edge=c(max.edge,max.edge),cutoff=c(cutoff))  
+      max.edge=c(max.edge,max.edge),cutoff=c(cutoff))
     toc <- proc.time() - tic
     time <- toc[3]
     names(time) = "Time to fit determine the mesh (seconds)"
     list(mesh = mesh, pts = data, time = time)
   }
-  fit.inla <- function(parameter, inputs, x, mesh, 
-                       data.scale, int.ord, convex.inner, convex.outer, 
+  fit.inla <- function(parameter, inputs, x, mesh,
+                       data.scale, int.ord, convex.inner, convex.outer,
                        cutoff, max.edge,h.value,family) {
     tic <- proc.time()
     inputs.scale <- scale(inputs, apply(inputs, 2, mean), apply(inputs, 2, sd))
-    I <- x
-    scale <- 6/(range(I)[2] - range(I)[1])
+    scale<-8/(range(x)[2]-range(x)[1])
+    scale.x <- scale*x -mean(scale*x)
     A <- INLA::inla.spde.make.A(mesh = mesh, loc = data.scale, silent = 2L)
     spde <- INLA::inla.spde2.matern(mesh = mesh, alpha = 2)
-    stk.real <- INLA::inla.stack(tag = "est", data = list(y=I *scale), A = list(A, 1), 
+    stk.real <- INLA::inla.stack(tag = "est", data = list(y=scale.x), A = list(A, 1),
                                  effects = list(s = 1:spde$n.spde,
                                                 data.frame(b0 = 1, x = cbind(data.scale, inputs.scale))))
     data <- INLA::inla.stack.data(stk.real)
     ctr.pred <- INLA::inla.stack.A(stk.real)
     inp <- names(stk.real$effects$data)[parameter + 4]
     form <- paste(inp, "+", sep = "", collapse = "")
-    formula <- paste("y~0+(", form, "+0)+b0+f(s,model=spde)", 
+    formula <- paste("y~0+(", form, "+0)+b0+f(s,model=spde)",
                      sep = "", collapse = "")
     if (int.ord[1] > 1) {
-      formula <- paste("y~0+(", form, "+0)^", int.ord[1], 
+      formula <- paste("y~0+(", form, "+0)^", int.ord[1],
                        "+b0+f(s,model=spde)", sep = "", collapse = "")
     }
     Result <- suppressMessages({
-      INLA::inla(as.formula(formula), data = data, 
-                 family = family, control.predictor = list(A = ctr.pred,link = 1), 
-                 control.inla = list(h = h.value), 
+      INLA::inla(as.formula(formula), data = data,
+                 family = family, control.predictor = list(A = ctr.pred,link = 1),
+                 control.inla = list(h = h.value),
                  control.compute = list(config = T))
     })
-    fitted <- Result$summary.linear.predictor[1:length(x),"mean"]/scale
+    fitted <- (Result$summary.linear.predictor[1:length(x),"mean"]+mean(scale*x))/scale
     fit <- Result
     toc <- proc.time() - tic
     time <- toc[3]
     names(time) = "Time to fit INLA/SPDE (seconds)"
-    list(fitted = fitted, model = fit, time = time, formula = formula, 
+    list(fitted = fitted, model = fit, time = time, formula = formula,
          mesh = list(mesh = mesh, pts = data.scale))
   }
-  
+
   compute.evppi <- function(he,fit.full) {
     EVPPI <- array()
     tic <- proc.time()
     for (i in 1:length(he$k)) {
       NB.k <- -(he$k[i]*fit.full[[1]]-fit.full[[2]])
-      EVPPI[i] <- (mean(apply(NB.k, 1, max, na.rm = T)) - 
+      EVPPI[i] <- (mean(apply(NB.k, 1, max, na.rm = T)) -
                      max(apply(NB.k, 2, mean, na.rm = T)))
     }
     toc <- proc.time() - tic
@@ -311,7 +311,7 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
     names(time) = "Time to compute the EVPPI (in seconds)"
     list(EVPPI = EVPPI, time = time)
   }
-  
+
   prepare.output <- function(parameters, inputs) {
     if (length(parameter) == 1) {
       if (class(parameter) == "numeric") {
@@ -325,23 +325,23 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
       if (class(parameter) == "numeric") {
         n.param <- length(parameter)
         end <- colnames(input)[parameter[n.param]]
-        name.mid <- paste(colnames(inputs)[parameter[1:n.param - 
+        name.mid <- paste(colnames(inputs)[parameter[1:n.param -
                                                        1]], ", ", sep = "", collapse = " ")
-        name <- paste(name.mid, "and ", end, sep = "", 
+        name <- paste(name.mid, "and ", end, sep = "",
                       collapse = " ")
       }
       else {
         n.param <- length(parameter)
         end <- parameter[n.param]
-        name.mid <- paste(parameter[1:n.param - 1], 
+        name.mid <- paste(parameter[1:n.param - 1],
                           ", ", sep = "", collapse = " ")
-        name <- paste(name.mid, "and ", end, sep = "", 
+        name <- paste(name.mid, "and ", end, sep = "",
                       collapse = " ")
       }
     }
     return(name)
   }
-  
+
   if(class(exArgs$method)!="list"){
     if (exArgs$method == "sal"||exArgs$method=="sad") {
       method = "Sadatsafavi et al"
@@ -372,7 +372,7 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
               if (nSegs[i, j] == 1) {
                 l <- which.min(cm)
                 u <- which.max(cm)
-                if (cm[u] - max(cm[1], cm[n]) > min(cm[1], 
+                if (cm[u] - max(cm[1], cm[n]) > min(cm[1],
                                                     cm[n]) - cm[l]) {
                   segPoint <- u
                 }
@@ -412,9 +412,9 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
                     }
                   }
                 }
-                siMaxMin <- cm[segMaxMinL] + distMaxMin + 
+                siMaxMin <- cm[segMaxMinL] + distMaxMin +
                   (cm[n] - cm[segMaxMinR])
-                siMinMax <- -cm[segMaxMinL] + distMinMax - 
+                siMinMax <- -cm[segMaxMinL] + distMinMax -
                   (cm[n] - cm[segMinMaxR])
                 if (siMaxMin > siMinMax) {
                   segPoint <- c(segMaxMinL, segMaxMinR)
@@ -422,11 +422,11 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
                 else {
                   segPoint <- c(segMinMaxL, segMinMaxR)
                 }
-                if (segPoint[1] > 1 && segPoint[1] < 
+                if (segPoint[1] > 1 && segPoint[1] <
                     n) {
                   segPoints <- c(segPoints, segPoint[1])
                 }
-                if (segPoint[2] > 1 && segPoint[2] < 
+                if (segPoint[2] > 1 && segPoint[2] <
                     n) {
                   segPoints <- c(segPoints, segPoint[2])
                 }
@@ -434,12 +434,12 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
             }
           }
           if (length(segPoints) > 0) {
-            segPoints2 <- unique(c(0, segPoints[order(segPoints)], 
+            segPoints2 <- unique(c(0, segPoints[order(segPoints)],
                                    n))
             res[k] <- 0
             for (j in 1:(length(segPoints2) - 1)) {
-              res[k] <- res[k] + max(colSums(matrix(nbs[(1 + 
-                                                           segPoints2[j]):segPoints2[j + 1], ], 
+              res[k] <- res[k] + max(colSums(matrix(nbs[(1 +
+                                                           segPoints2[j]):segPoints2[j + 1], ],
                                                     ncol = d)))/n
             }
             res[k] <- res[k] - max(colMeans(nbs))
@@ -471,7 +471,7 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
                 if (nSegs[i, j] == 1) {
                   l <- which.min(cm)
                   u <- which.max(cm)
-                  if (cm[u] - max(cm[1], cm[n]) > min(cm[1], 
+                  if (cm[u] - max(cm[1], cm[n]) > min(cm[1],
                                                       cm[n]) - cm[l]) {
                     segPoint <- u
                   }
@@ -511,9 +511,9 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
                       }
                     }
                   }
-                  siMaxMin <- cm[segMaxMinL] + distMaxMin + 
+                  siMaxMin <- cm[segMaxMinL] + distMaxMin +
                     (cm[n] - cm[segMaxMinR])
-                  siMinMax <- -cm[segMaxMinL] + distMinMax - 
+                  siMinMax <- -cm[segMaxMinL] + distMinMax -
                     (cm[n] - cm[segMinMaxR])
                   if (siMaxMin > siMinMax) {
                     segPoint <- c(segMaxMinL, segMaxMinR)
@@ -521,11 +521,11 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
                   else {
                     segPoint <- c(segMinMaxL, segMinMaxR)
                   }
-                  if (segPoint[1] > 1 && segPoint[1] < 
+                  if (segPoint[1] > 1 && segPoint[1] <
                       n) {
                     segPoints <- c(segPoints, segPoint[1])
                   }
-                  if (segPoint[2] > 1 && segPoint[2] < 
+                  if (segPoint[2] > 1 && segPoint[2] <
                       n) {
                     segPoints <- c(segPoints, segPoint[2])
                   }
@@ -533,12 +533,12 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
               }
             }
             if (length(segPoints) > 0) {
-              segPoints2 <- unique(c(0, segPoints[order(segPoints)], 
+              segPoints2 <- unique(c(0, segPoints[order(segPoints)],
                                      n))
               temp[k] <- 0
               for (j in 1:(length(segPoints2) - 1)) {
-                temp[k] <- temp[k] + max(colSums(matrix(nbs[(1 + 
-                                                               segPoints2[j]):segPoints2[j + 1], ], 
+                temp[k] <- temp[k] + max(colSums(matrix(nbs[(1 +
+                                                               segPoints2[j]):segPoints2[j + 1], ],
                                                         ncol = d)))/n
               }
               temp[k] <- temp[k] - max(colMeans(nbs))
@@ -551,8 +551,8 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
         }
         names(res) <- parameters
       }
-      
-      res <- list(evppi = res, index = parameters, parameters = parameters, 
+
+      res <- list(evppi = res, index = parameters, parameters = parameters,
                   k = he$k, evi = he$evi, method = method)
     }
     if (exArgs$method == "so") {
@@ -578,11 +578,11 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
         for (i in 1:length(he$k)) {
           evpi[i] <- he$evi[i]
           sort.U[, i, ] <- he$U[sort.order, i, ]
-          U.array <- array(sort.U[, i, ], dim = c(J, 
+          U.array <- array(sort.U[, i, ], dim = c(J,
                                                   exArgs$n.blocks, D))
           mean.k <- apply(U.array, c(2, 3), mean)
           partial.info <- mean(apply(mean.k, 1, max))
-          res[i] <- partial.info - max(apply(he$U[, i, 
+          res[i] <- partial.info - max(apply(he$U[, i,
                                                   ], 2, mean))
         }
       }
@@ -595,19 +595,19 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
           for (i in 1:length(he$k)) {
             evpi[i] <- he$evi[i]
             sort.U[, i, ] <- he$U[sort.order, i, ]
-            U.array <- array(sort.U[, i, ], dim = c(J, 
+            U.array <- array(sort.U[, i, ], dim = c(J,
                                                     n.blocks, D))
             mean.k <- apply(U.array, c(2, 3), mean)
             partial.info <- mean(apply(mean.k, 1, max))
-            evppi.temp[i] <- partial.info - max(apply(he$U[, 
+            evppi.temp[i] <- partial.info - max(apply(he$U[,
                                                            i, ], 2, mean))
           }
           res[[j]] <- evppi.temp
         }
         names(res) <- parameters
       }
-      
-      res <- list(evppi = res, index = parameters, parameters = parameters, 
+
+      res <- list(evppi = res, index = parameters, parameters = parameters,
                   k = he$k, evi = he$evi, method = method)
     }
   }
@@ -615,7 +615,7 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
     time<-list()
     time[[1]]<-list()
     time[[2]]<-list()
-    
+
     fit.full<-list()
     fit.full[[1]]<-matrix(data=0,nrow=length(exArgs$select),ncol=he$n.comparators)
     fit.full[[2]]<-matrix(data=0,nrow=length(exArgs$select),ncol=he$n.comparators)
@@ -623,7 +623,7 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
       for(l in 1:he$n.comparisons){
         x<-prep.x(he=he,select=exArgs$select,k=k,l=l)
         method<-exArgs$method[[k]][l]
-        if (method == "GAM" || method == "gam" || 
+        if (method == "GAM" || method == "gam" ||
             method == "G" || method == "g") {
           method <- "GAM"
           mesh <- robust <- NULL
@@ -633,16 +633,16 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
           if (isTRUE(requireNamespace("mgcv", quietly = TRUE))) {
             cat("\n")
             cat("Calculating fitted values for the GAM regression \n")
-            
+
             inp <- names(inputs)[parameter]
             if (exists("formula", where = exArgs)) {
               form <- exArgs$formula
             }
             else {
-              form <- paste("te(", paste(inp, ",", sep = "", 
+              form <- paste("te(", paste(inp, ",", sep = "",
                                          collapse = ""), "bs='cr')")
             }
-            fit <- fit.gam(parameter = parameter, inputs = inputs, 
+            fit <- fit.gam(parameter = parameter, inputs = inputs,
                            x = x, form = form)
           }
         }
@@ -669,7 +669,7 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
             stop("You need to install the package 'ldr'. Please run in your R terminal:\n install.packages('ldr')")
           }
           if (isTRUE(requireNamespace("ldr", quietly = TRUE))) {
-            
+
             if (isTRUE(requireNamespace("INLA", quietly = TRUE))) {
               if (!is.element("INLA", (.packages()))) {
                 attachNamespace("INLA")
@@ -706,9 +706,9 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
               else {
                 max.edge = exArgs$max.edge
               }
-              mesh <- make.mesh(data = data, convex.inner = convex.inner, 
+              mesh <- make.mesh(data = data, convex.inner = convex.inner,
                                 convex.outer = convex.outer, cutoff = cutoff,max.edge=max.edge)
-              plot.mesh(mesh = mesh$mesh, data = data, 
+              plot.mesh(mesh = mesh$mesh, data = data,
                         plot = plot)
               cat("Calculating fitted values for the GP regression using INLA/SPDE \n")
               if (exists("h.value", where = exArgs)) {
@@ -737,9 +737,9 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
               else {
                 int.ord = 1
               }
-              fit <- fit.inla(parameter = parameter, inputs = inputs, 
-                              x = x, mesh = mesh$mesh, data.scale = data, int.ord = int.ord, 
-                              convex.inner = convex.inner, convex.outer = convex.outer, 
+              fit <- fit.inla(parameter = parameter, inputs = inputs,
+                              x = x, mesh = mesh$mesh, data.scale = data, int.ord = int.ord,
+                              convex.inner = convex.inner, convex.outer = convex.outer,
                               cutoff = cutoff, max.edge = max.edge, h.value = h.value,family=family)
             }
           }
@@ -763,20 +763,20 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
     time[[3]]<-comp$time
     names(time)<-c("Fitting for Effects","Fitting for Costs","Calculating EVPPI")
     names(exArgs$method)<-c("Methods for Effects","Methods for Costs")
-    
+
     if (residuals == TRUE || residuals == T) {
-      res <- list(evppi = comp$EVPPI, index = parameters, 
-                  k = he$k, evi = he$evi, parameters = name, time = time, 
-                  method = exArgs$method, fitted.costs = fit.full[[2]], 
+      res <- list(evppi = comp$EVPPI, index = parameters,
+                  k = he$k, evi = he$evi, parameters = name, time = time,
+                  method = exArgs$method, fitted.costs = fit.full[[2]],
                   fitted.effects = fit.full[[1]],select=exArgs$select)
     }
     else {
-      res <- list(evppi = comp$EVPPI, index = parameters, 
+      res <- list(evppi = comp$EVPPI, index = parameters,
                   k = he$k, evi = he$evi, parameters = name, time = time, method = exArgs$method)
     }
-    
+
   }
-  
+
   class(res) <- "evppi"
   return(res)
   }
