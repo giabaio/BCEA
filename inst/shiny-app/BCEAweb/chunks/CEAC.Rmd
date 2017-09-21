@@ -1,0 +1,22 @@
+---
+title: "CEAC"
+output: 
+	pdf_document
+	word_document
+---
+```{r, echo=FALSE}
+if(input$format=="PDF") {
+    align="center"
+} else {
+    align="default"
+}
+```
+
+## Cost-effectiveness acceptability curve
+The following graph shows the cost-effectiveness acceptability curve (CEAC). The CEAC represents the proportion of 'potential futures' in which the reference intervention is estimated to be more cost-effective than the comparator. Thus, it can be interpreted as the 'probability of cost-effectiveness'. 
+
+
+
+```{r, echo=FALSE, fig.width=4.6, fig.height=4.6,fig.align=align}
+ceac.plot(m())
+```

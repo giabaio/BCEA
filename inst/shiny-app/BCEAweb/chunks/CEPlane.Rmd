@@ -1,0 +1,26 @@
+---
+title: "CEPlane"
+output: 
+	pdf_document
+	word_document
+---
+```{r, echo=FALSE}
+if(input$format=="PDF") {
+    align="center"
+} else {
+    align="default"
+}
+```
+
+## Cost-effectiveness plane
+The following graph shows the cost-effectiveness plane. This presents the joint distribution of the population average benefit and cost differential, $(\Delta_e,\Delta_c)$. 
+
+
+Each point in the graph represents a 'potential future' in terms of expected incremental economic outcomes. The shaded portion of the plane is the '_sustainability area_'. The more points lay in the sustainability area, the more likely that the reference intervention will turn out to be cost-effective, at a given willingness to pay threshold, $k$ (in this case selected at $k=$ `r input$value1`)
+
+
+```{r, echo=FALSE,fig.width=4.6, fig.height=4.6,fig.align=align}
+n.ints <- m()$n.comparators
+if (n.ints==2) {graph="base"; pos=c(1,1)} else {graph="ggplot2"; pos=TRUE}
+ceplane.plot(m(),graph=graph,pos=pos)
+```

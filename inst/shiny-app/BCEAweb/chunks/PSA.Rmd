@@ -1,0 +1,16 @@
+---
+title: "PSA"
+output: 
+	pdf_document
+	word_document
+---
+```{r, echo=FALSE}
+if(input$format=="PDF") {
+    align="center"
+} else {
+    align="default"
+}
+```
+
+# Probabilistic Sensitivity Analysis
+This section presents the results of Probabilistic Sensitivity Analysis (PSA). PSA is used to assess the impact of parameter uncertainty on the decision-making process.

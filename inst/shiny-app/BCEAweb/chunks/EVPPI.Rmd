@@ -1,0 +1,59 @@
+---
+title: "EVPPI"
+output: 
+	pdf_document
+	word_document
+---
+```{r, echo=FALSE}
+if(input$format=="PDF") {
+    align="center"
+} else {
+    align="default"
+}
+```
+
+## Expected value of perfect partial information
+This section presents the results of the analysis of the Expected Value of Partial Perfect Information (EVPPI). The analysis considers specifically the set of _important_ parameters $\phi=($`r input$evppi_parameters`$)$. The resulting EVPPI describes the value of learning about $\phi$, while all the other parameters remain uncertain at the current level of knowledge.
+
+### Estimation of the EVPPI
+```{r, echo=FALSE,fig.width=4.7, fig.height=4.6, fig.align=align,results='asis'}
+wtp <- seq(input$min,input$max,by=input$step)
+method <- ifelse(all(compute_evppi()$method=="INLA"),"INLA/SPDE",ifelse(all(compute_evppi()$method=="GAM"),"GAM regression","Gaussian Process regression"))
+if (length(wtp)>1) {
+    cat("The EVPPI has been estimated using ",method,"with a total running time of ",
+        sum(unlist(compute_evppi()$time))," seconds. The following graph shows the EVPPI as a function of the willingness-to-pay $k$.\n\n")
+    plot(compute_evppi())
+} else {
+    cat(paste0(
+        "The EVPPI has been estimated using ",method,"with a total running time of ",
+        sum(unlist(compute_evppi()$time))," seconds.  The value of the EVPPI for the selected willingness-to-pay $k$ = ",input$value1," is: ",
+        compute_evppi()$evppi,".\n\n"))
+}
+
+check_consistency <- any(compute_evppi()$evppi>compute_evppi()$evi)
+sol_inla <- "1) increasing the interaction order; 2) modifying the options in the mesh control, to improve accuracy of the 'spatial' component estimation; 3) increasing the sample of PSA runs used to perform the estimation."
+sol_gp <- "increasing the number of PSA runs used to estimate the hyperparameters of the GP regression model; 2) increasing the sample of PSA runs used to perform the estimation."
+sol <- ifelse(all(compute_evppi()$method=="INLA"),sol_inla,sol_gp)
+if (check_consistency) {
+    cat(paste0("**WARNING**: the estimated EVPPI is higher than the respective value of the EVPI. This is not possible, so the estimation procedure for the EVPPI should be checked carefully (e.g. by assessing the diagnostic plots in the next sub-section)!\n Possible solutions include ",sol))
+}
+
+```
+
+
+### Diagnostics
+The following graphs can be used to assess the model and method used to perform the calculations. The _Residual Plot_ shows the model residuals, separately for the costs and the effects. A scatter plot with no evident pattern indicates satisfactory fit. 
+
+
+Since the calculation methods are based on some form of underlying normality of the process describing the distribution of the Net Benefits, the _Q-Q Plot_ for both costs and effects should show points lying on top of the 45 degrees line. Substantial departure from linearity in this graph indicate poor model fitting.
+
+
+
+```{r, echo=FALSE,fig.width=5.5, fig.height=4,fig.align=align}
+cat("\n\n")
+diag.evppi(compute_evppi(), m(), diag="residuals")
+```
+
+```{r, echo=FALSE,fig.width=5.5, fig.height=4,fig.align=align}
+diag.evppi(compute_evppi(), m(), diag="qqplot")
+```

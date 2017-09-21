@@ -1,5 +1,30 @@
 ###summary.bcea#################################################################################################
 ## Summary of the results
+
+
+#' Summary method for objects in the class \code{bcea}
+#' 
+#' Produces a table printout with some summary results of the health economic
+#' evaluation
+#' 
+#' 
+#' @param object A \code{bcea} object containing the results of the Bayesian
+#' modelling and the economic evaluation.
+#' @param wtp The value of the willingness to pay threshold to be used in the
+#' summary table.
+#' @param ...  Additional arguments affecting the summary produced.
+#' @return Prints a summary table with some information on the health economic
+#' output and synthetic information on the economic measures (EIB, CEAC, EVPI).
+#' @author Gianluca Baio
+#' @seealso \code{\link{bcea}}
+#' @references Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
+#' Analysis in Health Economics.  Statistical Methods in Medical Research
+#' doi:10.1177/0962280211419832.
+#' 
+#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
+#' London
+#' @keywords Health economic evaluation
+#' @export summary.bcea
 summary.bcea <- function(object,wtp=25000,...) {
   
   if(max(object$k)<wtp) {

@@ -1,0 +1,15 @@
+---
+title: "EVPPIerror"
+output: 
+	pdf_document
+	word_document
+---
+```{r, echo=FALSE}
+if(input$format=="PDF") {
+    align="center"
+} else {
+    align="default"
+}
+```
+
+The EVPPI analysis could not be run. Please run the analysis from the EVPPI tab before producing the report.
