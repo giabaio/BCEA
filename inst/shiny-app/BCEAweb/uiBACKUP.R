@@ -176,26 +176,26 @@ shiny::shinyUI(shiny::fluidPage(theme=shinythemes::shinytheme('united'),
                                       ),
                                       
                                       shiny::mainPanel(
-                                        ## THIS CODE PREVENTS FROM SHOWING THE ERROR MESSAGES --- THEY WILL STILL SHOW IN THE R TERMINAL, THOUGH
+                                        # THIS CODE PREVENTS FROM SHOWING THE ERROR MESSAGES --- THEY WILL STILL SHOW IN THE R TERMINAL, THOUGH
                                         shiny::tags$style(type="text/css",
                                                           ".shiny-output-error { visibility: hidden; }",
                                                           ".shiny-output-error:before { visibility: hidden; }"),
                                         
-                                        # Plots for R 
-                                        shiny::conditionalPanel(condition="input.from=='R'", 
+                                        # Plots for R
+                                        shiny::conditionalPanel(condition="input.from=='R'",
                                                                 shiny::tabsetPanel(
                                                                   shiny::tabPanel("1.1. Plot and summary",
                                                                                   shiny::plotOutput('hist1',width="600px", height="600px"),
                                                                                   shiny::tableOutput("summary21")
                                                                   ),
-                                                                  shiny::tabPanel("1.2. Trace plots", 
+                                                                  shiny::tabPanel("1.2. Trace plots",
                                                                                   shiny::plotOutput('trace1',width="600px", height="600px"),
                                                                                   shiny::p("NB check visually if the Bayesian model has converged")
                                                                   ),
-                                                                  shiny::tabPanel("1.3. GR plot", 
+                                                                  shiny::tabPanel("1.3. GR plot",
                                                                                   shiny::plotOutput('gr1',width="600px", height="600px"),
-                                                                                  shiny::p("Check visually the value of the Gelman-Rubin statistic.  
-                                                  Values below 1.1 are considered to suggest convergence for a given 
+                                                                                  shiny::p("Check visually the value of the Gelman-Rubin statistic.
+                                                  Values below 1.1 are considered to suggest convergence for a given
                                                   parameter")
                                                                   ),
                                                                   shiny::tabPanel("1.4. Effective sample size",
@@ -206,7 +206,7 @@ shiny::shinyUI(shiny::fluidPage(theme=shinythemes::shinytheme('united'),
                                                                   )
                                                                 )
                                         ),
-                                        
+
                                         # Plots for BUGS
                                         shiny::conditionalPanel(condition="input.from=='BUGS'",
                                                                 shiny::tabsetPanel(
@@ -214,14 +214,14 @@ shiny::shinyUI(shiny::fluidPage(theme=shinythemes::shinytheme('united'),
                                                                                   shiny::plotOutput('hist2',width="600px", height="600px"),
                                                                                   shiny::tableOutput("summary22")
                                                                   ),
-                                                                  shiny::tabPanel("1.2. Trace plots", 
+                                                                  shiny::tabPanel("1.2. Trace plots",
                                                                                   shiny::plotOutput('trace2',width="600px", height="600px"),
                                                                                   shiny::p("NB check visually if the Bayesian model has converged")
                                                                   ),
-                                                                  shiny::tabPanel("1.3. GR plot", 
+                                                                  shiny::tabPanel("1.3. GR plot",
                                                                                   shiny::plotOutput('gr2',width="600px", height="600px"),
-                                                                                  shiny::p("Check visually the value of the Gelman-Rubin statistic.  
-                                                  Values below 1.1 are considered to suggest convergence for a given 
+                                                                                  shiny::p("Check visually the value of the Gelman-Rubin statistic.
+                                                  Values below 1.1 are considered to suggest convergence for a given
                                                   parameter")
                                                                   ),
                                                                   shiny::tabPanel("1.4. Effective sample size",
@@ -232,21 +232,21 @@ shiny::shinyUI(shiny::fluidPage(theme=shinythemes::shinytheme('united'),
                                                                   )
                                                                 )
                                         ),
-                                        
-                                        # Plots for spreadsheet 
+
+                                        # Plots for spreadsheet
                                         shiny::conditionalPanel(condition="input.from=='Spreadsheet'",
                                                                 shiny::tabsetPanel(
                                                                   shiny::tabPanel("1.1. Plot and summary",
                                                                                   shiny::plotOutput('hist',width="600px", height="600px"),
                                                                                   shiny::tableOutput("summary2")),
-                                                                  shiny::tabPanel("1.2. Trace plots", 
-                                                                                  shiny::plotOutput('trace3',width="600px", height="600px"))
+                                                                  shiny::tabPanel("1.2. Trace plots",
+                                                                                  shiny::plotOutput('trace',width="600px", height="600px"))
                                                                 )
-                                        )                          
-                                        
+                                        )
                                       )
-                                      
-                      ), 
+
+
+                      ),
                       
                       ##########
                       #BCEA tab#

@@ -37,7 +37,12 @@ BCEAweb <- function(e=NULL,c=NULL,parameters=NULL,...) {
   }
   
   # This makes the possible inputs available to the webapp!
-  e <<- e; c <<- c; parameters <<- parameters
+  # First uses BCEA::CreateInputs to process the simulations for the model parameters
+  #  (this means the user can pass a BUGS, JAGS, Stan, or xls object and BCEA will know what to do. Also eliminates need with further dependencies).
+  if(!is.null(parameters)){parameters=CreateInputs(parameters)$mat} 
+  # Then assigns the arguments to the global environment, so the webapp can access them, if they're not NULL
+  assign("e",e,envir=globalenv()); assign("c",c,envir=globalenv()); assign("parameters",parameters,envir=globalenv())
 
+  # Finally run the webapp
   shiny::runApp(appDir, display.mode = "normal", quiet=TRUE, launch.browser=TRUE,...)
 }
