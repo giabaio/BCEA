@@ -6,6 +6,7 @@ if(!isTRUE(requireNamespace("shiny",quietly=TRUE))) {
 options(shiny.maxRequestSize=1024*1024^2)
 source("utils.R")
 
+# Checks if the inputs to the launcher functions are defined
 if (exists(".parameters")) {
   parameters <- .parameters
 } else {

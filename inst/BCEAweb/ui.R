@@ -309,9 +309,9 @@ shiny::shinyUI(
                               )},
 
                          
-                         #   #########
-                         #   #PSA tab#
-                         #   #########
+                           #########
+                           #PSA tab#
+                           #########
                            {shiny::tabPanel("3. Probabilistic Sensitivity Analysis",
                                                       ## THIS CODE PREVENTS FROM SHOWING THE ERROR MESSAGES --- THEY WILL STILL SHOW IN THE R TERMINAL, THOUGH
                                                       shiny::tags$style(type="text/css",
@@ -385,266 +385,264 @@ shiny::shinyUI(
                                                                          )
                                                          )
                                                       )
-                                      )}
+                                      )},
 
                          
-                         
-                         #   ##########################
-                         #   #Value of information tab#
-                         #   ##########################
-                         #   {shiny::tabPanel("4. Value of information",
-                         #                              shiny::tabsetPanel(
-                         #                                 shiny::tabPanel("4.1. EVPI",
-                         #                                                 shiny::sidebarPanel(
-                         #                                                    shiny::tags$div(
-                         #                                                       "This plot shows the analysis of the Expected Value of Perfect Information (EVPI). The EVPI can be visualised for each value of the willingness-to-pay grid.",
-                         #                                                       shiny::tags$br(),shiny::tags$br(),shiny::tags$br()
-                         #                                                    ),
-                         #                                                    shiny::fluidRow(
-                         #                                                       shiny::column(5,shiny::downloadButton('download_EVPI_table','Download EVPI table'))
-                         #                                                    ),
-                         #                                                    shiny::fluidRow(
-                         #                                                       shiny::br(),
-                         #                                                       shiny::column(5,shiny::uiOutput("wtp_values4")),
-                         #                                                       shiny::column(5,shiny::uiOutput("evpi_values"))
-                         #                                                    ),
-                         #                                                    width = '4'
-                         #                                                 ),
-                         # 
-                         #                                                 shiny::mainPanel(
-                         #                                                    shiny::plotOutput('evpi', width = '600px', height = '600px')
-                         #                                                 )
-                         #                                 ),
-                         # 
-                         #                                 shiny::tabPanel("4.2. Info-rank",
-                         #                                                 shiny::sidebarPanel(
-                         #                                                    shiny::tags$div(
-                         #                                                       "This is the 'Info-rank' plot, an extension of 'Tornado plots', based on
-                         #                 the analysis of the EVPPI.",
-                         #                                                       shiny::tags$br(),shiny::tags$br(),
-                         #                                                       "For each parameter and value of the willingness-to-pay threshold, a barchart is
-                         #                 plotted to describe the ratio of EVPPI (specific to that parameter) to EVPI. This
-                         #                 represents the relative 'importance' of each parameter in terms of the expected
-                         #                 value of information.",
-                         #                                                       shiny::tags$br(),shiny::tags$br(),
-                         #                                                       "Notice that the ranking provided by considering the parameters separately may
-                         #                 be very different to that obtained considering sub-sets of parameters. Thus, it
-                         #                 is recommended that a full analysis is performed using the tab '4.3 EVPPI'",
-                         #                                                       shiny::tags$br(),shiny::tags$br(),shiny::tags$br()
-                         #                                                    ),
-                         # 
-                         #                                                    shiny::uiOutput("info_rank_pars"),
-                         # 
-                         #                                                    shiny::fluidRow(
-                         #                                                       shiny::column(4,shiny::uiOutput("wtp_values5")),
-                         #                                                       shiny::column(8,shiny::uiOutput("N_values"))
-                         #                                                    ),
-                         # 
-                         #                                                    shiny::fluidRow(
-                         #                                                       shiny::br(),
-                         #                                                       shiny::column(4,shiny::actionButton("run_info_rank","Run")),
-                         #                                                       shiny::column(5,shiny::downloadButton('download_IR_table', 'Download Info-rank table'))
-                         #                                                    ),
-                         # 
-                         #                                                    shiny::fluidRow(
-                         #                                                       shiny::br(),shiny::br(),
-                         #                                                       shiny::column(8,
-                         #                                                                     shiny::uiOutput("details_ir")
-                         #                                                       )
-                         #                                                    ),
-                         # 
-                         #                                                    width = '4'
-                         #                                                 ),
-                         # 
-                         #                                                 shiny::mainPanel(
-                         #                                                    shiny::plotOutput('ir', width = '700px', height = '800px')
-                         #                                                 )
-                         #                                 ),
-                         # 
-                         # 
-                         #                                 shiny::tabPanel("4.3. EVPPI",
-                         #                                                 shiny::sidebarPanel(
-                         #                                                    shiny::selectInput("which_method","1. Select method of calculation",
-                         #                                                                       choices=c("GAM regression (up to 5 parameters)","GP regression","INLA-SPDE"),
-                         #                                                                       selected="INLA-SPDE"),
-                         # 
-                         #                                                    shiny::uiOutput("evppi_pars"),
-                         # 
-                         #                                                    shiny::uiOutput("num_sims"),
-                         # 
-                         #                                                    # Here should put some conditional panels which allows the user to select method-specific options
-                         #                                                    shiny::conditionalPanel(condition="input.which_method=='GAM regression (up to 5 parameters)'",
-                         #                                                                            shiny::p(shiny::h5(shiny::strong("4. Method-specific options:"))),
-                         #                                                                            shiny::selectInput("formula_gam","a. Model",
-                         #                                                                                               choices=c("Full interaction","Separate"),
-                         #                                                                                               selected="Full interaction"),
-                         #                                                                            shiny::p(shiny::h5(shiny::strong("Reference"),": Strong M, Oakley JE, Brennan A. Estimating multi-parameter partial
-                         #                                                         Expected Value of Perfect Information from a probabilistic sensitivity analysis sample:
-                         #                                                         a non-parametric regression approach. Medical Decision Making. 2014;34(3):311-26.
-                         #                                                         Available open access",
-                         #                                                                                               shiny::tags$a(href="http://mdm.sagepub.com/content/34/3/311","here",target='_blank'),".")),
-                         #                                                                            shiny::tags$br(),shiny::tags$br(),shiny::tags$br()
-                         #                                                    ),
-                         # 
-                         #                                                    shiny::conditionalPanel(condition="input.which_method=='GP regression'",
-                         #                                                                            shiny::p(shiny::h5(shiny::strong("4. Method-specific options:"))),
-                         #                                                                            shiny::uiOutput("option_GP"),
-                         #                                                                            shiny::p(shiny::h5(shiny::strong("Reference"),": Strong M, Oakley JE, Brennan A. Estimating multi-parameter partial
-                         #                                                         Expected Value of Perfect Information from a probabilistic sensitivity analysis sample:
-                         #                                                         a non-parametric regression approach. Medical Decision Making. 2014;34(3):311-26.
-                         #                                                         Available open access",
-                         #                                                                                               shiny::tags$a(href="http://mdm.sagepub.com/content/34/3/311","here",target='_blank'),".")),
-                         #                                                                            shiny::tags$br(),shiny::tags$br(),shiny::tags$br()
-                         #                                                    ),
-                         # 
-                         #                                                    shiny::conditionalPanel(condition="input.which_method=='INLA-SPDE'",
-                         #                                                                            shiny::p(shiny::h5(shiny::strong("4. Method-specific options:"))),
-                         #                                                                            #                                                              fluidRow(
-                         #                                                                            #                                                                column(12,
-                         #                                                                            #                                                                       numericInput("formula_inla",
-                         #                                                                            #                                                                                    "a. Interactions order (select higher values to deal with non-linearity)",
-                         #                                                                            #                                                                                    value=1,min=1,max=5)
-                         #                                                                            #                                                                ),
-                         #                                                                            shiny::fluidRow(
-                         #                                                                               shiny::column(12,
-                         #                                                                                             shiny::p(shiny::h5(shiny::strong("a. Interactions order (select higher values to deal with non-linearity)")))
-                         #                                                                               ),
-                         #                                                                               shiny::column(6,
-                         #                                                                                             shiny::numericInput("int.ord1",
-                         #                                                                                                                 "Effects",
-                         #                                                                                                                 value=1,min=1,max=5)
-                         #                                                                               ),
-                         #                                                                               shiny::column(6,
-                         #                                                                                             shiny::numericInput("int.ord2",
-                         #                                                                                                                 "Costs",
-                         #                                                                                                                 value=1,min=1,max=5)
-                         # 
-                         #                                                                               ),
-                         #                                                                               shiny::column(12,
-                         #                                                                                             shiny::p(shiny::h5(shiny::strong("b. Mesh controls (smaller values = faster but LESS accurate)")))
-                         #                                                                               ),
-                         #                                                                               shiny::column(3,
-                         #                                                                                             shiny::sliderInput('cutoff_inla',ticks=F,
-                         #                                                                                                                "Density of points",
-                         #                                                                                                                min=.1,max=.5,value = .3)
-                         #                                                                               ),
-                         #                                                                               shiny::column(3,
-                         #                                                                                             shiny::sliderInput('convex_in',
-                         #                                                                                                                "Inner boundary",ticks=F,
-                         #                                                                                                                value=0.5,max=0.7,min=0.3,step=.01)
-                         #                                                                               ),
-                         #                                                                               shiny::column(3,
-                         #                                                                                             shiny::sliderInput('convex_out',
-                         #                                                                                                                "Outer boundary",ticks=FALSE,
-                         #                                                                                                                value=0.75,max=1,min=0.5,step=.01
-                         #                                                                                             )
-                         #                                                                               ),
-                         #                                                                               shiny::column(3,
-                         #                                                                                             shiny::sliderInput('h_value',
-                         #                                                                                                                "INLA step size",ticks=FALSE,
-                         #                                                                                                                value=(1-0.05),max=1,min=0,step=.01
-                         #                                                                                             )
-                         #                                                                               )
-                         #                                                                            ),
-                         #                                                                            shiny::p(shiny::h5(shiny::strong("NB:"),"Unlike in the R terminal version of BCEA, here, for simplicity the mesh controls
-                         #                                                         have been standardised so that lower values",shiny::strong("always"),"produce a faster but potentially
-                         #                                                         less accurate estimates.")),
-                         #                                                                            shiny::p(shiny::h5("Some more complex options are available when using the R terminal version of BCEA. If you cannot
-                         #                                                         fit your model, please consider using it, or contact",
-                         #                                                                                               shiny::tags$a(href='mailto: g.baio@ucl.ac.uk','us'),".")),
-                         #                                                                            shiny::tags$br(),shiny::tags$br(),
-                         #                                                                            shiny::p(shiny::h5(shiny::strong("References"))),
-                         #                                                                            shiny::p(shiny::h5("Heath A, Manolopoulou I and Baio G. Estimating the expected value of
-                         #                                                         partial perfect information in health economic evaluations using
-                         #                                                         Integrated Nested Laplace Approximation. Statistics in Medicine.
-                         #                                                         Apr 2015. Available online",
-                         #                                                                                               shiny::tags$a(href="http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full","here",target='_blank'),".")),
-                         #                                                                            shiny::p(shiny::h5("Baio G, Berardi A and Heath A. Bayesian Cost-Effectiveness Analysis with the R package BCEA. Springer (2017)",
-                         #                                                                                               shiny::tags$a(href="http://www.statistica.it/gianluca/BCEA_book","More details here",target='_blank'),".")),
-                         #                                                                            # p(h5(strong("References"),": Heath A, Manolopoulou I and Baio G. Estimating the expected value of
-                         #                                                                            #                             partial perfect information in health economic evaluations using
-                         #                                                                            #                             Integrated Nested Laplace Approximation. Statistics in Medicine.
-                         #                                                                            #                             Apr 2015. Available online",
-                         #                                                                            #       tags$a(href="http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full","here",target='_blank'),".")),
-                         #                                                                            shiny::tags$br(),shiny::tags$br(),shiny::tags$br()
-                         #                                                    ),
-                         # 
-                         # 
-                         #                                                    shiny::fluidRow(
-                         #                                                       shiny::column(5,shiny::actionButton("run_evppi","Run")),
-                         #                                                       shiny::column(5,shiny::downloadButton('download_EVPPI_table', 'Download EVPPI table'))
-                         #                                                    ),
-                         # 
-                         #                                                    shiny::fluidRow(
-                         #                                                       shiny::br(),shiny::br(),
-                         #                                                       shiny::column(8,
-                         #                                                                     shiny::uiOutput("details_evppi")
-                         #                                                       )
-                         #                                                    ),
-                         # 
-                         #                                                    shiny::fluidRow(
-                         #                                                       shiny::br(),
-                         #                                                       shiny::column(6,
-                         #                                                                     shiny::uiOutput("wtp_values")
-                         #                                                       ),
-                         #                                                       shiny::column(6,
-                         #                                                                     shiny::uiOutput("evppi_values")
-                         #                                                       )
-                         #                                                    ),
-                         # 
-                         #                                                    shiny::conditionalPanel(condition="input.evppi_tab=='Diagnostics'",
-                         #                                                                            shiny::uiOutput("select_diag")
-                         #                                                    ),
-                         # 
-                         #                                                    width = '4'
-                         #                                                 ),
-                         # 
-                         #                                                 shiny::mainPanel(
-                         #                                                    shiny::tabsetPanel(
-                         #                                                       shiny::tabPanel("Analysis",
-                         #                                                                       shiny::plotOutput('evppi', width = "600px", height = "600px")
-                         #                                                       ),
-                         #                                                       shiny::tabPanel("Diagnostics",
-                         #                                                                       shiny::plotOutput('diag_evppi', width = "600px", height = "600px")
-                         #                                                       ),
-                         #                                                       id="evppi_tab"
-                         #                                                    )
-                         #                                                 )
-                         #                                 )
-                         # 
-                         #                              )
-                         #              )},
-                         #   
-                         
-                         #   ############
-                         #   #Report tab#
-                         #   ############
-                         #   {shiny::tabPanel("5. Report",
-                         #                              shiny::sidebarPanel(
-                         #                                 shiny::tags$div(
-                         #                                    shiny::tags$strong("Please select the required output and the document format:"),
-                         #                                    shiny::tags$br(),shiny::tags$br()
-                         #                                 ),
-                         #                                 shiny::checkboxGroupInput('assumption', "Model checking",choices = ("Plots and summaries"), selected = NULL, inline = FALSE),
-                         #                                 shiny::checkboxGroupInput('bcea', "Economic Analysis", choices = c("Cost-effectiveness analysis",
-                         #                                                                                                    "Cost-effectiveness plane",
-                         #                                                                                                    "Expected Incremental Benefit",
-                         #                                                                                                    "Efficiency frontier"), #AB: moved the frontier here
-                         #                                                           selected = NULL, inline = FALSE),
-                         #                                 shiny::checkboxGroupInput('psa', "PSA & Value of information",choices =  c("CEAC",
-                         #                                                                                                            "Multi-comparison CEAC",
-                         #                                                                                                            "CEAF","EVPI","Info-rank","EVPPI"),
-                         #                                                           selected = NULL, inline = FALSE), #AB added multiple CEAC, not sure about the name
-                         #                                 #checkboxGroupInput('evpi', "Value of Information",choices = ("EVPI"), selected = NULL, inline = FALSE), #AB removed EVPI and included in the PSA group
-                         #                                 shiny::radioButtons('format', 'Document format', c('PDF', 'Word'),inline = TRUE), #AB added format option
-                         #                                 shiny::downloadButton('downloadReport', 'Download report'),
-                         #                                 shiny::br(),
-                         #                                 shiny::p("NB: generating the document can take some time.")
-                         #                              )#,
-                         #                              #mainPanel(h3("Download summary report")
-                         #                              #)
-                         #   )}
-                           
+                           ##########################
+                           #Value of information tab#
+                           ##########################
+                           {shiny::tabPanel("4. Value of information",
+                                                      shiny::tabsetPanel(
+                                                         shiny::tabPanel("4.1. EVPI",
+                                                                         shiny::sidebarPanel(
+                                                                            shiny::tags$div(
+                                                                               "This plot shows the analysis of the Expected Value of Perfect Information (EVPI). The EVPI can be visualised for each value of the willingness-to-pay grid.",
+                                                                               shiny::tags$br(),shiny::tags$br(),shiny::tags$br()
+                                                                            ),
+                                                                            shiny::fluidRow(
+                                                                               shiny::column(5,shiny::downloadButton('download_EVPI_table','Download EVPI table'))
+                                                                            ),
+                                                                            shiny::fluidRow(
+                                                                               shiny::br(),
+                                                                               shiny::column(5,shiny::uiOutput("wtp_values4")),
+                                                                               shiny::column(5,shiny::uiOutput("evpi_values"))
+                                                                            ),
+                                                                            width = '4'
+                                                                         ),
+
+                                                                         shiny::mainPanel(
+                                                                            shiny::plotOutput('evpi', width = '600px', height = '600px')
+                                                                         )
+                                                         ),
+
+                                                         shiny::tabPanel("4.2. Info-rank",
+                                                                         shiny::sidebarPanel(
+                                                                            shiny::tags$div(
+                                                                               "This is the 'Info-rank' plot, an extension of 'Tornado plots', based on
+                                         the analysis of the EVPPI.",
+                                                                               shiny::tags$br(),shiny::tags$br(),
+                                                                               "For each parameter and value of the willingness-to-pay threshold, a barchart is
+                                         plotted to describe the ratio of EVPPI (specific to that parameter) to EVPI. This
+                                         represents the relative 'importance' of each parameter in terms of the expected
+                                         value of information.",
+                                                                               shiny::tags$br(),shiny::tags$br(),
+                                                                               "Notice that the ranking provided by considering the parameters separately may
+                                         be very different to that obtained considering sub-sets of parameters. Thus, it
+                                         is recommended that a full analysis is performed using the tab '4.3 EVPPI'",
+                                                                               shiny::tags$br(),shiny::tags$br(),shiny::tags$br()
+                                                                            ),
+
+                                                                            shiny::uiOutput("info_rank_pars"),
+
+                                                                            shiny::fluidRow(
+                                                                               shiny::column(4,shiny::uiOutput("wtp_values5")),
+                                                                               shiny::column(8,shiny::uiOutput("N_values"))
+                                                                            ),
+
+                                                                            shiny::fluidRow(
+                                                                               shiny::br(),
+                                                                               shiny::column(4,shiny::actionButton("run_info_rank","Run")),
+                                                                               shiny::column(5,shiny::downloadButton('download_IR_table', 'Download Info-rank table'))
+                                                                            ),
+
+                                                                            shiny::fluidRow(
+                                                                               shiny::br(),shiny::br(),
+                                                                               shiny::column(8,
+                                                                                             shiny::uiOutput("details_ir")
+                                                                               )
+                                                                            ),
+
+                                                                            width = '4'
+                                                                         ),
+
+                                                                         shiny::mainPanel(
+                                                                            shiny::plotOutput('ir', width = '700px', height = '800px')
+                                                                         )
+                                                         ),
+
+
+                                                         shiny::tabPanel("4.3. EVPPI",
+                                                                         shiny::sidebarPanel(
+                                                                            shiny::selectInput("which_method","1. Select method of calculation",
+                                                                                               choices=c("GAM regression (up to 5 parameters)","GP regression","INLA-SPDE"),
+                                                                                               selected="INLA-SPDE"),
+
+                                                                            shiny::uiOutput("evppi_pars"),
+
+                                                                            shiny::uiOutput("num_sims"),
+
+                                                                            # Here should put some conditional panels which allows the user to select method-specific options
+                                                                            shiny::conditionalPanel(condition="input.which_method=='GAM regression (up to 5 parameters)'",
+                                                                                                    shiny::p(shiny::h5(shiny::strong("4. Method-specific options:"))),
+                                                                                                    shiny::selectInput("formula_gam","a. Model",
+                                                                                                                       choices=c("Full interaction","Separate"),
+                                                                                                                       selected="Full interaction"),
+                                                                                                    shiny::p(shiny::h5(shiny::strong("Reference"),": Strong M, Oakley JE, Brennan A. Estimating multi-parameter partial
+                                                                                 Expected Value of Perfect Information from a probabilistic sensitivity analysis sample:
+                                                                                 a non-parametric regression approach. Medical Decision Making. 2014;34(3):311-26.
+                                                                                 Available open access",
+                                                                                                                       shiny::tags$a(href="http://mdm.sagepub.com/content/34/3/311","here",target='_blank'),".")),
+                                                                                                    shiny::tags$br(),shiny::tags$br(),shiny::tags$br()
+                                                                            ),
+
+                                                                            shiny::conditionalPanel(condition="input.which_method=='GP regression'",
+                                                                                                    shiny::p(shiny::h5(shiny::strong("4. Method-specific options:"))),
+                                                                                                    shiny::uiOutput("option_GP"),
+                                                                                                    shiny::p(shiny::h5(shiny::strong("Reference"),": Strong M, Oakley JE, Brennan A. Estimating multi-parameter partial
+                                                                                 Expected Value of Perfect Information from a probabilistic sensitivity analysis sample:
+                                                                                 a non-parametric regression approach. Medical Decision Making. 2014;34(3):311-26.
+                                                                                 Available open access",
+                                                                                                                       shiny::tags$a(href="http://mdm.sagepub.com/content/34/3/311","here",target='_blank'),".")),
+                                                                                                    shiny::tags$br(),shiny::tags$br(),shiny::tags$br()
+                                                                            ),
+
+                                                                            shiny::conditionalPanel(condition="input.which_method=='INLA-SPDE'",
+                                                                                                    shiny::p(shiny::h5(shiny::strong("4. Method-specific options:"))),
+                                                                                                    #                                                              fluidRow(
+                                                                                                    #                                                                column(12,
+                                                                                                    #                                                                       numericInput("formula_inla",
+                                                                                                    #                                                                                    "a. Interactions order (select higher values to deal with non-linearity)",
+                                                                                                    #                                                                                    value=1,min=1,max=5)
+                                                                                                    #                                                                ),
+                                                                                                    shiny::fluidRow(
+                                                                                                       shiny::column(12,
+                                                                                                                     shiny::p(shiny::h5(shiny::strong("a. Interactions order (select higher values to deal with non-linearity)")))
+                                                                                                       ),
+                                                                                                       shiny::column(6,
+                                                                                                                     shiny::numericInput("int.ord1",
+                                                                                                                                         "Effects",
+                                                                                                                                         value=1,min=1,max=5)
+                                                                                                       ),
+                                                                                                       shiny::column(6,
+                                                                                                                     shiny::numericInput("int.ord2",
+                                                                                                                                         "Costs",
+                                                                                                                                         value=1,min=1,max=5)
+
+                                                                                                       ),
+                                                                                                       shiny::column(12,
+                                                                                                                     shiny::p(shiny::h5(shiny::strong("b. Mesh controls (smaller values = faster but LESS accurate)")))
+                                                                                                       ),
+                                                                                                       shiny::column(3,
+                                                                                                                     shiny::sliderInput('cutoff_inla',ticks=F,
+                                                                                                                                        "Density of points",
+                                                                                                                                        min=.1,max=.5,value = .3)
+                                                                                                       ),
+                                                                                                       shiny::column(3,
+                                                                                                                     shiny::sliderInput('convex_in',
+                                                                                                                                        "Inner boundary",ticks=F,
+                                                                                                                                        value=0.5,max=0.7,min=0.3,step=.01)
+                                                                                                       ),
+                                                                                                       shiny::column(3,
+                                                                                                                     shiny::sliderInput('convex_out',
+                                                                                                                                        "Outer boundary",ticks=FALSE,
+                                                                                                                                        value=0.75,max=1,min=0.5,step=.01
+                                                                                                                     )
+                                                                                                       ),
+                                                                                                       shiny::column(3,
+                                                                                                                     shiny::sliderInput('h_value',
+                                                                                                                                        "INLA step size",ticks=FALSE,
+                                                                                                                                        value=(1-0.05),max=1,min=0,step=.01
+                                                                                                                     )
+                                                                                                       )
+                                                                                                    ),
+                                                                                                    shiny::p(shiny::h5(shiny::strong("NB:"),"Unlike in the R terminal version of BCEA, here, for simplicity the mesh controls
+                                                                                 have been standardised so that lower values",shiny::strong("always"),"produce a faster but potentially
+                                                                                 less accurate estimates.")),
+                                                                                                    shiny::p(shiny::h5("Some more complex options are available when using the R terminal version of BCEA. If you cannot
+                                                                                 fit your model, please consider using it, or contact",
+                                                                                                                       shiny::tags$a(href='mailto: g.baio@ucl.ac.uk','us'),".")),
+                                                                                                    shiny::tags$br(),shiny::tags$br(),
+                                                                                                    shiny::p(shiny::h5(shiny::strong("References"))),
+                                                                                                    shiny::p(shiny::h5("Heath A, Manolopoulou I and Baio G. Estimating the expected value of
+                                                                                 partial perfect information in health economic evaluations using
+                                                                                 Integrated Nested Laplace Approximation. Statistics in Medicine.
+                                                                                 Apr 2015. Available online",
+                                                                                                                       shiny::tags$a(href="http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full","here",target='_blank'),".")),
+                                                                                                    shiny::p(shiny::h5("Baio G, Berardi A and Heath A. Bayesian Cost-Effectiveness Analysis with the R package BCEA. Springer (2017)",
+                                                                                                                       shiny::tags$a(href="http://www.statistica.it/gianluca/BCEA_book","More details here",target='_blank'),".")),
+                                                                                                    # p(h5(strong("References"),": Heath A, Manolopoulou I and Baio G. Estimating the expected value of
+                                                                                                    #                             partial perfect information in health economic evaluations using
+                                                                                                    #                             Integrated Nested Laplace Approximation. Statistics in Medicine.
+                                                                                                    #                             Apr 2015. Available online",
+                                                                                                    #       tags$a(href="http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full","here",target='_blank'),".")),
+                                                                                                    shiny::tags$br(),shiny::tags$br(),shiny::tags$br()
+                                                                            ),
+
+
+                                                                            shiny::fluidRow(
+                                                                               shiny::column(5,shiny::actionButton("run_evppi","Run")),
+                                                                               shiny::column(5,shiny::downloadButton('download_EVPPI_table', 'Download EVPPI table'))
+                                                                            ),
+
+                                                                            shiny::fluidRow(
+                                                                               shiny::br(),shiny::br(),
+                                                                               shiny::column(8,
+                                                                                             shiny::uiOutput("details_evppi")
+                                                                               )
+                                                                            ),
+
+                                                                            shiny::fluidRow(
+                                                                               shiny::br(),
+                                                                               shiny::column(6,
+                                                                                             shiny::uiOutput("wtp_values")
+                                                                               ),
+                                                                               shiny::column(6,
+                                                                                             shiny::uiOutput("evppi_values")
+                                                                               )
+                                                                            ),
+
+                                                                            shiny::conditionalPanel(condition="input.evppi_tab=='Diagnostics'",
+                                                                                                    shiny::uiOutput("select_diag")
+                                                                            ),
+
+                                                                            width = '4'
+                                                                         ),
+
+                                                                         shiny::mainPanel(
+                                                                            shiny::tabsetPanel(
+                                                                               shiny::tabPanel("Analysis",
+                                                                                               shiny::plotOutput('evppi', width = "600px", height = "600px")
+                                                                               ),
+                                                                               shiny::tabPanel("Diagnostics",
+                                                                                               shiny::plotOutput('diag_evppi', width = "600px", height = "600px")
+                                                                               ),
+                                                                               id="evppi_tab"
+                                                                            )
+                                                                         )
+                                                         )
+
+                                                      )
+                                      )},
+
+                           ############
+                           #Report tab#
+                           ############
+                           {shiny::tabPanel("5. Report",
+                                                      shiny::sidebarPanel(
+                                                         shiny::tags$div(
+                                                            shiny::tags$strong("Please select the required output and the document format:"),
+                                                            shiny::tags$br(),shiny::tags$br()
+                                                         ),
+                                                         shiny::checkboxGroupInput('assumption', "Model checking",choices = ("Plots and summaries"), selected = NULL, inline = FALSE),
+                                                         shiny::checkboxGroupInput('bcea', "Economic Analysis", choices = c("Cost-effectiveness analysis",
+                                                                                                                            "Cost-effectiveness plane",
+                                                                                                                            "Expected Incremental Benefit",
+                                                                                                                            "Efficiency frontier"), #AB: moved the frontier here
+                                                                                   selected = NULL, inline = FALSE),
+                                                         shiny::checkboxGroupInput('psa', "PSA & Value of information",choices =  c("CEAC",
+                                                                                                                                    "Multi-comparison CEAC",
+                                                                                                                                    "CEAF","EVPI","Info-rank","EVPPI"),
+                                                                                   selected = NULL, inline = FALSE), #AB added multiple CEAC, not sure about the name
+                                                         #checkboxGroupInput('evpi', "Value of Information",choices = ("EVPI"), selected = NULL, inline = FALSE), #AB removed EVPI and included in the PSA group
+                                                         shiny::radioButtons('format', 'Document format', c('PDF', 'Word'),inline = TRUE), #AB added format option
+                                                         shiny::downloadButton('downloadReport', 'Download report'),
+                                                         shiny::br(),
+                                                         shiny::p("NB: generating the document can take some time.")
+                                                      )#,
+                                                      #mainPanel(h3("Download summary report")
+                                                      #)
+                           )}
+
                          
                            )},
                         width = '200'
