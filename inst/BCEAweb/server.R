@@ -2,16 +2,25 @@
 if(!isTRUE(requireNamespace("shiny",quietly=TRUE))) {
   stop("You need to install the R package 'shiny'. Please run in your R terminal:\n install.packages('shiny')")
 }
-# # Checks if R2jags is installed (and if not, asks for it)
-# if(!isTRUE(requireNamespace("R2jags",quietly=TRUE))) {
-#   stop("You need to install the R package 'R2jags'.Please run in your R terminal:\n install.packages('R2jags')")
-# }
 
 options(shiny.maxRequestSize=1024*1024^2)
-# options(shiny.reactlog=FALSE)
-# options(shiny.trace=FALSE)
-# options(shiny.error="browser")
 source("utils.R")
+
+if (exists(".parameters")) {
+  parameters <- .parameters
+} else {
+  parameters <- get(".parameters", envir = BCEA:::.bcea_env)  
+}
+if (exists(".e")) {
+  e <- .e
+} else {
+  e <- get(".e", envir = BCEA:::.bcea_env)  
+}
+if (exists(".c")) {
+  c <- .c
+} else {
+  c <- get(".c", envir = BCEA:::.bcea_env)  
+}
 
 # Shiny Server
 function(input, output, session) {
@@ -37,13 +46,18 @@ function(input, output, session) {
    
    param <- shiny::reactive({
       if(input$from=="R") {
+         shiny::updateSelectInput(session,'parameter',choices="")
          parameters=parameters
+         shiny::updateSelectInput(session,'parameter',choices=names(parameters))
       }
       if(input$from=="Spreadsheet"){
          shiny::req(input$par_sims_csv)
          inFile_params <- input$par_sims_csv
          parameters <- read.csv(inFile_params$datapath, sep=',')
       }
+     if(input$from=="BUGS"){
+       parameters <- NULL
+     }
       return(parameters)
    })
 
@@ -194,7 +208,12 @@ function(input, output, session) {
    shiny::observe({
       if(!is.null(e) & !is.null(c)){
          inputs=shiny::reactive({
-            inputs=cbind(e,c)
+            out=cbind(e,c)
+         })
+      }
+      if(input$data=="R" & is.null(e) & is.null(c)){
+         inputs=shiny::reactive({
+            out=NULL
          })
       }
       if(input$data=="Spreadsheet"){
@@ -270,20 +289,17 @@ function(input, output, session) {
          })
       })
       
-      
       # Defines dynamically the intervention labels
       labs <- shiny::reactive({
          shiny::req(inputs())
-         numcols <- dim(inputs())[2]
-         index <- seq(1,numcols/2,by=1)
+         numcols <- ncol(inputs())
+         index <- seq(1,numcols/2)
          l <- unlist(lapply(index,function(i){input[[paste0('intervention_',i)]]}))
       })
       
       # Computes dynamically the BCEA object
       m <- shiny::reactive({
-         shiny::req(input$buttonsum)
-         shiny::req(input$step)
-         shiny::req(inputs())
+         shiny::req(input$buttonsum,input$step,inputs(),input$min,input$max,by=input$step)
          shiny::isolate({
             wtp <- seq(input$min,input$max,by=input$step)
             n.cols <- ncol(inputs())
@@ -315,7 +331,7 @@ function(input, output, session) {
       
       # The step by which the wtp threshold can be changed depends on the grid step
       output$step <- shiny::renderUI({
-         shiny::req(input$step)
+         shiny::req(input$step,input$min,input$max)
          if (input$min==input$max) {
             shiny::numericInput("value1","3. Define value for the wtp threshold (eg £)",value=input$min,min=input$min,max=input$min)
          } else {
@@ -331,7 +347,7 @@ function(input, output, session) {
       # Dynamically defines the labels for the interventions
       output$int_labels <- shiny::renderUI({
          shiny::req(inputs())
-         numcols <- dim(inputs())[2]  # number of columns = 2 x number of interventions
+         numcols <- ncol(inputs())  # number of columns = 2 x number of interventions
          lapply(1:(numcols/2), function(i) {
             list(shiny::textInput(paste0("intervention_",i),
                                   label = "", #h5(strong("4. Interventions labels"))
@@ -342,7 +358,7 @@ function(input, output, session) {
       # Selects the reference intervention
       output$sel_ref <- shiny::renderUI({
          shiny::req(inputs())
-         numcols <- dim(inputs())[2]  # number of columns = 2 x number of interventions
+         numcols <- ncol(inputs())  # number of columns = 2 x number of interventions
          shiny::selectInput("value_ref",shiny::h5(shiny::strong("5. Select reference intervention")),
                             choices=labs(),selected=labs()[1])
       })
@@ -367,8 +383,7 @@ function(input, output, session) {
       #CE-plane for varying WTP values -> wtp= value
       output$cep <- shiny::renderPlot({
          if(input$data=="Spreadsheet"){shiny::req(input$file1)}
-         if(input$data=="R") {shiny::req(input$file2)}
-         shiny::req(m(),inputs())
+         shiny::req(m(),inputs(),input$buttonsum)
          if (m()$n.comparators>2) {
             if (input$which_comparison==comparisons()[1]) {
                shiny::withProgress(
@@ -403,7 +418,8 @@ function(input, output, session) {
       
       # EIB plot
       output$eib <- shiny::renderPlot({
-         shiny::req(input$file1,inputs())
+         if(input$data=="Spreadsheet"){shiny::req(input$file1)}
+         shiny::req(inputs(),m())
          # If the willingness to pay grid is only one number then don't print the plots
          wtp <- seq(input$min,input$max,by=input$step)
          if (length(wtp)==1) {return(invisible)}
@@ -416,7 +432,8 @@ function(input, output, session) {
       
       #ceef plot
       output$ceef <- shiny::renderPlot({
-         shiny::req(input$file1,inputs())
+         if(input$data=="Spreadsheet"){shiny::req(input$file1)}
+         shiny::req(inputs(),m())
          shiny::withProgress(
             suppressMessages(ceef.plot(m(), print.summary = FALSE)),
             value = 1, message = "Creating plot,", detail = "Please wait..."
@@ -425,7 +442,8 @@ function(input, output, session) {
       
       # ceef output
       output$analysisc <- shiny::renderPrint({
-         shiny::req(input$file1,inputs())
+         if(input$data=="Spreadsheet"){shiny::req(input$file1)}
+         shiny::req(inputs(),m())
          shiny::withProgress(
             suppressMessages(ceef.plot(m())),
             value = 1, message = "Creating plot,", detail = "Please wait..."
@@ -438,7 +456,8 @@ function(input, output, session) {
       
       #CEAC for varying WTP values
       output$ceac <- shiny::renderPlot({
-         shiny::req(input$file1,inputs())
+         if(input$data=="Spreadsheet"){shiny::req(input$file1)}
+         shiny::req(inputs(),input$step,input$min,input$max)
          # If the willingness to pay grid is only one number then don't print the plots
          wtp <- seq(input$min,input$max,by=input$step)
          if (length(wtp)==1) {return(invisible)}
@@ -449,7 +468,8 @@ function(input, output, session) {
       })
       
       output$multi_ceac <- shiny::renderPlot({
-         shiny::req(input$file1,inputs())
+         if(input$data=="Spreadsheet"){shiny::req(input$file1)}
+         shiny::req(inputs())
          # If the willingness to pay grid is only one number then don't print the plots
          wtp <- seq(input$min,input$max,by=input$step)
          if (length(wtp)==1) {return(invisible)}
@@ -464,7 +484,8 @@ function(input, output, session) {
          mc <- multi.ce(m())
       })
       output$ceaf <- shiny::renderPlot({
-         shiny::req(input$file1,inputs())
+         if(input$data=="Spreadsheet"){shiny::req(input$file1)}
+         shiny::req(inputs())
          # If the willingness to pay grid is only one number then don't print the plots
          wtp <- seq(input$min,input$max,by=input$step)
          if (length(wtp)==1) {return(invisible)}
@@ -500,7 +521,8 @@ function(input, output, session) {
       
       #EVPI
       output$evpi <- shiny::renderPlot({
-         shiny::req(input$file1,inputs())
+         if(input$data=="Spreadsheet"){shiny::req(input$file1)}
+         shiny::req(inputs())
          # If the willingness to pay grid is only one number then don't print the plots
          wtp <- seq(input$min,input$max,by=input$step)
          if (length(wtp)==1) {return(invisible)}

@@ -172,7 +172,7 @@ shiny::shinyUI(
                                                {shiny::conditionalPanel(condition="input.from=='Spreadsheet' || input.from=='R'",
                                                                         shiny::tabsetPanel(
                                                                            shiny::tabPanel("1.1. Plot and summary",
-                                                                                           shiny::plotOutput('hist',width="600px", height="600px"),
+                                                                                           shiny::plotOutput('hist',width="800px", height="800px"),
                                                                                            shiny::tableOutput("summary"))
                                                                         )
                                                )},
@@ -181,21 +181,21 @@ shiny::shinyUI(
                                                {shiny::conditionalPanel(condition="input.from=='BUGS'",
                                                                        shiny::tabsetPanel(
                                                                           shiny::tabPanel("1.1. Plot and summary",
-                                                                                          shiny::plotOutput('hist2',width="600px", height="600px"),
+                                                                                          shiny::plotOutput('hist2',width="800px", height="800px"),
                                                                                           shiny::tableOutput("summary2")
                                                                                           ),
                                                                           shiny::tabPanel("1.2. Trace plots",
-                                                                                          shiny::plotOutput('trace',width="600px", height="600px"),
+                                                                                          shiny::plotOutput('trace',width="800px", height="800px"),
                                                                                           shiny::p("NB check visually if the Bayesian model has converged")
                                                                                           ),
                                                                           shiny::tabPanel("1.3. GR plot",
-                                                                                          shiny::plotOutput('gr',width="600px", height="600px"),
+                                                                                          shiny::plotOutput('gr',width="800px", height="800px"),
                                                                                           shiny::p("Check visually the value of the Gelman-Rubin statistic. Values below 1.1 are considered to suggest convergence for a given parameter")),
                                                                           shiny::tabPanel("1.4. Effective sample size",
-                                                                                          shiny::plotOutput('neff',width="600px", height="600px")
+                                                                                          shiny::plotOutput('neff',width="800px", height="800px")
                                                                                           ),
                                                                           shiny::tabPanel("1.5. Autocorrelation",
-                                                                                          shiny::plotOutput('acf',width="600px", height="600px")
+                                                                                          shiny::plotOutput('acf',width="800px", height="800px")
                                                                                           )
                                                                           )
                                                          )}
@@ -220,7 +220,7 @@ shiny::shinyUI(
                                  ),
                               shiny::selectInput("data","1. Import the simulations for (e,c) from:",
                                                  choices=c("R","Spreadsheet","BUGS","Model parameters (from Check assumptions)"),
-                                                 selected="Spreadsheet"),
+                                                 selected="R"),
                               
                               # Panel data import from a Spreadsheet
                               shiny::conditionalPanel(condition="input.data=='Spreadsheet'",
@@ -285,17 +285,17 @@ shiny::shinyUI(
                                                     shiny::verbatimTextOutput('analysis')
                                                     ),
                                     shiny::tabPanel("2.2. Cost-Effectiveness plane", 
-                                                    shiny::fluidRow( shiny::column(8,shiny::plotOutput('cep',width="600px", height="600px" )),
+                                                    shiny::fluidRow( shiny::column(8,shiny::plotOutput('cep',width="800px", height="800px")),
                                                                      shiny::column(4,shiny::uiOutput("other_CEA"))
                                                                      )
                                                     ),
                                     shiny::tabPanel("2.3 Expected Incremental Benefit",
-                                                    shiny::plotOutput('eib', width = "600px", height = "600px")
+                                                    shiny::plotOutput('eib', width = "800px", height = "800px")
                                                     ),
                                     shiny::tabPanel("2.4 Cost-Effectiveness Efficiency Frontier",
                                                     shiny::fluidRow(
                                                        shiny::column(7,
-                                                                     shiny::mainPanel(shiny::plotOutput('ceef', width = "600px",height = "600px"))
+                                                                     shiny::mainPanel(shiny::plotOutput('ceef', width = "800px",height = "800px"))
                                                                      ),
                                                        shiny::column(10,
                                                                      shiny::br(),shiny::br(),shiny::br(),
@@ -306,87 +306,88 @@ shiny::shinyUI(
                                                     )
                                     )
                                  )
-                              )}
+                              )},
 
                          
                          #   #########
                          #   #PSA tab#
                          #   #########
-                         #   {shiny::tabPanel("3. Probabilistic Sensitivity Analysis",
-                         #                              ## THIS CODE PREVENTS FROM SHOWING THE ERROR MESSAGES --- THEY WILL STILL SHOW IN THE R TERMINAL, THOUGH
-                         #                              shiny::tags$style(type="text/css",
-                         #                                                ".shiny-output-error { visibility: hidden; }",
-                         #                                                ".shiny-output-error:before { visibility: hidden; }"),
-                         #                              shiny::tabsetPanel(
-                         #                                 shiny::tabPanel("3.1. CEAC",
-                         #                                                 shiny::sidebarPanel(
-                         #                                                    shiny::tags$div(
-                         #                                                       "This plot shows the probability that the reference intervention is
-                         #                 cost-effective. For each value of the willingness-to-pay grid, it is
-                         #                 possible to visualise the resulting probability (the CEAC).",
-                         #                                                       shiny::tags$br(),shiny::tags$br(),shiny::tags$br()
-                         #                                                    ),
-                         #                                                    shiny::fluidRow(
-                         #                                                       shiny::column(5,shiny::downloadButton('download_CEAC_table','Download CEAC table'))
-                         #                                                    ),
-                         #                                                    shiny::fluidRow(
-                         #                                                       shiny::br(),
-                         #                                                       shiny::column(5,shiny::uiOutput("wtp_values2")),
-                         #                                                       shiny::column(5,shiny::uiOutput("ceac_values"))
-                         #                                                    ),
-                         #                                                    width = '4'
-                         #                                                 ),
-                         #                                                 shiny::mainPanel(
-                         #                                                    shiny::plotOutput('ceac',width="600px",height="600px")
-                         #                                                 )
-                         #                                 ),
-                         #                                 shiny::tabPanel("3.2 Multi-comparison CEAC",
-                         #                                                 shiny::sidebarPanel(
-                         #                                                    shiny::tags$div(shiny::HTML(paste0(
-                         #                                                       "This plot shows the probability that each intervention under assessement is
-                         #                 the ",shiny::tags$i("most"), " cost-effective.",
-                         #                                                       shiny::tags$br(),shiny::tags$br(),shiny::tags$br()
-                         #                                                    ))),
-                         #                                                    shiny::fluidRow(
-                         #                                                       #column(5,downloadButton('download_CEAC_table','Download CEAC table'))
-                         #                                                    ),
-                         #                                                    shiny::fluidRow(
-                         #                                                       shiny::br()
-                         #                                                       #column(5,uiOutput("wtp_values2")),
-                         #                                                       #column(5,uiOutput("ceac_values"))
-                         #                                                    ),
-                         #                                                    width = '4'
-                         #                                                 ),
-                         #                                                 shiny::mainPanel(
-                         #                                                    shiny::plotOutput('multi_ceac',width="600px",height="600px")
-                         #                                                 )
-                         #                                 ),
-                         #                                 shiny::tabPanel("3.3 CEAF",
-                         #                                                 shiny::sidebarPanel(
-                         #                                                    shiny::tags$div(
-                         #                                                       "This plot shows the cost-effectiveness frontier. For each value of the
-                         #                 willingness-to-pay threshold, this quantifies the probability of cost-effectiveness
-                         #                 for the 'best' intervention. For each value of the willingness-to-pay grid, it is
-                         #                 possible to visualise the resulting probability (the CEAC).",
-                         #                                                       shiny::tags$br(),shiny::tags$br(),shiny::tags$br()
-                         #                                                    ),
-                         #                                                    shiny::fluidRow(
-                         #                                                       shiny::column(5,shiny::downloadButton('download_CEAF_table','Download CEAF table'))
-                         #                                                    ),
-                         #                                                    shiny::fluidRow(
-                         #                                                       shiny::br(),
-                         #                                                       shiny::column(5,shiny::uiOutput("wtp_values3")),
-                         #                                                       shiny::column(5,shiny::uiOutput("ceaf_values"))
-                         #                                                    ),
-                         #                                                    width = '4'
-                         #                                                 ),
-                         #                                                 shiny::mainPanel(
-                         #                                                    shiny::plotOutput('ceaf',width="600px",height="600px")
-                         #                                                 )
-                         #                                 )
-                         #                              )
-                         #              )},
-                         #   
+                           {shiny::tabPanel("3. Probabilistic Sensitivity Analysis",
+                                                      ## THIS CODE PREVENTS FROM SHOWING THE ERROR MESSAGES --- THEY WILL STILL SHOW IN THE R TERMINAL, THOUGH
+                                                      shiny::tags$style(type="text/css",
+                                                                        ".shiny-output-error { visibility: hidden; }",
+                                                                        ".shiny-output-error:before { visibility: hidden; }"),
+                                                      shiny::tabsetPanel(
+                                                         shiny::tabPanel("3.1. CEAC",
+                                                                         shiny::sidebarPanel(
+                                                                            shiny::tags$div(
+                                                                               "This plot shows the probability that the reference intervention is
+                                         cost-effective. For each value of the willingness-to-pay grid, it is
+                                         possible to visualise the resulting probability (the CEAC).",
+                                                                               shiny::tags$br(),shiny::tags$br(),shiny::tags$br()
+                                                                            ),
+                                                                            shiny::fluidRow(
+                                                                               shiny::column(5,shiny::downloadButton('download_CEAC_table','Download CEAC table'))
+                                                                            ),
+                                                                            shiny::fluidRow(
+                                                                               shiny::br(),
+                                                                               shiny::column(5,shiny::uiOutput("wtp_values2")),
+                                                                               shiny::column(5,shiny::uiOutput("ceac_values"))
+                                                                            ),
+                                                                            width = '4'
+                                                                         ),
+                                                                         shiny::mainPanel(
+                                                                            shiny::plotOutput('ceac',width="800px",height="800px")
+                                                                         )
+                                                         ),
+                                                         shiny::tabPanel("3.2 Multi-comparison CEAC",
+                                                                         shiny::sidebarPanel(
+                                                                            shiny::tags$div(shiny::HTML(paste0(
+                                                                               "This plot shows the probability that each intervention under assessement is
+                                         the ",shiny::tags$i("most"), " cost-effective.",
+                                                                               shiny::tags$br(),shiny::tags$br(),shiny::tags$br()
+                                                                            ))),
+                                                                            shiny::fluidRow(
+                                                                               #column(5,downloadButton('download_CEAC_table','Download CEAC table'))
+                                                                            ),
+                                                                            shiny::fluidRow(
+                                                                               shiny::br()
+                                                                               #column(5,uiOutput("wtp_values2")),
+                                                                               #column(5,uiOutput("ceac_values"))
+                                                                            ),
+                                                                            width = '4'
+                                                                         ),
+                                                                         shiny::mainPanel(
+                                                                            shiny::plotOutput('multi_ceac',width="800px",height="800px")
+                                                                         )
+                                                         ),
+                                                         shiny::tabPanel("3.3 CEAF",
+                                                                         shiny::sidebarPanel(
+                                                                            shiny::tags$div(
+                                                                               "This plot shows the cost-effectiveness frontier. For each value of the
+                                         willingness-to-pay threshold, this quantifies the probability of cost-effectiveness
+                                         for the 'best' intervention. For each value of the willingness-to-pay grid, it is
+                                         possible to visualise the resulting probability (the CEAC).",
+                                                                               shiny::tags$br(),shiny::tags$br(),shiny::tags$br()
+                                                                            ),
+                                                                            shiny::fluidRow(
+                                                                               shiny::column(5,shiny::downloadButton('download_CEAF_table','Download CEAF table'))
+                                                                            ),
+                                                                            shiny::fluidRow(
+                                                                               shiny::br(),
+                                                                               shiny::column(5,shiny::uiOutput("wtp_values3")),
+                                                                               shiny::column(5,shiny::uiOutput("ceaf_values"))
+                                                                            ),
+                                                                            width = '4'
+                                                                         ),
+                                                                         shiny::mainPanel(
+                                                                            shiny::plotOutput('ceaf',width="800px",height="800px")
+                                                                         )
+                                                         )
+                                                      )
+                                      )}
+
+                         
                          
                          #   ##########################
                          #   #Value of information tab#
