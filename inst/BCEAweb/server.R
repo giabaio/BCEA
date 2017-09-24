@@ -1,8 +1,3 @@
-# Checks if shiny and shinythemes are installed (and if not, asks for them)
-if(!isTRUE(requireNamespace("shiny",quietly=TRUE))) {
-  stop("You need to install the R package 'shiny'. Please run in your R terminal:\n install.packages('shiny')")
-}
-
 options(shiny.maxRequestSize=1024*1024^2)
 source("utils.R")
 
@@ -556,8 +551,8 @@ function(input, output, session) {
                   n_sims <- dim(param2())[1]
                }
                if (input$from=="R") {
-                  input_data <- param1()
-                  n_sims <- dim(param1())[1]
+                  input_data <- param()
+                  n_sims <- dim(param())[1]
                }
                ## Checks for the method used
                met <- "INLA"
@@ -981,4 +976,32 @@ function(input, output, session) {
       )
    })
    
+   ############
+   #Report tab#
+   ############
+   {output$downloadReport <- shiny::downloadHandler(
+     filename = function() {
+       paste('BCEAweb-report', sep = '.',
+             switch(input$format, PDF = 'pdf', Word = 'docx'
+             ))
+     },
+     
+     content = function(file) {
+       # Checks if knitr is installed (and if not, asks for it)
+       if(!isTRUE(requireNamespace("knitr",quietly=TRUE))) {
+         stop("You need to install the R package 'knitr'.Please run in your R terminal:\n install.packages('knitr')")
+       }
+       knitr::opts_knit$set(progress = FALSE, verbose = FALSE)
+       # Checks if rmarkdown is installed (and if not, asks for it)
+       if(!isTRUE(requireNamespace("rmarkdown",quietly=TRUE))) {
+         stop("You need to install the R package 'rmarkdown'.Please run in your R terminal:\n install.packages('rmarkdown')")
+       }
+       
+       src <- normalizePath('report.Rmd')
+       out <- quiet(rmarkdown::render('report.Rmd',
+                                      switch(input$format,PDF = rmarkdown::pdf_document(), Word = rmarkdown::word_document())
+       ))
+       file.copy(out, file)
+     }
+   )}
 }

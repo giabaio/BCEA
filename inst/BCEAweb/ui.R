@@ -1,11 +1,3 @@
-# Checks if shiny and shinythemes are installed (and if not, asks for them)
-if(!isTRUE(requireNamespace("shiny",quietly=TRUE))) {
-   stop("You need to install the R package 'shiny'. Please run in your R terminal:\n install.packages('shiny')")
-}
-if(!isTRUE(requireNamespace("shinythemes",quietly=TRUE))) {
-   stop("You need to install the R package 'shinythemes'. Please run in your R terminal:\n install.packages('shinythemes')")
-}
-
 shiny::shinyUI(
    {shiny::fluidPage(theme=shinythemes::shinytheme('united'),
                      shiny::titlePanel("BCEAweb"),

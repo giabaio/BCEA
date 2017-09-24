@@ -26,7 +26,7 @@ iEVPPI <- FALSE
 iEVPPIerror <- FALSE
 
 # If all NULL, then no data loaded for the parameters
-check1 <- all(is.null(param()),is.null(param1()),is.null(param2()))
+check1 <- all(is.null(param()),is.null(param2()))
 # If 0 then no economic analysis executed
 check2 <- input$buttonsum==0
 

@@ -17,7 +17,7 @@ if(input$format=="PDF") {
 # Defines the number of parameters 
 if(input$from=="Spreadsheet"){n.params <- dim(param())[2]}
 if(input$from=="R"){
-  n.params <- dim(param1())[2]
+  n.params <- dim(param())[2]
   width.figs <- c(4.6,3,3)
   height.figs <- c(4.0,3,3)
 } 
