@@ -11,6 +11,7 @@ r:
 
 before_install:
   - echo "options(repos = c(CRAN='http://cran.rstudio.com'))" > ~/.Rprofile
+  - sudo add-apt-repository ppa:marutter/rrutter -y
   - sudo apt-get update
   - sudo apt-get install r-cran-rjags #r-cran-R2jags
   - Rscript -e 'update.packages(ask = FALSE)'
@@ -20,3 +21,4 @@ install:
   - Rscript -e 'install.packages(c("ggplot2", "R2OpenBUGS", "ldr", "splancs"), repos = "http://cran.rstudio.com")'
   - Rscript -e 'install.packages("R2jags", repos = "http://cran.rstudio.com")'
   - Rscript -e 'install.packages("INLA", repos = c("http://www.math.ntnu.no/inla/R/stable", "http://cran.rstudio.com"))'
+  - Rscritp -e 'install.packages(c("shiny","shinythemes"),repos="http://cran.rstudio.com")'
