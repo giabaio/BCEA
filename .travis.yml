@@ -11,8 +11,8 @@ r:
 
 before_install:
   - echo "options(repos = c(CRAN='http://cran.rstudio.com'))" > ~/.Rprofile
-  - sudo add-apt-repository ppa:marutter/rrutter -y
   - sudo apt-get update
+  - sudo apt-get install jags
   - sudo apt-get install r-cran-rjags #r-cran-R2jags
   - Rscript -e 'update.packages(ask = FALSE)'
 
