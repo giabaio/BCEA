@@ -26,13 +26,6 @@
 #' @export 
 
 BCEAweb <- function(e=NULL,c=NULL,parameters=NULL,...) {
-  if(!isTRUE(requireNamespace("shiny",quietly=TRUE))) {
-    stop("You need to install the R package 'shiny'. Please run in your R terminal:\n install.packages('shiny')")
-  }
-  if(!isTRUE(requireNamespace("shinythemes",quietly=TRUE))) {
-    stop("You need to install the R package 'shinythemes'. Please run in your R terminal:\n install.packages('shinythemes')")
-  }
-
   exArgs=list(...)
   appDir <- system.file("BCEAweb", package = "BCEA")
   if (appDir == "") {
@@ -56,6 +49,13 @@ BCEAweb <- function(e=NULL,c=NULL,parameters=NULL,...) {
 # @param parameters 
 # @param ... 
 launch <- function(e,c,parameters,...) {
+  if(!isTRUE(requireNamespace("shinythemes",quietly=TRUE))) {
+    stop("You need to install the R package 'shinythemes'. Please run in your R terminal:\n install.packages('shinythemes')")
+  }
+  if(!isTRUE(requireNamespace("shiny",quietly=TRUE))) {
+    stop("You need to install the R package 'shiny'. Please run in your R terminal:\n install.packages('shiny')")
+  }
+  
   .bcea_env$.e <- e
   .bcea_env$.c <- c
   .bcea_env$.parameters <- parameters
