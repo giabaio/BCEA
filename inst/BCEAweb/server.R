@@ -527,8 +527,7 @@ function(input, output, session) {
       
       output$evppi_pars <- shiny::renderUI({
          shiny::req(inputs())
-         if (input$from=="Spreadsheet") {names <- nm()}
-         if (input$from=="R") {names <- nm1()}
+         if (input$from=="Spreadsheet" || input$from=="R") {names <- nm()}
          if (input$from=="BUGS") {names <- nm2()}
          if (input$run_info_rank==1) {names <- as.character(make_info_rank()$rank[,1])}
          shiny::selectInput("evppi_parameters","2. Select parameters to compute the EVPPI",
@@ -542,17 +541,13 @@ function(input, output, session) {
                if (is.null(inputs())) {return(invisible())}
                if (is.null(input$evppi_parameters)) {return(invisible())}
                if (input$run_evppi==0) {return(invisible())}
-               if (input$from=="Spreadsheet") {
+               if (input$from=="Spreadsheet" || input$from=="R") {
                   input_data <- param()
                   n_sims <- dim(param())[1]
                }
                if (input$from=="BUGS") {
                   input_data <- param2()
                   n_sims <- dim(param2())[1]
-               }
-               if (input$from=="R") {
-                  input_data <- param()
-                  n_sims <- dim(param())[1]
                }
                ## Checks for the method used
                met <- "INLA"
@@ -625,14 +620,11 @@ function(input, output, session) {
       output$num_sims <- shiny::renderUI({
          shiny::req(inputs(),input$evppi_parameters)
          
-         if (input$from=="Spreadsheet") {
+         if (input$from=="Spreadsheet" || input$from=="R") {
             n_sims <- dim(param())[1]
          }
          if (input$from=="BUGS") {
             n_sims <- dim(param2())[1]
-         }
-         if (input$from=="R") {
-            n_sims <- dim(param1())[1]
          }
          n_sims2 <- ifelse(n_sims>1000,1000,n_sims)
          shiny::numericInput("how_many_sims",
@@ -676,21 +668,17 @@ function(input, output, session) {
       
       output$wtp_values5 <- shiny::renderUI({
          shiny::req(inputs())
-         ##    if (is.null(input$info_rank_parameters)) {return(invisible())}
          shiny::selectInput("wtp_grid5", "2. Select the wtp",choices=m()$k,
                             selected=m()$k[min(which(m()$k>=m()$ICER))])
       })
       
       output$N_values <- shiny::renderUI({
          shiny::req(inputs())
-         if (input$from=="Spreadsheet") {
+         if (input$from=="Spreadsheet" || input$from=="R") {
             n_sims <- dim(param())[1]
          }
          if (input$from=="BUGS") {
             n_sims <- dim(param2())[1]
-         }
-         if (input$from=="R") {
-            n_sims <- dim(param1())[1]
          }
          n_sims_ir <- ifelse(n_sims>1000,1000,n_sims)
          shiny::req(n_sims)
@@ -887,8 +875,7 @@ function(input, output, session) {
       
       output$info_rank_pars <- shiny::renderUI({
          shiny::req(inputs())
-         if (input$from=="Spreadsheet") {names <- nm()}
-         if (input$from=="R") {names <- nm1()}
+         if (input$from=="Spreadsheet" || input$from=="R") {names <- nm()}
          if (input$from=="BUGS") {names <- nm2()}
          shiny::selectInput("info_rank_parameters","1. Select relevant parameters",
                             choices=c("All parameters",names),selected="NULL",multiple=TRUE)
@@ -898,20 +885,12 @@ function(input, output, session) {
          input$run_info_rank
          shiny::req(input$run_info_rank,inputs(),input$info_rank_parameters)
          shiny::isolate({
-            # if (is.null(inputs())) {return(invisible())}
-            # if (is.null(input$info_rank_parameters)) {return(invisible())}
-            # if (input$run_info_rank==0) {return(invisible())}
-            
-            if (input$from=="Spreadsheet") {
+            if (input$from=="Spreadsheet" || input$from=="R") {
                input_data_ir <- param()
                names.par <- colnames(input_data_ir)
             }
             if (input$from=="BUGS") {
                input_data_ir <- param2()
-               names.par <- colnames(input_data_ir)
-            }
-            if (input$from=="R") {
-               input_data_ir <- param1()
                names.par <- colnames(input_data_ir)
             }
             if(input$info_rank_parameters=="All parameters") {

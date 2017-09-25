@@ -114,7 +114,7 @@ shiny::shinyUI(
                            ###########
                            #Check tab#
                            ###########
-                           {shiny::tabPanel("1. Check assumptions",
+                           {shiny::tabPanel("1. Parameter simulations",
                                             {shiny::sidebarPanel(
                                                shiny::tags$div(
                                                   "In this panel, the user can upload the simulations for the relevant model parameters.",
@@ -211,7 +211,7 @@ shiny::shinyUI(
                                  shiny::tags$br(),shiny::tags$br(),shiny::tags$br()
                                  ),
                               shiny::selectInput("data","1. Import the simulations for (e,c) from:",
-                                                 choices=c("R","Spreadsheet","BUGS","Model parameters (from Check assumptions)"),
+                                                 choices=c("R","Spreadsheet","BUGS","Model parameters (from Parameter simulations)"),
                                                  selected="R"),
                               
                               # Panel data import from a Spreadsheet
@@ -238,7 +238,7 @@ shiny::shinyUI(
                                                       ),
                               
                               # Panel data import from 1. Check assumptions (parameters simulations)
-                              shiny::conditionalPanel(condition="input.data=='Model parameters (from Check assumptions)'",
+                              shiny::conditionalPanel(condition="input.data=='Model parameters (from Parameter simulations)'",
                                                       shiny::numericInput("n.ints","Number of interventions",value=2,min=2),
                                                       shiny::tags$br(),
                                                       shiny::fluidRow(
@@ -304,7 +304,7 @@ shiny::shinyUI(
                            #########
                            #PSA tab#
                            #########
-                           {shiny::tabPanel("3. Probabilistic Sensitivity Analysis",
+                           {shiny::tabPanel("3. Uncertainty Analysis",
                                                       ## THIS CODE PREVENTS FROM SHOWING THE ERROR MESSAGES --- THEY WILL STILL SHOW IN THE R TERMINAL, THOUGH
                                                       shiny::tags$style(type="text/css",
                                                                         ".shiny-output-error { visibility: hidden; }",
