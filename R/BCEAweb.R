@@ -23,6 +23,11 @@
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
 #' London
 #' @keywords Health economic evaluation Expected value of information
+#' @examples
+#' \donttest{
+#' data(Vaccine)
+#' BCEAweb(e,c,vaccine)
+#' }
 #' @export 
 
 BCEAweb <- function(e=NULL,c=NULL,parameters=NULL,...) {
@@ -31,7 +36,7 @@ BCEAweb <- function(e=NULL,c=NULL,parameters=NULL,...) {
   if (appDir == "") {
     stop("Could not find example directory. Try re-installing `BCEA`.", call. = FALSE)
   }
-  
+
   # This makes the possible inputs available to the webapp!
   # First uses BCEA::CreateInputs to process the simulations for the model parameters
   #  (this means the user can pass a BUGS, JAGS, Stan, or xls object and BCEA will know what to do. Also eliminates need with further dependencies).
@@ -55,7 +60,7 @@ launch <- function(e,c,parameters,...) {
   if(!isTRUE(requireNamespace("shiny",quietly=TRUE))) {
     stop("You need to install the R package 'shiny'. Please run in your R terminal:\n install.packages('shiny')")
   }
-  
+
   .bcea_env$.e <- e
   .bcea_env$.c <- c
   .bcea_env$.parameters <- parameters

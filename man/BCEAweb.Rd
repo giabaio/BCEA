@@ -26,6 +26,12 @@ their own values using the web-interface}
 \description{
 Launches the web-app
 }
+\examples{
+\donttest{
+data(Vaccine)
+BCEAweb(e,c,vaccine)
+}
+}
 \references{
 Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 Analysis in Health Economics.  Statistical Methods in Medical Research

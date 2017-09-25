@@ -19,7 +19,7 @@ if(input$from=="Spreadsheet" || input$from=="R"){
   n.params <- dim(param())[2]
   width.figs <- c(4.6,3,3)
   height.figs <- c(4.0,3,3)
-  }
+}
 if(input$from=="BUGS"){
   n.params <- dim(param2())[2]
 }
