@@ -5,6 +5,9 @@ shiny::shinyUI(
                      shiny::tags$style(type="text/css",".shiny-output-error { visibility: hidden; }",
                                        ".shiny-output-error:before { visibility: hidden; }"
                                        ),
+                     # These preserve the plots proportionality (to 70% height & width of the whole webpage)
+                     shiny::tags$head(shiny::tags$style(".shiny-plot-output{height:70vh !important;}")),
+                     shiny::tags$head(shiny::tags$style(".shiny-plot-output{width:70vh !important;}")),
                      
                      {shiny::mainPanel(
                         {shiny::tabsetPanel(
@@ -63,10 +66,9 @@ shiny::shinyUI(
                                                                   analysis. Download a .zip file with an example ",
                                                                   shiny::tags$a(href="http://www.statistica.it/gianluca/BCEA/Vaccine_BUGS.zip","here",target="_blank"),"."))),
                                                                shiny::tags$li(shiny::HTML(paste0(
-                                                                  "A ",shiny::tags$a(href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/readRDS.html",
-                                                                                     ".rds",target="_blank")," file containing a data frame with the simulated values for the
-                                                                  quantities of interest. This is created directly from ",shiny::tags$a(href="http://www.cran.r-project.org","R",target="_blank"),
-                                                                  ". Download an example ",shiny::tags$a(href="http://www.statistica.it/gianluca/BCEA/Vaccine_R.RDS","here",target="_blank"),".")))
+                                                                  "A R object, available in the current session. This can be a spreadsheet imported in R (e.g. using the ", shiny::tags$code("read.csv"),
+                                                                  " function). Or the output of a full Bayesian analysis (e.g. performed using ",shiny::tags$a(href="http://www.openbugs.net/w/FrontPage","OpenBUGS",target="_blank"), 
+                                                                  "). The resulting data will be pre-processed to eliminate linear dependency across the variables.")))
                                                             ),
                                                             "The parameters simulations are uploaded at the 'Check assumptions' tab. Once the simulations 
                                                             are uploaded, ",
@@ -105,8 +107,8 @@ shiny::shinyUI(
                                                             "Copyright: ",
                                                             shiny::tags$a(href='mailto: g.baio@ucl.ac.uk','Gianluca Baio'),
                                                             ", Polina Hadjipanayiotou, ",
-                                                            shiny::tags$a(href='mailto: aberardi@bmj.com','Andrea Berardi'),
-                                                            ", Anna Heath."
+                                                            shiny::tags$a(href='mailto: Andrea.Berardi@parexel.com','Andrea Berardi'),", ",
+                                                            shiny::tags$a(href='mailto: anna.heath.14@ucl.ac.uk','Anna Heath')
                                                          )
                                                          ))
                                       )},
@@ -164,7 +166,7 @@ shiny::shinyUI(
                                                {shiny::conditionalPanel(condition="input.from=='Spreadsheet' || input.from=='R'",
                                                                         shiny::tabsetPanel(
                                                                            shiny::tabPanel("1.1. Plot and summary",
-                                                                                           shiny::plotOutput('hist',width="800px", height="800px"),
+                                                                                           shiny::plotOutput('hist'),#,width="800px", height="800px"),
                                                                                            shiny::tableOutput("summary"))
                                                                         )
                                                )},
@@ -173,21 +175,21 @@ shiny::shinyUI(
                                                {shiny::conditionalPanel(condition="input.from=='BUGS'",
                                                                        shiny::tabsetPanel(
                                                                           shiny::tabPanel("1.1. Plot and summary",
-                                                                                          shiny::plotOutput('hist2',width="800px", height="800px"),
+                                                                                          shiny::plotOutput('hist2'),#,width="800px", height="800px"),
                                                                                           shiny::tableOutput("summary2")
                                                                                           ),
                                                                           shiny::tabPanel("1.2. Trace plots",
-                                                                                          shiny::plotOutput('trace',width="800px", height="800px"),
+                                                                                          shiny::plotOutput('trace'),#,width="800px", height="800px"),
                                                                                           shiny::p("NB check visually if the Bayesian model has converged")
                                                                                           ),
                                                                           shiny::tabPanel("1.3. GR plot",
-                                                                                          shiny::plotOutput('gr',width="800px", height="800px"),
+                                                                                          shiny::plotOutput('gr'),#,width="800px", height="800px"),
                                                                                           shiny::p("Check visually the value of the Gelman-Rubin statistic. Values below 1.1 are considered to suggest convergence for a given parameter")),
                                                                           shiny::tabPanel("1.4. Effective sample size",
-                                                                                          shiny::plotOutput('neff',width="800px", height="800px")
+                                                                                          shiny::plotOutput('neff')#,width="800px", height="800px")
                                                                                           ),
                                                                           shiny::tabPanel("1.5. Autocorrelation",
-                                                                                          shiny::plotOutput('acf',width="800px", height="800px")
+                                                                                          shiny::plotOutput('acf')#,width="800px", height="800px")
                                                                                           )
                                                                           )
                                                          )}
@@ -277,17 +279,17 @@ shiny::shinyUI(
                                                     shiny::verbatimTextOutput('analysis')
                                                     ),
                                     shiny::tabPanel("2.2. Cost-Effectiveness plane", 
-                                                    shiny::fluidRow( shiny::column(8,shiny::plotOutput('cep',width="800px", height="800px")),
+                                                    shiny::fluidRow( shiny::column(8,shiny::plotOutput('cep')),
                                                                      shiny::column(4,shiny::uiOutput("other_CEA"))
                                                                      )
                                                     ),
                                     shiny::tabPanel("2.3 Expected Incremental Benefit",
-                                                    shiny::plotOutput('eib', width = "800px", height = "800px")
+                                                    shiny::plotOutput('eib')
                                                     ),
                                     shiny::tabPanel("2.4 Cost-Effectiveness Efficiency Frontier",
                                                     shiny::fluidRow(
                                                        shiny::column(7,
-                                                                     shiny::mainPanel(shiny::plotOutput('ceef', width = "800px",height = "800px"))
+                                                                     shiny::mainPanel(shiny::plotOutput('ceef'))
                                                                      ),
                                                        shiny::column(10,
                                                                      shiny::br(),shiny::br(),shiny::br(),
@@ -329,7 +331,7 @@ shiny::shinyUI(
                                                                             width = '4'
                                                                          ),
                                                                          shiny::mainPanel(
-                                                                            shiny::plotOutput('ceac',width="800px",height="800px")
+                                                                            shiny::plotOutput('ceac')
                                                                          )
                                                          ),
                                                          shiny::tabPanel("3.2 Multi-comparison CEAC",
@@ -350,7 +352,7 @@ shiny::shinyUI(
                                                                             width = '4'
                                                                          ),
                                                                          shiny::mainPanel(
-                                                                            shiny::plotOutput('multi_ceac',width="800px",height="800px")
+                                                                            shiny::plotOutput('multi_ceac')
                                                                          )
                                                          ),
                                                          shiny::tabPanel("3.3 CEAF",
@@ -373,7 +375,7 @@ shiny::shinyUI(
                                                                             width = '4'
                                                                          ),
                                                                          shiny::mainPanel(
-                                                                            shiny::plotOutput('ceaf',width="800px",height="800px")
+                                                                            shiny::plotOutput('ceaf')
                                                                          )
                                                          )
                                                       )
@@ -403,7 +405,7 @@ shiny::shinyUI(
                                                                          ),
 
                                                                          shiny::mainPanel(
-                                                                            shiny::plotOutput('evpi', width = '600px', height = '600px')
+                                                                            shiny::plotOutput('evpi')
                                                                          )
                                                          ),
 
@@ -448,7 +450,7 @@ shiny::shinyUI(
                                                                          ),
 
                                                                          shiny::mainPanel(
-                                                                            shiny::plotOutput('ir', width = '700px', height = '800px')
+                                                                            shiny::plotOutput('ir')
                                                                          )
                                                          ),
 
@@ -593,10 +595,10 @@ shiny::shinyUI(
                                                                          shiny::mainPanel(
                                                                             shiny::tabsetPanel(
                                                                                shiny::tabPanel("Analysis",
-                                                                                               shiny::plotOutput('evppi', width = "600px", height = "600px")
+                                                                                               shiny::plotOutput('evppi')
                                                                                ),
                                                                                shiny::tabPanel("Diagnostics",
-                                                                                               shiny::plotOutput('diag_evppi', width = "600px", height = "600px")
+                                                                                               shiny::plotOutput('diag_evppi')
                                                                                ),
                                                                                id="evppi_tab"
                                                                             )

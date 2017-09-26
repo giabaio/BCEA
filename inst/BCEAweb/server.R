@@ -431,7 +431,7 @@ function(input, output, session) {
       if(input$data=="Spreadsheet"){shiny::req(input$file1)}
       shiny::req(inputs(),m())
       shiny::withProgress(
-        suppressMessages(ceef.plot(m(), print.summary = FALSE)),
+        suppressMessages(ceef.plot(m(), print.summary = FALSE, print.plot=TRUE)),
         value = 1, message = "Creating plot,", detail = "Please wait..."
       )
     })
@@ -441,7 +441,7 @@ function(input, output, session) {
       if(input$data=="Spreadsheet"){shiny::req(input$file1)}
       shiny::req(inputs(),m())
       shiny::withProgress(
-        suppressMessages(ceef.plot(m())),
+        suppressMessages(ceef.plot(m(),print.plot=FALSE,print.summary=TRUE)),
         value = 1, message = "Creating plot,", detail = "Please wait..."
       )
     })
