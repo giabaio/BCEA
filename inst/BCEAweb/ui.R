@@ -70,7 +70,7 @@ shiny::shinyUI(
                                                                   " function). Or the output of a full Bayesian analysis (e.g. performed using ",shiny::tags$a(href="http://www.openbugs.net/w/FrontPage","OpenBUGS",target="_blank"), 
                                                                   "). The resulting data will be pre-processed to eliminate linear dependency across the variables.")))
                                                             ),
-                                                            "The parameters simulations are uploaded at the 'Check assumptions' tab. Once the simulations 
+                                                            "The parameters simulations are uploaded at the 'Parameter simulations' tab. Once the simulations 
                                                             are uploaded, ",
                                                             shiny::tags$strong("BCEAweb"),
                                                             " will produce graphical summaries and tables so that the user can assess whether the results
@@ -91,7 +91,7 @@ shiny::shinyUI(
                                                             " Clicking the button ",shiny::tags$code("Run the analysis")," in the 'Economic analysis tab' will run ",
                                                             tags$a(href="http://www.statistica.it/gianluca/BCEA","BCEA",target="_blank"),
                                                             " in the background and create all the relevant economic summaries, including a detailed 
-                                                            Probabilistic Sensitivity Analysis.The tab 'Value of information' also automatically computes the 
+                                                            Probabilistic Sensitivity Analysis. The tab 'Value of information' also automatically computes the 
                                                             Expected Value of Perfect Information and allows the user to run an analysis of the Expected Value of ",
                                                             shiny::tags$i("Partial "), "Perfect Information. This is computed using computational efficient methods 
                                                             and provides a valuable tool to assess the impact of current uncertainty on the decision-making process 

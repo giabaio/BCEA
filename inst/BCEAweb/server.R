@@ -219,7 +219,7 @@ function(input, output, session) {
         ws = read.csv(inFile1$datapath,sep = ',', header = TRUE)
       })
     }
-    if (input$data=="Model parameters (from Check assumptions)") {
+    if (input$data=="Model parameters (from Parameter simulations)") {
       inputs  <- shiny::reactive({
         if(input$from=="Spreadsheet" || input$from=="R") {
           psa.data <- param()
@@ -287,16 +287,22 @@ function(input, output, session) {
     
     # Defines dynamically the intervention labels
     labs <- shiny::reactive({
-      shiny::req(inputs())
-      numcols <- ncol(inputs())
-      index <- seq(1,numcols/2)
-      l <- unlist(lapply(index,function(i){input[[paste0('intervention_',i)]]}))
+      if(input$data=="Model parameters (from Parameter simulations)") {
+        numcols <- input$n.ints
+        index <- seq(1,numcols)
+        l <- unlist(lapply(index,function(i){input[[paste0('intervention_',i)]]}))
+      } else {
+        shiny::req(inputs())
+        numcols <- ncol(inputs())
+        index <- seq(1,numcols/2)
+        l <- unlist(lapply(index,function(i){input[[paste0('intervention_',i)]]}))
+      }
     })
     
     # Computes dynamically the BCEA object
-    m <- shiny::reactive({
-      shiny::req(input$buttonsum,input$step,inputs(),input$min,input$max,by=input$step)
-      shiny::isolate({
+    m <- shiny::eventReactive(
+      input$buttonsum, {
+        shiny::req(input$buttonsum,input$step,inputs(),input$min,input$max)
         wtp <- seq(input$min,input$max,by=input$step)
         n.cols <- ncol(inputs())
         odds <- seq(1,n.cols,by=2)
@@ -309,13 +315,13 @@ function(input, output, session) {
           e <- as.matrix(inputs()[,odds])
           c <- as.matrix(inputs()[,even])
         }
-        if(input$data=="BUGS" || input$data=="Model parameters (from Check assumptions)") {
+        if(input$data=="BUGS" || input$data=="Model parameters (from Parameter simulations)") {
           c <- as.matrix(inputs()[,1:(n.cols/2)])
           e <- as.matrix(inputs()[,((n.cols/2)+1):n.cols])
         }
         mm <- bcea(e,c,ref=as.numeric(value2()),interventions=labs(),wtp=wtp)
-      })
-    })
+      }
+    )
     
     output$grid_step <- shiny::renderUI({
       if (input$min==input$max) {
@@ -342,13 +348,22 @@ function(input, output, session) {
     
     # Dynamically defines the labels for the interventions
     output$int_labels <- shiny::renderUI({
-      shiny::req(inputs())
-      numcols <- ncol(inputs())  # number of columns = 2 x number of interventions
-      lapply(1:(numcols/2), function(i) {
-        list(shiny::textInput(paste0("intervention_",i),
-                              label = "", #h5(strong("4. Interventions labels"))
-                              value = paste0("Intervention",(i))))
-      })
+      if(input$data=="Model parameters (from Parameter simulations)") {
+        numcols <- input$n.ints
+        lapply(1:(numcols), function(i) {
+          list(shiny::textInput(paste0("intervention_",i),
+                                label = "", #h5(strong("4. Interventions labels"))
+                                value = paste0("Intervention",(i))))
+        })
+      } else {
+        shiny::req(inputs())
+        numcols <- ncol(inputs())  # number of columns = 2 x number of interventions
+        lapply(1:(numcols/2), function(i) {
+          list(shiny::textInput(paste0("intervention_",i),
+                                label = "", #h5(strong("4. Interventions labels"))
+                                value = paste0("Intervention",(i))))
+        })
+      }
     })
     
     # Selects the reference intervention
@@ -379,7 +394,7 @@ function(input, output, session) {
     #CE-plane for varying WTP values -> wtp= value
     output$cep <- shiny::renderPlot({
       if(input$data=="Spreadsheet"){shiny::req(input$file1)}
-      shiny::req(m(),inputs(),input$buttonsum)
+      shiny::req(m(),inputs(),input$value1)
       if (m()$n.comparators>2) {
         if (input$which_comparison==comparisons()[1]) {
           shiny::withProgress(
@@ -415,7 +430,7 @@ function(input, output, session) {
     # EIB plot
     output$eib <- shiny::renderPlot({
       if(input$data=="Spreadsheet"){shiny::req(input$file1)}
-      shiny::req(inputs(),m())
+      shiny::req(inputs(),m(),input$max,input$step)
       # If the willingness to pay grid is only one number then don't print the plots
       wtp <- seq(input$min,input$max,by=input$step)
       if (length(wtp)==1) {return(invisible)}
@@ -720,123 +735,43 @@ function(input, output, session) {
     output$details_evppi <- shiny::renderPrint({
       shiny::req(inputs(),input$evppi_parameters)
       if (input$run_evppi==0) {return(invisible())}
-      len <- length(compute_evppi()$time)
-      if (len==3) {
-        if (all(compute_evppi()$method=="INLA")) {
-          shiny::tags$table(
-            style="padding:3px",
-            #class = "table-condensed table-bordered",
-            shiny::tags$thead(
-              shiny::tags$tr(
-                shiny::tags$th("Running time (seconds)"),
-                shiny::tags$th("")
-              )
-            ),
-            shiny::tags$tbody(
-              shiny::tags$tr(
-                shiny::tags$td("Model fitting"),
-                shiny::tags$td(
-                  style="text-align:right",
-                  format(compute_evppi()$time[1],digits=6,nsmall=4))
-              ),
-              shiny::tags$tr(
-                shiny::tags$td("Computing EVPPI"),
-                shiny::tags$td(
-                  style="text-align:right",
-                  format(compute_evppi()$time[2],digits=6,nsmall=4))
-              ),
-              shiny::tags$tr(
-                style="border-bottom: 1pt solid black",
-                shiny::tags$td("Computing EVPPI"),
-                shiny::tags$td(
-                  style="text-align:right",
-                  format(compute_evppi()$time[3],digits=6,nsmall=4))
-              ),
-              shiny::tags$tr(
-                shiny::tags$td("Total"),
-                shiny::tags$td(
-                  style="text-align:right",
-                  format(sum(unlist(compute_evppi()$time)),digits=6,nsmall=4))
-              )
-            )
+      shiny::tags$table(
+        style="padding:3px",
+        #class = "table-condensed table-bordered",
+        shiny::tags$thead(
+          shiny::tags$tr(
+            shiny::tags$th("Running time (seconds)"),
+            shiny::tags$th("")
           )
-        } else
-          shiny::tags$table(
-            style="padding:3px",
-            #class = "table-condensed table-bordered",
-            shiny::tags$thead(
-              shiny::tags$tr(
-                shiny::tags$th("Running time (seconds)"),
-                shiny::tags$th("")
-              )
-            ),
-            shiny::tags$tbody(
-              shiny::tags$tr(
-                shiny::tags$td("Model fitting"),
-                shiny::tags$td(
-                  style="text-align:right",
-                  format(compute_evppi()$time[1],digits=6,nsmall=4))
-              ),
-              shiny::tags$tr(
-                style="border-bottom: 1pt solid black",
-                shiny::tags$td("Computing EVPPI"),
-                shiny::tags$td(
-                  style="text-align:right",
-                  format(compute_evppi()$time[2],digits=6,nsmall=4))
-              ),
-              shiny::tags$tr(
-                shiny::tags$td("Total"),
-                shiny::tags$td(
-                  style="text-align:right",
-                  format(compute_evppi()$time[3],digits=6,nsmall=4))
-              )
-            )
-          )
-      } else {
-        shiny::tags$table(
-          style="padding:3px",
-          #class = "table-condensed",
-          shiny::tags$thead(
-            shiny::tags$tr(
-              shiny::tags$th("Running time (seconds)"),
-              shiny::tags$th("")
-            )
+        ),
+        shiny::tags$tbody(
+          shiny::tags$tr(
+            shiny::tags$td("Fitting for effects"),
+            shiny::tags$td(
+              style="text-align:right",
+              format(compute_evppi()$time[1],digits=6,nsmall=4))
           ),
-          shiny::tags$tbody(
-            shiny::tags$tr(
-              shiny::tags$td("Finding projections"),
-              shiny::tags$td(
-                style="text-align:right",
-                format(compute_evppi()$time[1],digits=6,nsmall=4))
-            ),
-            shiny::tags$tr(
-              shiny::tags$td("Determining mesh"),
-              shiny::tags$td(
-                style="text-align:right",
-                format(compute_evppi()$time[2],digits=6,nsmall=4))
-            ),
-            shiny::tags$tr(
-              shiny::tags$td("Model fitting"),
-              shiny::tags$td(
-                style="text-align:right",
-                format(compute_evppi()$time[3],digits=6,nsmall=4))
-            ),
-            shiny::tags$tr(
-              style="border-bottom: 1pt solid black",
-              shiny::tags$td("Computing EVPPI"),
-              shiny::tags$td(
-                style="text-align:right",
-                format(compute_evppi()$time[4],digits=6,nsmall=4))
-            ),
-            shiny::tags$tr(
-              shiny::tags$td("Total"),
-              shiny::tags$td(
-                style="text-align:right",
-                format(compute_evppi()$time[5],digits=6,nsmall=4))
-            )
+          shiny::tags$tr(
+            shiny::tags$td("Fitting for costs"),
+            shiny::tags$td(
+              style="text-align:right",
+              format(compute_evppi()$time[2],digits=6,nsmall=4))
+          ),
+          shiny::tags$tr(
+            style="border-bottom: 1pt solid black",
+            shiny::tags$td("Computing EVPPI"),
+            shiny::tags$td(
+              style="text-align:right",
+              format(compute_evppi()$time[3],digits=6,nsmall=4))
+          ),
+          shiny::tags$tr(
+            shiny::tags$td("Total"),
+            shiny::tags$td(
+              style="text-align:right",
+              format(sum(unlist(compute_evppi()$time)),digits=6,nsmall=4))
           )
         )
-      }
+      )
     })
     
     tab <- shiny::reactive({
@@ -872,7 +807,7 @@ function(input, output, session) {
                            selected="Residual plot")
       }
     })
-    
+
     output$info_rank_pars <- shiny::renderUI({
       shiny::req(inputs())
       if (input$from=="Spreadsheet" || input$from=="R") {names <- nm()}
@@ -881,31 +816,35 @@ function(input, output, session) {
                          choices=c("All parameters",names),selected="NULL",multiple=TRUE)
     })
     
-    make_info_rank <- shiny::reactive({
-      input$run_info_rank
-      shiny::req(input$run_info_rank,inputs(),input$info_rank_parameters)
-      shiny::isolate({
-        if (input$from=="Spreadsheet" || input$from=="R") {
-          input_data_ir <- param()
-          names.par <- colnames(input_data_ir)
-        }
-        if (input$from=="BUGS") {
-          input_data_ir <- param2()
-          names.par <- colnames(input_data_ir)
-        }
-        if(input$info_rank_parameters=="All parameters") {
-          rel.pars <- names.par
-        } else {
-          rel.pars <- input$info_rank_parameters
-        }
-        wtp <- as.numeric(input$wtp_grid5)
-        info.rank(parameter=rel.pars,input=input_data_ir,he=m(),wtp=wtp,cn=.8,ca=.8,N=input$how_many_sims_ir)
-      })
-    })
-    
+    make_info_rank <- shiny::eventReactive(
+      input$run_info_rank, {
+        shiny::req(input$run_info_rank,inputs(),input$info_rank_parameters)
+        shiny::isolate({
+          if (input$from=="Spreadsheet" || input$from=="R") {
+            input_data_ir <- param()
+            names.par <- colnames(input_data_ir)
+          }
+          if (input$from=="BUGS") {
+            input_data_ir <- param2()
+            names.par <- colnames(input_data_ir)
+          }
+          if(length(input$info_rank_parameters)==1){
+            if(input$info_rank_parameters=="All parameters") {
+              rel.pars <- names.par
+            } else {
+              rel.pars <- input$info_rank_parameters
+            }
+          } else {
+            rel.pars <- input$info_rank_parameters
+          }
+          wtp <- as.numeric(input$wtp_grid5)
+          info.rank(parameter=rel.pars,input=input_data_ir,he=m(),wtp=wtp,cn=.8,ca=.8,N=input$how_many_sims_ir)
+        })
+      }
+    )
+
     output$ir <- shiny::renderPlot({
       shiny::req(inputs(),input$info_rank_parameters)
-      if (input$run_info_rank==0) {return(invisible())}
       shiny::withProgress({make_info_rank()},
                           min=0, max=1, value = 1,
                           message = "Creating plot,", detail = "Please wait..."
@@ -914,7 +853,6 @@ function(input, output, session) {
     
     output$details_ir <- shiny::renderPrint({ #Table
       shiny::req(inputs(),input$info_rank_parameters)
-      if (input$run_info_rank==0) {return(invisible())}
       tab <- make_info_rank()$rank
       npars <- dim(tab)[1]
       nrows.to.show <- min(npars,6)

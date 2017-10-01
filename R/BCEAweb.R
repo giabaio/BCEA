@@ -36,6 +36,7 @@ BCEAweb <- function(e=NULL,c=NULL,parameters=NULL,...) {
   if (appDir == "") {
     stop("Could not find example directory. Try re-installing `BCEA`.", call. = FALSE)
   }
+  if(exists("launch.browser",exArgs)) {launch.browser=exArgs$launch.browser} else {launch.browser=TRUE}
 
   # This makes the possible inputs available to the webapp!
   # First uses BCEA::CreateInputs to process the simulations for the model parameters
