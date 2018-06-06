@@ -36,6 +36,8 @@
 #' determined by the range of the simulated values for \code{delta.e}
 #' @param ylim The range of the plot along the y-axis. If NULL (default) it is
 #' determined by the range of the simulated values for \code{delta.c}
+#' @param col A vector of colours used to plot the cost-effectiveness plane.
+#' This have to have length equal to the number of comparisons.
 #' @param ...  If \code{graph="ggplot2"} and a named theme object is supplied,
 #' it will be added to the ggplot object. In addition, if
 #' \code{graph="ggplot2"}, \code{ICER.size} can be used to resize the red dot
@@ -159,8 +161,13 @@ ceplane.plot <- function(he,comparison=NULL,wtp=25000,pos=c(1,1),
     }
     if(he$n.comparisons>1 & is.null(comparison)==TRUE) { 
       if(!exists("title",where=exArgs)){title <- "Cost-effectiveness plane"} else {title <- exArgs$title}
-      cl <- colors()
-      color <- cl[floor(seq(262,340,length.out=he$n.comparators))]  # gray scale
+      if(!exists("col",where=exArgs)){
+         cl <- colors()
+         color <- cl[floor(seq(262,340,length.out=he$n.comparators))]  # gray scale
+      } else {
+         if(length(col!=he$n.comparisons){stop("If you want to specify the vector of colours, make sure you select as many colours as the number of comparisons!")}
+         color=col
+      }
       if(is.null(xlim)) {xlim <- range(he$delta.e)}
       if(is.null(ylim)) {ylim <- range(he$delta.c)}
       plot(he$delta.e[,1],he$delta.c[,1],pch=20,cex=.35,xlim=xlim,ylim=ylim,
