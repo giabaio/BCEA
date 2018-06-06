@@ -165,8 +165,8 @@ ceplane.plot <- function(he,comparison=NULL,wtp=25000,pos=c(1,1),
          cl <- colors()
          color <- cl[floor(seq(262,340,length.out=he$n.comparators))]  # gray scale
       } else {
-         if(length(col!=he$n.comparisons){stop("If you want to specify the vector of colours, make sure you select as many colours as the number of comparisons!")}
-         color=col
+         color=exArgs$col
+         if(length(color)!=he$n.comparisons){stop("If you want to specify the vector of colours, make sure you select as many colours as the number of comparisons!")}
       }
       if(is.null(xlim)) {xlim <- range(he$delta.e)}
       if(is.null(ylim)) {ylim <- range(he$delta.c)}
