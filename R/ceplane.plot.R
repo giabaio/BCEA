@@ -335,7 +335,15 @@ ceplane.plot <- function(he,comparison=NULL,wtp=25000,pos=c(1,1),
         # labels for legend
         comparisons.label <- with(he,paste0(interventions[ref]," vs ",interventions[comp]))
         # vector of values for color, take out white, get integer values
-        colors.label <- with(he,paste0("gray",round(seq(0,100,length.out=(n.comparisons+1))[-(n.comparisons+1)])))
+        if(!exists("col",where=exArgs)){
+           colors.label <- with(he,paste0("gray",round(seq(0,100,length.out=(n.comparisons+1))[-(n.comparisons+1)])))
+        } else {
+           colors.label=exArgs$col
+        if(length(colors.label)!=he$n.comparisons){stop("If you want to specify the vector of colours, make sure you select as many colours as the number of comparisons!")}
+        }
+
+
+ ###       colors.label <- with(he,paste0("gray",round(seq(0,100,length.out=(n.comparisons+1))[-(n.comparisons+1)])))
         
         # polygon
         do.nothing=function(x,limits) return(x)
