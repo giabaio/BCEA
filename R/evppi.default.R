@@ -37,10 +37,11 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
   inputs <- data.frame(input)[exArgs$select,]
 
 
-  if (length(parameter) == 1 & !exists("method", where = exArgs)) {
+  # Sets default for method of calculation. If number of parameters <=4, then use GAM, if not defaults to INLA/SPDE
+  if (length(parameter) <= 4 & !exists("method", where = exArgs)) {
     exArgs$method <- list(rep("GAM",he$n.comparators-1),rep("GAM",he$n.comparators-1))
   }
-  if (length(parameter) > 1 & !exists("method", where = exArgs)) {
+  if (length(parameter) > 4 & !exists("method", where = exArgs)) {
     exArgs$method <- list(rep("INLA",he$n.comparators-1),rep("INLA",he$n.comparators-1))
   }
   if(class(exArgs$method)!="list"){

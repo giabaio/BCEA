@@ -88,6 +88,9 @@
 #' \code{method=list(c("GAM"),c("INLA"))}. The \code{int.ord} argument can also
 #' be given as a list to give different interaction levels for each regression
 #' curve.
+#'
+#' By default, when no method is specified by the user, \code{evppi} will
+#' use GAM if the number of parameters is <5 and INLA otherwise.
 #' @return \item{evppi}{The computed values of evppi for all values of the
 #' parameter of willingness to pay} \item{index}{A numerical vector with the
 #' index associated with the parameters for which the EVPPI was calculated}
