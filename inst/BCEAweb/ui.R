@@ -8,19 +8,21 @@ shiny::shinyUI(
     # These preserve the plots proportionality (to 70% height & width of the whole webpage)
     shiny::tags$head(shiny::tags$style(".shiny-plot-output{height:70vh !important;}")),
     shiny::tags$head(shiny::tags$style(".shiny-plot-output{width:70vh !important;}")),
-    shiny::tags$div(
-      style="height:0px;", # horrible hack to override icon and window title when including logo in top-left of navbar
-      fluidPage(
-        list(tags$head(HTML('<link rel="icon", href="favicon.ico"/>'))),
-        titlePanel(
-          title="", windowTitle="BCEAweb"
-        )
-      )
-    ),
+    ## commented chunk overrides windows title and favicon if logo is included in the navbar
+    #shiny::tags$div(
+    #  style="height:0px;", # hack to override icon and window title when including logo in top-left corner of navbar
+    #  fluidPage(
+    #    list(tags$head(HTML('<link rel="icon", href="favicon.ico"/>'))),
+    #    titlePanel(
+    #      title="", windowTitle="BCEAweb"
+    #    )
+    #  )
+    #),
     shiny::navbarPage(theme=shinythemes::shinytheme('united'),
-                      #title = "BCEAweb",
-                      title = shiny::div("BCEAweb",shiny::tags$img(src="ucl.png",height="36px"),
-                                         style = "text-align: center;"), # horrible hack as above
+                      title = "BCEAweb",
+                      ## includes UCL logo in navbar
+                      #title = shiny::div("BCEAweb",shiny::tags$img(src="ucl.png",height="36px"),
+                      #                   style = "text-align: center;"), # horrible hack as above
                       ##################
                       #introduction tab#
                       ##################
