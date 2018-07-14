@@ -50,7 +50,7 @@ shiny::shinyUI(
                                              "First, a statistical model is constructed and fitted to estimate relevant population 
                                                             parameters (the red rounded box). These are then fed to an economic model (the grey box), 
                                                             which combines them to obtain suitable summaries that quantify the incremental population 
-                                                            average for clinical benefits (e.g. QALYs) and costs (e.g. Â£). These are the fundamental
+                                                            average for clinical benefits (e.g. QALYs) and costs (e.g. &pound;). These are the fundamental
                                                             quantities used to make the decision analysis (orange box). And this is the process that ",
                                              shiny::tags$a(href="http://www.statistica.it/gianluca/BCEA","BCEA",target='_blank'),
                                              " and ", 
