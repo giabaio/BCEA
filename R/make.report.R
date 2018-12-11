@@ -26,7 +26,7 @@
 #' }
 #' @export 
 
-make.report=function(he,evppi=NULL,ext=c("pdf","docx","html")...) {
+make.report=function(he,evppi=NULL,ext=c("pdf","docx"),...) {
   
   ## quiet --- allows to disable the cat messages
   quiet <- function(x) { 
