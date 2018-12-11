@@ -1,8 +1,8 @@
 Package: BCEA
 Type: Package
 Title: Bayesian Cost Effectiveness Analysis
-Version: 2.2-62
-Date: 2018-11-14
+Version: 2.2-63
+Date: 2018-12-11
 Author: Gianluca Baio, Andrea Berardi, Anna Heath
 Maintainer: Gianluca Baio <gianluca@stats.ucl.ac.uk>
 Suggests: R2jags, R2OpenBUGS, ggplot2, grid, INLA, splancs, mgcv, ldr, shiny, shinythemes
