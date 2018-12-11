@@ -40,9 +40,6 @@ make.report=function(he,evppi=NULL,ext="pdf",...) {
   if(exists("wtp",exArgs)){wtp=exArgs$wtp} else {wtp=he$Kmax}
   if(exists("filename",exArgs)){filename=exArgs$filename} else {filename=paste0("Report.",ext)}
   
-  
-  # Defines current directory to write file
-  tempdir=getwd() 
   # Checks if knitr is installed (and if not, asks for it)
   if(!isTRUE(requireNamespace("knitr",quietly=TRUE))) {
     stop("You need to install the R package 'knitr'.Please run in your R terminal:\n install.packages('knitr')")
@@ -54,10 +51,11 @@ make.report=function(he,evppi=NULL,ext="pdf",...) {
   }
   
   # Get current directory, then move to relevant path, then go back to current directory
-  file=filename
+  file=file.path(tempdir(),filename)
   out <- quiet(rmarkdown::render(normalizePath(file.path(system.file("Report",package="BCEA"),"report.Rmd")),
                                  switch(ext,pdf=rmarkdown::pdf_document(),
                                         docx=rmarkdown::word_document())
   ))
   file.copy(out, file)
+  cat(paste0("The report is saved in the file ",file))
 }
