@@ -15,10 +15,11 @@ if(ext=="pdf") {
 } else {
     align="default"
 }
+options("scipen"=999)
 ```
 
 ## Cost-effectiveness analysis 
-This sub-section presents a summary table reporting basic economic results as well as the optimal decision, given the selected willingness-to-pay threshold $k=`r wtp$.
+This sub-section presents a summary table reporting basic economic results as well as the optimal decision, given the selected willingness-to-pay threshold $k=`r wtp`$.
 
 ```{r, echo=FALSE, comment=" "}
 summary(m,wtp=wtp)
