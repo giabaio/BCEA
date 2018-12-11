@@ -56,6 +56,6 @@ make.report=function(he,evppi=NULL,ext="pdf",...) {
                                  switch(ext,pdf=rmarkdown::pdf_document(),
                                         docx=rmarkdown::word_document())
   ))
-  file.copy(out, file)
-  cat(paste0("The report is saved in the file ",file))
+  file.copy(out, file, overwrite=TRUE)
+  cat(paste0("The report is saved in the file ",file,"/n"))
 }
