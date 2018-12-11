@@ -63,7 +63,7 @@ The following graph shows the cost-effectiveness acceptability curve (CEAC). The
 
 
 ```{r, echo=FALSE, fig.width=4.6, fig.height=4.6,fig.align=align}
-ceac.plot(m,wtp=wtp)
+ceac.plot(m)
 ```
 
 
