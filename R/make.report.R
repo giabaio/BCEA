@@ -6,8 +6,8 @@
 #' @param evppi An object obtained as output to a call to \code{evppi}
 #' (default is NULL, so not essential to producing the report).
 #' @param ext A string of text to indicate the extension of the 
-#' resulting output file. Possible options are \code{"pdf"}, \code{"docx"}
-#' and \code{"html"}. This requires the use of pandoc, knitr and rmarkdown.
+#' resulting output file. Possible options are \code{"pdf"}, \code{"docx"}.
+#' This requires the use of pandoc, knitr and rmarkdown.
 #' @param ... Additional parameters. 
 #' @author Gianluca Baio
 #' @seealso \code{\link{bcea}}
@@ -17,7 +17,7 @@
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
 #' London
-#' @keywords Health economic evaluation, Expected value of information
+#' @keywords "Health economic evaluation", "Expected value of information"
 #' @examples
 #' \donttest{
 #' data(Vaccine)

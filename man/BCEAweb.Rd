@@ -49,7 +49,7 @@ Gianluca Baio
 \keyword{Expected}
 \keyword{Health}
 \keyword{economic}
-\keyword{evaluation}
+\keyword{evaluation,}
 \keyword{information}
 \keyword{of}
 \keyword{value}
