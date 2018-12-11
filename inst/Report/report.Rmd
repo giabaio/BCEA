@@ -10,7 +10,7 @@ output:
 ---
 
 ```{r, echo=FALSE}
-if(input$format=="PDF") {
+if(ext=="pdf") {
     align="center"
 } else {
     align="default"
