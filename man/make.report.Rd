@@ -4,7 +4,7 @@
 \alias{make.report}
 \title{make.report}
 \usage{
-make.report(he, evppi = NULL, ext = c("pdf", "docx"), ...)
+make.report(he, evppi = NULL, ext = "pdf", ...)
 }
 \arguments{
 \item{he}{An object obtained as output to a call to \code{bcea}}
