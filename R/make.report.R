@@ -52,7 +52,7 @@ make.report=function(he,evppi=NULL,ext="pdf",...) {
   
   # Get current directory, then move to relevant path, then go back to current directory
   file=file.path(tempdir(),filename)
-  out <- quiet(rmarkdown::render(normalizePath(file.path(system.file("Report",package="BCEA"),"report.Rmd")),
+  out = quiet(rmarkdown::render(normalizePath(file.path(system.file("Report",package="BCEA"),"report.Rmd")),
                                  switch(ext,pdf=rmarkdown::pdf_document(),
                                         docx=rmarkdown::word_document())
   ))

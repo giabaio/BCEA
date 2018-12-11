@@ -9,7 +9,7 @@ output:
     geometry: margin=1cm
 ---
 
-```{r, echo=FALSE}
+```{r, echo=FALSE,warning=FALSE,message=FALSE,comment=NA}
 if(ext=="pdf") {
     align="center"
 } else {
@@ -21,7 +21,7 @@ options("scipen"=999)
 ## Cost-effectiveness analysis 
 This sub-section presents a summary table reporting basic economic results as well as the optimal decision, given the selected willingness-to-pay threshold $k=`r wtp`$.
 
-```{r, echo=FALSE, comment=" "}
+```{r, echo=FALSE,warning=FALSE,message=FALSE,comment=NA}
 summary(m,wtp=wtp)
 ```
 
@@ -42,7 +42,7 @@ The following graph shows the Expected Incremental Benefit (EIB), as a function 
 The value for $k$ in correspondence of which the line crosses the $x-$axis is termed the '_break-even point_' and represents the point(s) at which the optimal decision changes. The graph also reports the 95% credible limits around the EIB.
 
 
-```{r, echo=FALSE,fig.width=4.6, fig.height=4.6, fig.align=align}
+```{r, echo=FALSE,fig.width=4.6, fig.height=4.6, fig.align=align,warning=FALSE,message=FALSE,comment=NA}
 #fig.cap="The Expected Incremental Benefit as a function of the willingness-to-pay",
 n.ints <- m$n.comparators
 if (n.ints==2) {graph="base"; pos=c(1,1)} else {graph="ggplot2"; pos=TRUE}
@@ -51,7 +51,7 @@ eib.plot(m,graph=graph,pos=pos)
 
 ## Cost-effectiveness efficiency frontier
 
-```{r, echo=FALSE, comment=" ", warning=FALSE, message=FALSE, fig.width=4.6, fig.height=4.6,fig.align=align}
+```{r, echo=FALSE, comment=" ", warning=FALSE, message=FALSE, fig.width=4.6, fig.height=4.6,fig.align=align,warning=FALSE,message=FALSE,comment=NA}
 n.ints <- m$n.comparators
 if (n.ints==2) {graph="base"; pos=c(1,1)} else {graph="ggplot2"; pos=TRUE}
 ceef.plot(m,graph=graph)
@@ -62,14 +62,14 @@ cat()
 The following graph shows the cost-effectiveness acceptability curve (CEAC). The CEAC represents the proportion of 'potential futures' in which the reference intervention is estimated to be more cost-effective than the comparator. Thus, it can be interpreted as the 'probability of cost-effectiveness'. 
 
 
-```{r, echo=FALSE, fig.width=4.6, fig.height=4.6,fig.align=align}
+```{r, echo=FALSE, fig.width=4.6, fig.height=4.6,fig.align=align,warning=FALSE,message=FALSE,comment=NA}
 ceac.plot(m)
 ```
 
 
 ## Cost-effectiveness acceptability frontier
 
-```{r, echo=FALSE, fig.width=4.6, fig.height=4.6,fig.align=align}
+```{r, echo=FALSE, fig.width=4.6, fig.height=4.6,fig.align=align,warning=FALSE,message=FALSE,comment=NA}
 n.ints <- m$n.comparators
 if (n.ints==2) {graph="base"; pos=c(1,1)} else {graph="ggplot2"; pos=TRUE}
 ceaf.plot(multi.ce(m),graph=graph)
@@ -78,6 +78,6 @@ cat()
 
 ## Expected value of perfect information
 
-```{r, echo=FALSE,fig.width=4.6, fig.height=4.6,fig.align=align}
+```{r, echo=FALSE,fig.width=4.6, fig.height=4.6,fig.align=align,warning=FALSE,message=FALSE,comment=NA}
 evi.plot(m)
 ```
