@@ -47,7 +47,7 @@
 #' London
 #' @keywords Health economic evaluation Probabilistic sensitivity analysis
 #' @export info.rank
-info.rank <- function(parameter,input,he,wtp=he$k[min(which(he$k>=he$ICER))],...) {
+info.rank <- function(parameter,input,he,wtp=NULL,...) {
   # parameter = vector of parameters for which to make the plot
   # input = a matrix of PSA runs for all the parameters
   # he = a bcea object with the economic evaluation
@@ -79,6 +79,7 @@ info.rank <- function(parameter,input,he,wtp=he$k[min(which(he$k>=he$ICER))],...
   } 
   
   exArgs <- list(...)
+  if(is.null(wtp)){wtp=he$k[min(which(he$k>=he$ICER))]}
   
   if(class(parameter[1])=="character"){
     parameters<-array()

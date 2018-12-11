@@ -13,8 +13,8 @@ standardised output for the analysis of the results
 \tabular{ll}{
 Package: \tab BCEA\cr
 Type: \tab Package\cr
-Version: \tab 2.2-6\cr
-Date: \tab 2017-10-02\cr
+Version: \tab 2.2-62\cr
+Date: \tab 2018-11-14\cr
 License: \tab GPL2 \cr
 LazyLoad: \tab yes\cr
 }
