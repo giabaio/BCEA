@@ -33,7 +33,7 @@ Each point in the graph represents a 'potential future' in terms of expected inc
 ```{r, echo=FALSE,fig.width=4.6, fig.height=4.6,fig.align=align}
 n.ints <- m$n.comparators
 if (n.ints==2) {graph="base"; pos=c(1,1)} else {graph="ggplot2"; pos=TRUE}
-ceplane.plot(m,graph=graph,pos=pos)
+ceplane.plot(m,graph=graph,pos=pos,wtp=wtp)
 ```
 
 ## Expected Incremental Benefit
@@ -63,7 +63,7 @@ The following graph shows the cost-effectiveness acceptability curve (CEAC). The
 
 
 ```{r, echo=FALSE, fig.width=4.6, fig.height=4.6,fig.align=align}
-ceac.plot(m)
+ceac.plot(m,wtp=wtp)
 ```
 
 
