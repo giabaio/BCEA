@@ -50,6 +50,8 @@ make.report=function(he,evppi=NULL,ext="pdf",...) {
     stop("You need to install the R package 'rmarkdown'.Please run in your R terminal:\n install.packages('rmarkdown')")
   }
   
+  # Removes all warnings
+  options(warn=-1)
   # Get current directory, then move to relevant path, then go back to current directory
   file=file.path(tempdir(),filename)
   out = quiet(rmarkdown::render(normalizePath(file.path(system.file("Report",package="BCEA"),"report.Rmd")),
