@@ -28,6 +28,46 @@
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -121,6 +161,12 @@ Cost-Effectiveness Ratio
 \(\mbox{ICER}=\displaystyle\frac{\mbox{E}[\Delta_c]}{\mbox{E}[\Delta_e]}\),
 for the set willingness-to-pay value.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(m,}\DataTypeTok{wtp=}\NormalTok{wtp)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 
 Cost-effectiveness analysis summary 
@@ -160,6 +206,14 @@ sustainability area, the more likely that the reference intervention
 will turn out to be cost-effective, at a given willingness to pay
 threshold, \(k\) (in this case selected at \(k=\) 20100).
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n.ints <-}\StringTok{ }\NormalTok{m}\OperatorTok{$}\NormalTok{n.comparators}
+\ControlFlowTok{if}\NormalTok{ (n.ints}\OperatorTok{==}\DecValTok{2}\NormalTok{) \{graph=}\StringTok{"base"}\NormalTok{; pos=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)\} }\ControlFlowTok{else}\NormalTok{ \{graph=}\StringTok{"ggplot2"}\NormalTok{; pos=}\OtherTok{TRUE}\NormalTok{\}}
+\KeywordTok{ceplane.plot}\NormalTok{(m,}\DataTypeTok{graph=}\NormalTok{graph,}\DataTypeTok{pos=}\NormalTok{pos,}\DataTypeTok{wtp=}\NormalTok{wtp)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-3-1} \end{center}
 
 \hypertarget{expected-incremental-benefit}{%
@@ -179,6 +233,14 @@ expected utilities for the two interventions. In other terms, for two
 willingness to pay values, one greater and one less than \(k^*\), there
 will be two different optimal decisions. The graph also reports the 95\%
 credible limits around the EIB.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n.ints <-}\StringTok{ }\NormalTok{m}\OperatorTok{$}\NormalTok{n.comparators}
+\ControlFlowTok{if}\NormalTok{ (n.ints}\OperatorTok{==}\DecValTok{2}\NormalTok{) \{graph=}\StringTok{"base"}\NormalTok{; pos=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)\} }\ControlFlowTok{else}\NormalTok{ \{graph=}\StringTok{"ggplot2"}\NormalTok{; pos=}\OtherTok{TRUE}\NormalTok{\}}
+\KeywordTok{eib.plot}\NormalTok{(m,}\DataTypeTok{graph=}\NormalTok{graph,}\DataTypeTok{pos=}\NormalTok{pos)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-4-1} \end{center}
 
@@ -201,6 +263,12 @@ which the reference intervention is estimated to be more cost-effective
 than the comparator. Thus, it can be interpreted as the `probability of
 cost-effectiveness'.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ceac.plot}\NormalTok{(m)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-5-1} \end{center}
 
 \hypertarget{cost-effectiveness-acceptability-frontier}{%
@@ -214,6 +282,14 @@ probability of cost-effectiveness among all comparators. It is an
 indication of the uncertainty associated with choosing the cost
 effective intervention. In other terms, higher frontier values
 correspond to lower decision uncertainty.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n.ints <-}\StringTok{ }\NormalTok{m}\OperatorTok{$}\NormalTok{n.comparators}
+\ControlFlowTok{if}\NormalTok{ (n.ints}\OperatorTok{==}\DecValTok{2}\NormalTok{) \{graph=}\StringTok{"base"}\NormalTok{; pos=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)\} }\ControlFlowTok{else}\NormalTok{ \{graph=}\StringTok{"ggplot2"}\NormalTok{; pos=}\OtherTok{TRUE}\NormalTok{\}}
+\KeywordTok{ceaf.plot}\NormalTok{(}\KeywordTok{multi.ce}\NormalTok{(m),}\DataTypeTok{graph=}\NormalTok{graph)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-6-1} \end{center}
 
@@ -239,6 +315,14 @@ effectiveness distributions for each treatment option. The number in
 each circle corresponds to the order of the treatments in the legend. If
 the number is black then the intervention is on the efficiency frontier.
 Grey numbers indicate dominated treatments.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n.ints <-}\StringTok{ }\NormalTok{m}\OperatorTok{$}\NormalTok{n.comparators}
+\ControlFlowTok{if}\NormalTok{ (n.ints}\OperatorTok{==}\DecValTok{2}\NormalTok{) \{graph=}\StringTok{"base"}\NormalTok{; pos=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)\} }\ControlFlowTok{else}\NormalTok{ \{graph=}\StringTok{"ggplot2"}\NormalTok{; pos=}\OtherTok{TRUE}\NormalTok{\}}
+\KeywordTok{ceef.plot}\NormalTok{(m,}\DataTypeTok{graph=}\NormalTok{graph)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 
@@ -331,6 +415,12 @@ not in the CEAC and implies that the optimal treatment can be chosen
 with little financial risk, even with a low probability of
 cost-effectiveness.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{evi.plot}\NormalTok{(m)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-8-1} \end{center}
 
 \hypertarget{info-rank-plot}{%
@@ -354,6 +444,13 @@ a barchart is plotted to describe the ratio of EVPPI (specific to that
 parameter) to EVPI. This represents the relative `importance' of each
 parameter in terms of the expected value of information.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Uses the BCEA function 'CreateInputs' to pre-process the PSA runs and obtain a suitable format}
+\NormalTok{mat=}\KeywordTok{CreateInputs}\NormalTok{(psa_sims)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
  [1] 14 15 16 17 18 19 20 21 22 29 44 45 46 47
 [1] "Linear dependence: removing column pi[2,2]"
@@ -369,7 +466,78 @@ parameter in terms of the expected value of information.
 [1] "Linear dependence: removing column Repeat.GP[1,1]"
 \end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{IR=}\KeywordTok{info.rank}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(mat}\OperatorTok{$}\NormalTok{mat),mat}\OperatorTok{$}\NormalTok{mat,}\DataTypeTok{he=}\NormalTok{m,}\DataTypeTok{wtp=}\NormalTok{wtp)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-10-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{(show.tab)\{IR}\OperatorTok{$}\NormalTok{rank\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+         parameter        info
+1          beta.6. 0.087099250
+2         gamma.2. 0.086793906
+3       Trt.2.2.2. 0.074466654
+4             q.5. 0.072364451
+5          GP.2.2. 0.061326394
+6  Mild.Compl.2.2. 0.060624120
+7          beta.2. 0.060111463
+8   Pneumonia.2.2. 0.059435327
+9              phi 0.057091505
+10          n.1.2. 0.056248723
+11          n.2.2. 0.056248723
+12      Trt.1.2.2. 0.055926540
+13          psi.7. 0.049868025
+14         GP.1.1. 0.046715089
+15      Trt.1.1.1. 0.044894257
+16          lambda 0.043525017
+17          psi.3. 0.043378661
+18      Trt.2.1.1. 0.042313521
+19          psi.5. 0.042229569
+20 Mild.Compl.1.1. 0.041647637
+21  Pneumonia.1.1. 0.041172165
+22  Pneumonia.2.1. 0.037848812
+23             eta 0.037698226
+24         beta.3. 0.037201514
+25      Death.2.2. 0.036719833
+26   Infected.2.1. 0.036643162
+27   Infected.1.1. 0.034530407
+28        gamma.1. 0.034177981
+29            q.4. 0.033641336
+30         beta.1. 0.032849489
+31      Death.2.1. 0.029021706
+32          rho.2. 0.028580813
+33      Death.1.1. 0.026510651
+34         beta.5. 0.025937290
+35      Trt.2.2.1. 0.025459364
+36          psi.1. 0.024932309
+37            q.1. 0.024582008
+38  Adverse.events 0.024097477
+39          psi.6. 0.022452561
+40 Mild.Compl.2.1. 0.022417051
+41         beta.4. 0.021887814
+42              xi 0.021424577
+43            q.7. 0.020849552
+44      Trt.1.2.1. 0.020598011
+45   Hospital.2.1. 0.020543716
+46   Infected.2.2. 0.020054423
+47         GP.2.1. 0.019535538
+48   Hospital.1.1. 0.016571473
+49          psi.2. 0.016030287
+50          psi.8. 0.014262464
+51          psi.4. 0.010530648
+52         beta.7. 0.007654661
+53         pi.1.2. 0.007327684
+54            q.6. 0.005907220
+55           delta 0.005235527
+\end{verbatim}
 
 The graph shows a set of bars quantifying the proportion of the total
 EVPI associated with each parameter. The larger the bar, the higher the
