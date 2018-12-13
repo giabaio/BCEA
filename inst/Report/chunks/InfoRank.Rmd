@@ -4,13 +4,6 @@ output:
 	pdf_document
 	word_document
 ---
-```{r, echo=FALSE}
-if(input$format=="PDF") {
-    align="center"
-} else {
-    align="default"
-}
-```
 
 ## Info-rank plot
 Another way in which the analysis of the value of information (specifically based on the Expected Value of Perfect _Partial_ Information, EVPPI) can be used is to provide an 'overall' assessment of the impact of each single parameter on the decision uncertainty. To this aim, BCEA has a specialised function that produces a plot of the univariate EVPPI for all the parameters of interest (as specified by the user). While this is not ideal, since correlation among parameters and model structure does have an impact on the joint value of the EVPPI (which is not a linear combination of the individual EVPPIs!), the Info-rank plot with all the model parameters ranked can be used as a sort of _Tornado diagram_, a tool often used in deterministic sensitivity analysis.
@@ -23,3 +16,7 @@ mat=CreateInputs(psa_sims)
 IR=info.rank(1:ncol(mat$mat),mat$mat,he=m,wtp=wtp)
 if(show.tab==TRUE){IR$rank}
 ```
+
+The graph shows a set of bars quantifying the proportion of the total EVPI associated with each parameter. The larger the bar, the higher the impact of a given parameter on decision uncertainty. As mentioned above, care is needed in giving this graph an 'absolute' interpretation --- just because a parameter shows a relatively low position in the Info-rank plot, does not mean that there will be no value in investigating it in conjunction with other parameters. 
+
+However, it can be shown that the EVPPI of a set of parameters must be at least as big as the individual EVPPI values. Therefore, parameters with high individual EVPPI will always result in joint parameter subset with high value. But, _nothing_ can be said about parameters with small individual EVPPI values especially in decision tree models which are typically multiplicative in the parameters. This means that learning the value of one of these parameters has little value as the other elements remain uncertain. However, learning all the parameters can greatly decrease decision uncertainty and therefore has large value to the decision maker. Nonetheless, the Info-rank plot gives an overview, which is perhaps useful (in conjunction with expert knowledge about the model parameters) to drive the selection of the subset $\bm\phi$ to be included in the full analysis of the EVPPI.
