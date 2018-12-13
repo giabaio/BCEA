@@ -109,3 +109,5 @@ For example, there may be a setting where the probability of cost-effectiveness 
 ```{r, echo=FALSE,fig.width=4.6, fig.height=4.6,fig.align=align,warning=FALSE,message=FALSE,comment=NA}
 evi.plot(m)
 ```
+
+## References
