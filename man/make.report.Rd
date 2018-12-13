@@ -4,7 +4,7 @@
 \alias{make.report}
 \title{make.report}
 \usage{
-make.report(he, evppi = NULL, ext = "pdf", ...)
+make.report(he, evppi = NULL, ext = "pdf", echo = FALSE, ...)
 }
 \arguments{
 \item{he}{An object obtained as output to a call to \code{bcea}}
@@ -16,7 +16,19 @@ make.report(he, evppi = NULL, ext = "pdf", ...)
 resulting output file. Possible options are \code{"pdf"}, \code{"docx"}.
 This requires the use of pandoc, knitr and rmarkdown.}
 
-\item{...}{Additional parameters.}
+\item{echo}{A string (default to \code{FALSE}) to instruct whether
+the report should also include the \code{BCEA} commands used to 
+produce the analyses. If the optional argument \code{echo} is set
+to \code{TRUE} (default = \code{FALSE}), then the commands are also
+printed.}
+
+\item{...}{Additional parameters. For example, the user can specify the
+value of the willingness to pay \code{wtp}, which is used in some of
+the resulting analyses (default at the maximum value computed in the
+\code{BCEA} object used as input). Another additional parameter that
+the user can specify is the name of the file to which the report
+should be written. This can be done by simply passing the optional
+argument \code{filename="NAME"}. The user can also specify whether}
 }
 \description{
 Constructs the automated report from the output of the BCEA
