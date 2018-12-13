@@ -55,6 +55,19 @@ make.report=function(he,evppi=NULL,ext="pdf",echo=FALSE,...) {
     invisible(force(x)) 
   } 
   
+  # This may be used to automatically open the pdf output using the default pdf viewer...
+  openPDF <- function(f) {
+     os <- .Platform$OS.type
+     if (os=="windows")
+        shell.exec(normalizePath(f))
+     else {
+        pdf <- getOption("pdfviewer", default='')
+        if (nchar(pdf)==0)
+           stop("The 'pdfviewer' option is not set. Use options(pdfviewer=...)")
+        system2(pdf, args=c(f))
+     }
+  }
+  
   # Additional arguments
   exArgs=list(...)
   if(exists("wtp",exArgs)){wtp=exArgs$wtp} else {wtp=he$k[min(which(he$k>=he$ICER))]}
