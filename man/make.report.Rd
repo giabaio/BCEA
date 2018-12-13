@@ -24,11 +24,19 @@ printed.}
 
 \item{...}{Additional parameters. For example, the user can specify the
 value of the willingness to pay \code{wtp}, which is used in some of
-the resulting analyses (default at the maximum value computed in the
-\code{BCEA} object used as input). Another additional parameter that
-the user can specify is the name of the file to which the report
-should be written. This can be done by simply passing the optional
-argument \code{filename="NAME"}. The user can also specify whether}
+the resulting analyses (default at the break even point). 
+Another additional parameter that the user can specify is the name 
+of the file to which the report should be written. This can be done 
+by simply passing the optional argument \code{filename="NAME"}. 
+The user can also specify an object including the PSA simulations 
+for all the relevant model parameters. If this is passed to the 
+function (in the object \code{psa_sims}),
+then \code{make.report} will automatically construct an "Info-rank
+plot", which is a probabilistic form of tornado plot, based on the
+Expcted Value of Partial Information.  The user can also specify
+the optional argument \code{show.tab} (default=FALSE); if set to
+\code{TRUE}, then a table with the values of the Info-rank is also
+shown.}
 }
 \description{
 Constructs the automated report from the output of the BCEA
