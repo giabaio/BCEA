@@ -19,7 +19,7 @@ For each parameter and value of the willingness-to-pay threshold $k$, a barchart
 ```{r, echo=echo,fig.width=6.6, fig.height=6.6,fig.align=align,warning=FALSE,message=FALSE,comment=NA}
 # Uses the BCEA function 'CreateInputs' to pre-process 
 #  the PSA runs and obtain a suitable format
-mat=CreateInputs(psa_sims,print.lincomb=FALSE)
+mat=CreateInputs(psa_sims,print.lincom=FALSE)
 IR=info.rank(1:ncol(mat$mat),mat$mat,he=m,wtp=wtp)
 if(show.tab){IR$rank}
 ```
