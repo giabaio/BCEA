@@ -18,7 +18,7 @@
 #' the results of a call to either \code{jags}, (under \code{R2jags}), bugs
 #' (under \code{R2WinBUGS} or \code{R2OpenBUGS}), or \code{stan} (under
 #' \code{rstan}).
-#' @param print.lincomb A TRUE/FALSE indicator. If set to \code{TRUE} (default)
+#' @param print.lincom A TRUE/FALSE indicator. If set to \code{TRUE} (default)
 #' then prints the output of the procedure trying to assess whether there are
 #' some parameters that are a linear combination of others (in which case
 #' they are removed).
