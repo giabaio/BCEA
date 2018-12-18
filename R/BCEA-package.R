@@ -3,7 +3,7 @@
 #' BCEA: A package for Bayesian Cost-Effectiveness Analysis
 #' 
 #' A package to post-process the results of a Bayesian health economic model
-#' and produce standardised output for the analysis of the results
+#' and produce standardised output for the analysis of the results  
 #' 
 #' \tabular{ll}{ Package: \tab BCEA\cr Type: \tab Package\cr Version: \tab
 #' 2.2-63\cr Date: \tab 2018-12-18\cr License: \tab GPL2 \cr LazyLoad: \tab
