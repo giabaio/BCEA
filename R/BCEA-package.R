@@ -6,7 +6,7 @@
 #' and produce standardised output for the analysis of the results  
 #' 
 #' \tabular{ll}{ Package: \tab BCEA\cr Type: \tab Package\cr Version: \tab
-#' 2.2-63\cr Date: \tab 2018-12-18\cr License: \tab GPL2 \cr LazyLoad: \tab
+#' 2.2-63\cr Date: \tab 2018-12-19\cr License: \tab GPL2 \cr LazyLoad: \tab
 #' yes\cr } Given the results of a Bayesian model (possibly based on MCMC) in
 #' the form of simulations from the posterior distributions of suitable
 #' variables of costs and clinical benefits for two or more interventions,

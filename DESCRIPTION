@@ -2,10 +2,10 @@ Package: BCEA
 Type: Package
 Title: Bayesian Cost Effectiveness Analysis
 Version: 2.2-63
-Date: 2018-12-18
+Date: 2018-12-19
 Author: Gianluca Baio, Andrea Berardi, Anna Heath
 Maintainer: Gianluca Baio <gianluca@stats.ucl.ac.uk>
-Suggests: R2jags, R2OpenBUGS, ggplot2, grid, INLA, splancs, mgcv, ldr, shiny, shinythemes
+Suggests: R2jags, R2OpenBUGS, ggplot2, grid, INLA, splancs, mgcv, ldr, shiny, shinythemes, knitr, rmarkdown
 Imports: MASS
 Additional_repositories: https://inla.r-inla-download.org/R/stable/
 Description: Produces an economic evaluation of a Bayesian model in the form of MCMC simulations. Given suitable variables of cost and effectiveness / utility for two or more interventions, This package computes the most cost-effective alternative and produces graphical summaries and probabilistic sensitivity analysis.

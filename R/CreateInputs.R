@@ -73,7 +73,7 @@ CreateInputs <- function(x,print.lincom=TRUE) {
       rankifremoved <- sapply(1:NCOL(paramSet), function (x) qr(paramSet[,-x])$rank)
    }
    while(qr(paramSet)$rank == rankifremoved[1]) {
-     if(print.lincomb==TRUE){
+     if(print.lincom==TRUE){
        print(paste("Linear dependence... removing column", colnames(paramSet)[1]))
      }
      paramSet <- cbind(paramSet[, -1, drop=FALSE]) # special case only lincomb left
