@@ -42,3 +42,4 @@ importFrom(grDevices, colors, colours, dev.new, dev.off,devAskNewPage, pdf.optio
 importFrom(graphics, abline, axis, box, contour, legend, lines, par, plot, points, polygon, rect, text, barplot, hist)
 importFrom(stats, acf, as.formula, dist, dnorm, optim, prcomp, qnorm, qqline, qqnorm, quantile, sd, update, var)
 importFrom(utils, select.list, read.csv, write.csv)
+importFrom(rlang, .data)
