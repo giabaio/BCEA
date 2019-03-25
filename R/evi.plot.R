@@ -12,9 +12,14 @@
 #' @param graph A string used to select the graphical engine to use for
 #' plotting. Should (partial-)match the three options \code{"base"},
 #' \code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
-#' @param ... Additional arguments used for the plotly charts
-#' @return \item{evi}{ A ggplot object containing the requested plot. Returned
-#' only if \code{graph="ggplot2"}. } The function produces a plot of the
+#' @param ... Additional arguments used for the plotly charts, which are:
+#' \code{line_colors} to specify the EVPI line colour - all graph types;
+#' \code{line_types} to specify the line type (lty) - all graph types;
+#' \code{area_include} to specify whether to include the area under the EVPI curve - plotly only;
+#' \code{area_color} to specify the area under the colour curve - plotly only.
+#' @return \item{eib}{ If \code{graph="ggplot2"} a ggplot object, or if \code{graph="plotly"} 
+#' a plotly object containing the requested plot. Nothing is returned when \code{graph="base"}, 
+#' the default.} The function produces a plot of the
 #' Expected Value of Information as a function of the discrete grid
 #' approximation of the willingness to pay parameter. The break even point(s)
 #' (i.e. the point in which the EIB=0, ie when the optimal decision changes
@@ -86,7 +91,9 @@ evi.plot <- function(he, graph = c("base","ggplot2","plotly"), ...) {
       data.psa$k, data.psa$evi, t = "l",
       xlab = plot_annotations$xlab,
       ylab = plot_annotations$ylab,
-      main = plot_annotations$title
+      main = plot_annotations$title,
+      col = plot_aes$line$colors,
+      lty = ifelse(is.null(plot_aes$line$types), 1, plot_aes$line$type)
     )
     if (length(he$kstar) == 1) {
       points(
@@ -117,7 +124,10 @@ evi.plot <- function(he, graph = c("base","ggplot2","plotly"), ...) {
     ### no visible binding note
     k <- NA_real_
     evi <- ggplot2::ggplot(data.psa, ggplot2::aes(k, evi)) +
-      ggplot2::geom_line() +
+      ggplot2::geom_line(
+        colour = plot_aes$line$colors,
+        lty = ifelse(is.null(plot_aes$line$types), 1, plot_aes$line$type)
+      ) +
       ggplot2::theme_bw() +
       ggplot2::labs(title = plot_annotations$title,
                     x = plot_annotations$xlab,

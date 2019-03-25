@@ -44,9 +44,15 @@
 #' value \code{TRUE} indicates that the credible intervals are defined as the
 #' interval between the \code{alpha/2}-th and \code{1-alpha/2}-th quantiles of
 #' the IB distribution. Setting \code{cri.quantile=FALSE} will use a normal
-#' approximation on the IB distribution to calculate the intervals.
-#' @return \item{eib}{ A ggplot object containing the requested plot. Returned
-#' only if \code{graph="ggplot2"}. } The function produces a plot of the
+#' approximation on the IB distribution to calculate the intervals. Additional graphical arguments:
+#' \code{line_colors}: specifies the line colour(s) - all graph types;
+#' \code{line_types}: specifies the line type(s) as lty numeric values - all graph types;
+#' \code{line_cri_colors}: specifies the CrI line colour - all graph types;
+#' \code{area_include}: include area under the EIB curve - plotly only;
+#' \code{area_color}: specifies the AUC curve - plotly only;
+#' @return \item{eib}{ If \code{graph="ggplot2"} a ggplot object, or if \code{graph="plotly"} 
+#' a plotly object containing the requested plot. Nothing is returned when \code{graph="base"}, 
+#' the default.} The function produces a plot of the
 #' Expected Incremental Benefit as a function of the discrete grid
 #' approximation of the willingness to pay parameter. The break even point
 #' (i.e. the point in which the EIB=0, ie when the optimal decision changes
