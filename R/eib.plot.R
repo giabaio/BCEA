@@ -307,7 +307,7 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
       if (plot.cri) 
         data.psa <- cbind(data.psa,cri)
       if (is.null(plot_aes$line$types))
-        plot_aes$line_types = 1:he$n.comparisons
+        plot_aes$line$types = 1:he$n.comparisons
       eib <- ggplot2::ggplot(data.psa, ggplot2::aes(k, eib)) +
         ggplot2::theme_bw() +
         ggplot2::geom_hline(ggplot2::aes(yintercept = 0), colour = "grey")
@@ -350,7 +350,6 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
       # 1 = solid, 2 = dashed, 3 = dotted, 4 = dotdash, 5 = longdash, 6 = twodash
       if (is.null(plot_aes$line$types))
         plot_aes$line$types <- rep(c(1,2,3,4,5,6),ceiling(he$n.comparisons/6))[1:he$n.comparisons]
-      
       if (length(plot_aes$line$types) < length(comparisons.label))
         plot_aes$line$types <- rep_len(plot_aes$line$types, length(comparisons.label))
       if (length(plot_aes$line$colors) < length(comparisons.label))
@@ -482,6 +481,11 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
       plot_aes$line$types <- rep_len(plot_aes$line$types, length(comparisons.label))
     if (length(plot_aes$line$colors) < length(comparisons.label))
       plot_aes$line$colors <- rep_len(plot_aes$line$colors, length(comparisons.label))
+    # opacities
+    plot_aes$line$cri_colors %<>% sapply(function(x) 
+      ifelse(grepl(pattern = "^rgba\\(", x = x), x, plotly::toRGB(x, 0.4)))
+    plot_aes$area$color %<>% sapply(function(x)
+      ifelse(grepl(pattern = "^rgba\\(", x = x), x, plotly::toRGB(x, 0.4)))
     # data frame
     data.psa <- data.frame(
       "k" = he$k, "eib" = c(he$eib),
@@ -491,7 +495,6 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
       )))
     if (plot.cri)
       data.psa <- cbind(data.psa, cri)
-    #browser()
     eib <- plotly::plot_ly(data.psa, x = ~k)
     eib <- plotly::add_trace(
       eib,
@@ -512,7 +515,7 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
           name = paste0(100 * (1 - alpha), "% CrI"),
           ymin = ~low, ymax = ~upp,
           color = NA,
-          fillcolor = ~plotly::toRGB(plot_aes$line$cri_colors[comparison], alpha = .2))
+          fillcolor = ~plot_aes$line$cri_colors[comparison])
       } else {
         eib <- plotly::add_ribbons(
           eib,
@@ -528,18 +531,26 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
       }
     }
     
-    legend_list = list(orientation = "h", xanchor = "center", x = .5, y = 100)
+    # legend positioning not great - must be customized case by case
+    legend_list = list(orientation = "h", xanchor = "center", x = 0.5)
     if (is.character(alt.legend))
       legend_list = switch(
         alt.legend,
         "left" = list(orientation = "v", x = 0, y = 0.5),
         "right" = list(orientation = "v", x = 0, y = 0.5),
-        "bottom" = list(orienation = "h", x = .5, y = 100, xanchor = "center"),
-        "top" = list(orientation = "h", x = .5, y = 0, xanchor = "center")
+        "bottom" = list(orienation = "h", x = .5, y = 0, xanchor = "center"),
+        "top" = list(orientation = "h", x = .5, y = 100, xanchor = "center")
       )
     
     eib <- plotly::layout(
       eib,
+      title = switch(
+        as.numeric(plot_annotations$exist$title) + 1, 
+        paste0("Expected Incremental Benefit", ifelse(
+          plot.cri,
+          paste0("\nand ", format((1 - alpha)*100, digits = 4), "% credible intervals"),
+          "")),
+        plot_annotations$title),
       xaxis = list(
         hoverformat = ".2f",
         title = switch(
@@ -560,5 +571,3 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
     return(eib)
   }
 }
-
-
