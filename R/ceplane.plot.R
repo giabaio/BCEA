@@ -162,7 +162,7 @@ ceplane.plot <- function(he,
     } else {
       warning("col argument is softly deprecated. Please use point_colors instead.")
       plot_aes$exist$point$colors <- TRUE
-      plot_aes$point$colors <- col
+      plot_aes$point$colors <- exArgs$col
     }
   }
   # set default colour scheme
