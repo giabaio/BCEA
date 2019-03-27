@@ -1,6 +1,4 @@
-###evi.plot###################################################################################################
-## Plots the EVI
-
+# evi.plot -----
 
 #' Expected Value of Information (EVI) plot
 #' 
@@ -12,18 +10,19 @@
 #' @param graph A string used to select the graphical engine to use for
 #' plotting. Should (partial-)match the three options \code{"base"},
 #' \code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
-#' @param ... Additional arguments used for the plotly charts, which are:
-#' \code{line_colors} to specify the EVPI line colour - all graph types;
-#' \code{line_types} to specify the line type (lty) - all graph types;
-#' \code{area_include} to specify whether to include the area under the EVPI curve - plotly only;
-#' \code{area_color} to specify the area under the colour curve - plotly only.
+#' @param ... Additional graphical arguments:
+#'   \itemize{
+#'     \item \code{line_colors} to specify the EVPI line colour - all graph types.
+#'     \item \code{line_types} to specify the line type (lty) - all graph types.
+#'     \item \code{area_include} to specify whether to include the area under the EVPI curve - plotly only.
+#'     \item \code{area_color} to specify the area under the colour curve - plotly only.}
 #' @return \item{eib}{ If \code{graph="ggplot2"} a ggplot object, or if \code{graph="plotly"} 
-#' a plotly object containing the requested plot. Nothing is returned when \code{graph="base"}, 
-#' the default.} The function produces a plot of the
-#' Expected Value of Information as a function of the discrete grid
-#' approximation of the willingness to pay parameter. The break even point(s)
-#' (i.e. the point in which the EIB=0, ie when the optimal decision changes
-#' from one intervention to another) is(are) also showed.
+#'   a plotly object containing the requested plot. Nothing is returned when \code{graph="base"}, 
+#'   the default.} The function produces a plot of the
+#'   Expected Value of Information as a function of the discrete grid
+#'   approximation of the willingness to pay parameter. The break even point(s)
+#'   (i.e. the point in which the EIB=0, ie when the optimal decision changes
+#'   from one intervention to another) is(are) also showed.
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}}, \code{\link{ceac.plot}},
 #' \code{\link{ceplane.plot}}
@@ -175,7 +174,7 @@ evi.plot <- function(he, graph = c("base","ggplot2","plotly"), ...) {
   } else if (graph_choice == 3) {
     # plotly version -----
     # opacities
-    plot_aes$area$color %<>% sapply(function(x)
+    plot_aes$area$color = sapply(plot_aes$area$color, function(x)
       ifelse(grepl(pattern = "^rgba\\(", x = x), x, plotly::toRGB(x, 0.4)))
     # legend
     legend_list = list(orientation = "h", xanchor = "center", x = .5)
@@ -201,6 +200,7 @@ evi.plot <- function(he, graph = c("base","ggplot2","plotly"), ...) {
       yaxis = list(
         hoverformat = ".2f",
         title = plot_annotations$ylab),
+      # legend hidden by default (single series)
       showlegend = FALSE,
       legend = legend_list)
     evi <- plotly::config(evi, displayModeBar = FALSE)

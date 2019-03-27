@@ -1,6 +1,4 @@
-###eib.plot###################################################################################################
-## Plots the EIB
-
+# eib.plot -----
 
 #' Expected Incremental Benefit (EIB) plot
 #' 
@@ -37,19 +35,19 @@
 #' plotting. Should (partial-)match the three options \code{"base"},
 #' \code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
 #' @param ...  If \code{graph="ggplot2"} and a named theme object is supplied,
-#' it will be added to the ggplot object. If \code{plot.cri=TRUE} the level of
-#' the interval can be set using the argument \code{alpha}, with default at
-#' \code{alpha=0.05}. Additionally the method of calculation of the credible
-#' intervals can be chosen with the option \code{cri.quantile}: the default
-#' value \code{TRUE} indicates that the credible intervals are defined as the
-#' interval between the \code{alpha/2}-th and \code{1-alpha/2}-th quantiles of
-#' the IB distribution. Setting \code{cri.quantile=FALSE} will use a normal
-#' approximation on the IB distribution to calculate the intervals. Additional graphical arguments:
-#' \code{line_colors}: specifies the line colour(s) - all graph types;
-#' \code{line_types}: specifies the line type(s) as lty numeric values - all graph types;
-#' \code{line_cri_colors}: specifies the CrI line colour - all graph types;
-#' \code{area_include}: include area under the EIB curve - plotly only;
-#' \code{area_color}: specifies the AUC curve - plotly only;
+#'   it will be added to the ggplot object. Additional arguments:
+#'  \itemize{
+#'   \item \code{alpha} can be used to set the CrI level when \code{plot.cri=TRUE},
+#'   with a default value of \code{alpha=0.05}.
+#'   \item \code{cri.quantile} controls the the method of calculation of the credible
+#'   intervals. The default value \code{cri.quantile=TRUE} defines the CrI as the
+#'   interval between the \code{alpha/2}-th and \code{1-alpha/2}-th quantiles of
+#'   the IB distribution. Setting \code{cri.quantile=FALSE} will use a normal
+#'   approximation on the IB distribution to calculate the intervals.
+#'   \item \code{line_colors}: specifies the line colour(s) - all graph types.
+#'   \item \code{line_types}: specifies the line type(s) as lty numeric values - all graph types.
+#'   \item \code{area_include}: include area under the EIB curve - plotly only.
+#'   \item \code{area_color}: specifies the AUC curve - plotly only.}
 #' @return \item{eib}{ If \code{graph="ggplot2"} a ggplot object, or if \code{graph="plotly"} 
 #' a plotly object containing the requested plot. Nothing is returned when \code{graph="base"}, 
 #' the default.} The function produces a plot of the
@@ -138,7 +136,9 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
                                        mean(x) - qnorm((alpha)/2)*sd(x)))),
       "upp" = c(apply(he$ib,margin,function(x) ifelse(cri.quantile, quantile(x,1 - (alpha)/2),
                                                       mean(x) - qnorm(1 - (alpha)/2)*sd(x)))),
-      "comp" = as.factor(sort(rep(1:he$n.comparisons,length(he$k)))))
+      "comp" = as.factor(c(
+        sapply(1:he$n.comparisons, function(x) rep(x, length(he$k)))
+      )))
     return(cri)
   }
   ### if plot.cri is null, if comp=1 plot them otherwise do not (clutter!)
@@ -309,7 +309,9 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
       # data frame
       data.psa <- data.frame(
         "k" = he$k, "eib" = he$eib, 
-        "comparison" = as.factor(sort(rep(1:he$n.comparisons, length(he$k)))))
+        "comparison" = as.factor(c(
+          sapply(1:he$n.comparisons, function(x) rep(x, length(he$k)))
+        )))
       if (plot.cri) 
         data.psa <- cbind(data.psa,cri)
       if (is.null(plot_aes$line$types))
@@ -346,7 +348,9 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
     } else if (he$n.comparisons > 1 & is.null(comparison) == TRUE) {
       data.psa <- data.frame(
         "k" = c(he$k), "eib" = c(he$eib),
-        "comparison" = as.factor(sort(rep(1:he$n.comparisons, length(he$k)))))
+        "comparison" = as.factor(c(
+          sapply(1:he$n.comparisons, function(x) rep(x, length(he$k)))
+        )))
       if (plot.cri)
         data.psa <- cbind(data.psa,cri)
       # labels for legend
@@ -488,14 +492,16 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
     if (length(plot_aes$line$colors) < length(comparisons.label))
       plot_aes$line$colors <- rep_len(plot_aes$line$colors, length(comparisons.label))
     # opacities
-    plot_aes$line$cri_colors %<>% sapply(function(x) 
+    plot_aes$line$cri_colors <- sapply(plot_aes$line$cri_colors, function(x) 
       ifelse(grepl(pattern = "^rgba\\(", x = x), x, plotly::toRGB(x, 0.4)))
-    plot_aes$area$color %<>% sapply(function(x)
+    plot_aes$area$color <- sapply(plot_aes$area$color, function(x)
       ifelse(grepl(pattern = "^rgba\\(", x = x), x, plotly::toRGB(x, 0.4)))
     # data frame
     data.psa <- data.frame(
       "k" = he$k, "eib" = c(he$eib),
-      "comparison" = as.factor(sort(rep(1:he$n.comparisons, length(he$k)))),
+      "comparison" = as.factor(c(
+        sapply(1:he$n.comparisons, function(x) rep(x, length(he$k)))
+      )),
       "label" = as.factor(c(
         sapply(comparisons.label, function(x) rep(x, length(he$k)))
       )))
@@ -545,8 +551,7 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
         "left" = list(orientation = "v", x = 0, y = 0.5),
         "right" = list(orientation = "v", x = 0, y = 0.5),
         "bottom" = list(orienation = "h", x = .5, y = 0, xanchor = "center"),
-        "top" = list(orientation = "h", x = .5, y = 100, xanchor = "center")
-      )
+        "top" = list(orientation = "h", x = .5, y = 100, xanchor = "center"))
     
     eib <- plotly::layout(
       eib,
