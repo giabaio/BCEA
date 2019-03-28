@@ -5,7 +5,7 @@
 Given the results of a Bayesian model (possibly based on MCMC) in the form of simulations from the posterior distributions of suitable variables of costs and clinical benefits for two or more interventions, produces a health economic evaluation. Compares one of the interventions (the "reference") to the others ("comparators"). Produces many summary and plots to analyse the results
 
 ## Installation
-There are two ways of installing `BCEA`. A "stable" version (currently 2.5.5) is packaged and available from [CRAN](https://cran.r-project.org/index.html). So you can simply type on your R terminal
+There are two ways of installing `BCEA`. A "stable" version (currently 2.2.6) is packaged and available from [CRAN](https://cran.r-project.org/index.html). So you can simply type on your R terminal
 ```R
 install.packages("BCEA")
 ```

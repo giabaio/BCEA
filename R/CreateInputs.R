@@ -18,6 +18,10 @@
 #' the results of a call to either \code{jags}, (under \code{R2jags}), bugs
 #' (under \code{R2WinBUGS} or \code{R2OpenBUGS}), or \code{stan} (under
 #' \code{rstan}).
+#' @param print.lincom A TRUE/FALSE indicator. If set to \code{TRUE} (default)
+#' then prints the output of the procedure trying to assess whether there are
+#' some parameters that are a linear combination of others (in which case
+#' they are removed).
 #' @return \item{mat}{A data.frame contaning all the simulations for all the
 #' monitored parameters} \item{parameters}{A character vectors listing the
 #' names of all the monitored parameters}
@@ -25,7 +29,7 @@
 #' @seealso \code{\link{bcea}}, \code{\link{evppi}}
 #' @keywords R2jags R2WinBUGS R2OpenBUGS
 #' @export CreateInputs
-CreateInputs <- function(x) {
+CreateInputs <- function(x,print.lincom=TRUE) {
    # Utility function --- creates inputs for the EVPPI
    if(class(x)=="rjags") {
       inputs <- x$BUGSoutput$sims.matrix
@@ -61,15 +65,19 @@ CreateInputs <- function(x) {
    rankifremoved <- sapply(1:NCOL(paramSet), function (x) qr(paramSet[,-x])$rank)
    while(length(unique(rankifremoved)) > 1) {
       linearCombs <- which(rankifremoved == max(rankifremoved))
-      print(linearCombs)
-      print(paste("Linear dependence: removing column", colnames(paramSet)[max(linearCombs)]))
+      if(print.lincom==TRUE){
+        print(linearCombs)
+        print(paste("Linear dependence: removing column", colnames(paramSet)[max(linearCombs)]))
+      }
       paramSet <- cbind(paramSet[, -max(linearCombs), drop=FALSE])
       rankifremoved <- sapply(1:NCOL(paramSet), function (x) qr(paramSet[,-x])$rank)
    }
    while(qr(paramSet)$rank == rankifremoved[1]) {
-      print(paste("Linear dependence... removing column", colnames(paramSet)[1]))
-      paramSet <- cbind(paramSet[, -1, drop=FALSE]) # special case only lincomb left
-      rankifremoved <- sapply(1:NCOL(paramSet), function (x) qr(paramSet[,-x])$rank)
+     if(print.lincom==TRUE){
+       print(paste("Linear dependence... removing column", colnames(paramSet)[1]))
+     }
+     paramSet <- cbind(paramSet[, -1, drop=FALSE]) # special case only lincomb left
+     rankifremoved <- sapply(1:NCOL(paramSet), function (x) qr(paramSet[,-x])$rank)
    }
 
    # Now saves the output to a relevant list

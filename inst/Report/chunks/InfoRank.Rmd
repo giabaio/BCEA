@@ -1,0 +1,29 @@
+---
+title: "Info Rank"
+output: 
+	pdf_document
+	word_document
+---
+
+## Info-rank plot
+In the case where the EVPI is high compared to the cost of additional research it is useful to know where to target that research to reduce the decision uncertainty sufficiently. That is to say when the opportunity loss under current information is high compared to the cost of obtaining additional information, it is important to know how to reduce this opportunity loss as efficiently and as cheaply as possible. Additionally, in some settings, decision makers are interested in understanding which parameters are driving the decision uncertainty.
+
+This is very important in health-economic modelling as some of the underlying parameters are known with relative certainty. For example, there may be large amount of research on the prevalence of a given disease; similarly, the cost of the treatment may be known with reasonable precision. Evidently, investigating these parameters further to reduce the decision uncertainty would waste valuable resources and delay getting a potentially cost-effective intervention to market. Ideally, therefore, it would be advisable to calculate the value of resolving uncertainty for certain parameters or subsets of parameters in order to target research efforts. 
+
+This subset analysis would also be important in deciding whether a specific proposed trial is cost-effective. In this setting, the proposed study would target some model parameters and the expected value of learning these specific parameters would need to exceed to cost of the proposed trial. Again, note that it is important to compare this value with the value of the proposed trial to ascertain whether the uncertainty is high. In general, the value of a subset of parameters is known as the _Expected Value of Perfect Partial Information_ (EVPPI); this indicator can be used to quantify the value of resolving uncertainty in a specific parameter (or subset of parameters), while leaving uncertainty in the remaining model parameters unchanged. 
+
+Another way in which the analysis of the value of information (specifically based on the Expected Value of Perfect _Partial_ Information, EVPPI) can be used is to provide an 'overall' assessment of the impact of each single parameter on the decision uncertainty. To this aim, BCEA has a specialised function that produces a plot of the univariate EVPPI for all the parameters of interest (as specified by the user). While this is not ideal, since correlation among parameters and model structure does have an impact on the joint value of the EVPPI (which is not a linear combination of the individual EVPPIs!), the Info-rank plot with all the model parameters ranked can be used as a sort of _Tornado diagram_, a tool often used in deterministic sensitivity analysis.
+
+For each parameter and value of the willingness-to-pay threshold $k$, a barchart is plotted to describe the ratio of EVPPI (specific to that parameter) to EVPI. This represents the relative 'importance' of each parameter in terms of the expected value of information.
+
+```{r, echo=echo,fig.width=6.6, fig.height=6.6,fig.align=align,warning=FALSE,message=FALSE,comment=NA}
+# Uses the BCEA function 'CreateInputs' to pre-process 
+#  the PSA runs and obtain a suitable format
+mat=CreateInputs(psa_sims,print.lincom=FALSE)
+IR=info.rank(1:ncol(mat$mat),mat$mat,he=m,wtp=wtp)
+if(show.tab){IR$rank}
+```
+
+The graph shows a set of bars quantifying the proportion of the total EVPI associated with each parameter. The larger the bar, the higher the impact of a given parameter on decision uncertainty. As mentioned above, care is needed in giving this graph an 'absolute' interpretation --- just because a parameter shows a relatively low position in the Info-rank plot, does not mean that there will be no value in investigating it in conjunction with other parameters. 
+
+However, it can be shown that the EVPPI of a set of parameters must be at least as big as the individual EVPPI values. Therefore, parameters with high individual EVPPI will always result in joint parameter subset with high value. But, _nothing_ can be said about parameters with small individual EVPPI values especially in decision tree models which are typically multiplicative in the parameters. This means that learning the value of one of these parameters has little value as the other elements remain uncertain. However, learning all the parameters can greatly decrease decision uncertainty and therefore has large value to the decision maker. Nonetheless, the Info-rank plot gives an overview, which is perhaps useful (in conjunction with expert knowledge about the model parameters) to drive the selection of the subset $\bm\phi$ to be included in the full analysis of the EVPPI.
