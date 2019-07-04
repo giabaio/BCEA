@@ -27,6 +27,11 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
 
   robust <- NULL
   exArgs <- list(...)
+  if (!exists("suppress.messages", where=exArgs)) {
+    suppress.messages=FALSE
+  } else {
+    suppress.messages=exArgs$suppress.messages
+  }
 
   if (!exists("select", where=exArgs) & N == he$n.sim) {
     exArgs$select <- 1:he$n.sim
@@ -632,8 +637,10 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
             stop("You need to install the package 'mgcv'. Please run in your R terminal:\n install.packages('mgcv')")
           }
           if (isTRUE(requireNamespace("mgcv", quietly = TRUE))) {
+            if(suppress.messages==FALSE) {
             cat("\n")
             cat("Calculating fitted values for the GAM regression \n")
+            }
 
             inp <- names(inputs)[parameter]
             if (exists("formula", where = exArgs)) {
@@ -650,9 +657,11 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
         if (method == "gp" || method == "GP") {
           method <- "GP"
           mesh <- robust <- NULL
+          if(suppress.messages==FALSE) {
           cat("\n")
           cat("Calculating fitted values for the GP regression \n")
           # If the number of simulations to be used to estimate the hyperparameters is set then use that, else use N/2
+          }
           if (!exists("n.sim", where = exArgs)) {
             n.sim = N/2
           }
@@ -678,11 +687,15 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
               if(length(parameter)<2){
                 stop("The INLA method can only be used with 2 or more parameters")
               }
+              if(suppress.messages==FALSE) {
               cat("\n")
               cat("Finding projections \n")
+              }
               projections <- make.proj(parameter=parameter,inputs = inputs,x=x,k=k,l=l)
               data <- projections$data
+              if(suppress.messages==FALSE) {
               cat("Determining Mesh \n")
+              }
               if (!exists("cutoff", where = exArgs)) {
                 cutoff = 0.3
               }
@@ -711,7 +724,9 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
                                 convex.outer = convex.outer, cutoff = cutoff,max.edge=max.edge)
               plot.mesh(mesh = mesh$mesh, data = data,
                         plot = plot)
+              if(suppress.messages==FALSE) {
               cat("Calculating fitted values for the GP regression using INLA/SPDE \n")
+              }
               if (exists("h.value", where = exArgs)) {
                 h.value = exArgs$h.value
               }
@@ -758,7 +773,7 @@ evppi.default<-function (parameter, input, he, N = NULL, plot = F, residuals = T
         }
       }
     }
-    cat("Calculating EVPPI \n")
+    if(suppress.messages==FALSE) {cat("Calculating EVPPI \n")}
     comp <- compute.evppi(he = he, fit.full = fit.full)
     name <- prepare.output(parameter=parameters, inputs=inputs)
     time[[3]]<-comp$time
