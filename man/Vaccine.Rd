@@ -11,6 +11,9 @@
 \alias{cost.trt2}
 \alias{cost.vac}
 \alias{e}
+\alias{e.pts}
+\alias{c.pts}
+\alias{vaccine_mat}
 \alias{N}
 \alias{N.outcomes}
 \alias{N.resources}
@@ -59,7 +62,11 @@ of the overall costs for first line of treatment associated with the two interve
 of the overall costs for second line of treatment associated with the two interventions}
     \item{\code{cost.vac}}{a matrix of simulations from the posterior distribution 
 of the costs for vaccination}
+    \item{\code{c.pts}}{a matrix of simulations from the posterior distribution of 
+the clinical benefits associated with the two treatments}
     \item{\code{e}}{a matrix of simulations from the posterior distribution of 
+the clinical benefits associated with the two treatments}
+    \item{\code{e.pts}}{a matrix of simulations from the posterior distribution of 
 the clinical benefits associated with the two treatments}
     \item{\code{N}}{the number of subjects in the reference population}
     \item{\code{N.outcomes}}{the number of clinical outcomes analysed}
