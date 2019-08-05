@@ -65,4 +65,5 @@ Gianluca Baio, Anna Heath
 \code{\link{bcea}},
 \code{\link{evppi}}
 }
-\keyword{Health economic evaluation, Value of Information}
+\concept{Health economic evaluation}
+\concept{Value of Information}
