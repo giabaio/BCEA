@@ -62,5 +62,10 @@ London
 \author{
 Gianluca Baio
 }
-\concept{"Value of information"}
-\concept{"Health economic evaluation"}
+\keyword{"Expected}
+\keyword{"Health}
+\keyword{economic}
+\keyword{evaluation",}
+\keyword{information"}
+\keyword{of}
+\keyword{value}

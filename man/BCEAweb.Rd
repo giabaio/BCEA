@@ -46,5 +46,10 @@ London
 \author{
 Gianluca Baio
 }
-\concept{Health evaluation}
-\concept{Value of information}
+\keyword{Expected}
+\keyword{Health}
+\keyword{economic}
+\keyword{evaluation,}
+\keyword{information}
+\keyword{of}
+\keyword{value}
