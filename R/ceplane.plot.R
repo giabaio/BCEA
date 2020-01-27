@@ -156,6 +156,15 @@ ceplane.plot <- function(he,
       plot_aes$ICER$sizes <- exArgs$ICER.size
     }
   }
+  if (exists("ICER.col", where = exArgs)) {
+    if (plot_aes$exist$ICER$colors) {
+      warning("Both ICER.col and ICER_col arguments specified. ICER_col will be used.")
+    } else {
+      warning("ICER.col is softly deprecated. Please use ICER_col instead.")
+      plot_aes$exist$ICER$colors <- TRUE
+      plot_aes$ICER$colors <- exArgs$ICER.col
+    }
+  }
   if (exists("col", where = exArgs)) {
     if (plot_aes$exist$point$colors) {
       warning("Both col and point_colors arguments specified. point_colors will be used.")
