@@ -58,7 +58,8 @@ multi.ce <- function(he){
     }
   }
   m.ce <- apply(most.ce,c(2,3),mean)		# Probability most cost-effective
-  ceaf <- apply(m.ce,1,max)			# Cost-effectiveness acceptability frontier
+  ceaf <- m.ce[cbind(1:nrow(m.ce),he$best)]
+  ###ceaf <- apply(m.ce,1,max)			# Cost-effectiveness acceptability frontier
   
   # Output of the function
   list(
