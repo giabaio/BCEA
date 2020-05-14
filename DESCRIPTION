@@ -3,8 +3,16 @@ Type: Package
 Title: Bayesian Cost Effectiveness Analysis
 Version: 2.3-2
 Date: 2020-01-30
-Author: Gianluca Baio, Andrea Berardi, Anna Heath
-Maintainer: Gianluca Baio <gianluca@stats.ucl.ac.uk>
+Authors@R: c(
+    person("Gianluca", "Baio",
+            email = "gianluca@stats.ucl.ac.uk",
+            role = c("aut", "cre")),
+    person("Andrea", "Berardi",
+            email = "gianluca@stats.ucl.ac.uk",
+            role = c("aut")),
+    person("Anna", "Heath",
+            email = "gianluca@stats.ucl.ac.uk",
+            role = c("aut")))
 Suggests: 
     R2jags,
     R2OpenBUGS,
