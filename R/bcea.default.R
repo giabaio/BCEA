@@ -42,6 +42,7 @@ bcea.default <- function(e,
   
   # Define reference & comparator intervention (different labels can be given here if available!)
   ##TODO: check number of interventions are the same as n.comparators?
+  ##TODO: check e same dims as c
   
   ints <- 1:n.comparators
   
