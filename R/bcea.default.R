@@ -19,25 +19,19 @@
 #'    then BCEA will construct a grid of 501 values from 0 to Kmax. This option is useful when 
 #'    performing intensive computations (eg for the EVPPI)
 #'
-#' @param e 
-#' @param c 
-#' @param ref 
-#' @param interventions 
-#' @param Kmax 
-#' @param wtp 
-#' @param plot 
-#'
 #' @return Graphs & computed values for CE Plane, ICER, EIB, CEAC, EVPI 
 #' @export
 #'
-#' @examples
 bcea.default <- function(e,
                          c,
                          ref = 1,
                          interventions = NULL,
                          Kmax = 50000,
-                         wtp = NULL,
-                         plot = FALSE) {
+                         wtp = NULL
+                         # plot = FALSE
+                         ) {
+  
+  ##TODO: there several n.comparator == 1, >1 bits. can we improve this?
   
   # Set the working directory to wherever the user is working, if not externally set
   if(!exists("working.dir")){working.dir <- here::here()}
@@ -47,11 +41,20 @@ bcea.default <- function(e,
   n.comparators <- dim(e)[2]
   
   # Define reference & comparator intervention (different labels can be given here if available!)
-  if(is.null(interventions)){interventions <- paste("intervention", 1:n.comparators)}
+  ##TODO: check number of interventions are the same as n.comparators?
+  
   ints <- 1:n.comparators
   
-  # Define intervention i (where i can be a number in [1,...,n.comparators]) as the reference 
+  if (is.null(interventions))
+    { interventions <- paste("intervention", ints) }
+  
+  
+  # Define intervention i as the reference 
+  # where i can be a number in [1,...,n.comparators])
   # and the other(s) as comparator(s). Default is the first intervention (first column of e or c)
+  
+  ##TODO: check that ref is in ints?
+  
   comp <- ints[-ref]
   n.comparisons <- n.comparators - 1
   
@@ -59,31 +62,40 @@ bcea.default <- function(e,
   delta.e <- e[, ref] - e[, comp]
   delta.c <- c[, ref] - c[, comp]
   
-  # Compute the ICER
+  ##TODO: replace with
+  # ICER <- compute_ICER(delta.e, delta.c)
+  
   if(n.comparisons == 1) {
     ICER <- mean(delta.c)/mean(delta.e)
   }
   if(n.comparisons > 1) {
     ICER <- colMeans(delta.c)/colMeans(delta.e) #apply(delta.c,2,mean)/apply(delta.e,2,mean)
   }
-  
-  
+
   # Compute and plot CEAC & EIB
   if(!exists("Kmax")){Kmax <- 50000}
-  # Lets you select the willingness to pay grid --- useful when doing EVPPI (computationally intensive)
+  
+  # Lets you select the willingness to pay grid
+  # useful when doing EVPPI (computationally intensive)
   if (!is.null(wtp)) {
     wtp <- sort(unique(wtp))
     npoints <- length(wtp) - 1
     Kmax <- max(wtp)
     step <- NA
-    k <- wtp
+    k <- wtp                 ##TODO: this is potential issue k and K similar?
     K <- npoints + 1
   } else {
-    npoints <- 500
+    npoints <- 500  ##TODO: magic number?
     step <- Kmax/npoints
     k <- seq(0, Kmax, by = step)
     K <- length(k)
   }
+  
+  ##TODO: replace with:
+  # compute_IB()
+  # compute_CEAC()
+  # get_kstar()
+  # get_best_EIB()
   
   if(n.comparisons == 1) {
     ib <- scale(k %*% t(delta.e), delta.c, scale = FALSE)
@@ -108,6 +120,7 @@ bcea.default <- function(e,
   }
   if(n.comparisons > 1) {
     eib <- apply(ib, 3, function(x) apply(x,1,mean))
+    
     if (is.null(dim(eib))) {
       tmp <- min(eib)
       tmp2 <- which.min(eib)	
@@ -115,6 +128,7 @@ bcea.default <- function(e,
       tmp <- apply(eib,1,min)
       tmp2 <- apply(eib,1,which.min)
     }
+    
     best <- ifelse(tmp > 0,ref,comp[tmp2])
     # Finds the k for which the optimal decision changes
     check <- c(0,diff(best))
@@ -122,11 +136,17 @@ bcea.default <- function(e,
   }
   
   # Compute EVPI 
+  ##TODO: replace with:
+  # EVPI <- compute_EVPI()
+  
   U <- array(rep(e, K)*rep(k, each=n.sim*n.comparators) - as.vector(c),
              dim=c(n.sim, n.comparators, K))
   U <- aperm(U, c(1,3,2))
+  
   rowMax <- function(x){do.call(pmax, as.data.frame(x))}
+  
   Ustar <- vi <- ol <- matrix(NA,n.sim,K) 
+  
   for (i in 1:K) {
     Ustar[,i] <- rowMax(U[,i,])
     cmd <- paste("ol[,i] <- Ustar[,i] - U[,i,",best[i],"]",sep="")
@@ -163,8 +183,9 @@ bcea.default <- function(e,
     c = c)
   
   class(he) <- "bcea"
-  if(plot)
-    plot(he)
+  
+  # if(plot)
+  #   plot(he)
   
   return(he)
 }
