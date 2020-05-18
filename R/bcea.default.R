@@ -31,10 +31,14 @@ bcea.default <- function(e,
                          # plot = FALSE
                          ) {
   
+  ##TODO: S3 only dispatches on the first argument so how does e and c work? change to list?
+  ##TODO: how to check that e and c are the right way round?
+  ##TODO: can we dispatch directly on jags/BUGS output?
   ##TODO: there several n.comparator == 1, >1 bits. can we improve this?
   
   # Set the working directory to wherever the user is working, if not externally set
-  if(!exists("working.dir")){working.dir <- here::here()}
+  ##TODO: where is this used? on.exit()?
+  # if(!exists("working.dir")){working.dir <- here::here()}
   
   # Number of simulations & interventions analysed
   n.sim <- dim(e)[1]
@@ -83,7 +87,7 @@ bcea.default <- function(e,
     npoints <- length(wtp) - 1
     Kmax <- max(wtp)
     step <- NA
-    k <- wtp                 ##TODO: this is potential issue k and K similar?
+    k <- wtp                 ##TODO: this is potential issue k and K similar? whats wrong with using wtp?
     K <- npoints + 1
   } else {
     npoints <- 500  ##TODO: magic number?
