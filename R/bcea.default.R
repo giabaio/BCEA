@@ -27,8 +27,8 @@ bcea.default <- function(e,
                          ref = 1,
                          interventions = NULL,
                          Kmax = 50000,
-                         wtp = NULL
-                         # plot = FALSE
+                         wtp = NULL,
+                         plot = FALSE
                          ) {
   
   ##TODO: S3 only dispatches on the first argument so how does e and c work? change to list?
@@ -45,8 +45,9 @@ bcea.default <- function(e,
   n.comparators <- dim(e)[2]
   
   # Define reference & comparator intervention (different labels can be given here if available!)
-  ##TODO: check number of interventions are the same as n.comparators?
-  ##TODO: check e same dims as c
+  if (!is.null(interventions) & length(interventions) != ncol(e)) stop ("interventions names wrong length.")
+  
+  if (any(dim(e) != dim(c))) stop("e and c are not the same dimensions.")
   
   ints <- 1:n.comparators
   
@@ -188,9 +189,10 @@ bcea.default <- function(e,
     c = c)
   
   class(he) <- "bcea"
-  
-  # if(plot)
-  #   plot(he)
+
+  ##TODO: should separate out this really  
+  if(plot)
+    plot(he)
   
   return(he)
 }
