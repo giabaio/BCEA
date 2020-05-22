@@ -4,9 +4,17 @@
 \alias{ceplane.plot}
 \title{Cost-effectiveness plane plot}
 \usage{
-ceplane.plot(he, comparison = NULL, wtp = 25000, pos = c(1, 1),
-  size = NULL, graph = c("base", "ggplot2"), xlim = NULL,
-  ylim = NULL, ...)
+ceplane.plot(
+  he,
+  comparison = NULL,
+  wtp = 25000,
+  pos = c(1, 1),
+  size = NULL,
+  graph = c("base", "ggplot2"),
+  xlim = NULL,
+  ylim = NULL,
+  ...
+)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian

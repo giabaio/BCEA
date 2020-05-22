@@ -37,5 +37,5 @@ URL: http://www.statistica.it/gianluca/BCEA,
      https://github.com/giabaio/BCEA    
 Depends: R (>= 2.10)
 NeedsCompilation: no
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 Encoding: UTF-8
