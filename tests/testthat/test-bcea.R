@@ -67,3 +67,31 @@ test_that("basic input values", {
   # 
   # bcea(dat$eff, dat$c)
 })
+
+
+# realistic input data
+
+test_that("basic return", {
+  
+  res <- 
+    bcea(e = eff,
+         c = cost)
+  
+  expect_s3_class(res, "bcea")
+  expect_type(res, "list")
+
+  expect_length(res, 24)
+  expect_named(res,
+               c("n_sim","n_comparators","n_comparisons","delta_e","delta_c",
+                 "ICER","Kmax","k","ceac","ib","eib","kstar","best","U","vi",
+                 "Ustar","ol","evi","interventions","ref","comp","step","e","c"))
+  
+  expect_length(res$delta_c, nrow(cost))
+  expect_length(res$delta_e, nrow(eff))
+  
+  expect_equal(nrow(res$U), nrow(eff))
+  expect_equal(nrow(res$vi), nrow(eff))
+  expect_equal(nrow(res$Ustar), nrow(eff))
+  expect_equal(nrow(res$e), nrow(eff))
+  expect_equal(nrow(res$c), nrow(cost))
+})

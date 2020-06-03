@@ -4,22 +4,22 @@
 #' Compute a Bayesian cost-effectiveness analysis of two or more interventions
 #'
 #' INPUTS:
-#' 1. Two objects (e,c). These can be directly computed in a simulation object "sim" from JAGS/BUGS, 
-#'    or derived by postprocessing of "sim" in R. The objects (e,c) have dimension (n_sim x number of 
+#' 1. Two objects (`e`,`c`). These can be directly computed in a simulation object `sim` from JAGS/BUGS, 
+#'    or derived by postprocessing of `sim` in R. The objects (`e`,`c`) have dimension (`n_sim` x number of 
 #'    interventions) and contain n_sim simulated values for the measures of effectiveness and costs 
 #'    for each intervention being compared. 
-#' 2. The reference intervention as a numeric value. Each intervention is a column in the matrices e 
-#'    and c so if ref=1 the first column is assumed to be associated with the reference intervention. 
+#' 2. The reference intervention as a numeric value. Each intervention is a column in the matrices `e` 
+#'    and `c` so if `ref` = 1 the first column is assumed to be associated with the reference intervention. 
 #'    Intervention 1 is assumed the default reference. All others are considered comparators.
 #' 3. A string vector "interventions" including the names of the interventions. If none is provided 
 #'    then labels each as "intervention1",...,"interventionN".
-#' 4. The value Kmax which represents the maximum value for the willingness to pay parameter. If none 
-#'    is provided, then it is assumed Kmax=50000.
+#' 4. The value `Kmax` which represents the maximum value for the willingness to pay parameter. If none 
+#'    is provided, then it is assumed `Kmax` = 50000.
 #' 5. A(n optional) vector wtp including the values of the willingness to pay grid. If not specified
-#'    then BCEA will construct a grid of 501 values from 0 to Kmax. This option is useful when 
+#'    then `bcea` will construct a grid of 501 values from 0 to `Kmax`. This option is useful when 
 #'    performing intensive computations (e.g. for the EVPPI)
 #'
-#' @return Graphs & computed values for CE Plane, ICER, EIB, CEAC, EVPI 
+#' @return List of computed values for CE Plane, ICER, EIB, CEAC, EVPI 
 #' @export
 #'
 bcea.default <- function(eff,
@@ -36,7 +36,7 @@ bcea.default <- function(eff,
   ##TODO: can we dispatch directly on jags/BUGS output?
   ##TODO: there several n.comparator == 1, >1 bits. can we improve this?
   
-  if (!is.matrix(cost) | !is.matrix(eff)) stop("eff and cost must be matrices.")
+  if (!is.matrix(cost) | !is.matrix(eff)) stop("eff and cost must be matrices.") 
   if (ncol(cost) == 1 | ncol(eff) == 1) stop("Require at least 2 comparators.")
   if (!is.null(interventions) & length(interventions) != ncol(eff)) stop("interventions names wrong length.")
   if (any(dim(eff) != dim(cost))) stop("eff and cost are not the same dimensions.")
