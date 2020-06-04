@@ -97,12 +97,7 @@ bcea.default <- function(eff,
     k <- seq(0, Kmax, by = step)
     K <- length(k)
   }
-  
-  ##TODO: replace with:
-  # compute_CEAC()
-  # get_kstar()
-  # get_best_EIB()
-  
+
   
   deltas <-
     data.frame(
@@ -113,16 +108,18 @@ bcea.default <- function(eff,
   
   ib <- compute_IB(deltas, k)
   
-  ceac <- 
-    if(n_comparisons == 1) {
-      rowMeans(ib > 0)
-    } else { 
-      apply(ib > 0, c(1,3), mean)
-    }
+  ceac <- compute_CEAC(ib)
+
+  eib <- compute_EIB(ib)
+
+    
+  ##TODO: replace with:
+  # 
+  # compute_kstar()
+  # compute_best_EIB()
   
   # Select the best option for each value of the willingness to pay parameter
   if(n_comparisons == 1) {
-    eib <- rowMeans(ib)  #apply(ib,1,mean)
     best <- rep(ref, K)
     best[which(eib < 0)] <- comp
     ## Finds the k for which the optimal decision changes
@@ -130,7 +127,6 @@ bcea.default <- function(eff,
     kstar <- k[check != 0]
   }
   if(n_comparisons > 1) {
-    eib <- apply(ib, 3, function(x) apply(x, 1, mean))
     
     if (is.null(dim(eib))) {
       tmp  <- min(eib)
@@ -140,16 +136,16 @@ bcea.default <- function(eff,
       tmp2 <- apply(eib, 1, which.min)
     }
     
-    best <- ifelse(tmp > 0,ref,comp[tmp2])
+    best <- ifelse(tmp > 0, ef, comp[tmp2])
     # Finds the k for which the optimal decision changes
     check <- c(0, diff(best))
     kstar <- k[check != 0]
   }
   
-  # Compute EVPI 
   ##TODO: replace with:
   # EVPI <- compute_EVPI()
   
+  ## same as for ib
   U <- array(rep(eff, K)*rep(k, each = n_sim*n_comparators) - as.vector(cost),
              dim=c(n_sim, n_comparators, K))
   U <- aperm(U, c(1,3,2))

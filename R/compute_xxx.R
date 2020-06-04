@@ -2,33 +2,18 @@
 #
 compute_CEAC <- function(ib) {
   
-  ncomp <- ncol(ib) ##TODO:
-  
-  if (n.comparisons == 1) {
-    ceac <- rowMeans(ib > 0) #apply(ib>0,1,mean)
-  }
-  if (n.comparisons > 1) { 
-    ceac <- apply(ib > 0, c(1,3), mean)
-  }
-  
-  ceac  
-}
-
-
-get_EIB <- function(ib) {
-  
-  # Select the best option for each value of the willingness to pay parameter
-  if (n.comparisons == 1) {
-    eib <- rowMeans(ib)  #apply(ib,1,mean)
-  }
-  if (n.comparisons > 1) {
-    eib <- apply(ib, 3, function(x) apply(x,1,mean))
-  }
-  
-  eib
+  apply(ib > 0, c(1,3), mean)
 }
 
 #
+compute_EIB <- function(ib) {
+  
+  eib <- apply(ib, 3, function(x) apply(x, 1, mean))
+  # eib <- apply(ib, 3, function(x) rowMeans(x))  ##TODO: test
+}
+
+
+##TODO:
 get_kstar <- function(variables) {
   
   # Select the best option for each value of the willingness to pay parameter
@@ -56,7 +41,8 @@ get_kstar <- function(variables) {
   }
 }
 
-#
+
+##TODO:
 compute_EVPI <- function(){
   
   U <- array(rep(e, K)*rep(k, each=n.sim*n.comparators) - as.vector(c),
