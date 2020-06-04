@@ -29,7 +29,7 @@ bcea.default <- function(eff,
                          Kmax = 50000,
                          wtp = NULL,
                          plot = FALSE
-                         ) {
+) {
   
   ##TODO: S3 only dispatches on the first argument so how does e and c work? change to list?
   ##TODO: how to check that e and c are the right way round?
@@ -42,7 +42,7 @@ bcea.default <- function(eff,
   if (any(dim(eff) != dim(cost))) stop("eff and cost are not the same dimensions.")
   
   if (!is.double(ref) | ref < 1 | ref > ncol(eff)) stop("reference is not in available interventions.")
-
+  
   # Number of simulations & interventions analysed
   n_sim <- dim(eff)[1]
   n_comparators <- dim(eff)[2]
@@ -53,7 +53,7 @@ bcea.default <- function(eff,
   ints <- 1:n_comparators
   
   if (is.null(interventions))
-    { interventions <- paste("intervention", ints) }
+  { interventions <- paste("intervention", ints) }
   
   # Define intervention i as the reference 
   # where i can be a number in [1,...,n_comparators])
@@ -64,6 +64,8 @@ bcea.default <- function(eff,
   n_comparisons <- n_comparators - 1
   
   # Compute Effectiveness & Cost differentials (wrt to reference intervention)
+  ##TODO: is this the wrong way around?...
+  
   delta_e <- eff[, ref] - eff[, comp]
   delta_c <- cost[, ref] - cost[, comp]
   
@@ -76,7 +78,7 @@ bcea.default <- function(eff,
   if(n_comparisons > 1) {
     ICER <- colMeans(delta_c)/colMeans(delta_e) #apply(delta_c,2,mean)/apply(delta_e,2,mean)
   }
-
+  
   # Compute and plot CEAC & EIB
   if(!exists("Kmax")){ Kmax <- 50000}
   
@@ -97,22 +99,38 @@ bcea.default <- function(eff,
   }
   
   ##TODO: replace with:
-  # compute_IB()
   # compute_CEAC()
   # get_kstar()
   # get_best_EIB()
   
-  if(n_comparisons == 1) {
-    ib <- scale(k %*% t(delta_e), delta_c, scale = FALSE)
-    ceac <- rowMeans(ib > 0) #apply(ib>0,1,mean)
-  }
-  if(n_comparisons > 1) { 
-    ib <- array(rep(delta_e, K)*rep(k, each = n_sim*n_comparisons) - as.vector(delta_c),
-                dim = c(n_sim, n_comparisons, K))
-    ib <- aperm(ib, c(3,1,2))
-    ###          ib <- sweep(apply(delta_e,c(1,2),function(x) k%*%t(x)),c(2,3),delta_c,"-")
-    ceac <- apply(ib > 0, c(1,3), mean)
-  }
+  
+  deltas <-
+    data.frame(
+      sim = 1:n_sim,
+      comp = rep(1:n_comparisons, each = n_sim),
+      delta_e = matrix(delta_e, ncol = 1),
+      delta_c = matrix(delta_c, ncol = 1))
+  
+  ib <- compute_IB(deltas, k)
+  
+  # if(n_comparisons == 1) {
+  #   ib <- scale(k %*% t(delta_e), delta_c, scale = FALSE)
+  #   ceac <- rowMeans(ib > 0)
+  # }
+  # if(n_comparisons > 1) { 
+  #   ib <- array(rep(delta_e, K)*rep(k, each=n_sim*n_comparisons) - as.vector(delta_c),
+  #               dim = c(n_sim, n_comparisons, K))
+  #   ib <- aperm(ib, c(3,1,2))
+  #   ###          ib <- sweep(apply(delta.e,c(1,2),function(x) k%*%t(x)),c(2,3),delta.c,"-")
+  #   ceac <- apply(ib > 0, c(1,3), mean)
+  # }
+  
+  ceac <- 
+    if(n_comparisons == 1) {
+      rowMeans(ib > 0)
+    } else { 
+      apply(ib > 0, c(1,3), mean)
+    }
   
   # Select the best option for each value of the willingness to pay parameter
   if(n_comparisons == 1) {
@@ -188,7 +206,7 @@ bcea.default <- function(eff,
     c = cost)
   
   class(he) <- "bcea"
-
+  
   ##TODO: should separate out this really  
   if(plot)
     plot(he)

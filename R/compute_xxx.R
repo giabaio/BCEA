@@ -1,26 +1,5 @@
 
 #
-compute_IB <- function(delta.c,
-                       delta.e,
-                       k,
-                       K,
-                       n.sim) {
-  
-  ncomp <- ncol(delta.e)
-  
-  if (ncomp == 1) {
-    ib <- scale(k %*% t(delta.e), delta.c, scale = FALSE)
-  }
-  if (ncomp > 1) { 
-    ib <- array(rep(delta.e, K)*rep(k, each = n.sim*n.comparisons) - as.vector(delta.c),
-                dim=c(n.sim, ncomp, K))
-    ib <- aperm(ib, c(3,1,2))
-  }
-  
-  ib  
-}
-
-#
 compute_CEAC <- function(ib) {
   
   ncomp <- ncol(ib) ##TODO:
