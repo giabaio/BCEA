@@ -113,18 +113,6 @@ bcea.default <- function(eff,
   
   ib <- compute_IB(deltas, k)
   
-  # if(n_comparisons == 1) {
-  #   ib <- scale(k %*% t(delta_e), delta_c, scale = FALSE)
-  #   ceac <- rowMeans(ib > 0)
-  # }
-  # if(n_comparisons > 1) { 
-  #   ib <- array(rep(delta_e, K)*rep(k, each=n_sim*n_comparisons) - as.vector(delta_c),
-  #               dim = c(n_sim, n_comparisons, K))
-  #   ib <- aperm(ib, c(3,1,2))
-  #   ###          ib <- sweep(apply(delta.e,c(1,2),function(x) k%*%t(x)),c(2,3),delta.c,"-")
-  #   ceac <- apply(ib > 0, c(1,3), mean)
-  # }
-  
   ceac <- 
     if(n_comparisons == 1) {
       rowMeans(ib > 0)
