@@ -1,16 +1,14 @@
 
 #
-compute_ICER <- function(delta.e, delta.c) {
+compute_ICER <- function(deltas) {
   
-  ##TODO: how doees n.comparitors relate to delta?
-  
-  if(n.comparisons == 1) {
-    ICER <- mean(delta.c)/mean(delta.e)
-  }
-  if(n.comparisons > 1) {
-    ICER <- colMeans(delta.c)/colMeans(delta.e) #apply(delta.c,2,mean)/apply(delta.e,2,mean)
-  }
-  
-  ICER
+  deltas %>% 
+    group_by(comp) %>% 
+    summarise(ICER = mean(delta_c)/mean(delta_e)) %>% 
+    ungroup() %>% 
+    select(ICER) %>%  # required to match current format 
+    unlist() %>% 
+    `names<-`(NULL)
 }
+
 

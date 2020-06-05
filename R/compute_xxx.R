@@ -14,35 +14,6 @@ compute_EIB <- function(ib) {
 
 
 ##TODO:
-get_kstar <- function(variables) {
-  
-  # Select the best option for each value of the willingness to pay parameter
-  if(n.comparisons == 1) {
-    best <- rep(ref,K)
-    best[which(eib < 0)] <- comp
-    ## Finds the k for which the optimal decision changes
-    check <- c(0, diff(best))
-    kstar <- k[check != 0]
-  }
-  if(n.comparisons > 1) {
-    
-    if (is.null(dim(eib))) {
-      tmp <- min(eib)
-      tmp2 <- which.min(eib)	
-    } else {
-      tmp <- apply(eib,1,min)
-      tmp2 <- apply(eib,1,which.min)
-    }
-    
-    best <- ifelse(tmp > 0,ref,comp[tmp2])
-    # Finds the k for which the optimal decision changes
-    check <- c(0,diff(best))
-    kstar <- k[check != 0]
-  }
-}
-
-
-##TODO:
 compute_EVPI <- function(){
   
   U <- array(rep(e, K)*rep(k, each=n.sim*n.comparators) - as.vector(c),

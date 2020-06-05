@@ -36,6 +36,9 @@ bcea.default <- function(eff,
   ##TODO: can we dispatch directly on jags/BUGS output?
   ##TODO: there several n.comparator == 1, >1 bits. can we improve this?
   
+  ##TODO: why not just reorder so that ref is always first then don't have to use ref and comp?
+  
+  
   if (!is.matrix(cost) | !is.matrix(eff)) stop("eff and cost must be matrices.") 
   if (ncol(cost) == 1 | ncol(eff) == 1) stop("Require at least 2 comparators.")
   if (!is.null(interventions) & length(interventions) != ncol(eff)) stop("interventions names wrong length.")
@@ -69,16 +72,6 @@ bcea.default <- function(eff,
   delta_e <- eff[, ref] - eff[, comp]
   delta_c <- cost[, ref] - cost[, comp]
   
-  ##TODO: replace with
-  # ICER <- compute_ICER(delta_e, delta_c)
-  
-  if(n_comparisons == 1) {
-    ICER <- mean(delta_c)/mean(delta_e)
-  }
-  if(n_comparisons > 1) {
-    ICER <- colMeans(delta_c)/colMeans(delta_e) #apply(delta_c,2,mean)/apply(delta_e,2,mean)
-  }
-  
   # Compute and plot CEAC & EIB
   if(!exists("Kmax")){ Kmax <- 50000}
   
@@ -106,41 +99,19 @@ bcea.default <- function(eff,
       delta_e = matrix(delta_e, ncol = 1),
       delta_c = matrix(delta_c, ncol = 1))
   
+  ICER <- compute_ICER(deltas)
+  
   ib <- compute_IB(deltas, k)
   
   ceac <- compute_CEAC(ib)
 
   eib <- compute_EIB(ib)
 
-    
-  ##TODO: replace with:
-  # 
-  # compute_kstar()
-  # compute_best_EIB()
+  best <- best_interv_given_k(eib, ref, comp)
   
-  # Select the best option for each value of the willingness to pay parameter
-  if(n_comparisons == 1) {
-    best <- rep(ref, K)
-    best[which(eib < 0)] <- comp
-    ## Finds the k for which the optimal decision changes
-    check <- c(0, diff(best))
-    kstar <- k[check != 0]
-  }
-  if(n_comparisons > 1) {
-    
-    if (is.null(dim(eib))) {
-      tmp  <- min(eib)
-      tmp2 <- which.min(eib)	
-    } else {
-      tmp <- apply(eib, 1, min)
-      tmp2 <- apply(eib, 1, which.min)
-    }
-    
-    best <- ifelse(tmp > 0, ef, comp[tmp2])
-    # Finds the k for which the optimal decision changes
-    check <- c(0, diff(best))
-    kstar <- k[check != 0]
-  }
+  kstar <- min(k[best != ref])  # find k when optimal decision changes
+  
+  # copmute_U()
   
   ##TODO: replace with:
   # EVPI <- compute_EVPI()
@@ -162,7 +133,11 @@ bcea.default <- function(eff,
   }
   evi <- colMeans(ol)
   
-  ## Outputs of the function
+  
+  
+  
+  
+  
   he <- list(
     n_sim = n_sim,
     n_comparators = n_comparators,
@@ -189,7 +164,7 @@ bcea.default <- function(eff,
     e = eff,
     c = cost)
   
-  class(he) <- "bcea"
+  he <- structure(he, class = "bcea")
   
   ##TODO: should separate out this really  
   if(plot)
