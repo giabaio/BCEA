@@ -55,8 +55,8 @@ bcea.default <- function(eff,
   
   ints <- 1:n_comparators
   
-  if (is.null(interventions))
-  { interventions <- paste("intervention", ints) }
+  if (is.null(interventions)) {
+    interventions <- paste("intervention", ints) }
   
   # Define intervention i as the reference 
   # where i can be a number in [1,...,n_comparators])
@@ -64,7 +64,7 @@ bcea.default <- function(eff,
   # Default is the first intervention (first column of eff or cost)
   
   comp <- ints[-ref]
-  n_comparisons <- n_comparators - 1
+  n_comparisons <- n_comparators - 1  ##TODO: these two names seem too similar to me!
   
   # Compute Effectiveness & Cost differentials (wrt to reference intervention)
   ##TODO: is this the wrong way around?...
@@ -78,19 +78,17 @@ bcea.default <- function(eff,
   # Lets you select the willingness to pay grid
   # useful when doing EVPPI (computationally intensive)
   if (!is.null(wtp)) {
-    wtp <- sort(unique(wtp))
-    npoints <- length(wtp) - 1
-    Kmax <- max(wtp)
-    step <- NA
-    k <- wtp                 ##TODO: this is potential issue k and K similar? whats wrong with using wtp?
-    K <- npoints + 1
+    k <- sort(unique(wtp))  ##TODO: this is potential issue k and K similar? whats wrong with using wtp?
+    K <- length(k)
+    Kmax <- max(k)
+    npoints <- K - 1
+    step <- NA               ##TODO: why is this NA?
   } else {
-    npoints <- 500  ##TODO: magic number?
+    npoints <- 500           ##TODO: magic number?
     step <- Kmax/npoints
     k <- seq(0, Kmax, by = step)
     K <- length(k)
   }
-  
   
   deltas <-
     data.frame(
@@ -129,9 +127,6 @@ bcea.default <- function(eff,
   ol <- compute_ol(n_sim, K, Ustar, U, best)
   
   evi <- colMeans(ol)
-  
-  
-  
   
   
   he <- list(
