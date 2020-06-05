@@ -171,3 +171,10 @@ test_that("ib", {
   expect_equivalent(cbind(ib_12, ib_22), res$ib[,,2 ])
 })
 
+
+######################
+
+# n_comparisons > 1, realistic data
+res <- 
+  bcea(e = cbind(eff, eff[, 2]),
+       c = cbind(cost, cost[, 2]))

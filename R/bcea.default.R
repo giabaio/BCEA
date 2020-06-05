@@ -90,7 +90,7 @@ bcea.default <- function(eff,
     k <- seq(0, Kmax, by = step)
     K <- length(k)
   }
-
+  
   
   deltas <-
     data.frame(
@@ -104,35 +104,31 @@ bcea.default <- function(eff,
   ib <- compute_IB(deltas, k)
   
   ceac <- compute_CEAC(ib)
-
+  
   eib <- compute_EIB(ib)
-
+  
   best <- best_interv_given_k(eib, ref, comp)
   
   kstar <- min(k[best != ref])  # find k when optimal decision changes
   
-  # copmute_U()
   
-  ##TODO: replace with:
-  # EVPI <- compute_EVPI()
+  ##TODO: should we only have one df with deltas too?
+  df_ce <-
+    data.frame(
+      sim = 1:n_sim,
+      ints = rep(1:n_comparators, each = n_sim),
+      eff = matrix(eff, ncol = 1),
+      cost = matrix(cost, ncol = 1))
   
-  ## same as for ib
-  U <- array(rep(eff, K)*rep(k, each = n_sim*n_comparators) - as.vector(cost),
-             dim=c(n_sim, n_comparators, K))
-  U <- aperm(U, c(1,3,2))
+  U <- compute_U(df_ce, k)
   
-  rowMax <- function(x){do.call(pmax, as.data.frame(x))}
+  Ustar <- compute_Ustar(n_sim, K, U)
   
-  Ustar <- vi <- ol <- matrix(NA, n_sim, K) 
+  vi <- compute_vi(n_sim, K, Ustar, U)
   
-  for (i in seq_len(K)) {
-    Ustar[, i] <- rowMax(U[, i,])
-    cmd <- paste("ol[, i] <- Ustar[, i] - U[, i,", best[i], "]", sep = "")
-    eval(parse(text = cmd))     
-    vi[, i] <- Ustar[, i] - max(apply(U[, i,], 2, mean))
-  }
+  ol <- compute_ol(n_sim, K, Ustar, U, best)
+  
   evi <- colMeans(ol)
-  
   
   
   

@@ -14,7 +14,7 @@ best_interv_given_k <- function(eib,
                                 ref,
                                 comp) {
   
-  if (n_comparisons == 1) {
+  if (length(comp) == 1) {
     
     best <- rep(ref, length(eib))
     best[eib < 0] <- comp         ##TODO: why isnt it eib > 0?
