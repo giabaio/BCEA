@@ -33,9 +33,6 @@ bcea.default <- function(eff,
   ##TODO: S3 only dispatches on the first argument so how does e and c work? change to list?
   ##TODO: how to check that e and c are the right way round?
   ##TODO: can we dispatch directly on jags/BUGS output?
-  ##TODO: there several n.comparator == 1, >1 bits. can we improve this?
-  
-  ##TODO: why not just reorder so that ref is always first then don't have to use ref and comp?
   
   
   if (!is.matrix(cost) | !is.matrix(eff)) stop("eff and cost must be matrices.") 
@@ -55,9 +52,6 @@ bcea.default <- function(eff,
       paste("intervention", intervs)
     } else {
       interventions}
-  
-  if (!exists("Kmax")) {
-    Kmax <- 50000}
   
   if (!is.null(wtp)) {
     k <- sort(unique(wtp))
