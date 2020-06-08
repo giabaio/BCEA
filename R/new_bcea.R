@@ -65,7 +65,7 @@ new_bcea <- function(df_ce, k) {
          interventions = sort(unique(df_ce$interv_names)),
          ref = ref,
          comp = comp,
-         step = K - 1,
+         step = k[2] - k[1],
          e = dcast(sim ~ interv_names,
                    value.var = "eff1",
                    data = df_ce)[, -1],

@@ -31,6 +31,7 @@ bcea.default <- function(eff,
                          plot = FALSE) {
   
   ##TODO: S3 only dispatches on the first argument so how does e and c work? change to list?
+  ##      in fact why is this S3?
   ##TODO: how to check that e and c are the right way round?
   ##TODO: can we dispatch directly on jags/BUGS output?
   
@@ -83,9 +84,7 @@ bcea.default <- function(eff,
   
   df_ce$interv_names <- interv_names[df_ce$ints]
   
-  
   he <- new_bcea(df_ce, k)
-  
   
   ##TODO: should separate out this really  
   if (plot)
