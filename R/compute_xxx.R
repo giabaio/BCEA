@@ -111,15 +111,15 @@ rowMax <- function(dat) apply(dat, 1, max)
 #' 
 compute_U <- function(df_ce, k) {
   
-  sims <- unique(df_ce$sim)
-  ints <- unique(df_ce$ints)
+  sims <- sort(unique(df_ce$sim))
+  ints <- sort(unique(df_ce$ints))
   
   U_df <-
     expand.grid(sim = sims,
                 k = k,
                 ints = ints) %>%
     merge(df_ce) %>% 
-    mutate(U = k*eff - cost) %>% 
+    mutate(U = k*eff1 - cost1) %>% 
     arrange(ints, k, sim)
   
   array(U_df$U,

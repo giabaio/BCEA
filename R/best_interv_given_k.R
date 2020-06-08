@@ -2,8 +2,6 @@
 #' Select best option for each value of willingness to pay
 #'
 #' @param eib Expected incremental benefit 
-#' @param ref Reference group e.g. status-quo
-#' @param comp Comparison interventions
 #'
 #' @return
 #' @export
