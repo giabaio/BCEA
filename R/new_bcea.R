@@ -14,7 +14,7 @@
 new_bcea <- function(df_ce, k) {
   
   K <- length(k)
-  n_sim <- length(unique(df_ce$sims))
+  n_sim <- length(unique(df_ce$sim))
   ref <- unique(df_ce$ref)
   comp <- (1:max(df_ce$ints))[-ref]
   df_ce_comp <- df_ce %>% filter(ints != ref)
@@ -29,7 +29,7 @@ new_bcea <- function(df_ce, k) {
   
   best <- best_interv_given_k(eib, ref, comp)
   
-  kstar <- min(k[best != ref])  # find k when optimal decision changes
+  kstar <- compute_kstar(k, best, ref)
   
   U <- compute_U(df_ce, k)
   
@@ -47,10 +47,10 @@ new_bcea <- function(df_ce, k) {
          n_comparisons = length(comp),
          delta_e = dcast(sim ~ interv_names,
                          value.var = "delta_e",
-                         data = df_ce_comp),
+                         data = df_ce_comp)[, -1],
          delta_c = dcast(sim ~ interv_names,
                          value.var = "delta_c",
-                         data = df_ce_comp),
+                         data = df_ce_comp)[, -1],
          ICER = ICER,
          Kmax = max(k),
          k = k,
@@ -70,10 +70,10 @@ new_bcea <- function(df_ce, k) {
          step = K - 1,
          e = dcast(sim ~ interv_names,
                    value.var = "eff1",
-                   data = df_ce),
+                   data = df_ce)[, -1],
          c = dcast(sim ~ interv_names,
                    value.var = "cost1",
-                   data = df_ce))
+                   data = df_ce)[, -1])
   
   structure(he, class = "bcea")
 }

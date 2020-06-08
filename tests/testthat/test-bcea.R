@@ -93,13 +93,12 @@ test_that("basic return", {
   
   num_k <- length(res$k)
   
-  expect_length(res$ce, num_k) ########
-  expect_length(res$eib, num_k) ###
-  expect_length(res$evi, num_k) ###
+  expect_length(res$ce, num_k)
+  expect_length(res$eib, num_k)
+  expect_length(res$evi, num_k)
   
   expect_length(res$best, num_k)
   
-  ###
   expect_equal(nrow(res$ib), num_k)  ##TODO: should we swap rows and columns to match other variables?
 
   expect_equal(ncol(res$vi), num_k)

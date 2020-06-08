@@ -1,4 +1,27 @@
 
+#' Compute kstar
+#'
+#' Find k when optimal decision changes.
+#'  
+#' @param k 
+#' @param best 
+#' @param ref 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' 
+compute_kstar <- function(k, best, ref) {
+  
+  if (all(best == ref)) {
+    return(NA)    
+  }
+  
+  min(k[best != ref])
+}
+
+
 #
 compute_CEAC <- function(ib) {
   

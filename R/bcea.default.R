@@ -25,7 +25,7 @@
 bcea.default <- function(eff,
                          cost,
                          ref = 1,
-                         interv_names = NULL,
+                         interventions = NULL,
                          Kmax = 50000,
                          wtp = NULL,
                          plot = FALSE) {
@@ -40,18 +40,21 @@ bcea.default <- function(eff,
   
   if (!is.matrix(cost) | !is.matrix(eff)) stop("eff and cost must be matrices.") 
   if (ncol(cost) == 1 | ncol(eff) == 1) stop("Require at least 2 comparators.")
-  if (!is.null(interv_names) & length(interv_names) != ncol(eff)) stop("interv_names names wrong length.")
+  if (!is.null(interventions) & length(interventions) != ncol(eff)) stop("interventions names wrong length.")
   if (any(dim(eff) != dim(cost))) stop("eff and cost are not the same dimensions.")
   
-  if (!is.double(ref) | ref < 1 | ref > ncol(eff)) stop("reference is not in available interv_names.")
+  if (!is.double(ref) | ref < 1 | ref > ncol(eff)) stop("reference is not in available interventions.")
   
   n_sim <- dim(eff)[1]
   n_intervs <- dim(eff)[2]
   
   intervs <- 1:n_intervs
   
-  if (is.null(interv_names)) {
-    interv_names <- paste("intervention", intervs) }
+  interv_names <- 
+    if (is.null(interventions)) {
+      paste("intervention", intervs)
+    } else {
+      interventions}
   
   if (!exists("Kmax")) {Kmax <- 50000}
   
@@ -90,7 +93,7 @@ bcea.default <- function(eff,
   
   
   ##TODO: should separate out this really  
-  if(plot)
+  if (plot)
     plot(he)
   
   return(he)
