@@ -56,7 +56,8 @@ bcea.default <- function(eff,
     } else {
       interventions}
   
-  if (!exists("Kmax")) {Kmax <- 50000}
+  if (!exists("Kmax")) {
+    Kmax <- 50000}
   
   if (!is.null(wtp)) {
     k <- sort(unique(wtp))
@@ -98,6 +99,3 @@ bcea.default <- function(eff,
   
   return(he)
 }
-
-
-

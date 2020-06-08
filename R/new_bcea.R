@@ -1,16 +1,14 @@
 
-#' new_bcea
+#' Constructor for bcea
 #'
-#' @param df_ce 
-#' @param k 
+#' @param df_ce dataframe of all simulation eff and cost
+#' @param k vector of willingness to pay values
 #'
 #' @import reshape2, dplyr
 #'
 #' @return
 #' @export
 #'
-#' @examples
-#' 
 new_bcea <- function(df_ce, k) {
   
   K <- length(k)
@@ -64,7 +62,7 @@ new_bcea <- function(df_ce, k) {
          Ustar = Ustar,
          ol = ol,
          evi = evi,
-         interventions = sort(unique(df_ce$interv_names)), ## factor?
+         interventions = sort(unique(df_ce$interv_names)),
          ref = ref,
          comp = comp,
          step = K - 1,

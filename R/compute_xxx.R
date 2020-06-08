@@ -8,9 +8,6 @@
 #' @param ref 
 #'
 #' @return
-#' @export
-#'
-#' @examples
 #' 
 compute_kstar <- function(k, best, ref) {
   
@@ -28,6 +25,7 @@ compute_CEAC <- function(ib) {
   apply(ib > 0, c(1,3), mean)
 }
 
+
 # Compute Expected Incremental Benefit
 #
 compute_EIB <- function(ib) {
@@ -44,9 +42,6 @@ compute_EIB <- function(ib) {
 #' @param U 
 #'
 #' @return
-#' @export
-#'
-#' @examples
 #' 
 compute_Ustar <- function(n_sim, K, U) {
   
@@ -68,9 +63,6 @@ compute_Ustar <- function(n_sim, K, U) {
 #' @param U 
 #'
 #' @return
-#' @export
-#'
-#' @examples
 #' 
 compute_vi <- function(n_sim,
                        K,
@@ -96,9 +88,6 @@ compute_vi <- function(n_sim,
 #' @param best 
 #'
 #' @return
-#' @export
-#'
-#' @examples
 #' 
 compute_ol <- function(n_sim,
                        K,
@@ -128,9 +117,6 @@ rowMax <- function(dat) apply(dat, 1, max)
 #' @param k Willingness to pay vector
 #'
 #' @return
-#' @export
-#'
-#' @examples
 #' 
 compute_U <- function(df_ce, k) {
   
