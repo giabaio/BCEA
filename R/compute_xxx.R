@@ -7,7 +7,7 @@
 #' @param best 
 #' @param ref 
 #'
-#' @return
+#' @return kstar
 #' 
 compute_kstar <- function(k, best, ref) {
   
@@ -19,6 +19,7 @@ compute_kstar <- function(k, best, ref) {
 }
 
 
+# Compute Cost-Effectiveness Acceptability Curve
 #
 compute_CEAC <- function(ib) {
   
@@ -41,7 +42,7 @@ compute_EIB <- function(ib) {
 #' @param K 
 #' @param U 
 #'
-#' @return
+#' @return Ustar
 #' 
 compute_Ustar <- function(n_sim, K, U) {
   
@@ -62,7 +63,7 @@ compute_Ustar <- function(n_sim, K, U) {
 #' @param Ustar 
 #' @param U 
 #'
-#' @return
+#' @return vi
 #' 
 compute_vi <- function(n_sim,
                        K,
@@ -87,7 +88,7 @@ compute_vi <- function(n_sim,
 #' @param U 
 #' @param best 
 #'
-#' @return
+#' @return ol
 #' 
 compute_ol <- function(n_sim,
                        K,
@@ -116,7 +117,7 @@ rowMax <- function(dat) apply(dat, 1, max)
 #' @param df_ce 
 #' @param k Willingness to pay vector
 #'
-#' @return
+#' @return U
 #' 
 compute_U <- function(df_ce, k) {
   

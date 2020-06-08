@@ -36,12 +36,20 @@ bcea.default <- function(eff,
   ##TODO: can we dispatch directly on jags/BUGS output?
   
   
-  if (!is.matrix(cost) | !is.matrix(eff)) stop("eff and cost must be matrices.") 
-  if (ncol(cost) == 1 | ncol(eff) == 1) stop("Require at least 2 comparators.")
-  if (!is.null(interventions) & length(interventions) != ncol(eff)) stop("interventions names wrong length.")
-  if (any(dim(eff) != dim(cost))) stop("eff and cost are not the same dimensions.")
+  if (!is.matrix(cost) | !is.matrix(eff))
+    stop("eff and cost must be matrices.", call. = FALSE)
   
-  if (!is.double(ref) | ref < 1 | ref > ncol(eff)) stop("reference is not in available interventions.")
+  if (ncol(cost) == 1 | ncol(eff) == 1)
+    stop("Require at least 2 comparators.", call. = FALSE)
+  
+  if (!is.null(interventions) & length(interventions) != ncol(eff))
+    stop("interventions names wrong length.", call. = FALSE)
+  
+  if (any(dim(eff) != dim(cost)))
+    stop("eff and cost are not the same dimensions.", call. = FALSE)
+  
+  if (!is.double(ref) | ref < 1 | ref > ncol(eff))
+    stop("reference is not in available interventions.", call. = FALSE)
   
   n_sim <- dim(eff)[1]
   n_intervs <- dim(eff)[2]
