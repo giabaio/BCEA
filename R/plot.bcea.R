@@ -82,11 +82,11 @@
 #' 
 #' ##### Example of a customized plot.bcea with ggplot2
 #' plot(he,
-#'   graph="ggplot2",                                      # use ggplot2
-#'   theme=theme(plot.title=element_text(size=rel(1.25))), # theme elements must have a name
-#'   ICER.size=1.5,                                        # hidden option in ceplane.plot
-#'   size=rel(2.5)                                         # modifies the size of k= labels
-#'   )                                                     #  in ceplane.plot and eib.plot
+#'   graph = "ggplot2",                                      # use ggplot2
+#'   theme = theme(plot.title=element_text(size=rel(1.25))), # theme elements must have a name
+#'   ICER.size = 1.5,                                        # hidden option in ceplane.plot
+#'   size = rel(2.5)                                         # modifies the size of k = labels
+#'   )                                                       # in ceplane.plot and eib.plot
 #' }
 #' 
 #' @export
@@ -97,16 +97,34 @@ plot.bcea <- function(he,
                       pos = FALSE,
                       graph = c("base", "ggplot2"),
                       ...) {
-  options(scipen=10)
-  graph <- match.arg(graph)
-  base.graphics <- pmatch(graph, c("base","ggplot2")) != 2
   
-  if (base.graphics) {
-    op <- par(mfrow=c(2,2))
-    ceplane.plot(he,comparison=comparison,wtp=wtp,pos=pos,graph="base",...)
-    eib.plot(he,comparison=comparison,pos=pos,graph="base",...)
-    ceac.plot(he,comparison=comparison,pos=pos,graph="base")
-    evi.plot(he,graph="base")
+  options(scipen = 10)
+  named_args <- c(as.list(environment()), list(...))
+  graph <- match.arg(graph)
+  use_base_graphics <- pmatch(graph, c("base","ggplot2")) != 2
+  exArgs <- list(...)
+  
+  if (use_base_graphics) {
+    op <- par(mfrow = c(2,2))
+    
+    ceplane.plot(he,
+                 comparison = comparison,
+                 wtp = wtp,
+                 pos = pos,
+                 graph = "base",...)
+    
+    eib.plot(he,
+             comparison = comparison,
+             pos = pos,
+             graph = "base",...)
+    
+    ceac.plot(he,
+              comparison = comparison,
+              pos = pos,
+              graph = "base")
+    
+    evi.plot(he,
+             graph = "base")
     par(op)
   } else {
     
@@ -149,7 +167,6 @@ plot.bcea <- function(he,
                        legend.key = ggplot2::element_blank(),
                        plot.title = ggplot2::element_text(lineheight=1,face="bold",size=11.5,hjust=0.5))
       
-      exArgs <- list(...)
       for(obj in exArgs)
         if(ggplot2::is.theme(obj))
           theme.multiplot <- theme.multiplot + obj
@@ -167,13 +184,22 @@ plot.bcea <- function(he,
           graph = "ggplot2",
           ...) + theme.multiplot
       
-      eib <- eib.plot(he,pos=pos,comparison=comparison,graph="ggplot2",...) +
+      eib <-
+        eib.plot(he,
+                 pos = pos,
+                 comparison = comparison,
+                 graph = "ggplot2",
+                 ...) +
         theme.multiplot
-      ceac <- ceac.plot(he,pos=pos,comparison=comparison,graph="ggplot2") +
+      ceac <-
+        ceac.plot(he,
+                  pos = pos,
+                  comparison = comparison,
+                  graph = "ggplot2") +
         theme.multiplot
-      evi <- evi.plot(he,graph="ggplot2") +
+      evi <- evi.plot(he, graph = "ggplot2") +
         theme.multiplot
-      multiplot(ceplane,ceac,eib,evi,cols=2)
-    } # !base.graphics
+      multiplot(ceplane, ceac, eib, evi, cols = 2)
+    }
   }
 }
