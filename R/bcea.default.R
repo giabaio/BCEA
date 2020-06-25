@@ -70,6 +70,7 @@ bcea.default <- function(eff,
   }
   
   # create complete data input dataframe
+  ##TODO: convert to matrix for faster computation?
   
   df_ce <-
     data.frame(
