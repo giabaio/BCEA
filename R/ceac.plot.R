@@ -57,69 +57,38 @@ ceac.plot <- function(he,
   
   options(scipen = 10)
   graph <- match.arg(graph)
-  exArgs <- list(...)
+  extra_args <- list(...)
   
   alt.legend <- pos
   # choose graphical engine
   if (is.null(graph) || is.na(graph)) graph <- "base"
   
-  graph_choice <- pmatch(graph[1], c("base", "ggplot2", "plotly"), nomatch = 1)
+  graph_type <- pmatch(graph[1], c("base", "ggplot2", "plotly"), nomatch = 1)
   
   is_pkg_avail <- requireNamespace("ggplot2", quietly = TRUE) & requireNamespace("grid", quietly = TRUE)
   
   # check feasibility
-  if (graph_choice == 2 && !is_pkg_avail) {
+  if (graph_type == 2 && !is_pkg_avail) {
     warning("Package ggplot2 and grid not found; ceac.plot will be rendered using base graphics.", call. = FALSE)
-    graph_choice <- 1
-  }
-  if (graph_choice == 3 && !requireNamespace("plotly", quietly = TRUE)) {
+    graph_type <- 1}
+  
+  if (graph_type == 3 && !requireNamespace("plotly", quietly = TRUE)) {
     warning("Package plotly not found; ceac.plot will be rendered using base graphics.", call. = FALSE)
-    graph_choice <- 1
-  }
+    graph_type <- 1}
   
-  # evaluate additional arguments -----
-  plot_annotations <- list("exist" = list("title" = FALSE, "xlab" = FALSE, "ylab" = FALSE))
-  plot_aes <- list("area" = list("include" = TRUE, "color" = NULL),
-                   "line" = list("colors" = "black", "types" = NULL))
-  plot_aes_args = c("area_include", "area_color", "line_colors", "line_types")
+  graph_args <- prepare_graph_args()
   
-  if (length(exArgs) >= 1) {
-    # if existing, read and store title, xlab and ylab
-    for (annotation in names(plot_annotations$exist)) {
-      if (exists(annotation, where = exArgs)) {
-        plot_annotations$exist[[annotation]] <- TRUE
-        plot_annotations[[annotation]] <- exArgs[[annotation]]
-      }
-    }
-    # if existing, read and store graphical options
-    for (aes_arg in plot_aes_args) {
-      if (exists(aes_arg, where = exArgs)) {
-        aes_cat <- strsplit(aes_arg, "_")[[1]][1]
-        aes_name <- paste0(strsplit(aes_arg, "_")[[1]][-1], collapse = "_")
-        plot_aes[[aes_cat]][[aes_name]] <- exArgs[[aes_arg]]
-      }
-    }
-  }
-  
-  # default plot annotations -----
-  if (!plot_annotations$exist$title)
-    plot_annotations$title = "Cost Effectiveness Acceptability Curve"
-  if (!plot_annotations$exist$xlab)
-    plot_annotations$xlab = "Willingness to pay"
-  if (!plot_annotations$exist$ylab)
-    plot_annotations$ylab = "Probability of cost effectiveness"
-  
-  if (graph_choice == 1) {
+  if (graph_type == 1) {
     
     ##TODO:
     # .ceac_plot_base()
     
-  } else if (graph_choice == 2) {
+  } else if (graph_type == 2) {
     
     ##TODO:    
     # .ceac_plot_ggplot()
     
-  } else if (graph_choice == 3) {
+  } else if (graph_type == 3) {
     
     ##TODO:
     # .ceac_plot_plotly()
