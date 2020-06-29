@@ -49,6 +49,17 @@
 #' 
 #' @examples 
 #' 
+# 
+# data("Vaccine")
+# he <- BCEA::bcea(e, c)
+# ceac.plot(he)
+# 
+# ceac.plot(he, graph = "base")
+# ceac.plot(he, graph = "ggplot2")
+# ceac.plot(he, graph = "plotly")
+# 
+
+
 ceac.plot <- function(he,
                       comparison = NULL,
                       pos = c(1, 0),
@@ -57,15 +68,14 @@ ceac.plot <- function(he,
   
   options(scipen = 10)
   graph <- match.arg(graph)
-  extra_args <- list(...)
-  
-  alt.legend <- pos
+
   # choose graphical engine
   if (is.null(graph) || is.na(graph)) graph <- "base"
   
   graph_type <- pmatch(graph[1], c("base", "ggplot2", "plotly"), nomatch = 1)
   
-  is_pkg_avail <- requireNamespace("ggplot2", quietly = TRUE) & requireNamespace("grid", quietly = TRUE)
+  is_pkg_avail <-
+    requireNamespace("ggplot2", quietly = TRUE) & requireNamespace("grid", quietly = TRUE)
   
   # check feasibility
   if (graph_type == 2 && !is_pkg_avail) {
@@ -76,7 +86,7 @@ ceac.plot <- function(he,
     warning("Package plotly not found; ceac.plot will be rendered using base graphics.", call. = FALSE)
     graph_type <- 1}
   
-  graph_args <- prepare_graph_args()
+  graph_params <- prepare_graph_params(...)
   
   if (graph_type == 1) {
     
@@ -86,7 +96,10 @@ ceac.plot <- function(he,
   } else if (graph_type == 2) {
     
     ##TODO:    
-    # .ceac_plot_ggplot()
+    .ceac_plot_ggplot(he,
+                      pos_legend = pos,
+                      graph_params,
+                      comparison, ...)
     
   } else if (graph_type == 3) {
     
