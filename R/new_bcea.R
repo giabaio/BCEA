@@ -73,5 +73,5 @@ new_bcea <- function(df_ce, k) {
                    value.var = "cost1",
                    data = df_ce)[, -1])
   
-  structure(he, class = "bcea")
+  structure(he, class = c("bcea", class(he)))
 }

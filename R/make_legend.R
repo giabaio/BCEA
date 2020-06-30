@@ -1,31 +1,42 @@
 
 #
-make_legend <- function(pos_legend) {
+# c(0,0) corresponds to the “bottom left”
+# c(1,1) corresponds to the “top right”
+# inside the plotting area
+#
+make_legend <- function(legend_pos) {
   
-  jus <- NULL
-  legend_direction <- "horizontal"
+  legend_just <- NULL  # sets the corner that the legend_pos position refers to
+  legend_dir <- "horizontal"
   
-  if (pos_legend) {
-    pos_legend <- "bottom"
-    legend_direction <- "vertical"
-  } else {
-    if (is.character(pos_legend)) {
-      choices <- c("left", "right", "bottom", "top")
-      pos_legend <- choices[pmatch(pos_legend, choices)]
-      jus <- "center"
-      
-      if (is.na(pos_legend)) pos_legend <- FALSE
+  if (any(is.na(legend_pos))) {
+    
+    legend_pos <- FALSE
+    
+  } else if (is.logical(legend_pos)) {
+    
+    if (legend_pos) {
+      legend_pos <- "bottom"
+      legend_dir <- "vertical"
+    } else {
+      legend_pos <- c(1, 0)
+      legend_just <- legend_pos 
     }
+  } else if (is.character(legend_pos)) {
     
-    if (length(pos_legend) > 1)
-      jus <- pos_legend
+    pos_choices <- c("left", "right", "bottom", "top")
+    legend_pos <- choices[pmatch(legend_pos, pos_choices)]
+    legend_just <- "center"
+  } else if (is.numeric(legend_pos) & length(legend_pos) == 2) {
     
-    if (length(pos_legend) == 1 & !is.character(pos_legend)) {
-      pos_legend <- c(1, 0)
-      jus <- pos_legend }
-  }
+    legend_just <- legend_pos
+  } else {
+    # default
+    legend_pos <- c(1, 0)
+    legend_just <- legend_pos
+  } 
   
-  list(legend.direction = legend_direction,
-       legend.justification = jus,
-       legend.position = pos_legend)
+  list(legend.direction = legend_dir,
+       legend.justification = legend_just,
+       legend.position = legend_pos)
 }

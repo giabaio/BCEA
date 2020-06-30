@@ -8,8 +8,7 @@ prepare_graph_params <- function(...) {
   
   plot_params <- list(area = list(include = TRUE,
                                   color = NULL),
-                      line = list(colors = "black",
-                                  types = NULL))
+                      line = list(colors = "black"))
   
   annot_params <- list(title = "Cost Effectiveness Acceptability Curve",
                        xlab = "Willingness to pay",
@@ -25,6 +24,6 @@ prepare_graph_params <- function(...) {
   annot_params <- modifyList(annot_params, annot_extra_params)
   plot_params <- modifyList(plot_params, plot_extra_params)
   
-  list(annot_params,
-       plot_params)
+  list(annot = annot_params,
+       plot = plot_params)
 }
