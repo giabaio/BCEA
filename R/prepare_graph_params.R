@@ -14,12 +14,8 @@ prepare_graph_params <- function(...) {
                        xlab = "Willingness to pay",
                        ylab = "Probability of cost effectiveness")
   
-  plot_extra_params <- list(extra_params$area,
-                            extra_params$line)
-  
-  annot_extra_params <- list(extra_params$title,
-                             extra_params$xlab,
-                             extra_params$ylab)
+  plot_extra_params <- extra_params[c("area", "line")]
+  annot_extra_params <- extra_params[c("title", "xlab", "ylab")]
   
   annot_params <- modifyList(annot_params, annot_extra_params)
   plot_params <- modifyList(plot_params, plot_extra_params)

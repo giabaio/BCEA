@@ -47,6 +47,8 @@
 #' @keywords Health economic evaluation Cost Effectiveness Acceptability Curve
 #' @export
 #' 
+#' @importFrom ggplot2
+#' 
 #' @examples 
 #' 
 # 
@@ -58,6 +60,7 @@
 # ceac.plot(he, graph = "ggplot2")
 # ceac.plot(he, graph = "plotly")
 # 
+# ceac.plot(he, graph = "ggplot2", title = "hhh", line = list(colors = "green"), theme = theme_dark())
 
 
 ceac.plot <- function(he,

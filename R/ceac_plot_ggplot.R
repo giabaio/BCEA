@@ -31,15 +31,14 @@
                        ceac = he$ceac)
     
     default_params <- list(plot =
-                             list(line =
+                             list(labels = NULL,
+                                  line =
                                     list(types = 1)))
     graph_params <- modifyList(default_params, graph_params)
     
     ceac <-
-      ggplot(data_psa, aes(k, ceac)) + 
-      geom_line(
-        linetype = graph_params$plot$line$types, 
-        colour = graph_params$plot$line$colors)
+      ggplot(data_psa, aes(k, ceac, colour = factor(1))) +
+      geom_line()
   }
   
   if (he$n_comparisons > 1 & is.null(comparison)) {
@@ -50,29 +49,23 @@
              ceac = c(he$ceac),
              comparison = as.factor(rep(1:he$n_comparisons,
                                         each = length(he$k))))
-               
+    
     graph_params <- create_multiple_comparison_params(he, graph_params)
     
-    ceac <-
+    ceac <- 
       ggplot(data_psa, aes(k, ceac)) +
-      geom_line(linetype = comparison, colour = comparison) +
-      
-      ##TODO: is this first argument breaks or limits?...
-      scale_linetype_manual("",
-                            labels = graph_params$plot$labels,
-                            values = graph_params$plot$line$types) +
-      scale_colour_manual("",
-                          labels = graph_params$plot$labels,
-                          values = graph_params$plot$line$colors)
+      geom_line(linetype = comparison,
+                colour = comparison)
   }
   
   legend_params <- make_legend(pos_legend)
-
+  
   opt_theme <- purrr::keep(extra_params, is.theme)
   
   ceac +
     theme_bw() + 
-    scale_y_continuous(limits = c(0,1)) +
+    opt_theme +
+    scale_y_continuous(limits = c(0, 1)) +
     do.call(labs, graph_params$annot) +                    # plot text
     do.call(theme,                                         # theme
             modifyList(
@@ -89,5 +82,11 @@
                      face = "bold",
                      size = 14.3,
                      hjust = 0.5)),
-              legend_params)) + opt_theme
+              legend_params)) +
+    scale_linetype_manual("",
+                          labels = graph_params$plot$labels,
+                          values = graph_params$plot$line$types) +
+    scale_color_manual("",
+                       labels = graph_params$plot$labels,
+                       values = graph_params$plot$line$colors)
 }
