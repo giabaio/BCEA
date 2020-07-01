@@ -39,9 +39,9 @@ BCEAweb <- function(e=NULL,c=NULL,parameters=NULL,...) {
   if(exists("launch.browser",exArgs)) {launch.browser=exArgs$launch.browser} else {launch.browser=TRUE}
 
   # This makes the possible inputs available to the webapp!
-  # First uses BCEA::CreateInputs to process the simulations for the model parameters
+  # First uses BCEA::createInputs to process the simulations for the model parameters
   #  (this means the user can pass a BUGS, JAGS, Stan, or xls object and BCEA will know what to do. Also eliminates need with further dependencies).
-  if(!is.null(parameters)){parameters=CreateInputs(parameters)$mat} 
+  if(!is.null(parameters)){parameters = createInputs(parameters)$mat} 
   if(!is.null(e)){e=as.matrix(e)}
   if(!is.null(c)){c=as.matrix(c)}
 
