@@ -60,9 +60,12 @@
 # ceac.plot(he, graph = "ggplot2")
 # ceac.plot(he, graph = "plotly")
 # 
-# ceac.plot(he, graph = "ggplot2", title = "hhh", line = list(colors = "green"), theme = theme_dark())
-
-
+# ceac.plot(he, graph = "ggplot2", title = "my title", line = list(colors = "green"), theme = theme_dark())
+#
+# he2 <- BCEA::bcea(cbind(e,e - 0.0002), cbind(c,c + 5))
+# mypalette <- RColorBrewer::brewer.pal(3, "Accent")
+# ceac.plot(he2, graph = "ggplot2", title = "my title", theme = theme_dark(), pos = TRUE, line = mypalette)
+#
 ceac.plot <- function(he,
                       comparison = NULL,
                       pos = c(1, 0),
@@ -80,7 +83,6 @@ ceac.plot <- function(he,
   is_pkg_avail <-
     requireNamespace("ggplot2", quietly = TRUE) & requireNamespace("grid", quietly = TRUE)
   
-  # check feasibility
   if (graph_type == 2 && !is_pkg_avail) {
     warning("Package ggplot2 and grid not found; ceac.plot will be rendered using base graphics.", call. = FALSE)
     graph_type <- 1}
@@ -98,7 +100,6 @@ ceac.plot <- function(he,
     
   } else if (graph_type == 2) {
     
-    ##TODO:    
     .ceac_plot_ggplot(he,
                       pos_legend = pos,
                       graph_params,

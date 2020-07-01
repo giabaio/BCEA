@@ -1,9 +1,10 @@
 
-#
-# c(0,0) corresponds to the “bottom left”
-# c(1,1) corresponds to the “top right”
-# inside the plotting area
-#
+#' @noRd
+#' 
+#' c(0,0) corresponds to the “bottom left”
+#' c(1,1) corresponds to the “top right”
+#' inside the plotting area
+#'
 make_legend <- function(legend_pos) {
   
   legend_just <- NULL  # sets the corner that the legend_pos position refers to

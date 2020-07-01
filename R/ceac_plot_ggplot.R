@@ -1,6 +1,8 @@
 
 #' @noRd
 #' 
+#' @importFrom ggplot2
+#' 
 .ceac_plot_ggplot <- function(he,
                               pos_legend,
                               graph_params,
@@ -14,60 +16,32 @@
   if (!is_pkg_avail) {
     message("falling back to base graphics\n")
     ceac.plot(he, pos = pos_legend, graph = "base", ...)
-    return(invisible(NULL))
+    return()
   }
   
-  if (!is.null(comparison) & he$n_comparisons > 1) {
-    
-    he <- adjust_for_comparison(he, comparison)
-    return(ceac.plot(he, pos = pos_legend, graph = "ggplot2", ...))
-  }
+  if (is.null(comparison)) comparison <- he$comp
   
-  k <- NA_real_
+  data_psa <-
+    tibble(k = rep(he$k,
+                   times = he$n_comparisons),
+           ceac = c(he$ceac),
+           comparison = as.factor(rep(he$comp,
+                                      each = length(he$k))))
   
-  if (he$n_comparisons == 1) {
-    
-    data_psa <- tibble(k = he$k,
-                       ceac = he$ceac)
-    
-    default_params <- list(plot =
-                             list(labels = NULL,
-                                  line =
-                                    list(types = 1)))
-    graph_params <- modifyList(default_params, graph_params)
-    
-    ceac <-
-      ggplot(data_psa, aes(k, ceac, colour = factor(1))) +
-      geom_line()
-  }
-  
-  if (he$n_comparisons > 1 & is.null(comparison)) {
-    
-    data_psa <-
-      tibble(k = rep(he$k,
-                     times = he$n_comparisons),
-             ceac = c(he$ceac),
-             comparison = as.factor(rep(1:he$n_comparisons,
-                                        each = length(he$k))))
-    
-    graph_params <- create_multiple_comparison_params(he, graph_params)
-    
-    ceac <- 
-      ggplot(data_psa, aes(k, ceac)) +
-      geom_line(linetype = comparison,
-                colour = comparison)
-  }
+  graph_params <- helper_ggplot_params(he, graph_params)
   
   legend_params <- make_legend(pos_legend)
   
-  opt_theme <- purrr::keep(extra_params, is.theme)
+  theme_params <- purrr::keep(extra_params, is.theme)
   
-  ceac +
+  ggplot(data_psa, aes(k, ceac)) +
+    geom_line(aes(linetype = comparison,
+                  colour = factor(comparison))) +
     theme_bw() + 
-    opt_theme +
+    theme_params +                                         # theme
     scale_y_continuous(limits = c(0, 1)) +
-    do.call(labs, graph_params$annot) +                    # plot text
-    do.call(theme,                                         # theme
+    do.call(labs, graph_params$annot) +                    # text
+    do.call(theme,                                         # legend
             modifyList(
               list(legend.title = element_blank(),
                    legend.background = element_blank(),
@@ -83,10 +57,10 @@
                      size = 14.3,
                      hjust = 0.5)),
               legend_params)) +
-    scale_linetype_manual("",
+    scale_linetype_manual("",                              # lines
                           labels = graph_params$plot$labels,
                           values = graph_params$plot$line$types) +
     scale_color_manual("",
-                       labels = graph_params$plot$labels,
+                       labels = graph_params$plot$labels,  # colours
                        values = graph_params$plot$line$colors)
 }
