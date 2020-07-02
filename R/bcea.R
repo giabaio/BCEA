@@ -9,7 +9,7 @@
 ## v2.0-2b February, 2014 - ceac.plot and eib.plot: option comparison included for base graphics
 ## v2.0-2c July, 2014
 ## v2.1-0-pre1 AB September, 2014: documentation updated, Smoking dataset and ceef.plot function included, additional modifications
-## v2.1.0-pre2 GB October, 2014: modifications to ceef.plot, CreateInputs, struct.psa
+## v2.1.0-pre2 GB October, 2014: modifications to ceef.plot, createInputs, struct.psa
 ## v2.1.0 AB October, 2014: migrated from if(require()) to if(requireNamespace(,quietly=TRUE)); documentation updated
 ## v2.1.0 AB December, 2014: added threshold argument to ceef.plot function; documentation updated
 ## v2.1.1 GB+AH April/July 2015: new function for EVPPI using SPDE-INLA; modifications to the EVPPI functions; 
@@ -225,33 +225,5 @@
 #' }
 #' 
 #' @export bcea
-bcea <- function(e,c,ref=1,interventions=NULL,Kmax=50000,wtp=NULL,plot=FALSE) UseMethod("bcea")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+bcea <- function(e, c, ref = 1, interventions = NULL, Kmax = 50000, wtp = NULL, plot = FALSE)
+  UseMethod("bcea")

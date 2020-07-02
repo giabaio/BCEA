@@ -4,8 +4,15 @@
 \alias{eib.plot}
 \title{Expected Incremental Benefit (EIB) plot}
 \usage{
-eib.plot(he, comparison = NULL, pos = c(1, 0), size = NULL,
-  plot.cri = NULL, graph = c("base", "ggplot2", "plotly"), ...)
+eib.plot(
+  he,
+  comparison = NULL,
+  pos = c(1, 0),
+  size = NULL,
+  plot.cri = NULL,
+  graph = c("base", "ggplot2", "plotly"),
+  ...
+)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian

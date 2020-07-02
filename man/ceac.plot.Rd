@@ -4,8 +4,13 @@
 \alias{ceac.plot}
 \title{Cost-Effectiveness Acceptability Curve (CEAC) plot}
 \usage{
-ceac.plot(he, comparison = NULL, pos = c(1, 0), graph = c("base",
-  "ggplot2", "plotly"), ...)
+ceac.plot(
+  he,
+  comparison = NULL,
+  pos = c(1, 0),
+  graph = c("base", "ggplot2", "plotly"),
+  ...
+)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
