@@ -51,21 +51,24 @@
 #' 
 #' @examples 
 #' 
-# 
-# data("Vaccine")
-# he <- BCEA::bcea(e, c)
-# ceac.plot(he)
-# 
-# ceac.plot(he, graph = "base")
-# ceac.plot(he, graph = "ggplot2")
-# ceac.plot(he, graph = "plotly")
-# 
-# ceac.plot(he, graph = "ggplot2", title = "my title", line = list(colors = "green"), theme = theme_dark())
+#' data("Vaccine")
+#' he <- BCEA::bcea(e, c)
+#' ceac.plot(he)
+#' 
+#' ceac.plot(he, graph = "base")
+#' ceac.plot(he, graph = "ggplot2")
+#' ceac.plot(he, graph = "plotly")
+#' 
+#' ceac.plot(he, graph = "ggplot2", title = "my title", line = list(colors = "green"), theme = theme_dark())
 #
-# he2 <- BCEA::bcea(cbind(e,e - 0.0002), cbind(c,c + 5))
-# mypalette <- RColorBrewer::brewer.pal(3, "Accent")
-# ceac.plot(he2, graph = "ggplot2", title = "my title", theme = theme_dark(), pos = TRUE, line = mypalette)
+#' he2 <- BCEA::bcea(cbind(e,e - 0.0002), cbind(c,c + 5))
+#' mypalette <- RColorBrewer::brewer.pal(3, "Accent")
+#' ceac.plot(he2, graph = "ggplot2", title = "my title", theme = theme_dark(), pos = TRUE, line = mypalette)
 #
+#' ceac.plot(he, graph = "base", title = "my title", line = list(colors = "green"))
+#
+#' ceac.plot(he2, graph = "base")
+#'
 ceac.plot <- function(he,
                       comparison = NULL,
                       pos = c(1, 0),
@@ -74,7 +77,7 @@ ceac.plot <- function(he,
   
   options(scipen = 10)
   graph <- match.arg(graph)
-
+  
   # choose graphical engine
   if (is.null(graph) || is.na(graph)) graph <- "base"
   
@@ -95,8 +98,10 @@ ceac.plot <- function(he,
   
   if (graph_type == 1) {
     
-    ##TODO:
-    # .ceac_plot_base()
+    .ceac_plot_base(he,
+                    pos_legend = pos,
+                    graph_params,
+                    comparison, ...)
     
   } else if (graph_type == 2) {
     
