@@ -13,9 +13,9 @@ make_legend_base <- function(he,
   
   if (is.logical(pos_legend)) {
     if (!pos_legend)
-      alt_legend = "bottomright"
+      pos_legend <- "bottomright"
     else
-      alt_legend = "bottomleft"
+      pos_legend <- "bottomleft"
   }
   
   text <- paste(he$interventions[he$ref], " vs ", he$interventions[he$comp])
