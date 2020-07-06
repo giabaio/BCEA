@@ -1,5 +1,5 @@
 
-#' table of Simulations for the Health Economic Model
+#' Table of Simulations for the Health Economic Model
 #' 
 #' Using the input in the form of MCMC simulations and after having run the
 #' health economic model, produces a summary table of the simulations from the
@@ -27,15 +27,16 @@
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
 #' 
 #' @keywords Health economic evaluation
+#' @importFrom dplyr
 #' 
 #' @examples
 #' 
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 #' # Bayesian model and economic problem
-#' #
+#'
 #' # Load the processed results of the MCMC simulation model
 #' data(Vaccine)
-#' # 
+#' 
 #' # Runs the health economic evaluation using BCEA
 #' m <- bcea(e=e,                  # defines the variables of 
 #'           c=c,                  # effectiveness and cost
@@ -50,12 +51,12 @@
 #'
 #' # Now can save the simulation exercise in an object using sim.table()
 #' st <- sim.table(m,         # uses the results of the economic evaluation 
-#'                            #  (a "bcea" object)
+#'                            #  (a 'bcea' object)
 #'                 wtp=25000  # selects the particular value for k
 #'                )
 #'                
 #' # The table can be explored. For example, checking the 
-#' # element 'table' of the object 'st'
+#' # element 'Table' of the object 'st'
 #' 
 #' @export
 #' 
@@ -70,26 +71,23 @@ sim.table <- function(he,
       stop(
         sprintf("The willingness to pay parameter is defined in the interval [0- %f], with increments of %f \n", he$Kmax, he$step), call. = FALSE)
     } else { # The user has actually specified wtp as input in the call to bcea
-      tmp <- paste(he$k, collapse = " ")
+      he_k <- paste(he$k, collapse = " ")
       stop(
-        paste0("The willingness to pay parameter is defined as:\n[",tmp,"]\nPlease select a suitable value", collapse = " "), call. = FALSE)
+        paste0("The willingness to pay parameter is defined as:\n[", he_k, "]\nPlease select a suitable value", collapse = " "), call. = FALSE)
     }
   }
   
-  idx_wtp <- which(he$k == wtp)
-  
   table <-  
-    cbind(he$U[, idx_wtp, ],
-              he$Ustar[, idx_wtp],
-              he$ib[idx_wtp, , ],
-              he$ol[, idx_wtp],
-              he$vi[, idx_wtp]) %>% 
-    rbind(
-      c(colMeans(he$U[, idx_wtp, , drop = FALSE]),
-        mean(he$Ustar[, idx_wtp]),
-        colMeans(he$ib[, idx_wtp, , drop = FALSE]),
-        mean(he$ol[, idx_wtp]),
-        mean(he$vi[, idx_wtp])))
+    cbind.data.frame(
+      U_filter_by(he, wtp),
+      Ustar_filter_by(he, wtp),
+      ib_filter_by(he, wtp),
+      ol_filter_by(he, wtp),
+      vi_filter_by(he, wtp))
+  
+  table <-
+    bind_rows(table,
+              summarise_all(table, mean))
   
   names.cols <-
     c(paste0("U", 1:he$n_comparators),
@@ -104,5 +102,5 @@ sim.table <- function(he,
     Table = table,
     names.cols = names.cols,
     wtp = wtp,
-    idx_wtp = idx_wtp)
+    ind.table = which(he$k == wtp))
 }
