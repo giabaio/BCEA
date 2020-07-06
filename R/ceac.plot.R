@@ -47,7 +47,7 @@
 #' @keywords Health economic evaluation Cost Effectiveness Acceptability Curve
 #' @export
 #' 
-#' @importFrom ggplot2
+#' @importFrom ggplot2, ellipsis
 #' 
 #' @examples 
 #' 

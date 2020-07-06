@@ -1,4 +1,7 @@
 
+# helper functions so don't have to remember
+# which dimension for which statistic
+
 Ustar_filter_by <- function(he, wtp) {
   he$Ustar[, he$k == wtp]
 }
