@@ -1,12 +1,10 @@
-############mce.plot###################################
-
 
 #' Plots the probability that each intervention is the most cost-effective
 #' 
-#' Plots the probability that each of the n_int interventions being analysed is
-#' the most cost-effective.
-#' 
-#' 
+#' A cost-effectiveness acceptability curve plot of the probability each
+#' of the n_int interventions being analysed is the most cost-effective
+#' against all pairwise comparisons.
+#'  
 #' @param mce The output of the call to the function \code{\link{multi.ce}}.
 #' @param pos Parameter to set the position of the legend. Can be given in form
 #' of a string \code{(bottom|top)(right|left)} for base graphics and
@@ -65,7 +63,8 @@
 #'       graph="ggplot2")      #  using ggplot2 instead
 #' }
 #' 
-#' @export mce.plot
+#' @export
+#' 
 mce.plot <- function(mce,pos=c(1,0.5),graph=c("base","ggplot2"),...){
   alt.legend <- pos
   base.graphics <- ifelse(isTRUE(pmatch(graph,c("base","ggplot2"))==2),FALSE,TRUE) 

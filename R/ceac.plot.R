@@ -69,16 +69,16 @@
 #
 #' ceac.plot(he2, graph = "base")
 #'
-ceac.plot <- function(he,
-                      comparison = NULL,
-                      pos = c(1, 0),
-                      graph = c("base", "ggplot2", "plotly"),
-                      ...) {
+ceac.plot.default <- function(he,
+                              comparison = NULL,
+                              pos = c(1, 0),
+                              graph = c("base", "ggplot2", "plotly"),
+                              ...) {
   
   options(scipen = 10)
   graph <- match.arg(graph)
   
-  plot_type <- select_plot_type(graph)
+  graph_type <- select_plot_type(graph)
   
   graph_params <- prepare_graph_params(...)
   
