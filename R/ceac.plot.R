@@ -78,21 +78,7 @@ ceac.plot <- function(he,
   options(scipen = 10)
   graph <- match.arg(graph)
   
-  # choose graphical engine
-  if (is.null(graph) || is.na(graph)) graph <- "base"
-  
-  graph_type <- pmatch(graph[1], c("base", "ggplot2", "plotly"), nomatch = 1)
-  
-  is_pkg_avail <-
-    requireNamespace("ggplot2", quietly = TRUE) & requireNamespace("grid", quietly = TRUE)
-  
-  if (graph_type == 2 && !is_pkg_avail) {
-    warning("Package ggplot2 and grid not found; ceac.plot will be rendered using base graphics.", call. = FALSE)
-    graph_type <- 1}
-  
-  if (graph_type == 3 && !requireNamespace("plotly", quietly = TRUE)) {
-    warning("Package plotly not found; ceac.plot will be rendered using base graphics.", call. = FALSE)
-    graph_type <- 1}
+  plot_type <- select_plot_type(graph)
   
   graph_params <- prepare_graph_params(...)
   
