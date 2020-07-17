@@ -48,7 +48,7 @@
 #' @keywords Health economic evaluation Cost Effectiveness Acceptability Curve
 #' @export
 #' 
-#' @importFrom ggplot2, ellipsis
+#' @importFrom ggplot2
 #' 
 #' @examples 
 #' 
@@ -70,10 +70,10 @@
 #
 #' ceac.plot(he2, graph = "base")
 #'
-ceac.plot.default <- function(he,
-                              pos = c(1, 0),
-                              graph = c("base", "ggplot2", "plotly"),
-                              ...) {
+ceac.plot <- function(he,
+                      pos = c(1, 0),
+                      graph = c("base", "ggplot2", "plotly"),
+                      ...) {
   
   options(scipen = 10)
   graph <- match.arg(graph)
@@ -84,19 +84,19 @@ ceac.plot.default <- function(he,
   
   if (graph_type == 1) {
     
-    .ceac_plot_base(he,
-                    pos_legend = pos,
-                    graph_params, ...)
+    ceac_plot_base(he,
+                   pos_legend = pos,
+                   graph_params)
     
   } else if (graph_type == 2) {
     
-    .ceac_plot_ggplot(he,
-                      pos_legend = pos,
-                      graph_params, ...)
+    ceac_plot_ggplot(he,
+                     pos_legend = pos,
+                     graph_params, ...)
     
   } else if (graph_type == 3) {
     
     ##TODO:
-    # .ceac_plot_plotly()
+    # ceac_plot_plotly()
   }
 }

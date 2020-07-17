@@ -2,7 +2,11 @@
 #
 make_legend_base <- function(he,
                              pos_legend,
-                             graph_params) {
+                             base_params) {
+  
+  # empty legend
+  if (!inherits(he, "multi") & he$n_comparisons == 1) {
+    return(list(x = -1, legend = ""))}
   
   if (is.numeric(pos_legend) & length(pos_legend) == 2) {
     
@@ -18,12 +22,17 @@ make_legend_base <- function(he,
       pos_legend <- "bottomleft"
   }
   
-  text <- paste(he$interventions[he$ref], " vs ", he$interventions[he$comp])
+  text <- 
+    if (inherits(he, "multi")) {
+      he$interventions
+  } else {
+    paste(he$interventions[he$ref], " vs ", he$interventions[he$comp])
+  }
   
   list(x = pos_legend,
        legend = text,
        cex = 0.7,
        bty = "n", 
-       lty = graph_params$plot$line$types,
-       col = graph_params$plot$line$colors)
+       lty = base_params$lty,
+       col = base_params$col)
 }

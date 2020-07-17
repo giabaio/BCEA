@@ -1,11 +1,11 @@
 
 #' @noRd
 #' 
-#' @importFrom ggplot2
+#' @importFrom ggplot2, purrr
 #' 
-.ceac_plot_ggplot <- function(he,
-                              pos_legend,
-                              graph_params, ...) {
+ceac_plot_ggplot <- function(he,
+                             pos_legend,
+                             graph_params, ...) {
   
   extra_params <- list(...)
   
