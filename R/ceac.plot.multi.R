@@ -35,6 +35,9 @@ ceac.plot <- function(he, ...) UseMethod("ceac.plot")
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
 #' London
 #' @keywords Health economic evaluation Multiple comparison
+#' @import purrr
+#' 
+#' 
 #' @examples
 #' 
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
@@ -46,24 +49,23 @@ ceac.plot <- function(he, ...) UseMethod("ceac.plot")
 #' # Runs the health economic evaluation using BCEA
 #' m <- bcea(e=e,c=c,          # defines the variables of 
 #'                             #  effectiveness and cost
-#'       ref=2,                # selects the 2nd row of (e,c) 
+#'       ref=2,                # selects the 2nd row of (e, c) 
 #'                             #  as containing the reference intervention
 #'       interventions=treats, # defines the labels to be associated 
 #'                             #  with each intervention
 #'       Kmax=50000,           # maximum value possible for the willingness 
 #'                             #  to pay threshold; implies that k is chosen 
 #'                             #  in a grid from the interval (0,Kmax)
-#'       plot=FALSE            # inhibits graphical output
-#' )
-#' #
-#' he <- multi.ce(m)          # uses the results of the economic analysis 
-#' #
-#' he.plot(he,               # plots the probability of being most cost-effective
-#'       graph="base")         #  using base graphics
-#' #
-#' if(require(ggplot2)){
-#' he.plot(he,               # the same plot
-#'       graph="ggplot2")      #  using ggplot2 instead
+#'       plot=FALSE)           # inhibits graphical output
+#' 
+#' he <- multi.ce(m)           # uses the results of the economic analysis 
+#' 
+#' he.plot(he,                   # plots the probability of being most cost-effective
+#'         graph="base")         #  using base graphics
+#' 
+#' if (require(ggplot2)) {
+#'     he.plot(he,                   # the same plot
+#'             graph="ggplot2")      #  using ggplot2 instead
 #' }
 #' 
 #' @export
@@ -72,21 +74,24 @@ ceac.plot.multi <- function(he,
                             pos = c(1, 0.5),
                             graph = c("base", "ggplot2"),...) {
   
+  graph <- match.arg(graph)
   alt.legend <- pos
-  is_base_graphics <- ifelse(isTRUE(pmatch(graph,c("base", "ggplot2")) == 2), FALSE, TRUE)
+  is_base_graphics <- pmatch(graph,c("base", "ggplot2")) != 2
+  is_req_pkgs <- map_lgl(c("ggplot2","grid"), requireNamespace, quietly = TRUE)
   
-  if (!all(requireNamespace("ggplot2", quietly = TRUE),
-           requireNamespace("grid", quietly = TRUE))) {
+  if (!all(is_req_pkgs)) {
     
     message("Falling back to base graphics\n")
     is_base_graphics <- TRUE
   }
   
-  colour_params <- colours_picker(...)
+  graph_params <- prepare_graph_params(...)
   
   if (is_base_graphics) {
-    ceac_multi_base(he, colour_parms, ...)
+    ceac_multi_base(he,
+                    graph_params, ...)
   } else {
-    ceac_multi_ggplot(he, colour_parms, ...)
+    ceac_multi_ggplot(he,
+                      graph_params, ...)
   }
 }

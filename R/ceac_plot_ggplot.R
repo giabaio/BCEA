@@ -5,21 +5,17 @@
 #' 
 .ceac_plot_ggplot <- function(he,
                               pos_legend,
-                              graph_params,
-                              comparison, ...) {
+                              graph_params, ...) {
   
   extra_params <- list(...)
   
-  is_pkg_avail <-
-    requireNamespace("ggplot2", quietly = TRUE) & requireNamespace("grid", quietly = TRUE)
+  is_req_pkgs <- map_lgl(c("ggplot2","grid"), requireNamespace, quietly = TRUE)
   
-  if (!is_pkg_avail) {
+  if (!is_req_pkgs) {
     message("falling back to base graphics\n")
     ceac.plot(he, pos = pos_legend, graph = "base", ...)
     return()
   }
-  
-  if (is.null(comparison)) comparison <- he$comp
   
   data_psa <-
     tibble(k = rep(he$k,

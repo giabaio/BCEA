@@ -15,11 +15,13 @@ helper_ggplot_params <- function(he,
   
   if (he$n_comparisons > 1) {
     
-    default_params <- list(plot =
-                             list(labels = paste(he$interventions[he$ref], "vs",
-                                                 he$interventions[he$comp]),
-                                  line =
-                                    list(types = rep_len(1:6, he$n_comparisons))))
+    default_params <-
+      list(plot =
+             list(labels = paste(he$interventions[he$ref], "vs",
+                                 he$interventions[he$comp]),
+                  line =
+                    list(types = rep_len(1:6, he$n_comparisons))))
+    
     graph_params <- modifyList(default_params, graph_params)
     
     types <- graph_params$plot$line$types

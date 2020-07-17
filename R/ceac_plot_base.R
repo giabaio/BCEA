@@ -3,12 +3,9 @@
 #' 
 .ceac_plot_base <- function(he,
                             pos_legend,
-                            graph_params,
-                            comparison, ...) {
+                            graph_params, ...) {
   
   extra_params <- list(...)
-  
-  if (is.null(comparison)) comparison <- he$comp
   
   legend_params <- make_legend_base(he, pos_legend, graph_params)
   

@@ -36,10 +36,12 @@ helper_base_params <- function(he,
     is_enough_colours <- length(cols) >= he$n_comparisons
     
     if (!is_enough_types) {
-      graph_params$plot$line$types <- rep_len(types, he$n_comparisons)}
+      graph_params$plot$line$types <- rep_len(types, he$n_comparisons)
+      message("Wrong number of line types provided. Falling back to default\n")}
     
     if (!is_enough_colours) {
-      graph_params$plot$line$colors <- rep_len(cols, he$n_comparisons)}
+      graph_params$plot$line$colors <- rep_len(cols, he$n_comparisons)
+      message("Wrong number of colours provided. Falling back to default\n")}
   }
   
   list(type = "l",
@@ -48,7 +50,7 @@ helper_base_params <- function(he,
        ylab = graph_params$annot$ylab,
        ylim = c(0, 1),
        lty = graph_params$plot$line$types,
-       col = graph_params$plot$line$colors[1],
+       col = graph_params$plot$line$colors,
        lwd = graph_params$plot$lwd)
 }
 

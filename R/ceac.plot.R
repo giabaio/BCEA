@@ -8,6 +8,7 @@
 #' 
 #' @template args-he
 #' @template args-comparison
+#' 
 #' @param pos Parameter to set the position of the legend (only relevant for
 #'   multiple interventions, ie more than 2 interventions being compared). Can be
 #'   given in form of a string \code{(bottom|top)(right|left)} for base graphics
@@ -70,7 +71,6 @@
 #' ceac.plot(he2, graph = "base")
 #'
 ceac.plot.default <- function(he,
-                              comparison = NULL,
                               pos = c(1, 0),
                               graph = c("base", "ggplot2", "plotly"),
                               ...) {
@@ -86,15 +86,13 @@ ceac.plot.default <- function(he,
     
     .ceac_plot_base(he,
                     pos_legend = pos,
-                    graph_params,
-                    comparison, ...)
+                    graph_params, ...)
     
   } else if (graph_type == 2) {
     
     .ceac_plot_ggplot(he,
                       pos_legend = pos,
-                      graph_params,
-                      comparison, ...)
+                      graph_params, ...)
     
   } else if (graph_type == 3) {
     
