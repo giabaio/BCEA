@@ -7,7 +7,7 @@ helper_base_params <- function(he,
     if (inherits(he, "multi")) {
       he$n_comparators
     } else {
-      n_lines}
+      he$n_comparisons}
   
   if (n_lines == 1) {
     
