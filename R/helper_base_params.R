@@ -4,7 +4,7 @@ helper_base_params <- function(he,
                                graph_params) {
   
   n_lines <- 
-    if (inherits(he, "multi")) {
+    if (inherits(he, "pairwise")) {
       he$n_comparators
     } else {
       he$n_comparisons}

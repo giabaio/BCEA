@@ -10,7 +10,7 @@ select_plot_type <- function(graph) {
   is_req_pkgs <- map_lgl(c("ggplot2","grid"), requireNamespace, quietly = TRUE)
   
   # check feasibility
-  if (graph_type == 2 && !is_req_pkgs) {
+  if (graph_type == 2 && !all(is_req_pkgs)) {
     warning(
       "Packages ggplot2 and grid not found; plot will be rendered using base graphics.", call. = FALSE)
     graph_type <- 1}

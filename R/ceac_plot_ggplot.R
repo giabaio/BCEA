@@ -11,7 +11,7 @@ ceac_plot_ggplot <- function(he,
   
   is_req_pkgs <- map_lgl(c("ggplot2","grid"), requireNamespace, quietly = TRUE)
   
-  if (!is_req_pkgs) {
+  if (!all(is_req_pkgs)) {
     message("falling back to base graphics\n")
     ceac.plot(he, pos = pos_legend, graph = "base", ...)
     return()

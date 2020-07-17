@@ -132,7 +132,7 @@ plot.bcea <- function(he,
     
     is_req_pkgs <- map_lgl(c("ggplot2","grid"), requireNamespace, quietly = TRUE)
     
-    if (!is_req_pkgs) {
+    if (!all(is_req_pkgs)) {
       message("falling back to base graphics\n")
       plot.bcea(
         he,
@@ -145,7 +145,7 @@ plot.bcea <- function(he,
     
     ####### multiplot ###### 
     # source: R graphics cookbook
-    if (is_req_pkgs) {
+    if (all(is_req_pkgs)) {
       
       multiplot <- function(plotlist = NULL,
                             file,

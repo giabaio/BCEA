@@ -5,7 +5,7 @@ make_legend_base <- function(he,
                              base_params) {
   
   # empty legend
-  if (!inherits(he, "multi") & he$n_comparisons == 1) {
+  if (!inherits(he, "pairwise") & he$n_comparisons == 1) {
     return(list(x = -1, legend = ""))}
   
   if (is.numeric(pos_legend) & length(pos_legend) == 2) {
@@ -23,7 +23,7 @@ make_legend_base <- function(he,
   }
   
   text <- 
-    if (inherits(he, "multi")) {
+    if (inherits(he, "pairwise")) {
       he$interventions
   } else {
     paste(he$interventions[he$ref], " vs ", he$interventions[he$comp])

@@ -3,25 +3,21 @@
 ceac_plot_base <- function(he, ...) UseMethod("ceac_plot_base", he)
 
 #
-ceac_plot_base.multi <- function(he,
-                                 pos,
-                                 legend,
-                                 graph_params) {
+ceac_plot_base.pairwise <- function(he,
+                                    pos_legend,
+                                    graph_params) {
   ceac_matplot(he,
-               pos,
-               legend,
+               pos_legend,
                graph_params,
                "p_best_interv")
 }
 
 #
 ceac_plot_base.default <- function(he,
-                                   pos,
-                                   legend,
+                                   pos_legend,
                                    graph_params) {
   ceac_matplot(he,
-               pos,
-               legend,
+               pos_legend,
                graph_params,
                "ceac")
 }

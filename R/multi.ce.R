@@ -8,10 +8,11 @@
 #' @param he A \code{bcea} object containing the results of the Bayesian
 #' modelling and the economic evaluation.
 #' 
-#' @return \item{p_best_interv}{A matrix including the probability that each
-#' intervention is the most cost-effective for all values of the willingness to
-#' pay parameter} \item{ceaf}{A vector containing the cost-effectiveness
-#' acceptability frontier}
+#' @return Original bcea object (list) of class "pairwise" with additional:
+#'    \item{p_best_interv}{A matrix including the probability that each
+#'    intervention is the most cost-effective for all values of the willingness to
+#'    pay parameter}
+#'    \item{ceaf}{A vector containing the cost-effectiveness acceptability frontier}
 #' 
 #' @author Gianluca Baio
 #' @seealso \code{\link{bcea}}, \code{\link{mce.plot}}, \code{\link{ceaf.plot}}
@@ -71,5 +72,5 @@ multi.ce <- function(he) {
           list(p_best_interv = p_best_interv,
           ceaf = ceaf))
   
-  structure(he, class = c("multi", class(he)))
+  structure(he, class = c("pairwise", class(he)))
 }
