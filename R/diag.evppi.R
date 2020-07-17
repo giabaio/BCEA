@@ -53,11 +53,11 @@ diag.evppi <- function(evppi,
                        plot_type = c("residuals", "qqplot"),
                        interv = 1) {
   
-  if (int > 1 & dim(evppi$fitted.costs)[2] == 1) {
-    stop("There is only one comparison possible, so 'interv' should be set to 1 (default)", call. = FALSE)}
+  if (interv > 1 && dim(evppi$fitted.costs)[2] == 1) {
+    stop("There is only one comparison possible, so 'interv' set to 1 (default)", call. = FALSE)}
   
   plot_type <- match.arg(plot_type)
-  is_residual <- pmatch(plot_type, c("residuals", "qqplot")) !=2
+  is_residual <- pmatch(plot_type, c("residuals", "qqplot")) != 2
   
   if (is_residual) {
     evppi_residual_plot(evppi, he, interv)
@@ -72,27 +72,30 @@ evppi_residual_plot <- function(evppi,
                                 interv) {
   
   op <- par(mfrow = c(1, 2))
-  n <- dim(evppi$fitted.costs)[1]
-  fitted <- evppi$fitted.costs[, interv]
-  residual <- as.matrix(he$delta.c)[evppi$select, interv] - fitted
   
-  plot(fitted,
-       residual,
+  fitted <- list(cost = evppi$fitted.costs[, interv],
+                 eff = evppi$fitted.effects[, interv])
+  
+  residual <- list(cost = as.matrix(he$delta.c)[evppi$select, interv] - fitted$cost,
+                   eff = as.matrix(he$delta.e)[evppi$select, interv] - fitted$eff)
+  cex <- 0.8
+  
+  plot(fitted$cost,
+       residual$cost,
        xlab = "Fitted values",
        ylab = "Residuals",
        main = "Residual plot for costs",
-       cex = 0.8)
+       cex = cex)
   abline(h = 0)
-  fitted <- evppi$fitted.effects[, interv]
-  residual <- as.matrix(he$delta.e)[evppi$select, interv] - fitted
   
-  plot(fitted,
-       residual,
+  plot(fitted$eff,
+       residual$eff,
        xlab = "Fitted values",
        ylab = "Residuals",
        main = "Residual plot for effects",
-       cex = 0.8)
+       cex = cex)
   abline(h = 0)
+  
   par(op)
 }
 
@@ -102,11 +105,15 @@ evppi_qq_plot <- function(evppi,
                           interv) {
   
   op <- par(mfrow = c(1, 2))
-  qqnorm(evppi$fitted.costs[, interv],
-         main = "Normal Q-Q plot \n(costs)")
-  qqline(evppi$fitted.costs[, interv])
-  qqnorm(evppi$fitted.effects[, interv],
-         main = "Normal Q-Q plot \n(effects)")
-  qqline(evppi$fitted.effects[, interv])
+  
+  fit_cost <- evppi$fitted.costs[, interv]
+  fit_eff <- evppi$fitted.effects[, interv] 
+  
+  qqnorm(fit_cost, main = "Normal Q-Q plot \n(costs)")
+  qqline(fit_cost)
+  
+  qqnorm(fit_eff, main = "Normal Q-Q plot \n(effects)")
+  qqline(fit_eff)
+  
   par(op)
 }
