@@ -1,6 +1,7 @@
 
 #' @noRd
 #' 
+#' @keywords hplot
 #' @importFrom ggplot2, purrr
 #' 
 #' @examples 

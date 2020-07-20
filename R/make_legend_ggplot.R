@@ -1,6 +1,8 @@
 
 #' @noRd
 #' 
+#' @keywords dplot
+#' 
 #' c(0,0) corresponds to the “bottom left”
 #' c(1,1) corresponds to the “top right”
 #' inside the plotting area

@@ -1,5 +1,5 @@
 
-#
+#' @keywords dplot
 prepare_graph_params <- function(...) {
   
   extra_params <- list(...)

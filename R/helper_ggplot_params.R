@@ -1,6 +1,7 @@
 
 #' @noRd
 #' 
+#' @keywords dplot
 helper_ggplot_params <- function(he,
                                  graph_params) {
   

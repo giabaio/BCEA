@@ -36,7 +36,7 @@ The second way involves using the "development" version of `BCEA` - this will us
 ```r
 pkgs <- c("MASS", "Rtools", "devtools")
 repos <- c("https://cran.rstudio.com", "https://www.math.ntnu.no/inla/R/stable") 
-install.packages(pkgs, repos=repos, dependencies = "Depends")
+install.packages(pkgs, repos = repos, dependencies = "Depends")
 ```
 before installing the package using `devtools`:
 

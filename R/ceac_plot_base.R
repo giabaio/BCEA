@@ -1,5 +1,5 @@
 
-#
+#' @keywords hplot
 ceac_plot_base <- function(he, ...) UseMethod("ceac_plot_base", he)
 
 #
@@ -12,7 +12,7 @@ ceac_plot_base.pairwise <- function(he,
                "p_best_interv")
 }
 
-#
+#' @keywords hplot
 ceac_plot_base.default <- function(he,
                                    pos_legend,
                                    graph_params) {
@@ -24,6 +24,7 @@ ceac_plot_base.default <- function(he,
 
 #' @noRd
 #' 
+#' #' @keywords hplot
 ceac_matplot <- function(he,
                          pos_legend,
                          graph_params,

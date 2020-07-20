@@ -14,7 +14,7 @@
 #'   given in form of a string \code{(bottom|top)(right|left)} for base graphics
 #'   and \code{bottom}, \code{top}, \code{left} or \code{right} for *ggplot2*.
 #'   It can be a two-elements vector, which specifies the relative position on the x
-#'   and y axis respectively, or alternatively it can be in form of a logical
+#'   and y axis respectively, or alternatively in form of a logical
 #'   variable, with \code{FALSE} indicating to use the default position and
 #'   \code{TRUE} to place it on the bottom of the plot. Default value is
 #'   \code{c(1,0)}, that is the bottom right corner inside the plot area.
@@ -41,11 +41,11 @@
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}}
 #' @references Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#'   Analysis in Health Economics.  Statistical Methods in Medical Research
+#'   Analysis in Health Economics. Statistical Methods in Medical Research
 #'   doi:10.1177/0962280211419832.
 #' 
-#'   Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
-#' @keywords Health economic evaluation Cost Effectiveness Acceptability Curve
+#'   Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+#' @keywords hplot
 #' @export
 #' 
 #' @importFrom ggplot2

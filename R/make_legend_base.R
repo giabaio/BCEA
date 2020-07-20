@@ -1,5 +1,5 @@
 
-#
+#' @keywords dplot
 make_legend_base <- function(he,
                              pos_legend,
                              base_params) {
