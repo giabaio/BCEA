@@ -22,12 +22,7 @@ make_legend_base <- function(he,
       pos_legend <- "bottomleft"
   }
   
-  text <- 
-    if (inherits(he, "pairwise")) {
-      he$interventions
-  } else {
-    paste(he$interventions[he$ref], " vs ", he$interventions[he$comp])
-  }
+  text <- line_labels(he)
   
   list(x = pos_legend,
        legend = text,

@@ -2,6 +2,7 @@
 #' choose graphical engine
 #'
 #' @keywords dplot
+#' 
 select_plot_type <- function(graph) {
   
   if (is.null(graph) || is.na(graph)) graph <- "base"

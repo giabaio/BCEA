@@ -24,7 +24,7 @@ ceac_plot_base.default <- function(he,
 
 #' @noRd
 #' 
-#' #' @keywords hplot
+#' @keywords hplot
 ceac_matplot <- function(he,
                          pos_legend,
                          graph_params,

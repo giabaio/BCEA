@@ -69,11 +69,20 @@ data("Smoking")
 
 he <- bcea(e, c, ref = 4)
 # str(he)
+```
 
+```{r}
 ceac.plot(he)
 
 ceac.plot(he,
           graph = "base",
+          title = "my title",
+          line = list(colors = "green"))
+```
+
+```{r}
+ceac.plot(he,
+          graph = "ggplot2",
           title = "my title",
           line = list(colors = "green"))
 ```
@@ -88,6 +97,13 @@ ceac.plot(he, pos = c(1, 0))
 ceac.plot(he, pos = c(1, 1))
 ```
 
+```{r}
+ceac.plot(he, graph = "ggplot2", pos = c(0, 0))
+ceac.plot(he, graph = "ggplot2", pos = c(0, 1))
+ceac.plot(he, graph = "ggplot2", pos = c(1, 0))
+ceac.plot(he, graph = "ggplot2", pos = c(1, 1))
+```
+
 Define colour palette.
 
 ```{r}
@@ -95,6 +111,12 @@ mypalette <- RColorBrewer::brewer.pal(3, "Accent")
 
 ceac.plot(he,
           graph = "base",
+          title = "my title",
+          line = list(colors = mypalette),
+          pos = FALSE)
+
+ceac.plot(he,
+          graph = "ggplot2",
           title = "my title",
           line = list(colors = mypalette),
           pos = FALSE)
@@ -129,6 +151,15 @@ ceac.plot(he,
           pos = c(0,1))
 ```
 
+```{r}
+ceac.plot(he,
+          graph = "ggplot2",
+          title = "my title",
+          line = list(colors = mypalette),
+          pos = c(0,1))
+```
+
 ```{r echo=FALSE}
+# create pdf
 # rmarkdown::render(input = "vignettes/ceac.Rmd", output_format = "pdf_document", output_dir = "vignettes")
 ```

@@ -1,50 +1,50 @@
 
-#' @noRd
-#' 
 #' @keywords hplot
-#' @importFrom ggplot2, purrr
-#' 
-#' @examples 
-#' 
-#' data("Vaccine")
-#' he <- BCEA::bcea(e, c)
-#' 
-#' ceac.plot(he, graph = "ggplot2")
-#' 
-#' ceac.plot(he,
-#'           graph = "ggplot2",
-#'           title = "my title",
-#'           line = list(colors = "green"),
-#'           theme = theme_dark())
-#
-#' he2 <- BCEA::bcea(cbind(e,e - 0.0002), cbind(c,c + 5))
-#' mypalette <- RColorBrewer::brewer.pal(3, "Accent")
-#' ceac.plot(he2,
-#'           graph = "ggplot2", 
-#'           title = "my title",
-#'           theme = theme_dark(),
-#'           pos = TRUE,
-#'           line = mypalette)
 #' 
 ceac_plot_ggplot <- function(he,
                              pos_legend,
-                             graph_params, ...) {
+                             graph_params, ...) UseMethod("ceac_plot_ggplot", he)
+
+#
+ceac_plot_ggplot.pairwise <- function(he,
+                                      pos_legend,
+                                      graph_params, ...) {
+  ceac_ggplot(he,
+              pos_legend,
+              graph_params,
+              "p_best_interv", ...)
+}
+
+#' @keywords hplot
+#' 
+ceac_plot_ggplot.default <- function(he,
+                                     pos_legend,
+                                     graph_params, ...) {
+  ceac_ggplot(he,
+              pos_legend,
+              graph_params,
+              "ceac", ...)
+}
+
+#' @noRd
+#' 
+#' @keywords hplot
+#' 
+ceac_ggplot <- function(he,
+                        pos_legend,
+                        graph_params,
+                        ceac, ...) {
   
   extra_params <- list(...)
-  
-  is_req_pkgs <- map_lgl(c("ggplot2","grid"), requireNamespace, quietly = TRUE)
-  
-  if (!all(is_req_pkgs)) {
-    message("falling back to base graphics\n")
-    ceac.plot(he, pos = pos_legend, graph = "base", ...)
-    return()
-  }
+
+  ceac_dat <- he[[ceac]]
+  n_lines <- ncol(ceac_dat)
   
   data_psa <-
     tibble(k = rep(he$k,
-                   times = he$n_comparisons),
-           ceac = c(he$ceac),
-           comparison = as.factor(rep(he$comp,
+                   times = n_lines),
+           ceac = c(ceac_dat),
+           comparison = as.factor(rep(1:n_lines,
                                       each = length(he$k))))
   
   graph_params <- helper_ggplot_params(he, graph_params)
