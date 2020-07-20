@@ -75,9 +75,22 @@ ceac.plot(he)
 ceac.plot(he,
           graph = "base",
           title = "my title",
-          line = list(colors = "green"),
-          pos = FALSE)
+          line = list(colors = "green"))
+```
 
+Reposition legend.
+
+```{r}
+ceac.plot(he, pos = FALSE) # bottom right
+ceac.plot(he, pos = c(0, 0))
+ceac.plot(he, pos = c(0, 1))
+ceac.plot(he, pos = c(1, 0))
+ceac.plot(he, pos = c(1, 1))
+```
+
+Define colour palette.
+
+```{r}
 mypalette <- RColorBrewer::brewer.pal(3, "Accent")
 
 ceac.plot(he,
@@ -116,6 +129,6 @@ ceac.plot(he,
           pos = c(0,1))
 ```
 
-```{r}
+```{r echo=FALSE}
 # rmarkdown::render(input = "vignettes/ceac.Rmd", output_format = "pdf_document", output_dir = "vignettes")
 ```

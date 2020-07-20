@@ -11,8 +11,8 @@ prepare_graph_params <- function(...) {
                       line = list(colors = "black"))
   
   annot_params <- list(title = "Cost Effectiveness Acceptability Curve",
-                       xlab = "Willingness to pay",
-                       ylab = "Probability of cost effectiveness")
+                       x = "Willingness to pay",
+                       y = "Probability of cost effectiveness")
   
   plot_extra_params <- extra_params[c("area", "line")]
   annot_extra_params <- extra_params[c("title", "xlab", "ylab")]

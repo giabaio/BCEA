@@ -11,7 +11,7 @@ make_legend_base <- function(he,
   if (is.numeric(pos_legend) & length(pos_legend) == 2) {
     
     ns <- ifelse(pos_legend[2] == 1, "top", "bottom")
-    ew <- ifelse(pos_legend[1] == 1, "left", "right")
+    ew <- ifelse(pos_legend[1] == 1, "right", "left")
     pos_legend <- paste0(ns, ew)
   }
   
