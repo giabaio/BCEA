@@ -1,8 +1,6 @@
 
 #' Summary plot of the health economic analysis
 #' 
-#' @name plot-bcea
-#' 
 #' Plots in a single graph the Cost-Effectiveness plane, the Expected
 #' Incremental Benefit, the CEAC and the EVPI
 #' 
@@ -57,10 +55,10 @@
 #' 
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 #' # Bayesian model and economic problem
-#' #
+#'
 #' # Load the processed results of the MCMC simulation model
 #' data(Vaccine)
-#' # 
+#' 
 #' # Runs the health economic evaluation using BCEA
 #' he <- bcea(
 #'        e=e, c=c,             # defines the variables of 
@@ -74,7 +72,7 @@
 #'                              #  in a grid from the interval (0,Kmax)
 #'        plot=FALSE            # does not produce graphical outputs
 #'       )
-#' #
+#'
 #' # Plots the summary plots for the "bcea" object m using base graphics
 #' plot(he, graph="base")
 #' 

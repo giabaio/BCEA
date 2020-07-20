@@ -1,12 +1,8 @@
-###ib.plot####################################################################################################
-## Plots the IB
-
 
 #' Incremental Benefit (IB) distribution plot
 #' 
 #' Plots the distribution of the Incremental Benefit (IB) for a given value of
 #' the willingness to pay threshold
-#' 
 #' 
 #' @param he A \code{bcea} object containing the results of the Bayesian
 #' modelling and the economic evaluation.
@@ -39,11 +35,21 @@
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
 #' London
 #' @keywords Health economic evaluation
-#' @export ib.plot
-ib.plot <- function(he,comparison=NULL,wtp=25000,bw=nbw,n=512,xlim=NULL,graph=c("base","ggplot2")){
-  base.graphics <- ifelse(isTRUE(pmatch(graph,c("base","ggplot2"))==2),FALSE,TRUE)
-  # comparison controls which comparator is used when more than 2 interventions are present
-  # bw and n control the level of smoothness of the kernel density estimation
+#' @export
+#' 
+ib.plot <-
+  function(he,
+           comparison = NULL,
+           wtp = 25000,
+           bw = nbw,
+           n = 512,
+           xlim = NULL,
+           graph = c("base", "ggplot2")) {
+
+    base.graphics <-
+      ifelse(isTRUE(pmatch(graph, c("base", "ggplot2")) == 2), FALSE, TRUE)
+    # comparison controls which comparator is used when more than 2 interventions are present
+    # bw and n control the level of smoothness of the kernel density estimation
   options(scipen=10)
   
   if(!is.null(comparison))

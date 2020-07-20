@@ -30,7 +30,7 @@
 #' @param wtp A(n optional) vector wtp including the values of the willingness
 #' to pay grid. If not specified then BCEA will construct a grid of 501 values
 #' from 0 to Kmax. This option is useful when performing intensive computations
-#' (eg for the EVPPI).
+#' (e.g. for the EVPPI).
 #' @param plot A logical value indicating whether the function should produce
 #' the summary plot or not.
 #' @return An object of the class "bcea" containing the following elements

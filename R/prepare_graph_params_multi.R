@@ -3,14 +3,14 @@
 prepare_graph_params_multi <- function(...) {
   
   alt.legend <- pos
-  lty <- rep(1:6,ceiling(he$n_comparators/6))[1:he$n_comparators]
+  lty <- rep(1:6, ceiling(he$n_comparators/6))[1:he$n_comparators]
   label <- paste0(he$interventions)
   
   jus <- NULL
   
   if (alt.legend) {
     alt.legend <- "bottom"
-    heplot <- heplot + ggplot2::theme(legend.direction = "vertical")
+    heplot <- heplot + theme(legend.direction = "vertical")
   } else {
     if (is.character(alt.legend)) {
       choices <- c("left", "right", "bottom", "top")
