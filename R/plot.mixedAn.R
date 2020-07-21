@@ -1,5 +1,3 @@
-###plot.mixedAn###############################################################################################
-
 
 #' Summary plot of the health economic analysis when the mixed analysis is
 #' considered
@@ -30,6 +28,7 @@
 #' difference between the ''optimal'' version of the EVPI (when only the most
 #' cost-effective intervention is included in the market) and the mixed
 #' strategy one (when more than one intervention is considered in the market).
+#' 
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}}, \code{\link{mixedAn}}
 #' @references Baio, G. and Russo, P. (2009).A decision-theoretic framework for
@@ -43,6 +42,7 @@
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
 #' London
 #' @keywords Health economic evaluation Mixed analysis
+#' 
 #' @examples
 #' 
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
@@ -50,7 +50,7 @@
 #' #
 #' # Load the processed results of the MCMC simulation model
 #' data(Vaccine)
-#' # 
+#'
 #' # Runs the health economic evaluation using BCEA
 #' m <- bcea(e=e,c=c,          # defines the variables of 
 #'                             #  effectiveness and cost
@@ -63,29 +63,32 @@
 #'                             #  in a grid from the interval (0,Kmax)
 #'       plot=FALSE            # inhibits graphical output
 #' )
-#' #
+#'
 #' ma <- mixedAn(m,        # uses the results of the mixed strategy 
 #'                         #  analysis (a "mixedAn" object)
 #'        mkt.shares=NULL  # the vector of market shares can be defined 
 #'                         #  externally. If NULL, then each of the T 
 #'                         #  interventions will have 1/T market share
 #' )
-#' #
+#'
 #' # Can also plot the summary graph
 #' plot(ma,graph="base")
-#' #
+#'
 #' # Or with ggplot2
 #' if(require(ggplot2)){
 #' plot(ma,graph="ggplot2")
 #' }
 #' 
-#' @export plot.mixedAn
-plot.mixedAn <- function(x,y.limits=NULL,pos=c(0,1),graph=c("base","ggplot2"),...) {
-  ## Plot the EVPI and the mixed strategy
-  options(scipen=10)
+#' @export
+#' 
+plot.mixedAn <- function(x,
+                         y.limits = NULL,
+                         pos = c(0, 1),
+                         graph = c("base", "ggplot2"),
+                         ...) {
   
   alt.legend <- pos
-  base.graphics <- ifelse(isTRUE(pmatch(graph,c("base","ggplot2"))==2),FALSE,TRUE) 
+  base.graphics <- pmatch(graph, c("base", "ggplot2")) != 2
   
   if(is.null(y.limits)){
     y.limits=range(x$evi,x$evi.star)
@@ -93,7 +96,7 @@ plot.mixedAn <- function(x,y.limits=NULL,pos=c(0,1),graph=c("base","ggplot2"),..
   
   if(base.graphics) {
     
-    if(is.numeric(alt.legend)&length(alt.legend)==2){
+    if(is.numeric(alt.legend)&length(alt.legend) == 2){
       temp <- ""
       if(alt.legend[2]==0)
         temp <- paste0(temp,"bottom")
@@ -104,7 +107,7 @@ plot.mixedAn <- function(x,y.limits=NULL,pos=c(0,1),graph=c("base","ggplot2"),..
       else
         temp <- paste0(temp,"left")
       alt.legend <- temp
-      if(length(grep("^(bottom|top)(left|right)$",temp))==0)
+      if(length(grep("^(bottom|top)(left|right)$",temp)) == 0)
         alt.legend <- FALSE
     }
     if(is.logical(alt.legend)){

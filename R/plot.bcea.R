@@ -1,8 +1,6 @@
 
 #' Summary plot of the health economic analysis
 #' 
-#' @name plot-bcea
-#' 
 #' Plots in a single graph the Cost-Effectiveness plane, the Expected
 #' Incremental Benefit, the CEAC and the EVPI
 #' 
@@ -12,6 +10,7 @@
 #' are rendered in a slightly different way than single plots.
 #' 
 #' @template args-he
+#' 
 #' @param comparison Selects the comparator, in case of more than two
 #' interventions being analysed. The value is passed to
 #' \code{\link{ceplane.plot}}, \code{\link{eib.plot}} and
@@ -56,12 +55,13 @@
 #' 
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 #' # Bayesian model and economic problem
-#' #
+#'
 #' # Load the processed results of the MCMC simulation model
 #' data(Vaccine)
-#' # 
+#' 
 #' # Runs the health economic evaluation using BCEA
-#' he <- bcea(e=e,c=c,          # defines the variables of 
+#' he <- bcea(
+#'        e=e, c=c,             # defines the variables of 
 #'                              #  effectiveness and cost
 #'        ref=2,                # selects the 2nd row of (e,c) 
 #'                              #  as containing the reference intervention
@@ -72,7 +72,7 @@
 #'                              #  in a grid from the interval (0,Kmax)
 #'        plot=FALSE            # does not produce graphical outputs
 #'       )
-#' #
+#'
 #' # Plots the summary plots for the "bcea" object m using base graphics
 #' plot(he, graph="base")
 #' 
@@ -89,6 +89,7 @@
 #'   )                                                       # in ceplane.plot and eib.plot
 #' }
 #' 
+#' @import ggplot2
 #' @export
 #' 
 plot.bcea <- function(he,
@@ -98,11 +99,10 @@ plot.bcea <- function(he,
                       graph = c("base", "ggplot2"),
                       ...) {
   
-  options(scipen = 10)
   named_args <- c(as.list(environment()), list(...))
   graph <- match.arg(graph)
   use_base_graphics <- pmatch(graph, c("base","ggplot2")) != 2
-  exArgs <- list(...)
+  extra_args <- list(...)
   
   if (use_base_graphics) {
     op <- par(mfrow = c(2,2))
@@ -119,7 +119,6 @@ plot.bcea <- function(he,
              graph = "base",...)
     
     ceac.plot(he,
-              comparison = comparison,
               pos = pos,
               graph = "base")
     
@@ -128,77 +127,97 @@ plot.bcea <- function(he,
     par(op)
   } else {
     
-    if(!requireNamespace("ggplot2",quietly=TRUE) & !requireNamespace("grid",quietly=TRUE)){
+    is_req_pkgs <- map_lgl(c("ggplot2","grid"), requireNamespace, quietly = TRUE)
+    
+    if (!all(is_req_pkgs)) {
       message("falling back to base graphics\n")
-      plot.bcea(he,comparison=comparison,wtp=wtp,pos=pos,graph="base",...)
+      plot.bcea(
+        he,
+        comparison = comparison,
+        wtp = wtp,
+        pos = pos,
+        graph = "base", ...)
       return(invisible(NULL))
     }
     
     ####### multiplot ###### 
     # source: R graphics cookbook
-    if(requireNamespace("ggplot2", quietly=TRUE) & requireNamespace("grid",quietly=TRUE)){
-      multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
-        plots <- c(list(...), plotlist)
-        numPlots = length(plots)
-        if(is.null(layout)) {
-          layout <- matrix(seq(1, cols*ceiling(numPlots/cols)),
+    if (all(is_req_pkgs)) {
+      
+      multiplot <- function(plotlist = NULL,
+                            file,
+                            cols = 1,
+                            layout = NULL, ...) {
+        
+        plots <- c(extra_args, plotlist)
+        n_plots <- length(plots)
+        if (is.null(layout)) {
+          layout <- matrix(seq(1, cols*ceiling(n_plots/cols)),
                            ncol = cols,
-                           nrow = ceiling(numPlots/cols))
+                           nrow = ceiling(n_plots/cols))
         }
-        if (numPlots == 1) {
+        if (n_plots == 1) {
           print(plots[[1]])
         } else {
           grid::grid.newpage()
-          grid::pushViewport(grid::viewport(layout=grid::grid.layout(nrow(layout),ncol(layout))))
+          grid::pushViewport(
+            grid::viewport(layout = grid::grid.layout(nrow(layout), ncol(layout))))
           
-          for(i in 1:numPlots) {
-            matchidx <- as.data.frame(which(layout==i,arr.ind=TRUE))
-            print(plots[[i]],vp=grid::viewport(layout.pos.row=matchidx$row,
-                                               layout.pos.col=matchidx$col))
+          for (i in seq_len(n_plots)) {
+            matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+            print(plots[[i]], vp = grid::viewport(layout.pos.row = matchidx$row,
+                                                  layout.pos.col = matchidx$col))
           }
         }
-      } #### multiplot end ####
+      }
       
-      theme.multiplot <- 
-        ggplot2::theme(text = ggplot2::element_text(size=9),
-                       legend.key.size = grid::unit(.5,"lines"),
-                       legend.spacing = grid::unit(-1.25,"line"),
-                       panel.grid = ggplot2::element_blank(),
-                       legend.key = ggplot2::element_blank(),
-                       plot.title = ggplot2::element_text(lineheight=1,face="bold",size=11.5,hjust=0.5))
+      theme_params <- 
+        list(text = element_text(size = 9),
+             legend.key.size = grid::unit(0.5, "lines"),
+             legend.spacing = grid::unit(-1.25, "line"),
+             panel.grid = element_blank(),
+             legend.key = element_blank(),
+             plot.title = element_text(
+               lineheight = 1,
+               face = "bold",
+               size = 11.5,
+               hjust = 0.5))
       
-      for(obj in exArgs)
-        if(ggplot2::is.theme(obj))
-          theme.multiplot <- theme.multiplot + obj
+      ##TODO: modifylist with above?
+      theme_add <- purrr::keep(extra_args, is.theme)
       
-      ceplane.pos <- pos
-      if (!pos) {
-        ceplane.pos <- c(1,1.025)}
+      ceplane.pos <- ifelse(pos, pos, c(1, 1.025))
       
       ceplane <-
-        ceplane.plot(
-          he,
-          wtp = wtp,
-          pos = ceplane.pos,
-          comparison = comparison,
-          graph = "ggplot2",
-          ...) + theme.multiplot
+        ceplane.plot(he,
+                     wtp = wtp,
+                     pos = ceplane.pos,
+                     comparison = comparison,
+                     graph = "ggplot2", ...) +
+        do.call(theme, theme_params) +
+        theme_add
       
       eib <-
         eib.plot(he,
                  pos = pos,
                  comparison = comparison,
-                 graph = "ggplot2",
-                 ...) +
-        theme.multiplot
+                 graph = "ggplot2", ...) +
+        do.call(theme, theme_params) +
+        theme_add
+      
       ceac <-
         ceac.plot(he,
                   pos = pos,
                   comparison = comparison,
                   graph = "ggplot2") +
-        theme.multiplot
-      evi <- evi.plot(he, graph = "ggplot2") +
-        theme.multiplot
+        do.call(theme, theme_params) +
+        theme_add
+      
+      evi <-
+        evi.plot(he, graph = "ggplot2") +
+        do.call(theme, theme_params) +
+        theme_add
+      
       multiplot(ceplane, ceac, eib, evi, cols = 2)
     }
   }

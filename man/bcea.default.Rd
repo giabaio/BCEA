@@ -5,8 +5,8 @@
 \title{Default function}
 \usage{
 \method{bcea}{default}(
-  e,
-  c,
+  eff,
+  cost,
   ref = 1,
   interventions = NULL,
   Kmax = 50000,
@@ -15,25 +15,25 @@
 )
 }
 \value{
-Graphs & computed values for CE Plane, ICER, EIB, CEAC, EVPI
+List of computed values for CE Plane, ICER, EIB, CEAC, EVPI
 }
 \description{
-Compute a Bayesian cost-effectiveness analysis of two or more interventions
+Compute a Bayesian cost-effectiveness analysis of two or more interv_names
 }
 \details{
 INPUTS:
-1. Two objects (e,c). These can be directly computed in a simulation object "sim" from JAGS/BUGS, 
-   or derived by postprocessing of "sim" in R. The objects (e,c) have dimension (n.sim x number of 
-   interventions) and contain n.sim simulated values for the measures of effectiveness and costs 
+1. Two objects (`e`,`c`). These can be directly computed in a simulation object `sim` from JAGS/BUGS, 
+   or derived by postprocessing of `sim` in R. The objects (`e`,`c`) have dimension (`n_sim` x number of 
+   interv_names) and contain n_sim simulated values for the measures of effectiveness and costs 
    for each intervention being compared. 
-2. The reference intervention as a numeric value. Each intervention is a column in the matrices e 
-   and c so if ref=1 the first column is assumed to be associated with the reference intervention. 
+2. The reference intervention as a numeric value. Each intervention is a column in the matrices `e` 
+   and `c` so if `ref` = 1 the first column is assumed to be associated with the reference intervention. 
    Intervention 1 is assumed the default reference. All others are considered comparators.
-3. A string vector "interventions" including the names of the interventions. If none is provided 
+3. A string vector "interv_names" including the names of the interv_names. If none is provided 
    then labels each as "intervention1",...,"interventionN".
-4. The value Kmax which represents the maximum value for the willingness to pay parameter. If none 
-   is provided, then it is assumed Kmax=50000.
+4. The value `Kmax` which represents the maximum value for the willingness to pay parameter. If none 
+   is provided, then it is assumed `Kmax` = 50000.
 5. A(n optional) vector wtp including the values of the willingness to pay grid. If not specified
-   then BCEA will construct a grid of 501 values from 0 to Kmax. This option is useful when 
-   performing intensive computations (eg for the EVPPI)
+   then `bcea` will construct a grid of 501 values from 0 to `Kmax`. This option is useful when 
+   performing intensive computations (e.g. for the EVPPI)
 }

@@ -1,18 +1,30 @@
 
 #' @noRd
 #' 
+#' @keywords dplot
+#' 
 #' c(0,0) corresponds to the “bottom left”
 #' c(1,1) corresponds to the “top right”
 #' inside the plotting area
 #'
-make_legend <- function(legend_pos) {
+make_legend_ggplot <- function(he, legend_pos) {
   
   legend_just <- NULL  # sets the corner that the legend_pos position refers to
   legend_dir <- "horizontal"
   
-  if (any(is.na(legend_pos))) {
+  n_lines <- 
+    if (inherits(he, "pairwise")) {
+      he$n_comparators
+    } else {
+      he$n_comparisons}
+  
+  if (n_lines == 1) {
     
-    legend_pos <- FALSE
+    legend_pos <- "none"
+    
+  } else if (any(is.na(legend_pos))) {
+    
+    legend_pos <- "none"
     
   } else if (is.logical(legend_pos)) {
     

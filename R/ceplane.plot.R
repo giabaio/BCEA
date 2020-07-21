@@ -49,6 +49,7 @@
 #'   acceptability area (default is TRUE).
 #'   \item \code{area_color}: a color specifying the colour of the cost-effectiveness acceptability area
 #'  }
+#'  
 #' @return \item{ceplane}{ If \code{graph="ggplot2"} a ggplot object, or if \code{graph="plotly"} 
 #'   a plotly object containing the requested plot. Nothing is returned when \code{graph="base"}, 
 #'   the default.} 
@@ -64,6 +65,7 @@
 #' @details In the plotly version, point_colors, ICER_colors and area_color can also be specified
 #'   as rgba colours using either the \code{\link[plotly]{toRGB}{plotly::toRGB}} function or
 #'   a rgba colour string, e.g. \code{'rgba(1, 1, 1, 1)'}.
+#'   
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}}
 #' @references Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
@@ -73,6 +75,7 @@
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
 #' London
 #' @keywords Health economic evaluation Cost Effectiveness Plane
+#' 
 #' @examples
 #' 
 #' ### create the bcea object m for the smoking cessation example
@@ -98,131 +101,29 @@ ceplane.plot <- function(he,
                          xlim = NULL,
                          ylim = NULL,
                          ...) {
-  # avoid scientific format for graphs labels
-  options(scipen = 10)
-  exArgs <- list(...)
   
+  graph <- match.arg(graph)
   
+  ##TODO: what is this?..
   ### hidden options for ggplot2 ###
   # ICER.size =                    # changes ICER point size
   # label.pos = FALSE              # uses alternate position for wtp label (old specification)
-  alt.legend <- pos
-  # choose graphical engine
-  if (is.null(graph) || is.na(graph)) graph = "base"
-  graph_choice <- pmatch(graph[1], c("base", "ggplot2", "plotly"), nomatch = 1)
   
-  is_pkg_avail <- requireNamespace("ggplot2", quietly = TRUE) & requireNamespace("grid", quietly = TRUE)
+  plot_type <- select_plot_type(graph)
   
-  # check feasibility
-  if (graph_choice == 2 && !is_pkg_avail) {
-    warning("Package ggplot2 and grid not found; ceplane.plot will be rendered using base graphics.")
-    graph_choice <- 1
-  }
-  if (graph_choice == 3 && !requireNamespace("plotly", quietly = TRUE)) {
-    warning("Package plotly not found; ceplane.plot will be rendered using base graphics.")
-    graph_choice <- 1
-  }
+  graph_params <- prepare_graph_params_ceplane(...)
   
-  # evaluate additional arguments -----
-  plot_annotations <- list("exist" = list("title" = FALSE, "xlab" = FALSE, "ylab" = FALSE))
-  plot_aes <- list("area" = list("include" = TRUE, "color" = "light gray", "line_color" = "black"),
-                   "point" = list("colors" = "black", "sizes" = 4),
-                   "ICER" = list("colors" = "red", "sizes" = 8),
-                   "exist" = list("area" = list("include" = FALSE, "color" = FALSE, "line_color" = FALSE),
-                                  "point" = list("colors" = FALSE, "sizes" = FALSE),
-                                  "ICER" = list("colors" = FALSE, "sizes" = FALSE)))
-  plot_aes_args = c("area_include", "area_color", "area_line_color",
-                    "point_colors", "point_sizes",
-                    "ICER_colors", "ICER_sizes")
-  if (length(exArgs) >= 1) {
-    # if existing, read and store title, xlab and ylab
-    for (annotation in names(plot_annotations$exist)) {
-      if (exists(annotation, where = exArgs)) {
-        plot_annotations$exist[[annotation]] <- TRUE
-        plot_annotations[[annotation]] <- exArgs[[annotation]]
-      }
-    }
-    # if existing, read and store graphical options
-    for (aes_arg in plot_aes_args) {
-      if (exists(aes_arg, where = exArgs)) {
-        aes_cat <- strsplit(aes_arg, "_")[[1]][1]
-        aes_name <- paste0(strsplit(aes_arg, "_")[[1]][-1], collapse = "_")
-        plot_aes[[aes_cat]][[aes_name]] <- exArgs[[aes_arg]]
-        plot_aes$exist[[aes_cat]][[aes_name]] <- TRUE
-      }
-    }
-  }
-  # Args compatibility
-  if (exists("ICER.size", where = exArgs)) {
-    if (plot_aes$exist$ICER$sizes) {
-      warning("Both ICER.size and ICER_sizes arguments specified. ICER_sizes will be used.")
-    } else {
-      warning("ICER.size is softly deprecated. Please use ICER_sizes instead.")
-      plot_aes$exist$ICER$sizes <- TRUE
-      plot_aes$ICER$sizes <- exArgs$ICER.size
-    }
-  }
-  if (exists("ICER.col", where = exArgs)) {
-    if (plot_aes$exist$ICER$colors) {
-      warning("Both ICER.col and ICER_col arguments specified. ICER_col will be used.")
-    } else {
-      warning("ICER.col is softly deprecated. Please use ICER_col instead.")
-      plot_aes$exist$ICER$colors <- TRUE
-      plot_aes$ICER$colors <- exArgs$ICER.col
-    }
-  }
-  if (exists("col", where = exArgs)) {
-    if (plot_aes$exist$point$colors) {
-      warning("Both col and point_colors arguments specified. point_colors will be used.")
-    } else {
-      warning("col argument is softly deprecated. Please use point_colors instead.")
-      plot_aes$exist$point$colors <- TRUE
-      plot_aes$point$colors <- exArgs$col
-    }
-  }
-  # set default colour scheme
-  if (!plot_aes$exist$point$colors) {
-    if (he$n.comparisons > 1 & (is.null(comparison) || length(comparison) > 1)) {
-      plot_aes$point$colors <- colors()[floor(seq(262, 340, length.out = he$n.comparisons))]
-    } else {
-      plot_aes$point$colors <- "grey55"
-    }
-  }
-  # default plot annotations -----
-  if (!plot_annotations$exist$title)
-    plot_annotations$title <- with(he, paste0(
-      "Cost-Effectiveness Plane",
-      ifelse(
-        n.comparisons == 1 | (n.comparisons > 1 & (!is.null(comparison) && length(comparison) == 1)),
-        paste0("\n", interventions[ref], " vs ", interventions[-ref]),
-        paste0(ifelse(
-          isTRUE(he$mod),
-          paste0(
-            "\n",
-            interventions[ref],
-            " vs ",
-            paste0(interventions[comp], collapse = ", ")
-          ),
-          ""
-        ))
-      )
-    ))
-  if (!plot_annotations$exist$xlab)
-    plot_annotations$xlab = "Effectiveness differential"
-  if (!plot_annotations$exist$ylab)
-    plot_annotations$ylab = "Cost differential"
-  
-  if (graph_choice == 1) {
+  if (graph_type == 1) {
 
     ##TODO:...
     # ceplane_plot_base()
     
-  } else if (graph_choice == 2) {
+  } else if (graph_type == 2) {
     
     ##TODO:...
     # ceplane_plot_ggplot()
     
-  } else if (graph_choice == 3) {
+  } else if (graph_type == 3) {
     
     ##TODO:...
     # ceplane_plot_plotly()

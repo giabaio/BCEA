@@ -1,35 +1,54 @@
 
+#' @keywords hplot
+#' 
+ceac_plot_ggplot <- function(he,
+                             pos_legend,
+                             graph_params, ...) UseMethod("ceac_plot_ggplot", he)
+
+#
+ceac_plot_ggplot.pairwise <- function(he,
+                                      pos_legend,
+                                      graph_params, ...) {
+  ceac_ggplot(he,
+              pos_legend,
+              graph_params,
+              "p_best_interv", ...)
+}
+
+#' @keywords hplot
+#' 
+ceac_plot_ggplot.default <- function(he,
+                                     pos_legend,
+                                     graph_params, ...) {
+  ceac_ggplot(he,
+              pos_legend,
+              graph_params,
+              "ceac", ...)
+}
+
 #' @noRd
 #' 
-#' @importFrom ggplot2
+#' @keywords hplot
 #' 
-.ceac_plot_ggplot <- function(he,
-                              pos_legend,
-                              graph_params,
-                              comparison, ...) {
+ceac_ggplot <- function(he,
+                        pos_legend,
+                        graph_params,
+                        ceac, ...) {
   
   extra_params <- list(...)
-  
-  is_pkg_avail <-
-    requireNamespace("ggplot2", quietly = TRUE) & requireNamespace("grid", quietly = TRUE)
-  
-  if (!is_pkg_avail) {
-    message("falling back to base graphics\n")
-    ceac.plot(he, pos = pos_legend, graph = "base", ...)
-    return()
-  }
-  
-  if (is.null(comparison)) comparison <- he$comp
+
+  ceac_dat <- he[[ceac]]
+  n_lines <- ncol(ceac_dat)
   
   data_psa <-
     tibble(k = rep(he$k,
-                   times = he$n_comparisons),
-           ceac = c(he$ceac),
-           comparison = as.factor(rep(he$comp,
+                   times = n_lines),
+           ceac = c(ceac_dat),
+           comparison = as.factor(rep(1:n_lines,
                                       each = length(he$k))))
   
   graph_params <- helper_ggplot_params(he, graph_params)
-  legend_params <- make_legend(pos_legend)
+  legend_params <- make_legend_ggplot(he, pos_legend)
   theme_add <- purrr::keep(extra_params, is.theme)
   
   ggplot(data_psa, aes(k, ceac)) +
