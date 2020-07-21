@@ -13,8 +13,8 @@ Authors@R: c(
     person("Anna", "Heath",
             email = "gianluca@stats.ucl.ac.uk",
             role = c("aut")),
-    person("Nathan","Green",
-            email = "n.green@ucl.ac.uk",
+    person("Nathan", "Green",
+            email = "gianluca@stats.ucl.ac.uk",
             role = c("aut")))
 Suggests: 
     R2jags,
