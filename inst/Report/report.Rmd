@@ -18,7 +18,8 @@ if(ext=="pdf") {
 } else {
     align="default"
 }
-options("scipen"=999)
+
+options(scipen = 999)
 
 # Check whether Info-rank should also be computed & shown
 if(!is.null(psa_sims)){iIR=TRUE} else {iIR=FALSE}

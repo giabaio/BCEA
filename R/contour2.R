@@ -1,5 +1,3 @@
-#####
-
 
 #' Specialised contour plot for objects in the class "bcea"
 #' 
@@ -55,20 +53,41 @@
 #' contour2(m,wtp=200,ICER.size=2,graph="ggplot2")
 #' }
 #' 
-#' @export contour2
-contour2 <- function(he,wtp=25000,xlim=NULL,ylim=NULL,comparison=NULL,graph=c("base","ggplot2"),...) {
-  # Forces R to avoid scientific format for graphs labels
-  options(scipen=10)
-  
+#' @export
+#' 
+contour2 <-
+  function(he,
+           wtp = 25000,
+           xlim = NULL,
+           ylim = NULL,
+           comparison = NULL,
+           graph = c("base", "ggplot2"),
+           ...) {
+    
   # Additional/optional arguments
-  exArgs <- list(...)
-  if(!exists("xlab",where=exArgs)){xlab <- "Effectiveness differential"} else {xlab <- exArgs$xlab}
-  if(!exists("ylab",where=exArgs)){ylab <- "Cost differential"} else {ylab <- exArgs$ylab}
-  if(!exists("title",where=exArgs)){
-    title <- paste("Cost effectiveness plane \n",he$interventions[he$ref]," vs ",he$interventions[he$comp],sep="")} 
-  else {title <- exArgs$title
-  }
-  
+    exArgs <- list(...)
+    if (!exists("xlab", where = exArgs)) {
+      xlab <- "Effectiveness differential"
+    } else {
+      xlab <- exArgs$xlab
+    }
+    if (!exists("ylab", where = exArgs)) {
+      ylab <- "Cost differential"
+    } else {
+      ylab <- exArgs$ylab
+    }
+    if (!exists("title", where = exArgs)) {
+      title <-
+        paste("Cost effectiveness plane \n",
+              he$interventions[he$ref],
+              " vs ",
+              he$interventions[he$comp],
+              sep = "")
+    }
+    else {
+      title <- exArgs$title
+    }
+    
   base.graphics <- ifelse(isTRUE(pmatch(graph,c("base","ggplot2"))==2),FALSE,TRUE) 
   
   if(base.graphics) {
@@ -78,7 +97,8 @@ contour2 <- function(he,wtp=25000,xlim=NULL,ylim=NULL,comparison=NULL,graph=c("b
     
     # Selects the first comparison by default if not selected
     if(is.null(comparison)){
-      message("The first available comparison will be selected. To plot multiple comparisons together please use the ggplot2 version. Please see ?contour2 for additional details.")
+      message("The first available comparison will be selected.
+              To plot multiple comparisons together please use the ggplot2 version. Please see ?contour2 for additional details.")
       comparison <- 1
     }
     

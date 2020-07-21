@@ -1,31 +1,33 @@
-#####multi.ce##################################################################################################
-
 
 #' Cost-effectiveness analysis with multiple comparison
 #' 
 #' Computes and plots the probability that each of the n_int interventions
 #' being analysed is the most cost-effective and the cost-effectiveness
-#' acceptability frontier
-#' 
+#' acceptability frontier.
 #' 
 #' @param he A \code{bcea} object containing the results of the Bayesian
 #' modelling and the economic evaluation.
-#' @return \item{m.ce}{A matrix including the probability that each
-#' intervention is the most cost-effective for all values of the willingness to
-#' pay parameter} \item{ceaf}{A vector containing the cost-effectiveness
-#' acceptability frontier}
+#' 
+#' @return Original bcea object (list) of class "pairwise" with additional:
+#'    \item{p_best_interv}{A matrix including the probability that each
+#'    intervention is the most cost-effective for all values of the willingness to
+#'    pay parameter}
+#'    \item{ceaf}{A vector containing the cost-effectiveness acceptability frontier}
+#' 
 #' @author Gianluca Baio
 #' @seealso \code{\link{bcea}}, \code{\link{mce.plot}}, \code{\link{ceaf.plot}}
 #' @keywords Health economic evaluation Multiple comparison
+#' 
 #' @examples
 #' 
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 #' # Bayesian model and economic problem
-#' #
+#' 
 #' # Load the processed results of the MCMC simulation model
 #' data(Vaccine)
-#' # 
+#'  
 #' # Runs the health economic evaluation using BCEA
+#' 
 #' m <- bcea(e=e,c=c,          # defines the variables of 
 #'                             #  effectiveness and cost
 #'       ref=2,                # selects the 2nd row of (e,c) 
@@ -37,32 +39,38 @@
 #'                             #  in a grid from the interval (0,Kmax)
 #'       plot=FALSE            # inhibits graphical output
 #' )
-#' #
-#' mce <- multi.ce(m           # uses the results of the economic analysis 
-#' )
 #' 
-#' @export multi.ce
-multi.ce <- function(he){
-  # Cost-effectiveness analysis for multiple comparison 
-  # Identifies the probability that each comparator is the most cost-effective as well as the
-  # cost-effectiveness acceptability frontier
-  cl <- colors()
-  # choose colors on gray scale
-  color <- cl[floor(seq(262,340,length.out=he$n.comparators))]	
+#' mce <- multi.ce(m)          # uses the results of the economic analysis 
+#' 
+#' @export
+#' 
+multi.ce <- function(he) {
   
-  rank <- most.ce <- array(NA,c(he$n.sim,length(he$k),he$n.comparators))
-  for (t in 1:he$n.comparators) {
-    for (j in 1:length(he$k)) {
-      rank[,j,t] <- apply(he$U[,j,]<=he$U[,j,t],1,sum)
-      most.ce[,j,t] <- rank[,j,t]==he$n.comparators
+  # grey scale
+  color <- colors()[floor(seq(262, 340, length.out = he$n_comparators))]
+  
+  p_best_interv <- array(NA, c(length(he$k), he$n_comparators))
+  
+  for (i in seq_len(he$n_comparators)) {
+    for (k in seq_along(he$k)) {
+      
+      is_interv_best <- he$U[, k, ] <= he$U[, k, i]
+      
+      rank <- apply(!is_interv_best, 1, sum)
+      
+      p_best_interv[k, i] <- mean(rank == 0)
     }
   }
-  m.ce <- apply(most.ce,c(2,3),mean)		# Probability most cost-effective
-  ceaf <- m.ce[cbind(1:nrow(m.ce),he$best)]
-  ###ceaf <- apply(m.ce,1,max)			# Cost-effectiveness acceptability frontier
   
-  # Output of the function
-  list(
-    m.ce=m.ce,ceaf=ceaf,n.comparators=he$n.comparators,k=he$k,interventions=he$interventions
-  )
+  # cost-effectiveness acceptability frontier
+  
+  ##TODO: fixed ref value. do we really want this? [NG]
+  ceaf <- p_best_interv[cbind(1:nrow(p_best_interv), he$best)]
+  #ceaf <- apply(p_best_interv, 1, max)
+  
+  he <- c(he,
+          list(p_best_interv = p_best_interv,
+          ceaf = ceaf))
+  
+  structure(he, class = c("pairwise", class(he)))
 }

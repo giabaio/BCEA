@@ -69,7 +69,6 @@
 #' @export eib.plot
 eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph=c("base","ggplot2","plotly"),...) {
   
-  options(scipen=10)
   alt.legend <- pos
   # choose graphical engine
   if (is.null(graph) || is.na(graph)) graph = "base"

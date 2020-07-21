@@ -1,9 +1,7 @@
-# evi.plot -----
 
 #' Expected Value of Information (EVI) plot
 #' 
 #' Plots the Expected Value of Information (EVI) against the willingness to pay
-#' 
 #' 
 #' @param he A \code{bcea} object containing the results of the Bayesian
 #' modelling and the economic evaluation.
@@ -33,10 +31,11 @@
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
 #' London
 #' @keywords Health economic evaluation Expected value of information
-#' @export evi.plot
+#' @export
+#' 
 evi.plot <- function(he, graph = c("base","ggplot2","plotly"), ...) {
-  options(scipen = 10)
-  # choose graphical engine -----
+
+    # choose graphical engine -----
   if (is.null(graph) || is.na(graph)) 
     graph = "base"
   graph_choice <- pmatch(graph[1], c("base", "ggplot2", "plotly"), nomatch = 1)

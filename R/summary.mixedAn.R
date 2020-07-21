@@ -1,5 +1,3 @@
-###summary.mixedAn############################################################################################
-
 
 #' Summary methods for objects in the class \code{mixedAn} (mixed analysis)
 #' 
@@ -29,6 +27,7 @@
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
 #' London
 #' @keywords Health economic evaluation Mixed analysis
+#' 
 #' @examples
 #' 
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
@@ -36,7 +35,7 @@
 #' #
 #' # Load the processed results of the MCMC simulation model
 #' data(Vaccine)
-#' # 
+#' 
 #' # Runs the health economic evaluation using BCEA
 #' m <- bcea(e=e,c=c,          # defines the variables of 
 #'                             #  effectiveness and cost
@@ -48,14 +47,14 @@
 #'                             #  to pay threshold; implies that k is chosen 
 #'                             #  in a grid from the interval (0,Kmax)
 #' )
-#' #
+#'
 #' ma <- mixedAn(m,        # uses the results of the mixed strategy 
 #'                         #  analysis (a "mixedAn" object)
 #'        mkt.shares=NULL  # the vector of market shares can be defined 
 #'                         #  externally. If NULL, then each of the T 
 #'                         #  interventions will have 1/T market share
 #' )
-#' #
+#'
 #' # Prints a summary of the results
 #' summary(ma,       # uses the results of the mixed strategy analysis 
 #'                   #  (a "mixedAn" object)
@@ -63,7 +62,8 @@
 #'                   #  (default: 25,000) 
 #' )
 #' 
-#' @export summary.mixedAn
+#' @export
+#' 
 summary.mixedAn <- function(object,wtp=25000,...) {
   if(max(object$k)<wtp) {
     wtp <- max(object$k)

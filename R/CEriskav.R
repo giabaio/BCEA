@@ -1,12 +1,9 @@
-###CEriskav###################################################################################################
-
 
 #' Cost-effectiveness analysis including a parameter of risk aversion
 #' 
 #' Extends the standard cost-effectiveness analysis to modify the utility
 #' function so that risk aversion of the decision maker is explicitly accounted
-#' for
-#' 
+#' for. 
 #' 
 #' @aliases CEriskav CEriskav.default
 #' @param he A \code{bcea} object containing the results of the Bayesian

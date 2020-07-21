@@ -1,12 +1,10 @@
-## Contour plots for the cost-effectiveness plane
 
-
-#' Contour method for objects in the class \code{bcea}
+#' Contour plots for the cost-effectiveness plane
 #' 
+#' Contour method for objects in the class \code{bcea}.
 #' Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
 #' of the bivariate density of the differentials of cost (y-axis) and
 #' effectiveness (x-axis)
-#' 
 #' 
 #' @param x A \code{bcea} object containing the results of the Bayesian
 #' modelling and the economic evaluation
@@ -55,20 +53,50 @@
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
 #' London
 #' @keywords Health economic evaluation Bayesian model
-#' @export contour.bcea
-contour.bcea <- function(x,comparison=1,scale=0.5,nlevels=4,levels=NULL,pos=c(1,0),
-                         xlim=NULL,ylim=NULL,graph=c("base","ggplot2"),...) {
-  requireNamespace("MASS")
-  options(scipen=10)
+#' @import MASS
+#' 
+#' @export
+#' 
+contour.bcea <-
+  function(x,
+           comparison = 1,
+           scale = 0.5,
+           nlevels = 4,
+           levels = NULL,
+           pos = c(1, 0),
+           xlim = NULL,
+           ylim = NULL,
+           graph = c("base", "ggplot2"),
+           ...) {
+    
   # comparison selects which plot should be made
   # by default it is the first possible
   
   # Additional/optional arguments
-  exArgs <- list(...)
-  if(!exists("xlab",where=exArgs)){xlab <- "Effectiveness differential"} else {xlab <- exArgs$xlab}
-  if(!exists("ylab",where=exArgs)){ylab <- "Cost differential"} else {ylab <- exArgs$ylab}
-  if(!exists("title",where=exArgs)){title <- paste("Cost effectiveness plane contour plot\n",x$interventions[x$ref]," vs ",x$interventions[x$comp],sep="")} 
-  else {title <- exArgs$title}
+    exArgs <- list(...)
+    if (!exists("xlab", where = exArgs)) {
+      xlab <- "Effectiveness differential"
+    } else {
+      xlab <- exArgs$xlab
+    }
+    if (!exists("ylab", where = exArgs)) {
+      ylab <- "Cost differential"
+    } else {
+      ylab <- exArgs$ylab
+    }
+    if (!exists("title", where = exArgs)) {
+      title <-
+        paste(
+          "Cost effectiveness plane contour plot\n",
+          x$interventions[x$ref],
+          " vs ",
+          x$interventions[x$comp],
+          sep = ""
+        )
+    }
+    else {
+      title <- exArgs$title
+    }
   
   alt.legend <- pos
   base.graphics <- ifelse(isTRUE(pmatch(graph,c("base","ggplot2"))==2),FALSE,TRUE) 
@@ -76,7 +104,8 @@ contour.bcea <- function(x,comparison=1,scale=0.5,nlevels=4,levels=NULL,pos=c(1,
   if(base.graphics){
     
     if(is.null(comparison) | length(comparison) > 1){
-      message("The first available comparison will be selected. To plot multiple comparisons together please use the ggplot2 version. Please see ?contour.bcea for additional details.")
+      message("The first available comparison will be selected. To plot multiple comparisons together please use the ggplot2 version.
+              Please see ?contour.bcea for additional details.")
       comparison <- 1
     }
     
