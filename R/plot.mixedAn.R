@@ -87,11 +87,8 @@ plot.mixedAn <- function(x,
                          graph = c("base", "ggplot2"),
                          ...) {
   
-  ## Plot the EVPI and the mixed strategy
-  options(scipen=10)
-  
   alt.legend <- pos
-  base.graphics <- ifelse(isTRUE(pmatch(graph,c("base","ggplot2"))==2),FALSE,TRUE) 
+  base.graphics <- pmatch(graph, c("base", "ggplot2")) != 2
   
   if(is.null(y.limits)){
     y.limits=range(x$evi,x$evi.star)
@@ -99,7 +96,7 @@ plot.mixedAn <- function(x,
   
   if(base.graphics) {
     
-    if(is.numeric(alt.legend)&length(alt.legend)==2){
+    if(is.numeric(alt.legend)&length(alt.legend) == 2){
       temp <- ""
       if(alt.legend[2]==0)
         temp <- paste0(temp,"bottom")
@@ -110,7 +107,7 @@ plot.mixedAn <- function(x,
       else
         temp <- paste0(temp,"left")
       alt.legend <- temp
-      if(length(grep("^(bottom|top)(left|right)$",temp))==0)
+      if(length(grep("^(bottom|top)(left|right)$",temp)) == 0)
         alt.legend <- FALSE
     }
     if(is.logical(alt.legend)){

@@ -102,8 +102,6 @@ ceplane.plot <- function(he,
                          ylim = NULL,
                          ...) {
   
-  # avoid scientific format for graphs labels
-  options(scipen = 10)
   graph <- match.arg(graph)
   
   ##TODO: what is this?..

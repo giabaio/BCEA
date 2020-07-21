@@ -75,7 +75,6 @@ ceac.plot <- function(he,
                       graph = c("base", "ggplot2", "plotly"),
                       ...) {
   
-  options(scipen = 10)
   graph <- match.arg(graph)
   
   graph_type <- select_plot_type(graph)

@@ -99,7 +99,6 @@ plot.bcea <- function(he,
                       graph = c("base", "ggplot2"),
                       ...) {
   
-  options(scipen = 10)
   named_args <- c(as.list(environment()), list(...))
   graph <- match.arg(graph)
   use_base_graphics <- pmatch(graph, c("base","ggplot2")) != 2

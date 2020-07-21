@@ -89,9 +89,12 @@
 #'   )
 #' }
 #' 
-#' @export plot.CEriskav
-plot.CEriskav <- function(x,pos=c(0,1),graph=c("base","ggplot2"),...) {
-  options(scipen=10)
+#' @export
+#' 
+plot.CEriskav <- function(x,
+                          pos = c(0, 1),
+                          graph = c("base", "ggplot2"),
+                          ...) {
   
   alt.legend <- pos
   base.graphics <- ifelse(isTRUE(pmatch(graph,c("base","ggplot2"))==2),FALSE,TRUE) 

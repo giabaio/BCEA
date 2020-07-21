@@ -50,7 +50,6 @@ ib.plot <-
       ifelse(isTRUE(pmatch(graph, c("base", "ggplot2")) == 2), FALSE, TRUE)
     # comparison controls which comparator is used when more than 2 interventions are present
     # bw and n control the level of smoothness of the kernel density estimation
-  options(scipen=10)
   
   if(!is.null(comparison))
     stopifnot(comparison<=he$n.comparison)
