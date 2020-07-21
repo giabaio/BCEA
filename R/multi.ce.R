@@ -62,11 +62,7 @@ multi.ce <- function(he) {
     }
   }
   
-  # cost-effectiveness acceptability frontier
-  
-  ##TODO: fixed ref value. do we really want this? [NG]
-  ceaf <- p_best_interv[cbind(1:nrow(p_best_interv), he$best)]
-  #ceaf <- apply(p_best_interv, 1, max)
+  ceaf <- apply(p_best_interv, 1, max)
   
   he <- c(he,
           list(p_best_interv = p_best_interv,

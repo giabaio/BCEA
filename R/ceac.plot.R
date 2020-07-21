@@ -48,7 +48,7 @@
 #' @keywords hplot
 #' @export
 #' 
-#' @importFrom ggplot2
+#' @import ggplot2
 #' 
 #' @examples 
 #' 

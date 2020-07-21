@@ -19,7 +19,9 @@
 #'    then `bcea` will construct a grid of 501 values from 0 to `Kmax`. This option is useful when 
 #'    performing intensive computations (e.g. for the EVPPI)
 #'
-#' @return List of computed values for CE Plane, ICER, EIB, CEAC, EVPI 
+#' @return List of computed values for CE Plane, ICER, EIB, CEAC, EVPI
+#' @import dplyr
+#' 
 #' @export
 #'
 bcea.default <- function(eff,
