@@ -4,8 +4,15 @@
 \alias{info.rank}
 \title{Info-rank plot}
 \usage{
-info.rank(parameter, input, he, wtp = he$k[min(which(he$k >= he$ICER))],
-  howManyPars = NULL, graph = c("base", "plotly"), ...)
+info.rank(
+  parameter,
+  input,
+  he,
+  wtp = he$k[min(which(he$k >= he$ICER))],
+  howManyPars = NULL,
+  graph = c("base", "plotly"),
+  ...
+)
 }
 \arguments{
 \item{parameter}{A vector of parameters for which the individual EVPPI

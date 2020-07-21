@@ -1,11 +1,6 @@
-######plot.evppi################################################################################################
 
-
-#' plot.evppi
-#' 
-#' Plots a graph of the Expected Value of Partial Information with respect to a
+#' Plot a graph of the Expected Value of Partial Information with respect to a
 #' set of parameters
-#' 
 #' 
 #' @param x An object in the class \code{evppi}, obtained by the call to the
 #' function \code{\link{evppi}}.
@@ -28,15 +23,20 @@
 #' @references Baio G. (2012). Bayesian Methods in Health Economics.
 #' CRC/Chapman Hall, London
 #' @keywords Health economic evaluation Expected value of information
-#' @export plot.evppi
-plot.evppi<-function (x, pos = c(0, 0.8), graph = c("base", "ggplot2"), col = NULL, 
-                      ...) 
-{
-  options(scipen = 10)
+#' 
+#' @export
+#' 
+plot.evppi <- function (x,
+                        pos = c(0, 0.8),
+                        graph = c("base", "ggplot2"),
+                        col = NULL,
+                        ...) {
+  
   alt.legend <- pos
-  base.graphics <- ifelse(isTRUE(pmatch(graph, c("base", "ggplot2")) == 
-                                   2), FALSE, TRUE)
-  stopifnot(isTRUE(class(x) == "evppi"))
+  base.graphics <- pmatch(graph, c("base", "ggplot2")) != 2
+  
+  stopifnot(inherits(x, "evppi"))
+  
   if (base.graphics) {
     if (is.numeric(alt.legend) & length(alt.legend) == 2) {
       temp <- ""

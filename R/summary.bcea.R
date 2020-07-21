@@ -25,7 +25,8 @@
 #' London
 #' @keywords Health economic evaluation
 #' @export summary.bcea
-summary.bcea <- function(object,wtp=25000,...) {
+summary.bcea <- function(object,
+                         wtp = 25000,...) {
   
   if(max(object$k)<wtp) {
     wtp <- max(object$k)
