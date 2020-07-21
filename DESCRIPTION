@@ -31,7 +31,7 @@ Suggests:
 Imports: MASS, dplyr, rlang
 Additional_repositories: https://inla.r-inla-download.org/R/stable/
 Description: Produces an economic evaluation of a Bayesian model in the form of MCMC simulations. Given suitable variables of cost and effectiveness / utility for two or more interventions, This package computes the most cost-effective alternative and produces graphical summaries and probabilistic sensitivity analysis.
-License: MIT + file LICENSE
+License: GPL-3
 URL: http://www.statistica.it/gianluca/BCEA,
      http://www.statistica.it/gianluca,
      https://github.com/giabaio/BCEA    
