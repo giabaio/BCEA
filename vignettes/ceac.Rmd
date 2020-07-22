@@ -208,6 +208,7 @@ ceac.plot(he,
 ```
 
 ```{r echo=FALSE}
-# create pdf
+# create output docs
+# rmarkdown::render(input = "vignettes/ceac.Rmd", output_format = "pdf_document", output_dir = "vignettes")
 # rmarkdown::render(input = "vignettes/ceac.Rmd", output_format = "html_document", output_dir = "vignettes")
 ```
