@@ -6,8 +6,7 @@
 #' the willingness to pay
 #' 
 #' 
-#' @param he A \code{bcea} object containing the results of the Bayesian
-#' modelling and the economic evaluation.
+#' @template args-he
 #' @param comparison Selects the comparator, in case of more than two
 #' interventions being analysed.  Default as \code{NULL} plots all the
 #' comparisons together. Any subset of the possible comparisons can be selected

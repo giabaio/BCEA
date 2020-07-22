@@ -1,14 +1,9 @@
-###cost-effectiveness efficiency frontier#############################################
-# tan(theta)=e/c
-# theta=atan(e/c)
-# if theta_1<theta_2, take 1
-
-
 
 #' Cost-Effectiveness Efficiency Frontier (CEAF) plot
 #' 
 #' Produces a plot of the Cost-Effectiveness Efficiency Frontier (CEEF)
 #' 
+#' @section Back compatibility with BCEA previous versions:
 #' The \code{bcea} objects did not include the generating \code{e} and \code{c}
 #' matrices in BCEA versions <2.1-0. This function is not compatible with
 #' objects created with previous versions. The matrices can be appended to
@@ -32,9 +27,8 @@
 #' represent differential costs and benefits compared to the reference
 #' intervention (indexed by \code{ref} in the \code{\link{bcea}} function).
 #' 
-#' @param he A \code{bcea} object containing the results of the Bayesian
-#' modelling and the economic evaluation. The list needs to include the
-#' \code{e} and \code{c} matrices used to generate the object; see Details.
+#' @template args-he
+#' 
 #' @param comparators Vector specifying the comparators to be included in the
 #' frontier analysis. Must be of length > 1. Default as \code{NULL} includes
 #' all the available comparators.
@@ -104,11 +98,22 @@
 #' if(require(ggplot2)){
 #' ceef.plot(m,dominance=TRUE,start.from.origins=FALSE,pos=TRUE,
 #'           print.summary=FALSE,graph="ggplot2")
-#' }
+#'  }
 #' }
 #' 
-#' @export ceef.plot
-ceef.plot <- function(he, comparators=NULL, pos=c(1,1), start.from.origins=TRUE, threshold=NULL, flip=FALSE, dominance=TRUE, relative=FALSE, print.summary=TRUE, graph=c("base", "ggplot2"), ...) {
+#' @export
+#' 
+ceef.plot <- function(he,
+                      comparators = NULL,
+                      pos = c(1, 1),
+                      start.from.origins = TRUE,
+                      threshold = NULL,
+                      flip = FALSE,
+                      dominance = TRUE,
+                      relative = FALSE,
+                      print.summary = TRUE,
+                      graph = c("base", "ggplot2"),
+                      ...) {
    ### plots the cost-effectiveness efficiency frontier, together with the scatter plot of the simulations and optionally the dominance areas
    if(is.null(he$c) | is.null(he$e)) stop("Please use the bcea() function from BCEA version >=2.1-0 or attach the vectors e and c to the bcea object. Please see ?ceef.plot for additional details.")
    

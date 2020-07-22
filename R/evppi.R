@@ -22,8 +22,7 @@
 #' monitored by the call to JAGS or BUGS. The matrix should have column names
 #' matching the names of the parameters and the values in the vector parameter
 #' should match at least one of those values.
-#' @param he A \code{bcea} object (the result of the call to the function
-#' \code{\link{bcea}}).
+#' @template args-he
 #' @param N The number of PSA simulations used to calculate the EVPPI. The
 #' default uses all the available samples.
 #' @param plot A logical value indicating whether the triangular mesh for

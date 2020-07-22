@@ -6,7 +6,6 @@
 #' post-processed to give the health economic analysis. The output is stored in
 #' an object of the class "bcea"
 #' 
-#' 
 #' @aliases bcea bcea.default CEanalysis
 #' @param e An object containing \code{nsim} simulations for the variable of
 #' clinical effectiveness for each intervention being considered. In general it
@@ -78,6 +77,8 @@
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
 #' London
 #' @keywords manip Health economic evaluation
+#' @import dplyr
+#' 
 #' @examples
 #' 
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 

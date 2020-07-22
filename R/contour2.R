@@ -7,8 +7,7 @@
 #' selected value of the willingness-to-pay threshold).
 #' 
 #' 
-#' @param he A "bcea" object containing the results of the Bayesian modelling
-#' and the economic evaluation
+#' @template args-he
 #' @param wtp The selected value of the willingness-to-pay. Default is
 #' \code{25000}.
 #' @param xlim Limits on the x-axis (default=\code{NULL}, so that R will select

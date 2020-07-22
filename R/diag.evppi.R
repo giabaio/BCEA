@@ -26,8 +26,7 @@
 #' 
 #' @param evppi A \code{evppi} object obtained by running the function \code{evppi}
 #' on a \code{bcea} model.
-#' @param he A \code{bcea} object containing the results of the Bayesian
-#' modelling and the economic evaluation.
+#' @template args-he
 #' @param plot_type The type of diagnostics to be performed. It can be the 'residual
 #' plot' or the 'qqplot plot'.
 #' @param interv Specifies the interventions for which diagnostic tests should be

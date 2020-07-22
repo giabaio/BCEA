@@ -4,8 +4,7 @@
 #' Plots the distribution of the Incremental Benefit (IB) for a given value of
 #' the willingness to pay threshold
 #' 
-#' @param he A \code{bcea} object containing the results of the Bayesian
-#' modelling and the economic evaluation.
+#' @template args-he
 #' @param comparison In the case of multiple interventions, specifies the one
 #' to be used in comparison with the reference. Default value of \code{NULL}
 #' forces R to consider the first non-reference intervention as the comparator.

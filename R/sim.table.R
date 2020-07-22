@@ -5,9 +5,7 @@
 #' health economic model, produces a summary table of the simulations from the
 #' cost-effectiveness analysis.
 #' 
-#' 
-#' @param he A \code{bcea} object containing the results of the Bayesian
-#'           modelling and the economic evaluation.
+#' @template args-he
 #' @param wtp The value of the willingness to pay threshold to be used in the
 #'            summary table.
 #' 
