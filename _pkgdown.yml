@@ -1,0 +1,57 @@
+news:
+  cran_dates: false
+
+reference:
+- title: Main
+- contents:
+  - '`BCEA-package`'
+  - '`bcea.default`'
+  - '`bcea`'
+  - '`BCEAweb`'
+  - '`multi.ce`'
+  - '`new_bcea`'
+- title: Plotting
+- contents:
+  - '`ceaf.plot`'
+  - '`ceef.plot`'
+  - '`ceplane.plot`'
+  - '`contour.bcea`'
+  - '`eib.plot`'
+  - '`evi.plot`'
+  - '`contour2`'
+  - '`ib.plot`'
+  - '`ceac.plot`'
+  - '`plot.bcea`'
+  - '`plot.CEriskav`'
+  - '`plot.evppi`'
+  - '`plot.mixedAn`'
+  - '`info.rank`'
+- title: Statistics
+- contents:
+  - '`compute_IB`'
+  - '`compute_kstar`'
+  - '`compute_ol`'
+  - '`compute_U`'
+  - '`compute_Ustar`'
+  - '`compute_vi`'
+  - '`best_interv_given_k`'
+- title: Outputs
+- contents:
+  - '`summary.bcea`'
+  - '`summary.mixedAn`'
+  - '`sim.table`'
+  - '`make.report`'
+- title: Miscellaneous
+- contents:
+  - '`CEriskav`'
+  - '`create_inputs_evpi`'
+  - '`diag.evppi`'
+  - '`evppi`'
+  - '`mixedAn`'
+  - '`select_plot_type`'
+  - '`struct.psa`'
+- title: Data
+- contents:
+  - '`Smoking`'
+  - '`Vaccine`'
+
