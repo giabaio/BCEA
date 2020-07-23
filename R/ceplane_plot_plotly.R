@@ -1,4 +1,5 @@
 
+##TODO:
 ceplane_plot_plotly <- function() {
   
   if (he$n.comparisons > 1 & !is.null(comparison)) {
@@ -24,10 +25,10 @@ ceplane_plot_plotly <- function() {
   } else {
     ICER.size <- ifelse(he$n.comparisons == 1, 8, 0)
   }
-  # plot labels
-  comparisons.label <- with(he,paste0(interventions[ref]," vs ",interventions[comp]))
+  comparisons.label <- with(he, paste(interventions[ref], "vs", interventions[comp]))
   kd <- data.frame(
-    "delta.e" = c(he$delta.e), "delta.c" = c(he$delta.c),
+    "delta.e" = c(he$delta.e),
+    "delta.c" = c(he$delta.c),
     "comparison" = as.factor(c(
       sapply(1:he$n.comparisons, function(x) rep(x, nrow(as.matrix(he$delta.e))))
     )),
@@ -79,16 +80,16 @@ ceplane_plot_plotly <- function() {
                          range.c[2]*1.1,
                          (range.c[2] - range.c[1])*0.1)))
   # Calculates dataset for ICERs from bcea object
-  # @param he A BCEA object
+  # @template args-he
   # @param comparisons.label Optional vector of strings with comparison labels
   # @return A data.frame object including mean outcomes, comparison identifier,
   #   comparison label and associated ICER
-  tabulate_means = function(he, comparisons.label = NULL) {
+  tabulate_means <- function(he, comparisons.label = NULL) {
     if (is.null(comparisons.label))
       comparisons.label <- 1:he$n.comparisons
     data.frame(
-      "lambda.e" = sapply(1:he$n.comparisons, function(x) mean(as.matrix(he$delta.e)[,x])),
-      "lambda.c" = sapply(1:he$n.comparisons, function(x) mean(as.matrix(he$delta.c)[,x])),
+      "lambda.e" = sapply(1:he$n.comparisons, function(x) mean(as.matrix(he$delta.e)[, x])),
+      "lambda.c" = sapply(1:he$n.comparisons, function(x) mean(as.matrix(he$delta.c)[, x])),
       "comparison" = as.factor(1:he$n.comparisons),
       "label" = comparisons.label,
       "ICER" = he$ICER

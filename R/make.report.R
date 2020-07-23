@@ -2,7 +2,7 @@
 #' 
 #' Constructs the automated report from the output of the BCEA 
 #' 
-#' @param he An object obtained as output to a call to \code{bcea}
+#' @template args-he
 #' @param evppi An object obtained as output to a call to \code{evppi}
 #' (default is NULL, so not essential to producing the report).
 #' @param ext A string of text to indicate the extension of the 

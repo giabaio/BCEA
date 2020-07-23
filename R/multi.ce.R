@@ -5,8 +5,7 @@
 #' being analysed is the most cost-effective and the cost-effectiveness
 #' acceptability frontier.
 #' 
-#' @param he A \code{bcea} object containing the results of the Bayesian
-#' modelling and the economic evaluation.
+#' @template args-he
 #' 
 #' @return Original bcea object (list) of class "pairwise" with additional:
 #'    \item{p_best_interv}{A matrix including the probability that each
