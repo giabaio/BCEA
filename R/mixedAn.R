@@ -9,8 +9,7 @@
 #' 
 #' 
 #' @aliases mixedAn mixedAn.default
-#' @param he A \code{bcea} object containing the results of the Bayesian
-#' modelling and the economic evaluation.
+#' @template args-he
 #' @param mkt.shares A vector of market shares associated with the
 #' interventions. Its size is the same as the number of possible comparators.
 #' By default, assumes uniform distribution for each intervention.

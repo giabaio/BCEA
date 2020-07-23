@@ -50,5 +50,4 @@ devtools:install_github("giabaio/BCEA",ref="dev")
 More details on `BCEA` are available in our book [_Bayesian Cost-Effectiveness Analysis with the R Package BCEA_](http://www.statistica.it/gianluca/book/bcea/) (published in the UseR! Springer series). Also, details about the package, including some references and links to a pdf presentation and some posts on my own blog) are given [here](http://www.statistica.it/gianluca/software/bcea/).
 
 ## Licence
-
-MIT © [G Baio](https://github.com/giabaio).
+GPL-3 © [G Baio](https://github.com/giabaio).

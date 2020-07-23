@@ -33,7 +33,10 @@ Suggests:
     reshape2,
     plotly,
     testthat (>= 2.1.0)
-Imports: MASS, dplyr, rlang
+Imports:
+    MASS,
+    dplyr,
+    rlang
 Additional_repositories: https://inla.r-inla-download.org/R/stable/
 Description: Produces an economic evaluation of a Bayesian model in the form of MCMC simulations.
              Given suitable variables of cost and effectiveness / utility for two or more interventions,

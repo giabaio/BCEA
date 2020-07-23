@@ -80,22 +80,21 @@ ceaf.plot <- function(mce,
   }
   
   if (base_graphics) {
-    matplot(x = mce$k, mce$p_best_interv,
+    plot(NULL,
+         ylim = c(0, 1),
+         xlab = "Willingness to pay",
+         ylab = "Probability of most cost effectiveness",
+         main = "Cost-effectiveness acceptability frontier")
+    matplot(x = mce$k,
+            mce$p_best_interv,
             type = "l",
-            lty = 3,
-            xlab = "Willingness to pay",
-            ylab = "Probability of most cost effectiveness",
-            main = "Cost-effectiveness acceptability frontier")
+            lty = 3)
     lines(x = mce$k,
-         y = mce$ceaf,
-         type = "l",
-         lty = 1,
-         lwd = 4,
-         ylim = c(0, 1))
+          y = mce$ceaf,
+          type = "l",
+          lty = 1,
+          lwd = 4)
   } else {
-    # no visible binding note
-    k  <- NA_real_
-    
     df <- data.frame(k = mce$k,
                      ceaf = mce$ceaf)
     ggceaf <-
