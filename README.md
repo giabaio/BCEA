@@ -51,3 +51,5 @@ More details on `BCEA` are available in our book [_Bayesian Cost-Effectiveness A
 
 ## Licence
 GPL-3 © [G Baio](https://github.com/giabaio).
+
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
