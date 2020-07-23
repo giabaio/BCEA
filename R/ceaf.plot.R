@@ -12,13 +12,15 @@
 #' \code{graph="ggplot2"}. }
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}}, \code{\link{multi.ce}}
-#' @references Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics.  Statistical Methods in Medical Research
+#' 
+#' @references
+#' Baio G, Dawid AP. (2011). Probabilistic Sensitivity
+#' Analysis in Health Economics. Statistical Methods in Medical Research
 #' doi:10.1177/0962280211419832.
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-#' London
-#' @keywords Health economic evaluation Multiple comparison
+#' London.
+#' @keywords hplot Health economic evaluation Multiple comparison
 #' 
 #' @import ggplot2, grid
 #' 
@@ -82,13 +84,15 @@ ceaf.plot <- function(mce,
   if (base_graphics) {
     plot(NULL,
          ylim = c(0, 1),
+         xlim = c(0, max(mce$k)),
          xlab = "Willingness to pay",
          ylab = "Probability of most cost effectiveness",
          main = "Cost-effectiveness acceptability frontier")
     matplot(x = mce$k,
             mce$p_best_interv,
             type = "l",
-            lty = 3)
+            lty = 3,
+            add = TRUE)
     lines(x = mce$k,
           y = mce$ceaf,
           type = "l",

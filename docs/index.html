@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">BCEA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3-2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4</span>
       </span>
     </div>
 
@@ -83,11 +83,12 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="bcea" class="section level1">
+<div id="bcea--development-version" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#bcea" class="anchor"></a>BCEA</h1></div>
+<a href="#bcea--development-version" class="anchor"></a>BCEA — development version</h1></div>
 <!-- badges: start -->
-
+<!-- [![Build status](https://img.shields.io/travis/giabaio/BCEA/master.svg?maxAge=0)](https://travis-ci.org/giabaio/BCEA) [![AppVeyor Build Status](https://img.shields.io/appveyor/ci/giabaio/BCEA/master.svg)](https://ci.appveyor.com/project/giabaio/BCEA) [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/BCEA)](https://cran.r-project.org/package=BCEA) [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/BCEA)](https://cran.r-project.org/package=BCEA) [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/grand-total/BCEA?color=orange)](    ) -->
+<!-- badges: end -->
 <div id="contents" class="section level2">
 <h2 class="hasAnchor">
 <a href="#contents" class="anchor"></a>Contents</h2>
@@ -112,21 +113,20 @@
 <li>Cost-effectiveness analysis plots, such as CE planes and CEAC</li>
 <li>EVPPI calculations and plots</li>
 </ul>
+<p>This is the <strong>development</strong> version of BCEA (currently 2.4). It contains a major refactoring of the code to streamline the functions.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>There are two ways of installing <code>BCEA</code>. A “stable” version (currently 2.2.6) is packaged and available from <a href="https://cran.r-project.org/index.html">CRAN</a>. So you can simply type on your R terminal</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"BCEA"</span>)</pre></div>
-<p>The second way involves using the “development” version of <code>BCEA</code> - this will usually be updated more frequently and may be continuously tested. On Windows machines, you need to install a few dependencies, including <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a> first, e.g. by running</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="no">pkgs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/Vaccine.html">c</a></span>(<span class="st">"MASS"</span>, <span class="st">"Rtools"</span>, <span class="st">"devtools"</span>)
-<span class="no">repos</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/Vaccine.html">c</a></span>(<span class="st">"https://cran.rstudio.com"</span>, <span class="st">"https://www.math.ntnu.no/inla/R/stable"</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="no">pkgs</span>, <span class="kw">repos</span> <span class="kw">=</span> <span class="no">repos</span>, <span class="kw">dependencies</span> <span class="kw">=</span> <span class="st">"Depends"</span>)</pre></div>
+<p>The development version can be installed using this GitHub repository. On Windows machines, you need to install a few dependencies, including <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a> first, e.g. by running</p>
+<div class="sourceCode" id="cb1"><pre class="r"><span class="no">pkgs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/Vaccine.html">c</a></span>(<span class="st">"MASS"</span>,<span class="st">"Rtools"</span>,<span class="st">"devtools"</span>)
+<span class="no">repos</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/Vaccine.html">c</a></span>(<span class="st">"https://cran.rstudio.com"</span>, <span class="st">"https://inla.r-inla-download.org/R/stable"</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="no">pkgs</span>,<span class="kw">repos</span><span class="kw">=</span><span class="no">repos</span>,<span class="kw">dependencies</span> <span class="kw">=</span> <span class="st">"Depends"</span>)</pre></div>
 <p>before installing the package using <code>devtools</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"giabaio/BCEA"</span>)</pre></div>
+<div class="sourceCode" id="cb2"><pre class="r"><span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"giabaio/BCEA"</span>,<span class="kw">ref</span><span class="kw">=</span><span class="st">"dev"</span>)</pre></div>
 <p>Under Linux or MacOS, it is sufficient to install the package via <code>devtools</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)
-<span class="no">devtools</span>:<span class="fu">install_github</span>(<span class="st">"giabaio/BCEA"</span>)</pre></div>
+<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)
+<span class="no">devtools</span>:<span class="fu">install_github</span>(<span class="st">"giabaio/BCEA"</span>,<span class="kw">ref</span><span class="kw">=</span><span class="st">"dev"</span>)</pre></div>
 </div>
 <div id="further-details" class="section level2">
 <h2 class="hasAnchor">
@@ -170,25 +170,16 @@
 <li>Gianluca Baio <br><small class="roles"> Author, maintainer </small>  </li>
 <li>Andrea Berardi <br><small class="roles"> Author </small>  </li>
 <li>Anna Heath <br><small class="roles"> Author </small>  </li>
+<li>Nathan Green <br><small class="roles"> Author </small>  </li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://travis-ci.org/giabaio/BCEA"><img src="https://img.shields.io/travis/giabaio/BCEA/master.svg?maxAge=0" alt="Build status"></a></li>
-<li><a href="https://ci.appveyor.com/project/giabaio/BCEA"><img src="https://img.shields.io/appveyor/ci/giabaio/BCEA/master.svg" alt="AppVeyor Build Status"></a></li>
-<li><a href="https://cran.r-project.org/package=BCEA"><img src="http://www.r-pkg.org/badges/version/BCEA" alt="CRAN_Status_Badge"></a></li>
-<li><a href="https://cran.r-project.org/package=BCEA"><img src="http://cranlogs.r-pkg.org/badges/BCEA" alt="CRAN_Download_Badge"></a></li>
-<li><a href=""><img src="http://cranlogs.r-pkg.org/badges/grand-total/BCEA?color=orange" alt="CRAN_Download_Badge"></a></li>
-</ul>
-</div>
-</div>
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath.</p>
+  <p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan Green.</p>
 </div>
 
 <div class="pkgdown">
