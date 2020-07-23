@@ -18,14 +18,15 @@
 #' @author Gianluca Baio, Andrea Berardi, Anna Heath
 #' #' Maintainer: Gianluca Baio <gianluca@@stats.ucl.ac.uk>
 #' 
-#' @references Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
+#' @references
+#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 #' Analysis in Health Economics.  Statistical Methods in Medical Research
 #' doi:10.1177/0962280211419832.
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
 #' London.
 #' 
-#' Baio G., Berardi A., Heath A. (forthcoming). Bayesian Cost Effectiveness
+#' Baio G., Berardi A., Heath A. (2017). Bayesian Cost Effectiveness
 #' Analysis with the R package BCEA. Springer
 #' @keywords Bayesian models Health economic evaluation
 #' 

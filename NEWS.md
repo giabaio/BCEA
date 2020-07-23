@@ -12,48 +12,52 @@
 
 ## Fixes
 
-# BCEA 2.3-1.1
+# BCEA 2.3-1.1<sup>^</sup>
 26 Aug 2019
 	
 # BCEA 2.3-1<sup>^</sup>
-
+5 Aug 2019
+ 
 # BCEA 2.2-6<sup>^</sup>
+11 July 2018
+
 * Fix in `evppi` to allow N to be selected in all methods
 * Fix `diag.evppi`
 
 # BCEA 2.2-5<sup>^</sup>
+18 Nov 2016
 
 * Some changes to EVPPI
 
-# BCEA v2.2.4
+# BCEA 2.2.4
 Nov 2016
 
 * Fixes for new ggplot2 version (`legend.spacing()` and `plot.title` hjust argument)
 
 # BCEA 2.2-3<sup>^</sup>
-May 2016
+22 May 2016
 
 * Major update for the EVPPI to include PFC
 * Fixed issues with info.rank
 
 # BCEA 2.2-2<sup>^</sup>
-January 2016
+25 Jan 2016
 
 * Minor change to `ceef.plot` to align with ggplot2 v2.0.0
 
-# BCEA v2.2.1
-October 2015
+# BCEA 2.2.1
+Oct 2015
 
 * Adds the info-rank plot
 
-# BCEA v2.2
-October 2015
+# BCEA 2.2
+Oct 2015
 
 * Cleaned up and aligned with R's settings
 * `EVPPI` function polished up
 
 # BCEA 2.1-1<sup>^</sup>
-April/July 2015
+6 May 2015 2015
 
 * New function for EVPPI using SPDE-INLA
 * Modifications to the EVPPI functions 
@@ -63,38 +67,39 @@ April/July 2015
 * Old evppi function and method has been renamed `evppi0`, which means there's also a new `plot.evppi0` method
 	  
 # BCEA 2.1-0<sup>^</sup>
-October 2014
+13 Jan 2015
 
 * Migrated from `if(require())` to `if(requireNamespace(,quietly=TRUE))`
 * Documentation updated
 * Added threshold argument to `ceef.plot` function
 
-# BCEA v2.1.0-pre2
-October 2014
+# BCEA 2.1.0-pre2
+Oct 2014
 
 * modifications to `ceef.plot`, `createInputs`, `struct.psa`
 
-# BCEA v2.1-0-pre1
-September 2014
+# BCEA 2.1-0-pre1
+13 Jan 2015
 
 * Documentation updated
 * Smoking dataset and `ceef.plot` function included, additional modifications
 
-# BCEA v2.0-2c
-July, 2014
+# BCEA 2.0-2c
+2 Dec 2013
 
 # BCEA v2.0-2b
-February 2014
+2 Dec 2013
 
 * `ceac.plot` and `eib.plot`: option comparison included for base graphics
 
 # BCEA 2.0-2<sup>^</sup>
-November 2013
+2 Dec 2013
 
 # BCEA 2.0-1<sup>^</sup>
-July, 2013
+31 July 2013
 
 # BCEA 2.0<sup>^</sup>
+30 July 2013
 
 ## Feature updates
 
@@ -106,15 +111,17 @@ July, 2013
 # BCEA 1.3-1
 
 # BCEA 1.3-0<sup>^</sup>
-June 2013
+3 July 2013
 
 # BCEA 1.2
 17 September 2012
 
 # BCEA 1.1.1<sup>^</sup>
+22 Feb 2013
 
 # BCEA 1.1<sup>^</sup>
-14 September 2012
+15 Sept 2012
+
 
 # BCEA 1.0<sup>^</sup>
-4 January 2012
+13 May 2012

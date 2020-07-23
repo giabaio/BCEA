@@ -11,7 +11,7 @@
 #' The single parameter EVPPI has been calculated using the non-parametric GAM
 #' regression developed by Strong et al. (2014). The multi-parameter EVPPI is
 #' calculated using the SPDE-INLA regression method for Gaussian Process
-#' regression developed by Heath et al.  (2015)
+#' regression developed by Heath et al. (2015).
 #' 
 #' @aliases evppi evppi.default
 #' @param parameter A vector of parameters for which the EVPPI should be
@@ -42,6 +42,7 @@
 #' the calculation of the EVPPI, then the user *needs* to also specify the
 #' number of "blocks" (e.g. \code{n.blocks=20}).
 #' 
+#' @section GAM regression
 #' For multi-parameter, the user can select 3 possible methods. If
 #' \code{method="GAM"} (BCEA will accept also \code{"gam"}, \code{"G"} or
 #' \code{"g"}), then the computations are based on GAM regression. The user can
@@ -53,14 +54,15 @@
 #' notation \code{formula="s(p1)+s(p2)"}. This may lead to worse accuracy in
 #' the estimates.
 #' 
-#' The second possible method is the GP regression derived by Strong et al.
+#' @section Strong et al. GP regression
 #' This is used if \code{method="GP"} (BCEA will also accept the specification
 #' \code{method="gp"}). In this case, the user can also specify the number of
 #' PSA runs that should be used to estimate the hyperparameters of the model
-#' (e.g. \code{n.sim=100}). This value is set by default to 500. Finally, it is
-#' also possible to specify some INLA-related options. These are all rather
-#' technical and are described in detail in Baio, Berardi and Heath.  The
-#' optional parameter vector \code{int.ord} can take integer values (c(1,1) is
+#' (e.g. \code{n.sim=100}). This value is set by default to 500.
+#' 
+#' @section INLA-related options
+#' These are all rather technical and are described in detail in Baio et al. (2017).
+#' The optional parameter vector \code{int.ord} can take integer values (c(1,1) is
 #' default) and will force the predictor to include interactions: if
 #' \code{int.ord=c(k,h)}, then all k-way interactions will be used for the
 #' effects and all h-way interactions will be used for the costs. Also, the
@@ -105,6 +107,7 @@
 #' EVPPI}
 #' @author Anna Heath, Gianluca Baio
 #' @seealso \code{\link{plot.evppi}}, \code{\link{bcea}}
+#' 
 #' @references Strong M., Oakley J. and Brennan A. (2014). Estimating
 #' multi-parameter partial Expected Value of Perfect Information from a
 #' probabilistic sensitivity analysis sample: a non-parametric regression
@@ -117,22 +120,26 @@
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
 #' London
 #' 
+#' Baio, G, A Berardi, and A Heath. 2017. Bayesian Cost-Effectiveness Analysis with the R package BCEA.
+#' New York, NY: Springer. doi:10.1007/978-3-319-55718-2.
+#' 
 #' Heath A., Manolopoulou I., Baio G. (2016). Estimating the Expected Value of
 #' Partial Perfect Information in Health Economic Evaluations using Integrated
 #' Nested Laplace Approximation.  Statistics in Medicine.
 #' http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full
+#' 
 #' @keywords Health economic evaluation Expected value of partial information
 #' @examples
 #' 
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 #' # Bayesian model and economic problem
-#' #
+#'
 #' # Load the processed results of the MCMC simulation model
 #' # data(Vaccine)
-#' # 
+#' 
 #' # Runs the health economic evaluation using BCEA
 #' # m <- bcea(e,c,ref=2,interventions=treats)
-#' #
+#'
 #' # Computes the EVPPI for a bunch of parameters
 #' # inp <- CreateInputs(vaccine)
 #' # Computes the EVPPI using INLA/SPDE
@@ -147,5 +154,6 @@
 #' # points(x1$k,x1$evppi,t="l",col="red")
 #' # points(x2$k,x2$evppi,t="l",col="blue")
 #' 
-#' @export evppi
-evppi <- function (parameter, input, he, N = NULL, plot = F, residuals = T,...) UseMethod("evppi")
+#' @export
+#' 
+evppi <- function(parameter, input, he, N = NULL, plot = FALSE, residuals = TRUE,...) UseMethod("evppi", parameter)
