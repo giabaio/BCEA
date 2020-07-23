@@ -73,7 +73,7 @@ the willingness to pay threshold" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BCEA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3-2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4</span>
       </span>
     </div>
 
@@ -195,7 +195,7 @@ London</p>
 <span class='co'># }</span>
 <span class='co'>#</span>
 <span class='co'># \donttest{</span>
-<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>)              <span class='co'># plots the CEAF </span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to min; returning Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to max; returning -Inf</span></div><div class='output co'>#&gt; <span class='error'>Error in plot.window(...): need finite 'xlim' values</span></div><div class='img'><img src='ceaf.plot-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>)              <span class='co'># plots the CEAF </span></div><div class='img'><img src='ceaf.plot-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 <span class='co'>#</span>
 <span class='co'># \donttest{</span>
 <span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>, <span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"g"</span>)   <span class='co'># uses ggplot2 </span></div><div class='output co'>#&gt; <span class='error'>Error in ggplot(df, aes(x = k, y = ceaf)): could not find function "ggplot"</span></div><div class='input'><span class='co'># }</span>
@@ -205,7 +205,7 @@ London</p>
 <span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Smoking</span>)
 <span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='no'>e</span>,<span class='no'>c</span>,<span class='kw'>ref</span><span class='kw'>=</span><span class='fl'>4</span>,<span class='kw'>intervention</span><span class='kw'>=</span><span class='no'>treats</span>,<span class='kw'>Kmax</span><span class='kw'>=</span><span class='fl'>500</span>,<span class='kw'>plot</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
 <span class='no'>mce</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='multi.ce.html'>multi.ce</a></span>(<span class='no'>m</span>)
-<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to min; returning Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to max; returning -Inf</span></div><div class='output co'>#&gt; <span class='error'>Error in plot.window(...): need finite 'xlim' values</span></div><div class='input'># }
+<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>)</div><div class='img'><img src='ceaf.plot-2.png' alt='' width='700' height='433' /></div><div class='input'># }
 
 </div></pre>
   </div>
@@ -219,7 +219,7 @@ London</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath.</p>
+  <p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan Green.</p>
 </div>
 
 <div class="pkgdown">
