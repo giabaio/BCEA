@@ -42,9 +42,9 @@ summary.bcea <- function(object,
     }
   }
   ind.table <- which(object$k==wtp)
-  cols.u <- 1:object$n.comparators
+  cols.u <- 1:object$n_comparators
   cols.ustar <- max(cols.u)+1
-  cols.ib <- (cols.ustar+1):(cols.ustar+object$n.comparisons)
+  cols.ib <- (cols.ustar+1):(cols.ustar+object$n_comparisons)
   cols.ol <- max(cols.ib)+1
   cols.vi <- cols.ol+1
   n.cols <- cols.vi
@@ -65,23 +65,23 @@ summary.bcea <- function(object,
                                   apply(object$ib[ind.table,,],2,mean),mean(object$ol[,ind.table]),mean(object$vi[,ind.table]))
   }
   
-  names.cols <- c(paste("U",seq(1:object$n.comparators),sep=""),"U*",
+  names.cols <- c(paste("U",seq(1:object$n_comparators),sep=""),"U*",
                   paste("IB",object$ref,"_",object$comp,sep=""),"OL","VI")
   colnames(Table) <- names.cols
   
-  tab1 <- matrix(NA,object$n.comparators,1)
-  tab1[,1] <- Table[object$n.sim+1,(paste("U",seq(1:object$n.comparators),sep=""))]
+  tab1 <- matrix(NA,object$n_comparators,1)
+  tab1[,1] <- Table[object$n.sim+1,(paste("U",seq(1:object$n_comparators),sep=""))]
   colnames(tab1) <- "Expected utility"
   rownames(tab1) <- object$interventions
   
-  tab2 <- matrix(NA,object$n.comparisons,3)
+  tab2 <- matrix(NA,object$n_comparisons,3)
   tab2[,1] <- Table[object$n.sim+1,paste("IB",object$ref,"_",object$comp,sep="")]
-  if (object$n.comparisons==1) {
+  if (object$n_comparisons==1) {
     tab2[,2] <- sum(Table[1:object$n.sim,paste("IB",object$ref,"_",object$comp,sep="")]>0)/object$n.sim
     tab2[,3] <- object$ICER
   }
-  if (object$n.comparisons>1) {
-    for (i in 1:object$n.comparisons) {
+  if (object$n_comparisons>1) {
+    for (i in 1:object$n_comparisons) {
       tab2[i,2] <- sum(Table[1:object$n.sim,paste("IB",object$ref,"_",object$comp[i],sep="")]>0)/object$n.sim
       tab2[i,3] <- object$ICER[i]
     }
@@ -99,15 +99,15 @@ summary.bcea <- function(object,
   cat("Cost-effectiveness analysis summary \n")
   cat("\n")
   cat(paste("Reference intervention:  ",object$interventions[object$ref],"\n",sep=""))
-  if(object$n.comparisons==1) {
+  if(object$n_comparisons==1) {
     text.temp <- paste("Comparator intervention: ",object$interventions[object$comp],"\n",sep="")
     cat(text.temp)
   }
   
-  if(object$n.comparisons>1) {
+  if(object$n_comparisons>1) {
     text.temp <- paste("Comparator intervention(s): ",object$interventions[object$comp[1]],"\n",sep="")
     cat(text.temp)
-    for (i in 2:object$n.comparisons) {
+    for (i in 2:object$n_comparisons) {
       cat(paste("                          : ",object$interventions[object$comp[i]],"\n",sep=""))
     }
   }

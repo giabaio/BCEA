@@ -70,13 +70,13 @@ ib.plot <-
     }
     
     w <- which(he$k==wtp)
-    if(he$n.comparisons==1) {
+    if(he$n_comparisons==1) {
       nbw <- sd(he$ib[w,])/1.5
       d <- density(he$ib[w,],bw=bw,n=n)
       txt <- paste("Incremental Benefit distribution\n",he$interventions[he$ref],
                    " vs ",he$interventions[he$comp],sep="")
     }
-    if(he$n.comparisons>1) {
+    if(he$n_comparisons>1) {
       if(is.null(comparison)){
         comparison <- 1
       }
@@ -132,12 +132,12 @@ ib.plot <-
     }
     
     w <- which(he$k==wtp)
-    if(he$n.comparisons==1) {
+    if(he$n_comparisons==1) {
       nbw <- sd(he$ib[w,])/1.5
       density <- density(he$ib[w,],bw=bw,n=n)
       df <- data.frame("x"=density$x,"y"=density$y)
     }
-    if(he$n.comparisons>1) {
+    if(he$n_comparisons>1) {
       nbw <- sd(he$ib[w,,comparison])/1.5
       density <- density(he$ib[w,,comparison],bw=bw,n=n)
       df <- data.frame("x"=density$x,"y"=density$y)

@@ -6,8 +6,8 @@ adjust_for_comparison <- function(he,
   he$comp <- he$comp[comparison]
   he$delta.e <- he$delta.e[, comparison]
   he$delta.c <- he$delta.c[, comparison]
-  he$n.comparators <- length(comparison) + 1
-  he$n.comparisons <- length(comparison)
+  he$n_comparators <- length(comparison) + 1
+  he$n_comparisons <- length(comparison)
   he$interventions <- he$interventions[sort(c(he$ref, he$comp))]
   he$ICER <- he$ICER[comparison]
   he$ib <- he$ib[, , comparison]

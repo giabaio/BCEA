@@ -101,7 +101,7 @@ contour2 <-
       comparison <- 1
     }
     
-    if(he$n.comparisons>1) {
+    if(he$n_comparisons>1) {
       if(!exists("title",where=exArgs)){title <- paste("Cost effectiveness plane contour plot \n",he$interventions[he$ref]," vs ",
                                                        he$interventions[he$comp[comparison]],sep="")} 
       else {title <- exArgs$title}
@@ -185,30 +185,30 @@ contour2 <-
     ### no visible binding note
     z <- e <- NA_real_
     
-    if(he$n.comparisons==1) {
+    if(he$n_comparisons==1) {
       density <- with(he,MASS::kde2d(delta.e,delta.c,n=300,h=c(sd(delta.e)/scale,sd(delta.c)/scale)))
       density <- data.frame(expand.grid("e"=density$x,"c"=density$y),"z"=as.vector(density$z))
       contour <- ceplane.plot(he,wtp=wtp,graph="ggplot2",...) +
         ggplot2::geom_contour(ggplot2::aes(z=z,x=e,y=c),data=density,colour="black",bins=nlevels)
     }
-    if(he$n.comparisons>1&is.null(comparison)) {
+    if(he$n_comparisons>1&is.null(comparison)) {
       densitydf <- data.frame()
-      for(i in 1:he$n.comparisons) {
+      for(i in 1:he$n_comparisons) {
         density <- with(he,MASS::kde2d(delta.e[,i],delta.c[,i],n=300,h=c(sd(delta.e[,i])/scale,sd(delta.c[,i])/scale)))
         densitydf <- rbind(densitydf,cbind(expand.grid(density$x,density$y),as.vector(density$z)))
       }
       names(densitydf) <- c("e","c","z")
-      densitydf <- cbind(densitydf,"comparison"=as.factor(sort(rep(1:he$n.comparisons,dim(densitydf)[1]/he$n.comparisons))))
+      densitydf <- cbind(densitydf,"comparison"=as.factor(sort(rep(1:he$n_comparisons,dim(densitydf)[1]/he$n_comparisons))))
       contour <- ceplane.plot(he,wtp=wtp,graph="ggplot2",...) +
         ggplot2::geom_contour(data=densitydf,ggplot2::aes(x=e,y=c,z=z,colour=comparison),bins=nlevels,linetype=1)
     }
-    if(he$n.comparisons>1&!is.null(comparison)) {
+    if(he$n_comparisons>1&!is.null(comparison)) {
       # adjusts bcea object for the correct number of dimensions and comparators
       he$comp <- he$comp[comparison]
       he$delta.e <- he$delta.e[,comparison]
       he$delta.c <- he$delta.c[,comparison]
-      he$n.comparators=length(comparison)+1
-      he$n.comparisons=length(comparison)
+      he$n_comparators=length(comparison)+1
+      he$n_comparisons=length(comparison)
       he$interventions=he$interventions[sort(c(he$ref,he$comp))]
       he$ICER=he$ICER[comparison]
       he$ib=he$ib[,,comparison]

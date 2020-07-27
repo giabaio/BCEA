@@ -134,15 +134,15 @@ ceef.plot <- function(he,
    
    ### selects the comparators. No need for recursion
    if(!is.null(comparators)){
-      stopifnot(all(comparators %in% 1:he$n.comparators))
+      stopifnot(all(comparators %in% 1:he$n_comparators))
       # adjusts bcea object for the correct number of dimensions and comparators
       he$comp <- he$comp[comparators]
-      he$n.comparators=length(comparators)
-      he$n.comparisons=length(comparators)-1
-      he$interventions=he$interventions[comparators]
-      he$ref=rank(c(he$ref,he$comp))[1]
-      he$comp=rank(c(he$ref,he$comp))[-1]
-      he$mod <- TRUE #
+      he$n_comparators <- length(comparators)
+      he$n_omparisons <- length(comparators) - 1
+      he$interventions <- he$interventions[comparators]
+      he$ref <- rank(c(he$ref, he$comp))[1]
+      he$comp <- rank(c(he$ref, he$comp))[-1]
+      he$mod <- TRUE
       ### bceanew
       he$e <- he$e[,comparators]
       he$c <- he$c[,comparators]
@@ -151,14 +151,14 @@ ceef.plot <- function(he,
    ### If the incremental analysis (relative to the reference) is required, needs to modify the BCEA object
    if(relative) {
       temp <- he
-      temp$e <- temp$c <- matrix(NA,he$n.sim,he$n.comparators)
-      temp$e[,he$ref] <- temp$c[,he$ref] <- rep(0,he$n.sim)
+      temp$e <- temp$c <- matrix(NA,he$n.sim,he$n_comparators)
+      temp$e[,he$ref] <- temp$c[,he$ref] <- rep(0, he$n.sim)
       temp$e[,-he$ref] <- -he$delta.e
       temp$c[,-he$ref] <- -he$delta.c
       he <- temp
    }
    
-   stopifnot(he$n.comparators>=2)
+   stopifnot(he$n_comparators>=2)
    
    base.graphics <- ifelse(isTRUE(pmatch(graph,c("base","ggplot2"))==2),FALSE,TRUE)
    
@@ -230,7 +230,7 @@ ceef.plot <- function(he,
    scatter.data <- data.frame(
       "e"=c(he$e),#-ifelse(!e.neg,0,ec.min[1]),
       "c"=c(he$c),#-ifelse(!e.neg,0,ec.min[2]),
-      "comp"=as.factor(sort(rep(1:he$n.comparators,he$n.sim))))
+      "comp"=as.factor(sort(rep(1:he$n_comparators,he$n.sim))))
    
    ### re-adjustment of data sets
    ceef.points[,1] <- ceef.points[,1]+ifelse(!e.neg,0,ec.min[1])
@@ -241,7 +241,7 @@ ceef.plot <- function(he,
    ### Summary table function
    ceef.summary <- function(he,ceef.points,orig.avg,include.ICER=FALSE,...){
       ## Tables adaptation and formatting
-      no.ceef <- which(!1:he$n.comparators %in% ceef.points$comp)
+      no.ceef <- which(!1:he$n_comparators %in% ceef.points$comp)
       ## Interventions included
       if(ceef.points$comp[1]==0)
          ceef.points <- ceef.points[-1,]
@@ -319,7 +319,7 @@ ceef.plot <- function(he,
    
    ### plots
    ### colours
-   colour <- colours()[floor(seq(262,340,length.out=he$n.comparators))]  # gray scale
+   colour <- colours()[floor(seq(262,340,length.out=he$n_comparators))]  # gray scale
    ##### ***** base graphics ***** #####
    if(base.graphics){
       if(print.plot){
@@ -394,7 +394,7 @@ ceef.plot <- function(he,
          abline(v=0,col="grey")
          
          ### plot the scatter
-         for(i in 1:he$n.comparators)
+         for(i in 1:he$n_comparators)
             with(scatter.data,points(subset(scatter.data,comp==i)[,-3],type="p",pch=20,cex=.35,col=colour[i]))
          
          ### plot the frontier
@@ -402,11 +402,11 @@ ceef.plot <- function(he,
          ### add circles
          points(orig.avg[,-3],pch=21,cex=2,bg="white",col="black")
          ### add text; grey if not on the frontier
-         for(i in 1:he$n.comparators){
+         for(i in 1:he$n_comparators){
             text(orig.avg[i,-3],labels=orig.avg[i,3],col=ifelse(i %in% ceef.points$comp,"black","grey60"),cex=.75)
          }
          ### legend text
-         text <- paste(1:he$n.comparators,":",he$interventions)
+         text <- paste(1:he$n_comparators,":",he$interventions)
          legend(pos,text,col=colour,cex=.7,bty="n",lty=1)
          
          ### needed for dominance areas overwriting the outer box
@@ -455,11 +455,11 @@ ceef.plot <- function(he,
             ggplot2::geom_point(data=orig.avg,ggplot2::aes(x=e.orig,y=c.orig),size=5.5,colour="black")+
             ggplot2::geom_point(data=orig.avg,ggplot2::aes(x=e.orig,y=c.orig),size=4.5,colour="white")+
             ### set graphical parameters
-            ggplot2::scale_colour_manual("",labels=paste0(1:he$n.comparators,": ",he$interventions),values=colour,na.value="black")+
+            ggplot2::scale_colour_manual("",labels=paste0(1:he$n_comparators,": ",he$interventions),values=colour,na.value="black")+
             ggplot2::labs(title="Cost-effectiveness efficiency frontier",x=xlab,y=ylab)+
             ggplot2::theme_bw()
          ### add text into circles
-         for(i in 1:he$n.comparators){
+         for(i in 1:he$n_comparators){
             ceplane <- ceplane + 
                ggplot2::geom_text(data=orig.avg[i,],ggplot2::aes(x=e.orig,y=c.orig,label=comp),size=3.5,
                                   colour=ifelse(i %in% ceef.points$comp, "black", "grey60"))

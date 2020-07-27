@@ -53,14 +53,14 @@ evppi.default <- function (parameter,
   if (length(parameter) <= 4 & !exists("method", where = exArgs)) {
     
     exArgs$method <-
-      list(rep("GAM", he$n.comparators - 1),
-           rep("GAM", he$n.comparators - 1))
+      list(rep("GAM", he$n_comparators - 1),
+           rep("GAM", he$n_comparators - 1))
   }
   if (length(parameter) > 4 & !exists("method", where = exArgs)) {
     
     exArgs$method <-
-      list(rep("INLA", he$n.comparators - 1),
-           rep("INLA", he$n.comparators - 1))
+      list(rep("INLA", he$n_comparators - 1),
+           rep("INLA", he$n_comparators - 1))
   }
   if (inherits(exArgs$method, "list")) {
     if (exArgs$method == "sad" | exArgs$method == "so") {
@@ -72,28 +72,28 @@ evppi.default <- function (parameter,
       if (length(exArgs$method) == 1) {
         
         exArgs$method <-
-          list(rep(exArgs$method, he$n.comparators - 1),
-               rep(exArgs$method, he$n.comparators - 1))
+          list(rep(exArgs$method, he$n_comparators - 1),
+               rep(exArgs$method, he$n_comparators - 1))
       }
     }
   }
   
   if (class(exArgs$method) == "list") {
-    if (length(exArgs$method[[1]]) + length(exArgs$method[[2]]) != 2*(he$n.comparators - 1)) {
-      stop(paste("The argument 'method' must be a list of length 2 with", he$n.comparators - 1, "elements each."))
+    if (length(exArgs$method[[1]]) + length(exArgs$method[[2]]) != 2*(he$n_comparators - 1)) {
+      stop(paste("The argument 'method' must be a list of length 2 with", he$n_comparators - 1, "elements each."))
     }
   }
   
   if (!exists("int.ord", where = exArgs)) {
     exArgs$int.ord <-
-      list(rep(1, he$n.comparators - 1), rep(1, he$n.comparators - 1))
+      list(rep(1, he$n_comparators - 1), rep(1, he$n_comparators - 1))
   }
   if (class(exArgs$int.ord) != "list") {
     
     exArgs$int.ord <-
       list(
-        rep(exArgs$int.ord[1], he$n.comparators - 1),
-        rep(exArgs$int.ord[2], he$n.comparators - 1)
+        rep(exArgs$int.ord[1], he$n_comparators - 1),
+        rep(exArgs$int.ord[2], he$n_comparators - 1)
       )
   }
   
@@ -107,7 +107,7 @@ evppi.default <- function (parameter,
         n.seps <- exArgs$n.seps
       }
       if (length(parameters) == 1) {
-        d <- he$n.comparators
+        d <- he$n_comparators
         n <- he$n.sim
         w <- parameters
         param <- inputs[, w]
@@ -206,7 +206,7 @@ evppi.default <- function (parameter,
       if (length(parameters) > 1) {
         res <- list()
         for (lp in 1:length(parameters)) {
-          d <- he$n.comparators
+          d <- he$n_comparators
           n <- he$n.sim
           w <- parameters[lp]
           param <- inputs[, w]
@@ -324,7 +324,7 @@ evppi.default <- function (parameter,
       if (check > 0) {
         stop("number of simulations/number of blocks must be an integer. Please select a different value for n.blocks \n")
       }
-      D <- he$n.comparators
+      D <- he$n_comparators
       if (length(parameter) == 1) {
         sort.order <- order(inputs[, parameters])
         sort.U <- array(NA, dim(he$U))
@@ -375,15 +375,15 @@ evppi.default <- function (parameter,
     fit.full[[1]] <- matrix(
       data = 0,
       nrow = length(exArgs$select),
-      ncol = he$n.comparators
+      ncol = he$n_comparators
     )
     fit.full[[2]] <- matrix(
       data = 0,
       nrow = length(exArgs$select),
-      ncol = he$n.comparators
+      ncol = he$n_comparators
     )
     for (k in 1:2) {
-      for (l in 1:he$n.comparisons) {
+      for (l in 1:he$n_comparisons) {
         x <- prep.x(
           he = he,
           select = exArgs$select,

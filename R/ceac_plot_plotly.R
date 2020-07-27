@@ -3,13 +3,13 @@
 #' 
 .ceac_plot_plotly <- function() {
   
-  if (he$n.comparisons > 1 & is.null(comparison) == FALSE) {
+  if (he$n_comparisons > 1 & is.null(comparison) == FALSE) {
     # adjusts bcea object for the correct number of dimensions and comparators
     he$comp <- he$comp[comparison]
     he$delta.e <- he$delta.e[, comparison]
     he$delta.c <- he$delta.c[, comparison]
-    he$n.comparators <- length(comparison) + 1
-    he$n.comparisons <- length(comparison)
+    he$n_comparators <- length(comparison) + 1
+    he$n_comparisons <- length(comparison)
     he$interventions <- he$interventions[sort(c(he$ref, he$comp))]
     he$ICER <- he$ICER[comparison]
     he$ib <- he$ib[, , comparison]
@@ -27,14 +27,14 @@
   data.psa <- data.frame(
     "k" = c(he$k), "ceac" = c(he$ceac),
     "comparison" = as.factor(c(
-      sapply(1:he$n.comparisons, function(x) rep(x, length(he$k)))
+      sapply(1:he$n_comparisons, function(x) rep(x, length(he$k)))
     )),
     "label" = as.factor(c(
       sapply(comparisons.label, function(x) rep(x, length(he$k)))
     )))
   # aes management
   if (is.null(plot_aes$line$types))
-    plot_aes$line$types = rep_len(1:6, he$n.comparisons)
+    plot_aes$line$types = rep_len(1:6, he$n_comparisons)
   # opacities
   if (!is.null(plot_aes$area$color))
     plot_aes$area$color <- sapply(plot_aes$area$color, function(x)

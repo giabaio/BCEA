@@ -12,7 +12,7 @@ ceplane_plot_ggplot <- function() {
   label.pos <- TRUE
   opt.theme <- ggplot2::theme()
   if (!plot_aes$exist$ICER$sizes)
-    plot_aes$ICER$sizes <- ifelse(he$n.comparisons == 1, 2, 0)
+    plot_aes$ICER$sizes <- ifelse(he$n_comparisons == 1, 2, 0)
   if (length(exArgs) >= 1) {
     if (exists("label.pos", where = exArgs))
       if (is.logical(exArgs$label.pos))
@@ -21,7 +21,7 @@ ceplane_plot_ggplot <- function() {
         if (ggplot2::is.theme(obj))
           opt.theme <- opt.theme + obj
   }
-  if (he$n.comparisons == 1) {
+  if (he$n_comparisons == 1) {
     kd <- data.frame(he$delta.e,he$delta.c)
     names(kd) <- c("delta.e","delta.c")
     # for scale_x_continuous(oob=)
@@ -95,16 +95,16 @@ ceplane_plot_ggplot <- function() {
           hjust = .15,
           size = size)
     }
-  } else if(he$n.comparisons > 1 & is.null(comparison)) {
+  } else if(he$n_comparisons > 1 & is.null(comparison)) {
     # create dataframe for plotting
     kd <- with(he,data.frame("delta.e" = c(delta.e), "delta.c" = c(delta.c)))
-    kd$comparison <- as.factor(sort(rep(1:he$n.comparisons,dim(he$delta.e)[1])))
+    kd$comparison <- as.factor(sort(rep(1:he$n_comparisons,dim(he$delta.e)[1])))
     # dataset for ICERs
-    means <- matrix(NA_real_,nrow=he$n.comparisons,ncol=2)
-    for (i in 1:he$n.comparisons)
+    means <- matrix(NA_real_,nrow=he$n_comparisons,ncol=2)
+    for (i in 1:he$n_comparisons)
       means[i,] <- colMeans(kd[kd$comparison == i, -3])
     means <- data.frame(means)
-    means$comparison <- factor(1:he$n.comparisons)
+    means$comparison <- factor(1:he$n_comparisons)
     names(means) <- c("lambda.e","lambda.c","comparison")
     # labels for legend
     comparisons.label <- with(he,paste0(interventions[ref]," vs ",interventions[comp]))
@@ -121,12 +121,12 @@ ceplane_plot_ggplot <- function() {
     x3 <- x2
     x <- c(x1,x2,x3)
     y <- x*wtp; y[3] <- x1*wtp
-    plane <- data.frame(x=x,y=y,comparison=factor(rep(he$n.comparisons+1,3)))
+    plane <- data.frame(x=x,y=y,comparison=factor(rep(he$n_comparisons+1,3)))
     # build a trapezoidal plane instead of a triangle if the y value is less than the minimum difference on costs
     if(y[1]>min(kd$delta.c)) {
       plane <- rbind(plane,
-                     c(x2,2*min(kd$delta.c),he$n.comparisons+1), #new bottom-right vertex
-                     c(x1,2*min(kd$delta.c),he$n.comparisons+1)) #new bottom-left vertex
+                     c(x2,2*min(kd$delta.c),he$n_comparisons+1), #new bottom-right vertex
+                     c(x1,2*min(kd$delta.c),he$n_comparisons+1)) #new bottom-left vertex
     }
     ceplane <-
       ggplot2::ggplot(kd,ggplot2::aes(x=delta.e,y=delta.c,col=comparison)) +
@@ -185,13 +185,13 @@ ceplane_plot_ggplot <- function() {
           hjust = .15,
           size = size)
     }
-  } else if (he$n.comparisons > 1 & is.null(comparison) == FALSE) {
+  } else if (he$n_comparisons > 1 & is.null(comparison) == FALSE) {
     # adjusts bcea object for the correct number of dimensions and comparators
     he$comp <- he$comp[comparison]
     he$delta.e <- he$delta.e[, comparison]
     he$delta.c <- he$delta.c[, comparison]
-    he$n.comparators <- length(comparison) + 1
-    he$n.comparisons <- length(comparison)
+    he$n_comparators <- length(comparison) + 1
+    he$n_comparisons <- length(comparison)
     he$interventions <- he$interventions[sort(c(he$ref, he$comp))]
     he$ICER <- he$ICER[comparison]
     he$ib <- he$ib[, , comparison]
@@ -231,7 +231,7 @@ ceplane_plot_ggplot <- function() {
     ggplot2::theme(legend.position=alt.legend,legend.justification=jus,legend.title=ggplot2::element_blank(),legend.background=ggplot2::element_blank()) +
     ggplot2::theme(text=ggplot2::element_text(size=11),legend.key.size=grid::unit(.66,"lines"),legend.spacing=grid::unit(-1.25,"line"),panel.grid=ggplot2::element_blank(),legend.key=ggplot2::element_blank(),legend.text.align=0) +
     ggplot2::theme(plot.title = ggplot2::element_text(lineheight=1.05, face="bold",size=14.3,hjust=0.5))
-  if (he$n.comparisons == 1)
+  if (he$n_comparisons == 1)
     ceplane  <- ceplane + ggplot2::theme(legend.key.size=grid::unit(.1,"lines"))
   ceplane + opt.theme
 }

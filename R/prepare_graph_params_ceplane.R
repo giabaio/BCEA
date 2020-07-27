@@ -62,8 +62,8 @@ prepare_graph_params_ceplane <- function() {
   }
   # set default colour scheme
   if (!plot_aes$exist$point$colors) {
-    if (he$n.comparisons > 1 & (is.null(comparison) || length(comparison) > 1)) {
-      plot_aes$point$colors <- colors()[floor(seq(262, 340, length.out = he$n.comparisons))]
+    if (he$n_comparisons > 1 & (is.null(comparison) || length(comparison) > 1)) {
+      plot_aes$point$colors <- colors()[floor(seq(262, 340, length.out = he$n_comparisons))]
     } else {
       plot_aes$point$colors <- "grey55"
     }
@@ -73,7 +73,7 @@ prepare_graph_params_ceplane <- function() {
     plot_annotations$title <- with(he, paste0(
       "Cost-Effectiveness Plane",
       ifelse(
-        n.comparisons == 1 | (n.comparisons > 1 & (!is.null(comparison) && length(comparison) == 1)),
+        n_comparisons == 1 | (n_comparisons > 1 & (!is.null(comparison) && length(comparison) == 1)),
         paste0("\n", interventions[ref], " vs ", interventions[-ref]),
         paste0(ifelse(
           isTRUE(he$mod),

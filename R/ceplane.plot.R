@@ -109,21 +109,22 @@ ceplane.plot <- function(he,
   # ICER.size =                    # changes ICER point size
   # label.pos = FALSE              # uses alternate position for wtp label (old specification)
   
-  plot_type <- select_plot_type(graph)
-  
-  graph_params <- prepare_graph_params_ceplane(...)
-  
-  if (graph_type == 1) {
+  plot_type <- 1
+  # plot_type <- select_plot_type(graph)
+  # 
+  # graph_params <- prepare_graph_params_ceplane(...)
+ 
+  if (plot_type == 1) {
 
     ##TODO:...
     # ceplane_plot_base()
     
-  } else if (graph_type == 2) {
+  } else if (plot_type == 2) {
     
     ##TODO:...
     # ceplane_plot_ggplot()
     
-  } else if (graph_type == 3) {
+  } else if (plot_type == 3) {
     
     ##TODO:...
     # ceplane_plot_plotly()

@@ -81,17 +81,17 @@ summary.mixedAn <- function(object,wtp=25000,...) {
   cat("\n")
   cat(paste("Reference intervention: ",object$interventions[object$ref]," (",
             format(100*object$mkt.shares[object$ref],digits=n.digits,nsmall=n.small),"% market share)\n",sep=""))
-  if(object$n.comparisons==1) {
+  if(object$n_comparisons==1) {
     text.temp <- paste("Comparator intervention: ",object$interventions[object$comp]," (",
                        format(100*object$mkt.shares[object$comp],digits=n.digits,nsmall=n.small),"% market share)\n",sep="")
     cat(text.temp)
   }
   
-  if(object$n.comparisons>1) {
+  if(object$n_comparisons>1) {
     text.temp <- paste("Comparator intervention(s): ",object$interventions[object$comp[1]]," (",
                        format(100*object$mkt.shares[object$comp[1]],digits=n.digits,nsmall=n.small),"% market share)\n",sep="")
     cat(text.temp)
-    for (i in 2:object$n.comparisons) {
+    for (i in 2:object$n_comparisons) {
       cat(paste("                          : ",object$interventions[object$comp[i]]," (", 
                 format(100*object$mkt.shares[object$comp[i]],digits=n.digits,nsmall=n.small),"% market share)\n",sep=""))
     }

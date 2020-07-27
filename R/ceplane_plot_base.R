@@ -28,7 +28,7 @@ ceplane_plot_base <- function() {
   ps.options(encoding="CP1250")
   pdf.options(encoding="CP1250")
   
-  if(he$n.comparisons==1) {
+  if(he$n_comparisons==1) {
     m.e <- range(he$delta.e)[1]
     M.e <- range(he$delta.e)[2]
     m.c <- range(he$delta.c)[1]
@@ -85,7 +85,7 @@ ceplane_plot_base <- function() {
         plot_aes$ICER$sizes[1]))
     t1 <- paste("k==",format(wtp,digits=3,nsmall=2,scientific=F),sep="")
     text(x.pt,y.pt,parse(text=t1),cex=.8,pos=4)
-  } else if(he$n.comparisons > 1 & is.null(comparison)) {
+  } else if(he$n_comparisons > 1 & is.null(comparison)) {
     if(is.null(xlim)) {xlim <- range(he$delta.e)}
     if(is.null(ylim)) {ylim <- range(he$delta.c)}
     plot(
@@ -103,7 +103,7 @@ ceplane_plot_base <- function() {
       ylab = plot_annotations$ylab,
       main = plot_annotations$title
     )
-    for (i in 2:he$n.comparisons) {
+    for (i in 2:he$n_comparisons) {
       points(
         he$delta.e[,i],he$delta.c[,i],pch=20,
         cex = ifelse(
@@ -116,7 +116,7 @@ ceplane_plot_base <- function() {
     abline(v=0,col="dark grey")
     text <- paste(he$interventions[he$ref]," vs ",he$interventions[he$comp])
     legend(alt.legend,text,col=plot_aes$point$colors,cex=.7,bty="n",lty=1)
-  } else if(he$n.comparisons > 1 & !is.null(comparison) & length(comparison) == 1) {
+  } else if(he$n_comparisons > 1 & !is.null(comparison) & length(comparison) == 1) {
     m.e <- range(he$delta.e[,comparison])[1]
     M.e <- range(he$delta.e[,comparison])[2]
     m.c <- range(he$delta.c[,comparison])[1]
@@ -174,14 +174,14 @@ ceplane_plot_base <- function() {
         plot_aes$ICER$sizes[1]))
     t1 <- paste("k==",format(wtp,digits=3,nsmall=2,scientific=F),sep="")
     text(x.pt,y.pt,parse(text=t1),cex=.8,pos=4)
-  } else if(he$n.comparisons>1&is.null(comparison)==FALSE&length(comparison)!=1) {
-    stopifnot(all(comparison %in% 1:he$n.comparisons))
+  } else if(he$n_comparisons>1&is.null(comparison)==FALSE&length(comparison)!=1) {
+    stopifnot(all(comparison %in% 1:he$n_comparisons))
     # adjusts bcea object for the correct number of dimensions and comparators
     he$comp <- he$comp[comparison]
     he$delta.e <- he$delta.e[,comparison]
     he$delta.c <- he$delta.c[,comparison]
-    he$n.comparators=length(comparison)+1
-    he$n.comparisons=length(comparison)
+    he$n_comparators=length(comparison)+1
+    he$n_comparisons=length(comparison)
     he$interventions=he$interventions[sort(c(he$ref,he$comp))]
     he$ICER=he$ICER[comparison]
     he$ib=he$ib[,,comparison]

@@ -19,17 +19,17 @@ CEriskav.default <- function(he,
   
   for (i in seq_len(K)) {
     for (l in seq_len(R)) {
-      for (j in seq_len(he$n.comparators)) {
+      for (j in seq_len(he$n_comparators)) {
         Ur[, i, j, l] <- (1/r[l])*(1 - exp(-r[l]*he$U[, i, j]))
       }
       Urstar[, i, l] <- apply(Ur[, i, , l], 1, max)
     }
   }
   
-  if (he$n.comparisons == 1) {
+  if (he$n_comparisons == 1) {
     IBr <- Ur[, , he$ref, ] - Ur[, , he$comp, ]
   }
-  if (he$n.comparisons > 1) {
+  if (he$n_comparisons > 1) {
     IBr <- Ur[, , he$ref, ] - Ur[, , he$comp[comparison], ]
   }
   

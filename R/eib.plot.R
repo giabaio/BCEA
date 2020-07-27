@@ -135,13 +135,13 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
       "upp" = c(apply(he$ib,margin,function(x) ifelse(cri.quantile, quantile(x,1 - (alpha)/2),
                                                       mean(x) - qnorm(1 - (alpha)/2)*sd(x)))),
       "comp" = as.factor(c(
-        sapply(1:he$n.comparisons, function(x) rep(x, length(he$k)))
+        sapply(1:he$n_comparisons, function(x) rep(x, length(he$k)))
       )))
     return(cri)
   }
   ### if plot.cri is null, if comp=1 plot them otherwise do not (clutter!)
-  if(is.null(plot.cri) & isTRUE(he$n.comparisons==1 | is.null(comparison)))
-    plot.cri <- ifelse(he$n.comparisons==1,TRUE,FALSE)
+  if(is.null(plot.cri) & isTRUE(he$n_comparisons==1 | is.null(comparison)))
+    plot.cri <- ifelse(he$n_comparisons == 1,TRUE,FALSE)
   
   ### calculate credible intervals if necessary
   if(isTRUE(plot.cri))
@@ -182,7 +182,7 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
         alt.legend="topright"
     }
     
-    if(he$n.comparisons==1) {
+    if(he$n_comparisons==1) {
       plot(
         NULL,
         ylim = yl, xlim = range(he$k),
@@ -222,8 +222,8 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
           paste0(he$interventions[he$ref]," vs ",he$interventions[he$comp]),
           cex = .7, bty = "n", lwd = 1,
           lty = ifelse(is.null(plot_aes$line$types), 1, plot_aes$line$types[1]))
-    } else if (he$n.comparisons > 1 & is.null(comparison)) {
-      lwd <- ifelse(he$n.comparisons > 6, 1.5, 1)
+    } else if (he$n_comparisons > 1 & is.null(comparison)) {
+      lwd <- ifelse(he$n_comparisons > 6, 1.5, 1)
       plot(
         NULL, ylim = yl, xlim = range(he$k),
         xlab = switch(
@@ -242,8 +242,8 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
             "")),
           plot_annotations$title))
       abline(h = 0, col = "grey")
-      if (is.null(plot_aes$line$types)) plot_aes$line$types = 1:he$n.comparisons
-      for (j in 1:he$n.comparisons) {
+      if (is.null(plot_aes$line$types)) plot_aes$line$types = 1:he$n_comparisons
+      for (j in 1:he$n_comparisons) {
         lines(he$k, he$eib[,j],
               lty = plot_aes$line$types[min(j, length(plot_aes$line$types))], 
               lwd = ifelse(plot.cri, lwd + 1, lwd), 
@@ -266,13 +266,13 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
         alt.legend, text, cex = .7, bty = "n",
         lty = plot_aes$line$types,
         lwd = ifelse(plot.cri,lwd + 1, lwd))
-    } else if(he$n.comparisons>1&!is.null(comparison)) {
+    } else if(he$n_comparisons>1&!is.null(comparison)) {
       # adjusts bcea object for the correct number of dimensions and comparators
       he$comp <- he$comp[comparison]
       he$delta.e <- he$delta.e[,comparison]
       he$delta.c <- he$delta.c[,comparison]
-      he$n.comparators=length(comparison)+1
-      he$n.comparisons=length(comparison)
+      he$n_comparators=length(comparison)+1
+      he$n_comparisons=length(comparison)
       he$interventions=he$interventions[sort(c(he$ref,he$comp))]
       he$ICER=he$ICER[comparison]
       he$ib=he$ib[,,comparison]
@@ -303,17 +303,17 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
       if(ggplot2::is.theme(obj))
         opt.theme <- opt.theme + obj
     
-    if (he$n.comparisons == 1) {
+    if (he$n_comparisons == 1) {
       # data frame
       data.psa <- data.frame(
         "k" = he$k, "eib" = he$eib, 
         "comparison" = as.factor(c(
-          sapply(1:he$n.comparisons, function(x) rep(x, length(he$k)))
+          sapply(1:he$n_comparisons, function(x) rep(x, length(he$k)))
         )))
       if (plot.cri) 
         data.psa <- cbind(data.psa,cri)
       if (is.null(plot_aes$line$types))
-        plot_aes$line$types = 1:he$n.comparisons
+        plot_aes$line$types = 1:he$n_comparisons
       eib <- ggplot2::ggplot(data.psa, ggplot2::aes(k, eib)) +
         ggplot2::theme_bw() +
         ggplot2::geom_hline(ggplot2::aes(yintercept = 0), colour = "grey")
@@ -343,11 +343,11 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
           ggplot2::geom_line(ggplot2::aes(y = low), colour = plot_aes$line$cri_colors[1], lty = 2) +
           ggplot2::geom_line(ggplot2::aes(y = upp), colour = plot_aes$line$cri_colors[1], lty = 2)
       }
-    } else if (he$n.comparisons > 1 & is.null(comparison) == TRUE) {
+    } else if (he$n_comparisons > 1 & is.null(comparison) == TRUE) {
       data.psa <- data.frame(
         "k" = c(he$k), "eib" = c(he$eib),
         "comparison" = as.factor(c(
-          sapply(1:he$n.comparisons, function(x) rep(x, length(he$k)))
+          sapply(1:he$n_comparisons, function(x) rep(x, length(he$k)))
         )))
       if (plot.cri)
         data.psa <- cbind(data.psa,cri)
@@ -357,7 +357,7 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
       # linetype is the indicator of the comparison.
       # 1 = solid, 2 = dashed, 3 = dotted, 4 = dotdash, 5 = longdash, 6 = twodash
       if (is.null(plot_aes$line$types))
-        plot_aes$line$types <- rep(c(1,2,3,4,5,6),ceiling(he$n.comparisons/6))[1:he$n.comparisons]
+        plot_aes$line$types <- rep(c(1,2,3,4,5,6),ceiling(he$n_comparisons/6))[1:he$n_comparisons]
       if (length(plot_aes$line$types) < length(comparisons.label))
         plot_aes$line$types <- rep_len(plot_aes$line$types, length(comparisons.label))
       if (length(plot_aes$line$colors) < length(comparisons.label))
@@ -390,13 +390,13 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
           ggplot2::geom_line(ggplot2::aes(y = low), colour = plot_aes$line$cri_colors, show.legend = F) +
           ggplot2::geom_line(ggplot2::aes(y = upp), colour = plot_aes$line$cri_colors, show.legend = F)
       }
-    } else if (he$n.comparisons > 1 & is.null(comparison) == FALSE) {
+    } else if (he$n_comparisons > 1 & is.null(comparison) == FALSE) {
       # adjusts bcea object for the correct number of dimensions and comparators
       he$comp <- he$comp[comparison]
       he$delta.e <- he$delta.e[,comparison]
       he$delta.c <- he$delta.c[,comparison]
-      he$n.comparators=length(comparison)+1
-      he$n.comparisons=length(comparison)
+      he$n_comparators=length(comparison)+1
+      he$n_comparisons=length(comparison)
       he$interventions=he$interventions[sort(c(he$ref,he$comp))]
       he$ICER=he$ICER[comparison]
       he$ib=he$ib[,,comparison]
@@ -462,13 +462,13 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
         message("Option size will be ignored using plotly."); size <- NULL
     }
     
-    if(he$n.comparisons > 1& is.null(comparison) == FALSE) {
+    if(he$n_comparisons > 1& is.null(comparison) == FALSE) {
       # adjusts bcea object for the correct number of dimensions and comparators
       he$comp <- he$comp[comparison]
       he$delta.e <- he$delta.e[,comparison]
       he$delta.c <- he$delta.c[,comparison]
-      he$n.comparators=length(comparison)+1
-      he$n.comparisons=length(comparison)
+      he$n_comparators=length(comparison)+1
+      he$n_comparisons=length(comparison)
       he$interventions=he$interventions[sort(c(he$ref,he$comp))]
       he$ICER=he$ICER[comparison]
       he$ib=he$ib[,,comparison]
@@ -483,7 +483,7 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
     }
     
     if (is.null(plot_aes$line$types))
-      plot_aes$line$types <- rep(c(1:6),ceiling(he$n.comparisons/6))[1:he$n.comparisons]
+      plot_aes$line$types <- rep(c(1:6),ceiling(he$n_comparisons/6))[1:he$n_comparisons]
     comparisons.label <- with(he,paste0(interventions[ref]," vs ",interventions[comp]))
     if (length(plot_aes$line$types) < length(comparisons.label))
       plot_aes$line$types <- rep_len(plot_aes$line$types, length(comparisons.label))
@@ -498,7 +498,7 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
     data.psa <- data.frame(
       "k" = he$k, "eib" = c(he$eib),
       "comparison" = as.factor(c(
-        sapply(1:he$n.comparisons, function(x) rep(x, length(he$k)))
+        sapply(1:he$n_comparisons, function(x) rep(x, length(he$k)))
       )),
       "label" = as.factor(c(
         sapply(comparisons.label, function(x) rep(x, length(he$k)))
@@ -519,7 +519,7 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
       legendgroup = ~comparison)
     # NB: decision change points not included - hover functionality is sufficient
     if (plot.cri) {
-      if (he$n.comparisons == 1) {
+      if (he$n_comparisons == 1) {
         eib <- plotly::add_ribbons(
           eib,
           name = paste0(100 * (1 - alpha), "% CrI"),

@@ -109,7 +109,7 @@ contour.bcea <-
       comparison <- 1
     }
     
-    if (x$n.comparisons==1) {
+    if (x$n_comparisons==1) {
       density <- MASS::kde2d(x$delta.e,x$delta.c,n=300,h=c(sd(x$delta.e)/scale,sd(x$delta.c)/scale))
       offset <- 1.0
       
@@ -156,7 +156,7 @@ contour.bcea <-
       text(offset*M.e,offset*m.c,parse(text=t4),cex=.8,pos=2)
     }
     
-    if(x$n.comparisons>1) {
+    if(x$n_comparisons>1) {
       if(!exists("title",where=exArgs)){title <- paste("Cost effectiveness plane contour plot \n",x$interventions[x$ref]," vs ",
                                                        x$interventions[x$comp[comparison]],sep="")} 
       else {title <- exArgs$title}
@@ -230,7 +230,7 @@ contour.bcea <-
         nlevels <- 1
     }
     
-    if(x$n.comparisons==1) {
+    if(x$n_comparisons==1) {
       kd <- with(x,data.frame("e"=delta.e,"c"=delta.c))
       
       # for scale_x_continuous(oob=)
@@ -279,14 +279,14 @@ contour.bcea <-
       ceplane <- ceplane + 
         ggplot2::geom_text(data=labels.df,ggplot2::aes(x=x,y=y,hjust=hjust,label=label),parse=TRUE,size=ggplot2::rel(3.5))
     }
-    if(x$n.comparisons>1&is.null(comparison)==TRUE) {
+    if(x$n_comparisons>1&is.null(comparison)==TRUE) {
       # creates dataframe for plotting
       kd <- with(x,data.frame(
         "delta.e"=c(delta.e),"delta.c"=c(delta.c),
-        "comparison"=as.factor(sort(rep(1:n.comparisons,dim(delta.e)[1])))))
+        "comparison"=as.factor(sort(rep(1:n_comparisons,dim(delta.e)[1])))))
       
       # vector of values for color, take out white, get integer values
-      colors.label <- paste0("gray",round(seq(0,100,length.out=(x$n.comparisons+1))[-(x$n.comparisons+1)]))
+      colors.label <- paste0("gray",round(seq(0,100,length.out=(x$n_comparisons+1))[-(x$n_comparisons+1)]))
       comparisons.label <- paste0(x$interventions[x$ref]," vs ",x$interventions[x$comp])
       do.nothing=function(x,limits) return(x)
       # plot limits
@@ -320,13 +320,13 @@ contour.bcea <-
           ggplot2::guides(colour=ggplot2::guide_legend(override.aes=list(linetype=0)))
       }
     }
-    if(x$n.comparisons>1&is.null(comparison)==FALSE) {
+    if(x$n_comparisons>1&is.null(comparison)==FALSE) {
       # adjusts bcea object for the correct number of dimensions and comparators
       x$comp <- x$comp[comparison]
       x$delta.e <- x$delta.e[,comparison]
       x$delta.c <- x$delta.c[,comparison]
-      x$n.comparators=length(comparison)+1
-      x$n.comparisons=length(comparison)
+      x$n_comparators=length(comparison)+1
+      x$n_comparisons=length(comparison)
       x$interventions=x$interventions[sort(c(x$ref,x$comp))]
       x$ICER=x$ICER[comparison]
       x$ib=x$ib[,,comparison]
@@ -343,7 +343,7 @@ contour.bcea <-
     if(!exists("title",where=exArgs)) {
       labs.title <- "Cost-Effectiveness Plane"
       labs.title <- paste0(labs.title,
-                           ifelse(x$n.comparisons==1,
+                           ifelse(x$n_comparisons==1,
                                   paste0("\n",x$interventions[x$ref]," vs ",x$interventions[-x$ref]),
                                   paste0(
                                     ifelse(isTRUE(x$mod),

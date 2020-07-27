@@ -2,13 +2,13 @@
 ##TODO:
 ceplane_plot_plotly <- function() {
   
-  if (he$n.comparisons > 1 & !is.null(comparison)) {
+  if (he$n_comparisons > 1 & !is.null(comparison)) {
     # adjusts bcea object for the correct number of dimensions and comparators
     he$comp <- he$comp[comparison]
     he$delta.e <- he$delta.e[, comparison]
     he$delta.c <- he$delta.c[, comparison]
-    he$n.comparators <- length(comparison) + 1
-    he$n.comparisons <- length(comparison)
+    he$n_comparators <- length(comparison) + 1
+    he$n_comparisons <- length(comparison)
     he$interventions <- he$interventions[sort(c(he$ref, he$comp))]
     he$ICER <- he$ICER[comparison]
     he$ib <- he$ib[, , comparison]
@@ -23,14 +23,14 @@ ceplane_plot_plotly <- function() {
   if (exists("ICER.size", where = exArgs)) {
     ICER.size <- exArgs$ICER.size
   } else {
-    ICER.size <- ifelse(he$n.comparisons == 1, 8, 0)
+    ICER.size <- ifelse(he$n_comparisons == 1, 8, 0)
   }
   comparisons.label <- with(he, paste(interventions[ref], "vs", interventions[comp]))
   kd <- data.frame(
     "delta.e" = c(he$delta.e),
     "delta.c" = c(he$delta.c),
     "comparison" = as.factor(c(
-      sapply(1:he$n.comparisons, function(x) rep(x, nrow(as.matrix(he$delta.e))))
+      sapply(1:he$n_comparisons, function(x) rep(x, nrow(as.matrix(he$delta.e))))
     )),
     "label" = as.factor(c(
       sapply(comparisons.label, function(x) rep(x, nrow(as.matrix(he$delta.e))))
@@ -86,11 +86,11 @@ ceplane_plot_plotly <- function() {
   #   comparison label and associated ICER
   tabulate_means <- function(he, comparisons.label = NULL) {
     if (is.null(comparisons.label))
-      comparisons.label <- 1:he$n.comparisons
+      comparisons.label <- 1:he$n_comparisons
     data.frame(
-      "lambda.e" = sapply(1:he$n.comparisons, function(x) mean(as.matrix(he$delta.e)[, x])),
-      "lambda.c" = sapply(1:he$n.comparisons, function(x) mean(as.matrix(he$delta.c)[, x])),
-      "comparison" = as.factor(1:he$n.comparisons),
+      "lambda.e" = sapply(1:he$n_comparisons, function(x) mean(as.matrix(he$delta.e)[, x])),
+      "lambda.c" = sapply(1:he$n_comparisons, function(x) mean(as.matrix(he$delta.c)[, x])),
+      "comparison" = as.factor(1:he$n_comparisons),
       "label" = comparisons.label,
       "ICER" = he$ICER
     )
@@ -115,7 +115,7 @@ ceplane_plot_plotly <- function() {
         plotly::toRGB(plot_aes$area$line_color, 1))),
       name = "CEA area")
   # cloud
-  for (comp in 1:he$n.comparisons) {
+  for (comp in 1:he$n_comparisons) {
     ceplane <- plotly::add_trace(
       ceplane,
       type = "scatter", mode = "markers",
@@ -135,7 +135,7 @@ ceplane_plot_plotly <- function() {
   # ICER
   if (!all(plot_aes$ICER$sizes <= 0)) {
     means_table = tabulate_means(he, comparisons.label)
-    for (comp in 1:he$n.comparisons) {
+    for (comp in 1:he$n_comparisons) {
       ceplane <- plotly::add_trace(
         ceplane,
         type = "scatter", mode = "markers",
@@ -147,7 +147,7 @@ ceplane_plot_plotly <- function() {
           size = plot_aes$ICER$sizes[comp]
         ),
         name = ~paste(
-          ifelse(he$n.comparisons > 1, as.character(label), ""),
+          ifelse(he$n_comparisons > 1, as.character(label), ""),
           "ICER:",
           prettyNum(round(ICER,2), big.mark = ","))
       )

@@ -101,7 +101,7 @@ plot.bcea <- function(he,
   
   named_args <- c(as.list(environment()), list(...))
   graph <- match.arg(graph)
-  use_base_graphics <- pmatch(graph, c("base","ggplot2")) != 2
+  use_base_graphics <- pmatch(graph, c("base", "ggplot2")) != 2
   extra_args <- list(...)
   
   if (use_base_graphics) {
