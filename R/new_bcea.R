@@ -43,12 +43,12 @@ new_bcea <- function(df_ce, k) {
     list(n_sim = length(unique(df_ce$sim)),
          n_comparators = length(comp) + 1,
          n_comparisons = length(comp),
-         delta_e = dcast(sim ~ interv_names,
-                         value.var = "delta_e",
-                         data = df_ce_comp)[, -1],
-         delta_c = dcast(sim ~ interv_names,
-                         value.var = "delta_c",
-                         data = df_ce_comp)[, -1],
+         delta_e = reshape2::dcast(sim ~ interv_names,
+                                   value.var = "delta_e",
+                                   data = df_ce_comp)[, -1],
+         delta_c = reshape2::dcast(sim ~ interv_names,
+                                   value.var = "delta_c",
+                                   data = df_ce_comp)[, -1],
          ICER = ICER,
          Kmax = max(k),
          k = k,
@@ -66,12 +66,12 @@ new_bcea <- function(df_ce, k) {
          ref = ref,
          comp = comp,
          step = k[2] - k[1],
-         e = dcast(sim ~ interv_names,
-                   value.var = "eff1",
-                   data = df_ce)[, -1],
-         c = dcast(sim ~ interv_names,
-                   value.var = "cost1",
-                   data = df_ce)[, -1])
+         e = reshape2::dcast(sim ~ interv_names,
+                             value.var = "eff1",
+                             data = df_ce)[, -1],
+         c = reshape2::dcast(sim ~ interv_names,
+                             value.var = "cost1",
+                             data = df_ce)[, -1])
   
   structure(he, class = c("bcea", class(he)))
 }
