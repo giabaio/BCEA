@@ -148,8 +148,8 @@ test_that("ib", {
   
   # multiple comparisons
   
-  c_tmp <- matrix(c(0, 0, 100, 10, 0, 1), nrow = 2)
-  e_tmp <- matrix(c(0, 0, 1, -2, -3, -4), nrow = 2)
+  c_tmp <- matrix(c(0, 0, 100, 10,  0,  1), nrow = 2)
+  e_tmp <- matrix(c(0, 0, 1,   -2, -3, -4), nrow = 2)
   n_comparisons <- 2
   
   res <- 
@@ -158,17 +158,17 @@ test_that("ib", {
   
   # sim x comprison
   delta_e <- matrix(c(-1,3,
-                      2,4), nrow = 2, byrow = TRUE)
+                       2,4), nrow = 2, byrow = TRUE)
   delta_c <- matrix(c(-100,  0,
-                      -10, -1), nrow = 2,  byrow = TRUE)
+                      -10,  -1), nrow = 2,  byrow = TRUE)
   
   ib_11 <- k*delta_e[1,1] - delta_c[1,1] # 15 30
   ib_12 <- k*delta_e[1,2] - delta_c[1,2] # 15 30
   ib_21 <- k*delta_e[2,1] - delta_c[2,1] # 15 30
   ib_22 <- k*delta_e[2,2] - delta_c[2,2] # 21 41
   
-  expect_equivalent(cbind(ib_11, ib_21), res$ib[,,1 ])
-  expect_equivalent(cbind(ib_12, ib_22), res$ib[,,2 ])
+  expect_equivalent(cbind(ib_11, ib_21), res$ib[, , 1])
+  expect_equivalent(cbind(ib_12, ib_22), res$ib[, , 2])
 })
 
 

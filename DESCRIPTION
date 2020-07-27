@@ -14,7 +14,7 @@ Authors@R: c(
             email = "gianluca@stats.ucl.ac.uk",
             role = c("aut")),
     person("Nathan", "Green",
-            email = "gianluca@stats.ucl.ac.uk",
+            email = "n.green@ucl.ac.uk",
             role = c("aut")))
 Imports:
     dplyr,
@@ -36,7 +36,8 @@ Suggests:
     shiny,
     shinythemes,
     splancs,
-    testthat (>= 2.1.0)
+    testthat (>= 2.1.0),
+    vdiffr
 Additional_repositories: https://inla.r-inla-download.org/R/stable/
 Description: Produces an economic evaluation of a Bayesian model in the form of MCMC simulations.
              Given suitable variables of cost and effectiveness / utility for two or more interventions,
