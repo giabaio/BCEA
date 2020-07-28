@@ -1,12 +1,14 @@
 
 #' Constructor for bcea
 #'
-#' @param df_ce dataframe of all simulation eff and cost
-#' @param k vector of willingness to pay values
+#' @param df_ce Dataframe of all simulation eff and cost
+#' @param k Vector of willingness to pay values
 #'
 #' @import reshape2, dplyr
 #'
-#' @return
+#' @return List object of class bcea.
+#' @seealso bcea
+#' 
 #' @export
 #'
 new_bcea <- function(df_ce, k) {

@@ -2,7 +2,7 @@
 % Please edit documentation in R/struct.psa.R
 \name{struct.psa}
 \alias{struct.psa}
-\title{Structural PSA}
+\title{Structural Probability Sensitivity Analysis}
 \usage{
 struct.psa(
   models,
@@ -11,7 +11,7 @@ struct.psa(
   ref = 1,
   interventions = NULL,
   Kmax = 50000,
-  plot = F
+  plot = FALSE
 )
 }
 \arguments{
@@ -26,7 +26,7 @@ model)}
 \item{cost}{A list containing the measure of costs computed from the various
 models (one matrix with n.sim x n.ints simulations for each model)}
 
-\item{ref}{Defines which intervention is considered to be the reference
+\item{ref}{Which intervention is considered to be the reference
 strategy. The default value \code{ref=1} means that the intervention
 appearing first is the reference and the other(s) is(are) the comparator(s)}
 
@@ -45,7 +45,18 @@ the summary plot or not}
 }
 \description{
 Computes the weights to be associated with a set of competing models in
-order to perform structural PSA
+order to perform structural PSA.
+}
+\details{
+The model is a list containing the output from either R2jags or R2OpenBUGS /
+R2WinBUGS for all the models that need to be combined in the model average
+effect is a list containing the measure of effectiveness computed from the 
+various models (one matrix with n_sim x n_ints simulations for each model)
+cost is a list containing the measure of costs computed from the various
+models (one matrix with n_sim x n_ints simulations for each model).
+}
+\examples{
+
 }
 \references{
 Baio G. (2012). Bayesian Methods in Health Economics.

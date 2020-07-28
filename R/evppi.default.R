@@ -1,55 +1,71 @@
 
-#
-evppi.default <- function (parameter,
-                           input,
-                           he,
-                           N = NULL,
-                           plot = FALSE,
-                           residuals = TRUE, ...) {
-  
-  # This function has been completely changed and restructured to make it possible to change regression method.
-  # The method argument can now be given as a list. The first element element in the list is a vector giving the
-  # regression method for the effects. The second gives the regression method for the costs. The `method' argument
-  # can also be given as before which then uses the same regression method for all curves. All other exArgs can be
-  # given as before. 'int.ord' can be updated using the list formulation above to give the interactions for each
-  # different curve. The formula argument for GAM can only be given once, either 'te()' or 's()+s()' as this is
-  # for computational reasons rather than to aid fit. You can still plot the INLA mesh elements but not output the meshes.
+#' evppi.default
+#'
+#' This function has been completely changed and restructured to make it possible to change regression method.
+#' The method argument can now be given as a list. The first element element in the list is a vector giving the
+#' regression method for the effects. The second gives the regression method for the costs. The `method' argument
+#' can also be given as before which then uses the same regression method for all curves.
+#' All other exArgs can be given as before. 'int.ord' can be updated using the list formulation above to give
+#' the interactions for each different curve.
+#' The formula argument for GAM can only be given once, either 'te()' or 's() + s()' as this is
+#' for computational reasons rather than to aid fit.
+#' You can still plot the INLA mesh elements but not output the meshes.
+#' 
+#' @param parameter 
+#' @param input 
+#' @template args-he 
+#' @param N 
+#' @param plot 
+#' @param residuals 
+#' @param ... 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' 
+evppi.default <- function(parameter,
+                          input,
+                          he,
+                          N = NULL,
+                          plot = FALSE,
+                          residuals = TRUE, ...) {
   
   if (is.null(colnames(input))) {
-    colnames(input) <- paste0("theta",1:dim(input)[2])
+    colnames(input) <- paste0("theta", 1:dim(input)[2])
   }
-  if (class(parameter[1]) == "numeric" | class(parameter[1]) == "integer") {
+  if (is.numeric(class(parameter[1])) | is.integer(class(parameter[1]))) {
     parameters = colnames(input)[parameter]
   } else {
     parameters = parameter
-    for (i in 1:length(parameters)) {
+    for (i in seq_along(parameters)) {
       parameter[i] <- which(colnames(input) == parameters[i])
     }
     class(parameter) <- "numeric"
   }
   if (is.null(N)) {
-    N <- he$n.sim
+    N <- he$n_sim
   }
   
   robust <- NULL
   exArgs <- list(...)
   
   if (!exists("suppress.messages", where = exArgs)) {
-    suppress.messages = FALSE
+    suppress.messages <- FALSE
   } else {
-    suppress.messages = exArgs$suppress.messages
+    suppress.messages <- exArgs$suppress.messages
   }
   
-  if (!exists("select", where=exArgs) & N == he$n.sim) {
-    exArgs$select <- 1:he$n.sim
+  if (!exists("select", where = exArgs) & N == he$n_sim) {
+    exArgs$select <- 1:he$n_sim
   }
-  if (!exists("select", where=exArgs) & N < he$n.sim) {
-    exArgs$select <- sample(1:he$n.sim, size = N, replace = FALSE)
+  if (!exists("select", where = exArgs) & N < he$n_sim) {
+    exArgs$select <- sample(1:he$n_sim, size = N, replace = FALSE)
   }
   inputs <- data.frame(input)[exArgs$select, ]
   
-  
-  # Sets default for method of calculation. If number of parameters <=4, then use GAM, if not defaults to INLA/SPDE
+  # Sets default for method of calculation
+  # If number of parameters <=4, then use GAM, if not defaults to INLA/SPDE
   if (length(parameter) <= 4 & !exists("method", where = exArgs)) {
     
     exArgs$method <-
@@ -64,7 +80,7 @@ evppi.default <- function (parameter,
   }
   if (inherits(exArgs$method, "list")) {
     if (exArgs$method == "sad" | exArgs$method == "so") {
-      exArgs$method<-exArgs$method
+      exArgs$method <- exArgs$method
     } else {
       if (length(exArgs$method) > 1) {
         exArgs$method <- list(exArgs$method, exArgs$method)
@@ -78,17 +94,19 @@ evppi.default <- function (parameter,
     }
   }
   
-  if (class(exArgs$method) == "list") {
+  if (inherits(exArgs$method, "list")) {
     if (length(exArgs$method[[1]]) + length(exArgs$method[[2]]) != 2*(he$n_comparators - 1)) {
-      stop(paste("The argument 'method' must be a list of length 2 with", he$n_comparators - 1, "elements each."))
+      stop(paste("The argument 'method' must be a list of length 2 with",
+                 he$n_comparators - 1, "elements each."), call. = FALSE)
     }
   }
   
   if (!exists("int.ord", where = exArgs)) {
     exArgs$int.ord <-
-      list(rep(1, he$n_comparators - 1), rep(1, he$n_comparators - 1))
+      list(rep(1, he$n_comparators - 1),
+           rep(1, he$n_comparators - 1))
   }
-  if (class(exArgs$int.ord) != "list") {
+  if (!inherits(exArgs$int.ord, "list")) {
     
     exArgs$int.ord <-
       list(
@@ -97,25 +115,25 @@ evppi.default <- function (parameter,
       )
   }
   
-  if (class(exArgs$method) != "list") {
+  if (!inherits(exArgs$int.ord, "list")) {
     if (exArgs$method == "sal" || exArgs$method == "sad") {
       method <- "Sadatsafavi et al"
       n.blocks <- NULL
-      if (!exists("n.seps", where = exArgs)) {
-        n.seps <- 1
+      if (!exists("n_seps", where = exArgs)) {
+        n_seps <- 1
       } else {
-        n.seps <- exArgs$n.seps
+        n_seps <- exArgs$n_seps
       }
       if (length(parameters) == 1) {
         d <- he$n_comparators
-        n <- he$n.sim
+        n <- he$n_sim
         w <- parameters
         param <- inputs[, w]
         o <- order(param)
         param <- param[o]
         nSegs <- matrix(1, d, d)
-        nSegs[1, 2] <- n.seps
-        nSegs[2, 1] <- n.seps
+        nSegs[1, 2] <- n_seps
+        nSegs[2, 1] <- n_seps
         res <- segPoints <- numeric()
         for (k in 1:length(he$k)) {
           nbs <- he$U[, k, ]
@@ -166,30 +184,26 @@ evppi.default <- function (parameter,
                     }
                   }
                 }
-                siMaxMin <- cm[segMaxMinL] + distMaxMin +
-                  (cm[n] - cm[segMaxMinR])
-                siMinMax <- -cm[segMaxMinL] + distMinMax -
-                  (cm[n] - cm[segMinMaxR])
+                siMaxMin <- cm[segMaxMinL] + distMaxMin + (cm[n] - cm[segMaxMinR])
+                siMinMax <- -cm[segMaxMinL] + distMinMax - (cm[n] - cm[segMinMaxR])
+                
                 if (siMaxMin > siMinMax) {
                   segPoint <- c(segMaxMinL, segMaxMinR)
                 }
                 else {
                   segPoint <- c(segMinMaxL, segMinMaxR)
                 }
-                if (segPoint[1] > 1 && segPoint[1] <
-                    n) {
+                if (segPoint[1] > 1 && segPoint[1] < n) {
                   segPoints <- c(segPoints, segPoint[1])
                 }
-                if (segPoint[2] > 1 && segPoint[2] <
-                    n) {
+                if (segPoint[2] > 1 && segPoint[2] < n) {
                   segPoints <- c(segPoints, segPoint[2])
                 }
               }
             }
           }
           if (length(segPoints) > 0) {
-            segPoints2 <- unique(c(0, segPoints[order(segPoints)],
-                                   n))
+            segPoints2 <- unique(c(0, segPoints[order(segPoints)], n))
             res[k] <- 0
             for (j in 1:(length(segPoints2) - 1)) {
               res[k] <- res[k] + max(colSums(matrix(nbs[(1 +
@@ -207,14 +221,14 @@ evppi.default <- function (parameter,
         res <- list()
         for (lp in 1:length(parameters)) {
           d <- he$n_comparators
-          n <- he$n.sim
+          n <- he$n_sim
           w <- parameters[lp]
           param <- inputs[, w]
           o <- order(param)
           param <- param[o]
           nSegs <- matrix(1, d, d)
-          nSegs[1, 2] <- n.seps
-          nSegs[2, 1] <- n.seps
+          nSegs[1, 2] <- n_seps
+          nSegs[2, 1] <- n_seps
           temp <- segPoints <- numeric()
           for (k in 1:length(he$k)) {
             nbs <- he$U[, k, ]
@@ -265,22 +279,18 @@ evppi.default <- function (parameter,
                       }
                     }
                   }
-                  siMaxMin <- cm[segMaxMinL] + distMaxMin +
-                    (cm[n] - cm[segMaxMinR])
-                  siMinMax <- -cm[segMaxMinL] + distMinMax -
-                    (cm[n] - cm[segMinMaxR])
+                  siMaxMin <- cm[segMaxMinL] + distMaxMin + (cm[n] - cm[segMaxMinR])
+                  siMinMax <- -cm[segMaxMinL] + distMinMax - (cm[n] - cm[segMinMaxR])
                   if (siMaxMin > siMinMax) {
                     segPoint <- c(segMaxMinL, segMaxMinR)
                   }
                   else {
                     segPoint <- c(segMinMaxL, segMinMaxR)
                   }
-                  if (segPoint[1] > 1 && segPoint[1] <
-                      n) {
+                  if (segPoint[1] > 1 && segPoint[1] < n) {
                     segPoints <- c(segPoints, segPoint[1])
                   }
-                  if (segPoint[2] > 1 && segPoint[2] <
-                      n) {
+                  if (segPoint[2] > 1 && segPoint[2] < n) {
                     segPoints <- c(segPoints, segPoint[2])
                   }
                 }
@@ -306,38 +316,42 @@ evppi.default <- function (parameter,
         names(res) <- parameters
       }
       
-      res <- list(evppi = res, index = parameters, parameters = parameters,
-                  k = he$k, evi = he$evi, method = method)
+      res <- list(evppi = res,
+                  index = parameters,
+                  parameters = parameters,
+                  k = he$k,
+                  evi = he$evi,
+                  method = method)
     }
     if (exArgs$method == "so") {
-      method = "Strong & Oakley (univariate)"
-      n.seps = NULL
+      method <- "Strong & Oakley (univariate)"
+      n_seps <- NULL
       if (!exists("n.blocks", where = exArgs)) {
-        stop("Please specify the parameter 'n.blocks' to use the Strong and Oakley univariate method")
+        stop("Please specify the parameter 'n.blocks' to use the Strong and Oakley univariate method", call. = FALSE)
       }
       else {
         n.blocks <- exArgs$n.blocks
       }
-      S <- he$n.sim
+      S <- he$n_sim
       J <- S/exArgs$n.blocks
       check <- S%%exArgs$n.blocks
       if (check > 0) {
-        stop("number of simulations/number of blocks must be an integer. Please select a different value for n.blocks \n")
+        stop("number of simulations/number of blocks must be an integer.
+             Please select a different value for n.blocks \n", call. = FALSE)
       }
       D <- he$n_comparators
       if (length(parameter) == 1) {
         sort.order <- order(inputs[, parameters])
         sort.U <- array(NA, dim(he$U))
         evpi <- res <- numeric()
-        for (i in 1:length(he$k)) {
+        for (i in seq_along(he$k)) {
           evpi[i] <- he$evi[i]
           sort.U[, i, ] <- he$U[sort.order, i, ]
-          U.array <- array(sort.U[, i, ], dim = c(J,
-                                                  exArgs$n.blocks, D))
+          U.array <- array(sort.U[, i, ],
+                           dim = c(J, exArgs$n.blocks, D))
           mean.k <- apply(U.array, c(2, 3), mean)
           partial.info <- mean(apply(mean.k, 1, max))
-          res[i] <- partial.info - max(apply(he$U[, i,
-          ], 2, mean))
+          res[i] <- partial.info - max(apply(he$U[, i, ], 2, mean))
         }
       }
       if (length(parameter) > 1) {
@@ -349,24 +363,28 @@ evppi.default <- function (parameter,
           for (i in 1:length(he$k)) {
             evpi[i] <- he$evi[i]
             sort.U[, i, ] <- he$U[sort.order, i, ]
-            U.array <- array(sort.U[, i, ], dim = c(J,
-                                                    n.blocks, D))
+            U.array <- array(sort.U[, i, ],
+                             dim = c(J, n.blocks, D))
             mean.k <- apply(U.array, c(2, 3), mean)
             partial.info <- mean(apply(mean.k, 1, max))
-            evppi.temp[i] <- partial.info - max(apply(he$U[,
-                                                           i, ], 2, mean))
+            evppi.temp[i] <- partial.info - max(apply(he$U[, i, ], 2, mean))
           }
           res[[j]] <- evppi.temp
         }
         names(res) <- parameters
       }
       
-      res <- list(evppi = res, index = parameters, parameters = parameters,
-                  k = he$k, evi = he$evi, method = method)
+      res <-
+        list(evppi = res,
+             index = parameters,
+             parameters = parameters,
+             k = he$k,
+             evi = he$evi,
+             method = method)
     }
   }
   
-  if (class(exArgs$method) == "list") {
+  if (inherits(exArgs$method, "list")) {
     time <- list()
     time[[1]] <- list()
     time[[2]] <- list()
@@ -377,29 +395,30 @@ evppi.default <- function (parameter,
       nrow = length(exArgs$select),
       ncol = he$n_comparators
     )
-    fit.full[[2]] <- matrix(
-      data = 0,
-      nrow = length(exArgs$select),
-      ncol = he$n_comparators
-    )
+    fit.full[[2]] <-
+      matrix(data = 0,
+             nrow = length(exArgs$select),
+             ncol = he$n_comparators)
+    
     for (k in 1:2) {
       for (l in 1:he$n_comparisons) {
         x <- prep.x(
           he = he,
           select = exArgs$select,
           k = k,
-          l = l
-        )
+          l = l)
+        
         method <- exArgs$method[[k]][l]
         if (method == "GAM" || method == "gam" ||
             method == "G" || method == "g") {
           method <- "GAM"
           mesh <- robust <- NULL
           if (!isTRUE(requireNamespace("mgcv", quietly = TRUE))) {
-            stop("You need to install the package 'mgcv'. Please run in your R terminal:\n install.packages('mgcv')")
+            stop("You need to install the package 'mgcv'. Please run in your R terminal:\n 
+                 install.packages('mgcv')", call. = FALSE)
           }
           if (isTRUE(requireNamespace("mgcv", quietly = TRUE))) {
-            if (suppress.messages == FALSE) {
+            if (!suppress.messages) {
               cat("\n")
               cat("Calculating fitted values for the GAM regression \n")
             }
@@ -420,29 +439,31 @@ evppi.default <- function (parameter,
         if (method == "gp" || method == "GP") {
           method <- "GP"
           mesh <- robust <- NULL
-          if(suppress.messages == FALSE) {
+          if (!suppress.messages) {
             cat("\n")
             cat("Calculating fitted values for the GP regression \n")
-            # If the number of simulations to be used to estimate the hyperparameters is set then use that, else use N/2
+            # If the number of simulations to be used to estimate the
+            # hyper-parameters is set then use that, else use N/2
           }
-          if (!exists("n.sim", where = exArgs)) {
-            n.sim = N/2
+          if (!exists("n_sim", where = exArgs)) {
+            n_sim = N/2
           }
           else {
-            n.sim = exArgs$n.sim
+            n_sim = exArgs$n_sim
           }
           fit <- fit.gp(parameter = parameter,
                         inputs = inputs,
                         x = x,
-                        n.sim = n.sim)
+                        n.sim = n_sim)
         }
         if (method == "INLA") {
           method <- "INLA"
           if (!isTRUE(requireNamespace("INLA", quietly = TRUE))) {
-            stop("You need to install the packages 'INLA' and 'splancs'. Please run in your R terminal:\n install.packages('INLA', repos='http://www.math.ntnu.no/inla/R/stable')\n and\n install.packages('splancs')")
+            stop("You need to install the packages 'INLA' and 'splancs'. Please run in your R terminal:\n 
+                 install.packages('INLA', repos='http://www.math.ntnu.no/inla/R/stable')\n and\n install.packages('splancs')", call. = FALSE)
           }
           if (!isTRUE(requireNamespace("ldr", quietly = TRUE))) {
-            stop("You need to install the package 'ldr'. Please run in your R terminal:\n install.packages('ldr')")
+            stop("You need to install the package 'ldr'. Please run in your R terminal:\n install.packages('ldr')", call. = FALSE)
           }
           if (isTRUE(requireNamespace("ldr", quietly = TRUE))) {
             
@@ -451,13 +472,17 @@ evppi.default <- function (parameter,
                 attachNamespace("INLA")
               }
               if (length(parameter) < 2) {
-                stop("The INLA method can only be used with 2 or more parameters")
+                stop("The INLA method can only be used with 2 or more parameters", call. = FALSE)
               }
               if (!suppress.messages) {
                 cat("\n")
                 cat("Finding projections \n")
               }
-              projections <- make.proj(parameter=parameter,inputs = inputs,x=x,k=k,l=l)
+              projections <- make.proj(parameter = parameter,
+                                       inputs = inputs,
+                                       x = x,
+                                       k = k,
+                                       l = l)
               data <- projections$data
               if (!suppress.messages) {
                 cat("Determining Mesh \n")
@@ -497,7 +522,7 @@ evppi.default <- function (parameter,
               plot.mesh(mesh = mesh$mesh,
                         data = data,
                         plot = plot)
-              if(!suppress.messages) {
+              if (!suppress.messages) {
                 cat("Calculating fitted values for the GP regression using INLA/SPDE \n")
               }
               if (exists("h.value", where = exArgs)) {
@@ -543,7 +568,8 @@ evppi.default <- function (parameter,
           }
         }
         fit.full[[k]][,l] <- fit$fitted
-        ###Calculating Time Taken
+        
+        # calculate time taken
         if (method == "INLA") {
           time. <- c(projections$time, mesh$time, fit$time)
           time. <- sum(time.)
@@ -558,7 +584,7 @@ evppi.default <- function (parameter,
     if (!suppress.messages) {cat("Calculating EVPPI \n")}
     
     comp <- compute.evppi(he = he, fit.full = fit.full)
-    name <- prepare.output(parameter = parameters, inputs = inputs)
+    name <- prepare.output(parameters = parameters, inputs = inputs)
     time[[3]] <- comp$time
     names(time) <- c("Fitting for Effects",
                      "Fitting for Costs",
@@ -576,8 +602,7 @@ evppi.default <- function (parameter,
         method = exArgs$method,
         fitted.costs = fit.full[[2]],
         fitted.effects = fit.full[[1]],
-        select = exArgs$select
-      )
+        select = exArgs$select)
     } else {
       res <- list(
         evppi = comp$EVPPI,
@@ -586,8 +611,7 @@ evppi.default <- function (parameter,
         evi = he$evi,
         parameters = name,
         time = time,
-        method = exArgs$method
-      )
+        method = exArgs$method)
     }
   }
   

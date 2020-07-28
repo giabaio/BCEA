@@ -2,14 +2,19 @@
 #' Compute Incremental Benefit
 #'
 #' Sample of incremental net monetary benefit for each
-#' willingness-to-pay threshold and comparator.
+#' willingness-to-pay threshold, \eqn{k}, and comparator.
+#' 
+#' In mathematical notation,
+#' 
+#' \deqn{INMB = k \Delta_e - \Delta_c}.
 #'
 #' @param df_ce Dataframe of cost and effectiveness deltas
 #' @param k Vector of willingness to pay values
 #'
 #' @import dplyr
 #' 
-#' @return
+#' @return Array with dimensions (k x sim x ints)
+#' 
 #' @export
 #'
 #' @examples

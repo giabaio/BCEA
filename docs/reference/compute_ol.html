@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="Compute Opportunity Loss — compute_ol" />
-<meta property="og:description" content="Obtained as the difference between the maximum utility computed for the current
+<meta property="og:description" content="The difference between the maximum utility computed for the current
 parameter configuration (e.g. at the current simulation) \(U^*\) and the current
 utility of the intervention associated with the maximum utility overall." />
 
@@ -131,7 +131,7 @@ utility of the intervention associated with the maximum utility overall." />
     </div>
 
     <div class="ref-description">
-    <p>Obtained as the difference between the maximum utility computed for the current
+    <p>The difference between the maximum utility computed for the current
 parameter configuration (e.g. at the current simulation) \(U^*\) and the current
 utility of the intervention associated with the maximum utility overall.</p>
     </div>
@@ -143,11 +143,11 @@ utility of the intervention associated with the maximum utility overall.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>Ustar</th>
-      <td><p>Maximum utility value</p></td>
+      <td><p>Maximum utility value (sim x k)</p></td>
     </tr>
     <tr>
       <th>U</th>
-      <td><p>Net monetary benefit</p></td>
+      <td><p>Net monetary benefit (sim x k x interv)</p></td>
     </tr>
     <tr>
       <th>best</th>
@@ -157,12 +157,12 @@ utility of the intervention associated with the maximum utility overall.</p>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>array with dimensions (sim x k)</p>
+    <p>Array with dimensions (sim x k)</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>In mathematical notation,
 $$OL(\mathbf{\theta}) = U^*(\mathbf{\theta}) - U(\mathbf{\theta}^{\tau})$$</p> 
-<p>In all simulations where vaccination is indeed more
+<p>In all simulations where the intervention is more
 cost-effective (i.e. when incremental benefit is positive), then \(OL(\theta) = 0\)
 as there would be no opportunity loss, if the parameter configuration were the
 one obtained in the current simulation.</p>

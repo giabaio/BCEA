@@ -1,5 +1,17 @@
 
-#
+#' Compute Incremental Cost-Effectiveness Ratio
+#'
+#' Defined as
+#' 
+#' \deqn{ICER = \Delta_c/\Delta_e}
+#'
+#' @param df_ce Cost-effectiveness dataframe 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' 
 compute_ICER <- function(df_ce) {
   
   df_ce %>%

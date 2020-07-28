@@ -7,13 +7,16 @@
 new_bcea(df_ce, k)
 }
 \arguments{
-\item{df_ce}{dataframe of all simulation eff and cost}
+\item{df_ce}{Dataframe of all simulation eff and cost}
 
-\item{k}{vector of willingness to pay values}
+\item{k}{Vector of willingness to pay values}
 }
 \value{
-
+List object of class bcea.
 }
 \description{
 Constructor for bcea
+}
+\seealso{
+bcea
 }

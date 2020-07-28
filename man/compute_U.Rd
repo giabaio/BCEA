@@ -7,12 +7,12 @@
 compute_U(df_ce, k)
 }
 \arguments{
-\item{df_ce}{cost-effectiveness dataframe}
+\item{df_ce}{Cost-effectiveness dataframe}
 
 \item{k}{Willingness to pay vector}
 }
 \value{
-U (sim x k x ints)
+Array with dimensions (sim x k x ints)
 }
 \description{
 Sample of net monetary benefit for each

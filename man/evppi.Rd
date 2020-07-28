@@ -76,24 +76,28 @@ regression developed by Heath et al. (2015).
 # Bayesian model and economic problem
 
 # Load the processed results of the MCMC simulation model
-# data(Vaccine)
+data(Vaccine)
 
 # Runs the health economic evaluation using BCEA
-# m <- bcea(e,c,ref=2,interventions=treats)
+m <- bcea(e, c, ref = 2, interventions = treats)
 
 # Computes the EVPPI for a bunch of parameters
-# inp <- CreateInputs(vaccine)
+inp <- CreateInputs(vaccine)
+
 # Computes the EVPPI using INLA/SPDE
-# x0 <- evppi(parameter=c(38:40),input=inp$mat,he=m)
+x0 <- evppi(parameter = c(38:40), input = inp$mat, he = m)
+
 # Now uses GAM regression
-# x1 <- evppi(parameter=c(38:40),input=inp$mat,he=m,method="GAM")
+x1 <- evppi(parameter = c(38:40), input = inp$mat, he = m, method = "GAM")
+
 # Now uses the GP regression
-# x2 <- evppi(parameter=c(38:40),input=inp$mat,he=m,method="GP")
-# Now plots the results
-# plot(x0)
-# points(x0$k,x0$evppi,lwd=2,lty=2,t="l")
-# points(x1$k,x1$evppi,t="l",col="red")
-# points(x2$k,x2$evppi,t="l",col="blue")
+x2 <- evppi(parameter = c(38:40), input = inp$mat, he = m, method = "GP")
+
+# plot results
+plot(x0)
+points(x0$k, x0$evppi, type = "l", lwd = 2, lty = 2)
+points(x1$k, x1$evppi, type = "l", col = "red")
+points(x2$k, x2$evppi, type = "l", col = "blue")
 
 }
 \references{
@@ -104,10 +108,9 @@ approach. Medical Decision Making.
 
 Sadatsafavi M., Bansback N., Zafari Z., Najafzadeh M., Marra C. (2013). Need
 for speed: an efficient algorithm for calculation of single-parameter
-expected value of partial perfect information. Value in Health
+expected value of partial perfect information. Value in Health.
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 
 Baio, G, A Berardi, and A Heath. 2017. Bayesian Cost-Effectiveness Analysis with the R package BCEA.
 New York, NY: Springer. doi:10.1007/978-3-319-55718-2.

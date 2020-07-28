@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute Value of Information — compute_vi • BCEA</title>
+<title>evppi.default — evppi.default • BCEA</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,16 @@
 
 
 
-<meta property="og:title" content="Compute Value of Information — compute_vi" />
-<meta property="og:description" content="The difference between the maximum utility computed for the current
-parameter configuration \(U^*\) and the utility of the intervention which
-is associated with the maximum utility overall." />
+<meta property="og:title" content="evppi.default — evppi.default" />
+<meta property="og:description" content="This function has been completely changed and restructured to make it possible to change regression method.
+The method argument can now be given as a list. The first element element in the list is a vector giving the
+regression method for the effects. The second gives the regression method for the costs. The `method' argument
+can also be given as before which then uses the same regression method for all curves.
+All other exArgs can be given as before. 'int.ord' can be updated using the list formulation above to give
+the interactions for each different curve.
+The formula argument for GAM can only be given once, either 'te()' or 's() + s()' as this is
+for computational reasons rather than to aid fit.
+You can still plot the INLA mesh elements but not output the meshes." />
 
 
 
@@ -125,43 +131,69 @@ is associated with the maximum utility overall." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute Value of Information</h1>
-    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/compute_xxx.R'><code>R/compute_xxx.R</code></a></small>
-    <div class="hidden name"><code>compute_vi.Rd</code></div>
+    <h1>evppi.default</h1>
+    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/evppi.default.R'><code>R/evppi.default.R</code></a></small>
+    <div class="hidden name"><code>evppi.default.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The difference between the maximum utility computed for the current
-parameter configuration \(U^*\) and the utility of the intervention which
-is associated with the maximum utility overall.</p>
+    <p>This function has been completely changed and restructured to make it possible to change regression method.
+The method argument can now be given as a list. The first element element in the list is a vector giving the
+regression method for the effects. The second gives the regression method for the costs. The `method' argument
+can also be given as before which then uses the same regression method for all curves.
+All other exArgs can be given as before. 'int.ord' can be updated using the list formulation above to give
+the interactions for each different curve.
+The formula argument for GAM can only be given once, either 'te()' or 's() + s()' as this is
+for computational reasons rather than to aid fit.
+You can still plot the INLA mesh elements but not output the meshes.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>compute_vi</span>(<span class='no'>Ustar</span>, <span class='no'>U</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for default</span>
+<span class='fu'><a href='evppi.html'>evppi</a></span>(<span class='no'>parameter</span>, <span class='no'>input</span>, <span class='no'>he</span>, <span class='kw'>N</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>residuals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>Ustar</th>
-      <td><p>Maximum utility value (sim x k)</p></td>
+      <th>parameter</th>
+      <td></td>
     </tr>
     <tr>
-      <th>U</th>
-      <td><p>Net monetary benefit (sim x k x interv)</p></td>
+      <th>input</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>he</th>
+      <td><p>A <code>bcea</code> object containing the results of the Bayesian
+modelling and the economic evaluation.</p></td>
+    </tr>
+    <tr>
+      <th>N</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>plot</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>residuals</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Array with dimensions (sim x k)</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    
 
-    <p>In mathematical notation,
-$$VoI(\mathbf{\theta}) = U^*(\mathbf{\theta}) - \mathrm{E}[U(\mathbf{\theta}^{\tau})]$$</p>
-<p>For each row of the simulations table, the VoI is computed as the
-difference between the current value of \(U^*\) and the
-mean of the entire vector of \(U\).</p>
 
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

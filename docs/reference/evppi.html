@@ -227,9 +227,8 @@ probabilistic sensitivity analysis sample: a non-parametric regression
 approach. Medical Decision Making.</p>
 <p>Sadatsafavi M., Bansback N., Zafari Z., Najafzadeh M., Marra C. (2013). Need
 for speed: an efficient algorithm for calculation of single-parameter
-expected value of partial perfect information. Value in Health</p>
-<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London</p>
+expected value of partial perfect information. Value in Health.</p>
+<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
 <p>Baio, G, A Berardi, and A Heath. 2017. Bayesian Cost-Effectiveness Analysis with the R package BCEA.
 New York, NY: Springer. doi:10.1007/978-3-319-55718-2.</p>
 <p>Heath A., Manolopoulou I., Baio G. (2016). Estimating the Expected Value of
@@ -242,29 +241,25 @@ http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-# See Baio G., Dawid A.P. (2011) for a detailed description of the 
-# Bayesian model and economic problem
+<span class='co'># See Baio G., Dawid A.P. (2011) for a detailed description of the </span>
+<span class='co'># Bayesian model and economic problem</span>
 
-# Load the processed results of the MCMC simulation model
-# data(Vaccine)
+<span class='co'># Load the processed results of the MCMC simulation model</span>
+<span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Vaccine</span>)
 
-# Runs the health economic evaluation using BCEA
-# m &lt;- bcea(e,c,ref=2,interventions=treats)
+<span class='co'># Runs the health economic evaluation using BCEA</span>
+<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='no'>e</span>, <span class='no'>c</span>, <span class='kw'>ref</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>interventions</span> <span class='kw'>=</span> <span class='no'>treats</span>)
 
-# Computes the EVPPI for a bunch of parameters
-# inp &lt;- CreateInputs(vaccine)
-# Computes the EVPPI using INLA/SPDE
-# x0 &lt;- evppi(parameter=c(38:40),input=inp$mat,he=m)
-# Now uses GAM regression
-# x1 &lt;- evppi(parameter=c(38:40),input=inp$mat,he=m,method="GAM")
-# Now uses the GP regression
-# x2 &lt;- evppi(parameter=c(38:40),input=inp$mat,he=m,method="GP")
-# Now plots the results
-# plot(x0)
-# points(x0$k,x0$evppi,lwd=2,lty=2,t="l")
-# points(x1$k,x1$evppi,t="l",col="red")
-# points(x2$k,x2$evppi,t="l",col="blue")
-
+<span class='co'># Computes the EVPPI for a bunch of parameters</span>
+<span class='no'>inp</span> <span class='kw'>&lt;-</span> <span class='fu'>CreateInputs</span>(<span class='no'>vaccine</span>)</div><div class='output co'>#&gt; <span class='error'>Error in CreateInputs(vaccine): could not find function "CreateInputs"</span></div><div class='input'>
+<span class='co'># Computes the EVPPI using INLA/SPDE</span>
+<span class='no'>x0</span> <span class='kw'>&lt;-</span> <span class='fu'>evppi</span>(<span class='kw'>parameter</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='fl'>38</span>:<span class='fl'>40</span>), <span class='kw'>input</span> <span class='kw'>=</span> <span class='no'>inp</span>$<span class='no'>mat</span>, <span class='kw'>he</span> <span class='kw'>=</span> <span class='no'>m</span>)</div><div class='output co'>#&gt; <span class='error'>Error in is.data.frame(x): object 'inp' not found</span></div><div class='input'>
+<span class='co'># Now uses GAM regression</span>
+<span class='no'>x1</span> <span class='kw'>&lt;-</span> <span class='fu'>evppi</span>(<span class='kw'>parameter</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='fl'>38</span>:<span class='fl'>40</span>), <span class='kw'>input</span> <span class='kw'>=</span> <span class='no'>inp</span>$<span class='no'>mat</span>, <span class='kw'>he</span> <span class='kw'>=</span> <span class='no'>m</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"GAM"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in is.data.frame(x): object 'inp' not found</span></div><div class='input'>
+<span class='co'># Now uses the GP regression</span>
+<span class='no'>x2</span> <span class='kw'>&lt;-</span> <span class='fu'>evppi</span>(<span class='kw'>parameter</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='fl'>38</span>:<span class='fl'>40</span>), <span class='kw'>input</span> <span class='kw'>=</span> <span class='no'>inp</span>$<span class='no'>mat</span>, <span class='kw'>he</span> <span class='kw'>=</span> <span class='no'>m</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"GP"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in is.data.frame(x): object 'inp' not found</span></div><div class='input'>
+<span class='co'># plot results</span>
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>x0</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot(x0): object 'x0' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='no'>x0</span>$<span class='no'>k</span>, <span class='no'>x0</span>$<span class='no'>evppi</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='error'>Error in points(x0$k, x0$evppi, type = "l", lwd = 2, lty = 2): object 'x0' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='no'>x1</span>$<span class='no'>k</span>, <span class='no'>x1</span>$<span class='no'>evppi</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"red"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in points(x1$k, x1$evppi, type = "l", col = "red"): object 'x1' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='no'>x2</span>$<span class='no'>k</span>, <span class='no'>x2</span>$<span class='no'>evppi</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"blue"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in points(x2$k, x2$evppi, type = "l", col = "blue"): object 'x2' not found</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

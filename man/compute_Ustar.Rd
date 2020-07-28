@@ -8,10 +8,6 @@ compute_Ustar(U)
 }
 \arguments{
 \item{U}{Net monetary benefit (sim x k x intervs)}
-
-\item{n_sim}{Number of simulations}
-
-\item{K}{Willingness-to-pay length}
 }
 \value{
 Ustar (sim x k)

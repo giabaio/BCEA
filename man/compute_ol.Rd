@@ -7,17 +7,17 @@
 compute_ol(Ustar, U, best)
 }
 \arguments{
-\item{Ustar}{Maximum utility value}
+\item{Ustar}{Maximum utility value (sim x k)}
 
-\item{U}{Net monetary benefit}
+\item{U}{Net monetary benefit (sim x k x interv)}
 
 \item{best}{Best intervention for given willingness-to-pay}
 }
 \value{
-array with dimensions (sim x k)
+Array with dimensions (sim x k)
 }
 \description{
-Obtained as the difference between the maximum utility computed for the current
+The difference between the maximum utility computed for the current
 parameter configuration (e.g. at the current simulation) \eqn{U^*} and the current
 utility of the intervention associated with the maximum utility overall.
 }
@@ -25,7 +25,7 @@ utility of the intervention associated with the maximum utility overall.
 In mathematical notation,
 \deqn{OL(\mathbf{\theta}) = U^*(\mathbf{\theta}) - U(\mathbf{\theta}^{\tau})}
  
-In all simulations where vaccination is indeed more
+In all simulations where the intervention is more
 cost-effective (i.e. when incremental benefit is positive), then \eqn{OL(\theta) = 0}
 as there would be no opportunity loss, if the parameter configuration were the
 one obtained in the current simulation.

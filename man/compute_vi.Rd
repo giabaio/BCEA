@@ -7,26 +7,23 @@
 compute_vi(Ustar, U)
 }
 \arguments{
-\item{Ustar}{Maximum utility value}
+\item{Ustar}{Maximum utility value (sim x k)}
 
-\item{U}{Net monetary benefit}
-
-\item{n_sim}{Number of simulations}
-
-\item{K}{Willingness-to-pay length}
+\item{U}{Net monetary benefit (sim x k x interv)}
 }
 \value{
-vi
+Array with dimensions (sim x k)
 }
 \description{
 The difference between the maximum utility computed for the current
-parameter configuration U* and the utility of the intervention which
+parameter configuration \eqn{U^*} and the utility of the intervention which
 is associated with the maximum utility overall.
 }
 \details{
-For each row of the simulations table, the
-VI is computed as the difference between the current value of \eqn{U^*} and the
-mean of the entire vector U2. Negative values of the VI imply that for
-those simulation specific parameter values treatment options are less
-valuable than the current optimal decision.
+In mathematical notation,
+\deqn{VoI(\mathbf{\theta}) = U^*(\mathbf{\theta}) - \mathrm{E}[U(\mathbf{\theta}^{\tau})]}
+
+For each row of the simulations table, the VoI is computed as the
+difference between the current value of \eqn{U^*} and the
+mean of the entire vector of \eqn{U}.
 }

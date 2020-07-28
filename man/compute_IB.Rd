@@ -12,11 +12,16 @@ compute_IB(df_ce, k)
 \item{k}{Vector of willingness to pay values}
 }
 \value{
-
+Array with dimensions (k x sim x ints)
 }
 \description{
 Sample of incremental net monetary benefit for each
-willingness-to-pay threshold and comparator.
+willingness-to-pay threshold, \eqn{k}, and comparator.
+}
+\details{
+In mathematical notation,
+
+\deqn{INMB = k \Delta_e - \Delta_c}.
 }
 \examples{
 
