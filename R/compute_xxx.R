@@ -41,8 +41,6 @@ compute_EIB <- function(ib) {
 #' The maximum utility value among the comparators, indicating which
 #' intervention produced the most benefits at each simulation. 
 #'
-#' @param n_sim Number of simulations
-#' @param K Willingness-to-pay length
 #' @param U Net monetary benefit (sim x k x intervs)
 #'
 #' @return Ustar (sim x k)
@@ -74,8 +72,6 @@ compute_Ustar <- function(U) {
 #' those simulation specific parameter values treatment options are less
 #' valuable than the current optimal decision.
 #'   
-#' @param n_sim Number of simulations
-#' @param K Willingness-to-pay length
 #' @param Ustar Maximum utility value
 #' @param U Net monetary benefit
 #'
