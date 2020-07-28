@@ -46,18 +46,20 @@ number of "blocks" (e.g. \code{n.blocks=20}).}
 }
 \value{
 \item{evppi}{The computed values of evppi for all values of the
-parameter of willingness to pay} \item{index}{A numerical vector with the
-index associated with the parameters for which the EVPPI was calculated}
-\item{k}{The vector of values for the willingness to pay} \item{evi}{The
-vector of values for the overall EVPPI} \item{fitted.costs}{The fitted
-values for the costs} \item{fitted.effects}{The fitted values for the
-effects} \item{parameters}{A single string containing the names of the
-parameters for which the EVPPI was calculated, used for plotting the EVPPI}
-\item{time}{Computational time (in seconds)} \item{fit.c}{The object
-produced by the model fit for the costs} \item{fit.e}{The object produced by
-the model fit for the effects} \item{formula}{The formula used to fit the
-model} \item{method}{A string indicating the method used to estimate the
-EVPPI}
+ parameter of willingness to pay.}
+\item{index}{A numerical vector with the index associated with the
+ parameters for which the EVPPI was calculated.}
+\item{k}{The vector of values for the willingness to pay.}
+\item{evi}{The vector of values for the overall EVPPI.}
+\item{fitted.costs}{The fitted values for the costs.}
+\item{fitted.effects}{The fitted values for the effects.}
+\item{parameters}{A single string containing the names of the
+parameters for which the EVPPI was calculated, used for plotting the EVPPI.}
+\item{time}{Computational time (in seconds).}
+\item{fit.c}{The object produced by the model fit for the costs.}
+\item{fit.e}{The object produced by the model fit for the effects.}
+\item{formula}{The formula used to fit the model.}
+\item{method}{A string indicating the method used to estimate the EVPPI.}
 }
 \description{
 Calculates the Expected Value of Perfect Partial Information (EVPPI) for

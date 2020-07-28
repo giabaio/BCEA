@@ -42,14 +42,14 @@
 #' 
 #' @section GAM regression
 #' For multi-parameter, the user can select 3 possible methods. If
-#' \code{method="GAM"} (BCEA will accept also \code{"gam"}, \code{"G"} or
+#' \code{method = "GAM"} (BCEA will accept also \code{"gam"}, \code{"G"} or
 #' \code{"g"}), then the computations are based on GAM regression. The user can
 #' also specify the formula for the regression. The default option is to use a
 #' tensor product (e.g. if there are two main parameters, \code{p1} and
-#' \code{p2}, this amounts to setting \code{formula="te(p1,p2)"}, which
+#' \code{p2}, this amounts to setting \code{formula = "te(p1,p2)"}, which
 #' indicates that the two parameters interact). Alternatively, it is possible
 #' to specify a model in which the parameters are independent using the
-#' notation \code{formula="s(p1)+s(p2)"}. This may lead to worse accuracy in
+#' notation \code{formula = "s(p1) + s(p2)"}. This may lead to worse accuracy in
 #' the estimates.
 #' 
 #' @section Strong et al. GP regression
@@ -62,14 +62,14 @@
 #' These are all rather technical and are described in detail in Baio et al. (2017).
 #' The optional parameter vector \code{int.ord} can take integer values (c(1,1) is
 #' default) and will force the predictor to include interactions: if
-#' \code{int.ord=c(k,h)}, then all k-way interactions will be used for the
+#' \code{int.ord = c(k, h)}, then all k-way interactions will be used for the
 #' effects and all h-way interactions will be used for the costs. Also, the
 #' user can specify the feature of the mesh for the "spatial" part of the
 #' model. The optional parameter \code{cutoff} (default 0.3) controls the
 #' density of the points inside the mesh. Acceptable values are typically in
-#' the interval (0.1,0.5), with lower values implying more points (and thus
-#' better approximation and greatercomputational time). The construction of the
-#' boundaries for the mesh can becontrolled by the optional inputs
+#' the interval (0.1, 0.5), with lower values implying more points (and thus
+#' better approximation and greater computational time). The construction of the
+#' boundaries for the mesh can be controlled by the optional inputs
 #' \code{convex.inner} (default = -0.4) and \code{convex.outer} (default =
 #' -0.7). These should be negative values and can be decreased (say to -0.7 and
 #' -1, respectively) to increase the distance between the points and the outer
@@ -78,31 +78,36 @@
 #' use a t prior distribution for the coefficients of the linear predictor.
 #' Finally, the user can control the accuracy of the INLA grid-search for the
 #' estimation of the hyperparameters. This is done by setting a value
-#' \code{h.value} (default=0.00005). Lower values imply a more refined search
+#' \code{h.value} (default = 0.00005). Lower values imply a more refined search
 #' (and hence better accuracy), at the expense of computational speed. The
 #' method argument can also be given as a list allowing different regression
 #' methods for the effects and costs, and the different incremental decisions.
 #' The first list element should contain a vector of methods for the
 #' incremental effects and the second for the costs, for example
-#' \code{method=list(c("GAM"),c("INLA"))}. The \code{int.ord} argument can also
+#' \code{method = list(c("GAM"), c("INLA"))}. The \code{int.ord} argument can also
 #' be given as a list to give different interaction levels for each regression
 #' curve.
 #'
 #' By default, when no method is specified by the user, \code{evppi} will
 #' use GAM if the number of parameters is <5 and INLA otherwise.
-#' @return \item{evppi}{The computed values of evppi for all values of the
-#' parameter of willingness to pay} \item{index}{A numerical vector with the
-#' index associated with the parameters for which the EVPPI was calculated}
-#' \item{k}{The vector of values for the willingness to pay} \item{evi}{The
-#' vector of values for the overall EVPPI} \item{fitted.costs}{The fitted
-#' values for the costs} \item{fitted.effects}{The fitted values for the
-#' effects} \item{parameters}{A single string containing the names of the
-#' parameters for which the EVPPI was calculated, used for plotting the EVPPI}
-#' \item{time}{Computational time (in seconds)} \item{fit.c}{The object
-#' produced by the model fit for the costs} \item{fit.e}{The object produced by
-#' the model fit for the effects} \item{formula}{The formula used to fit the
-#' model} \item{method}{A string indicating the method used to estimate the
-#' EVPPI}
+#' 
+#' @return
+#' \item{evppi}{The computed values of evppi for all values of the
+#'  parameter of willingness to pay.}
+#' \item{index}{A numerical vector with the index associated with the
+#'  parameters for which the EVPPI was calculated.}
+#' \item{k}{The vector of values for the willingness to pay.}
+#' \item{evi}{The vector of values for the overall EVPPI.}
+#' \item{fitted.costs}{The fitted values for the costs.}
+#' \item{fitted.effects}{The fitted values for the effects.}
+#' \item{parameters}{A single string containing the names of the
+#' parameters for which the EVPPI was calculated, used for plotting the EVPPI.}
+#' \item{time}{Computational time (in seconds).}
+#' \item{fit.c}{The object produced by the model fit for the costs.}
+#' \item{fit.e}{The object produced by the model fit for the effects.}
+#' \item{formula}{The formula used to fit the model.}
+#' \item{method}{A string indicating the method used to estimate the EVPPI.}
+#' 
 #' @author Anna Heath, Gianluca Baio
 #' @seealso \code{\link{plot.evppi}}, \code{\link{bcea}}
 #' 
