@@ -139,7 +139,7 @@ subsets of parameters. Uses GAM non-parameteric regression for single
 parameter EVPPI and the SPDE-INLA method for larger parameter subsets.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>evppi</span>(<span class='no'>parameter</span>, <span class='no'>input</span>, <span class='no'>he</span>, <span class='kw'>N</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='no'>F</span>, <span class='kw'>residuals</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>evppi</span>(<span class='no'>parameter</span>, <span class='no'>input</span>, <span class='no'>he</span>, <span class='kw'>N</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>residuals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -160,8 +160,8 @@ should match at least one of those values.</p></td>
     </tr>
     <tr>
       <th>he</th>
-      <td><p>A <code>bcea</code> object (the result of the call to the function
-<code><a href='bcea.html'>bcea</a></code>).</p></td>
+      <td><p>A <code>bcea</code> object containing the results of the Bayesian
+modelling and the economic evaluation.</p></td>
     </tr>
     <tr>
       <th>N</th>
@@ -191,53 +191,7 @@ the latter. In case "sal" is selected, then it is possible to also specify
 the number of "separators" (e.g. <code>n.seps=3</code>). If none is specified, the
 default value <code>n.seps=1</code> is used. If <code>"so"</code> is used as method for
 the calculation of the EVPPI, then the user *needs* to also specify the
-number of "blocks" (e.g. <code>n.blocks=20</code>).</p>
-<p>For multi-parameter, the user can select 3 possible methods. If
-<code>method="GAM"</code> (BCEA will accept also <code>"gam"</code>, <code>"G"</code> or
-<code>"g"</code>), then the computations are based on GAM regression. The user can
-also specify the formula for the regression. The default option is to use a
-tensor product (e.g. if there are two main parameters, <code>p1</code> and
-<code>p2</code>, this amounts to setting <code>formula="te(p1,p2)"</code>, which
-indicates that the two parameters interact). Alternatively, it is possible
-to specify a model in which the parameters are independent using the
-notation <code>formula="s(p1)+s(p2)"</code>. This may lead to worse accuracy in
-the estimates.</p>
-<p>The second possible method is the GP regression derived by Strong et al.
-This is used if <code>method="GP"</code> (BCEA will also accept the specification
-<code>method="gp"</code>). In this case, the user can also specify the number of
-PSA runs that should be used to estimate the hyperparameters of the model
-(e.g. <code>n.sim=100</code>). This value is set by default to 500. Finally, it is
-also possible to specify some INLA-related options. These are all rather
-technical and are described in detail in Baio, Berardi and Heath.  The
-optional parameter vector <code>int.ord</code> can take integer values (c(1,1) is
-default) and will force the predictor to include interactions: if
-<code>int.ord=c(k,h)</code>, then all k-way interactions will be used for the
-effects and all h-way interactions will be used for the costs. Also, the
-user can specify the feature of the mesh for the "spatial" part of the
-model. The optional parameter <code>cutoff</code> (default 0.3) controls the
-density of the points inside the mesh. Acceptable values are typically in
-the interval (0.1,0.5), with lower values implying more points (and thus
-better approximation and greatercomputational time). The construction of the
-boundaries for the mesh can becontrolled by the optional inputs
-<code>convex.inner</code> (default = -0.4) and <code>convex.outer</code> (default =
--0.7). These should be negative values and can be decreased (say to -0.7 and
--1, respectively) to increase the distance between the points and the outer
-boundary, which also increases precision and computational time. The
-optional argument<code>robust</code> can be set to TRUE, in which case INLA will
-use a t prior distribution for the coefficients of the linear predictor.
-Finally, the user can control the accuracy of the INLA grid-search for the
-estimation of the hyperparameters. This is done by setting a value
-<code>h.value</code> (default=0.00005). Lower values imply a more refined search
-(and hence better accuracy), at the expense of computational speed. The
-method argument can also be given as a list allowing different regression
-methods for the effects and costs, and the different incremental decisions.
-The first list element should contain a vector of methods for the
-incremental effects and the second for the costs, for example
-<code>method=list(c("GAM"),c("INLA"))</code>. The <code>int.ord</code> argument can also
-be given as a list to give different interaction levels for each regression
-curve.</p>
-<p>By default, when no method is specified by the user, <code>evppi</code> will
-use GAM if the number of parameters is &lt;5 and INLA otherwise.</p></td>
+number of "blocks" (e.g. <code>n.blocks=20</code>).</p></td>
     </tr>
     </table>
 
@@ -264,7 +218,7 @@ EVPPI</p></dd>
     <p>The single parameter EVPPI has been calculated using the non-parametric GAM
 regression developed by Strong et al. (2014). The multi-parameter EVPPI is
 calculated using the SPDE-INLA regression method for Gaussian Process
-regression developed by Heath et al.  (2015)</p>
+regression developed by Heath et al. (2015).</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Strong M., Oakley J. and Brennan A. (2014). Estimating
@@ -276,6 +230,8 @@ for speed: an efficient algorithm for calculation of single-parameter
 expected value of partial perfect information. Value in Health</p>
 <p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
 London</p>
+<p>Baio, G, A Berardi, and A Heath. 2017. Bayesian Cost-Effectiveness Analysis with the R package BCEA.
+New York, NY: Springer. doi:10.1007/978-3-319-55718-2.</p>
 <p>Heath A., Manolopoulou I., Baio G. (2016). Estimating the Expected Value of
 Partial Perfect Information in Health Economic Evaluations using Integrated
 Nested Laplace Approximation.  Statistics in Medicine.
@@ -288,13 +244,13 @@ http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full</p>
     <pre class="examples"><div class='input'>
 # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 # Bayesian model and economic problem
-#
+
 # Load the processed results of the MCMC simulation model
 # data(Vaccine)
-# 
+
 # Runs the health economic evaluation using BCEA
 # m &lt;- bcea(e,c,ref=2,interventions=treats)
-#
+
 # Computes the EVPPI for a bunch of parameters
 # inp &lt;- CreateInputs(vaccine)
 # Computes the EVPPI using INLA/SPDE

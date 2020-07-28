@@ -2,7 +2,8 @@
 % Please edit documentation in R/plot.evppi.R
 \name{plot.evppi}
 \alias{plot.evppi}
-\title{plot.evppi}
+\title{Plot a graph of the Expected Value of Partial Information with respect to a
+set of parameters}
 \usage{
 \method{plot}{evppi}(x, pos = c(0, 0.8), graph = c("base", "ggplot2"), col = NULL, ...)
 }
@@ -29,7 +30,7 @@ plotting. Should (partial-)match the two options \code{"base"} or
 (see \code{\link{par}}).}
 }
 \description{
-Plots a graph of the Expected Value of Partial Information with respect to a
+Plot a graph of the Expected Value of Partial Information with respect to a
 set of parameters
 }
 \references{

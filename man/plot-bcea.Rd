@@ -38,7 +38,7 @@ together. Any subset of the possible comparisons can be selected (e.g.,
 \code{comparison=c(1,3)} or \code{comparison=2}).}
 }
 \value{
-\item{ceac}{If \code{graph="ggplot2"} a ggplot object, or if \code{graph="plotly"} 
+\item{ceac} {If \code{graph="ggplot2"} a ggplot object, or if \code{graph="plotly"} 
   a plotly object containing the requested plot. Nothing is returned when \code{graph="base"}, 
   the default.} The function produces a plot of the
   cost-effectiveness acceptability curve against the discrete grid of possible
@@ -64,7 +64,11 @@ ceac.plot(he, graph = "plotly")
 ceac.plot(he, graph = "ggplot2", title = "my title", line = list(colors = "green"), theme = theme_dark())
 he2 <- BCEA::bcea(cbind(e,e - 0.0002), cbind(c,c + 5))
 mypalette <- RColorBrewer::brewer.pal(3, "Accent")
-ceac.plot(he2, graph = "ggplot2", title = "my title", theme = theme_dark(), pos = TRUE, line = mypalette)
+        ceac.plot(he2, graph = "ggplot2",
+        title = "my title",
+        theme = theme_dark(),
+        pos = TRUE,
+        line = list(colors = mypalette))
 ceac.plot(he, graph = "base", title = "my title", line = list(colors = "green"))
 ceac.plot(he2, graph = "base")
 

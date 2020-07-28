@@ -31,11 +31,11 @@ new_bcea <- function(df_ce, k) {
   
   U <- compute_U(df_ce, k)
   
-  Ustar <- compute_Ustar(n_sim, K, U)
+  Ustar <- compute_Ustar(U)
   
-  vi <- compute_vi(n_sim, K, Ustar, U)
+  vi <- compute_vi(Ustar, U)
   
-  ol <- compute_ol(n_sim, K, Ustar, U, best)
+  ol <- compute_ol(Ustar, U, best)
   
   evi <- colMeans(ol)
   

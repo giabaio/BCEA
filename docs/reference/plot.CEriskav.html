@@ -135,7 +135,7 @@ function</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for CEriskav</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>pos</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>graph</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>), <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>pos</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>graph</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>), <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -224,16 +224,16 @@ London</p>
                       <span class='co'>#  aversion parameter</span>
         <span class='kw'>comparison</span><span class='kw'>=</span><span class='fl'>1</span>  <span class='co'># if more than 2 interventions, selects the </span>
                       <span class='co'>#  pairwise comparison </span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: first element used of 'length.out' argument</span></div><div class='output co'>#&gt; <span class='error'>Error in seq_len(he$n.comparators): argument must be coercible to non-negative integer</span></div><div class='input'><span class='co'># }</span>
+)</div><div class='output co'>#&gt; <span class='error'>Error in vir[, i, l] &lt;- Urstar[, i, l] - max(apply(Ur[, i, , l], 2, mean)): incorrect number of subscripts</span></div><div class='input'><span class='co'># }</span>
 <span class='co'>#</span>
 <span class='co'># Now produce the plots</span>
 <span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>cr</span> <span class='co'># uses the results of the risk aversion </span>
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>cr</span> <span class='co'># uses the results of the risk aversion </span>
         <span class='co'>#  analysis (a "CEriskav" object)</span>
 )</div><div class='output co'>#&gt; <span class='error'>Error in plot(cr): object 'cr' not found</span></div><div class='input'><span class='co'># }</span>
 <span class='co'>### Alternative options, using ggplot2</span>
 <span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>cr</span>,
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>cr</span>,
   <span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"ggplot2"</span>,
   <span class='kw'>plot</span><span class='kw'>=</span><span class='st'>"ask"</span>          <span class='co'># plot option can be specified as</span>
                       <span class='co'>#  "dev.new" (default), "x11" or "ask"</span>

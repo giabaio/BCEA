@@ -2,24 +2,31 @@
 % Please edit documentation in R/compute_xxx.R
 \name{compute_ol}
 \alias{compute_ol}
-\title{Compute ol}
+\title{Compute Opportunity Loss}
 \usage{
-compute_ol(n_sim, K, Ustar, U, best)
+compute_ol(Ustar, U, best)
 }
 \arguments{
-\item{n_sim}{}
+\item{Ustar}{Maximum utility value}
 
-\item{K}{}
+\item{U}{Net monetary benefit}
 
-\item{Ustar}{}
-
-\item{U}{}
-
-\item{best}{}
+\item{best}{Best intervention for given willingness-to-pay}
 }
 \value{
-ol
+array with dimensions (sim x k)
 }
 \description{
-Compute ol
+Obtained as the difference between the maximum utility computed for the current
+parameter configuration (e.g. at the current simulation) \eqn{U^*} and the current
+utility of the intervention associated with the maximum utility overall.
+}
+\details{
+In mathematical notation,
+\deqn{OL(\mathbf{\theta}) = U^*(\mathbf{\theta}) - U(\mathbf{\theta}^{\tau})}
+ 
+In all simulations where vaccination is indeed more
+cost-effective (i.e. when incremental benefit is positive), then \eqn{OL(\theta) = 0}
+as there would be no opportunity loss, if the parameter configuration were the
+one obtained in the current simulation.
 }

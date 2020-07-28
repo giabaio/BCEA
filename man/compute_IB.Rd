@@ -15,7 +15,8 @@ compute_IB(df_ce, k)
 
 }
 \description{
-Compute Incremental Benefit
+Sample of incremental net monetary benefit for each
+willingness-to-pay threshold and comparator.
 }
 \examples{
 

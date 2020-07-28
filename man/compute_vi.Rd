@@ -4,20 +4,29 @@
 \alias{compute_vi}
 \title{Compute Value of Information}
 \usage{
-compute_vi(n_sim, K, Ustar, U)
+compute_vi(Ustar, U)
 }
 \arguments{
-\item{n_sim}{}
+\item{Ustar}{Maximum utility value}
 
-\item{K}{}
+\item{U}{Net monetary benefit}
 
-\item{Ustar}{}
+\item{n_sim}{Number of simulations}
 
-\item{U}{}
+\item{K}{Willingness-to-pay length}
 }
 \value{
 vi
 }
 \description{
-Compute Value of Information
+The difference between the maximum utility computed for the current
+parameter configuration U* and the utility of the intervention which
+is associated with the maximum utility overall.
+}
+\details{
+For each row of the simulations table, the
+VI is computed as the difference between the current value of \eqn{U^*} and the
+mean of the entire vector U2. Negative values of the VI imply that for
+those simulation specific parameter values treatment options are less
+valuable than the current optimal decision.
 }

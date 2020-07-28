@@ -15,8 +15,8 @@ contour2(
 )
 }
 \arguments{
-\item{he}{A "bcea" object containing the results of the Bayesian modelling
-and the economic evaluation}
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
 
 \item{wtp}{The selected value of the willingness-to-pay. Default is
 \code{25000}.}

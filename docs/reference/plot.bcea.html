@@ -135,7 +135,7 @@ Incremental Benefit, the CEAC and the EVPI</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for bcea</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(
   <span class='no'>he</span>,
   <span class='kw'>comparison</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>wtp</span> <span class='kw'>=</span> <span class='fl'>25000</span>,
@@ -237,19 +237,19 @@ doi:10.1177/0962280211419832.</p>
       )
 
 <span class='co'># Plots the summary plots for the "bcea" object m using base graphics</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>he</span>, <span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"base"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in prepare_graph_params_ceplane(...): object 'exArgs' not found</span></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>he</span>, <span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"base"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in if (he$n.comparison &gt; 1) margin &lt;- c(1, 3): argument is of length zero</span></div><div class='input'>
 <span class='co'># Plots the same summary plots using ggplot2</span>
 <span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='no'>ggplot2</span>)){
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>he</span>, <span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"ggplot2"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>he</span>, <span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"ggplot2"</span>)
 
 <span class='co'>##### Example of a customized plot.bcea with ggplot2</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>he</span>,
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>he</span>,
   <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"ggplot2"</span>,                                      <span class='co'># use ggplot2</span>
   <span class='kw'>theme</span> <span class='kw'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span>(<span class='kw'>plot.title</span><span class='kw'>=</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span>(<span class='kw'>size</span><span class='kw'>=</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>rel</a></span>(<span class='fl'>1.25</span>))), <span class='co'># theme elements must have a name</span>
   <span class='kw'>ICER.size</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,                                        <span class='co'># hidden option in ceplane.plot</span>
   <span class='kw'>size</span> <span class='kw'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>rel</a></span>(<span class='fl'>2.5</span>)                                         <span class='co'># modifies the size of k = labels</span>
   )                                                       <span class='co'># in ceplane.plot and eib.plot</span>
-}</div><div class='output co'>#&gt; <span class='error'>Error in prepare_graph_params_ceplane(...): object 'exArgs' not found</span></div><div class='input'>
+}</div><div class='output co'>#&gt; <span class='error'>Error in ceplane.plot(he, wtp = wtp, pos = ceplane.pos, comparison = comparison,     graph = "ggplot2", ...) + do.call(theme, theme_params) +     theme_add: non-numeric argument to binary operator</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

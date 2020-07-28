@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute Ustar statistic — compute_Ustar • BCEA</title>
+<title>Compute Ustar Statistic — compute_Ustar • BCEA</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,9 @@
 
 
 
-<meta property="og:title" content="Compute Ustar statistic — compute_Ustar" />
-<meta property="og:description" content="Compute Ustar statistic" />
+<meta property="og:title" content="Compute Ustar Statistic — compute_Ustar" />
+<meta property="og:description" content="The maximum utility value among the comparators, indicating which
+intervention produced the most benefits at each simulation." />
 
 
 
@@ -123,37 +124,38 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute Ustar statistic</h1>
+    <h1>Compute Ustar Statistic</h1>
     <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/compute_xxx.R'><code>R/compute_xxx.R</code></a></small>
     <div class="hidden name"><code>compute_Ustar.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Compute Ustar statistic</p>
+    <p>The maximum utility value among the comparators, indicating which
+intervention produced the most benefits at each simulation.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>compute_Ustar</span>(<span class='no'>n_sim</span>, <span class='no'>K</span>, <span class='no'>U</span>)</pre>
+    <pre class="usage"><span class='fu'>compute_Ustar</span>(<span class='no'>U</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>U</th>
+      <td><p>Net monetary benefit (sim x k x intervs)</p></td>
+    </tr>
+    <tr>
       <th>n_sim</th>
-      <td></td>
+      <td><p>Number of simulations</p></td>
     </tr>
     <tr>
       <th>K</th>
-      <td></td>
-    </tr>
-    <tr>
-      <th>U</th>
-      <td></td>
+      <td><p>Willingness-to-pay length</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Ustar</p>
+    <p>Ustar (sim x k)</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

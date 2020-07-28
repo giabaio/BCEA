@@ -2,18 +2,19 @@
 % Please edit documentation in R/compute_xxx.R
 \name{compute_U}
 \alias{compute_U}
-\title{Compute U statistic}
+\title{Compute U Statistic}
 \usage{
 compute_U(df_ce, k)
 }
 \arguments{
-\item{df_ce}{}
+\item{df_ce}{cost-effectiveness dataframe}
 
 \item{k}{Willingness to pay vector}
 }
 \value{
-U
+U (sim x k x ints)
 }
 \description{
-Compute U statistic
+Sample of net monetary benefit for each
+willingness-to-pay threshold and intervention.
 }

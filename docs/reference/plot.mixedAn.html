@@ -136,7 +136,7 @@ considered</h1>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for mixedAn</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>y.limits</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pos</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>graph</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>), <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>y.limits</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pos</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>graph</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>), <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -226,12 +226,12 @@ London</p>
        <span class='kw'>mkt.shares</span><span class='kw'>=</span><span class='kw'>NULL</span>  <span class='co'># the vector of market shares can be defined </span>
                         <span class='co'>#  externally. If NULL, then each of the T </span>
                         <span class='co'>#  interventions will have 1/T market share</span>
-)</div><div class='output co'>#&gt; <span class='error'>Error in rep(1, he$n.comparators): invalid 'times' argument</span></div><div class='input'>
+)</div><div class='output co'>#&gt; <span class='error'>Error in temp[, , j] &lt;- mkt.shares[j] * he$U[, , j]: incorrect number of subscripts</span></div><div class='input'>
 <span class='co'># Can also plot the summary graph</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>ma</span>,<span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"base"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot(ma, graph = "base"): object 'ma' not found</span></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>ma</span>,<span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"base"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot(ma, graph = "base"): object 'ma' not found</span></div><div class='input'>
 <span class='co'># Or with ggplot2</span>
 <span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='no'>ggplot2</span>)){
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>ma</span>,<span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"ggplot2"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>ma</span>,<span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"ggplot2"</span>)
 }</div><div class='output co'>#&gt; <span class='error'>Error in plot(ma, graph = "ggplot2"): object 'ma' not found</span></div><div class='input'>
 </div></pre>
   </div>

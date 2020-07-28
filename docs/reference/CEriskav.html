@@ -198,25 +198,25 @@ London</p>
     <pre class="examples"><div class='input'>
 <span class='co'># See Baio G., Dawid A.P. (2011) for a detailed description of the </span>
 <span class='co'># Bayesian model and economic problem</span>
-<span class='co'>#</span>
+
 <span class='co'># Load the processed results of the MCMC simulation model</span>
 <span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Vaccine</span>)
-<span class='co'># </span>
+
 <span class='co'># Runs the health economic evaluation using BCEA</span>
 <span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='kw'>e</span><span class='kw'>=</span><span class='no'>e</span>,<span class='kw'>c</span><span class='kw'>=</span><span class='no'>c</span>,          <span class='co'># defines the variables of </span>
                             <span class='co'>#  effectiveness and cost</span>
-      <span class='kw'>ref</span><span class='kw'>=</span><span class='fl'>2</span>,                <span class='co'># selects the 2nd row of (e,c) </span>
+      <span class='kw'>ref</span><span class='kw'>=</span><span class='fl'>2</span>,                <span class='co'># selects the 2nd row of (e, c) </span>
                             <span class='co'>#  as containing the reference intervention</span>
       <span class='kw'>interventions</span><span class='kw'>=</span><span class='no'>treats</span>, <span class='co'># defines the labels to be associated </span>
                             <span class='co'>#  with each intervention</span>
       <span class='kw'>Kmax</span><span class='kw'>=</span><span class='fl'>50000</span>            <span class='co'># maximum value possible for the willingness </span>
                             <span class='co'>#  to pay threshold; implies that k is chosen </span>
-                            <span class='co'>#  in a grid from the interval (0,Kmax)</span>
+                            <span class='co'>#  in a grid from the interval (0, Kmax)</span>
 )
-<span class='co'>#</span>
+
 <span class='co'># Define the vector of values for the risk aversion parameter, r, eg:</span>
-<span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='fl'>0.0000000001</span>,<span class='fl'>0.005</span>,<span class='fl'>0.020</span>,<span class='fl'>0.035</span>)
-<span class='co'>#</span>
+<span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='fl'>1e-10</span>, <span class='fl'>0.005</span>, <span class='fl'>0.020</span>, <span class='fl'>0.035</span>)
+
 <span class='co'># Run the cost-effectiveness analysis accounting for risk aversion</span>
 <span class='co'># \donttest{</span>
 <span class='no'>cr</span> <span class='kw'>&lt;-</span> <span class='fu'>CEriskav</span>(<span class='no'>m</span>,     <span class='co'># uses the results of the economic evalaution </span>
@@ -225,7 +225,7 @@ London</p>
                       <span class='co'>#  aversion parameter </span>
         <span class='kw'>comparison</span><span class='kw'>=</span><span class='fl'>1</span>  <span class='co'># if more than 2 interventions, selects the </span>
                       <span class='co'>#  pairwise comparison </span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: first element used of 'length.out' argument</span></div><div class='output co'>#&gt; <span class='error'>Error in seq_len(he$n.comparators): argument must be coercible to non-negative integer</span></div><div class='input'># }
+)</div><div class='output co'>#&gt; <span class='error'>Error in vir[, i, l] &lt;- Urstar[, i, l] - max(apply(Ur[, i, , l], 2, mean)): incorrect number of subscripts</span></div><div class='input'># }
 
 </div></pre>
   </div>

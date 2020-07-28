@@ -25,8 +25,8 @@ monitored by the call to JAGS or BUGS. The matrix should have column names
 matching the names of the parameters and the values in the vector parameter
 should match at least one of those values.}
 
-\item{he}{A \code{bcea} object (the result of the call to the function
-\code{\link{bcea}}).}
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
 
 \item{wtp}{A value of the wtp for which the analysis should be performed. If
 not specified then the break-even point for the current model will be used.}

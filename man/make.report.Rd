@@ -7,7 +7,8 @@
 make.report(he, evppi = NULL, ext = "pdf", echo = FALSE, ...)
 }
 \arguments{
-\item{he}{An object obtained as output to a call to \code{bcea}}
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
 
 \item{evppi}{An object obtained as output to a call to \code{evppi}
 (default is NULL, so not essential to producing the report).}

@@ -7,15 +7,15 @@
 compute_kstar(k, best, ref)
 }
 \arguments{
-\item{k}{}
+\item{k}{Willingness-to-pay vector}
 
-\item{best}{}
+\item{best}{Best intervention for each k}
 
-\item{ref}{}
+\item{ref}{Reference intervention}
 }
 \value{
 kstar
 }
 \description{
-Find k when optimal decision changes.
+Find willingness-to-pay threshold when optimal decision changes.
 }

@@ -152,8 +152,7 @@
     <tr>
       <th>he</th>
       <td><p>A <code>bcea</code> object containing the results of the Bayesian
-modelling and the economic evaluation. The list needs to include the
-<code>e</code> and <code>c</code> matrices used to generate the object; see Details.</p></td>
+modelling and the economic evaluation.</p></td>
     </tr>
     <tr>
       <th>comparators</th>
@@ -238,9 +237,11 @@ dominance regions are plotted, indicating the areas of dominance.
 Interventions in the areas between the dominance region and the frontier are
 in a situation of extended dominance.
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="back-compatibility-with-bcea-previous-versions"><a class="anchor" href="#back-compatibility-with-bcea-previous-versions"></a>Back compatibility with BCEA previous versions</h2>
 
-    <p>The <code>bcea</code> objects did not include the generating <code>e</code> and <code>c</code>
+    
+
+<p>The <code>bcea</code> objects did not include the generating <code>e</code> and <code>c</code>
 matrices in BCEA versions &lt;2.1-0. This function is not compatible with
 objects created with previous versions. The matrices can be appended to
 <code>bcea</code> objects obtained using previous versions, making sure that the
@@ -276,14 +277,14 @@ to Cost, Version 1.0. IQWIG, November 2009.</p>
 <span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Smoking</span>)
 <span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='no'>e</span>,<span class='no'>c</span>,<span class='kw'>ref</span><span class='kw'>=</span><span class='fl'>4</span>,<span class='kw'>Kmax</span><span class='kw'>=</span><span class='fl'>500</span>,<span class='kw'>interventions</span><span class='kw'>=</span><span class='no'>treats</span>)
 <span class='co'>### produce the plot</span>
-<span class='fu'>ceef.plot</span>(<span class='no'>m</span>,<span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"base"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in 1:he$n.comparators: argument of length 0</span></div><div class='input'><span class='co'># \donttest{</span>
+<span class='fu'>ceef.plot</span>(<span class='no'>m</span>,<span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"base"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rep(1:he$n_comparators, he$n.sim): invalid 'times' argument</span></div><div class='input'><span class='co'># \donttest{</span>
 <span class='co'>### tweak the options</span>
 <span class='fu'>ceef.plot</span>(<span class='no'>m</span>,<span class='kw'>flip</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>dominance</span><span class='kw'>=</span><span class='fl'>FALSE</span>,<span class='kw'>start.from.origins</span><span class='kw'>=</span><span class='fl'>FALSE</span>,
-          <span class='kw'>print.summary</span><span class='kw'>=</span><span class='fl'>FALSE</span>,<span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"base"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in 1:he$n.comparators: argument of length 0</span></div><div class='input'><span class='co'>### or use ggplot2 instead</span>
+          <span class='kw'>print.summary</span><span class='kw'>=</span><span class='fl'>FALSE</span>,<span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"base"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in rep(1:he$n_comparators, he$n.sim): invalid 'times' argument</span></div><div class='input'><span class='co'>### or use ggplot2 instead</span>
 <span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='no'>ggplot2</span>)){
 <span class='fu'>ceef.plot</span>(<span class='no'>m</span>,<span class='kw'>dominance</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>start.from.origins</span><span class='kw'>=</span><span class='fl'>FALSE</span>,<span class='kw'>pos</span><span class='kw'>=</span><span class='fl'>TRUE</span>,
           <span class='kw'>print.summary</span><span class='kw'>=</span><span class='fl'>FALSE</span>,<span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"ggplot2"</span>)
-}</div><div class='output co'>#&gt; <span class='message'>Loading required package: ggplot2</span></div><div class='output co'>#&gt; <span class='error'>Error in 1:he$n.comparators: argument of length 0</span></div><div class='input'># }
+ }</div><div class='output co'>#&gt; <span class='message'>Loading required package: ggplot2</span></div><div class='output co'>#&gt; <span class='error'>Error in rep(1:he$n_comparators, he$n.sim): invalid 'times' argument</span></div><div class='input'># }
 
 </div></pre>
   </div>

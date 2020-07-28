@@ -19,16 +19,16 @@ compute_kstar <- function(k, best, ref) {
 }
 
 
-# Compute Cost-Effectiveness Acceptability Curve
-#
+#' Compute Cost-Effectiveness Acceptability Curve
+#'
 compute_CEAC <- function(ib) {
   
   apply(ib > 0, c(1,3), mean)
 }
 
 
-# Compute Expected Incremental Benefit
-#
+#' Compute Expected Incremental Benefit
+#'
 compute_EIB <- function(ib) {
   
   eib <- apply(ib, 3, function(x) apply(x, 1, mean))
@@ -47,7 +47,10 @@ compute_EIB <- function(ib) {
 #'
 #' @return Ustar (sim x k)
 #' 
-compute_Ustar <- function(n_sim, K, U) {
+compute_Ustar <- function(U) {
+  
+  n_sim <- dim(U)[[1]]
+  K <- dim(U)[[2]]
   
   Ustar <- matrix(NA, n_sim, K)
   
@@ -65,13 +68,11 @@ compute_Ustar <- function(n_sim, K, U) {
 #' parameter configuration U* and the utility of the intervention which
 #' is associated with the maximum utility overall.
 #' 
-#' In the Vaccine example and for the selected threshold of
-#' willingness to pay, vaccination (U2) is the most cost-effective intervention,
-#' given current evidence. Thus, for each row of the simulations table, the
-#' VI is computed as the difference between the current value of U* and the
+#' For each row of the simulations table, the
+#' VI is computed as the difference between the current value of \eqn{U^*} and the
 #' mean of the entire vector U2. Negative values of the VI imply that for
-#' those simulation specific parameter values both treatment options are less
-#' valuable than the current optimal decision, in this case vaccination.
+#' those simulation specific parameter values treatment options are less
+#' valuable than the current optimal decision.
 #'   
 #' @param n_sim Number of simulations
 #' @param K Willingness-to-pay length
@@ -80,10 +81,10 @@ compute_Ustar <- function(n_sim, K, U) {
 #'
 #' @return vi
 #' 
-compute_vi <- function(n_sim,
-                       K,
-                       Ustar,
-                       U) {
+compute_vi <- function(Ustar, U) {
+  
+  n_sim <- dim(U)[[1]]
+  K <- dim(U)[[2]]
   
   vi <- matrix(NA, n_sim, K)
   
@@ -98,37 +99,28 @@ compute_vi <- function(n_sim,
 #' Compute Opportunity Loss
 #' 
 #' Obtained as the difference between the maximum utility computed for the current
-#' parameter configuration (e.g. at the current simulation) U* and the current
+#' parameter configuration (e.g. at the current simulation) \eqn{U^*} and the current
 #' utility of the intervention associated with the maximum utility overall.
 #' 
-#' \deqn{
-#'   OL(\mathbf{\theta}) = U^*(\mathbf{\theta}) - U(\mathbf\theta}^{\tau})
-#' }
+#' In mathematical notation,
+#' \deqn{OL(\mathbf{\theta}) = U^*(\mathbf{\theta}) - U(\mathbf{\theta}^{\tau})}
 #'  
-#' In the vaccine example and for the selected threshold of willingness to pay,
-#' the mean of the vector U11, where the vaccine is not available, is lower than
-#' the mean of the vector U2, vaccine available, as vaccination is the most
-#' cost-effective intervention, given current evidence.
+#' In all simulations where vaccination is indeed more
+#' cost-effective (i.e. when incremental benefit is positive), then \eqn{OL(\theta) = 0}
+#' as there would be no opportunity loss, if the parameter configuration were the
+#' one obtained in the current simulation.
 #' 
-#' Thus, for each row of the simulations table, the OL is computed as the difference
-#' between the current value of U* and the value of U2. For this reason, in all
-#' simulations where vaccination is indeed more cost-effective (i.e. when IB2_1 is positive),
-#' then OL(theta) = 0 as there would be no opportunity loss, if the parameter
-#' configuration were the one obtained in the current simulation.
-#' 
-#' @param n_sim Number of simulations
-#' @param K Willingness-to-pay length
 #' @param Ustar Maximum utility value
 #' @param U  Net monetary benefit
 #' @param best Best intervention for given willingness-to-pay
 #'
-#' @return ol (sim x k)
+#' @return array with dimensions (sim x k)
 #' 
-compute_ol <- function(n_sim,
-                       K,
-                       Ustar,
+compute_ol <- function(Ustar,
                        U,
                        best) {
+  n_sim <- dim(U)[[1]]
+  K <- dim(U)[[2]]
   
   ol <- matrix(NA, nrow = n_sim, ncol = K) 
   
@@ -149,7 +141,7 @@ rowMax <- function(dat) apply(dat, 1, max)
 #' Sample of net monetary benefit for each
 #' willingness-to-pay threshold and intervention.
 #'
-#' @param df_ce 
+#' @param df_ce cost-effectiveness dataframe
 #' @param k Willingness to pay vector
 #'
 #' @return U (sim x k x ints)

@@ -40,7 +40,9 @@
 
 
 <meta property="og:title" content="Compute Value of Information — compute_vi" />
-<meta property="og:description" content="Compute Value of Information" />
+<meta property="og:description" content="The difference between the maximum utility computed for the current
+parameter configuration U* and the utility of the intervention which
+is associated with the maximum utility overall." />
 
 
 
@@ -129,35 +131,44 @@
     </div>
 
     <div class="ref-description">
-    <p>Compute Value of Information</p>
+    <p>The difference between the maximum utility computed for the current
+parameter configuration U* and the utility of the intervention which
+is associated with the maximum utility overall.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>compute_vi</span>(<span class='no'>n_sim</span>, <span class='no'>K</span>, <span class='no'>Ustar</span>, <span class='no'>U</span>)</pre>
+    <pre class="usage"><span class='fu'>compute_vi</span>(<span class='no'>Ustar</span>, <span class='no'>U</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>n_sim</th>
-      <td></td>
-    </tr>
-    <tr>
-      <th>K</th>
-      <td></td>
-    </tr>
-    <tr>
       <th>Ustar</th>
-      <td></td>
+      <td><p>Maximum utility value</p></td>
     </tr>
     <tr>
       <th>U</th>
-      <td></td>
+      <td><p>Net monetary benefit</p></td>
+    </tr>
+    <tr>
+      <th>n_sim</th>
+      <td><p>Number of simulations</p></td>
+    </tr>
+    <tr>
+      <th>K</th>
+      <td><p>Willingness-to-pay length</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>vi</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>For each row of the simulations table, the
+VI is computed as the difference between the current value of \(U^*\) and the
+mean of the entire vector U2. Negative values of the VI imply that for
+those simulation specific parameter values treatment options are less
+valuable than the current optimal decision.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

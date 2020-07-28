@@ -18,58 +18,60 @@ plotting. Should (partial-)match the two options \code{"base"} or
 \code{graph="ggplot2"}. }
 }
 \description{
-Produces a plot the Cost-Effectiveness Acceptability Frontier (CEAF) against
-the willingness to pay threshold
+Produces a plot the Cost-Effectiveness Acceptability Frontier (CEAF)
+against the willingness to pay threshold.
 }
 \examples{
 
 # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 # Bayesian model and economic problem
-#
+
 # Load the processed results of the MCMC simulation model
 data(Vaccine)
-# 
+
 # Runs the health economic evaluation using BCEA
-m <- bcea(e=e,c=c,          # defines the variables of 
+m <- bcea(
+      e=e,
+      c=c,                  # defines the variables of 
                             #  effectiveness and cost
-      ref=2,                # selects the 2nd row of (e,c) 
+      ref=2,                # selects the 2nd row of (e, c) 
                             #  as containing the reference intervention
       interventions=treats, # defines the labels to be associated 
                             #  with each intervention
       Kmax=50000,           # maximum value possible for the willingness 
                             #  to pay threshold; implies that k is chosen 
-                            #  in a grid from the interval (0,Kmax)
+                            #  in a grid from the interval (0, Kmax)
       plot=FALSE            # inhibits graphical output
 )
-#
+
 \donttest{
 mce <- multi.ce(m)          # uses the results of the economic analysis 
 }
-#
+
 \donttest{
 ceaf.plot(mce)              # plots the CEAF 
 }
-#
+
 \donttest{
-ceaf.plot(mce, graph="g")   # uses ggplot2 
+ceaf.plot(mce, graph = "g") # uses ggplot2 
 }
 
 \donttest{
 # Use the smoking cessation dataset
 data(Smoking)
-m <- bcea(e,c,ref=4,intervention=treats,Kmax=500,plot=FALSE)
+m <- bcea(e, c, ref = 4, intervention = treats, Kmax = 500, plot = FALSE)
 mce <- multi.ce(m)
 ceaf.plot(mce)
 }
 
 }
 \references{
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
+Baio G, Dawid AP. (2011). Probabilistic Sensitivity
+Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 
 Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London
+London.
 }
 \seealso{
 \code{\link{bcea}}, \code{\link{multi.ce}}
@@ -82,3 +84,4 @@ Gianluca Baio, Andrea Berardi
 \keyword{comparison}
 \keyword{economic}
 \keyword{evaluation}
+\keyword{hplot}

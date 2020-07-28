@@ -20,8 +20,7 @@ ceef.plot(
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
-modelling and the economic evaluation. The list needs to include the
-\code{e} and \code{c} matrices used to generate the object; see Details.}
+modelling and the economic evaluation.}
 
 \item{comparators}{Vector specifying the comparators to be included in the
 frontier analysis. Must be of length > 1. Default as \code{NULL} includes
@@ -84,7 +83,8 @@ in a situation of extended dominance.
 \description{
 Produces a plot of the Cost-Effectiveness Efficiency Frontier (CEEF)
 }
-\details{
+\section{Back compatibility with BCEA previous versions}{
+
 The \code{bcea} objects did not include the generating \code{e} and \code{c}
 matrices in BCEA versions <2.1-0. This function is not compatible with
 objects created with previous versions. The matrices can be appended to
@@ -108,6 +108,7 @@ display the absolute measures of costs and benefits. Instead the axes will
 represent differential costs and benefits compared to the reference
 intervention (indexed by \code{ref} in the \code{\link{bcea}} function).
 }
+
 \examples{
 
 ### create the bcea object m for the smoking cessation example
@@ -123,7 +124,7 @@ ceef.plot(m,flip=TRUE,dominance=FALSE,start.from.origins=FALSE,
 if(require(ggplot2)){
 ceef.plot(m,dominance=TRUE,start.from.origins=FALSE,pos=TRUE,
           print.summary=FALSE,graph="ggplot2")
-}
+ }
 }
 
 }

@@ -201,7 +201,7 @@ London</p>
        <span class='kw'>mkt.shares</span><span class='kw'>=</span><span class='kw'>NULL</span>  <span class='co'># the vector of market shares can be defined </span>
                         <span class='co'>#  externally. If NULL, then each of the T </span>
                         <span class='co'>#  interventions will have 1/T market share</span>
-)</div><div class='output co'>#&gt; <span class='error'>Error in rep(1, he$n.comparators): invalid 'times' argument</span></div><div class='input'>
+)</div><div class='output co'>#&gt; <span class='error'>Error in temp[, , j] &lt;- mkt.shares[j] * he$U[, , j]: incorrect number of subscripts</span></div><div class='input'>
 <span class='co'># Prints a summary of the results</span>
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>ma</span>,       <span class='co'># uses the results of the mixed strategy analysis </span>
                   <span class='co'>#  (a "mixedAn" object)</span>
