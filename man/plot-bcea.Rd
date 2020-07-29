@@ -24,7 +24,7 @@ variable, with \code{FALSE} indicating to use the default position and
 plotting. Should (partial-)match the three options \code{"base"},
 \code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.}
 
-\item{...}{If \code{graph="ggplot2"} and a named theme object is supplied,
+\item{...}{If \code{graph = "ggplot2"} and a named theme object is supplied,
  it will be added to the ggplot object. Additional arguments:
 \itemize{
  \item \code{line_colors}: specifies the line colour(s) - all graph types.
@@ -38,8 +38,8 @@ together. Any subset of the possible comparisons can be selected (e.g.,
 \code{comparison=c(1,3)} or \code{comparison=2}).}
 }
 \value{
-\item{ceac} {If \code{graph="ggplot2"} a ggplot object, or if \code{graph="plotly"} 
-  a plotly object containing the requested plot. Nothing is returned when \code{graph="base"}, 
+\item{ceac} {If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 
+  a plotly object containing the requested plot. Nothing is returned when \code{graph = "base"}, 
   the default.} The function produces a plot of the
   cost-effectiveness acceptability curve against the discrete grid of possible
   values for the willingness to pay parameter. Values of the CEAC closer to 1
@@ -50,6 +50,23 @@ together. Any subset of the possible comparisons can be selected (e.g.,
 \description{
 Produces a plot of the Cost-Effectiveness Acceptability Curve (CEAC) against
 the willingness to pay threshold.
+}
+\details{
+The CEAC estimates the probability of cost-effectiveness, with respect to a
+given willingness to pay threshold. The CEAC is used mainly to evaluate the
+uncertainty associated with the decision-making process, since it enables the
+quantification of the preference of the compared interventions, defined in terms
+of difference in utilities.
+Formally, the CEAC is defined as:
+
+\deqn{\text{CEAC} = P(\text{IB}(\theta) > 0)}
+  
+If the net benefit function is used as utility function, the definition can be
+re-written as
+
+\deqn{\text{CEAC} = P(k\cdot\Delta_e - \Delta_c > 0)}
+
+effectively depending on the willingness to pay value \eqn{k}.
 }
 \examples{
 
@@ -64,11 +81,11 @@ ceac.plot(he, graph = "plotly")
 ceac.plot(he, graph = "ggplot2", title = "my title", line = list(colors = "green"), theme = theme_dark())
 he2 <- BCEA::bcea(cbind(e,e - 0.0002), cbind(c,c + 5))
 mypalette <- RColorBrewer::brewer.pal(3, "Accent")
-        ceac.plot(he2, graph = "ggplot2",
-        title = "my title",
-        theme = theme_dark(),
-        pos = TRUE,
-        line = list(colors = mypalette))
+ceac.plot(he2, graph = "ggplot2",
+          title = "my title",
+          theme = theme_dark(),
+          pos = TRUE,
+          line = list(colors = mypalette))
 ceac.plot(he, graph = "base", title = "my title", line = list(colors = "green"))
 ceac.plot(he2, graph = "base")
 
@@ -78,7 +95,7 @@ Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
   Analysis in Health Economics. Statistical Methods in Medical Research
   doi:10.1177/0962280211419832.
 
-  Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
 \code{\link{bcea}}

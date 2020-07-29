@@ -156,11 +156,16 @@ is associated with the maximum utility overall.</p>
     <p>Array with dimensions (sim x k)</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>In mathematical notation,
-$$VoI(\mathbf{\theta}) = U^*(\mathbf{\theta}) - \mathrm{E}[U(\mathbf{\theta}^{\tau})]$$</p>
-<p>For each row of the simulations table, the VoI is computed as the
-difference between the current value of \(U^*\) and the
-mean of the entire vector of \(U\).</p>
+    <p>The value of obtaining additional information on the parameter \(\theta\)
+to reduce the uncertainty in the decisional process.
+It is defined as:</p>
+<p>$$\text{VI}(\theta) := U^*(\theta) - \mathcal{U}^*$$</p>
+<p>with \(U^*(\theta)\) the maximum utility value for the given simulation
+among all comparators and \(\mathcal{U}^*(\theta)\) the expected utility
+gained by the adoption of the cost-effective intervention.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='compute_ol.html'>compute_ol</a></code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

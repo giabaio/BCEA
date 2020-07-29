@@ -40,7 +40,8 @@
 
 
 <meta property="og:title" content="Compute Expected Incremental Benefit — compute_EIB" />
-<meta property="og:description" content="Compute Expected Incremental Benefit" />
+<meta property="og:description" content="A summary measure useful to assess the potential changes in the decision
+under different scenarios." />
 
 
 
@@ -129,12 +130,38 @@
     </div>
 
     <div class="ref-description">
-    <p>Compute Expected Incremental Benefit</p>
+    <p>A summary measure useful to assess the potential changes in the decision
+under different scenarios.</p>
     </div>
 
     <pre class="usage"><span class='fu'>compute_EIB</span>(<span class='no'>ib</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>ib</th>
+      <td><p>Incremental benefit</p></td>
+    </tr>
+    </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Array with dimensions (interv x k)</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>When considering a pairwise comparison
+(e.g. in the simple case of a reference intervention \(t = 1\) and a comparator,
+such as the status quo, \(t = 0\)), it is defined as the difference between the
+expected utilities of the two alternatives:</p>
+<p>$$eib := \mbox{E}[u(e,c;1)] - \mbox{E}[u(e,c;0)] = \mathcal{U}^1 - \mathcal{U}^0$$.</p>
+<p>Analysis of the expected incremental benefit describes how the decision changes
+for different values of the threshold. The EIB marginalises out the uncertainty,
+and does not incorporate and describe explicitly the uncertainty in the outcomes.
+To overcome this problem the tool of choice is the CEAC.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='plot-bcea.html'>ceac.plot</a></code>, <code><a href='compute_CEAC.html'>compute_CEAC</a></code>, <code><a href='compute_IB.html'>compute_IB</a></code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

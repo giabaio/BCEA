@@ -28,6 +28,8 @@ reference:
   - '`info.rank`'
 - title: Statistics
 - contents:
+  - '`compute_CEAC`'
+  - '`compute_EIB`'
   - '`compute_IB`'
   - '`compute_kstar`'
   - '`compute_ol`'

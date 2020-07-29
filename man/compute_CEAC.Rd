@@ -6,6 +6,15 @@
 \usage{
 compute_CEAC(ib)
 }
+\arguments{
+\item{ib}{Incremental benefit}
+}
+\value{
+Array with dimensions (interv x k)
+}
 \description{
 Compute Cost-Effectiveness Acceptability Curve
+}
+\seealso{
+\code{\link{ceac.plot}}
 }

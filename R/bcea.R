@@ -4,7 +4,7 @@
 #' Cost-effectiveness analysis based on the results of a simulation model for a
 #' variable of clinical benefits (e) and of costs (c). Produces results to be
 #' post-processed to give the health economic analysis. The output is stored in
-#' an object of the class "bcea"
+#' an object of the class "bcea".
 #' 
 #' @aliases bcea bcea.default CEanalysis
 #' @param e An object containing \code{nsim} simulations for the variable of

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Constructor for bcea — new_bcea • BCEA</title>
+<title>Compute Incremental Cost-Effectiveness Ratio — compute_ICER • BCEA</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Constructor for bcea — new_bcea" />
-<meta property="og:description" content="Constructor for bcea" />
+<meta property="og:title" content="Compute Incremental Cost-Effectiveness Ratio — compute_ICER" />
+<meta property="og:description" content="Defined as" />
 
 
 
@@ -123,37 +123,38 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Constructor for bcea</h1>
-    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/new_bcea.R'><code>R/new_bcea.R</code></a></small>
-    <div class="hidden name"><code>new_bcea.Rd</code></div>
+    <h1>Compute Incremental Cost-Effectiveness Ratio</h1>
+    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/compute_ICER.R'><code>R/compute_ICER.R</code></a></small>
+    <div class="hidden name"><code>compute_ICER.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Constructor for bcea</p>
+    <p>Defined as</p>
     </div>
 
-    <pre class="usage"><span class='fu'>new_bcea</span>(<span class='no'>df_ce</span>, <span class='no'>k</span>)</pre>
+    <pre class="usage"><span class='fu'>compute_ICER</span>(<span class='no'>df_ce</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>df_ce</th>
-      <td><p>Dataframe of all simulation eff and cost</p></td>
-    </tr>
-    <tr>
-      <th>k</th>
-      <td><p>Vector of willingness to pay values</p></td>
+      <td><p>Cost-effectiveness dataframe</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>List object of class bcea.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    
 
-    <div class='dont-index'><p>bcea</p></div>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>$$ICER = \Delta_c/\Delta_e$$</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

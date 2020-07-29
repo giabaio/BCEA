@@ -20,10 +20,16 @@ parameter configuration \eqn{U^*} and the utility of the intervention which
 is associated with the maximum utility overall.
 }
 \details{
-In mathematical notation,
-\deqn{VoI(\mathbf{\theta}) = U^*(\mathbf{\theta}) - \mathrm{E}[U(\mathbf{\theta}^{\tau})]}
+The value of obtaining additional information on the parameter \eqn{\theta}
+to reduce the uncertainty in the decisional process.
+It is defined as:
 
-For each row of the simulations table, the VoI is computed as the
-difference between the current value of \eqn{U^*} and the
-mean of the entire vector of \eqn{U}.
+\deqn{\text{VI}(\theta) := U^*(\theta) - \mathcal{U}^*}
+
+with \eqn{U^*(\theta)} the maximum utility value for the given simulation
+among all comparators and \eqn{\mathcal{U}^*(\theta)} the expected utility
+gained by the adoption of the cost-effective intervention.
+}
+\seealso{
+\code{\link{compute_ol}}
 }

@@ -10,7 +10,7 @@ compute_Ustar(U)
 \item{U}{Net monetary benefit (sim x k x intervs)}
 }
 \value{
-Ustar (sim x k)
+Array with dimensions (sim x k)
 }
 \description{
 The maximum utility value among the comparators, indicating which

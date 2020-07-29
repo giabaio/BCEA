@@ -14,8 +14,11 @@ compute_kstar(k, best, ref)
 \item{ref}{Reference intervention}
 }
 \value{
-kstar
+Array with dimensions
 }
 \description{
 Find willingness-to-pay threshold when optimal decision changes.
+}
+\seealso{
+\code{\link{ceac.plot}}
 }

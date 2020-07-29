@@ -164,7 +164,7 @@ plotting. Should (partial-)match the three options <code>"base"</code>,
     </tr>
     <tr>
       <th>...</th>
-      <td><p>If <code>graph="ggplot2"</code> and a named theme object is supplied,
+      <td><p>If <code>graph = "ggplot2"</code> and a named theme object is supplied,
  it will be added to the ggplot object. Additional arguments:</p><ul>
 <li><p><code>line_colors</code>: specifies the line colour(s) - all graph types.</p></li>
 <li><p><code>line_types</code>: specifies the line type(s) as lty numeric values - all graph types.</p></li>
@@ -185,8 +185,8 @@ together. Any subset of the possible comparisons can be selected (e.g.,
 
     
 
-<dt>ceac</dt><dd><p></p></dd>If <code>graph="ggplot2"</code> a ggplot object, or if <code>graph="plotly"</code> 
-  a plotly object containing the requested plot. Nothing is returned when <code>graph="base"</code>, 
+<dt>ceac</dt><dd><p></p></dd>If <code>graph = "ggplot2"</code> a ggplot object, or if <code>graph = "plotly"</code> 
+  a plotly object containing the requested plot. Nothing is returned when <code>graph = "base"</code>, 
   the default. The function produces a plot of the
   cost-effectiveness acceptability curve against the discrete grid of possible
   values for the willingness to pay parameter. Values of the CEAC closer to 1
@@ -194,6 +194,19 @@ together. Any subset of the possible comparisons can be selected (e.g.,
   intervention is very low. Similarly, values of the CEAC closer to 0 indicate
   that uncertainty in the cost-effectiveness of the comparator is very low.
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The CEAC estimates the probability of cost-effectiveness, with respect to a
+given willingness to pay threshold. The CEAC is used mainly to evaluate the
+uncertainty associated with the decision-making process, since it enables the
+quantification of the preference of the compared interventions, defined in terms
+of difference in utilities.
+Formally, the CEAC is defined as:</p>
+<p>$$\text{CEAC} = P(\text{IB}(\theta) &gt; 0)$$</p>  
+<p>If the net benefit function is used as utility function, the definition can be
+re-written as</p>
+<p>$$\text{CEAC} = P(k\cdot\Delta_e - \Delta_c &gt; 0)$$</p>
+<p>effectively depending on the willingness to pay value \(k\).</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
@@ -212,11 +225,11 @@ together. Any subset of the possible comparisons can be selected (e.g.,
 <span class='fu'>ceac.plot</span>(<span class='no'>he</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"base"</span>)</div><div class='img'><img src='plot-bcea-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>ceac.plot</span>(<span class='no'>he</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"ggplot2"</span>)</div><div class='img'><img src='plot-bcea-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>ceac.plot</span>(<span class='no'>he</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"plotly"</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'>
 <span class='fu'>ceac.plot</span>(<span class='no'>he</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"ggplot2"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"my title"</span>, <span class='kw'>line</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>colors</span> <span class='kw'>=</span> <span class='st'>"green"</span>), <span class='kw'>theme</span> <span class='kw'>=</span> <span class='fu'>theme_dark</span>())</div><div class='img'><img src='plot-bcea-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>he2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>BCEA</span><span class='kw ns'>::</span><span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='no'>e</span>,<span class='no'>e</span> - <span class='fl'>0.0002</span>), <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='no'>c</span>,<span class='no'>c</span> + <span class='fl'>5</span>))
 <span class='no'>mypalette</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>RColorBrewer</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html'>brewer.pal</a></span>(<span class='fl'>3</span>, <span class='st'>"Accent"</span>)
-        <span class='fu'>ceac.plot</span>(<span class='no'>he2</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"ggplot2"</span>,
-        <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"my title"</span>,
-        <span class='kw'>theme</span> <span class='kw'>=</span> <span class='fu'>theme_dark</span>(),
-        <span class='kw'>pos</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-        <span class='kw'>line</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>colors</span> <span class='kw'>=</span> <span class='no'>mypalette</span>))</div><div class='img'><img src='plot-bcea-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>ceac.plot</span>(<span class='no'>he</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"base"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"my title"</span>, <span class='kw'>line</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>colors</span> <span class='kw'>=</span> <span class='st'>"green"</span>))</div><div class='img'><img src='plot-bcea-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>ceac.plot</span>(<span class='no'>he2</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"base"</span>)</div><div class='output co'>#&gt; <span class='message'>Wrong number of colours provided. Falling back to default</span></div><div class='img'><img src='plot-bcea-6.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>ceac.plot</span>(<span class='no'>he2</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"ggplot2"</span>,
+          <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"my title"</span>,
+          <span class='kw'>theme</span> <span class='kw'>=</span> <span class='fu'>theme_dark</span>(),
+          <span class='kw'>pos</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+          <span class='kw'>line</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>colors</span> <span class='kw'>=</span> <span class='no'>mypalette</span>))</div><div class='img'><img src='plot-bcea-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>ceac.plot</span>(<span class='no'>he</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"base"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"my title"</span>, <span class='kw'>line</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>colors</span> <span class='kw'>=</span> <span class='st'>"green"</span>))</div><div class='img'><img src='plot-bcea-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>ceac.plot</span>(<span class='no'>he2</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"base"</span>)</div><div class='output co'>#&gt; <span class='message'>Wrong number of colours provided. Falling back to default</span></div><div class='img'><img src='plot-bcea-6.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
