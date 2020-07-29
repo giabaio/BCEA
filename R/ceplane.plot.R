@@ -122,17 +122,17 @@ ceplane.plot <- function(he,
   if (plot_type == 1) {
 
     ##TODO:...
-    # ceplane_plot_base()
+    # ceplane_plot_base(he, graph_params)
     
   } else if (plot_type == 2) {
     
     ##TODO:...
-    # ceplane_plot_ggplot()
+    # ceplane_plot_ggplot(he, graph_params)
     
   } else if (plot_type == 3) {
     
     ##TODO:...
-    # ceplane_plot_plotly()
+    # ceplane_plot_plotly(he, graph_params)
   }
 }
 
