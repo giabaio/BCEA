@@ -43,7 +43,9 @@ ceplane_base_params <- function(he,
                 if (length(comparison) == 1) {
                   paste("\U2022",
                         " ICER = ",
-                        format(he$ICER, digits = 6, nsmall = 2),
+                        format(he$ICER[comparison],
+                               digits = 6,
+                               nsmall = 2),
                         sep = "")
                 } else {
                   ""},

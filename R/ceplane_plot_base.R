@@ -43,7 +43,8 @@ ceplane_plot_base <- function(he,
   add_ceplane_polygon(axes_params, base_params)
   add_ceplane_points(he, comparison, base_params)
   abline(h = 0, v = 0, col = "dark grey")
-  add_ceplane_icer(axes_params, base_params)
+  add_ceplane_icer(comparison, axes_params, base_params)
   add_ceplane_k_txt(axes_params, wtp)
+  add_ceplane_legend(he, comparison, base_params)
 }
 

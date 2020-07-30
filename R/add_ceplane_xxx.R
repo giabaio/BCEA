@@ -32,7 +32,8 @@ add_ceplane_points <- function(he,
 }
 
 #
-add_ceplane_icer <- function(axes_params,
+add_ceplane_icer <- function(comparison,
+                             axes_params,
                              base_params) {
   do.call("text",
           c(list(x = axes_params$xlim[2],
@@ -41,8 +42,8 @@ add_ceplane_icer <- function(axes_params,
           quote = TRUE)
   
   do.call("points",
-          c(list(x = colMeans(he$delta_e),
-                 y = colMeans(he$delta_c)),
+          c(list(x = colMeans(he$delta_e[, comparison, drop = FALSE]),
+                 y = colMeans(he$delta_c[, comparison, drop = FALSE])),
             base_params$icer_points),
           quote = TRUE)
 }
@@ -67,13 +68,14 @@ add_ceplane_k_txt <- function(axes_params,
 
 #
 add_ceplane_legend <- function(he,
+                               comparison,
                                base_params) {
   
-  if (he$n_comparisons == 1) return()
+  if (length(comparison) == 1) return()
   
   text <- paste(he$interventions[he$ref],
                 "vs",
-                he$interventions[he$comp])
+                he$interventions[comparison])
   legend("topright",
          text,
          col = base_params$point$colors,
