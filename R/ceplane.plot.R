@@ -109,6 +109,9 @@ ceplane.plot <- function(he,
   
   graph <- match.arg(graph)
   
+  if (!is.null(size))
+    message("Option size will be ignored using base graphics.")
+  
   ##TODO: what is this?..
   ### hidden options for ggplot2 ###
   # ICER.size =                    # changes ICER point size

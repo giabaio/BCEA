@@ -1,12 +1,27 @@
 
+#' ceplane_plot_base
+#'
+#' @template args-he
+#' @param comparison 
+#' @param wtp 
+#' @param graph_params 
+#' @param ... 
+#' 
+#' @return 
+#' @keywords hplot
+#' 
+#' @examples
+#'
+#' ## single comparator
 #' data(Vaccine)
+#' 
 #' he <- bcea(e,c)
 #' ceplane_plot_base(he)
 #' 
+#' ## multiple comparators
 #' data(Smoking)
 #' 
 #' m <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
-#' 
 #' ceplane_plot_base(m, wtp = 200)
 #' 
 ceplane_plot_base <- function(he,
@@ -14,11 +29,6 @@ ceplane_plot_base <- function(he,
                               wtp = 25000,
                               graph_params,
                               ...) {
-  
-  if(!is.null(size))
-    message("Option size will be ignored using base graphics.")
-  
-  #alt.legend
   
   # Encodes characters so that the graph can be saved as ps or pdf
   ps.options(encoding = "CP1250")
@@ -29,44 +39,13 @@ ceplane_plot_base <- function(he,
     axes_params <- axes_params(he, wtp)
     base_params <- ceplane_base_params(he, graph_params)
     
-    do.call("plot", c(axes_params$limits,
-                      base_params$setup), quote = TRUE)
+    add_ceplane_setup()
+    add_ceplane_polygon()
+    add_ceplane_points()
+    abline(h = 0, v = 0, col = "dark grey")
+    add_ceplane_icer()
+    add_ceplane_k_txt()
 
-    do.call("polygon", c(axes_params$polygon,
-                         base_params$polygon), quote = TRUE)
-    
-    axis(1)
-    axis(2)
-    box()
-    
-    do.call("points", c(list(x = he$delta_e,
-                             y = he$delta_c),
-                        base_params$points), quote = TRUE)
-    
-    abline(h = 0, col = "dark grey")
-    abline(v = 0, col = "dark grey")
-    
-    do.call("text", c(list(x = upper_e, 
-                           y = upper_c),
-                      base_params$icer_text), quote = TRUE)
-    
-    do.call("points", c(list(x = mean(he$delta_e),
-                             y = mean(he$delta_c)),
-                        base_params$icer_points), quote = TRUE)
-    
-    k_equals_txt <-
-      paste0("k == ",
-             format(
-               wtp,
-               digits = 3,
-               nsmall = 2,
-               scientific = FALSE))
-    
-    text(axes_params$k$x,
-         axes_params$k$y,
-         parse(text = k_equals_txt),
-         cex = 0.8,
-         pos = 4)
     
   } else if (he$n_comparisons > 1 & is.null(comparison)) {
     if (is.null(xlim)) {xlim <- range(he$delta_e)}
