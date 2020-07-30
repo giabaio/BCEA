@@ -19,9 +19,21 @@ ceplane_base_params <- function(he,
                            list(color = "grey95",
                                 line_color = "black"),
                          point = list(sizes = 0.35,
-                                      colors = "black"),
+                                      colors = grey.colors(n = length(comparison),
+                                                           end = 0.7,
+                                                           alpha = 1)),
                          ICER = list(colors = "red",
-                                     size = 1))
+                                     size = 1),
+                         legend = list(x = "topright",
+                                       legend = paste(he$interventions[he$ref],
+                                                      "vs",
+                                                      he$interventions[comparison]), ##TODO: is this out-by-one?
+                                       col = grey.colors(n = length(comparison),
+                                                         end = 0.7,
+                                                         alpha = 1),
+                                       cex = 0.7,
+                                       bty = "n",
+                                       pch = 16))
   
   graph_params <- modifyList(default_params, graph_params)
   
@@ -36,11 +48,11 @@ ceplane_base_params <- function(he,
               border = graph_params$area$line_color),
        points =
          list(pch = 20,
-              cex = points_cex,
+              cex = graph_params$point$sizes,
               col = graph_params$point$colors),
        icer_text =
          list(labels = 
-                if (length(comparison) == 1) {
+                if (length(comparison) == 1) {   ##TODO: could move to add_k_txt()?
                   paste("\U2022",
                         " ICER = ",
                         format(he$ICER[comparison],
@@ -55,5 +67,7 @@ ceplane_base_params <- function(he,
        icer_points =
          list(pch = 20,
               col = graph_params$ICER$colors,
-              cex = graph_params$ICER$sizes))
+              cex = graph_params$ICER$sizes),
+       legend = graph_params$legend)
 }
+

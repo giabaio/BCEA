@@ -22,16 +22,9 @@
 #'   indicating to use the default position and \code{TRUE} to place it on the
 #'   bottom of the plot. Default value is \code{c(1,1)}, that is the topright
 #'   corner inside the plot area.
-#' @param size Value (in millimetres) of the size of the willingness to pay
-#'   label. Used only if \code{graph="ggplot2"}, otherwise is ignored with a
-#'   message.
 #' @param graph A string used to select the graphical engine to use for
 #'   plotting. Should (partial-)match the two options \code{"base"} or
 #'   \code{"ggplot2"}. Default value is \code{"base"}.
-#' @param xlim The range of the plot along the x-axis. If NULL (default) it is
-#'   determined by the range of the simulated values for \code{delta.e}
-#' @param ylim The range of the plot along the y-axis. If NULL (default) it is
-#'   determined by the range of the simulated values for \code{delta.c}
 #' @param ...  If \code{graph = "ggplot2"} and a named theme object is supplied,
 #'   it will be added to the ggplot object. Additional graphical arguments:
 #'  \itemize{
@@ -101,31 +94,20 @@ ceplane.plot <- function(he,
                          comparison = NULL,
                          wtp = 25000,
                          pos = c(1, 1),
-                         size = NULL,
                          graph = c("base", "ggplot2"),
-                         xlim = NULL,
-                         ylim = NULL,
                          ...) {
   
   graph <- match.arg(graph)
   
-  if (!is.null(size))
-    message("Option size will be ignored using base graphics.")
+  plot_type <- select_plot_type(graph)
+
+  graph_params <- prep_ceplane_params(he, comparison, ...)
   
-  ##TODO: what is this?..
-  ### hidden options for ggplot2 ###
-  # ICER.size =                    # changes ICER point size
-  # label.pos = FALSE              # uses alternate position for wtp label (old specification)
-  
-  plot_type <- 1
-  # plot_type <- select_plot_type(graph)
-  # 
-  # graph_params <- prepare_graph_params_ceplane(...)
+  ##TODO: legend helper...
  
   if (plot_type == 1) {
 
-    ##TODO:...
-    # ceplane_plot_base(he, graph_params)
+    ceplane_plot_base(he, comparison, wtp, graph_params)
     
   } else if (plot_type == 2) {
     
