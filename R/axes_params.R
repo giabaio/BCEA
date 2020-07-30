@@ -2,6 +2,8 @@
 #' axes_params
 #'
 #' @template args-he 
+#' @param comparison
+#' @param wtp
 #'
 #' @return
 #' @export
@@ -9,13 +11,15 @@
 #' 
 #' @examples
 #' 
-axes_params <- function(he, wtp) {
+axes_params <- function(he,
+                        comparison,
+                        wtp) {
   
   # upper and lower bounds
-  lower_e <- range(he$delta_e)[1]
-  upper_e <- range(he$delta_e)[2]
-  lower_c <- range(he$delta_c)[1]
-  upper_c <- range(he$delta_c)[2]
+  lower_e <- range(he$delta_e[, comparison])[1]
+  upper_e <- range(he$delta_e[, comparison])[2]
+  lower_c <- range(he$delta_c[, comparison])[1]
+  upper_c <- range(he$delta_c[, comparison])[2]
   
   step_size <- (upper_e - lower_e)/10
   

@@ -2,6 +2,7 @@
 #' ceplane_base_params
 #'
 #' @template args-he 
+#' @param comparison
 #' @param graph_params 
 #'
 #' @return
@@ -10,7 +11,9 @@
 #'
 #' @examples
 #' 
-ceplane_base_params <- function(he, graph_params) {
+ceplane_base_params <- function(he,
+                                comparison,
+                                graph_params) {
   
   default_params <- list(area = 
                            list(color = "grey95",
@@ -36,10 +39,14 @@ ceplane_base_params <- function(he, graph_params) {
               cex = points_cex,
               col = graph_params$point$colors),
        icer_text =
-         list(labels = paste("\U2022",
-                             " ICER = ",
-                             format(he$ICER, digits = 6, nsmall = 2),
-                             sep = ""),
+         list(labels = 
+                if (length(comparison) == 1) {
+                  paste("\U2022",
+                        " ICER = ",
+                        format(he$ICER, digits = 6, nsmall = 2),
+                        sep = "")
+                } else {
+                  ""},
               cex = 0.95,
               pos = 2,
               col = graph_params$ICER$colors),

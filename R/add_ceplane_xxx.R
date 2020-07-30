@@ -22,10 +22,11 @@ add_ceplane_polygon <- function(axes_params,
 
 #
 add_ceplane_points <- function(he,
+                               comparison,
                                base_params) {
-  do.call("points",
-          c(list(x = he$delta_e,
-                 y = he$delta_c),
+  do.call("matplot",
+          c(list(x = he$delta_e[, comparison],
+                 y = he$delta_c[, comparison]),
             base_params$points),
           quote = TRUE)
 }
@@ -40,8 +41,8 @@ add_ceplane_icer <- function(axes_params,
           quote = TRUE)
   
   do.call("points",
-          c(list(x = mean(he$delta_e),
-                 y = mean(he$delta_c)),
+          c(list(x = colMeans(he$delta_e),
+                 y = colMeans(he$delta_c)),
             base_params$icer_points),
           quote = TRUE)
 }
@@ -62,5 +63,22 @@ add_ceplane_k_txt <- function(axes_params,
        parse(text = k_equals_txt),
        cex = 0.8,
        pos = 4)
+}
+
+#
+add_ceplane_legend <- function(he,
+                               base_params) {
+  
+  if (he$n_comparisons == 1) return()
+  
+  text <- paste(he$interventions[he$ref],
+                "vs",
+                he$interventions[he$comp])
+  legend("topright",
+         text,
+         col = base_params$point$colors,
+         cex = 0.7,
+         bty = "n",
+         lty = 1)
 }
 
