@@ -1,7 +1,7 @@
 
-##TODO: finish, tidy
-
 #' prep_ceplane_params
+#'
+#' In ggplot format, combine user supplied with defaults.
 #'
 #' @param he 
 #' @param comparison 
@@ -19,31 +19,16 @@ prep_ceplane_params <- function(he,
   
   ##TODO: back-compatibility helper..
   
-  point_colors <- 
-    if (he$n_comparisons > 1 &
-        (is.null(comparison) || length(comparison) > 1)) {
-      colors()[floor(seq(262, 340, length.out = he$n_comparisons))]
-    } else {
-      "grey55"}
-  
-  is_single_comp <-
-    n_comparisons == 1 | (n_comparisons > 1 & (!is.null(comparison) && length(comparison) == 1))
-  
   plot_title <-
-    with(he, paste0(
+    paste0(
       "Cost-Effectiveness Plane",
-      ifelse(
-        is_single_comp,
-        yes = paste("\n", interventions[ref], "vs", interventions[-ref]),
-        no = paste0(
-          ifelse(isTRUE(he$mod),
-                 yes = paste0("\n",
-                              interventions[ref],
-                              " vs ",
-                              paste0(interventions[comp],
-                                     collapse = ", ")),
-                 no = "")))
-    ))
+      ifelse(he$mod,                   ##TODO: how to use this (mod)?
+             yes = paste("\n",
+                         he$interventions[ref],
+                         "vs",
+                         paste0(he$interventions[comp],
+                                collapse = ", ")),
+             no = ""))
   
   default_params <-
     list(xlab = "Effectiveness differential",
@@ -52,15 +37,14 @@ prep_ceplane_params <- function(he,
          xlim = NULL,
          ylim = NULL,
          point = list(
-           colors = point_colors,
-           size = 4),
+           colors = grey.colors(n = length(comparison),
+                                end = 0.7,
+                                alpha = 1),
+           size = 4), #sizes = 0.35?
          area = list(
            include = TRUE,
-           color = "light gray",
-           line_color = "black"),
-         ICER = list(
-           colors = "red",
-           sizes = 8))
+           color = "grey95",
+           line_color = "black"))
   
   modifyList(default_params, graph_params)
 }

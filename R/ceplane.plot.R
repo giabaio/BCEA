@@ -100,19 +100,24 @@ ceplane.plot <- function(he,
   graph <- match.arg(graph)
   
   plot_type <- select_plot_type(graph)
-
+  
   graph_params <- prep_ceplane_params(he, comparison, ...)
   
-  ##TODO: legend helper...
- 
   if (plot_type == 1) {
-
-    ceplane_plot_base(he, comparison, wtp, graph_params)
+    
+    ##TODO: can we reduce number arguments?
+    ceplane_plot_base(he,
+                      comparison,
+                      wtp,
+                      pos_legend = pos,
+                      graph_params)
     
   } else if (plot_type == 2) {
     
     ##TODO:...
-    # ceplane_plot_ggplot(he, graph_params)
+    # ceplane_plot_ggplot(he,
+    #                     pos_legend = pos,
+    #                     graph_params, ...)
     
   } else if (plot_type == 3) {
     

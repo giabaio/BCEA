@@ -2,9 +2,9 @@
 #' ceplane_axes_params
 #'
 #' @template args-he 
-#' @param comparison
+#' @param comparison Interventions to compare against reference
 #' @param wtp Willingness to pay threshold
-#' @param graph_params
+#' @param graph_params Graph parameters
 #'
 #' @return
 #' @export

@@ -1,5 +1,6 @@
 
 #' @keywords dplot
+#' 
 make_legend_base <- function(he,
                              pos_legend,
                              base_params) {
@@ -29,5 +30,6 @@ make_legend_base <- function(he,
        cex = 0.7,
        bty = "n", 
        lty = base_params$lty,
-       col = base_params$col)
+       col = base_params$col,
+       pch = base_params$pch)
 }

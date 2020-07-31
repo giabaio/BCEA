@@ -100,7 +100,7 @@ ceac.plot <- function(he,
   
   graph_type <- select_plot_type(graph)
   
-  graph_params <- prepare_graph_params(...)
+  graph_params <- prepare_ceac_params(...)
   
   if (graph_type == 1) {
     

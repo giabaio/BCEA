@@ -72,10 +72,10 @@ add_ceplane_k_txt <- function(axes_params,
 
 #
 add_ceplane_legend <- function(comparison,
-                               base_params) {
+                               legend_params) {
   
   if (length(comparison) == 1) return()
   
-  do.call(legend, base_params$legend)
+  do.call(legend, legend_params)
 }
 

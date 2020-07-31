@@ -14,12 +14,14 @@ select_plot_type <- function(graph) {
   # check feasibility
   if (graph_type == 2 && !all(is_req_pkgs)) {
     warning(
-      "Packages ggplot2 and grid not found; plot will be rendered using base graphics.", call. = FALSE)
+      "Packages ggplot2 and grid not found;
+      plot will be rendered using base graphics.", call. = FALSE)
     graph_type <- 1}
   
   if (graph_type == 3 && !requireNamespace("plotly", quietly = TRUE)) {
     warning(
-      "Package plotly not found; plot will be rendered using base graphics.", call. = FALSE)
+      "Package plotly not found;
+      plot will be rendered using base graphics.", call. = FALSE)
     graph_type <- 1}
   
   graph_type

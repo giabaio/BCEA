@@ -54,6 +54,7 @@ helper_base_params <- function(he,
        ylim = c(0, 1),
        lty = graph_params$plot$line$types,
        col = graph_params$plot$line$colors,
-       lwd = graph_params$plot$lwd)
+       lwd = graph_params$plot$lwd,
+       pch = NULL)
 }
 
