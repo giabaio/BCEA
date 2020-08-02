@@ -40,10 +40,8 @@ ceplane_plot_base <- function(he,
                               graph_params) {
   
   if (is.null(comparison)) comparison <- 1:he$n_comparisons
-  
-  # encodes characters to save graphs as postscript or pdf
-  ps.options(encoding = "CP1250")
-  pdf.options(encoding = "CP1250")
+ 
+  ##TODO: simplify by removing, combining comparison...
   
   axes_params <- ceplane_axes_params(he, comparison, wtp, graph_params)
   base_params <- ceplane_base_params(he, comparison, graph_params)
@@ -54,7 +52,7 @@ ceplane_plot_base <- function(he,
   add_ceplane_points(he, comparison, base_params)
   abline(h = 0, v = 0, col = "dark grey")
   add_ceplane_icer(comparison, axes_params, base_params)
-  add_ceplane_k_txt(axes_params)
+  add_ceplane_k_txt(axes_params, base_params)
   add_ceplane_legend(comparison, legend_params)
 }
 

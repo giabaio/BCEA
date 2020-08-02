@@ -32,7 +32,8 @@ ceplane_base_params <- function(he,
               col = graph_params$point$colors),
        k_txt =
          list(cex = 0.8,
-              pos = 4), 
+              pos = 4, 
+              adj = c(0, 0)),
        icer_text =
          list(labels = icer_label(he, comparison),
               cex = 0.95,
@@ -41,19 +42,19 @@ ceplane_base_params <- function(he,
        icer_points =
          list(pch = 20,
               col = "red",
-              cex = 8))  # sizes = 1?
+              cex = 1))
 }
 
+#
 icer_label <- function(he, comparison) {
   
   if (length(comparison) == 1) {
     return(
-      paste("\U2022",
-          " ICER = ",
-          format(he$ICER[comparison],
-                 digits = 6,
-                 nsmall = 2),
-          sep = ""))
+      paste0("\U2022",
+             " ICER = ",
+             format(he$ICER[comparison],
+                    digits = 6,
+                    nsmall = 2)))
   } 
   return("")
 }

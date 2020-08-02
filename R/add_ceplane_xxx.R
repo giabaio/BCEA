@@ -37,8 +37,7 @@ add_ceplane_icer <- function(comparison,
                              axes_params,
                              base_params) {
   do.call("text",
-          c(list(x = axes_params$limits$xlim[2],
-                 y = axes_params$limits$ylim[2]),
+          c(axes_params$icer_text,
             base_params$icer_text),
           quote = TRUE)
   
@@ -63,11 +62,10 @@ add_ceplane_k_txt <- function(axes_params,
              nsmall = 2,
              scientific = FALSE))
   
-  text(axes_params$k_txt$x,
-       axes_params$k_txt$y,
-       parse(text = k_equals_txt),
-       base_params$cex,
-       base_params$pos)
+  do.call(text, c(list(labels =
+                         parse(text = k_equals_txt)),
+                  axes_params$k_txt,
+                  base_params$k_txt))
 }
 
 #

@@ -43,7 +43,7 @@
 #'   \item \code{area_color}: a colour specifying the colour of the cost-effectiveness acceptability area.
 #'  }
 #'  
-#' @return \If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 
+#' @return If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 
 #'   a plotly object containing the requested plot. Nothing is returned when \code{graph = "base"}, 
 #'   the default.
 #'    
