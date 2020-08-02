@@ -41,18 +41,18 @@ ceplane_plot_base <- function(he,
   
   if (is.null(comparison)) comparison <- 1:he$n_comparisons
  
-  ##TODO: simplify by removing, combining comparison...
+  plot_params <-
+    ceplane_base_params(he, comparison, wtp, graph_params)
+
+  legend_params <-
+    make_legend_base(he, pos_legend, base_params)
   
-  axes_params <- ceplane_axes_params(he, comparison, wtp, graph_params)
-  base_params <- ceplane_base_params(he, comparison, graph_params)
-  legend_params <- make_legend_base(he, pos_legend, base_params)
-  
-  add_ceplane_setup(axes_params, base_params)
-  add_ceplane_polygon(axes_params, base_params)
-  add_ceplane_points(he, comparison, base_params)
+  add_ceplane_setup(plot_params)
+  add_ceplane_polygon(plot_params)
+  add_ceplane_points(he, comparison, plot_params)
   abline(h = 0, v = 0, col = "dark grey")
-  add_ceplane_icer(comparison, axes_params, base_params)
-  add_ceplane_k_txt(axes_params, base_params)
+  add_ceplane_icer(comparison, plot_params)
+  add_ceplane_k_txt(plot_params)
   add_ceplane_legend(comparison, legend_params)
 }
 
