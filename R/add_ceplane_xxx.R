@@ -54,20 +54,20 @@ add_ceplane_icer <- function(comparison,
 
 #
 add_ceplane_k_txt <- function(axes_params,
-                              wtp) {
+                              base_params) {
   k_equals_txt <-
     paste0("k == ",
            format(
-             wtp,
+             axes_params$wtp,
              digits = 3,
              nsmall = 2,
              scientific = FALSE))
   
-  text(axes_params$k$x,
-       axes_params$k$y,
+  text(axes_params$k_txt$x,
+       axes_params$k_txt$y,
        parse(text = k_equals_txt),
-       cex = 0.8,
-       pos = 4)
+       base_params$cex,
+       base_params$pos)
 }
 
 #

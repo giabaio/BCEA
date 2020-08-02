@@ -69,7 +69,7 @@ ceplane_axes_params <- function(he,
   list(seq =
          list(x = x_seq,
               y = y_seq),
-       k =
+       k_txt =
          list(x = x_k,
               y = y_k),
        limits =
@@ -77,5 +77,6 @@ ceplane_axes_params <- function(he,
               ylim = c(lower_c, upper_c)),
        polygon =
          list(x = polygon_x,
-              y = polygon_y))
+              y = polygon_y),
+       wtp = wtp)
 }
