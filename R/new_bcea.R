@@ -41,36 +41,29 @@ new_bcea <- function(df_ce, k) {
   
   evi <- colMeans(ol)
   
-  interv_names <-
-    map_chr(1:(length(comp) + 1),
-            ~ unique(df_ce$interv_names[df_ce$ints == .]))
+  interv_names <- levels(df_ce$interv_names)
   
   e_dat <-
     reshape2::dcast(sim ~ interv_names,
                     value.var = "eff1",
-                    data = df_ce)[, -1] %>% 
-    select(interv_names)
+                    data = df_ce)[, -1]
   
   c_dat <-
     reshape2::dcast(sim ~ interv_names,
                     value.var = "cost1",
-                    data = df_ce)[, -1] %>% 
-    select(interv_names)
+                    data = df_ce)[, -1]
   
   
   delta_e <- 
     reshape2::dcast(sim ~ interv_names,
                     value.var = "delta_e",
-                    data = df_ce_comp)[, -1] %>% 
-  select(interv_names[-ref])
+                    data = df_ce_comp)[, -1]
   
   delta_c <- 
     reshape2::dcast(sim ~ interv_names,
                     value.var = "delta_c",
-                    data = df_ce_comp)[, -1] %>% 
-  select(interv_names[-ref])
-  
-  
+                    data = df_ce_comp)[, -1] 
+
   he <- 
     list(n_sim = length(unique(df_ce$sim)),
          n_comparators = length(comp) + 1,

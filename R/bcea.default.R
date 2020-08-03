@@ -62,7 +62,7 @@ bcea.default <- function(eff,
     if (is.null(interventions)) {
       paste("intervention", intervs)
     } else {
-      interventions}
+      as.factor(interventions)}
   
   if (!is.null(wtp)) {
     k <- sort(unique(wtp))
@@ -81,7 +81,7 @@ bcea.default <- function(eff,
       ints = rep(intervs, each = n_sim),
       eff = matrix(eff, ncol = 1),
       cost = matrix(cost, ncol = 1))
-
+  
   df_ce <- 
     df_ce %>%
     select(-ref) %>% 
@@ -93,7 +93,8 @@ bcea.default <- function(eff,
     mutate(delta_e = eff0 - eff1,
            delta_c = cost0 - cost1)   ##TODO: is this the wrong way around?...
   
-  df_ce$interv_names <- interv_names[df_ce$ints]
+  df_ce$interv_names <- factor(interv_names[df_ce$ints],
+                               levels = interv_names)
   
   he <- new_bcea(df_ce, k)
   
