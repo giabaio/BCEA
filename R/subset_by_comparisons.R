@@ -19,7 +19,7 @@ subset_by_comparisons <- function(he, comparison) {
   he$eib <- he$eib[, comparison]
   he$U <- he$U[, , sort(c(he$ref, comparison + 1))]
   he$ceac <- he$ceac[, comparison]
-  he$mod <- TRUE
+  he$change_comp <- TRUE
   
   return(he)
 }

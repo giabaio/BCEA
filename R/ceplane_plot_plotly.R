@@ -48,7 +48,7 @@ ceplane_plot_plotly <- function(he) {
     he$ceac <- he$ceac[, comparison]
     he$ref <- rank(c(he$ref, he$comp))[1]
     he$comp <- rank(c(he$ref, he$comp))[-1]
-    he$mod <- TRUE
+    he$change_comp <- TRUE
     return(ceplane.plot(he, wtp = wtp, pos = alt.legend, graph = "plotly", ...))
   }
   if (exists("ICER.size", where = exArgs)) {

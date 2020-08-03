@@ -20,7 +20,7 @@ prep_ceplane_params <- function(he, wtp, ...) {
   plot_title <-
     paste0(
       "Cost-Effectiveness Plane",
-      ifelse(he$mod,                   ##TODO: how to use this (mod)?
+      ifelse(he$change_comp,
              yes = paste("\n",
                          he$interventions[he$ref],
                          "vs",

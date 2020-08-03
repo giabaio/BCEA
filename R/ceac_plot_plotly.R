@@ -18,7 +18,7 @@
     he$ceac <- he$ceac[, comparison]
     he$ref <- rank(c(he$ref, he$comp))[1]
     he$comp <- rank(c(he$ref, he$comp))[-1]
-    he$mod <- TRUE #
+    he$change_comp <- TRUE
     return(ceac.plot(he, pos = alt.legend, graph = "plotly", ...))
   }
   # plot labels

@@ -217,9 +217,17 @@ contour2 <-
       he$ceac=he$ceac[,comparison]
       he$ref=rank(c(he$ref,he$comp))[1]
       he$comp=rank(c(he$ref,he$comp))[-1]
-      he$mod <- TRUE #
+      he$change_comp <- TRUE
       
-      return(contour2(he,wtp=wtp,xlim=xlim,ylim=ylim,comparison=NULL,graph="ggplot2",...))
+      return(contour2(
+        he,
+        wtp = wtp,
+        xlim = xlim,
+        ylim = ylim,
+        comparison = NULL,
+        graph = "ggplot2",
+        ...
+      ))
     }
     
     contour <- contour + ggplot2::coord_cartesian(xlim=xlim,ylim=ylim)

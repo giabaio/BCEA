@@ -200,7 +200,7 @@ ceplane_plot_ggplot <- function() {
     he$ceac <- he$ceac[, comparison]
     he$ref <- rank(c(he$ref, he$comp))[1]
     he$comp <- rank(c(he$ref, he$comp))[-1]
-    he$mod <- TRUE #
+    he$change_comp <- TRUE
     return(ceplane.plot(he,wtp=wtp,pos=alt.legend,graph="ggplot2",size=size,...))
   }
   ceplane <- ceplane + 

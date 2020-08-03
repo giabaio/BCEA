@@ -216,12 +216,13 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
         abline(v = he$kstar, col = "dark grey", lty = "dotted")
         text(he$kstar, min(yl), paste("k* = ", he$kstar ,sep = ""))
       }
-      if(isTRUE(he$mod))
+      if (he$change_comp) {
         legend(
           alt.legend,
-          paste0(he$interventions[he$ref]," vs ",he$interventions[he$comp]),
-          cex = .7, bty = "n", lwd = 1,
+          paste0(he$interventions[he$ref], " vs ", he$interventions[he$comp]),
+          cex = 0.7, bty = "n", lwd = 1,
           lty = ifelse(is.null(plot_aes$line$types), 1, plot_aes$line$types[1]))
+      }
     } else if (he$n_comparisons > 1 & is.null(comparison)) {
       lwd <- ifelse(he$n_comparisons > 6, 1.5, 1)
       plot(
@@ -281,7 +282,7 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
       he$ceac=he$ceac[,comparison]
       he$ref=rank(c(he$ref,he$comp))[1]
       he$comp=rank(c(he$ref,he$comp))[-1]
-      he$mod <- TRUE #
+      he$change_comp <- TRUE
       
       eib.plot(he,pos=alt.legend,graph="base",size=size,comparison=NULL,plot.cri=plot.cri,alpha=alpha,cri.quantile=cri.quantile,...)
     }
@@ -317,7 +318,7 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
       eib <- ggplot2::ggplot(data.psa, ggplot2::aes(k, eib)) +
         ggplot2::theme_bw() +
         ggplot2::geom_hline(ggplot2::aes(yintercept = 0), colour = "grey")
-      if (!isTRUE(he$mod)) {
+      if (!he$change_comp) {
         eib <- eib +
           ggplot2::geom_line(
             colour = plot_aes$line$colors[1],
@@ -335,15 +336,29 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
         # label
         label <- paste0("k* = ", format(he$kstar, digits = 6))
         eib <- eib +
-          ggplot2::geom_vline(ggplot2::aes(xintercept=kstar),data=data.frame("kstar"=he$kstar),colour="grey50",linetype=2,size=.5) +
-          ggplot2::annotate("text",label=label,x=he$kstar,y=min(yl),hjust=ifelse((max(he$k)-he$kstar)/max(he$k)>1/6,-.1,1.1),size=size)
+          
+          ggplot2::geom_vline(
+            ggplot2::aes(xintercept = kstar),
+            data = data.frame("kstar" = he$kstar),
+            colour = "grey50",
+            linetype = 2,
+            size = .5
+          ) +
+          ggplot2::annotate(
+            "text",
+            label = label,
+            x = he$kstar,
+            y = min(yl),
+            hjust = ifelse((max(he$k) - he$kstar) / max(he$k) > 1 / 6, -.1, 1.1),
+            size = size
+          )
       }
       if (plot.cri) {
         eib <- eib +
           ggplot2::geom_line(ggplot2::aes(y = low), colour = plot_aes$line$cri_colors[1], lty = 2) +
           ggplot2::geom_line(ggplot2::aes(y = upp), colour = plot_aes$line$cri_colors[1], lty = 2)
       }
-    } else if (he$n_comparisons > 1 & is.null(comparison) == TRUE) {
+    } else if (he$n_comparisons > 1 & is.null(comparison)) {
       data.psa <- data.frame(
         "k" = c(he$k), "eib" = c(he$eib),
         "comparison" = as.factor(c(
@@ -381,16 +396,31 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
         # label
         label <- paste0("k* = ",format(he$kstar,digits=6))
         eib <- eib +
-          ggplot2::geom_vline(ggplot2::aes(xintercept=kstar),data=data.frame("kstar"=he$kstar),colour="grey50",linetype=2,size=.5) + 
-          ggplot2::annotate("text",label=label,x=he$kstar,y=min(yl),hjust=ifelse((max(he$k)-he$kstar)/max(he$k)>1/6,-.1,1.1),size=size,vjust=1)
+          
+          ggplot2::geom_vline(
+            ggplot2::aes(xintercept = kstar),
+            data = data.frame("kstar" = he$kstar),
+            colour = "grey50",
+            linetype = 2,
+            size = .5
+          ) +
+          ggplot2::annotate(
+            "text",
+            label = label,
+            x = he$kstar,
+            y = min(yl),
+            hjust = ifelse((max(he$k) - he$kstar) / max(he$k) > 1 / 6, -.1, 1.1),
+            size = size,
+            vjust = 1
+          )
       }
       
       if (plot.cri) {
         eib <- eib +
-          ggplot2::geom_line(ggplot2::aes(y = low), colour = plot_aes$line$cri_colors, show.legend = F) +
-          ggplot2::geom_line(ggplot2::aes(y = upp), colour = plot_aes$line$cri_colors, show.legend = F)
+          ggplot2::geom_line(ggplot2::aes(y = low), colour = plot_aes$line$cri_colors, show.legend = FALSE) +
+          ggplot2::geom_line(ggplot2::aes(y = upp), colour = plot_aes$line$cri_colors, show.legend = FALSE)
       }
-    } else if (he$n_comparisons > 1 & is.null(comparison) == FALSE) {
+    } else if (he$n_comparisons > 1 & !is.null(comparison)) {
       # adjusts bcea object for the correct number of dimensions and comparators
       he$comp <- he$comp[comparison]
       he$delta.e <- he$delta.e[,comparison]
@@ -405,9 +435,21 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
       he$ceac=he$ceac[,comparison]
       he$ref=rank(c(he$ref,he$comp))[1]
       he$comp=rank(c(he$ref,he$comp))[-1]
-      he$mod <- TRUE #
+      he$change_comp <- TRUE
       
-      return(eib.plot(he,pos=alt.legend,graph="ggplot2",size=size,comparison=NULL,plot.cri=plot.cri,alpha=alpha,cri.quantile=cri.quantile,...))
+      return(
+        eib.plot(
+          he,
+          pos = alt.legend,
+          graph = "ggplot2",
+          size = size,
+          comparison = NULL,
+          plot.cri = plot.cri,
+          alpha = alpha,
+          cri.quantile = cri.quantile,
+          ...
+        )
+      )
     }
     
     eib <- eib + 
@@ -428,8 +470,8 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
             "")),
           plot_annotations$title))
     jus <- NULL
-    if(isTRUE(alt.legend)) {
-      alt.legend="bottom"
+    if (alt.legend) {
+      alt.legend <- "bottom"
       eib <- eib + ggplot2::theme(legend.direction="vertical")
     }
     else{
@@ -438,7 +480,7 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
         alt.legend <- choices[pmatch(alt.legend,choices)]
         jus="center"
         if(is.na(alt.legend))
-          alt.legend=FALSE
+          alt.legend <- FALSE
       }
       if(length(alt.legend)>1)
         jus <- alt.legend
@@ -447,22 +489,36 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
         jus <- alt.legend
       }
     }
-    eib <- eib + 
-      ggplot2::theme(legend.position=alt.legend,legend.justification=jus,legend.title=ggplot2::element_blank(),
-                     legend.background=ggplot2::element_blank(),text=ggplot2::element_text(size=11),
-                     legend.key.size=grid::unit(.66,"lines"),legend.spacing=grid::unit(-1.25,"line"),
-                     panel.grid=ggplot2::element_blank(),legend.key=ggplot2::element_blank(),legend.text.align=0,
-                     plot.title = ggplot2::element_text(lineheight=1.05, face="bold",size=14.3,hjust=0.5)) +
-      opt.theme
+    eib <-
+      eib + 
+      ggplot2::theme(
+        legend.position = alt.legend,
+        legend.justification = jus,
+        legend.title = ggplot2::element_blank(),
+        legend.background = ggplot2::element_blank(),
+        text = ggplot2::element_text(size = 11),
+        legend.key.size = grid::unit(.66, "lines"),
+        legend.spacing = grid::unit(-1.25, "line"),
+        panel.grid = ggplot2::element_blank(),
+        legend.key = ggplot2::element_blank(),
+        legend.text.align = 0,
+        plot.title = ggplot2::element_text(
+          lineheight = 1.05,
+          face = "bold",
+          size = 14.3,
+          hjust = 0.5
+        )
+      ) + opt.theme
     
     return(eib)
   } else if (graph_choice == 3) {
     # plotly version -----
     if (!is.null(size) && !is.na(size)) {
-        message("Option size will be ignored using plotly."); size <- NULL
+      message("Option size will be ignored using plotly.")
+      size <- NULL
     }
     
-    if(he$n_comparisons > 1& is.null(comparison) == FALSE) {
+    if (he$n_comparisons > 1 & !is.null(comparison)) {
       # adjusts bcea object for the correct number of dimensions and comparators
       he$comp <- he$comp[comparison]
       he$delta.e <- he$delta.e[,comparison]
@@ -477,9 +533,21 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
       he$ceac=he$ceac[,comparison]
       he$ref=rank(c(he$ref,he$comp))[1]
       he$comp=rank(c(he$ref,he$comp))[-1]
-      he$mod <- TRUE #
+      he$change_comp <- TRUE
       
-      return(eib.plot(he,pos=alt.legend,graph="plotly",size=size,comparison=NULL,plot.cri=plot.cri,alpha=alpha,cri.quantile=cri.quantile,...))
+      return(
+        eib.plot(
+          he,
+          pos = alt.legend,
+          graph = "plotly",
+          size = size,
+          comparison = NULL,
+          plot.cri = plot.cri,
+          alpha = alpha,
+          cri.quantile = cri.quantile,
+          ...
+        )
+      )
     }
     
     if (is.null(plot_aes$line$types))

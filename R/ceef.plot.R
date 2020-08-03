@@ -142,7 +142,7 @@ ceef.plot <- function(he,
       he$interventions <- he$interventions[comparators]
       he$ref <- rank(c(he$ref, he$comp))[1]
       he$comp <- rank(c(he$ref, he$comp))[-1]
-      he$mod <- TRUE
+      he$change_comp <- TRUE
       ### bceanew
       he$e <- he$e[,comparators]
       he$c <- he$c[,comparators]
