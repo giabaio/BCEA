@@ -13,13 +13,12 @@ setup_params <- function(graph_params) {
 
 
 #
-polygon_params <- function(graph_params) {
+polygon_params <- function(graph_params, wtp) {
   
   x_min <- graph_params$xlim[1]
   x_max <- graph_params$xlim[2]
   y_min <- graph_params$ylim[1]
   y_max <- graph_params$ylim[2]
-  wtp <- graph_params$wtp
   
   box_adj <- 1.5
   polygon_x <- c(y_min/wtp, x_max, x_max)*box_adj
@@ -42,11 +41,10 @@ points_params <- function(graph_params) {
 
 
 #
-k_text <- function(graph_params) {
+k_text <- function(graph_params, wtp) {
   
   x_k <- graph_params$xlim[1]
-  y_k <- max(x_k*graph_params$wtp,
-             graph_params$ylim[1])
+  y_k <- max(x_k*wtp, graph_params$ylim[1])
   
   list(cex = 0.8,
        pos = 4, 

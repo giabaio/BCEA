@@ -20,8 +20,8 @@ xy_params <- function(he,
   min_e <- min(min_e, min_c/wtp)
   max_e <- max(max_e, max_c/wtp)
   
-  min_c <- min_e*wtp
-  max_c <- max_e*wtp
+  # min_c <- min_e*wtp
+  # max_c <- max_e*wtp
   
   list(xlim = c(min_e, max_e),
        ylim = c(min_c, max_c))

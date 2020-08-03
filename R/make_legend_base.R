@@ -33,7 +33,6 @@ ceplane_legend_base <- function(he,
        legend = text,
        cex = 0.7,
        bty = "n", 
-       lty = plot_params$lty,
        col = plot_params$points$col,
        pch = plot_params$points$pch)
 }
@@ -45,7 +44,7 @@ where_legend <- function(he,
   
   # empty legend
   if (!inherits(he, "pairwise") & he$n_comparisons == 1) {
-    return(list(x = NA))}
+    return(NA)}
   
   if (is.numeric(pos_legend) & length(pos_legend) == 2) {
     
@@ -63,3 +62,4 @@ where_legend <- function(he,
   
   pos_legend
 }
+

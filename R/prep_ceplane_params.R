@@ -40,7 +40,7 @@ prep_ceplane_params <- function(he, ...) {
            colors = grey.colors(n = he$n_comparisons,
                                 end = 0.7,
                                 alpha = 1),
-           sizes = 4), #sizes = 0.35?
+           sizes = 0.35),
          area = list(
            include = TRUE,
            color = "grey95",
