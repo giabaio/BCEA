@@ -41,16 +41,42 @@ new_bcea <- function(df_ce, k) {
   
   evi <- colMeans(ol)
   
+  interv_names <-
+    map_chr(1:(length(comp) + 1),
+            ~ unique(df_ce$interv_names[df_ce$ints == .]))
+  
+  e_dat <-
+    reshape2::dcast(sim ~ interv_names,
+                    value.var = "eff1",
+                    data = df_ce)[, -1] %>% 
+    select(interv_names)
+  
+  c_dat <-
+    reshape2::dcast(sim ~ interv_names,
+                    value.var = "cost1",
+                    data = df_ce)[, -1] %>% 
+    select(interv_names)
+  
+  
+  delta_e <- 
+    reshape2::dcast(sim ~ interv_names,
+                    value.var = "delta_e",
+                    data = df_ce_comp)[, -1] %>% 
+  select(interv_names[-ref])
+  
+  delta_c <- 
+    reshape2::dcast(sim ~ interv_names,
+                    value.var = "delta_c",
+                    data = df_ce_comp)[, -1] %>% 
+  select(interv_names[-ref])
+  
+  
   he <- 
     list(n_sim = length(unique(df_ce$sim)),
          n_comparators = length(comp) + 1,
          n_comparisons = length(comp),
-         delta_e = reshape2::dcast(sim ~ interv_names,
-                                   value.var = "delta_e",
-                                   data = df_ce_comp)[, -1],
-         delta_c = reshape2::dcast(sim ~ interv_names,
-                                   value.var = "delta_c",
-                                   data = df_ce_comp)[, -1],
+         delta_e = delta_e,
+         delta_c = delta_c,
          ICER = ICER,
          Kmax = max(k),
          k = k,
@@ -64,16 +90,12 @@ new_bcea <- function(df_ce, k) {
          Ustar = Ustar,
          ol = ol,
          evi = evi,
-         interventions = sort(unique(df_ce$interv_names)),
          ref = ref,
          comp = comp,
          step = k[2] - k[1],
-         e = reshape2::dcast(sim ~ interv_names,
-                             value.var = "eff1",
-                             data = df_ce)[, -1],
-         c = reshape2::dcast(sim ~ interv_names,
-                             value.var = "cost1",
-                             data = df_ce)[, -1])
+         interventions = interv_names,
+         e = e_dat,
+         c = c_dat)
   
   structure(he, class = c("bcea", class(he)))
 }

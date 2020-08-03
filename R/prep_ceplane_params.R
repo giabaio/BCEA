@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' 
-prep_ceplane_params <- function(he, ...) {
+prep_ceplane_params <- function(he, wtp, ...) {
   
   graph_params <- list(...)
   
@@ -28,7 +28,7 @@ prep_ceplane_params <- function(he, ...) {
                                 collapse = ", ")),
              no = ""))
   
-  axes_lim <- xy_params(he, graph_params)
+  axes_lim <- xy_params(he, wtp, graph_params)
   
   default_params <-
     list(xlab = "Effectiveness differential",

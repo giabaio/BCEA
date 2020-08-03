@@ -3,19 +3,17 @@
 subset_by_comparisons <- function(he, comparison) {
   
   
-  if (is.null(comparison)) comparison <- 1:he$n_comparisons
+  if (is.null(comparison)) return(he)
   
-  he$delta_e <- as.matrix(he$delta_e)[, comparison, drop = FALSE]
-  he$delta_c <- as.matrix(he$delta_c)[, comparison, drop = FALSE]
+  name_comp <- he$interventions[comparison]
+  he$delta_e <- as.matrix(he$delta_e)[, name_comp, drop = FALSE]
+  he$delta_c <- as.matrix(he$delta_c)[, name_comp, drop = FALSE]
   
   he$n_comparisons <- length(comparison)
   he$n_comparators <- length(comparison) + 1
   
-  he$icer <- he$icer[comparison]
+  he$comp <- comparison
   
-  he$comp <- he$comp[comparison]
-  
-  he$interventions <- he$interventions[sort(c(he$ref, he$comp))]
   he$ICER <- he$ICER[comparison]
   he$ib <- he$ib[, , comparison]
   he$eib <- he$eib[, comparison]

@@ -30,7 +30,8 @@ add_ceplane_points <- function(he,
 }
 
 #
-add_ceplane_icer <- function(plot_params) {
+add_ceplane_icer <- function(he,
+                             plot_params) {
   
   do.call("text",
           plot_params$icer_text,

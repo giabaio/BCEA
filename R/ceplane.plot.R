@@ -103,7 +103,7 @@ ceplane.plot <- function(he,
   
   he <- subset_by_comparisons(he, comparison)
 
-  graph_params <- prep_ceplane_params(he, ...)
+  graph_params <- prep_ceplane_params(he, wtp, ...)
   
   if (plot_type == 1) {
     

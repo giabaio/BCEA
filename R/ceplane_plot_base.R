@@ -44,12 +44,12 @@
 #'                       title = "my title",
 #'                       xlim = c(-1, 2.5),
 #'                       ylim = c(-1, 160),
-#'                       point = list(sizes = 1,
-#'                                    colors = "darkgrey"),
+#'                       point = list(sizes = 0.5,
+#'                                    colors = grey.colors(3, start = 0.1, end = 0.7)),
 #'                       area = list(color = "lightgrey"))
 #'                                    
 #' he <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
-#' ceplane_plot_base(he, wtp = 200, graph_params = graph_params)
+#' ceplane_plot_base(he, wtp = 200, pos_legend = FALSE, graph_params = graph_params)
 #' 
 ceplane_plot_base <- function(he,
                               wtp = 25000,
@@ -66,7 +66,7 @@ ceplane_plot_base <- function(he,
   add_ceplane_polygon(plot_params)
   add_ceplane_points(he, plot_params)
   add_axes()
-  add_ceplane_icer(plot_params)
+  add_ceplane_icer(he, plot_params)
   add_ceplane_k_txt(plot_params)
   add_ceplane_legend(legend_params)
 }

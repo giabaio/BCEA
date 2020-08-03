@@ -1,6 +1,7 @@
 
 #
 xy_params <- function(he,
+                      wtp,
                       graph_params) {
   
   e_dat <- he$delta_e
