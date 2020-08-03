@@ -3,11 +3,11 @@
 #' 
 make_legend_base <- function(he,
                              pos_legend,
-                             base_params) {
+                             plot_params) {
   
   # empty legend
   if (!inherits(he, "pairwise") & he$n_comparisons == 1) {
-    return(list(x = -1, legend = ""))}
+    return(list(x = NA, legend = ""))}
   
   if (is.numeric(pos_legend) & length(pos_legend) == 2) {
     
@@ -29,7 +29,7 @@ make_legend_base <- function(he,
        legend = text,
        cex = 0.7,
        bty = "n", 
-       lty = base_params$lty,
-       col = base_params$col,
-       pch = base_params$pch)
+       lty = plot_params$lty,
+       col = plot_params$col,
+       pch = plot_params$pch)
 }

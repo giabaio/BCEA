@@ -101,13 +101,13 @@ ceplane.plot <- function(he,
   
   plot_type <- select_plot_type(graph)
   
-  graph_params <- prep_ceplane_params(he, comparison, ...)
+  he <- subset_by_comparisons(he, comparison)
+
+  graph_params <- prep_ceplane_params(he, ...)
   
   if (plot_type == 1) {
     
-    ##TODO: can we reduce number arguments?
     ceplane_plot_base(he,
-                      comparison,
                       wtp,
                       pos_legend = pos,
                       graph_params)

@@ -1,48 +1,13 @@
 
 #
-setup_params <- function(he,
-                         comparison,
-                         graph_params) {
+setup_params <- function(graph_params) {
   
-  ##TODO: drop = FALSE in delta_x creation in bcea()
-  e_dat <- as.matrix(he$delta_e)[, comparison]
-  c_dat <- as.matrix(he$delta_c)[, comparison]
-  
-  min_e <- min(e_dat)
-  max_e <- max(e_dat)
-  
-  min_c <- min(c_dat)
-  max_c <- max(c_dat)
-  
-  # force negative
-  min_e <- -abs(min_e)
-  min_c <- -abs(min_c)
-  
-  # square plotting area
-  min_e <- min(min_e, min_c/wtp)
-  max_e <- max(max_e, max_c/wtp)
-  
-  min_c <- min_e*wtp
-  max_c <- max_e*wtp
-  
-  check_provided_xlim <- all(!is.null(graph_params$xlim))
-  check_provided_ylim <- all(!is.null(graph_params$ylim))
-  
-  if (check_provided_xlim) {
-    min_e <- graph_params$xlim[1]
-    max_e <- graph_params$xlim[2]
-  }
-  if (check_provided_ylim) {
-    min_c <- graph_params$ylim[1]
-    max_c <- graph_params$ylim[2]
-  }
-  
-  list(x = NULL,
-       axes = FALSE,
-       xlim = c(min_e, max_e),
-       ylim = c(min_c, max_c),
+  list(xlim = graph_params$xlim,
+       ylim = graph_params$ylim,
        xlab = graph_params$xlab,
        ylab = graph_params$ylab,
+       x = NULL,
+       axes = FALSE,
        main = graph_params$title)
 }
 
@@ -92,12 +57,10 @@ k_text <- function(graph_params) {
 
 
 #
-icer_params <- function(graph_params,
-                        he,
-                        comparison) {
+icer_params <- function(graph_params, he) {
   
   list(icer_text =
-         list(labels = icer_label(he, comparison),
+         list(labels = icer_label(he),
               cex = 0.95,
               pos = 2,
               col = "red",
@@ -111,16 +74,18 @@ icer_params <- function(graph_params,
 
 
 #
-icer_label <- function(he, comparison) {
+icer_label <- function(he) {
   
-  if (length(comparison) == 1) {
+  if (he$n_comparisons == 1) {
     return(
       paste0("\U2022",
              " ICER = ",
-             format(he$ICER[comparison],
-                    digits = 6,
-                    nsmall = 2)))
-  } 
+             format(
+               mean(he$delta_c)/mean(he$delta_e),
+               digits = 6,
+               nsmall = 2)))
+  }
+  
   return("")
 }
 

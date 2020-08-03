@@ -20,29 +20,26 @@ add_ceplane_polygon <- function(plot_params) {
 
 #
 add_ceplane_points <- function(he,
-                               comparison,
                                plot_params) {
   do.call("matplot",
-          c(list(x = as.matrix(he$delta_e)[, comparison],
-                 y = as.matrix(he$delta_c)[, comparison],
+          c(list(x = he$delta_e,
+                 y = he$delta_c,
                  add = TRUE),
             plot_params$points),
           quote = TRUE)
 }
 
 #
-add_ceplane_icer <- function(comparison,
-                             plot_params) {
+add_ceplane_icer <- function(plot_params) {
+  
   do.call("text",
           plot_params$icer_text,
           quote = TRUE)
   
   do.call("points",
           c(list(
-            x = colMeans(
-              as.matrix(he$delta_e)[, comparison, drop = FALSE]),
-            y = colMeans(
-              as.matrix(he$delta_c)[, comparison, drop = FALSE])),
+            x = colMeans(he$delta_e),
+            y = colMeans(he$delta_c)),
             plot_params$icer_points),
           quote = TRUE)
 }
@@ -65,11 +62,13 @@ add_ceplane_k_txt <- function(plot_params) {
 }
 
 #
-add_ceplane_legend <- function(comparison,
-                               legend_params) {
-  
-  if (length(comparison) == 1) return()
+add_ceplane_legend <- function(legend_params) {
   
   do.call(legend, legend_params)
 }
 
+#
+add_axes <- function() {
+  
+  abline(h = 0, v = 0, col = "dark grey")
+}

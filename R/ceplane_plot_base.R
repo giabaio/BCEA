@@ -2,7 +2,6 @@
 #' ceplane_plot_base
 #'
 #' @template args-he
-#' @param comparison Interventions to compare against reference
 #' @param wtp Willingness to pay threshold; default 25,000
 #' @param pos_legend Legend position
 #' @param graph_params Graph parameters in ggplot format
@@ -34,25 +33,22 @@
 #' ceplane_plot_base(m, wtp = 200, graph_params = graph_params)
 #' 
 ceplane_plot_base <- function(he,
-                              comparison = NULL,
                               wtp = 25000,
                               pos_legend,
                               graph_params) {
   
-  if (is.null(comparison)) comparison <- 1:he$n_comparisons
- 
   plot_params <-
-    ceplane_base_params(he, comparison, wtp, graph_params)
+    ceplane_base_params(he, wtp, graph_params)
 
   legend_params <-
     make_legend_base(he, pos_legend, base_params)
   
   add_ceplane_setup(plot_params)
   add_ceplane_polygon(plot_params)
-  add_ceplane_points(he, comparison, plot_params)
-  abline(h = 0, v = 0, col = "dark grey")
-  add_ceplane_icer(comparison, plot_params)
+  add_ceplane_points(he, plot_params)
+  add_axes()
+  add_ceplane_icer(plot_params)
   add_ceplane_k_txt(plot_params)
-  add_ceplane_legend(comparison, legend_params)
+  add_ceplane_legend(legend_params)
 }
 

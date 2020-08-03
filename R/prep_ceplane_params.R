@@ -4,7 +4,6 @@
 #' In ggplot format, combine user supplied with defaults.
 #'
 #' @param he 
-#' @param comparison 
 #' @param ... 
 #'
 #' @return
@@ -12,9 +11,8 @@
 #'
 #' @examples
 #' 
-prep_ceplane_params <- function(he,
-                                comparison,
-                                ...) {
+prep_ceplane_params <- function(he, ...) {
+  
   graph_params <- list(...)
   
   ##TODO: back-compatibility helper..
@@ -30,14 +28,16 @@ prep_ceplane_params <- function(he,
                                 collapse = ", ")),
              no = ""))
   
+  axes_lim <- xy_params(he, graph_params)
+  
   default_params <-
     list(xlab = "Effectiveness differential",
          ylab = "Cost differential",
          title = plot_title,
-         xlim = NULL,
-         ylim = NULL,
+         xlim = axes_lim$x,
+         ylim = axes_lim$y,
          point = list(
-           colors = grey.colors(n = length(comparison),
+           colors = grey.colors(n = he$n_comparisons,
                                 end = 0.7,
                                 alpha = 1),
            size = 4), #sizes = 0.35?
