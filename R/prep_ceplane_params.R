@@ -22,9 +22,9 @@ prep_ceplane_params <- function(he, ...) {
       "Cost-Effectiveness Plane",
       ifelse(he$mod,                   ##TODO: how to use this (mod)?
              yes = paste("\n",
-                         he$interventions[ref],
+                         he$interventions[he$ref],
                          "vs",
-                         paste0(he$interventions[comp],
+                         paste0(he$interventions[he$comp],
                                 collapse = ", ")),
              no = ""))
   
@@ -40,7 +40,7 @@ prep_ceplane_params <- function(he, ...) {
            colors = grey.colors(n = he$n_comparisons,
                                 end = 0.7,
                                 alpha = 1),
-           size = 4), #sizes = 0.35?
+           sizes = 4), #sizes = 0.35?
          area = list(
            include = TRUE,
            color = "grey95",

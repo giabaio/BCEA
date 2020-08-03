@@ -28,7 +28,7 @@
 #' @param ...  If \code{graph = "ggplot2"} and a named theme object is supplied,
 #'   it will be added to the ggplot object. Additional graphical arguments:
 #'  \itemize{
-#'   \item \code{label.pos=FALSE}: will place the willingness to pay label in a different 
+#'   \item \code{label.pos = FALSE}: will place the willingness to pay label in a different 
 #'   position at the bottom of the graph - base and ggplot2 only (no label in plotly).
 #'   \item \code{point_colors}: a vector of colours specifying the colour(s) associated to 
 #'   the cloud of points. Should be of length 1 or equal to the number of comparisons.
@@ -81,7 +81,7 @@
 #' ceplane.plot(m, wtp = 200, graph = "base")
 #' 
 #' ## select only one comparator
-#' ceplane.plot(m, wtp = 200, graph = "base", comparator = 3)
+#' ceplane.plot(m, wtp = 200, graph = "base", comparison = 3)
 #' 
 #' ## or use ggplot2 instead
 #' if (requireNamespace("ggplot2")) {

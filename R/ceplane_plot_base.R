@@ -41,7 +41,7 @@ ceplane_plot_base <- function(he,
     ceplane_base_params(he, wtp, graph_params)
 
   legend_params <-
-    make_legend_base(he, pos_legend, base_params)
+    ceplane_legend_base(he, pos_legend, plot_params)
   
   add_ceplane_setup(plot_params)
   add_ceplane_polygon(plot_params)
