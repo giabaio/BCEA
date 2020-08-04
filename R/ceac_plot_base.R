@@ -32,7 +32,7 @@ ceac_matplot <- function(he,
   
   base_params <- helper_base_params(he, graph_params)
   
-  legend_params <- make_legend_base(he, pos_legend, base_params)
+  legend_params <- ceac_legend_base(he, pos_legend, base_params)
   
   do.call("matplot", c(list(x = he$k,
                             y = he[[ceac]]),

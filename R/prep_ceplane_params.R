@@ -4,6 +4,7 @@
 #' In ggplot format, combine user supplied with defaults.
 #'
 #' @param he 
+#' @param wtp
 #' @param ... 
 #'
 #' @return
@@ -17,15 +18,18 @@ prep_ceplane_params <- function(he, wtp, ...) {
   
   ##TODO: back-compatibility helper..
   
+  intervs_in_title <-
+    paste("\n",
+          he$interventions[he$ref],
+          "vs",
+          paste0(he$interventions[he$comp],
+                 collapse = ", "))
+  
   plot_title <-
     paste0(
       "Cost-Effectiveness Plane",
       ifelse(he$change_comp,
-             yes = paste("\n",
-                         he$interventions[he$ref],
-                         "vs",
-                         paste0(he$interventions[he$comp],
-                                collapse = ", ")),
+             yes = intervs_in_title,
              no = ""))
   
   axes_lim <- xy_params(he, wtp, graph_params)

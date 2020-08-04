@@ -2,7 +2,6 @@
 #
 subset_by_comparisons <- function(he, comparison) {
   
-  
   if (is.null(comparison)) return(he)
   
   name_comp <- he$interventions[comparison]

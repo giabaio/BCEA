@@ -99,30 +99,29 @@ ceplane.plot <- function(he,
   
   graph <- match.arg(graph)
   
-  plot_type <- select_plot_type(graph)
-  
   he <- subset_by_comparisons(he, comparison)
 
   graph_params <- prep_ceplane_params(he, wtp, ...)
   
-  if (plot_type == 1) {
+  if (is_baseplot(graph)) {
     
     ceplane_plot_base(he,
                       wtp,
                       pos_legend = pos,
                       graph_params)
     
-  } else if (plot_type == 2) {
+  } else if (is_ggplot(graph)) {
     
     ##TODO:...
     # ceplane_plot_ggplot(he,
     #                     pos_legend = pos,
     #                     graph_params, ...)
     
-  } else if (plot_type == 3) {
+  } else if (is_plotly(graph)) {
     
     ##TODO:...
     # ceplane_plot_plotly(he, graph_params)
   }
 }
+
 

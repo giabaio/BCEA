@@ -1,7 +1,7 @@
 
 #' @keywords dplot
 #' 
-make_legend_base <- function(he,
+ceac_legend_base <- function(he,
                              pos_legend,
                              plot_params) {
   
@@ -43,23 +43,22 @@ where_legend <- function(he,
                          pos_legend) {
   
   # empty legend
-  if (!inherits(he, "pairwise") & he$n_comparisons == 1) {
-    return(NA)}
+  if (!inherits(he, "pairwise") & he$n_comparisons == 1)
+    return(NA)
   
   if (is.numeric(pos_legend) & length(pos_legend) == 2) {
     
     ns <- ifelse(pos_legend[2] == 1, "top", "bottom")
     ew <- ifelse(pos_legend[1] == 1, "right", "left")
-    pos_legend <- paste0(ns, ew)
+    return(paste0(ns, ew))
   }
   
   if (is.logical(pos_legend)) {
-    if (!pos_legend)
-      pos_legend <- "bottomright"
+    pos_legend <- 
+      if (pos_legend)
+        return("bottomleft")
     else
-      pos_legend <- "bottomleft"
+      return("bottomright")
   }
-  
-  pos_legend
 }
 
