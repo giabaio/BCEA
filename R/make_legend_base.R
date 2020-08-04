@@ -54,9 +54,8 @@ where_legend <- function(he,
   }
   
   if (is.logical(pos_legend)) {
-    pos_legend <- 
-      if (pos_legend)
-        return("bottomleft")
+    if (pos_legend)
+      return("bottomleft")
     else
       return("bottomright")
   }
