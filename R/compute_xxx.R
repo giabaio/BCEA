@@ -117,13 +117,18 @@ compute_Ustar <- function(U) {
 #' @export
 #' 
 compute_vi <- function(Ustar, U) {
+
+  if (any(dim(U)[1] != dim(Ustar)[1],
+          dim(U)[2] != dim(Ustar)[2])) {
+    stop("dimensions of inputs don't correspond", call. = FALSE)
+  }
   
   n_sim <- dim(U)[[1]]
   K <- dim(U)[[2]]
   vi <- matrix(NA, nrow = n_sim, ncol = K)
   
   for (i in seq_len(K)) {
-    vi[, i] <- Ustar[, i] - max(apply(U[, i, ], 2, mean))
+    vi[, i] <- Ustar[, i] - max(apply(U[, i, , drop = FALSE], 2, mean))
   }
   
   vi
@@ -150,7 +155,7 @@ compute_vi <- function(Ustar, U) {
 #' 
 #' @param Ustar Maximum utility value (sim x k)
 #' @param U  Net monetary benefit (sim x k x interv)
-#' @param best Best intervention for given willingness-to-pay
+#' @param best Best intervention for given willingness-to-pay (k)
 #'
 #' @return Array with dimensions (sim x k)
 #' @seealso \code{\link{compute_vi}}
@@ -160,6 +165,13 @@ compute_vi <- function(Ustar, U) {
 compute_ol <- function(Ustar,
                        U,
                        best) {
+  
+  if (any(dim(U)[1] != dim(Ustar)[1],
+          dim(U)[2] != dim(Ustar)[2],
+          dim(U)[2] != length(best))) {
+    stop("dimensions of inputs don't correspond", call. = FALSE)
+  }
+  
   n_sim <- dim(U)[[1]]
   K <- dim(U)[[2]]
   

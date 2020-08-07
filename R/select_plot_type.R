@@ -5,7 +5,7 @@
 #' 
 select_plot_type <- function(graph) {
   
-  if (is.missing(graph)) graph <- "base"
+  if (missing(graph)) graph <- "base"
   
   graph_lup <- c(base = 1, ggplot2 = 2, plotly =3)
   graph_type <- graph_lup[graph]

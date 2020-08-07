@@ -32,7 +32,7 @@ ceplane_legend_base <- function(he,
   list(x = pos_legend,
        legend = text,
        cex = 0.7,
-       bty = "n", 
+       bty = "n",
        col = plot_params$points$col,
        pch = plot_params$points$pch)
 }

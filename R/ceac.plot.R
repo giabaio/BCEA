@@ -98,23 +98,21 @@ ceac.plot <- function(he,
   
   graph <- match.arg(graph)
   
-  graph_type <- select_plot_type(graph)
-  
   graph_params <- prepare_ceac_params(...)
   
-  if (graph_type == 1) {
+  if (is_baseplot(graph)) {
     
     ceac_plot_base(he,
                    pos_legend = pos,
                    graph_params)
     
-  } else if (graph_type == 2) {
+  } else if (is_ggplot(graph)) {
     
     ceac_plot_ggplot(he,
                      pos_legend = pos,
                      graph_params, ...)
     
-  } else if (graph_type == 3) {
+  } else if (is_plotly(graph)) {
     
     ##TODO:
     # ceac_plot_plotly()
