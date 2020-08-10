@@ -3,17 +3,22 @@
 #
 
 
-prep.x <- function(he,select,k,l){
+#'
+prep.x <- function(he,
+                   seq_rows,
+                   k,
+                   l){
   if (k == 1) {
-    x <- as.matrix(he$delta.e)[select, l]
+    x <- as.matrix(he$delta_e)[seq_rows, l]
   }
   if (k == 2) {
-    x <- as.matrix(he$delta.c)[select, l]
+    x <- as.matrix(he$delta_c)[seq_rows, l]
   }
   return(x)
 }
 
-###GAM Fitting
+#' GAM Fitting
+#' 
 fit.gam <- function(parameter, inputs, x, form) {
   tic <- proc.time()
   N<-nrow(inputs)
@@ -30,7 +35,8 @@ fit.gam <- function(parameter, inputs, x, form) {
   list(fitted=hat,formula = formula, fit = model,time = time)
 }
 
-###GP Fitting
+#' GP Fitting
+#' 
 post.density <- function(hyperparams, parameter, x, input.matrix) {
   dinvgamma <- function(x, alpha, beta) {
     (beta^alpha)/gamma(alpha) * x^(-alpha - 1) *
@@ -64,24 +70,30 @@ post.density <- function(hyperparams, parameter, x, input.matrix) {
   names(l) <- NULL
   return(l)
 }
-estimate.hyperparameters <- function(x, input.matrix, parameter,n.sim) {
+
+#'
+estimate.hyperparams <- function(x,
+                                 input.matrix,
+                                 parameter,
+                                 n.sim) {
   p <- length(parameter)
   initial.values <- rep(0, p + 1)
   repeat {
-    log.hyperparameters <- optim(initial.values,
-                                 fn = post.density,parameter=parameter, x = x[1:n.sim],
-                                 input.matrix = input.matrix[1:n.sim, ],
-                                 method = "Nelder-Mead", control = list(fnscale = -1,
-                                                                        maxit = 10000, trace = 0))$par
-    if (sum(abs(initial.values - log.hyperparameters)) <
-        0.01) {
-      hyperparameters <- exp(log.hyperparameters)
+    log.hyperparams <- optim(initial.values,
+                             fn = post.density,parameter=parameter, x = x[1:n.sim],
+                             input.matrix = input.matrix[1:n.sim, ],
+                             method = "Nelder-Mead", control = list(fnscale = -1,
+                                                                    maxit = 10000, trace = 0))$par
+    if (sum(abs(initial.values - log.hyperparams)) < 0.01) {
+      hyperparams <- exp(log.hyperparams)
       break
     }
-    initial.values <- log.hyperparameters
+    initial.values <- log.hyperparams
   }
-  return(hyperparameters)
+  hyperparams
 }
+
+#'
 fit.gp <- function(parameter, inputs, x, n.sim) {
   tic <- proc.time()
   p <- length(parameter)
@@ -95,9 +107,14 @@ fit.gp <- function(parameter, inputs, x, n.sim) {
   N <- nrow(input.matrix)
   H <- cbind(1, input.matrix)
   q <- ncol(H)
-  hyperparameters <- estimate.hyperparameters(x = x,input = input.matrix, parameter = parameter, n.sim = n.sim)
-  delta.hat <- hyperparameters[1:p]
-  nu.hat <- hyperparameters[p + 1]
+  hyperparams <-
+    estimate.hyperparams(
+      x = x,
+      input.matrix = input.matrix,
+      parameter = parameter,
+      n.sim = n.sim)
+  delta.hat <- hyperparams[1:p]
+  nu.hat <- hyperparams[p + 1]
   A <- exp(-(as.matrix(dist(t(t(input.matrix)/delta.hat),
                             upper = TRUE, diag = TRUE))^2))
   Astar <- A + nu.hat * diag(N)
@@ -124,7 +141,8 @@ fit.gp <- function(parameter, inputs, x, n.sim) {
   list(fitted = fitted,time = time, fit=NULL,formula = NULL)
 }
 
-###INLA Fitting
+#' INLA Fitting
+#' 
 make.proj <- function(parameter,inputs, x,k,l) {
   tic <- proc.time()
   scale<-8/(range(x)[2]-range(x)[1])
@@ -139,10 +157,10 @@ make.proj <- function(parameter,inputs, x,k,l) {
     bx<-ldr::bf(scale.x,case="poly",i)
     fit<-ldr::pfc(scale(inputs[,parameter]),scale.x,bx,structure=struc)
     AIC.deg[i]<-fit$aic}
-  deg<-which(AIC.deg==min(AIC.deg,na.rm=T))
+  deg<-which(AIC.deg==min(AIC.deg,na.rm=TRUE))
   d<-min(dim(inputs[,parameter])[2],deg)
   by<-ldr::bf(scale.x,case="poly",deg)
-  comp.d<-ldr::ldr(scale(inputs[,parameter]),scale.x,bx,structure=struc,model="pfc",numdir=d,numdir.test=T)
+  comp.d<-ldr::ldr(scale(inputs[,parameter]),scale.x,bx,structure=struc,model="pfc",numdir=d,numdir.test=TRUE)
   dim.d<-which(comp.d$aic==min(comp.d$aic))-1
   comp<-ldr::ldr(scale(inputs[,parameter]),scale.x,bx,structure=struc,model="pfc",numdir=2)
   toc <- proc.time() - tic
@@ -155,15 +173,17 @@ make.proj <- function(parameter,inputs, x,k,l) {
   names(time) = "Time to fit find projections (seconds)"
   list(data = comp$R, time = time,dim=dim.d)
 }
+
+#'
 plot.mesh <- function(mesh, data, plot) {
-  if (plot == TRUE || plot == T) {
+  if (plot) {
     cat("\n")
     choice <- select.list(c("yes", "no"), title = "Would you like to save the graph?",
-                          graphics = F)
+                          graphics = FALSE)
     if (choice == "yes") {
       exts <- c("jpeg", "pdf", "bmp", "png", "tiff")
       ext <- select.list(exts, title = "Please select file extension",
-                         graphics = F)
+                         graphics = FALSE)
       name <- paste0(getwd(), "/mesh.", ext)
       txt <- paste0(ext, "('", name, "')")
       eval(parse(text = txt))
@@ -179,8 +199,13 @@ plot.mesh <- function(mesh, data, plot) {
     points(data, col = "blue", pch = 19, cex = 0.8)
   }
 }
-make.mesh <- function(data, convex.inner, convex.outer,
-                      cutoff,max.edge) {
+
+#'
+make.mesh <- function(data,
+                      convex.inner,
+                      convex.outer,
+                      cutoff,
+                      max.edge) {
   tic <- proc.time()
   inner <- suppressMessages({
     INLA::inla.nonconvex.hull(data, convex = convex.inner)
@@ -194,6 +219,8 @@ make.mesh <- function(data, convex.inner, convex.outer,
   names(time) = "Time to fit determine the mesh (seconds)"
   list(mesh = mesh, pts = data, time = time)
 }
+
+#'
 fit.inla <- function(parameter, inputs, x, mesh,
                      data.scale, int.ord, convex.inner, convex.outer,
                      cutoff, max.edge,h.value,family) {
@@ -220,7 +247,7 @@ fit.inla <- function(parameter, inputs, x, mesh,
     INLA::inla(as.formula(formula), data = data,
                family = family, control.predictor = list(A = ctr.pred,link = 1),
                control.inla = list(h = h.value),
-               control.compute = list(config = T))
+               control.compute = list(config = TRUE))
   })
   fitted <- (Result$summary.linear.predictor[1:length(x),"mean"]+mean(scale*x))/scale
   fit <- Result
@@ -231,13 +258,15 @@ fit.inla <- function(parameter, inputs, x, mesh,
        mesh = list(mesh = mesh, pts = data.scale))
 }
 
+
+#'
 compute.evppi <- function(he,fit.full) {
   EVPPI <- array()
   tic <- proc.time()
   for (i in 1:length(he$k)) {
     NB.k <- -(he$k[i]*fit.full[[1]]-fit.full[[2]])
-    EVPPI[i] <- (mean(apply(NB.k, 1, max, na.rm = T)) -
-                   max(apply(NB.k, 2, mean, na.rm = T)))
+    EVPPI[i] <- (mean(apply(NB.k, 1, max, na.rm = TRUE)) -
+                   max(apply(NB.k, 2, mean, na.rm = TRUE)))
   }
   toc <- proc.time() - tic
   time <- toc[3]
@@ -245,6 +274,8 @@ compute.evppi <- function(he,fit.full) {
   list(EVPPI = EVPPI, time = time)
 }
 
+
+#'
 prepare.output <- function(parameters, inputs) {
   if (length(parameter) == 1) {
     if (class(parameter) == "numeric") {
@@ -272,5 +303,6 @@ prepare.output <- function(parameters, inputs) {
                     collapse = " ")
     }
   }
-  return(name)
+  name
 }
+

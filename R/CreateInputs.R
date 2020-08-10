@@ -11,7 +11,6 @@
 #' \code{.csv} or \code{.txt} file (eg as obtained using bootstrapping from a
 #' non-Bayesian model).
 #' 
-#' 
 #' @param inputs A \code{rjags}, \code{bugs} or \code{stanfit} object, containing
 #' the results of a call to either \code{jags}, (under \code{R2jags}), bugs
 #' (under \code{R2WinBUGS} or \code{R2OpenBUGS}), or \code{stan} (under
@@ -57,7 +56,8 @@ create_inputs_evpi <- function(inputs,
       
       if (print_is_linear_comb) {
          print(linear_combs)
-         print(paste("Linear dependence: removing column", colnames(paramSet)[max(linear_combs)]))
+         print(paste("Linear dependence: removing column",
+                     colnames(paramSet)[max(linear_combs)]))
       }
       paramSet <- cbind(paramSet[, -max(linear_combs), drop = FALSE])
       rank_if_removed <- rankifremoved(paramSet)
@@ -66,9 +66,11 @@ create_inputs_evpi <- function(inputs,
    while (qr(paramSet)$rank == rank_if_removed[1]) {
       
       if (print_is_linear_comb) {
-         print(paste("Linear dependence... removing column", colnames(paramSet)[1]))
+         print(paste("Linear dependence... removing column",
+                     colnames(paramSet)[1]))
       }
-      paramSet <- cbind(paramSet[, -1, drop = FALSE]) # special case only linear combination remains
+      # special case only linear combination remains
+      paramSet <- cbind(paramSet[, -1, drop = FALSE])
       rank_if_removed <- rankifremoved(paramSet)
    }
    
@@ -76,44 +78,58 @@ create_inputs_evpi <- function(inputs,
         parameters = colnames(data.frame(paramSet)))
 }
 
-
-createInputs <- function(inputs,
-                         print_is_linear_comb = TRUE) {
-   UseMethod("createInputs")
+#' @export
+#' 
+createInputs <- function(inputs, print_is_linear_comb = TRUE) {
+   UseMethod("createInputs",  inputs)
 }
 
-createInputs.rjags <- function(inputs, print_is_linear_comb) {
+#' @export
+#' 
+createInputs.rjags <- function(inputs, print_is_linear_comb = TRUE) {
    
-   inputs <- inputs$BUGSoutput$sims.matrix
-   create_inputs_evpi(inputs, print_is_linear_comb)
+   dat <- inputs$BUGSoutput$sims.matrix
+   create_inputs_evpi(dat, print_is_linear_comb)
 }
 
-createInputs.bugs <- function(inputs, print_is_linear_comb) {
+#' @export
+#' 
+createInputs.bugs <- function(inputs, print_is_linear_comb = TRUE) {
    
-   inputs <- inputs$sims.matrix
-   create_inputs_evpi(inputs, print_is_linear_comb)
+   dat <- inputs$sims.matrix
+   create_inputs_evpi(dat, print_is_linear_comb)
 }
 
-createInputs.stanfit <- function(inputs, print_is_linear_comb) {
-   
-   create_inputs_evpi(inputs, print_is_linear_comb)
-}
-
-createInputs.data.frame <- function(inputs, print_is_linear_comb) {
-   
-   create_inputs_evpi(inputs, print_is_linear_comb)
-}
-
-createInputs.matrix <- function(inputs, print_is_linear_comb) {
+#' @export
+#' 
+createInputs.stanfit <- function(inputs, print_is_linear_comb = TRUE) {
    
    create_inputs_evpi(inputs, print_is_linear_comb)
 }
 
-createInputs.numeric <- function(inputs, print_is_linear_comb) {
+#' @export
+#' 
+createInputs.data.frame <- function(inputs, print_is_linear_comb = TRUE) {
    
    create_inputs_evpi(inputs, print_is_linear_comb)
 }
 
+#' @export
+#' 
+createInputs.matrix <- function(inputs, print_is_linear_comb = TRUE) {
+   
+   create_inputs_evpi(inputs, print_is_linear_comb)
+}
+
+#' @export
+#' 
+createInputs.numeric <- function(inputs, print_is_linear_comb = TRUE) {
+   
+   create_inputs_evpi(inputs, print_is_linear_comb)
+}
+
+#' @export
+#' 
 createInputs.default <- function(inputs, print_is_linear_comb) {
    
    stop("MCMC variable not of required type.", call. = FALSE)

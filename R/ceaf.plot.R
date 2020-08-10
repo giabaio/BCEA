@@ -22,7 +22,7 @@
 #' London.
 #' @keywords hplot Health economic evaluation Multiple comparison
 #' 
-#' @import ggplot2, grid
+#' @import ggplot2 grid
 #' 
 #' @examples
 #' 

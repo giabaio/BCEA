@@ -30,7 +30,7 @@ This function has been completely changed and restructured to make it possible t
 The method argument can now be given as a list. The first element element in the list is a vector giving the
 regression method for the effects. The second gives the regression method for the costs. The `method' argument
 can also be given as before which then uses the same regression method for all curves.
-All other exArgs can be given as before. 'int.ord' can be updated using the list formulation above to give
+All other extra_args can be given as before. 'int.ord' can be updated using the list formulation above to give
 the interactions for each different curve.
 The formula argument for GAM can only be given once, either 'te()' or 's() + s()' as this is
 for computational reasons rather than to aid fit.

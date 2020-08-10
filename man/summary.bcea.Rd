@@ -27,7 +27,6 @@ evaluation
 
 data(Vaccine)
 
-he <- bcea(e,c)
 summary(he)
 
 }

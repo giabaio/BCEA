@@ -31,3 +31,6 @@ the definition can be re-written as
 \examples{
 
 }
+\seealso{
+\code{\link{compute_EIB}}
+}

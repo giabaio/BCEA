@@ -21,7 +21,7 @@
 #' @return Array with dimensions (k x sim x ints)
 #' 
 #' @export
-#' \@seealso code{\link{compute_EIB}}
+#' @seealso \code{\link{compute_EIB}}
 #'
 #' @examples
 #' 

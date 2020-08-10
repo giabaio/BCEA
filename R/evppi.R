@@ -1,6 +1,6 @@
 
-#' Expected Value of Perfect Partial Information (EVPPI) for selected
-#' parameters
+#' Expected Value of Perfect Partial Information (EVPPI) for Selected
+#' Parameters
 #' 
 #' Calculates the Expected Value of Perfect Partial Information (EVPPI) for
 #' subsets of parameters. Uses GAM non-parameteric regression for single
@@ -12,7 +12,7 @@
 #' regression developed by Heath et al. (2015).
 #' 
 #' @aliases evppi evppi.default
-#' @param parameter A vector of parameters for which the EVPPI should be
+#' @param param_idx A vector of parameters for which the EVPPI should be
 #' calculated. This can be given as a string (or vector of strings) of names or
 #' a numeric vector, corresponding to the column numbers of important
 #' parameters.
@@ -40,7 +40,7 @@
 #' the calculation of the EVPPI, then the user *needs* to also specify the
 #' number of "blocks" (e.g. \code{n.blocks=20}).
 #' 
-#' @section GAM regression
+#' @section GAM regression:
 #' For multi-parameter, the user can select 3 possible methods. If
 #' \code{method = "GAM"} (BCEA will accept also \code{"gam"}, \code{"G"} or
 #' \code{"g"}), then the computations are based on GAM regression. The user can
@@ -52,13 +52,13 @@
 #' notation \code{formula = "s(p1) + s(p2)"}. This may lead to worse accuracy in
 #' the estimates.
 #' 
-#' @section Strong et al. GP regression
+#' @section Strong et al. GP regression:
 #' This is used if \code{method="GP"} (BCEA will also accept the specification
 #' \code{method="gp"}). In this case, the user can also specify the number of
 #' PSA runs that should be used to estimate the hyperparameters of the model
 #' (e.g. \code{n.sim=100}). This value is set by default to 500.
 #' 
-#' @section INLA-related options
+#' @section INLA-related options:
 #' These are all rather technical and are described in detail in Baio et al. (2017).
 #' The optional parameter vector \code{int.ord} can take integer values (c(1,1) is
 #' default) and will force the predictor to include interactions: if
@@ -111,7 +111,8 @@
 #' @author Anna Heath, Gianluca Baio
 #' @seealso \code{\link{plot.evppi}}, \code{\link{bcea}}
 #' 
-#' @references Strong M., Oakley J. and Brennan A. (2014). Estimating
+#' @references
+#' Strong M., Oakley J. and Brennan A. (2014). Estimating
 #' multi-parameter partial Expected Value of Perfect Information from a
 #' probabilistic sensitivity analysis sample: a non-parametric regression
 #' approach. Medical Decision Making.
@@ -139,20 +140,20 @@
 #' # Load the processed results of the MCMC simulation model
 #' data(Vaccine)
 #' 
-#' # Runs the health economic evaluation using BCEA
+#' # Run the health economic evaluation using BCEA
 #' m <- bcea(e, c, ref = 2, interventions = treats)
 #'
-#' # Computes the EVPPI for a bunch of parameters
-#' inp <- CreateInputs(vaccine)
+#' # Compute the EVPPI for a bunch of parameters
+#' inp <- createInputs(vaccine)
 #' 
-#' # Computes the EVPPI using INLA/SPDE
-#' x0 <- evppi(parameter = c(38:40), input = inp$mat, he = m)
+#' # Compute the EVPPI using INLA/SPDE
+#' x0 <- evppi(param_idx = 38:40, input = inp$mat, he = m)
 #' 
-#' # Now uses GAM regression
-#' x1 <- evppi(parameter = c(38:40), input = inp$mat, he = m, method = "GAM")
+#' # using GAM regression
+#' x1 <- evppi(param_idx = 38:40, input = inp$mat, he = m, method = "GAM")
 #' 
-#' # Now uses the GP regression
-#' x2 <- evppi(parameter = c(38:40), input = inp$mat, he = m, method = "GP")
+#' # using GP regression
+#' x2 <- evppi(param_idx = 38:40, input = inp$mat, he = m, method = "GP")
 #' 
 #' # plot results
 #' plot(x0)
@@ -162,4 +163,6 @@
 #' 
 #' @export
 #' 
-evppi <- function(parameter, input, he, N = NULL, plot = FALSE, residuals = TRUE,...) UseMethod("evppi", parameter)
+evppi <- function(param_idx, input, he, N = NULL, plot = FALSE, residuals = TRUE,...)
+  UseMethod("evppi", param_idx)
+

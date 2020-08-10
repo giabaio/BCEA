@@ -4,7 +4,7 @@
 #' @param df_ce Dataframe of all simulation eff and cost
 #' @param k Vector of willingness to pay values
 #'
-#' @import reshape2, dplyr
+#' @import reshape2 dplyr
 #'
 #' @return List object of class bcea.
 #' @seealso bcea
