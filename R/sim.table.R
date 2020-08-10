@@ -1,5 +1,9 @@
 
-#' Table of Simulations for the Health Economic Model
+#
+sim.table <- function(he, ...) UseMethod("sim.table", he)
+
+
+#' Table of Simulation Statistics for the Health Economic Model
 #' 
 #' Using the input in the form of MCMC simulations and after having run the
 #' health economic model, produces a summary table of the simulations from the
@@ -9,12 +13,12 @@
 #' @param wtp The value of the willingness to pay threshold to be used in the
 #'            summary table.
 #' 
-#' @return Produces the following elements: \item{table}{A table with the
-#' simulations from the economic model} \item{names.cols}{A vector of labels to
-#' be associated with each column of the table} \item{wtp}{The selected value
-#' of the willingness to pay} \item{idx_wtp}{The index associated with the
-#' selected value of the willingness to pay threshold in the grid used to run
-#' the analysis}
+#' @return Produces the following elements:
+#'   \item{table}{A table with simulation statistics from the economic model}
+#'   \item{names.cols}{A vector of labels to be associated with each column of the table}
+#'   \item{wtp}{The selected value of the willingness to pay}
+#'   \item{idx_wtp}{The index associated with the selected value of the willingness
+#'   to pay threshold in the grid used to run the analysis}
 #' 
 #' @author Gianluca Baio
 #' @seealso \code{\link{bcea}}
@@ -38,28 +42,26 @@
 #' # Runs the health economic evaluation using BCEA
 #' m <- bcea(e=e,                  # defines the variables of 
 #'           c=c,                  # effectiveness and cost
-#'           ref=2,                # selects the 2nd row of (e,c) 
+#'           ref=2,                # selects the 2nd row of (e, c) 
 #'                                 # as containing the reference intervention
 #'           interventions=treats, # defines the labels to be associated 
 #'                                 # with each intervention
-#'           Kmax=50000            # maximum value possible for the willingness 
+#'           Kmax=50000)           # maximum value possible for the willingness 
 #'                                 # to pay threshold; implies that k is chosen 
-#'                                 # in a grid from the interval (0,Kmax)
-#'          )
+#'                                 # in a grid from the interval (0, Kmax)
 #'
 #' # Now can save the simulation exercise in an object using sim.table()
 #' st <- sim.table(m,         # uses the results of the economic evaluation 
 #'                            #  (a 'bcea' object)
-#'                 wtp=25000  # selects the particular value for k
-#'                )
+#'                 wtp=25000) # selects the particular value for k
 #'                
 #' # The table can be explored. For example, checking the 
 #' # element 'Table' of the object 'st'
 #' 
 #' @export
 #' 
-sim.table <- function(he,
-                      wtp = 25000) {
+sim.table.bcea <- function(he,
+                           wtp = 25000) {
   
   wtp <- min(wtp, he$Kmax)
   
@@ -102,3 +104,4 @@ sim.table <- function(he,
     wtp = wtp,
     ind.table = which(he$k == wtp))
 }
+
