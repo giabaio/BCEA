@@ -201,4 +201,3 @@ summary.bcea <- function(he,
         justify = "center")
 }
 
-

@@ -206,5 +206,6 @@
 #' }
 #' 
 #' @export
+#' 
 bcea <- function(e, c, ref = 1, interventions = NULL, Kmax = 50000, wtp = NULL, plot = FALSE)
   UseMethod("bcea")
