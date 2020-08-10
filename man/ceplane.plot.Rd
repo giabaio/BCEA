@@ -9,10 +9,7 @@ ceplane.plot(
   comparison = NULL,
   wtp = 25000,
   pos = c(1, 1),
-  size = NULL,
   graph = c("base", "ggplot2"),
-  xlim = NULL,
-  ylim = NULL,
   ...
 )
 }
@@ -38,24 +35,14 @@ indicating to use the default position and \code{TRUE} to place it on the
 bottom of the plot. Default value is \code{c(1,1)}, that is the topright
 corner inside the plot area.}
 
-\item{size}{Value (in millimetres) of the size of the willingness to pay
-label. Used only if \code{graph="ggplot2"}, otherwise is ignored with a
-message.}
-
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the two options \code{"base"} or
 \code{"ggplot2"}. Default value is \code{"base"}.}
 
-\item{xlim}{The range of the plot along the x-axis. If NULL (default) it is
-determined by the range of the simulated values for \code{delta.e}}
-
-\item{ylim}{The range of the plot along the y-axis. If NULL (default) it is
-determined by the range of the simulated values for \code{delta.c}}
-
 \item{...}{If \code{graph = "ggplot2"} and a named theme object is supplied,
  it will be added to the ggplot object. Additional graphical arguments:
 \itemize{
- \item \code{label.pos=FALSE}: will place the willingness to pay label in a different 
+ \item \code{label.pos = FALSE}: will place the willingness to pay label in a different 
  position at the bottom of the graph - base and ggplot2 only (no label in plotly).
  \item \code{point_colors}: a vector of colours specifying the colour(s) associated to 
  the cloud of points. Should be of length 1 or equal to the number of comparisons.
@@ -71,7 +58,7 @@ determined by the range of the simulated values for \code{delta.c}}
 }}
 }
 \value{
-\If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 
+If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 
   a plotly object containing the requested plot. Nothing is returned when \code{graph = "base"}, 
   the default.
    
@@ -105,7 +92,7 @@ m <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
 ceplane.plot(m, wtp = 200, graph = "base")
 
 ## select only one comparator
-ceplane.plot(m, wtp = 200, graph = "base", comparator = 3)
+ceplane.plot(m, wtp = 200, graph = "base", comparison = 3)
 
 ## or use ggplot2 instead
 if (requireNamespace("ggplot2")) {

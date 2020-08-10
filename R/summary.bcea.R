@@ -1,5 +1,5 @@
 
-#' Summary method for hes in the class \code{bcea}
+#' Summary Method for Objects of Class \code{bcea}
 #' 
 #' Produces a table printout with some summary results of the health economic
 #' evaluation
@@ -21,13 +21,15 @@
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
 #' London.
 #' @keywords Health economic evaluation
+#' @import crayon
+#' 
 #' @export
 #' 
 #' @examples 
 #' 
 #' data(Vaccine)
 #' 
-#' he <- bcea(e,c)
+#  he <- bcea(e,c, interventions = treats, ref = 2)
 #' summary(he)
 #' 
 summary.bcea <- function(he,
@@ -35,13 +37,15 @@ summary.bcea <- function(he,
   
   if (max(he$k) < wtp) {
     wtp <- max(he$k)
-    cat(paste0(
-      "NB: k (wtp) is defined in the interval [",
-      min(he$k),
-      " - ",
-      wtp,
-      "]\n"))
+    message(
+      cat(paste0(
+        "NB: k (wtp) is defined in the interval [",
+        min(he$k),
+        " - ",
+        wtp,
+        "]\n")))
   }
+  
   if (!is.element(wtp, he$k)) {
     if (!is.na(he$step)) {
       # The user has selected a non-acceptable value for wtp, but has not specified wtp in the call to bcea
@@ -51,122 +55,74 @@ summary.bcea <- function(he,
           he$Kmax,
           "], with increments of ",
           he$step,
-          "\n")
-      )
+          "\n"), call. = FALSE)
     } else {
       # The user has actually specified wtp as input in the call to bcea
-      tmp <- paste(he$k, collapse = " ")
+      he_k <- paste(he$k, collapse = " ")
       stop(
-        paste0(
-          "The willingness to pay parameter is defined as:\n[",
-          tmp,
-          "]\nPlease select a suitable value",
-          collapse = " "
-        )
-      )
+        paste0("The willingness to pay parameter is defined as:\n[",
+               he_k,
+               "]\nPlease select a suitable value",
+               collapse = " "), call. = FALSE)
     }
   }
-  ind.table <- which(he$k == wtp)
-  cols.u <- 1:he$n_comparators
-  cols.ustar <- max(cols.u) + 1
-  cols.ib <- (cols.ustar + 1):(cols.ustar + he$n_comparisons)
-  cols.ol <- max(cols.ib) + 1
-  cols.vi <- cols.ol + 1
-  n.cols <- cols.vi
   
-  Table <- matrix(NA, (he$n.sim + 1), n.cols)
-  Table[1:he$n.sim, cols.u] <- he$U[, ind.table, ]
-  Table[1:he$n.sim, cols.ustar] <- he$Ustar[, ind.table]
-  if (length(dim(he$ib)) == 2) {
-    Table[1:he$n.sim, cols.ib] <- he$ib[ind.table, ]
-  }
-  if (length(dim(he$ib)) > 2) {
-    Table[1:he$n.sim, cols.ib] <- he$ib[ind.table, , ]
-  }
-  Table[1:he$n.sim, cols.ol] <- he$ol[, ind.table]
-  Table[1:he$n.sim, cols.vi] <- he$vi[, ind.table]
-  if (length(dim(he$ib)) == 2) {
-    Table[(he$n.sim + 1), ] <-
-      c(
-        apply(he$U[, ind.table, ], 2, mean),
-        mean(he$Ustar[, ind.table]),
-        mean(he$ib[ind.table, ]),
-        mean(he$ol[, ind.table]),
-        mean(he$vi[, ind.table])
-      )
-  }
-  if (length(dim(he$ib)) > 2) {
-    Table[(he$n.sim + 1), ] <-
-      c(
-        apply(he$U[, ind.table, ], 2, mean),
-        mean(he$Ustar[, ind.table]),
-        apply(he$ib[ind.table, , ], 2, mean),
-        mean(he$ol[, ind.table]),
-        mean(he$vi[, ind.table])
-      )
-  }
+  ##TODO: why doesnt bcea dispatch work??
+  Table <- sim_table.bcea(he)$Table
   
-  names.cols <-
-    c(
-      paste0("U", seq(1:he$n_comparators)),
-      "U*",
-      paste0("IB", he$ref, "_", he$comp),
-      "OL",
-      "VI"
-    )
-  colnames(Table) <- names.cols
+  EU_tab <- matrix(NA, he$n_comparators, 1)
+  EU_tab[, 1] <-
+    unlist(Table[he$n_sim + 1, paste0("U", 1:he$n_comparators)])
+  colnames(EU_tab) <- "Expected utility"
+  rownames(EU_tab) <- he$interventions
   
-  tab1 <- matrix(NA, he$n_comparators, 1)
-  tab1[, 1] <-
-    Table[he$n.sim + 1, (paste0("U", seq(1:he$n_comparators)))]
-  colnames(tab1) <- "Expected utility"
-  rownames(tab1) <- he$interventions
-  
-  tab2 <- matrix(NA, he$n_comparisons, 3)
-  tab2[, 1] <-
-    Table[he$n.sim + 1, paste0("IB", he$ref, "_", he$comp)]
+  comp_tab <- matrix(NA, he$n_comparisons, 3)
+  comp_tab[, 1] <-
+    Table[he$n_sim + 1, paste0("IB", he$ref, "_", he$comp)]
   if (he$n_comparisons == 1) {
-    tab2[, 2] <-
-      sum(Table[1:he$n.sim, paste0("IB", he$ref, "_", he$comp)] > 0) / he$n.sim
-    tab2[, 3] <- he$ICER
+    comp_tab[, 2] <-
+      sum(Table[1:he$n_sim, paste0("IB", he$ref, "_", he$comp)] > 0) / he$n_sim
+    comp_tab[, 3] <- he$ICER
   }
   if (he$n_comparisons > 1) {
     for (i in 1:he$n_comparisons) {
-      tab2[i, 2] <-
-        sum(Table[1:he$n.sim, paste0("IB", he$ref, "_", he$comp[i])] > 0) / he$n.sim
-      tab2[i, 3] <- he$ICER[i]
+      comp_tab[i, 2] <-
+        sum(Table[1:he$n_sim, paste0("IB", he$ref, "_", he$comp[i])] > 0) / he$n_sim
+      comp_tab[i, 3] <- he$ICER[i]
     }
   }
-  colnames(tab2) <- c("EIB", "CEAC", "ICER")
-  rownames(tab2) <-
+  colnames(comp_tab) <- c("EIB", "CEAC", "ICER")
+  rownames(comp_tab) <-
     paste0(he$interventions[he$ref], " vs ", he$interventions[he$comp])
   
-  tab3 <- matrix(NA, 1, 1)
-  tab3[, 1] <- Table[he$n.sim + 1, "VI"]
-  rownames(tab3) <- "EVPI"
-  colnames(tab3) <- ""
+  evpi_tab <- matrix(NA, 1, 1)
+  evpi_tab[, 1] <- Table[he$n_sim + 1, "VI"]
+  rownames(evpi_tab) <- "EVPI"                  #TODO: this is different value to book??
+  colnames(evpi_tab) <- ""
   
-  ## Prints the summary table
+  ## prints the summary table
   cat("\n")
   cat("Cost-effectiveness analysis summary \n")
   cat("\n")
   cat(paste0("Reference intervention:  ", he$interventions[he$ref], "\n"))
+  # cat(paste0("Reference intervention:  ", green(he$interventions[he$ref]), "\n"))
+  
   if (he$n_comparisons == 1) {
-    text.temp <-
+    cat(
       paste0("Comparator intervention: ",
-            he$interventions[he$comp],
-            "\n")
-    cat(text.temp)
+             he$interventions[he$comp],
+             # green(he$interventions[he$comp]),
+             "\n"))
   }
   
   if (he$n_comparisons > 1) {
-    text.temp <-
+    cat(
       paste0("Comparator intervention(s): ",
-            he$interventions[he$comp[1]],
-            "\n")
-    cat(text.temp)
+             he$interventions[he$comp[1]],
+             "\n"))
     for (i in 2:he$n_comparisons) {
       cat(paste0("                          : ", he$interventions[he$comp[i]], "\n"))
+      # cat(paste0("                          : ", green(he$interventions[he$comp[i]]), "\n"))
     }
   }
   cat("\n")
@@ -178,22 +134,21 @@ summary.bcea <- function(he,
         min(he$k),
         " - ",
         max(he$k),
-        "] \n")
-    )
+        "] \n"))
   }
   if (length(he$kstar) == 1 & !is.na(he$step)) {
+    kstar <- he$k[which(diff(he$best) == 1) + 1]
     cat(
       paste0(
         "Optimal decision: choose ",
-        he$interventions[he$best[he$k == he$kstar - he$step]],
+        he$interventions[he$best[1]],
         " for k < ",
-        he$kstar,
+        kstar,
         " and ",
-        he$interventions[he$best[he$k == he$kstar]],
+        he$interventions[he$best[he$k == kstar]],
         " for k >= ",
-        he$kstar,
-        "\n")
-    )
+        kstar,
+        "\n"))
   }
   if (length(he$kstar) > 1 & !is.na(he$step)) {
     cat(
@@ -202,19 +157,16 @@ summary.bcea <- function(he,
         he$interventions[he$best[he$k == he$kstar[1] - he$step]],
         " for k < ",
         he$kstar[1],
-        "\n")
-    )
+        "\n"))
     for (i in 2:length(he$kstar)) {
-      cat(
-        paste0(
-          "                         ",
-          he$interventions[he$best[he$k == he$kstar[i] - he$step]],
-          " for ",
-          he$kstar[i - 1],
-          " <= k < ",
-          he$kstar[i],
-          "\n")
-      )
+      cat(paste0(
+        "                         ",
+        he$interventions[he$best[he$k == he$kstar[i] - he$step]],
+        " for ",
+        he$kstar[i - 1],
+        " <= k < ",
+        he$kstar[i],
+        "\n"))
     }
     cat(paste0(
       "                         ",
@@ -226,12 +178,12 @@ summary.bcea <- function(he,
   cat("\n\n")
   cat(paste0("Analysis for willingness to pay parameter k = ", wtp, "\n"))
   cat("\n")
-  print(tab1,
+  print(EU_tab,
         quote = FALSE,
         digits = 5,
         justify = "center")
   cat("\n")
-  print(tab2,
+  print(comp_tab,
         quote = FALSE,
         digits = 5,
         justify = "center")
@@ -242,9 +194,8 @@ summary.bcea <- function(he,
       wtp,
       ": ",
       he$interventions[he$best][he$k == wtp],
-      "\n")
-  )
-  print(tab3,
+      "\n"))
+  print(evpi_tab,
         quote = FALSE,
         digits = 5,
         justify = "center")

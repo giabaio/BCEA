@@ -11,7 +11,7 @@ compute_ol(Ustar, U, best)
 
 \item{U}{Net monetary benefit (sim x k x interv)}
 
-\item{best}{Best intervention for given willingness-to-pay}
+\item{best}{Best intervention for given willingness-to-pay (k)}
 }
 \value{
 Array with dimensions (sim x k)

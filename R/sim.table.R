@@ -1,6 +1,6 @@
 
 #
-sim.table <- function(he, ...) UseMethod("sim.table", he)
+sim_table <- function(he, ...) UseMethod("sim_table", he)
 
 
 #' Table of Simulation Statistics for the Health Economic Model
@@ -22,14 +22,15 @@ sim.table <- function(he, ...) UseMethod("sim.table", he)
 #' 
 #' @author Gianluca Baio
 #' @seealso \code{\link{bcea}}
-#' @references Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
+#' @references
+#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 #' Analysis in Health Economics. Statistical Methods in Medical Research
 #' doi:10.1177/0962280211419832.
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
+#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' 
 #' @keywords Health economic evaluation
-#' @importFrom dplyr
+#' @import dplyr
 #' 
 #' @examples
 #' 
@@ -50,8 +51,8 @@ sim.table <- function(he, ...) UseMethod("sim.table", he)
 #'                                 # to pay threshold; implies that k is chosen 
 #'                                 # in a grid from the interval (0, Kmax)
 #'
-#' # Now can save the simulation exercise in an object using sim.table()
-#' st <- sim.table(m,         # uses the results of the economic evaluation 
+#' # Now can save the simulation exercise in an object using sim_table()
+#' st <- sim_table(m,         # uses the results of the economic evaluation 
 #'                            #  (a 'bcea' object)
 #'                 wtp=25000) # selects the particular value for k
 #'                
@@ -60,7 +61,7 @@ sim.table <- function(he, ...) UseMethod("sim.table", he)
 #' 
 #' @export
 #' 
-sim.table.bcea <- function(he,
+sim_table.bcea <- function(he,
                            wtp = 25000) {
   
   wtp <- min(wtp, he$Kmax)
@@ -69,11 +70,14 @@ sim.table.bcea <- function(he,
     if (!is.na(he$step)) {
       # The user has selected a non-acceptable value for wtp, but has not specified wtp in the call to bcea
       stop(
-        sprintf("The willingness to pay parameter is defined in the interval [0- %f], with increments of %f \n", he$Kmax, he$step), call. = FALSE)
+        sprintf("The willingness to pay parameter is defined in the interval [0- %f], with increments of %f \n",
+                he$Kmax, he$step), call. = FALSE)
+      
     } else { # The user has actually specified wtp as input in the call to bcea
       he_k <- paste(he$k, collapse = " ")
       stop(
-        paste0("The willingness to pay parameter is defined as:\n[", he_k, "]\nPlease select a suitable value", collapse = " "), call. = FALSE)
+        paste0("The willingness to pay parameter is defined as:\n[", he_k, "]
+               \nPlease select a suitable value", collapse = " "), call. = FALSE)
     }
   }
   
@@ -103,5 +107,12 @@ sim.table.bcea <- function(he,
     names.cols = names.cols,
     wtp = wtp,
     ind.table = which(he$k == wtp))
+}
+
+
+#
+sim_table.default <- function(he, ..) {
+  
+  stop("No method for this object. Run bcea().", call. = FALSE)
 }
 
