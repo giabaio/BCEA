@@ -420,9 +420,9 @@ evppi.default <- function(param_idx,
                  k = k,
                  l = l)
         
-        method <- extra_args$method[[k]][l]
-        if (method == "GAM" || method == "gam" ||
-            method == "G" || method == "g") {
+        method <- toupper(extra_args$method[[k]][l])
+        
+        if (method == "GAM" || method == "G") {
           method <- "GAM"
           mesh <- robust <- NULL
           if (!isTRUE(requireNamespace("mgcv", quietly = TRUE))) {
@@ -448,8 +448,7 @@ evppi.default <- function(param_idx,
                            form = form)
           }
         }
-        if (method == "gp" || method == "GP") {
-          method <- "GP"
+        if (method == "GP") {
           mesh <- robust <- NULL
           if (!suppress.messages) {
             cat("\n")
@@ -469,7 +468,6 @@ evppi.default <- function(param_idx,
                         n.sim = n_sim)
         }
         if (method == "INLA") {
-          method <- "INLA"
           if (!isTRUE(requireNamespace("INLA", quietly = TRUE))) {
             stop("You need to install the packages 'INLA' and 'splancs'. Please run in your R terminal:\n 
                  install.packages('INLA', repos='http://www.math.ntnu.no/inla/R/stable')\n
