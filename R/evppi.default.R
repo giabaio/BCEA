@@ -149,7 +149,7 @@ evppi.default <- function(param_idx,
         for (k in seq_along(he$k)) {
           nbs <- he$U[, k, ]
           nbs <- nbs[o, ]
-          for (i in 1:(d - 1)) {
+          for (i in seq_len(d - 1)) {
             for (j in (i + 1):d) {
               cm <- cumsum(nbs[, i] - nbs[, j])/n
               if (nSegs[i, j] == 1) {
@@ -216,7 +216,7 @@ evppi.default <- function(param_idx,
           if (length(segPoints) > 0) {
             segPoints2 <- unique(c(0, segPoints[order(segPoints)], n))
             res[k] <- 0
-            for (j in 1:(length(segPoints2) - 1)) {
+            for (j in seq_len(length(segPoints2) - 1)) {
               res[k] <-
                 res[k] + max(colSums(
                   matrix(nbs[(1 + segPoints2[j]):segPoints2[j + 1], ],
@@ -245,7 +245,7 @@ evppi.default <- function(param_idx,
           for (k in seq_along(he$k)) {
             nbs <- he$U[, k, ]
             nbs <- nbs[o, ]
-            for (i in 1:(d - 1)) {
+            for (i in seq_len(d - 1)) {
               for (j in (i + 1):d) {
                 cm <- cumsum(nbs[, i] - nbs[, j])/n
                 if (nSegs[i, j] == 1) {
@@ -266,7 +266,7 @@ evppi.default <- function(param_idx,
                   distMinMax <- 0
                   minL <- Inf
                   maxL <- -Inf
-                  for (sims in 1:n) {
+                  for (sims in seq_len(n)) {
                     if (cm[sims] > maxL) {
                       maxLP <- sims
                       maxL <- cm[sims]
@@ -311,7 +311,7 @@ evppi.default <- function(param_idx,
               segPoints2 <- unique(c(0, segPoints[order(segPoints)],
                                      n))
               temp[k] <- 0
-              for (j in 1:(length(segPoints2) - 1)) {
+              for (j in seq_len(length(segPoints2) - 1)) {
                 temp[k] <-
                   temp[k] + max(colSums(
                     matrix(nbs[(1 + segPoints2[j]):segPoints2[j + 1], ],
@@ -368,11 +368,11 @@ evppi.default <- function(param_idx,
       }
       if (length(param_idx) > 1) {
         res <- list()
-        for (j in 1:length(param_idx)) {
+        for (j in seq_along(param_idx)) {
           sort.order <- order(inputs[, params[j]])
           sort.U <- array(NA, dim(he$U))
           evpi <- evppi.temp <- numeric()
-          for (i in 1:length(he$k)) {
+          for (i in seq_along(he$k)) {
             evpi[i] <- he$evi[i]
             sort.U[, i, ] <- he$U[sort.order, i, ]
             U.array <- array(sort.U[, i, ],
@@ -413,7 +413,7 @@ evppi.default <- function(param_idx,
              ncol = he$n_comparators)
     
     for (k in 1:2) {
-      for (l in 1:he$n_comparisons) {
+      for (l in seq_len(he$n_comparisons)) {
         x <-
           prep.x(he = he,
                  seq_rows = extra_args$select,

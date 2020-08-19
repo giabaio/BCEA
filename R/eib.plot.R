@@ -135,7 +135,7 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
       "upp" = c(apply(he$ib,margin,function(x) ifelse(cri.quantile, quantile(x,1 - (alpha)/2),
                                                       mean(x) - qnorm(1 - (alpha)/2)*sd(x)))),
       "comp" = as.factor(c(
-        sapply(1:he$n_comparisons, function(x) rep(x, length(he$k)))
+        vapply(1:he$n_comparisons, function(x) rep(x, length(he$k)))
       )))
     return(cri)
   }
@@ -305,11 +305,10 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
         opt.theme <- opt.theme + obj
     
     if (he$n_comparisons == 1) {
-      # data frame
       data.psa <- data.frame(
         "k" = he$k, "eib" = he$eib, 
         "comparison" = as.factor(c(
-          sapply(1:he$n_comparisons, function(x) rep(x, length(he$k)))
+          vapply(1:he$n_comparisons, function(x) rep(x, length(he$k)))
         )))
       if (plot.cri) 
         data.psa <- cbind(data.psa,cri)
@@ -362,7 +361,7 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
       data.psa <- data.frame(
         "k" = c(he$k), "eib" = c(he$eib),
         "comparison" = as.factor(c(
-          sapply(1:he$n_comparisons, function(x) rep(x, length(he$k)))
+          vapply(1:he$n_comparisons, function(x) rep(x, length(he$k)))
         )))
       if (plot.cri)
         data.psa <- cbind(data.psa,cri)
@@ -558,18 +557,20 @@ eib.plot <- function(he,comparison=NULL,pos=c(1,0),size=NULL,plot.cri=NULL,graph
     if (length(plot_aes$line$colors) < length(comparisons.label))
       plot_aes$line$colors <- rep_len(plot_aes$line$colors, length(comparisons.label))
     # opacities
-    plot_aes$line$cri_colors <- sapply(plot_aes$line$cri_colors, function(x) 
-      ifelse(grepl(pattern = "^rgba\\(", x = x), x, plotly::toRGB(x, 0.4)))
-    plot_aes$area$color <- sapply(plot_aes$area$color, function(x)
+    plot_aes$line$cri_colors <-
+      vapply(plot_aes$line$cri_colors,
+             function(x) 
+               ifelse(grepl(pattern = "^rgba\\(", x = x), x, plotly::toRGB(x, 0.4)))
+    plot_aes$area$color <- vapply(plot_aes$area$color, function(x)
       ifelse(grepl(pattern = "^rgba\\(", x = x), x, plotly::toRGB(x, 0.4)))
     # data frame
     data.psa <- data.frame(
       "k" = he$k, "eib" = c(he$eib),
       "comparison" = as.factor(c(
-        sapply(1:he$n_comparisons, function(x) rep(x, length(he$k)))
+        vapply(1:he$n_comparisons, function(x) rep(x, length(he$k)))
       )),
       "label" = as.factor(c(
-        sapply(comparisons.label, function(x) rep(x, length(he$k)))
+        vapply(comparisons.label, function(x) rep(x, length(he$k)))
       )))
     if (plot.cri)
       data.psa <- cbind(data.psa, cri)

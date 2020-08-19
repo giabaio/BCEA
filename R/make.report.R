@@ -44,9 +44,13 @@
 #' m=bcea(e,c,ref=2)
 #' makeReport(m)
 #' }
-#' @export 
-
-make.report=function(he,evppi=NULL,ext="pdf",echo=FALSE,...) {
+#' @export
+#' 
+make.report = function(he,
+                       evppi = NULL,
+                       ext = "pdf",
+                       echo = FALSE,
+                       ...) {
   
   ## quiet --- allows to disable the cat messages
   quiet <- function(x) { 
@@ -57,19 +61,19 @@ make.report=function(he,evppi=NULL,ext="pdf",echo=FALSE,...) {
   
   # This may be used to automatically open the pdf output using the default pdf viewer...
   openPDF <- function(f) {
-     os <- .Platform$OS.type
-     if (os=="windows")
-        shell.exec(normalizePath(f))
-     else {
-        pdf <- getOption("pdfviewer", default='')
-        if (nchar(pdf)==0)
-           stop("The 'pdfviewer' option is not set. Use options(pdfviewer=...)")
-        system2(pdf, args=c(f))
-     }
+    os <- .Platform$OS.type
+    if (os == "windows")
+      shell.exec(normalizePath(f))
+    else {
+      pdf <- getOption("pdfviewer", default='')
+      if (nchar(pdf) == 0)
+        stop("The 'pdfviewer' option is not set. Use options(pdfviewer=...)")
+      system2(pdf, args=c(f))
+    }
   }
   
   # Additional arguments
-  exArgs=list(...)
+  exArgs <- list(...)
   if(exists("wtp",exArgs)){wtp=exArgs$wtp} else {wtp=he$k[min(which(he$k>=he$ICER))]}
   if(exists("filename",exArgs)){filename=exArgs$filename} else {filename=paste0("Report.",ext)}
   if(exists("psa_sims",exArgs)){psa_sims=exArgs$psa_sims} else {psa_sims=NULL}
@@ -86,13 +90,17 @@ make.report=function(he,evppi=NULL,ext="pdf",echo=FALSE,...) {
   }
   
   # Removes all warnings
-  options(warn=-1)
-  # Get current directory, then move to relevant path, then go back to current directory
-  file=file.path(tempdir(),filename)
-  out = quiet(rmarkdown::render(normalizePath(file.path(system.file("Report",package="BCEA"),"report.Rmd")),
-                                 switch(ext,pdf=rmarkdown::pdf_document(),
-                                        docx=rmarkdown::word_document())
-  ))
-  file.copy(out, file, overwrite=TRUE)
-  cat(paste0("The report is saved in the file ",file,"\n"))
+  withr::with_options(list(warn = -1), {
+    
+    # Get current directory, then move to relevant path, then go back to current directory
+    file <- file.path(tempdir(), filename)
+    out <-
+      quiet(rmarkdown::render(normalizePath(
+        file.path(system.file("Report", package = "BCEA"), "report.Rmd")),
+        switch(ext,pdf = rmarkdown::pdf_document(),
+               docx = rmarkdown::word_document())
+      ))
+    file.copy(out, file, overwrite = TRUE)
+    cat(paste0("The report is saved in the file ", file, "\n"))
+  })
 }
