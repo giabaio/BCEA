@@ -8,6 +8,13 @@
 
 <title>Cost-Effectiveness Acceptability Frontier (CEAF) plot — ceaf.plot • BCEA</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -42,6 +49,7 @@
 <meta property="og:title" content="Cost-Effectiveness Acceptability Frontier (CEAF) plot — ceaf.plot" />
 <meta property="og:description" content="Produces a plot the Cost-Effectiveness Acceptability Frontier (CEAF)
 against the willingness to pay threshold." />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -200,14 +208,14 @@ London.</p>
 <span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>)              <span class='co'># plots the CEAF </span></div><div class='img'><img src='ceaf.plot-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 <span class='co'># \donttest{</span>
-<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"g"</span>) <span class='co'># uses ggplot2 </span></div><div class='output co'>#&gt; <span class='error'>Error in ggplot(df, aes(x = k, y = ceaf)): could not find function "ggplot"</span></div><div class='input'><span class='co'># }</span>
+<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"g"</span>) <span class='co'># uses ggplot2 </span></div><div class='img'><img src='ceaf.plot-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 <span class='co'># \donttest{</span>
 <span class='co'># Use the smoking cessation dataset</span>
 <span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Smoking</span>)
 <span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='no'>e</span>, <span class='no'>c</span>, <span class='kw'>ref</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>intervention</span> <span class='kw'>=</span> <span class='no'>treats</span>, <span class='kw'>Kmax</span> <span class='kw'>=</span> <span class='fl'>500</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='no'>mce</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='multi.ce.html'>multi.ce</a></span>(<span class='no'>m</span>)
-<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>)</div><div class='img'><img src='ceaf.plot-2.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>)</div><div class='img'><img src='ceaf.plot-3.png' alt='' width='700' height='433' /></div><div class='input'># }
 
 </div></pre>
   </div>

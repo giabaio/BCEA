@@ -131,8 +131,12 @@ contour2 <-
     xx[length(xx)] <- ifelse(xx[length(xx)]<M.e,1.5*M.e,xx[length(xx)])
     
     # If the user has specified x- and/or y-limits then use those
-    if(!is.null(xlim)) {m.e <- xlim[1]; M.e <- xlim[2]}
-    if(!is.null(ylim)) {m.c <- ylim[1]; M.c <- ylim[2]}
+    if(!is.null(xlim)) {
+      m.e <- xlim[1]
+    M.e <- xlim[2]}
+    if(!is.null(ylim)) {
+      m.c <- ylim[1]
+    M.c <- ylim[2]}
     
     plot(xx,yy,col="white",xlim=c(m.e,M.e),ylim=c(m.c,M.c), 
          xlab=xlab,ylab=ylab,
@@ -158,8 +162,10 @@ contour2 <-
     
     density <- MASS::kde2d(he$delta.e,he$delta.c,n=300,h=c(sd(he$delta.e)/scale,sd(he$delta.c)/scale))
     
-    m.c <- range(he$delta.c)[1]; M.c <- range(he$delta.c)[2]
-    m.e <- range(he$delta.e)[1]; M.e <- range(he$delta.e)[2]
+    m.c <- range(he$delta.c)[1]
+    M.c <- range(he$delta.c)[2]
+    m.e <- range(he$delta.e)[1]
+    M.e <- range(he$delta.e)[2]
     
     # Changes the range so that the plot always shows the x and y axes
     ch1 <- ifelse(m.e>0,m.e<--m.e,m.e<-m.e)

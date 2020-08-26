@@ -1,5 +1,5 @@
 
-#' ceplane_plot_base
+#' CE-plane Plot With Base Graphics
 #'
 #' @template args-he
 #' @param wtp Willingness to pay threshold; default 25,000

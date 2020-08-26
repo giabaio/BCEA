@@ -8,6 +8,13 @@
 
 <title>Cost-effectiveness Plane Plot — ceplane.plot • BCEA</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -43,6 +50,7 @@
 <meta property="og:description" content="Produces a scatter plot of the cost-effectiveness plane, together with the
 sustainability area, as a function of the selected willingness to pay
 threshold." />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -141,10 +149,7 @@ threshold.</p>
   <span class='kw'>comparison</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>wtp</span> <span class='kw'>=</span> <span class='fl'>25000</span>,
   <span class='kw'>pos</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>),
-  <span class='kw'>size</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>graph</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>),
-  <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='no'>...</span>
 )</pre>
 
@@ -181,32 +186,16 @@ bottom of the plot. Default value is <code><a href='Vaccine.html'>c(1,1)</a></co
 corner inside the plot area.</p></td>
     </tr>
     <tr>
-      <th>size</th>
-      <td><p>Value (in millimetres) of the size of the willingness to pay
-label. Used only if <code>graph="ggplot2"</code>, otherwise is ignored with a
-message.</p></td>
-    </tr>
-    <tr>
       <th>graph</th>
       <td><p>A string used to select the graphical engine to use for
 plotting. Should (partial-)match the two options <code>"base"</code> or
 <code>"ggplot2"</code>. Default value is <code>"base"</code>.</p></td>
     </tr>
     <tr>
-      <th>xlim</th>
-      <td><p>The range of the plot along the x-axis. If NULL (default) it is
-determined by the range of the simulated values for <code>delta.e</code></p></td>
-    </tr>
-    <tr>
-      <th>ylim</th>
-      <td><p>The range of the plot along the y-axis. If NULL (default) it is
-determined by the range of the simulated values for <code>delta.c</code></p></td>
-    </tr>
-    <tr>
       <th>...</th>
       <td><p>If <code>graph = "ggplot2"</code> and a named theme object is supplied,
  it will be added to the ggplot object. Additional graphical arguments:</p><ul>
-<li><p><code>label.pos=FALSE</code>: will place the willingness to pay label in a different 
+<li><p><code>label.pos = FALSE</code>: will place the willingness to pay label in a different 
  position at the bottom of the graph - base and ggplot2 only (no label in plotly).</p></li>
 <li><p><code>point_colors</code>: a vector of colours specifying the colour(s) associated to 
  the cloud of points. Should be of length 1 or equal to the number of comparisons.</p></li>
@@ -225,7 +214,7 @@ determined by the range of the simulated values for <code>delta.c</code></p></td
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>graph = "ggplot2"</code> a ggplot object, or if <code>graph = "plotly"</code> 
+    <p>If <code>graph = "ggplot2"</code> a ggplot object, or if <code>graph = "plotly"</code> 
   a plotly object containing the requested plot. Nothing is returned when <code>graph = "base"</code>, 
   the default.</p>   
 <p>Grey dots show the simulated values for the joint
@@ -258,9 +247,9 @@ Statistical Methods in Medical Research. doi:10.1177/0962280211419832.</p>
 <span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='no'>e</span>, <span class='no'>c</span>, <span class='kw'>ref</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>Kmax</span> <span class='kw'>=</span> <span class='fl'>500</span>, <span class='kw'>interventions</span> <span class='kw'>=</span> <span class='no'>treats</span>)
 
 <span class='co'>## produce the base plot</span>
-<span class='fu'>ceplane.plot</span>(<span class='no'>m</span>, <span class='kw'>wtp</span> <span class='kw'>=</span> <span class='fl'>200</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"base"</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'>
+<span class='fu'>ceplane.plot</span>(<span class='no'>m</span>, <span class='kw'>wtp</span> <span class='kw'>=</span> <span class='fl'>200</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"base"</span>)</div><div class='img'><img src='ceplane.plot-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>## select only one comparator</span>
-<span class='fu'>ceplane.plot</span>(<span class='no'>m</span>, <span class='kw'>wtp</span> <span class='kw'>=</span> <span class='fl'>200</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"base"</span>, <span class='kw'>comparator</span> <span class='kw'>=</span> <span class='fl'>3</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'>
+<span class='fu'>ceplane.plot</span>(<span class='no'>m</span>, <span class='kw'>wtp</span> <span class='kw'>=</span> <span class='fl'>200</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"base"</span>, <span class='kw'>comparison</span> <span class='kw'>=</span> <span class='fl'>3</span>)</div><div class='img'><img src='ceplane.plot-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>## or use ggplot2 instead</span>
 <span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"ggplot2"</span>)) {
    <span class='fu'>ceplane.plot</span>(<span class='no'>m</span>, <span class='kw'>wtp</span> <span class='kw'>=</span> <span class='fl'>200</span>, <span class='kw'>pos</span> <span class='kw'>=</span> <span class='st'>"right"</span>, <span class='kw'>ICER_sizes</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"ggplot2"</span>)

@@ -5,29 +5,33 @@ reference:
 - title: Main
 - contents:
   - '`BCEA-package`'
-  - '`bcea.default`'
   - '`bcea`'
+  - '`bcea.default`'
   - '`BCEAweb`'
   - '`multi.ce`'
   - '`new_bcea`'
+  - '`setReferenceGroup<-`'
+  - '`setKmax<-`'
+  
 - title: Plotting
 - contents:
+  - '`ceac.plot`'
   - '`ceaf.plot`'
   - '`ceef.plot`'
   - '`ceplane.plot`'
   - '`contour.bcea`'
+  - '`contour2`'
   - '`eib.plot`'
   - '`evi.plot`'
-  - '`contour2`'
   - '`ib.plot`'
-  - '`ceac.plot`'
+  - '`info.rank`'
   - '`plot.bcea`'
   - '`plot.CEriskav`'
   - '`plot.evppi`'
   - '`plot.mixedAn`'
-  - '`info.rank`'
 - title: Statistics
 - contents:
+  - '`best_interv_given_k`'
   - '`compute_CEAC`'
   - '`compute_EIB`'
   - '`compute_IB`'
@@ -36,13 +40,12 @@ reference:
   - '`compute_U`'
   - '`compute_Ustar`'
   - '`compute_vi`'
-  - '`best_interv_given_k`'
 - title: Outputs
 - contents:
+  - '`make.report`'
+  - '`sim.table`'
   - '`summary.bcea`'
   - '`summary.mixedAn`'
-  - '`sim.table`'
-  - '`make.report`'
 - title: Miscellaneous
 - contents:
   - '`CEriskav`'

@@ -1,4 +1,4 @@
-#' make.report
+#' Make Report
 #' 
 #' Constructs the automated report from the output of the BCEA 
 #' 

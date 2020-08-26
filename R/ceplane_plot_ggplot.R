@@ -1,9 +1,15 @@
 
+#' ceplane_plot_ggplot
+#' 
+#' @import ggplot2
+#'
 ceplane_plot_ggplot <- function() {
   
-  if(!isTRUE(requireNamespace("ggplot2",quietly=TRUE) & requireNamespace("grid",quietly=TRUE))){
+  if(!isTRUE(requireNamespace("ggplot2",quietly=TRUE) &
+             requireNamespace("grid",quietly=TRUE))){
     message("Falling back to base graphics\n")
-    ceplane.plot(he,comparison=comparison,wtp=wtp,pos=alt.legend,graph="base"); return(invisible(NULL))
+    ceplane.plot(he,comparison=comparison,wtp=wtp,pos=alt.legend,graph="base")
+    return(invisible(NULL))
   }
   # no visible binding note
   delta.e <- delta.c <- lambda.e <- lambda.c <- NULL
@@ -36,7 +42,8 @@ ceplane_plot_ggplot <- function() {
     x2 <- range.e[2]+2*abs(diff(range.e))
     x3 <- x2
     x <- c(x1,x2,x3)
-    y <- x*wtp; y[3] <- x1*wtp
+    y <- x*wtp
+    y[3] <- x1*wtp
     plane <- data.frame(x=x,y=y)
     # build a trapezoidal plane instead of a triangle if the y value is less than the minimum difference on costs
     if(y[1]>1.2*range.c[1]) {
@@ -120,7 +127,8 @@ ceplane_plot_ggplot <- function() {
     x2 <- range.e[2]+2*abs(diff(range.e))
     x3 <- x2
     x <- c(x1,x2,x3)
-    y <- x*wtp; y[3] <- x1*wtp
+    y <- x*wtp
+    y[3] <- x1*wtp
     plane <- data.frame(x=x,y=y,comparison=factor(rep(he$n_comparisons+1,3)))
     # build a trapezoidal plane instead of a triangle if the y value is less than the minimum difference on costs
     if(y[1]>min(kd$delta.c)) {
@@ -211,7 +219,7 @@ ceplane_plot_ggplot <- function() {
   jus <- NULL
   if (isTRUE(alt.legend)) {
     alt.legend="bottom"
-    ceplane <- ceplane + ggplot2::theme(legend.direction="vertical")
+    ceplane <- ceplane + theme(legend.direction="vertical")
   } else {
     if (is.character(alt.legend)) {
       choices <- c("left", "right", "bottom", "top")

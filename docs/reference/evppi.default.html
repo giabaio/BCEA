@@ -8,6 +8,13 @@
 
 <title>evppi.default — evppi.default • BCEA</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -44,11 +51,12 @@
 The method argument can now be given as a list. The first element element in the list is a vector giving the
 regression method for the effects. The second gives the regression method for the costs. The `method' argument
 can also be given as before which then uses the same regression method for all curves.
-All other exArgs can be given as before. 'int.ord' can be updated using the list formulation above to give
+All other extra_args can be given as before. 'int.ord' can be updated using the list formulation above to give
 the interactions for each different curve.
 The formula argument for GAM can only be given once, either 'te()' or 's() + s()' as this is
 for computational reasons rather than to aid fit.
 You can still plot the INLA mesh elements but not output the meshes." />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -141,7 +149,7 @@ You can still plot the INLA mesh elements but not output the meshes." />
 The method argument can now be given as a list. The first element element in the list is a vector giving the
 regression method for the effects. The second gives the regression method for the costs. The `method' argument
 can also be given as before which then uses the same regression method for all curves.
-All other exArgs can be given as before. 'int.ord' can be updated using the list formulation above to give
+All other extra_args can be given as before. 'int.ord' can be updated using the list formulation above to give
 the interactions for each different curve.
 The formula argument for GAM can only be given once, either 'te()' or 's() + s()' as this is
 for computational reasons rather than to aid fit.
@@ -149,13 +157,13 @@ You can still plot the INLA mesh elements but not output the meshes.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for default</span>
-<span class='fu'><a href='evppi.html'>evppi</a></span>(<span class='no'>parameter</span>, <span class='no'>input</span>, <span class='no'>he</span>, <span class='kw'>N</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>residuals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='evppi.html'>evppi</a></span>(<span class='no'>param_idx</span>, <span class='no'>input</span>, <span class='no'>he</span>, <span class='kw'>N</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>residuals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>parameter</th>
+      <th>param_idx</th>
       <td></td>
     </tr>
     <tr>

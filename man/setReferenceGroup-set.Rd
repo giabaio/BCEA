@@ -2,12 +2,13 @@
 % Please edit documentation in R/bcea_setters.R
 \name{setReferenceGroup<-}
 \alias{setReferenceGroup<-}
-\title{setReferenceGroup}
+\title{Set Reference Group}
 \usage{
-setReferenceGroup(he, ref) <- value
+setReferenceGroup(he) <- value
 }
 \arguments{
-\item{he}{}
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
 
 \item{ref}{}
 }
@@ -15,5 +16,5 @@ setReferenceGroup(he, ref) <- value
 
 }
 \description{
-setReferenceGroup
+Set Reference Group
 }

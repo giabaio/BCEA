@@ -1,6 +1,6 @@
 
-#' Plot a graph of the Expected Value of Partial Information with respect to a
-#' set of parameters
+#' Plot Expected Value of Partial Information With Respect to a
+#' Set of Parameters
 #' 
 #' @param x An object in the class \code{evppi}, obtained by the call to the
 #' function \code{\link{evppi}}.
@@ -18,10 +18,11 @@
 #' @param col Sets the color for the lines depicted in the graph.
 #' @param ...  Arguments to be passed to methods, such as graphical parameters
 #' (see \code{\link{par}}).
+#' 
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}}, \code{\link{evppi}}
-#' @references Baio G. (2012). Bayesian Methods in Health Economics.
-#' CRC/Chapman Hall, London
+#' @references
+#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
 #' @keywords Health economic evaluation Expected value of information
 #' 
 #' @export
@@ -57,7 +58,7 @@ plot.evppi <- function (x,
         alt.legend = "topright"
       else alt.legend = "topleft"
     }
-    plot(x$k, x$evi, t = "l", xlab = "Willingness to pay", 
+    plot(x$k, x$evi, type = "l", xlab = "Willingness to pay", 
          ylab = "", main = "Expected Value of Perfect Partial Information", 
          lwd = 2, ylim = range(range(x$evi), range(x$evppi)))
     if (is.null(col)) {
@@ -71,8 +72,8 @@ plot.evppi <- function (x,
         col <- rep("black", length(x$parameters))
       }
     }
-    if (length(x$index) == 1 | length(x$index) > 1 & (class(x$method)=="list")) {
-      col = "black"
+    if (length(x$index) == 1 | length(x$index) > 1 & (class(x$method) == "list")) {
+      col <- "black"
       points(x$k, x$evppi, t = "l", col = col, lty = 1)
     }
     cmd <- "EVPPI for the selected\nsubset of parameters"
@@ -81,8 +82,11 @@ plot.evppi <- function (x,
     }
     if (length(x$index) > 1 & (x$method == "Strong & Oakley (univariate)" || 
                                x$method == "Sadatsafavi et al")) {
-      for (i in 1:length(x$index)) {
-        points(x$k, x$evppi[[i]], t = "l", col = col[i], 
+      for (i in seq_along(x$index)) {
+        points(x$k,
+               x$evppi[[i]],
+               type = "l",
+               col = col[i], 
                lty = i)
         text(par("usr")[2], x$evppi[[i]][length(x$k)], 
              paste("(", i, ")", sep = ""), cex = 0.7, pos = 2)
@@ -103,7 +107,8 @@ plot.evppi <- function (x,
       return(invisible(NULL))
     }
     else {
-      message("ggplot2 method not yet implemented for this function: falling back to base graphics\n")
+      message(
+        "ggplot2 method not yet implemented for this function: falling back to base graphics\n")
       plot.evppi(x, pos = c(0, 0.8), graph = "base", col)
       return(invisible(NULL))
     }

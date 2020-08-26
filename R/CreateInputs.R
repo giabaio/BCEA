@@ -1,5 +1,5 @@
 
-#' create_inputs_evpi
+#' Create Inputs for EVPI Calculation
 #' 
 #' Creates an object containing the matrix with the parameters simulated using
 #' the MCMC procedure (using JAGS, BUGS or Stan) and a vector of parameters

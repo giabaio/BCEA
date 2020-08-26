@@ -8,6 +8,13 @@
 
 <title>Function reference • BCEA</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -40,6 +47,7 @@
 
 
 <meta property="og:title" content="Function reference" />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -175,6 +183,18 @@
           <p><code><a href="new_bcea.html">new_bcea()</a></code> </p>
         </td>
         <td><p>Constructor for bcea</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="setReferenceGroup-set.html">`setReferenceGroup&lt;-`()</a></code> </p>
+        </td>
+        <td><p>Set Reference Group</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="setKmax-set.html">`setKmax&lt;-`()</a></code> </p>
+        </td>
+        <td><p>Set Maximum Willingness to Pay</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -189,6 +209,12 @@
       
       
       <tr>
+        
+        <td>
+          <p><code><a href="plot-bcea.html">ceac.plot()</a></code> </p>
+        </td>
+        <td><p>Cost-Effectiveness Acceptability Curve (CEAC) plot</p></td>
+      </tr><tr>
         
         <td>
           <p><code><a href="ceaf.plot.html">ceaf.plot()</a></code> </p>
@@ -215,6 +241,12 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="contour2.html">contour2()</a></code> </p>
+        </td>
+        <td><p>Specialised contour plot for objects in the class "bcea"</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="eib.plot.html">eib.plot()</a></code> </p>
         </td>
         <td><p>Expected Incremental Benefit (EIB) plot</p></td>
@@ -227,21 +259,15 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="contour2.html">contour2()</a></code> </p>
-        </td>
-        <td><p>Specialised contour plot for objects in the class "bcea"</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="ib.plot.html">ib.plot()</a></code> </p>
         </td>
         <td><p>Incremental Benefit (IB) distribution plot</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="plot-bcea.html">ceac.plot()</a></code> </p>
+          <p><code><a href="info.rank.html">info.rank()</a></code> </p>
         </td>
-        <td><p>Cost-Effectiveness Acceptability Curve (CEAC) plot</p></td>
+        <td><p>Info-rank plot</p></td>
       </tr><tr>
         
         <td>
@@ -268,12 +294,6 @@ set of parameters</p></td>
         </td>
         <td><p>Summary plot of the health economic analysis when the mixed analysis is
 considered</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="info.rank.html">info.rank()</a></code> </p>
-        </td>
-        <td><p>Info-rank plot</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -288,6 +308,12 @@ considered</p></td>
       
       
       <tr>
+        
+        <td>
+          <p><code><a href="best_interv_given_k.html">best_interv_given_k()</a></code> </p>
+        </td>
+        <td><p>Select best option for each value of willingness to pay</p></td>
+      </tr><tr>
         
         <td>
           <p><code><a href="compute_CEAC.html">compute_CEAC()</a></code> </p>
@@ -335,12 +361,6 @@ considered</p></td>
           <p><code><a href="compute_vi.html">compute_vi()</a></code> </p>
         </td>
         <td><p>Compute Value of Information</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="best_interv_given_k.html">best_interv_given_k()</a></code> </p>
-        </td>
-        <td><p>Select best option for each value of willingness to pay</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -357,27 +377,21 @@ considered</p></td>
       <tr>
         
         <td>
+          <p><code><a href="make.report.html">make.report()</a></code> </p>
+        </td>
+        <td><p>make.report</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="summary.bcea.html">summary(<i>&lt;bcea&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Summary method for objects in the class <code>bcea</code></p></td>
+        <td><p>Summary Method for Objects of Class <code>bcea</code></p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="summary.mixedAn.html">summary(<i>&lt;mixedAn&gt;</i>)</a></code> </p>
         </td>
         <td><p>Summary methods for objects in the class <code>mixedAn</code> (mixed analysis)</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="sim.table.html">sim.table()</a></code> </p>
-        </td>
-        <td><p>Table of Simulations for the Health Economic Model</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="make.report.html">make.report()</a></code> </p>
-        </td>
-        <td><p>make.report</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -414,8 +428,8 @@ considered</p></td>
         <td>
           <p><code><a href="evppi.html">evppi()</a></code> </p>
         </td>
-        <td><p>Expected Value of Perfect Partial Information (EVPPI) for selected
-parameters</p></td>
+        <td><p>Expected Value of Perfect Partial Information (EVPPI) for Selected
+Parameters</p></td>
       </tr><tr>
         
         <td>

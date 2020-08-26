@@ -1,12 +1,10 @@
-###plot.CEriskav##################################################################################################
-# Plots the EIB for the risk aversion case
 
-
-#' Summary plot of the health economic analysis when risk aversion is included
+#' Plots EIB for the Risk Aversion Case
+#' 
+#' Summary plot of the health economic analysis when risk aversion is included.
 #' 
 #' Plots the EIB and the EVPI when risk aversion is included in the utility
-#' function
-#' 
+#' function.#' 
 #' 
 #' @param x An object of the class \code{CEriskav}, containing the results of
 #' the economic analysis performed accounting for a risk aversion parameter
@@ -24,6 +22,7 @@
 #' \code{"ggplot2"}. Default value is \code{"base"}.
 #' @param ...  Arguments to be passed to methods, such as graphical parameters
 #' (see \code{\link{par}}).
+#' 
 #' @return \item{list(eib,evi)}{A two-elements named list of the ggplot objects
 #' containing the requested plots. Returned only if \code{graph="ggplot2"}.}
 #' The function produces two plots for the risk aversion analysis. The first
@@ -32,12 +31,12 @@
 #' parameter, r. The second one is a similar plot for the EVPI.
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}}, \code{\link{CEriskav}}
-#' @references Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
+#' @references
+#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 #' Analysis in Health Economics.  Statistical Methods in Medical Research
 #' doi:10.1177/0962280211419832.
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-#' London
+#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
 #' @keywords Health economic evaluation Risk aversion
 #' @examples
 #' 

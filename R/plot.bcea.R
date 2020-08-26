@@ -1,5 +1,5 @@
 
-#' Summary plot of the health economic analysis
+#' Summary Plot of the Health Economic Analysis
 #' 
 #' Plots in a single graph the Cost-Effectiveness plane, the Expected
 #' Incremental Benefit, the CEAC and the EVPI
@@ -43,8 +43,9 @@
 #'          \code{\link{eib.plot}},
 #'          \code{\link{ceac.plot}},
 #'          \code{\link{evi.plot}}
-#' @references Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics.  Statistical Methods in Medical Research
+#' @references
+#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
+#' Analysis in Health Economics. Statistical Methods in Medical Research
 #' doi:10.1177/0962280211419832.
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London

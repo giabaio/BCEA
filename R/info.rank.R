@@ -1,6 +1,5 @@
-# ###info.rank#########################################################################
 
-#' Info-rank plot
+#' Info-Rank Plot
 #' 
 #' @description 
 #' Produces a plot similar to a Tornado-plot, but based on the analysis of the
@@ -38,8 +37,8 @@
 #'   }
 #' @return \item{res}{With base graphics: A data.frame containing the ranking of the parameters
 #'   with the value of the selected summary, for the chosen wtp; with plotly: a plotly object, 
-#'   incorporating in the $rank element the data.frame as above.} The function
-#'   produces a 'Info-rank' plot. This is an extension of standard 'Tornado
+#'   incorporating in the $rank element the data.frame as above.}
+#'   The function produces a 'Info-rank' plot. This is an extension of standard 'Tornado
 #'   plots' and presents a ranking of the model parameters in terms of their
 #'   impact on the expected value of information. For each parameter, the
 #'   specific individual EVPPI is computed and used to measure the impact of
@@ -47,30 +46,26 @@
 #'   how large the expected value of gaining more information is.
 #' @author Anna Heath, Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}}, \code{\link{evppi}}
-#' @references Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
+#' @references
+#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 #' Analysis in Health Economics.  Statistical Methods in Medical Research
 #' doi:10.1177/0962280211419832.
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-#' London
+#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
 #' @keywords dplot models
-#' @export info.rank
+#' @export
 #' @importFrom rlang .data
-info.rank <- function(parameter, input, he, wtp = he$k[min(which(he$k >= he$ICER))], 
-                      howManyPars = NULL, graph = c("base", "plotly"), ...) {
-  # parameter = vector of parameters for which to make the plot
-  # input = a matrix of PSA runs for all the parameters
-  # he = a bcea object with the economic evaluation
-  # wtp = a willingness-to-pay threshold (default at the break even point from he)
-  # ... extra arguments including
-  #     xlim = x-axis limits
-  #     ca = cex axis label (default = 0.7)
-  #     cn = cex names label (default = 0.7)
-  #     mai = graphical parameter to determine the margins
-  #     rel = if TRUE (default) then shows a plot of EVPPI/EVPI, if FALSE then only EVPPI
-  #     N = number of PSA to be used to perform the evppi analysis
+#' 
+info.rank <- function(parameter,
+                      input,
+                      he,
+                      wtp = he$k[min(which(he$k >= he$ICER))],
+                      howManyPars = NULL,
+                      graph = c("base", "plotly"),
+                      ...) {
   
-  base.graphics <- ifelse(isTRUE(pmatch(graph,c("base","plotly")) == 2),FALSE,TRUE)
+  
+  base.graphics <- ifelse(isTRUE(pmatch(graph,c("base","plotly")) == 2), FALSE, TRUE)
   if (!requireNamespace("plotly", quietly = FALSE)) {
     base.graphics = TRUE
     warning("Package plotly not found; falling back to base graphics.")
@@ -92,7 +87,7 @@ info.rank <- function(parameter, input, he, wtp = he$k[min(which(he$k >= he$ICER
           res <- dplyr::slice(res, 1:howManyPars)
         }
       }
-      barplot(res[order(res$info),2],horiz = T,names.arg = res[order(res$info),1],cex.names = cn,las = 1,col = col,cex.axis = ca,
+      barplot(res[order(res$info),2],horiz = TRUE,names.arg = res[order(res$info),1],cex.names = cn,las = 1,col = col,cex.axis = ca,
               xlab = xlab,space = space,main = tit,xlim = xlim)
       par(mai = c(1.360000,1.093333,1.093333,0.560000))
       list(rank = data.frame(parameter = res[order(-res$info),1],info = res[order(-res$info),2]))
@@ -109,12 +104,12 @@ info.rank <- function(parameter, input, he, wtp = he$k[min(which(he$k >= he$ICER
           res <- dplyr::slice(res, 1:howManyPars)
         }
       }
-      plotly::plot_ly(res, y = ~reorder(.data$parameter,.data$info),x = ~.data$info, orientation = "h",
+      plotly::plot_ly(res, y = ~reorder(.data$parameter,.data$info), x = ~.data$info, orientation = "h",
                       type = "bar", marker = list(color = "royalblue")) -> p
       plotly::layout(p, xaxis = list(hoverformat = ".2f", title = xlab, range = xlim),
                      yaxis = list(hoverformat = ".2f", title = ""),
                      margin = mai, bargap = space, title = tit) -> p
-      p$rank = data.frame(parameter = res[order(-res$info),1],info = res[order(-res$info),2])
+      p$rank = data.frame(parameter = res[order(-res$info), 1], info = res[order(-res$info), 2])
       return(p)
     }
   }
@@ -131,7 +126,7 @@ info.rank <- function(parameter, input, he, wtp = he$k[min(which(he$k >= he$ICER
   
   if (class(parameter[1]) == "character") {
     parameters <- array()
-    for (i in 1:length(parameter)) {
+    for (i in seq_along(parameter)) {
       parameters[i] <- which(colnames(input) == parameter[i])
     }
   } else {
@@ -145,7 +140,7 @@ info.rank <- function(parameter, input, he, wtp = he$k[min(which(he$k >= he$ICER
   } else {
     input <- input[,w]
     chk1 <- which(apply(input,2,var) > 0)   # only takes those with var>0
-    tmp <- lapply(1:dim(input)[2],function(x) table(input[,x])) # check those with <5 possible values (would break GAM)
+    tmp <- lapply(1:dim(input)[2], function(x) table(input[, x])) # check those with <5 possible values (would break GAM)
     chk2 <- which(unlist(lapply(tmp,function(x) length(x) >= 5)) == TRUE)
     names(chk2) <- colnames(input[,chk2])
     
@@ -154,8 +149,8 @@ info.rank <- function(parameter, input, he, wtp = he$k[min(which(he$k >= he$ICER
     if (any(!is.na(N)) & length(N) > 1) {
       select <- N
     } else {
-      N <- min(he$n.sim,N,na.rm = T)
-      if (N == he$n.sim) {select <- 1:he$n.sim} else {select <- sample(1:he$n.sim,size = N,replace = F)} 
+      N <- min(he$n.sim,N, na.rm = TRUE)
+      if (N == he$n.sim) {select <- 1:he$n.sim} else {select <- sample(1:he$n.sim, size = N,replace = FALSE)} 
     }
     m <- he; m$k = wtp
     x <- list()
@@ -166,19 +161,19 @@ info.rank <- function(parameter, input, he, wtp = he$k[min(which(he$k >= he$ICER
     
     # Optional inputs
     if (base.graphics) {
-      if (exists("ca",where = exArgs)) {ca <- exArgs$ca} else {ca <- .7}
-      if (exists("cn",where = exArgs)) {cn <- exArgs$cn} else {cn <- .7}
+      if (exists("ca",where = exArgs)) {ca <- exArgs$ca} else {ca <- 0.7}
+      if (exists("cn",where = exArgs)) {cn <- exArgs$cn} else {cn <- 0.7}
       xlab <- "Proportion of total EVPI"
       if (exists("rel",where = exArgs)) {
         if (exArgs$rel == FALSE) {
-          scores <- unlist(lapply(x,function(x) x$evppi))
+          scores <- unlist(lapply(x, function(x) x$evppi))
           xlab <- "Absolute value of the EVPPI"
         }
       }
-      if (exists("xlim",where = exArgs)) {xlim = exArgs$xlim} else {xlim = c(0,range(scores)[2])}
-      if (exists("mai",where = exArgs)) {mai = exArgs$mai} else {mai = c(1.36,1.5,1,1)}
-      if (exists("tit",where = exArgs)) {tit = exArgs$tit} else {tit <- paste0("Info-rank plot for willingness to pay = ",wtp)}
-      if (exists("space",where = exArgs)) {space = exArgs$space} else {space = .5}
+      if (exists("xlim", where = exArgs)) {xlim <- exArgs$xlim} else {xlim <- c(0,range(scores)[2])}
+      if (exists("mai" ,where = exArgs)) {mai <- exArgs$mai} else {mai <- c(1.36,1.5,1,1)}
+      if (exists("tit", where = exArgs)) {tit <- exArgs$tit} else {tit <- paste0("Info-rank plot for willingness to pay = ",wtp)}
+      if (exists("space",where = exArgs)) {space = exArgs$space} else {space <- 0.5}
     } else {
       ca <- NULL
       if (exists("ca",where = exArgs)) {warning("Argument ca was specified in info.rank.plotly but is not an accepted argument. Parameter will be ignored.")}
@@ -191,13 +186,22 @@ info.rank <- function(parameter, input, he, wtp = he$k[min(which(he$k >= he$ICER
           xlab <- "Absolute value of the EVPPI"
         }
       }
-      if (exists("xlim",where = exArgs)) {xlim = exArgs$xlim} else {xlim = NULL}
-      if (exists("mai",where = exArgs)) {mai = exArgs$mai} else {mai = NULL}
-      if (exists("tit",where = exArgs)) {tit = exArgs$tit} else {tit <- paste0("Info-rank plot for willingness to pay = ",wtp)}
-      if (exists("space",where = exArgs)) {space = exArgs$space} else {space = NULL}
+      if (exists("xlim", where = exArgs)) {xlim = exArgs$xlim} else {xlim <- NULL}
+      if (exists("mai", where = exArgs)) {mai = exArgs$mai} else {mai <- NULL}
+      if (exists("tit", where = exArgs)) {tit = exArgs$tit} else {tit <- paste0("Info-rank plot for willingness to pay = ",wtp)}
+      if (exists("space", where = exArgs)) {space = exArgs$space} else {space <- NULL}
     }
     
-    # Makes the plot
-    make.barplot(scores = scores, chk2 = chk2, tit = tit, xlab = xlab, xlim = xlim, ca, cn, mai = mai, space, howManyPars) 
+    make.barplot(
+      scores = scores,
+      chk2 = chk2,
+      tit = tit,
+      xlab = xlab,
+      xlim = xlim,
+      ca,
+      cn,
+      mai = mai,
+      space,
+      howManyPars) 
   }
 }

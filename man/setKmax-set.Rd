@@ -2,12 +2,13 @@
 % Please edit documentation in R/bcea_setters.R
 \name{setKmax<-}
 \alias{setKmax<-}
-\title{setKmax}
+\title{Set Maximum Willingness to Pay}
 \usage{
-setKmax(he, Kmax) <- value
+setKmax(he) <- value
 }
 \arguments{
-\item{he}{}
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
 
 \item{Kmax}{}
 }
@@ -15,5 +16,5 @@ setKmax(he, Kmax) <- value
 
 }
 \description{
-setKmax
+Set Maximum Willingness to Pay
 }
