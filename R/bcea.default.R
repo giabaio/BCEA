@@ -50,7 +50,7 @@ bcea.default <- function(eff,
   if (any(dim(eff) != dim(cost)))
     stop("eff and cost are not the same dimensions.", call. = FALSE)
   
-  if (!is.double(ref) | ref < 1 | ref > ncol(eff))
+  if (!is.numeric(ref) | ref < 1 | ref > ncol(eff))
     stop("reference is not in available interventions.", call. = FALSE)
   
   n_sim <- dim(eff)[1]
@@ -70,9 +70,6 @@ bcea.default <- function(eff,
     step <- Kmax/500
     k <- seq(0, Kmax, by = step)
   }
-  
-  # create complete data input dataframe
-  ##TODO: convert to matrix for faster computation?
   
   df_ce <-
     data.frame(

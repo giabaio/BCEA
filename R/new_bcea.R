@@ -87,8 +87,8 @@ new_bcea <- function(df_ce, k) {
          comp = comp,
          step = k[2] - k[1],
          interventions = interv_names,
-         e = e_dat,
-         c = c_dat)
+         e = as.matrix(e_dat),
+         c = as.matrix(c_dat))
   
   structure(he, class = c("bcea", class(he)))
 }

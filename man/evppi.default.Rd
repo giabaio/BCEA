@@ -4,10 +4,10 @@
 \alias{evppi.default}
 \title{evppi.default}
 \usage{
-\method{evppi}{default}(parameter, input, he, N = NULL, plot = FALSE, residuals = TRUE, ...)
+\method{evppi}{default}(param_idx, input, he, N = NULL, plot = FALSE, residuals = TRUE, ...)
 }
 \arguments{
-\item{parameter}{}
+\item{param_idx}{}
 
 \item{input}{}
 

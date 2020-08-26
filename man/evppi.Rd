@@ -6,10 +6,10 @@
 \title{Expected Value of Perfect Partial Information (EVPPI) for Selected
 Parameters}
 \usage{
-evppi(parameter, input, he, N = NULL, plot = FALSE, residuals = TRUE, ...)
+evppi(param_idx, input, he, N = NULL, plot = FALSE, residuals = TRUE, ...)
 }
 \arguments{
-\item{parameter}{A vector of parameters for which the EVPPI should be
+\item{param_idx}{A vector of parameters for which the EVPPI should be
 calculated. This can be given as a string (or vector of strings) of names or
 a numeric vector, corresponding to the column numbers of important
 parameters.}
@@ -137,20 +137,20 @@ use GAM if the number of parameters is <5 and INLA otherwise.
 # Load the processed results of the MCMC simulation model
 data(Vaccine)
 
-# Runs the health economic evaluation using BCEA
+# Run the health economic evaluation using BCEA
 m <- bcea(e, c, ref = 2, interventions = treats)
 
-# Computes the EVPPI for a bunch of parameters
+# Compute the EVPPI for a bunch of parameters
 inp <- createInputs(vaccine)
 
-# Computes the EVPPI using INLA/SPDE
-x0 <- evppi(parameter = c(38:40), input = inp$mat, he = m)
+# Compute the EVPPI using INLA/SPDE
+x0 <- evppi(param_idx = 38:40, input = inp$mat, he = m)
 
-# Now uses GAM regression
-x1 <- evppi(parameter = c(38:40), input = inp$mat, he = m, method = "GAM")
+# using GAM regression
+x1 <- evppi(param_idx = 38:40, input = inp$mat, he = m, method = "GAM")
 
-# Now uses the GP regression
-x2 <- evppi(parameter = c(38:40), input = inp$mat, he = m, method = "GP")
+# using GP regression
+x2 <- evppi(param_idx = 38:40, input = inp$mat, he = m, method = "GP")
 
 # plot results
 plot(x0)
