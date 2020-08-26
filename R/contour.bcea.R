@@ -56,6 +56,9 @@
 #' 
 #' @export
 #' 
+#' @examples
+#' ##TODO:...
+#' 
 contour.bcea <-
   function(he,
            comparison = 1,
