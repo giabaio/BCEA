@@ -2,7 +2,7 @@
 % Please edit documentation in R/make.report.R
 \name{make.report}
 \alias{make.report}
-\title{make.report}
+\title{Make Report}
 \usage{
 make.report(he, evppi = NULL, ext = "pdf", echo = FALSE, ...)
 }
@@ -34,28 +34,29 @@ for all the relevant model parameters. If this is passed to the
 function (in the object \code{psa_sims}),
 then \code{make.report} will automatically construct an "Info-rank
 plot", which is a probabilistic form of tornado plot, based on the
-Expcted Value of Partial Information.  The user can also specify
+Expected Value of Partial Information.  The user can also specify
 the optional argument \code{show.tab} (default=FALSE); if set to
 \code{TRUE}, then a table with the values of the Info-rank is also
 shown.}
 }
 \description{
-Constructs the automated report from the output of the BCEA
+Constructs the automated report from the output of the BCEA.
 }
 \examples{
-\donttest{
-data(Vaccine)
-m=bcea(e,c,ref=2)
-makeReport(m)
+
+\dontrun {
+  data(Vaccine)
+  m <- bcea(e, c, ref = 2)
+  make.report(m)
 }
+
 }
 \references{
 Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
+Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
 \code{\link{bcea}}

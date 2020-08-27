@@ -2,7 +2,7 @@
 % Please edit documentation in R/CreateInputs.R
 \name{create_inputs_evpi}
 \alias{create_inputs_evpi}
-\title{create_inputs_evpi}
+\title{Create Inputs for EVPI Calculation}
 \usage{
 create_inputs_evpi(inputs, print_is_linear_comb = TRUE)
 }

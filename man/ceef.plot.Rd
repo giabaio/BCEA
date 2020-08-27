@@ -2,7 +2,7 @@
 % Please edit documentation in R/ceef.plot.R
 \name{ceef.plot}
 \alias{ceef.plot}
-\title{Cost-Effectiveness Efficiency Frontier (CEAF) plot}
+\title{Cost-Effectiveness Efficiency Frontier (CEAF) Plot}
 \usage{
 ceef.plot(
   he,
@@ -14,7 +14,7 @@ ceef.plot(
   dominance = TRUE,
   relative = FALSE,
   print.summary = TRUE,
-  graph = c("base", "ggplot2"),
+  graph_type = c("base", "ggplot2"),
   ...
 )
 }
@@ -23,7 +23,7 @@ ceef.plot(
 modelling and the economic evaluation.}
 
 \item{comparators}{Vector specifying the comparators to be included in the
-frontier analysis. Must be of length > 1. Default as \code{NULL} includes
+frontier analysis. It must have a length > 1. Default as \code{NULL} includes
 all the available comparators.}
 
 \item{pos}{Parameter to set the position of the legend. Can be given in form
@@ -58,18 +58,18 @@ comparator?}
 \item{print.summary}{Logical. Should the efficiency frontier summary be
 printed along with the graph?  See Details for additional information.}
 
-\item{graph}{A string used to select the graphical engine to use for
+\item{graph_type}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the two options \code{"base"} or
 \code{"ggplot2"}. Default value is \code{"base"}.}
 
-\item{\dots}{If \code{graph="ggplot2"} and a named theme object is supplied,
-it will be added to the ggplot object. Ignored if \code{graph="base"}.
+\item{\dots}{If \code{graph_type="ggplot2"} and a named theme object is supplied,
+it will be added to the ggplot object. Ignored if \code{graph_type="base"}.
 Setting the optional argument \code{include.ICER} to \code{TRUE} will print
 the ICERs in the summary tables, if produced.}
 }
 \value{
 \item{ceplane}{ A ggplot object containing the plot. Returned only
-if \code{graph="ggplot2"}. } The function produces a plot of the
+if \code{graph_type="ggplot2"}. } The function produces a plot of the
 cost-effectiveness efficiency frontier. The dots show the simulated values
 for the intervention-specific distributions of the effectiveness and costs.
 The circles indicate the average of each bivariate distribution, with the
@@ -81,7 +81,7 @@ Interventions in the areas between the dominance region and the frontier are
 in a situation of extended dominance.
 }
 \description{
-Produces a plot of the Cost-Effectiveness Efficiency Frontier (CEEF)
+Cost-Effectiveness Efficiency Frontier (CEAF) Plot
 }
 \section{Back compatibility with BCEA previous versions}{
 
@@ -111,26 +111,37 @@ intervention (indexed by \code{ref} in the \code{\link{bcea}} function).
 
 \examples{
 
-### create the bcea object m for the smoking cessation example
+## create the bcea object m for the smoking cessation example
 data(Smoking)
-m <- bcea(e,c,ref=4,Kmax=500,interventions=treats)
-### produce the plot
-ceef.plot(m,graph="base")
+m <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
+
+## produce plot
+ceef.plot(m, graph_type = "base")
+
 \donttest{
-### tweak the options
-ceef.plot(m,flip=TRUE,dominance=FALSE,start.from.origins=FALSE,
-          print.summary=FALSE,graph="base")
-### or use ggplot2 instead
+## tweak the options
+## flip axis
+ceef.plot(m,
+          flip = TRUE,
+          dominance = FALSE,
+          start.from.origins = FALSE,
+          print.summary = FALSE,
+          graph_type = "base")
+          
+## or use ggplot2 instead
 if(require(ggplot2)){
-ceef.plot(m,dominance=TRUE,start.from.origins=FALSE,pos=TRUE,
-          print.summary=FALSE,graph="ggplot2")
+ceef.plot(m,
+          dominance = TRUE,
+          start.from.origins = FALSE,
+          pos = TRUE,
+          print.summary = FALSE,
+          graph_type = "ggplot2")
  }
 }
 
 }
 \references{
-Baio G. (2012). Bayesian Methods in Health Economics.
-CRC/Chapman Hall, London.
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 
 IQWIG (2009). General methods for the Assessment of the Relation of Benefits
 to Cost, Version 1.0. IQWIG, November 2009.

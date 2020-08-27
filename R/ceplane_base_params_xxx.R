@@ -59,7 +59,7 @@ k_text <- function(graph_params, wtp) {
 
 #
 icer_params <- function(graph_params, he) {
-  
+
   x_adj <- diff(graph_params$xlim)*0.04
   y_adj <- diff(graph_params$ylim)*0.04
   
@@ -85,7 +85,7 @@ icer_label <- function(he) {
       paste0("\U2022",
              " ICER = ",
              format(
-               mean(he$delta_c)/mean(he$delta_e),
+               colMeans(he$delta_c)/colMeans(he$delta_e),
                digits = 6,
                nsmall = 2)))
   }

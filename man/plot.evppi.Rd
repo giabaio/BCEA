@@ -2,8 +2,8 @@
 % Please edit documentation in R/plot.evppi.R
 \name{plot.evppi}
 \alias{plot.evppi}
-\title{Plot a graph of the Expected Value of Partial Information with respect to a
-set of parameters}
+\title{Plot Expected Value of Partial Information With Respect to a
+Set of Parameters}
 \usage{
 \method{plot}{evppi}(x, pos = c(0, 0.8), graph = c("base", "ggplot2"), col = NULL, ...)
 }
@@ -30,12 +30,11 @@ plotting. Should (partial-)match the two options \code{"base"} or
 (see \code{\link{par}}).}
 }
 \description{
-Plot a graph of the Expected Value of Partial Information with respect to a
-set of parameters
+Plot Expected Value of Partial Information With Respect to a
+Set of Parameters
 }
 \references{
-Baio G. (2012). Bayesian Methods in Health Economics.
-CRC/Chapman Hall, London
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
 }
 \seealso{
 \code{\link{bcea}}, \code{\link{evppi}}

@@ -1,33 +1,46 @@
-\documentclass[]{article}
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-\else % if luatex or xelatex
-  \ifxetex
-    \usepackage{mathspec}
-  \else
-    \usepackage{fontspec}
-  \fi
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
-% use upquote if available, for straight quotes in verbatim environments
+% Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Auto-generated report from BCEA},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
-\usepackage{hyperref}
-\hypersetup{unicode=true,
-            pdftitle={Auto-generated report from BCEA},
-            pdfborder={0 0 0},
-            breaklinks=true}
-\urlstyle{same}  % don't use monospace font for urls
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -37,58 +50,26 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{0}
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
-
-%%% Use protect on footnotes to avoid problems with footnotes in titles
-\let\rmarkdownfootnote\footnote%
-\def\footnote{\protect\rmarkdownfootnote}
-
-%%% Change title format to be more compact
-\usepackage{titling}
-
-% Create subtitle command for use in maketitle
-\newcommand{\subtitle}[1]{
-  \posttitle{
-    \begin{center}\large#1\end{center}
-    }
-}
-
-\setlength{\droptitle}{-2em}
-
-  \title{Auto-generated report from BCEA}
-    \pretitle{\vspace{\droptitle}\centering\huge}
-  \posttitle{\par}
-    \author{}
-    \preauthor{}\postauthor{}
-      \predate{\centering\large\emph}
-  \postdate{\par}
-    \date{Version: 18 December, 2018}
-
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \usepackage{graphicx} \usepackage{bm}
+
+\title{Auto-generated report from BCEA}
+\author{}
+\date{\vspace{-2.5em}Version: 27 August, 2020}
 
 \begin{document}
 \maketitle
 
+\hypertarget{cost-effectiveness-analysis}{%
 \subsection{Cost-effectiveness
-analysis}\label{cost-effectiveness-analysis}
+analysis}\label{cost-effectiveness-analysis}}
 
 The cost-effectiveness analysis is based on the maximisation of the
 expected utility, defined as the \emph{monetary net benefit}
@@ -124,48 +105,50 @@ for the set willingness-to-pay value.
 
 Cost-effectiveness analysis summary 
 
-Reference intervention:  Vaccine
-Comparator intervention: Status quo
+Reference intervention:  intervention 2
+Comparator intervention: intervention 1
 
-Optimal decision: choose Status quo for k<20100 and Vaccine for k>=20100
+Optimal decision: choose intervention 1 for k < 20100 and intervention 2 for k >= 20100
 
 
 Analysis for willingness to pay parameter k = 20100
 
-           Expected utility
-Status quo          -30.880
-Vaccine             -30.879
+               Expected utility
+intervention 1          -36.054
+intervention 2          -34.826
 
-                             EIB CEAC  ICER
-Vaccine vs Status quo 0.00060352 0.46 20098
+                                    EIB  CEAC  ICER
+intervention 2 vs intervention 1 1.2284 0.529 20098
 
-Optimal intervention (max expected utility) for k=20100: Vaccine
+Optimal intervention (max expected utility) for k = 20100: intervention 2
            
-EVPI 2.5268
+EVPI 3.0287
 \end{verbatim}
 
-\subsection{Cost-effectiveness plane}\label{cost-effectiveness-plane}
+\hypertarget{cost-effectiveness-plane}{%
+\subsection{Cost-effectiveness plane}\label{cost-effectiveness-plane}}
 
-The following graph shows the cost-effectiveness plane. This presents
-the joint distribution of the population average benefit and cost
-differential, \((\Delta_e,\Delta_c)\) and can be used to assess the
+The following graph shows the \emph{cost-effectiveness plane}. This
+presents the joint distribution of the population average benefit and
+cost differential, \((\Delta_e,\Delta_c)\) and can be used to assess the
 uncertainty underlying the decision-making problem.
 
 Each point in the graph represents a `potential future' in terms of
 expected incremental economic outcomes. The shaded portion of the plane
-is the `\emph{sustainability area}'. The more points lay in the
+is the \emph{`sustainability area'}. The more points lay in the
 sustainability area, the more likely that the reference intervention
 will turn out to be cost-effective, at a given willingness to pay
 threshold, \(k\) (in this case selected at \(k=\) 20100).
 
-\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-3-1} \end{center}
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-10-1} \end{center}
 
+\hypertarget{expected-incremental-benefit}{%
 \subsection{Expected Incremental
-Benefit}\label{expected-incremental-benefit}
+Benefit}\label{expected-incremental-benefit}}
 
-The following graph shows the Expected Incremental Benefit (EIB), as a
-function of a grid of values for the willingness to pay \(k\) (in this
-case in the interval 0 - 50000).
+The following graph shows the \emph{Expected Incremental Benefit} (EIB),
+as a function of a grid of values for the willingness to pay \(k\) (in
+this case in the interval 0 - 50000).
 
 The EIB can be directly linked with the decision rule applied to the
 ICER. If a willingness to pay value \(k^*\) exists in correspondence of
@@ -177,15 +160,16 @@ willingness to pay values, one greater and one less than \(k^*\), there
 will be two different optimal decisions. The graph also reports the 95\%
 credible limits around the EIB.
 
-\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-4-1} \end{center}
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-11-1} \end{center}
 
+\hypertarget{cost-effectiveness-acceptability-curve}{%
 \subsection{Cost-effectiveness acceptability
-curve}\label{cost-effectiveness-acceptability-curve}
+curve}\label{cost-effectiveness-acceptability-curve}}
 
-The Cost-Effectiveness Acceptability Curve estimates the probability of
-cost-effectiveness, for different willingness to pay thresholds. The
-CEAC is used to evaluate the uncertainty associated with the
-decision-making process, since it quantifies the degree to which a
+The \emph{Cost-Effectiveness Acceptability Curve} (CEAC) estimates the
+probability of cost-effectiveness, for different willingness to pay
+thresholds. The CEAC is used to evaluate the uncertainty associated with
+the decision-making process, since it quantifies the degree to which a
 treatment is preferred. This is measured in terms of the difference in
 utilities, normally the incremental benefit. Effectively, the CEAC
 represents the proportion of simulations in which \(t=1\) is associated
@@ -197,28 +181,44 @@ which the reference intervention is estimated to be more cost-effective
 than the comparator. Thus, it can be interpreted as the `probability of
 cost-effectiveness'.
 
-\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-5-1} \end{center}
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-12-1} \end{center}
 
+\hypertarget{cost-effectiveness-acceptability-frontier}{%
 \subsection{Cost-effectiveness acceptability
-frontier}\label{cost-effectiveness-acceptability-frontier}
+frontier}\label{cost-effectiveness-acceptability-frontier}}
 
 In addition to the CEAC, we can also visualise the uncertainty in the
-decision-making process using the Cost-Effectiveness Acceptability
-Frontier. The frontier is defined as the maximum value of the
+decision-making process using the \emph{Cost-Effectiveness Acceptability
+Frontier} (CEAF). The frontier is defined as the maximum value of the
 probability of cost-effectiveness among all comparators. It is an
 indication of the uncertainty associated with choosing the cost
 effective intervention. In other terms, higher frontier values
 correspond to lower decision uncertainty.
 
-\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-6-1} \end{center}
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-13-1} \end{center}
 
+\hypertarget{cost-effectiveness-acceptability-frontier-1}{%
+\subsection{Cost-effectiveness acceptability
+frontier}\label{cost-effectiveness-acceptability-frontier-1}}
+
+In addition to the CEAC, we can also visualise the uncertainty in the
+decision-making process using the \emph{Cost-Effectiveness Acceptability
+Frontier} (CEAF). The frontier is defined as the maximum value of the
+probability of cost-effectiveness among all comparators. It is an
+indication of the uncertainty associated with choosing the cost
+effective intervention. In other terms, higher frontier values
+correspond to lower decision uncertainty.
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-14-1} \end{center}
+
+\hypertarget{cost-effectiveness-efficiency-frontier}{%
 \subsection{Cost-effectiveness efficiency
-frontier}\label{cost-effectiveness-efficiency-frontier}
+frontier}\label{cost-effectiveness-efficiency-frontier}}
 
-The Cost-Effectiveness Efficiency Frontier (CEEF) compares the net costs
-and benefits of different interventions in a given therapeutic area. It
-is different from the comon differential approach (e.g.~based on the
-Cost-Effectiveness plane), beacuse it is based on the \emph{net}
+The \emph{Cost-Effectiveness Efficiency Frontier} (CEEF) compares the
+net costs and benefits of different interventions in a given therapeutic
+area. It is different from the common differential approach (e.g.~based
+on the Cost-Effectiveness plane), because it is based on the \emph{net}
 measures. The predicted costs and effectiveness for the interventions
 under consideration are compared directly to the costs and effectiveness
 for the treatments that are currently available. The frontier in itself
@@ -239,12 +239,12 @@ Grey numbers indicate dominated treatments.
 Cost-effectiveness efficiency frontier summary 
 
 Interventions on the efficiency frontier:
-           Effectiveness   Costs Increase slope Increase angle
-Status quo   -0.00105595  9.6555             NA             NA
-Vaccine      -0.00080537 14.6914          20098         1.5707
+               Effectiveness   Costs Increase slope Increase angle
+intervention 1   -0.00105595  9.6555             NA             NA
+intervention 2   -0.00080537 14.6914          20098         1.5707
 \end{verbatim}
 
-\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-7-1} \end{center}
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-15-1} \end{center}
 
 The summary is composed of two tables, reporting information for the
 comparators included on the frontier. It also details the average health
@@ -266,8 +266,9 @@ situation of extended dominance are not wholly inefficient, but are
 dominated because a combination of two other interventions will provide
 more benefits for lower costs.
 
+\hypertarget{expected-value-of-perfect-information}{%
 \subsection{Expected value of perfect
-information}\label{expected-value-of-perfect-information}
+information}\label{expected-value-of-perfect-information}}
 
 One measure to quantify the value of additional information is known as
 the \emph{Expected Value of Perfect Information} (EVPI). This measure
@@ -324,92 +325,16 @@ not in the CEAC and implies that the optimal treatment can be chosen
 with little financial risk, even with a low probability of
 cost-effectiveness.
 
-\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-8-1} \end{center}
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-16-1} \end{center}
 
-\subsection{Info-rank plot}\label{info-rank-plot}
-
-In the case where the EVPI is high compared to the cost of additional
-research it is useful to know where to target that research to reduce
-the decision uncertainty sufficiently. That is to say when the
-opportunity loss under current information is high compared to the cost
-of obtaining additional information, it is important to know how to
-reduce this opportunity loss as efficiently and as cheaply as possible.
-Additionally, in some settings, decision makers are interested in
-understanding which parameters are driving the decision uncertainty.
-
-This is very important in health-economic modelling as some of the
-underlying parameters are known with relative certainty. For example,
-there may be large amount of research on the prevalence of a given
-disease; similarly, the cost of the treatment may be known with
-reasonable precision. Evidently, investigating these parameters further
-to reduce the decision uncertainty would waste valuable resources and
-delay getting a potentially cost-effective intervention to market.
-Ideally, therefore, it would be advisable to calculate the value of
-resolving uncertainty for certain parameters or subsets of parameters in
-order to target research efforts.
-
-This subset analysis would also be important in deciding whether a
-specific proposed trial is cost-effective. In this setting, the proposed
-study would target some model parameters and the expected value of
-learning these specific parameters would need to exceed to cost of the
-proposed trial. Again, note that it is important to compare this value
-with the value of the proposed trial to ascertain whether the
-uncertainty is high. In general, the value of a subset of parameters is
-known as the \emph{Expected Value of Perfect Partial Information}
-(EVPPI); this indicator can be used to quantify the value of resolving
-uncertainty in a specific parameter (or subset of parameters), while
-leaving uncertainty in the remaining model parameters unchanged.
-
-Another way in which the analysis of the value of information
-(specifically based on the Expected Value of Perfect \emph{Partial}
-Information, EVPPI) can be used is to provide an `overall' assessment of
-the impact of each single parameter on the decision uncertainty. To this
-aim, BCEA has a specialised function that produces a plot of the
-univariate EVPPI for all the parameters of interest (as specified by the
-user). While this is not ideal, since correlation among parameters and
-model structure does have an impact on the joint value of the EVPPI
-(which is not a linear combination of the individual EVPPIs!), the
-Info-rank plot with all the model parameters ranked can be used as a
-sort of \emph{Tornado diagram}, a tool often used in deterministic
-sensitivity analysis.
-
-For each parameter and value of the willingness-to-pay threshold \(k\),
-a barchart is plotted to describe the ratio of EVPPI (specific to that
-parameter) to EVPI. This represents the relative `importance' of each
-parameter in terms of the expected value of information.
-
-\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-10-1} \end{center}
-
-The graph shows a set of bars quantifying the proportion of the total
-EVPI associated with each parameter. The larger the bar, the higher the
-impact of a given parameter on decision uncertainty. As mentioned above,
-care is needed in giving this graph an `absolute' interpretation ---
-just because a parameter shows a relatively low position in the
-Info-rank plot, does not mean that there will be no value in
-investigating it in conjunction with other parameters.
-
-However, it can be shown that the EVPPI of a set of parameters must be
-at least as big as the individual EVPPI values. Therefore, parameters
-with high individual EVPPI will always result in joint parameter subset
-with high value. But, \emph{nothing} can be said about parameters with
-small individual EVPPI values especially in decision tree models which
-are typically multiplicative in the parameters. This means that learning
-the value of one of these parameters has little value as the other
-elements remain uncertain. However, learning all the parameters can
-greatly decrease decision uncertainty and therefore has large value to
-the decision maker. Nonetheless, the Info-rank plot gives an overview,
-which is perhaps useful (in conjunction with expert knowledge about the
-model parameters) to drive the selection of the subset \(\bm\phi\) to be
-included in the full analysis of the EVPPI.
-
-\subsection*{References}\label{references}
+\hypertarget{references}{%
+\subsection*{References}\label{references}}
 \addcontentsline{toc}{subsection}{References}
 
 \hypertarget{refs}{}
-\hypertarget{ref-Baioetal:2017}{}
+\leavevmode\hypertarget{ref-Baioetal:2017}{}%
 Baio, G, A Berardi, and A Heath. 2017. \emph{Bayesian Cost-Effectiveness
 Analysis with the R package BCEA}. New York, NY: Springer.
-doi:\href{https://doi.org/10.1007/978-3-319-55718-2}{10.1007/978-3-319-55718-2}.
-
+\url{https://doi.org/10.1007/978-3-319-55718-2}.
 
 \end{document}

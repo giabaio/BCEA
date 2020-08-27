@@ -2,7 +2,7 @@
 % Please edit documentation in R/eib.plot.R
 \name{eib.plot}
 \alias{eib.plot}
-\title{Expected Incremental Benefit (EIB) plot}
+\title{Expected Incremental Benefit (EIB) Plot}
 \usage{
 eib.plot(
   he,
@@ -76,15 +76,14 @@ the discrete grid approximation of the ICER.
 }
 \description{
 Produces a plot of the Expected Incremental Benefit (EIB) as a function of
-the willingness to pay
+the willingness to pay.
 }
 \references{
 Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
+Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
 \code{\link{bcea}}, \code{\link{ib.plot}},

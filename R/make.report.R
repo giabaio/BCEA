@@ -1,6 +1,7 @@
+
 #' Make Report
 #' 
-#' Constructs the automated report from the output of the BCEA .
+#' Constructs the automated report from the output of the BCEA.
 #' 
 #' @template args-he
 #' @param evppi An object obtained as output to a call to \code{evppi}
@@ -33,20 +34,21 @@
 #' @seealso \code{\link{bcea}}
 #' @references
 #' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics.  Statistical Methods in Medical Research
+#' Analysis in Health Economics. Statistical Methods in Medical Research
 #' doi:10.1177/0962280211419832.
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' @keywords "Health economic evaluation", "Expected value of information"
 #' @import rmarkdown
+#' @export
 #' 
 #' @examples
-#' \donttest{
-#' data(Vaccine)
-#' m=bcea(e,c,ref=2)
-#' makeReport(m)
+#' 
+#' \dontrun {
+#'   data(Vaccine)
+#'   m <- bcea(e, c, ref = 2)
+#'   make.report(m)
 #' }
-#' @export
 #' 
 make.report = function(he,
                        evppi = NULL,
@@ -54,7 +56,7 @@ make.report = function(he,
                        echo = FALSE,
                        ...) {
   
-  ## allows to disable the cat messages
+  # allow to disable the cat messages
   quiet <- function(x) { 
     sink(tempfile()) 
     on.exit(sink()) 
@@ -69,49 +71,56 @@ make.report = function(he,
     else {
       pdf <- getOption("pdfviewer", default = '')
       if (nchar(pdf) == 0)
-        stop("The 'pdfviewer' option is not set. Use options(pdfviewer=...)")
+        stop("The 'pdfviewer' option is not set. Use options(pdfviewer = ...)")
       system2(pdf, args = c(file_name))
     }
   }
   
-  exArgs <- list(...)
-  
-  if(exists("wtp",exArgs)){
-    wtp <- exArgs$wtp
-    } else {wtp <- he$k[min(which(he$k>=he$ICER))]}
-  if(exists("filename",exArgs)){
-    filename <- exArgs$filename
-    } else {filename <- paste0("Report.",ext)}
-  if(exists("psa_sims",exArgs)){
-    psa_sims <- exArgs$psa_sims
-    } else {psa_sims <- NULL}
-  if(exists("show.tab",exArgs)){
-    show.tab <- TRUE
-    } else {show.tab <- FALSE}
-  
-  # Checks if knitr is installed (and if not, asks for it)
-  if(!isTRUE(requireNamespace("knitr",quietly=TRUE))) {
+  # check if knitr is installed (and if not, asks for it)
+  if(!isTRUE(requireNamespace("knitr", quietly = TRUE))) {
     stop("You need to install the R package 'knitr'. Please run in your R terminal:\n install.packages('knitr')")
   }
   knitr::opts_knit$set(progress = FALSE, verbose = FALSE)
-  # Checks if rmarkdown is installed (and if not, asks for it)
-  if(!isTRUE(requireNamespace("rmarkdown",quietly=TRUE))) {
+  # check if rmarkdown is installed (and if not, asks for it)
+  if(!isTRUE(requireNamespace("rmarkdown", quietly = TRUE))) {
     stop("You need to install the R package 'rmarkdown'. Please run in your R terminal:\n install.packages('rmarkdown')")
   }
   
-  # Removes all warnings
+  exArgs <- list(...)
+  
+  if (exists("wtp", exArgs)) {
+    wtp <- exArgs$wtp
+  } else {
+    wtp <- he$k[min(which(he$k >= he$ICER))]}
+  if (exists("filename", exArgs)) {
+    filename <- exArgs$filename
+  } else {
+    filename <- paste0("Report.", ext)}
+  if (exists("psa_sims", exArgs)) {
+    psa_sims <- exArgs$psa_sims
+  } else {
+    psa_sims <- NULL}
+  if (exists("show.tab", exArgs)) {
+    show.tab <- TRUE
+  } else {
+    show.tab <- FALSE}
+  
+  # remove all warnings
   withr::with_options(list(warn = -1), {
     
-    # Get current directory, then move to relevant path, then go back to current directory
+    # get current directory, move to relevant path, go back to current directory
     file <- file.path(tempdir(), filename)
+    bcea_file_location <-  
+      normalizePath(
+        file.path(system.file("Report", package = "BCEA"), "report.Rmd"))
     out <-
-      quiet(rmarkdown::render(normalizePath(
-        file.path(system.file("Report", package = "BCEA"), "report.Rmd")),
-        switch(ext,
-               pdf = rmarkdown::pdf_document(),
-               docx = rmarkdown::word_document())
-      ))
-    file.copy(out, file, overwrite = TRUE)
+      quiet(
+        rmarkdown::render(bcea_file_location,
+          switch(ext,
+                 pdf = rmarkdown::pdf_document(),
+                 docx = rmarkdown::word_document())
+        ))
+    file.copy(from = out, to = file, overwrite = TRUE)
     cat(paste0("The report is saved in the file ", file, "\n"))
   })
 }

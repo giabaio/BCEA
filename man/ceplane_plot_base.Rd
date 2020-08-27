@@ -2,7 +2,7 @@
 % Please edit documentation in R/ceplane_plot_base.R
 \name{ceplane_plot_base}
 \alias{ceplane_plot_base}
-\title{ceplane_plot_base}
+\title{CE-plane Plot With Base Graphics}
 \usage{
 ceplane_plot_base(he, wtp = 25000, pos_legend, graph_params)
 }
@@ -20,7 +20,7 @@ modelling and the economic evaluation.}
 
 }
 \description{
-ceplane_plot_base
+CE-plane Plot With Base Graphics
 }
 \examples{
 

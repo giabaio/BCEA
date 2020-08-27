@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.bcea.R
 \name{plot.bcea}
 \alias{plot.bcea}
-\title{Summary plot of the health economic analysis}
+\title{Summary Plot of the Health Economic Analysis}
 \usage{
 \method{plot}{bcea}(
   he,
@@ -98,7 +98,7 @@ plot(he,
 }
 \references{
 Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
+Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 
 Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London

@@ -2,10 +2,10 @@
 % Please edit documentation in R/contour.bcea.R
 \name{contour.bcea}
 \alias{contour.bcea}
-\title{Contour plots for the cost-effectiveness plane}
+\title{Contour Plots for the Cost-Effectiveness Plane}
 \usage{
 \method{contour}{bcea}(
-  x,
+  he,
   comparison = 1,
   scale = 0.5,
   nlevels = 4,
@@ -18,8 +18,8 @@
 )
 }
 \arguments{
-\item{x}{A \code{bcea} object containing the results of the Bayesian
-modelling and the economic evaluation}
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
 
 \item{comparison}{In case of more than 2 interventions being analysed,
 selects which plot should be made.  By default the first comparison among
@@ -73,13 +73,16 @@ Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
 of the bivariate density of the differentials of cost (y-axis) and
 effectiveness (x-axis)
 }
+\examples{
+##TODO:...
+
+}
 \references{
 Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
+Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
 }
 \seealso{
 \code{\link{bcea}}, \code{\link{ceplane.plot}},

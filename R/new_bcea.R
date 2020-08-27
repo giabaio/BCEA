@@ -57,12 +57,12 @@ new_bcea <- function(df_ce, k) {
   delta_e <- 
     reshape2::dcast(sim ~ interv_names,
                     value.var = "delta_e",
-                    data = df_ce_comp)[, -1]
+                    data = df_ce_comp)[, -1, drop = FALSE]
   
   delta_c <- 
     reshape2::dcast(sim ~ interv_names,
                     value.var = "delta_c",
-                    data = df_ce_comp)[, -1] 
+                    data = df_ce_comp)[, -1, drop = FALSE] 
 
   he <- 
     list(n_sim = length(unique(df_ce$sim)),

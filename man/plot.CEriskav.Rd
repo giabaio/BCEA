@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.CEriskav.R
 \name{plot.CEriskav}
 \alias{plot.CEriskav}
-\title{Summary plot of the health economic analysis when risk aversion is included}
+\title{Plots EIB for the Risk Aversion Case}
 \usage{
 \method{plot}{CEriskav}(x, pos = c(0, 1), graph = c("base", "ggplot2"), ...)
 }
@@ -36,8 +36,11 @@ willingness parameter for each of the possible values of the risk aversion
 parameter, r. The second one is a similar plot for the EVPI.
 }
 \description{
+Summary plot of the health economic analysis when risk aversion is included.
+}
+\details{
 Plots the EIB and the EVPI when risk aversion is included in the utility
-function
+function.#'
 }
 \examples{
 
@@ -95,8 +98,7 @@ Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 Analysis in Health Economics.  Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
 }
 \seealso{
 \code{\link{bcea}}, \code{\link{CEriskav}}

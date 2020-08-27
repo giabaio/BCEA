@@ -2,7 +2,7 @@
 % Please edit documentation in R/info.rank.R
 \name{info.rank}
 \alias{info.rank}
-\title{Info-rank plot}
+\title{Info-Rank Plot}
 \usage{
 info.rank(
   parameter,
@@ -53,8 +53,8 @@ should be used for the analysis.
 \value{
 \item{res}{With base graphics: A data.frame containing the ranking of the parameters
   with the value of the selected summary, for the chosen wtp; with plotly: a plotly object, 
-  incorporating in the $rank element the data.frame as above.} The function
-  produces a 'Info-rank' plot. This is an extension of standard 'Tornado
+  incorporating in the $rank element the data.frame as above.}
+  The function produces a 'Info-rank' plot. This is an extension of standard 'Tornado
   plots' and presents a ranking of the model parameters in terms of their
   impact on the expected value of information. For each parameter, the
   specific individual EVPPI is computed and used to measure the impact of
@@ -73,8 +73,7 @@ Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 Analysis in Health Economics.  Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
 }
 \seealso{
 \code{\link{bcea}}, \code{\link{evppi}}

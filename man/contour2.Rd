@@ -2,7 +2,7 @@
 % Please edit documentation in R/contour2.R
 \name{contour2}
 \alias{contour2}
-\title{Specialised contour plot for objects in the class "bcea"}
+\title{Specialised CE-plane Contour Plot}
 \usage{
 contour2(
   he,
@@ -10,7 +10,7 @@ contour2(
   xlim = NULL,
   ylim = NULL,
   comparison = NULL,
-  graph = c("base", "ggplot2"),
+  graph_type = c("base", "ggplot2"),
   ...
 )
 }
@@ -28,12 +28,12 @@ appropriate limits).}
 appropriate limits).}
 
 \item{comparison}{The comparison being plotted. Default to \code{NULL}
-chooses the first comparison if \code{graph="base"}. If
-\code{graph="ggplot2"} the default value will choose all the possible
+chooses the first comparison if \code{graph_type="base"}. If
+\code{graph_type="ggplot2"} the default value will choose all the possible
 comparisons. Any subset of the possible comparisons can be selected (e.g.,
 \code{comparison=c(1,3)}).}
 
-\item{graph}{A string used to select the graphical engine to use for
+\item{graph_type}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the two options \code{"base"} or
 \code{"ggplot2"}. Default value is \code{"base"}.}
 
@@ -42,7 +42,7 @@ relative manual page for more details.}
 }
 \value{
 \item{contour}{ A ggplot item containing the requested plot.
-Returned only if \code{graph="ggplot2"}. } Plots the cost-effectiveness
+Returned only if \code{graph_type="ggplot2"}. } Plots the cost-effectiveness
 plane with a scatterplot of all the simulated values from the (posterior)
 bivariate distribution of (Delta_e,Delta_c), the differentials of
 effectiveness and costs; superimposes a contour of the distribution and
@@ -56,24 +56,29 @@ selected value of the willingness-to-pay threshold).
 }
 \examples{
 
-### create the bcea object m for the smoking cessation example
+## create the bcea object m for the smoking cessation example
 data(Smoking)
-m=bcea(e,c,ref=4,interventions=treats,Kmax=500)
-### produce the plot
-contour2(m,wtp=200,graph="base")
+m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+## produce the plot
+contour2(m,
+         wtp = 200,
+         graph_type = "base")
+
 \donttest{
-### or use ggplot2 to plot multiple comparisons
-contour2(m,wtp=200,ICER.size=2,graph="ggplot2")
+## or use ggplot2 to plot multiple comparisons
+contour2(m,
+         wtp = 200,
+         ICER.size = 2,
+         graph_type = "ggplot2")
 }
 
 }
 \references{
 Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
+Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
 \code{\link{bcea}}, \code{\link{ceplane.plot}},
