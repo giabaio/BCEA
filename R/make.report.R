@@ -39,7 +39,10 @@
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' @keywords "Health economic evaluation", "Expected value of information"
-#' @import rmarkdown
+#' @importFrom rmarkdown render
+#' @importFrom withr with_options
+#' @import knitr opts_knit
+#' 
 #' @export
 #' 
 #' @examples
@@ -56,54 +59,48 @@ make.report = function(he,
                        echo = FALSE,
                        ...) {
   
-  # allow to disable the cat messages
-  quiet <- function(x) { 
-    sink(tempfile()) 
-    on.exit(sink()) 
-    invisible(force(x)) 
-  } 
-  
-  # automatically open the pdf output using the default pdf viewer
-  openPDF <- function(file_name) {
-    os <- .Platform$OS.type
-    if (os == "windows")
-      shell.exec(normalizePath(file_name))
-    else {
-      pdf <- getOption("pdfviewer", default = '')
-      if (nchar(pdf) == 0)
-        stop("The 'pdfviewer' option is not set. Use options(pdfviewer = ...)")
-      system2(pdf, args = c(file_name))
-    }
-  }
-  
-  # check if knitr is installed (and if not, asks for it)
+  # check if knitr installed (and if not, asks for it)
   if(!isTRUE(requireNamespace("knitr", quietly = TRUE))) {
-    stop("You need to install the R package 'knitr'. Please run in your R terminal:\n install.packages('knitr')")
+    stop("You need to install the R package 'knitr'. Please run in your R terminal:\n install.packages('knitr')", call. = FALSE)
   }
   knitr::opts_knit$set(progress = FALSE, verbose = FALSE)
-  # check if rmarkdown is installed (and if not, asks for it)
+  
+  # check if rmarkdown installed (and if not, asks for it)
   if(!isTRUE(requireNamespace("rmarkdown", quietly = TRUE))) {
-    stop("You need to install the R package 'rmarkdown'. Please run in your R terminal:\n install.packages('rmarkdown')")
+    stop("You need to install the R package 'rmarkdown'. Please run in your R terminal:\n install.packages('rmarkdown')", call. = FALSE)
   }
   
-  exArgs <- list(...)
+  extra_args <- list(...)
   
-  if (exists("wtp", exArgs)) {
-    wtp <- exArgs$wtp
-  } else {
-    wtp <- he$k[min(which(he$k >= he$ICER))]}
-  if (exists("filename", exArgs)) {
-    filename <- exArgs$filename
-  } else {
-    filename <- paste0("Report.", ext)}
-  if (exists("psa_sims", exArgs)) {
-    psa_sims <- exArgs$psa_sims
-  } else {
-    psa_sims <- NULL}
-  if (exists("show.tab", exArgs)) {
-    show.tab <- TRUE
-  } else {
-    show.tab <- FALSE}
+  wtp <- 
+    if (exists("wtp", extra_args)) {
+      extra_args$wtp
+    } else {
+      he$k[min(which(he$k >= he$ICER))]}
+  
+  filename <- 
+    if (exists("filename", extra_args)) {
+      extra_args$filename
+    } else {
+      paste0("Report.", ext)}
+  
+  psa_sims <- 
+    if (exists("psa_sims", extra_args)) {
+      extra_args$psa_sims
+    } else {
+      NULL}
+  
+  show.tab <-
+    if (exists("show.tab", extra_args)) {
+      TRUE
+    } else {
+      FALSE}
+  
+  rmd_params <-
+    list(wtp = wtp,
+         filename = filename,
+         psa_params = psa_params,
+         show.tab = show.tab)
   
   # remove all warnings
   withr::with_options(list(warn = -1), {
@@ -112,15 +109,41 @@ make.report = function(he,
     file <- file.path(tempdir(), filename)
     bcea_file_location <-  
       normalizePath(
-        file.path(system.file("Report", package = "BCEA"), "report.Rmd"))
+        file.path(system.file("report", package = "BCEA"), "report.Rmd"))
+    rmd_format <-
+      switch(ext,
+             pdf = rmarkdown::pdf_document(),
+             docx = rmarkdown::word_document())
     out <-
       quiet(
         rmarkdown::render(bcea_file_location,
-          switch(ext,
-                 pdf = rmarkdown::pdf_document(),
-                 docx = rmarkdown::word_document())
-        ))
+                          output_format = rmd_format,
+                          params = rmd_params))
+    
     file.copy(from = out, to = file, overwrite = TRUE)
     cat(paste0("The report is saved in the file ", file, "\n"))
   })
 }
+
+#' allow to disable the cat messages
+#' 
+quiet <- function(x) { 
+  sink(tempfile()) 
+  on.exit(sink()) 
+  invisible(force(x)) 
+} 
+
+#' automatically open pdf output using default pdf viewer
+#' 
+openPDF <- function(file_name) {
+  os <- .Platform$OS.type
+  if (os == "windows")
+    shell.exec(normalizePath(file_name))
+  else {
+    pdf <- getOption("pdfviewer", default = '')
+    if (nchar(pdf) == 0)
+      stop("The 'pdfviewer' option is not set. Use options(pdfviewer = ...)")
+    system2(pdf, args = c(file_name))
+  }
+}
+
