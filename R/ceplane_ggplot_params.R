@@ -1,8 +1,10 @@
 
-ceplane_ggplot_params <- function() {
+#' @import ggplot2
+#'
+ceplane_ggplot_params <- function(he, graph_params) {
   
   if (is.null(size))
-    size <- rel(3.5)
+    size <- rel(3.5)  # relative size
   
   label.pos <- TRUE
   opt.theme <- theme()
@@ -28,6 +30,15 @@ ceplane_ggplot_params <- function() {
   means <- data.frame(means)
   means$comparison <- factor(1:he$n_comparisons)
   names(means) <- c("lambda.e", "lambda.c", "comparison")
+  
+  
+  scale_size_manual <- 
+    if (!plot_aes$exist$point$sizes)
+      rep_len(1, length(comparisons.label))
+  else
+    rep_len(plot_aes$point$sizes,
+            length(comparisons.label))
+  
   
   # labels for legend
   comparisons.label <-
@@ -118,4 +129,35 @@ ceplane_ggplot_params <- function() {
     }
   }
   
+  annotate_line_params <- 
+    list(
+      geom = "line",
+      x = plane[1:2, 1],
+      y = plane[1:2, 2],
+      color = ifelse(
+        !plot_aes$exist$area$line_color,
+        "black",
+        plot_aes$area$line_color))
+  
+  
+  annotate_polygon_params <- 
+    list(
+      geom = "polygon",
+      x = plane$x,
+      y = plane$y,
+      fill = ifelse(
+        is.null(plot_aes$area$color),
+        "light gray",
+        plot_aes$area$color),
+      alpha = 0.3)
+
+annotate_wtp_params <- 
+  list(
+    geom = "text",
+    x = x.pt,
+    y = y.pt,
+    label = paste0("k = ", format(wtp, digits = 6)),
+    hjust = 0.15,
+    size = size)
+
 }

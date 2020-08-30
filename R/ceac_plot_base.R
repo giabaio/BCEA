@@ -13,9 +13,9 @@ ceac_plot_base.pairwise <- function(he,
 }
 
 #' @keywords hplot
-ceac_plot_base.default <- function(he,
-                                   pos_legend,
-                                   graph_params) {
+ceac_plot_base.bcea <- function(he,
+                                pos_legend,
+                                graph_params) {
   ceac_matplot(he,
                pos_legend,
                graph_params,

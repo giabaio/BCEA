@@ -91,10 +91,10 @@
 #
 #' ceac.plot(he2, graph = "base")
 #'
-ceac.plot <- function(he,
-                      pos = c(1, 0),
-                      graph = c("base", "ggplot2", "plotly"),
-                      ...) {
+ceac.plot.bcea <- function(he,
+                           pos = c(1, 0),
+                           graph = c("base", "ggplot2", "plotly"),
+                           ...) {
   
   graph <- match.arg(graph)
   
@@ -118,3 +118,10 @@ ceac.plot <- function(he,
     # ceac_plot_plotly()
   }
 }
+
+
+#'
+ceac.plot <- function(he, ...) {
+  UseMethod(ceac.plot, he)
+}
+

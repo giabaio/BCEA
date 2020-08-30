@@ -49,16 +49,19 @@
 #'                       area = list(color = "lightgrey"))
 #'                                    
 #' he <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
-#' ceplane_plot_base(he, wtp = 200, pos_legend = FALSE, graph_params = graph_params)
+#' ceplane_plot_base(he,
+#'                   wtp = 200,
+#'                   pos_legend = FALSE,
+#'                   graph_params = graph_params)
 #' 
-ceplane_plot_base <- function(he,
-                              wtp = 25000,
-                              pos_legend,
-                              graph_params) {
+ceplane_plot_base.bcea <- function(he,
+                                   wtp = 25000,
+                                   pos_legend,
+                                   graph_params) {
   
   plot_params <-
     ceplane_base_params(he, wtp, graph_params)
-
+  
   legend_params <-
     ceplane_legend_base(he, pos_legend, plot_params)
   
@@ -69,5 +72,11 @@ ceplane_plot_base <- function(he,
   add_ceplane_icer(he, plot_params)
   add_ceplane_k_txt(plot_params)
   add_ceplane_legend(legend_params)
+}
+
+
+#'
+ceplane_plot_base <- function(he, ...) {
+  UseMethod(ceplane_plot_base, he)
 }
 

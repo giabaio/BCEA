@@ -17,9 +17,9 @@ ceac_plot_ggplot.pairwise <- function(he,
 
 #' @keywords hplot
 #' 
-ceac_plot_ggplot.default <- function(he,
-                                     pos_legend,
-                                     graph_params, ...) {
+ceac_plot_ggplot.bcea <- function(he,
+                                  pos_legend,
+                                  graph_params, ...) {
   ceac_ggplot(he,
               pos_legend,
               graph_params,
@@ -36,7 +36,7 @@ ceac_ggplot <- function(he,
                         ceac, ...) {
   
   extra_params <- list(...)
-
+  
   ceac_dat <- he[[ceac]]
   n_lines <- ncol(ceac_dat)
   

@@ -90,17 +90,17 @@
 #' 
 #' @export
 #' 
-ceplane.plot <- function(he,
-                         comparison = NULL,
-                         wtp = 25000,
-                         pos = c(1, 1),
-                         graph = c("base", "ggplot2"),
-                         ...) {
+ceplane.plot.bcea <- function(he,
+                              comparison = NULL,
+                              wtp = 25000,
+                              pos = c(1, 1),
+                              graph = c("base", "ggplot2"),
+                              ...) {
   
   graph <- match.arg(graph)
   
   he <- subset_by_comparisons(he, comparison)
-
+  
   graph_params <- prep_ceplane_params(he, wtp, ...)
   
   if (is_baseplot(graph)) {
@@ -125,3 +125,7 @@ ceplane.plot <- function(he,
 }
 
 
+#'
+ceplane.plot <- function(he, ...) {
+  UseMethod(ceplane.plot, he)
+}
