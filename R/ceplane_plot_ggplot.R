@@ -26,9 +26,11 @@ ceplane_plot_ggplot <- function(he,
       comparison = as.factor(sort(rep(
         1:he$n_comparisons, dim(he$delta_e)[1]))))
   
-  # graph_params <- ceplane_ggplot_params(he, graph_params)
+  graph_params <- ceplane_ggplot_params(he, graph_params)
+  
   # legend_params <- make_legend_ggplot(he, pos_legend)
-  # theme_add <- purrr::keep(extra_params, is.theme)
+
+  theme_add <- purrr::keep(extra_params, is.theme)
   
   ggplot(delta_ce, aes(x = delta_e, y = delta_c, col = comparison)) +
     geom_point(aes(size = comparison)) +
@@ -43,13 +45,13 @@ ceplane_plot_ggplot <- function(he,
       labels = graph_params$plot$comparisons.label,
       values = graph_params$plot$line$size,
       na.value = 1) +
-    scale_x_continuous(limits = range.e, oob = do.nothing) +
-    scale_y_continuous(limits = range.c, oob = do.nothing) +
+    scale_x_continuous(limits = range.e) +
+    scale_y_continuous(limits = range.c) +
     geom_hline(yintercept = 0, colour = "grey") +
     geom_vline(xintercept = 0, colour = "grey") +
-    do.call(annotate, annotate_line_params) +
-    do.call(annotate, annotate_polygon_params) +
-    do.call(annotate, annotate_wtp_params) +
+    do.call(annotate, annot_line_params) +
+    do.call(annotate, annot_polygon_params) +
+    do.call(annotate, annot_wtp_params) +
     do.call(labs,
             list(title = plot_annot$title,
                  x = plot_annot$xlab,
