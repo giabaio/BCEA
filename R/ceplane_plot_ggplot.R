@@ -18,44 +18,56 @@ ceplane_plot_ggplot <- function(he,
                                 graph_params, ...) {
   extra_params <- list(...)
   
+  # single long format for ggplot data
   delta_ce <-
-    data.frame(
-      delta_e = c(he$delta_e),
-      delta_c = c(he$delta_c),
-      ##TODO:
-      comparison = as.factor(sort(rep(
-        1:he$n_comparisons, dim(he$delta_e)[1]))))
+    merge(
+      melt(
+        cbind(sim = seq_len(nrow(he$delta_c)),
+              he$delta_c),
+        variable.name = "comparison",
+        value.name = "delta_c",
+        id.vars = "sim"),
+      melt(
+        cbind(sim = seq_len(nrow(he$delta_e)),
+              he$delta_e),
+        variable.name = "comparison",
+        value.name = "delta_e",
+        id.vars = "sim"),
+      by = c("sim", "comparison"))
   
   graph_params <- ceplane_ggplot_params(he, graph_params)
   
   # legend_params <- make_legend_ggplot(he, pos_legend)
-
+  
   theme_add <- purrr::keep(extra_params, is.theme)
   
   ggplot(delta_ce, aes(x = delta_e, y = delta_c, col = comparison)) +
-    geom_point(aes(size = comparison)) +
-    theme_ceplane() + 
-    theme_add +           #opt.theme
+    geom_polygon(data = data.frame(x = polygon_params$x,
+                                   y = polygon_params$y),
+                 mapping = aes(x=x, y=y), fill = "lightgrey", #polygon_params$col,
+                 inherit.aes = FALSE) +
+    # do.call(annotate, polygon_params) +
+    geom_point() +
+    theme_ceplane() +
+    # theme_add +
     scale_color_manual(
-      labels = graph_params$plot$comparisons.label,
-      values = graph_params$plot$line$colors,
-      # values = plot_aes$point$colors,
+      labels = graph_params$legend$comparisons.label,
+      values = graph_params$point$colors,
       na.value = "black") +
     scale_size_manual(
-      labels = graph_params$plot$comparisons.label,
-      values = graph_params$plot$line$size,
+      values = graph_params$point$size,
       na.value = 1) +
-    scale_x_continuous(limits = range.e) +
-    scale_y_continuous(limits = range.c) +
     geom_hline(yintercept = 0, colour = "grey") +
     geom_vline(xintercept = 0, colour = "grey") +
-    do.call(annotate, annot_line_params) +
-    do.call(annotate, annot_polygon_params) +
-    do.call(annotate, annot_wtp_params) +
+    coord_cartesian(ylim = graph_params$xlim) +
+    coord_cartesian(ylim = graph_params$ylim) +
     do.call(labs,
-            list(title = plot_annot$title,
-                 x = plot_annot$xlab,
-                 y = plot_annot$ylab)) +
+            list(title = graph_params$title,
+                 x = graph_params$xlab,
+                 y = graph_params$ylab)) +
+    do.call(geom_abline, list(slope = wtp, col = "black")) +
+
+    do.call(annotate, annot_wtp_params) +
     do.call(theme,
             legend_params <- list(
               legend.position = alt.legend,
