@@ -15,6 +15,11 @@
 #'
 #' @example
 #' 
+#' data(Vaccine)
+#' he <- bcea(e, c)
+#' 
+#' ceplane.plot(he, graph = "ggplot2")
+#' 
 #' data(Smoking)
 #' he <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
 #' 
@@ -84,7 +89,8 @@ ceplane_plot_ggplot <- function(he,
                               col = "black")) +
     do.call(geom_point, graph_params$icer) +
     do.call(annotate, graph_params$wtp) +
-    do.call(theme, graph_params$legend)
+    do.call(theme, graph_params$legend) +
+    do.call(annotate, graph_params$icer_txt)
   
   # subset_by_comparisons()
 }
