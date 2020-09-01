@@ -32,11 +32,11 @@
 #'   position at the bottom of the graph - base and ggplot2 only (no label in plotly).
 #'   \item \code{point_colors}: a vector of colours specifying the colour(s) associated to 
 #'   the cloud of points. Should be of length 1 or equal to the number of comparisons.
-#'   \item \code{point_sizes}: a vector of colours specifying the size(s) of the points.
+#'   \item \code{point_size}: a vector of colours specifying the size(s) of the points.
 #'   Should be of length 1 or equal to the number of comparisons.
 #'   \item \code{ICER_colors}: a vector of colours specifying the colour(s) of the ICER points.
 #'   Should be of length 1 or equal to the number of comparisons.
-#'   \item \code{ICER_sizes}: a vector of colours specifying the size(s) of the ICER points.
+#'   \item \code{ICER_size}: a vector of colours specifying the size(s) of the ICER points.
 #'   Should be of length 1 or equal to the number of comparisons.
 #'   \item \code{area_include}: logical, include or exclude the cost-effectiveness 
 #'   acceptability area (default is TRUE).
@@ -85,7 +85,7 @@
 #' 
 #' ## or use ggplot2 instead
 #' if (requireNamespace("ggplot2")) {
-#'    ceplane.plot(m, wtp = 200, pos = "right", ICER_sizes = 2, graph = "ggplot2")
+#'    ceplane.plot(m, wtp = 200, pos = "right", ICER_size = 2, graph = "ggplot2")
 #' }
 #' 
 #' @export
@@ -112,10 +112,10 @@ ceplane.plot.bcea <- function(he,
     
   } else if (is_ggplot(graph)) {
     
-    ##TODO:...
-    # ceplane_plot_ggplot(he,
-    #                     pos_legend = pos,
-    #                     graph_params, ...)
+    ceplane_plot_ggplot(he,
+                        wtp,
+                        pos_legend = pos,
+                        graph_params, ...)
     
   } else if (is_plotly(graph)) {
     
@@ -125,7 +125,8 @@ ceplane.plot.bcea <- function(he,
 }
 
 
-#'
+#' @export
+#' 
 ceplane.plot <- function(he, ...) {
-  UseMethod(ceplane.plot, he)
+  UseMethod('ceplane.plot', he)
 }
