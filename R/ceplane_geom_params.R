@@ -1,7 +1,7 @@
 
 #' extract separate parameter sets
 #'
-geom_params <- function(...) {
+ceplane_geom_params <- function(...) {
   
   extra_params <- list(...)
   
@@ -24,9 +24,12 @@ geom_params <- function(...) {
     extra_params[
       names(extra_params) %in% "label.pos"]
   
-  list(
-    icer = icer_params,
-    point = point_params,
-    area = polygon_params,
-    wtp = wtp_params)
+  modifyList(
+    list(
+      area = list(include = TRUE)),
+    list(
+      icer = icer_params,
+      point = point_params,
+      area = polygon_params,
+      wtp = wtp_params))
 }

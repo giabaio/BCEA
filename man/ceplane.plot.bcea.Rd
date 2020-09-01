@@ -8,7 +8,7 @@
   he,
   comparison = NULL,
   wtp = 25000,
-  pos = c(1, 1),
+  pos = c(0, 1),
   graph = c("base", "ggplot2"),
   ...
 )
@@ -46,11 +46,11 @@ plotting. Should (partial-)match the two options \code{"base"} or
  position at the bottom of the graph - base and ggplot2 only (no label in plotly).
  \item \code{point_colors}: a vector of colours specifying the colour(s) associated to 
  the cloud of points. Should be of length 1 or equal to the number of comparisons.
- \item \code{point_sizes}: a vector of colours specifying the size(s) of the points.
+ \item \code{point_size}: a vector of colours specifying the size(s) of the points.
  Should be of length 1 or equal to the number of comparisons.
  \item \code{ICER_colors}: a vector of colours specifying the colour(s) of the ICER points.
  Should be of length 1 or equal to the number of comparisons.
- \item \code{ICER_sizes}: a vector of colours specifying the size(s) of the ICER points.
+ \item \code{ICER_size}: a vector of colours specifying the size(s) of the ICER points.
  Should be of length 1 or equal to the number of comparisons.
  \item \code{area_include}: logical, include or exclude the cost-effectiveness 
  acceptability area (default is TRUE).
@@ -96,7 +96,7 @@ ceplane.plot(m, wtp = 200, graph = "base", comparison = 3)
 
 ## or use ggplot2 instead
 if (requireNamespace("ggplot2")) {
-   ceplane.plot(m, wtp = 200, pos = "right", ICER_sizes = 2, graph = "ggplot2")
+   ceplane.plot(m, wtp = 200, pos = "right", ICER_size = 2, graph = "ggplot2")
 }
 
 }

@@ -9,6 +9,7 @@
 #'
 #' @import ggplot2
 #' @importFrom grid unit
+#' @importFrom purrr keep
 #' 
 #' @keywords hplot
 #'
@@ -18,12 +19,23 @@
 #' he <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
 #' 
 #' ceplane.plot(he, graph = "ggplot2")
+#' 
 #' ceplane.plot(he,
 #'              wtp = 200,
 #'              pos = "right",
 #'              ICER_size = 2,
 #'              graph = "ggplot2")
 #'    
+#' ceplane.plot(he,
+#'              wtp = 200,
+#'              pos = TRUE,
+#'              graph = "ggplot2")
+#'
+#' ceplane.plot(he,
+#'              graph = "ggplot2",
+#'              wtp=200,
+#'              theme = theme_linedraw())
+#'              
 ceplane_plot_ggplot <- function(he,
                                 wtp,
                                 pos_legend,
@@ -46,24 +58,24 @@ ceplane_plot_ggplot <- function(he,
         id.vars = "sim"),
       by = c("sim", "comparison"))
   
-  graph_params <- ceplane_ggplot_params(he, graph_params, ...)
-  # theme_add <- purrr::keep(extra_params, is.theme)
+  graph_params <-
+    ceplane_ggplot_params(he, wtp, pos_legend, graph_params, ...)
   
-  ggplot(delta_ce, aes(x = delta_e, y = delta_c, col = comparison)) +
+  theme_add <- purrr::keep(list(...), is.theme)
+  
+  ggplot(delta_ce,
+         aes(x = delta_e, y = delta_c, col = comparison)) +
     do.call(geom_polygon, graph_params$area) +
-    geom_point() +
     theme_ceplane() +
-    # theme_add +
-    scale_size_manual(
-      values = graph_params$point$size,
-      na.value = 1) +
+    theme_add +
+    geom_point(size = graph_params$point$size) +
+    scale_color_manual(labels = line_labels.default(he),
+                       values = graph_params$point$colors) +
     geom_hline(yintercept = 0, colour = "grey") +
     geom_vline(xintercept = 0, colour = "grey") +
     coord_cartesian(xlim = graph_params$xlim,
                     ylim = graph_params$ylim,
                     expand = FALSE) +
-    scale_color_manual(labels = line_labels.default(he),
-                       values = graph_params$point$colors) +
     do.call(labs,
             list(title = graph_params$title,
                  x = graph_params$xlab,
@@ -71,8 +83,8 @@ ceplane_plot_ggplot <- function(he,
     do.call(geom_abline, list(slope = wtp,
                               col = "black")) +
     do.call(geom_point, graph_params$icer) +
-    do.call(annotate, graph_params$wtp) #+
-    # do.call(theme, legend_params)
+    do.call(annotate, graph_params$wtp) +
+    do.call(theme, graph_params$legend)
   
   # subset_by_comparisons()
 }

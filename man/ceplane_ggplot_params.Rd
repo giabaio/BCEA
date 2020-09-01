@@ -4,7 +4,7 @@
 \alias{ceplane_ggplot_params}
 \title{ceplane_ggplot_params}
 \usage{
-ceplane_ggplot_params(he, graph_params)
+ceplane_ggplot_params(he, wtp, pos_legend, graph_params, ...)
 }
 \description{
 ceplane_ggplot_params

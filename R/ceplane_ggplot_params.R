@@ -4,16 +4,20 @@
 #' @import ggplot2
 #'
 ceplane_ggplot_params <- function(he,
+                                  wtp,
+                                  pos_legend,
                                   graph_params,
                                   ...) {
   
-  ext_params <- geom_params(...)
+  ext_params <- ceplane_geom_params(...)
   
   graph_params$area <-
     modifyList(polygon_params(graph_params, wtp),
                graph_params$area)
   
   graph_params$wtp <- k_text(graph_params, wtp)
+  
+  graph_params$legend <- make_legend_ggplot(he, pos_legend)
   
   default_params <-
     list(
@@ -42,15 +46,11 @@ ceplane_ggplot_params <- function(he,
       area = list(
         geom = "polygon",
         fill = graph_params$area$color,
-        alpha = 0.8,
+        alpha = ifelse(ext_params$area$include, 0.8, 0),
         data = data.frame(x = graph_params$area$x,
                           y = graph_params$area$y),
         mapping = aes(x = x, y = y),
-        inherit.aes = FALSE)#,
-      # legend = list(
-      #   legend.direction = legend_dir,
-      #   legend.justification = legend_just,
-      #   legend.position = legend_pos)
+        inherit.aes = FALSE)
     )
   
   modifyList(default_params,

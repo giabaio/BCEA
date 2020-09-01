@@ -41,7 +41,7 @@
 #' @keywords "Health economic evaluation", "Expected value of information"
 #' @importFrom rmarkdown render
 #' @importFrom withr with_options
-#' @import knitr opts_knit
+#' @importFrom knitr opts_knit
 #' 
 #' @export
 #' 

@@ -3,14 +3,15 @@
 #' 
 #' @keywords dplot
 #' 
-#' c(0,0) corresponds to the “bottom left”
-#' c(1,1) corresponds to the “top right”
+#' @param legend_pos
+#' c(0, 0) corresponds to the “bottom left”
+#' c(1, 1) corresponds to the “top right”
 #' inside the plotting area
 #'
 make_legend_ggplot <- function(he, legend_pos) {
   
   legend_just <- NULL  # sets the corner that the legend_pos position refers to
-  legend_dir <- "horizontal"
+  legend_dir <- "vertical"
   
   n_lines <- 
     if (inherits(he, "pairwise")) {
@@ -38,9 +39,10 @@ make_legend_ggplot <- function(he, legend_pos) {
   } else if (is.character(legend_pos)) {
     
     pos_choices <- c("left", "right", "bottom", "top")
-    legend_pos <- choices[pmatch(legend_pos, pos_choices)]
+    legend_pos <- pos_choices[pmatch(legend_pos, pos_choices)]
     legend_just <- "center"
-  } else if (is.numeric(legend_pos) & length(legend_pos) == 2) {
+  } else if (is.numeric(legend_pos) &
+             length(legend_pos) == 2) {
     
     legend_just <- legend_pos
   } else {
@@ -53,3 +55,4 @@ make_legend_ggplot <- function(he, legend_pos) {
        legend.justification = legend_just,
        legend.position = legend_pos)
 }
+

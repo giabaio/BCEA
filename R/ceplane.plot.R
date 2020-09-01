@@ -93,7 +93,7 @@
 ceplane.plot.bcea <- function(he,
                               comparison = NULL,
                               wtp = 25000,
-                              pos = c(1, 1),
+                              pos = c(0, 1),
                               graph = c("base", "ggplot2"),
                               ...) {
   
