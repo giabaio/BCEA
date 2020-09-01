@@ -4,8 +4,21 @@
 \alias{ceplane_plot_ggplot}
 \title{ceplane_plot_ggplot}
 \usage{
-ceplane_plot_ggplot()
+ceplane_plot_ggplot(he, wtp, pos_legend, graph_params, ...)
+}
+\arguments{
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
+
+\item{wtp}{}
+
+\item{pos_legend}{}
+
+\item{graph_params}{}
+
+\item{...}{}
 }
 \description{
 ceplane_plot_ggplot
 }
+\keyword{hplot}

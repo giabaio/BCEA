@@ -16,8 +16,7 @@ ceplane_plot_ggplot <- function(he,
                                 wtp,
                                 pos_legend,
                                 graph_params, ...) {
-  extra_params <- list(...)
-  
+
   # single long format for ggplot data
   delta_ce <-
     merge(
@@ -35,18 +34,11 @@ ceplane_plot_ggplot <- function(he,
         id.vars = "sim"),
       by = c("sim", "comparison"))
   
-  graph_params <- ceplane_ggplot_params(he, graph_params)
-  
-  # legend_params <- make_legend_ggplot(he, pos_legend)
-  
+  graph_params <- ceplane_ggplot_params(he, graph_params, ...)
   theme_add <- purrr::keep(extra_params, is.theme)
   
   ggplot(delta_ce, aes(x = delta_e, y = delta_c, col = comparison)) +
-    geom_polygon(data = data.frame(x = polygon_params$x,
-                                   y = polygon_params$y),
-                 mapping = aes(x=x, y=y), fill = "lightgrey", #polygon_params$col,
-                 inherit.aes = FALSE) +
-    # do.call(annotate, polygon_params) +
+    do.call(geom_polygon, polygon_params) +
     geom_point() +
     theme_ceplane() +
     # theme_add +
@@ -57,35 +49,21 @@ ceplane_plot_ggplot <- function(he,
     scale_size_manual(
       values = graph_params$point$size,
       na.value = 1) +
+    scale_color_manual(labels = line_labels.default(he),
+                       values = graph_params$point$colors) +
     geom_hline(yintercept = 0, colour = "grey") +
     geom_vline(xintercept = 0, colour = "grey") +
-    coord_cartesian(ylim = graph_params$xlim) +
-    coord_cartesian(ylim = graph_params$ylim) +
+    coord_cartesian(xlim = graph_params$xlim,
+                    ylim = graph_params$ylim) +
     do.call(labs,
             list(title = graph_params$title,
                  x = graph_params$xlab,
                  y = graph_params$ylab)) +
-    do.call(geom_abline, list(slope = wtp, col = "black")) +
-
-    do.call(annotate, annot_wtp_params) +
-    do.call(theme,
-            legend_params <- list(
-              legend.position = alt.legend,
-              legend.justification = jus))
-  
-  ##TODO:
-  ## why is this decided by sizes?
-  if (!all(plot_aes$ICER$sizes <= 0)) {
-    do.call(geom_point,
-            list(
-              data = means,
-              aes(x = lambda.e, y = lambda.c),
-              colour = plot_aes$ICER$colors,
-              size = plot_aes$ICER$sizes))
-  }
+    do.call(geom_abline, list(slope = wtp,
+                              col = "black")) +
+    do.call(geom_point, icer_point_params) +
+    do.call(theme, legend_params) +
+    do.call(annotate, k_text_params)
   
   # subset_by_comparisons()
-  
-  # if n_comparisons == 1
-  + theme(legend.key.size = grid::unit(0.1, "lines"))
 }
