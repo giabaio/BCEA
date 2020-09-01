@@ -15,8 +15,6 @@ ceplane_ggplot_params <- function(he,
     modifyList(polygon_params(graph_params, wtp),
                graph_params$area)
   
-  graph_params$wtp <- k_text(graph_params, wtp)
-  
   graph_params$legend <- make_legend_ggplot(he, pos_legend)
   
   default_params <-
@@ -25,27 +23,34 @@ ceplane_ggplot_params <- function(he,
       wtp = list(
         label.pos = TRUE,
         geom = "text",
-        hjust = 0.15,
-        label = paste0("k = ", format(wtp, digits = 6), " "),
-        size = 4,
+        x = graph_params$xlim[1],
+        y = graph_params$ylim[1],
+        hjust = "inward",
+        vjust = "inward",
+        label = paste0("  k = ", format(wtp, digits = 6), "\n"),
+        size = convert_pts_to_mm(1),
         colour = "black"),
       icer = list(
         data = data.frame(x = colMeans(he$delta_e),
                           y = colMeans(he$delta_c)),
         mapping = aes(x = x, y = y),
         color = "red",
-        size = 3,
+        size = convert_pts_to_mm(0.8),
         inherit.aes = FALSE),
       icer_txt = list(
         geom = "text",
-        label = ifelse(length(he$ICER) == 1,
-                       paste0("\U2022"," ICER = ", format(he$ICER, digits = 6, nsmall = 2)),
-                       ""),
-        x = graph_params$xlim[2]*0.96,
-        y = graph_params$ylim[2]*0.96,
+        label =
+          ifelse(length(he$ICER) == 1,
+                 paste0("\n", "\U2022",
+                        " ICER = ",
+                        format(he$ICER, digits = 6, nsmall = 2), "  "),
+                 ""),
+        x = graph_params$xlim[2],
+        y = graph_params$ylim[2],
         col = "red",
-        size = 4,
-        hjust = 1),
+        size = convert_pts_to_mm(1),
+        hjust = "inward",
+        vjust = "inward"),
       point = list(
         sizes = 4),
       line = list(
