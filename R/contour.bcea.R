@@ -50,9 +50,9 @@
 #' Analysis in Health Economics. Statistical Methods in Medical Research
 #' doi:10.1177/0962280211419832.
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
+#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' @keywords Health economic evaluation Bayesian model
-#' @import MASS
+#' @importFrom MASS kde2d
 #' 
 #' @export
 #' 

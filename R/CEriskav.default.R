@@ -1,5 +1,6 @@
 
-#
+#' @export
+#'
 CEriskav.default <- function(he,
                              r = NULL,
                              comparison = 1) {
@@ -8,10 +9,10 @@ CEriskav.default <- function(he,
   # Default vector of risk aversion parameters
   
   if (is.null(r)) {
-    r <- c(1e-11, 0.0000025, 0.000005)
+    r <- c(1e-11, 2.5e-6, 5e-6)
   }
   
-  # Computes expected utilities & EVPI for the risk aversion cases
+  # expected utilities & EVPI for risk aversion cases
   K <- length(he$k)
   R <- length(r)
   Ur <- array(NA, c(dim(he$U),R))

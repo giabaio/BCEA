@@ -54,13 +54,20 @@ plot.evppi <- function (x,
         alt.legend <- FALSE
     }
     if (is.logical(alt.legend)) {
-      if (!alt.legend) 
-        alt.legend = "topright"
-      else alt.legend = "topleft"
+      alt.legend <- 
+        if (!alt.legend) "topright"
+      else "topleft"
     }
-    plot(x$k, x$evi, type = "l", xlab = "Willingness to pay", 
-         ylab = "", main = "Expected Value of Perfect Partial Information", 
-         lwd = 2, ylim = range(range(x$evi), range(x$evppi)))
+    plot(
+      x$k,
+      x$evi,
+      type = "l",
+      xlab = "Willingness to pay",
+      ylab = "",
+      main = "Expected Value of Perfect Partial Information",
+      lwd = 2,
+      ylim = range(range(x$evi),
+                   range(x$evppi)))
     if (is.null(col)) {
       cols <- colors()
       gr <- floor(seq(from = 261, to = 336, length.out = length(x$index)))
@@ -68,13 +75,14 @@ plot.evppi <- function (x,
     }
     else {
       if (length(col) != length(x$parameters)) {
-        message("The vector 'col' must have the same number of elements as the number of parameters. Forced to black\n")
+        message("The vector 'col' must have the same number of elements as the number of parameters.
+                Forced to black\n")
         col <- rep("black", length(x$parameters))
       }
     }
     if (length(x$index) == 1 | length(x$index) > 1 & (class(x$method) == "list")) {
       col <- "black"
-      points(x$k, x$evppi, t = "l", col = col, lty = 1)
+      points(x$k, x$evppi, type = "l", col = col, lty = 1)
     }
     cmd <- "EVPPI for the selected\nsubset of parameters"
     if (nchar(x$parameters[1]) <= 25) {
@@ -94,9 +102,15 @@ plot.evppi <- function (x,
       cmd <- paste("(", paste(1:length(x$index)), ") EVPPI for ", 
                    x$parameters, sep = "")
     }
-    legend(alt.legend, c("EVPI", cmd), col = c("black", col), 
-           cex = 0.7, bty = "n", lty = c(1, 1:length(x$parameters)), 
-           lwd = c(2, rep(1, length(x$parameters))))
+    legend(
+      alt.legend,
+      c("EVPI", cmd),
+      col = c("black", col),
+      cex = 0.7,
+      bty = "n",
+      lty = c(1, 1:length(x$parameters)),
+      lwd = c(2, rep(1, length(x$parameters)))
+    )
     return(invisible(NULL))
   }
   else {

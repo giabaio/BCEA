@@ -61,39 +61,38 @@
 #' 
 #' @export
 #' 
-contour2 <-
-  function(he,
-           wtp = 25000,
-           xlim = NULL,
-           ylim = NULL,
-           comparison = NULL,
-           graph_type = c("base", "ggplot2"),
-           ...) {
-    
+contour2 <- function(he,
+                     wtp = 25000,
+                     xlim = NULL,
+                     ylim = NULL,
+                     comparison = NULL,
+                     graph_type = c("base", "ggplot2"),
+                     ...) {
+  
   # Additional/optional arguments
-    exArgs <- list(...)
-    if (!exists("xlab", where = exArgs)) {
-      xlab <- "Effectiveness differential"
-    } else {
-      xlab <- exArgs$xlab
-    }
-    if (!exists("ylab", where = exArgs)) {
-      ylab <- "Cost differential"
-    } else {
-      ylab <- exArgs$ylab
-    }
-    if (!exists("title", where = exArgs)) {
-      title <-
-        paste("Cost effectiveness plane \n",
-              he$interventions[he$ref],
-              " vs ",
-              he$interventions[he$comp],
-              sep = "")
-    }
-    else {
-      title <- exArgs$title
-    }
-    
+  exArgs <- list(...)
+  if (!exists("xlab", where = exArgs)) {
+    xlab <- "Effectiveness differential"
+  } else {
+    xlab <- exArgs$xlab
+  }
+  if (!exists("ylab", where = exArgs)) {
+    ylab <- "Cost differential"
+  } else {
+    ylab <- exArgs$ylab
+  }
+  if (!exists("title", where = exArgs)) {
+    title <-
+      paste("Cost effectiveness plane \n",
+            he$interventions[he$ref],
+            " vs ",
+            he$interventions[he$comp],
+            sep = "")
+  }
+  else {
+    title <- exArgs$title
+  }
+  
   base.graphics <- ifelse(isTRUE(pmatch(graph_type,c("base","ggplot2"))==2),FALSE,TRUE) 
   
   if(base.graphics) {
@@ -104,19 +103,20 @@ contour2 <-
     # Selects the first comparison by default if not selected
     if(is.null(comparison)){
       message("The first available comparison will be selected.
-              To plot multiple comparisons together please use the ggplot2 version. Please see ?contour2 for additional details.")
+              To plot multiple comparisons together please use the ggplot2 version.
+              Please see ?contour2 for additional details.")
       comparison <- 1
     }
     
     if (he$n_comparisons > 1) {
-
-      if (!exists("title",where=exArgs)) {
       
+      if (!exists("title",where=exArgs)) {
+        
         title <- paste("Cost effectiveness plane contour plot \n",
                        he$interventions[he$ref],
                        " vs ",
                        he$interventions[he$comp[comparison]], sep = "")
-        } 
+      } 
       else {title <- exArgs$title}
       
       he$delta_e <- he$delta_e[,comparison]
@@ -153,10 +153,10 @@ contour2 <-
     # If the user has specified x- and/or y-limits then use those
     if(!is.null(xlim)) {
       m.e <- xlim[1]
-    M.e <- xlim[2]}
+      M.e <- xlim[2]}
     if(!is.null(ylim)) {
       m.c <- ylim[1]
-    M.c <- ylim[2]}
+      M.c <- ylim[2]}
     
     plot(xx,yy,col="white",xlim=c(m.e,M.e),ylim=c(m.c,M.c), 
          xlab=xlab,ylab=ylab,
