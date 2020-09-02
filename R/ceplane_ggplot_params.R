@@ -19,7 +19,7 @@ ceplane_ggplot_params <- function(he,
   
   default_params <-
     list(
-      size = rel(3.5),         # relative size
+      size = rel(3.5),         # relative size to what??...
       wtp = list(
         label.pos = TRUE,
         geom = "text",
@@ -65,8 +65,7 @@ ceplane_ggplot_params <- function(he,
         data = data.frame(x = graph_params$area$x,
                           y = graph_params$area$y),
         mapping = aes(x = x, y = y),
-        inherit.aes = FALSE)
-    )
+        inherit.aes = FALSE))
   
   modifyList(default_params,
              graph_params) %>% 

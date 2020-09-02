@@ -28,7 +28,7 @@ prep_ceplane_params <- function(he, wtp, ...) {
   plot_title <-
     paste0(
       "Cost-Effectiveness Plane",
-      ifelse(he$change_comp,
+      ifelse(he$n_comparisons == 1,  #he$change_comp,
              yes = intervs_in_title,
              no = ""))
   
