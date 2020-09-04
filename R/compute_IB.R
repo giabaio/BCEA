@@ -29,7 +29,8 @@ compute_IB <- function(df_ce, k) {
     
   sims <- unique(df_ce$sim)
   ints <- unique(df_ce$ints)
-
+  comp_names <- comp_names_from_(df_ce)
+  
   df_ce <-
     df_ce %>% 
     filter(ints != ref) %>%
@@ -44,7 +45,10 @@ compute_IB <- function(df_ce, k) {
   array(ib_df$ib,
         dim = c(length(k),
                 length(sims),
-                length(ints) - 1))
+                length(ints) - 1),
+        dimnames = list(k = NULL,
+                        sims = NULL,
+                        ints = comp_names))
 }
 
 

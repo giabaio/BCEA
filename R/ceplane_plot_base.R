@@ -75,8 +75,9 @@ ceplane_plot_base.bcea <- function(he,
 }
 
 
-#'
+#' @export
+#' 
 ceplane_plot_base <- function(he, ...) {
-  UseMethod(ceplane_plot_base, he)
+  UseMethod('ceplane_plot_base', he)
 }
 

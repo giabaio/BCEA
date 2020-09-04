@@ -12,8 +12,9 @@
 #' @importFrom purrr keep
 #' 
 #' @keywords hplot
-#'
-#' @example
+#' @export
+#' 
+#' @examples
 #' 
 #' data(Vaccine)
 #' he <- bcea(e, c)
@@ -41,11 +42,11 @@
 #'              wtp=200,
 #'              theme = theme_linedraw())
 #'              
-ceplane_plot_ggplot <- function(he,
-                                wtp,
-                                pos_legend,
-                                graph_params, ...) {
-
+ceplane_plot_ggplot.bcea <- function(he,
+                                     wtp,
+                                     pos_legend,
+                                     graph_params, ...) {
+  
   # single long format for ggplot data
   delta_ce <-
     merge(
@@ -93,4 +94,11 @@ ceplane_plot_ggplot <- function(he,
     do.call(annotate, graph_params$icer_txt)
   
   # subset_by_comparisons()
+}
+
+
+#' @export
+#' 
+ceplane_plot_ggplot <- function(he, ...) {
+  UseMethod('ceplane_plot_ggplot', he)
 }

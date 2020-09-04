@@ -83,11 +83,11 @@ sim_table.bcea <- function(he,
   
   table <-  
     cbind.data.frame(
-      U_filter_by(he, wtp),
-      Ustar_filter_by(he, wtp),
-      ib_filter_by(he, wtp),
-      ol_filter_by(he, wtp),
-      vi_filter_by(he, wtp))
+      U = U_filter_by(he, wtp),
+      Ustar = Ustar_filter_by(he, wtp),
+      ib = ib_filter_by(he, wtp),
+      ol = ol_filter_by(he, wtp),
+      vi = vi_filter_by(he, wtp))
   
   table <-
     bind_rows(table,
@@ -110,7 +110,8 @@ sim_table.bcea <- function(he,
 }
 
 
-#
+#' @export
+#' 
 sim_table.default <- function(he, ..) {
   
   stop("No method for this object. Run bcea().", call. = FALSE)

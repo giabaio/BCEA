@@ -8,7 +8,9 @@
 #' @param comparisons.label Optional vector of strings with comparison labels
 #' @return A data.frame object including mean outcomes, comparison identifier,
 #'   comparison label and associated ICER
-#'   
+#' 
+#' @export
+#' 
 tabulate_means <- function(he,
                            comparisons.label = NULL) {
   
@@ -30,8 +32,9 @@ tabulate_means <- function(he,
 #' @template args-he
 #' 
 #' @inherit plotly
+#' @export
 #' 
-ceplane_plot_plotly <- function(he) {
+ceplane_plot_plotly.bcea <- function(he) {
   
   if (he$n_comparisons > 1 & !is.null(comparison)) {
     # adjusts bcea object for the correct number of dimensions and comparators
@@ -203,3 +206,12 @@ ceplane_plot_plotly <- function(he) {
   
   plotly::config(ceplane, displayModeBar = FALSE)
 }
+
+
+
+#' @export
+#' 
+ceplane_plot_plotly <- function(he, ...) {
+  UseMethod('ceplane_plot_plotly', he)
+}
+

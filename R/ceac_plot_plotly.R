@@ -81,3 +81,4 @@
   
   plotly::config(ceac, displayModeBar = FALSE)
 }
+

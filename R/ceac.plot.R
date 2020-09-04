@@ -120,8 +120,9 @@ ceac.plot.bcea <- function(he,
 }
 
 
-#'
+#' @export
+#' 
 ceac.plot <- function(he, ...) {
-  UseMethod(ceac.plot, he)
+  UseMethod('ceac.plot', he)
 }
 
