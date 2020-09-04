@@ -25,10 +25,9 @@ subset_by_comparisons <- function(he, comparison) {
   res$ICER <- res$ICER[name_comp]
   res$ib <- res$ib[, , name_comp]
   res$eib <- res$eib[, name_comp]
-  res$U <- res$U[, , sort(c(res$ref, comparison + 1))]
+  res$U <- res$U[, , name_comp]
   res$ceac <- res$ceac[, name_comp]
-  res$change_comp <- TRUE
   
-  return(he)
+  return(res)
 }
 

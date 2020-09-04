@@ -205,6 +205,7 @@ compute_U <- function(df_ce, k) {
   
   sims <- sort(unique(df_ce$sim))
   ints <- sort(unique(df_ce$ints))
+  interv_names <- unique(df_ce$interv_names)
   
   U_df <-
     data.frame(k = rep(k, each = nrow(df_ce)),
@@ -215,5 +216,9 @@ compute_U <- function(df_ce, k) {
   array(U_df$U,
         dim = c(length(sims),
                 length(k),
-                length(ints)))
+                length(ints)),
+        dimnames = list(sims = NULL,
+                        k = NULL,
+                        ints = interv_names))
 }
+
