@@ -1,0 +1,136 @@
+---
+title: "Set bcea() Parameters"
+output: rmarkdown::html_vignette
+vignette: >
+ %\VignetteIndexEntry{Set_bcea_parameters}
+ %\VignetteEngine{knitr::rmarkdown}
+ %\VignetteEncoding{UTF-8}
+---
+  
+  
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+collapse = TRUE,
+comment = "#>"
+)
+```
+
+```{r setup}
+library(BCEA)
+```
+
+There are several arguments passed to `bcea()` to specify the form of the analysis.
+These are
+
+```{r eval=FALSE}
+bcea(e, c,
+     ref = 1,
+     interventions = NULL,
+     comparison = NULL,
+     Kmax = 50000,
+     wtp = NULL,
+     plot = FALSE)
+```
+
+Those of interest here are:
+
+* `ref` is the reference group to compare against the other comparison groups
+* `interventions` are names for all of the interventions
+* `comparisons` are the groups to compare against `ref`. The default is all of the non-`ref` groups. This is a new argument in BCEA to make it more consistent with other functions.
+* `Kmax` is the maximum value of the willingness-to-pay to calculate statistics for.
+* `wtp` is the willingness-to-pay threshold of interest
+
+During an analysis we may want to explore changing some of these parameters and keeping all of the others the same.
+We can do with with setter functions.
+
+```{r}
+data(Vaccine)
+```
+
+### Changing Reference Group
+
+```{r}
+he_ref1 <- bcea(e, c,
+                ref = 1,           
+                interventions = treats,
+                Kmax = 50000)  
+str(he_ref1) 
+```
+
+
+```{r}
+he_ref2 <- bcea(e, c,
+                ref = 2,           
+                interventions = treats,
+                Kmax = 50000)  
+str(he_ref2) 
+```
+
+```{r}
+setReferenceGroup(he_ref1) <- 2
+
+str(he_ref1) 
+```
+
+### Changing Kmax
+
+```{r}
+he_Kmax1 <- bcea(e, c,
+                 ref = 1,           
+                 interventions = treats,
+                 Kmax = 50000)  
+str(he_Kmax1) 
+```
+
+```{r}
+he_Kmax2 <- bcea(e, c,
+                 ref = 2,           
+                 interventions = treats,
+                 Kmax = 2000)  
+str(he_Kmax2) 
+```
+
+```{r}
+setKmax(he_Kmax1) <- 2000
+
+str(he_Kmax1) 
+```
+
+### Change Comparison Groups
+
+Lets load some data with more than two groups.
+
+```{r}
+data(Smoking)
+```
+
+Defaults is all other groups which in this case is 2, 3 and 4.
+
+```{r}
+he_comp234 <- bcea(e, c,
+                   ref = 1,           
+                   Kmax = 50000)  
+str(he_comp234) 
+```
+
+Let us compare against only groups 2 and 4.
+
+```{r}
+he_comp24 <- bcea(e, c,
+                  ref = 1,
+                  comparison = c(2,4),
+                  interventions = treats,
+                  Kmax = 2000)  
+str(he_comp24) 
+```
+
+We can achieve the same thing using the setter.
+
+```{r}
+setComparisons(he_comp234) <- c(2,4)
+
+str(he_comp234) 
+```
+
+Further, a `bcea` object with all comparison groups can be passed to other functions such as `ceplane.plot` and `ceac.plot` with a `comparison` argument, which will also do the subsetting.
+

@@ -92,11 +92,14 @@
 #' ceac.plot(he2, graph = "base")
 #'
 ceac.plot.bcea <- function(he,
+                           comparison = NULL,
                            pos = c(1, 0),
                            graph = c("base", "ggplot2", "plotly"),
                            ...) {
   
   graph <- match.arg(graph)
+  
+  he <- setComparisons(he, comparison)
   
   graph_params <- prepare_ceac_params(...)
   

@@ -99,7 +99,7 @@ ceplane.plot.bcea <- function(he,
   
   graph <- match.arg(graph)
   
-  he <- subset_by_comparisons(he, comparison)
+  he <- setComparisons(he, comparison)
   
   graph_params <- prep_ceplane_params(he, wtp, ...)
   

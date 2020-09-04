@@ -28,6 +28,7 @@ bcea.default <- function(eff,
                          cost,
                          ref = 1,
                          interventions = NULL,
+                         comparison = NULL,
                          Kmax = 50000,
                          wtp = NULL,
                          plot = FALSE) {
@@ -94,6 +95,8 @@ bcea.default <- function(eff,
                                levels = interv_names)
   
   he <- new_bcea(df_ce, k)
+  
+  he <- setComparisons(he, comparison)
   
   ##TODO: should separate out this really  
   if (plot)

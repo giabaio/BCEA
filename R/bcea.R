@@ -21,6 +21,7 @@
 #' @param interventions Defines the labels to be associated with each
 #' intervention. By default and if \code{NULL}, assigns labels in the form
 #' "Intervention1", ... , "Intervention T".
+#' @template args-comparison
 #' @param Kmax Maximum value of the willingness to pay to be considered.
 #' Default value is \code{k = 50000}. The willingness to pay is then approximated
 #' on a discrete grid in the interval \code{[0, Kmax]}. The grid is equal to
@@ -207,5 +208,13 @@
 #' 
 #' @export
 #' 
-bcea <- function(e, c, ref = 1, interventions = NULL, Kmax = 50000, wtp = NULL, plot = FALSE)
-  UseMethod("bcea")
+bcea <- function(e,
+                 c,
+                 ref = 1,
+                 interventions = NULL,
+                 comparison = NULL,
+                 Kmax = 50000,
+                 wtp = NULL,
+                 plot = FALSE)
+  UseMethod("bcea", e)
+

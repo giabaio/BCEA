@@ -92,8 +92,6 @@ ceplane_plot_ggplot.bcea <- function(he,
     do.call(annotate, graph_params$wtp) +
     do.call(theme, graph_params$legend) +
     do.call(annotate, graph_params$icer_txt)
-  
-  # subset_by_comparisons()
 }
 
 

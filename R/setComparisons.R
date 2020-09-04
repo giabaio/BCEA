@@ -1,7 +1,12 @@
 
-#' subset_by_comparisons
+#' Set Comparisons Group
 #' 
-subset_by_comparisons <- function(he, comparison) {
+#' @template args-he
+#' @template args-comparison 
+#' 
+#' @export
+#' 
+setComparisons <- function(he, comparison) {
   
   if (is.null(comparison)) return(he)
   
@@ -29,5 +34,31 @@ subset_by_comparisons <- function(he, comparison) {
   res$ceac <- res$ceac[, name_comp]
   
   return(res)
+}
+
+
+#' Set Comparison Group
+#'
+#' @template args-he
+#' @param value Comparison 
+#'
+#' @return
+#' @export
+#'
+'setComparisons<-' <- function(he, value) {
+  UseMethod('setComparisons<-', he)
+}
+
+#' @export
+#'
+'setComparisons<-.bcea' <- function(he, value) {
+  
+  setComparisons(he, value)
+}
+
+#' @export
+#'
+'setComparisons<-.default' <- function(he, value) {
+  stop("No method available.")
 }
 
