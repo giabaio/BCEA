@@ -2,8 +2,8 @@
 % Please edit documentation in R/plot.mixedAn.R
 \name{plot.mixedAn}
 \alias{plot.mixedAn}
-\title{Summary plot of the health economic analysis when the mixed analysis is
-considered}
+\title{Summary Plot of the Health Economic Analysis When the Mixed Analysis is
+Considered}
 \usage{
 \method{plot}{mixedAn}(x, y.limits = NULL, pos = c(0, 1), graph = c("base", "ggplot2"), ...)
 }
@@ -39,7 +39,7 @@ cost-effective intervention is included in the market) and the mixed
 strategy one (when more than one intervention is considered in the market).
 }
 \description{
-Compares the optimal scenario to the mixed case in terms of the EVPI
+Compares the optimal scenario to the mixed case in terms of the EVPI.
 }
 \examples{
 
@@ -87,8 +87,7 @@ Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in Health
 Economics.  Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
 }
 \seealso{
 \code{\link{bcea}}, \code{\link{mixedAn}}
