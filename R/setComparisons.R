@@ -14,8 +14,6 @@ setComparisons <- function(he, comparison) {
     stop("Can't select Reference group. Change Reference first.",
          call. = FALSE)
   
-  name_comp <- he$interventions[comparison]
-  
   res <- 
     bcea(e = he$e,
          c = he$c,
@@ -24,8 +22,14 @@ setComparisons <- function(he, comparison) {
          Kmax = he$Kmax,
          wtp = he$wtp)
   
-  res$delta_e <- as.matrix(he$delta_e)[, name_comp, drop = FALSE]
-  res$delta_c <- as.matrix(he$delta_c)[, name_comp, drop = FALSE]
+  name_comp <- he$interventions[comparison]
+  
+  res$comp <- comparison
+  res$n_comparisons <- length(comparison)
+  res$n_comparators <- length(comparison) + 1
+  
+  res$delta_e <- as.matrix(res$delta_e)[, name_comp, drop = FALSE]
+  res$delta_c <- as.matrix(res$delta_c)[, name_comp, drop = FALSE]
   
   res$ICER <- res$ICER[name_comp]
   res$ib <- res$ib[, , name_comp]

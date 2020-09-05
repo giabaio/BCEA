@@ -212,7 +212,7 @@ bcea <- function(e,
                  c,
                  ref = 1,
                  interventions = NULL,
-                 comparison = NULL,
+                 .comparison = NULL,
                  Kmax = 50000,
                  wtp = NULL,
                  plot = FALSE)

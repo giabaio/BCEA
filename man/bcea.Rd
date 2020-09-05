@@ -11,6 +11,7 @@ bcea(
   c,
   ref = 1,
   interventions = NULL,
+  .comparison = NULL,
   Kmax = 50000,
   wtp = NULL,
   plot = FALSE
@@ -48,6 +49,11 @@ from 0 to Kmax. This option is useful when performing intensive computations
 
 \item{plot}{A logical value indicating whether the function should produce
 the summary plot or not.}
+
+\item{comparison}{Selects the comparator, in case of more than two
+interventions being analysed. Default as NULL plots all the comparisons
+together. Any subset of the possible comparisons can be selected (e.g.,
+\code{comparison=c(1,3)} or \code{comparison=2}).}
 }
 \value{
 An object of the class "bcea" containing the following elements

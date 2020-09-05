@@ -4,11 +4,22 @@
 \alias{ceac.plot.bcea}
 \title{Cost-Effectiveness Acceptability Curve (CEAC) plot}
 \usage{
-\method{ceac.plot}{bcea}(he, pos = c(1, 0), graph = c("base", "ggplot2", "plotly"), ...)
+\method{ceac.plot}{bcea}(
+  he,
+  comparison = NULL,
+  pos = c(1, 0),
+  graph = c("base", "ggplot2", "plotly"),
+  ...
+)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
+
+\item{comparison}{Selects the comparator, in case of more than two
+interventions being analysed. Default as NULL plots all the comparisons
+together. Any subset of the possible comparisons can be selected (e.g.,
+\code{comparison=c(1,3)} or \code{comparison=2}).}
 
 \item{pos}{Parameter to set the position of the legend (only relevant for
 multiple interventions, ie more than 2 interventions being compared). Can be
@@ -31,11 +42,6 @@ plotting. Should (partial-)match the three options \code{"base"},
  \item \code{line_types}: specifies the line type(s) as lty numeric values - all graph types.
  \item \code{area_include}: logical, include area under the CEAC curves - plotly only.
  \item \code{area_color}: specifies the AUC colour - plotly only.}}
-
-\item{comparison}{Selects the comparator, in case of more than two
-interventions being analysed. Default as NULL plots all the comparisons
-together. Any subset of the possible comparisons can be selected (e.g.,
-\code{comparison=c(1,3)} or \code{comparison=2}).}
 }
 \value{
 \item{ceac} {If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 

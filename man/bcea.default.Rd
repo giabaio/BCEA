@@ -9,6 +9,7 @@
   cost,
   ref = 1,
   interventions = NULL,
+  .comparison = NULL,
   Kmax = 50000,
   wtp = NULL,
   plot = FALSE
