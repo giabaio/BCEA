@@ -1,8 +1,15 @@
 
 #' @keywords hplot
+#' 
+#' @export
+#' 
 ceac_plot_base <- function(he, ...) UseMethod("ceac_plot_base", he)
 
-#
+
+#' @keywords hplot
+#' 
+#' @export
+#' 
 ceac_plot_base.pairwise <- function(he,
                                     pos_legend,
                                     graph_params) {
@@ -13,6 +20,9 @@ ceac_plot_base.pairwise <- function(he,
 }
 
 #' @keywords hplot
+#' 
+#' @export
+#'
 ceac_plot_base.bcea <- function(he,
                                 pos_legend,
                                 graph_params) {
@@ -25,6 +35,9 @@ ceac_plot_base.bcea <- function(he,
 #' @noRd
 #' 
 #' @keywords hplot
+#' 
+#' @export
+#' 
 ceac_matplot <- function(he,
                          pos_legend,
                          graph_params,

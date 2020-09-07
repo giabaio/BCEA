@@ -63,9 +63,9 @@ multi.ce <- function(he) {
   
   ceaf <- apply(p_best_interv, 1, max)
   
-  he <- c(he,
-          list(p_best_interv = p_best_interv,
-          ceaf = ceaf))
+  res <- c(he,
+           list(p_best_interv = p_best_interv,
+                ceaf = ceaf))
   
-  structure(he, class = c("pairwise", class(he)))
+  structure(res, class = c("pairwise", class(he)))
 }

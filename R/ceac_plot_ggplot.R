@@ -3,9 +3,14 @@
 #' 
 ceac_plot_ggplot <- function(he,
                              pos_legend,
-                             graph_params, ...) UseMethod("ceac_plot_ggplot", he)
+                             graph_params, ...)
+  UseMethod("ceac_plot_ggplot", he)
 
-#
+
+#' @keywords hplot
+#' 
+#' @export
+#' 
 ceac_plot_ggplot.pairwise <- function(he,
                                       pos_legend,
                                       graph_params, ...) {
@@ -16,6 +21,8 @@ ceac_plot_ggplot.pairwise <- function(he,
 }
 
 #' @keywords hplot
+#' 
+#' @export
 #' 
 ceac_plot_ggplot.bcea <- function(he,
                                   pos_legend,
@@ -29,6 +36,8 @@ ceac_plot_ggplot.bcea <- function(he,
 #' @noRd
 #' 
 #' @keywords hplot
+#' 
+#' @export
 #' 
 ceac_ggplot <- function(he,
                         pos_legend,
