@@ -6,7 +6,6 @@
 #' threshold.
 #' 
 #' @template args-he
-#' 
 #' @param comparison Selects the comparator, in case of more than two
 #'   interventions being analysed. Default as \code{NULL} plots all the
 #'   comparisons together. Any subset of the possible comparisons can be selected
@@ -40,7 +39,8 @@
 #'   Should be of length 1 or equal to the number of comparisons.
 #'   \item \code{area_include}: logical, include or exclude the cost-effectiveness 
 #'   acceptability area (default is TRUE).
-#'   \item \code{area_color}: a colour specifying the colour of the cost-effectiveness acceptability area.
+#'   \item \code{area_color}: a colour specifying the colour of the cost-effectiveness
+#'   acceptability area.
 #'  }
 #'  
 #' @return If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 
@@ -120,7 +120,9 @@ ceplane.plot.bcea <- function(he,
   } else if (is_plotly(graph)) {
     
     ##TODO:...
-    # ceplane_plot_plotly(he, graph_params)
+    # ceplane_plot_plotly(he,
+    #                     graph_params,
+    #                     pos_legend = pos)
   }
 }
 
@@ -130,3 +132,4 @@ ceplane.plot.bcea <- function(he,
 ceplane.plot <- function(he, ...) {
   UseMethod('ceplane.plot', he)
 }
+
