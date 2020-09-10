@@ -28,14 +28,15 @@ setComparisons <- function(he, comparison) {
   res$n_comparisons <- length(comparison)
   res$n_comparators <- length(comparison) + 1
   
-  res$delta_e <- as.matrix(res$delta_e)[, name_comp, drop = FALSE]
-  res$delta_c <- as.matrix(res$delta_c)[, name_comp, drop = FALSE]
+  res$delta_e <- res$delta_e[, name_comp, drop = FALSE]
+  res$delta_c <- res$delta_c[, name_comp, drop = FALSE]
   
   res$ICER <- res$ICER[name_comp]
-  res$ib <- res$ib[, , name_comp]
-  res$eib <- res$eib[, name_comp]
-  res$U <- res$U[, , name_comp]
-  res$ceac <- res$ceac[, name_comp]
+  res$ib <- res$ib[, , name_comp, drop = FALSE]
+  res$eib <- res$eib[, name_comp, drop = FALSE]
+  
+  ##TODO: currently compute _all_ interventions in compute_U()
+  # res$U <- res$U[, , name_comp, drop = FALSE]
   
   return(res)
 }

@@ -1,12 +1,14 @@
 
-data(Vaccine)
+library(dplyr)
+
+# data(Vaccine)
+load("ce.RData")
 
 test_that("setKmax", {
   
-  m <- bcea(e = e,
-            c = c,
+  m <- bcea(e = eff,
+            c = cost,
             ref = 2,
-            interventions = treats,
             Kmax = 50000,
             plot = FALSE)
   
@@ -20,10 +22,9 @@ test_that("setKmax", {
 
 test_that("setReferenceGroup", {
   
-  m <- bcea(e = e,
-            c = c,
+  m <- bcea(e = eff,
+            c = cost,
             ref = 2,
-            interventions = treats,
             Kmax = 50000,
             plot = FALSE)
   
@@ -31,4 +32,53 @@ test_that("setReferenceGroup", {
   
   expect_equal(m$ref, 1)
   expect_equal(m$comp, 2)  
+})
+
+
+test_that("setComparison", {
+  
+  m_r1 <- bcea(e = eff,
+               c = cost,
+               Kmax = 50000,
+               plot = FALSE)
+  
+  m_c2 <- bcea(e = eff,
+               c = cost,
+               .comparison = 2, 
+               Kmax = 50000,
+               plot = FALSE)
+
+  expect_equivalent(m_r1, m_c2)
+  
+  m_r2 <- bcea(e = eff,
+               c = cost,
+               ref = 2,
+               Kmax = 50000,
+               plot = FALSE)
+  
+  m_r2c1 <- bcea(e = eff,
+                 c = cost,
+                 .comparison = 1, 
+                 ref = 2,
+                 Kmax = 50000,
+                 plot = FALSE)
+  
+  expect_equivalent(m_r2, m_r2c1)
+  
+  expect_error(
+    bcea(e = eff,
+         c = cost,
+         .comparison = 1, 
+         Kmax = 50000,
+         plot = FALSE),
+    "Can't select Reference group. Change Reference first.")
+
+  expect_error(
+    bcea(e = eff,
+         c = cost,
+         .comparison = 2, 
+         ref = 2,
+         Kmax = 50000,
+         plot = FALSE),
+    "Can't select Reference group. Change Reference first.")
 })
