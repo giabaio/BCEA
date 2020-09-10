@@ -22,7 +22,7 @@
 modelling and the economic evaluation.}
 
 \item{comparison}{In case of more than 2 interventions being analysed,
-selects which plot should be made.  By default the first comparison among
+selects which plot should be made. By default the first comparison among
 the possible ones will be plotted. If \code{graph="ggplot2"} any subset of
 the possible comparisons can be selected, and \code{comparison=NULL} will
 yield a plot of all the possible comparisons together.}
@@ -62,7 +62,7 @@ plotting. Should (partial-)match the two options \code{"base"} or
 \item{ceplane}{ A ggplot object containing the plot. Returned only
 if \code{graph="ggplot2"}. } Plots the cost-effectiveness plane with a
 scatterplot of all the simulated values from the (posterior) bivariate
-distribution of (Delta_e,Delta_c), the differentials of effectiveness and
+distribution of (Delta_e, Delta_c), the differentials of effectiveness and
 costs; superimposes a contour of the distribution and prints the estimated
 value of the probability of each quadrant (combination of positive/negative
 values for both Delta_e and Delta_c)
