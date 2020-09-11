@@ -2,20 +2,20 @@
 % Please edit documentation in R/ceplane_plot_plotly.R
 \name{tabulate_means}
 \alias{tabulate_means}
-\title{Calculates dataset for ICERs from bcea object}
+\title{Calculate Dataset For ICERs From bcea Object}
 \usage{
-tabulate_means(he, comparisons.label = NULL)
+tabulate_means(he, comp_label = NULL)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
-\item{comparisons.label}{Optional vector of strings with comparison labels}
+\item{comp_label}{Optional vector of strings with comparison labels}
 }
 \value{
 A data.frame object including mean outcomes, comparison identifier,
   comparison label and associated ICER
 }
 \description{
-Calculates dataset for ICERs from bcea object
+Calculate Dataset For ICERs From bcea Object
 }

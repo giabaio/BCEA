@@ -34,7 +34,7 @@ is(are) the comparators.}
 
 \item{interventions}{Defines the labels to be associated with each
 intervention. By default and if \code{NULL}, assigns labels in the form
-"Intervention1", ... , "Intervention T".}
+"Intervention1", ... , "InterventionT".}
 
 \item{Kmax}{Maximum value of the willingness to pay to be considered.
 Default value is \code{k = 50000}. The willingness to pay is then approximated
@@ -117,7 +117,8 @@ an object of the class "bcea".
 data(Vaccine)
 
 # Runs the health economic evaluation using BCEA
-m <- bcea(e=e,c=c,          # defines the variables of 
+m <- bcea(e=e,
+          c=c,              # defines the variables of 
                             #  effectiveness and cost
       ref=2,                # selects the 2nd row of (e,c) 
                             #  as containing the reference intervention
@@ -230,8 +231,7 @@ Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in
 Health Economics.  Statistical Methods in Medical Research.
 doi:10.1177/0962280211419832.
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \author{
 Gianluca Baio, Andrea Berardi

@@ -9,7 +9,7 @@
   comparison = NULL,
   wtp = 25000,
   pos = c(0, 1),
-  graph = c("base", "ggplot2"),
+  graph = c("base", "ggplot2", "plotly"),
   ...
 )
 }
@@ -42,25 +42,27 @@ plotting. Should (partial-)match the two options \code{"base"} or
 \item{...}{If \code{graph = "ggplot2"} and a named theme object is supplied,
  it will be added to the ggplot object. Additional graphical arguments:
 \itemize{
- \item \code{label.pos = FALSE}: will place the willingness to pay label in a different 
- position at the bottom of the graph - base and ggplot2 only (no label in plotly).
- \item \code{point_colors}: a vector of colours specifying the colour(s) associated to 
- the cloud of points. Should be of length 1 or equal to the number of comparisons.
+ \item \code{label.pos = FALSE}: will place the willingness to pay label in a
+ different  position at the bottom of the graph - base and ggplot2 only (no
+ label in plotly).
+ \item \code{point_colors}: a vector of colours specifying the colour(s) associated
+ to the cloud of points. Should be of length 1 or equal to the number of comparisons.
  \item \code{point_size}: a vector of colours specifying the size(s) of the points.
  Should be of length 1 or equal to the number of comparisons.
- \item \code{ICER_colors}: a vector of colours specifying the colour(s) of the ICER points.
- Should be of length 1 or equal to the number of comparisons.
- \item \code{ICER_size}: a vector of colours specifying the size(s) of the ICER points.
- Should be of length 1 or equal to the number of comparisons.
+ \item \code{ICER_colors}: a vector of colours specifying the colour(s) of the ICER
+ points. Should be of length 1 or equal to the number of comparisons.
+ \item \code{ICER_size}: a vector of colours specifying the size(s) of the ICER
+ points. Should be of length 1 or equal to the number of comparisons.
  \item \code{area_include}: logical, include or exclude the cost-effectiveness 
  acceptability area (default is TRUE).
- \item \code{area_color}: a colour specifying the colour of the cost-effectiveness acceptability area.
+ \item \code{area_color}: a colour specifying the colour of the cost-effectiveness
+ acceptability area.
 }}
 }
 \value{
 If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 
-  a plotly object containing the requested plot. Nothing is returned when \code{graph = "base"}, 
-  the default.
+  a plotly object containing the requested plot. Nothing is returned when
+  \code{graph = "base"}, the default.
    
   Grey dots show the simulated values for the joint
   distribution of the effectiveness and cost differentials. The larger red
@@ -77,12 +79,11 @@ sustainability area, as a function of the selected willingness to pay
 threshold.
 }
 \details{
-In the plotly version, point_colors, ICER_colors and area_color can also be specified
-  as rgba colours using either the \code{\link[plotly]{toRGB}{plotly::toRGB}} function or
-  a rgba colour string, e.g. \code{'rgba(1, 1, 1, 1)'}.
+In the plotly version, point_colors, ICER_colors and area_color can also
+be specified as rgba colours using either the \code{\link[plotly]{toRGB}{plotly::toRGB}}
+function or a rgba colour string, e.g. \code{'rgba(1, 1, 1, 1)'}.
 }
 \examples{
-
 ## create the bcea object for the smoking cessation example
 data(Smoking)
 
@@ -94,11 +95,15 @@ ceplane.plot(m, wtp = 200, graph = "base")
 ## select only one comparator
 ceplane.plot(m, wtp = 200, graph = "base", comparison = 3)
 
-## or use ggplot2 instead
+## use ggplot2
 if (requireNamespace("ggplot2")) {
    ceplane.plot(m, wtp = 200, pos = "right", ICER_size = 2, graph = "ggplot2")
 }
 
+## plotly
+ceplane.plot(m, wtp = 200, graph = "plotly")
+ceplane.plot(m, wtp = 200, comparison = 1, graph = "plotly")
+ 
 }
 \references{
 Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in Health Economics.

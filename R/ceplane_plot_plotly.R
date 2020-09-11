@@ -1,21 +1,18 @@
 
-##TODO:
-
-
-#' Calculates dataset for ICERs from bcea object
+#' Calculate Dataset For ICERs From bcea Object
 #'
 #' @template args-he
-#' @param comparisons_label Optional vector of strings with comparison labels
+#' @param comp_label Optional vector of strings with comparison labels
 #' @return A data.frame object including mean outcomes, comparison identifier,
 #'   comparison label and associated ICER
 #' 
 #' @export
 #' 
 tabulate_means <- function(he,
-                           comparisons_label = NULL) {
+                           comp_label = NULL) {
   
-  if (is.null(comparisons_label))
-    comparisons_label <- 1:he$n_comparisons
+  if (is.null(comp_label))
+    comp_label <- 1:he$n_comparisons
   
   data.frame(
     lambda.e = sapply(1:he$n_comparisons,
@@ -23,7 +20,7 @@ tabulate_means <- function(he,
     lambda.c = sapply(1:he$n_comparisons,
                       function(x) mean(as.matrix(he$delta_c)[, x])),
     comparison = as.factor(1:he$n_comparisons),
-    label = comparisons_label,
+    label = comp_label,
     ICER = he$ICER)
 }
 
@@ -31,44 +28,56 @@ tabulate_means <- function(he,
 #' ceplane_plot_plotly
 #' 
 #' @template args-he
+#' @param wtp
+#' @param graph_params
+#' @param pos_legend
 #' 
+#' @return Plot in Viewer
 #' @inherit plotly
 #' @export
 #' 
 ceplane_plot_plotly.bcea <- function(he,
+                                     wtp,
                                      graph_params,
                                      pos_legend) {
   
-  ICER.size <- ifelse(he$n_comparisons == 1, 8, 0)
-  
-  comparisons_label <-
+  comp_label <-
     paste(he$interventions[he$ref], "vs", he$interventions[he$comp])
   
-  kd <- data.frame(
-    delta_e = c(he$delta_e),
-    delta_c = c(he$delta_c),
-    comparison = as.factor(c(
-      sapply(1:he$n_comparisons, function(x) rep(x, nrow(as.matrix(he$delta_e))))
-    )),
-    label = as.factor(c(
-      sapply(comparisons_label, function(x) rep(x, nrow(as.matrix(he$delta_e))))
-    )))
+  # single long format for plotting data
+  delta_ce <-
+    merge(
+      melt(
+        cbind(sim = seq_len(nrow(he$delta_c)),
+              he$delta_c),
+        variable.name = "comparison",
+        value.name = "delta_c",
+        id.vars = "sim"),
+      melt(
+        cbind(sim = seq_len(nrow(he$delta_e)),
+              he$delta_e),
+        variable.name = "comparison",
+        value.name = "delta_e",
+        id.vars = "sim"),
+      by = c("sim", "comparison"))
   
-  if (length(graph_params$point$colors) != length(comparisons_label))
-    graph_params$point$colors <- rep_len(graph_params$point$colors, length(comparisons_label))
+  ICER_size <- ifelse(he$n_comparisons == 1, 8, 0)
   
-  if (length(graph_params$point$sizes) != length(comparisons_label))
-    graph_params$point$sizes <- rep_len(graph_params$point$sizes, length(comparisons_label))
+  if (length(graph_params$point$colors) != length(comp_label))
+    graph_params$point$colors <- rep_len(graph_params$point$colors, length(comp_label))
   
-  if (length(graph_params$ICER$colors) != length(comparisons_label))
-    graph_params$ICER$colors <- rep_len(graph_params$ICER$colors, length(comparisons_label))
+  if (length(graph_params$point$sizes) != length(comp_label))
+    graph_params$point$sizes <- rep_len(graph_params$point$sizes, length(comp_label))
   
-  if (length(graph_params$ICER$sizes) != length(comparisons_label))
-    graph_params$ICER$sizes <- rep_len(graph_params$ICER$sizes, length(comparisons_label))
+  if (length(graph_params$ICER$colors) != length(comp_label))
+    graph_params$ICER$colors <- rep_len("red", length(comp_label))
+  
+  if (length(graph_params$ICER$sizes) != length(comp_label))
+    graph_params$ICER$sizes <- rep_len(ICER_size, length(comp_label))
   
   # plot limits
-  range.e <- range(kd$delta_e)
-  range.c <- range(kd$delta_c)
+  range.e <- range(delta_ce$delta_e)
+  range.c <- range(delta_ce$delta_c)
   range.e[1] <- ifelse(range.e[1] < 0,
                        yes = range.e[1],
                        no = -range.e[1])
@@ -87,8 +96,8 @@ ceplane_plot_plotly.bcea <- function(he,
   # the y value is less than the minimum difference on costs
   if (y[1] > 1.2*range.c[1])
     plane <- rbind(plane,
-                   c(x2,2*range.c[1]), #new bottom-right vertex
-                   c(x1,2*range.c[1])) #new bottom-left vertex
+                   c(x2, 2*range.c[1]), #new bottom-right vertex
+                   c(x1, 2*range.c[1])) #new bottom-left vertex
   
   xrng <- c(ifelse(prod(range.e) < 0,
                    range.e[1]*1.1,
@@ -110,54 +119,71 @@ ceplane_plot_plotly.bcea <- function(he,
                           range.c[2]*1.1,
                           (range.c[2] - range.c[1])*0.1)))
   
-  # actual plot
-  ceplane <- plotly::plot_ly()
-
-  if (graph_params$area$include) {
-    ceplane <- plotly::add_trace(
-      ceplane,
-      type = "scatter",
-      mode = "lines",
-      data = plane,
-      x = ~x,
-      y = ~y,
-      fill = "tonext",
-      fillcolor = ifelse(
-        grepl(pattern = "^rgba\\(",
-              x = graph_params$area$color),
-        graph_params$area$color,
-        plotly::toRGB(graph_params$area$color, 0.5)),
-      line = list(color = ifelse(
-        grepl(pattern = "^rgba\\(",
-              x = graph_params$area$line_color),
-        graph_params$area$line_color,
-        plotly::toRGB(graph_params$area$line_color, 1))),
-      name = "CEA area")
-  }
+  pt_cols <-
+    ifelse(test = grepl(pattern = "^rgba\\(",
+                        x = graph_params$point$colors),
+           yes = plotly::toRGB(graph_params$point$colors),
+           no = graph_params$point$colors)
   
-  # cloud
-  for (comp in seq_len(he$n_comparisons)) {
-    ceplane <- plotly::add_trace(
-      ceplane,
+  # plot set-up
+  ceplane <- plotly::plot_ly(colors = pt_cols)
+  
+  ceplane <-
+    ceplane %>% 
+    plotly::add_trace(
       type = "scatter",
       mode = "markers",
-      data = kd[kd$comparison == levels(kd$comparison)[comp], ],
+      data = delta_ce,
       y = ~delta_c,
       x = ~delta_e,
-      marker = list(
-        color = ifelse(grepl(pattern = "^rgba\\(",
-                             x = graph_params$point$colors[comp]),
-                       yes = graph_params$point$colors[comp],
-                       no = plotly::toRGB(graph_params$point$colors[comp])),
-        size = graph_params$point$sizes[comp]
-      ),
-      hoverinfo = "name+x+y",
-      name = ~label)
+      color = ~comparison,
+      hoverinfo = "name+x+y")
+  
+  if (graph_params$area$include) {
+    
+    ceplane <-
+      ceplane %>% 
+      plotly::add_trace(
+        type = "scatter",
+        mode = "lines",
+        data = plane,
+        x = ~x,
+        y = ~y,
+        line = list(color = ifelse(
+          grepl(pattern = "^rgba\\(",
+                x = graph_params$area$line_color),
+          graph_params$area$line_color,
+          plotly::toRGB(graph_params$area$line_color, 1))),
+        showlegend = FALSE,
+        inherit = FALSE)
+    
+    graph_params$area$color <- "grey"
+    
+    poly_col <-
+    ifelse(
+      grepl(pattern = "^rgba\\(",
+            x = graph_params$area$color),
+      graph_params$area$color,
+      plotly::toRGB(graph_params$area$color, 0.5))
+    
+    ceplane <-
+      ceplane %>% 
+      plotly::add_polygons(
+        data = plane,
+        x = ~x,
+        y = ~y,
+        fillcolor = poly_col,
+        line = list(color = 'transparent'),
+        opacity = 0.3,
+        name = "CEA area",
+        hoveron = "points",
+        showlegend = FALSE,
+        inherit = FALSE)
   }
   
   # ICER
   if (!all(graph_params$ICER$sizes <= 0)) {
-    means_table <- tabulate_means(he, comparisons_label)
+    means_table <- tabulate_means(he, comp_label)
     
     for (comp in seq_len(he$n_comparisons)) {
       ceplane <- plotly::add_trace(
@@ -172,33 +198,28 @@ ceplane_plot_plotly.bcea <- function(he,
           size = graph_params$ICER$sizes[comp]),
         name = ~paste(
           ifelse(he$n_comparisons > 1,
-                 yes = as.character(label),
+                 yes = "",#as.character(label),
                  no = ""),
           "ICER:",
           prettyNum(round(ICER, 2), big.mark = ",")))
     }
   }
-
-  legend_list <- list(orientation = "h",
-                      xanchor = "center",
-                      x = 0.5)
+  
+  legend_params <- make_legend_plotly(pos_legend)
   
   ceplane <- plotly::layout(
     ceplane,
-    title = graph_params$anot$title,
+    title = graph_params$title,
     xaxis = list(
       hoverformat = ".2f",
       range = xrng,
-      title = graph_params$anot$x
-    ),
+      title = graph_params$xlab),
     yaxis = list(
       hoverformat = ".2f",
       range = yrng,
-      title = graph_params$anot$y
-    ),
+      title = graph_params$ylab),
     showlegend = TRUE,
-    legend = legend_list
-  )
+    legend = legend_params)
   
   plotly::config(ceplane, displayModeBar = FALSE)
 }

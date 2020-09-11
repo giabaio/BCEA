@@ -45,10 +45,10 @@ variable, with \code{FALSE} indicating to use the default position and
 \code{c(1,0)}, that is the bottomright corner inside the plot area.}
 
 \item{xlim}{The range of the plot along the x-axis. If NULL (default) it is
-determined by the range of the simulated values for \code{delta.e}}
+determined by the range of the simulated values for \code{delta_e}}
 
 \item{ylim}{The range of the plot along the y-axis. If NULL (default) it is
-determined by the range of the simulated values for \code{delta.c}}
+determined by the range of the simulated values for \code{delta_c}}
 
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the two options \code{"base"} or
@@ -71,11 +71,7 @@ values for both Delta_e and Delta_c)
 Contour method for objects in the class \code{bcea}.
 Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
 of the bivariate density of the differentials of cost (y-axis) and
-effectiveness (x-axis)
-}
-\examples{
-##TODO:...
-
+effectiveness (x-axis).
 }
 \references{
 Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity

@@ -4,11 +4,16 @@
 \alias{ceplane_plot_plotly.bcea}
 \title{ceplane_plot_plotly}
 \usage{
-\method{ceplane_plot_plotly}{bcea}(he)
+\method{ceplane_plot_plotly}{bcea}(he, wtp, graph_params, pos_legend)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
+
+\item{pos_legend}{}
+}
+\value{
+Plot in Viewer
 }
 \description{
 ceplane_plot_plotly
