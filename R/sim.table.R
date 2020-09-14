@@ -52,13 +52,10 @@ sim_table <- function(he, ...) UseMethod("sim_table", he)
 #'                                 # in a grid from the interval (0, Kmax)
 #'
 #' # Now can save the simulation exercise in an object using sim_table()
-#' st <- sim_table(m,         # uses the results of the economic evaluation 
-#'                            #  (a 'bcea' object)
-#'                 wtp=25000) # selects the particular value for k
+#' sim_table(m,         # uses the results of the economic evaluation 
+#'                      #  (a 'bcea' object)
+#'           wtp=25000) # selects the particular value for k
 #'                
-#' # The table can be explored. For example, checking the 
-#' # element 'Table' of the object 'st'
-#' 
 #' @export
 #' 
 sim_table.bcea <- function(he,

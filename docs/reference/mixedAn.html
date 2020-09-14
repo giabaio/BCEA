@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cost-effectiveness analysis when multiple (possibly non cost-effective)
-interventions are present on the market — mixedAn • BCEA</title>
+<title>Cost-Effectiveness Analysis When Multiple (Possibly Non-Cost-Effective)
+Interventions are Present on the Market — mixedAn • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -47,10 +47,10 @@ interventions are present on the market — mixedAn • BCEA</title>
 
 
 
-<meta property="og:title" content="Cost-effectiveness analysis when multiple (possibly non cost-effective)
-interventions are present on the market — mixedAn" />
+<meta property="og:title" content="Cost-Effectiveness Analysis When Multiple (Possibly Non-Cost-Effective)
+Interventions are Present on the Market — mixedAn" />
 <meta property="og:description" content="Runs the cost-effectiveness analysis, but accounts for the fact that more
-than one intervention is present on the market" />
+than one intervention is present on the market." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -108,6 +108,9 @@ than one intervention is present on the market" />
     <li>
       <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
     </li>
+    <li>
+      <a href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -134,15 +137,15 @@ than one intervention is present on the market" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Cost-effectiveness analysis when multiple (possibly non cost-effective)
-interventions are present on the market</h1>
+    <h1>Cost-Effectiveness Analysis When Multiple (Possibly Non-Cost-Effective)
+Interventions are Present on the Market</h1>
     <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/mixedAn.R'><code>R/mixedAn.R</code></a></small>
     <div class="hidden name"><code>mixedAn.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Runs the cost-effectiveness analysis, but accounts for the fact that more
-than one intervention is present on the market</p>
+than one intervention is present on the market.</p>
     </div>
 
     <pre class="usage"><span class='fu'>mixedAn</span>(<span class='no'>he</span>, <span class='kw'>mkt.shares</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
@@ -201,7 +204,7 @@ as a function of the willingness to pay</p></dd>
 The function can also produce a graph showing the difference between the
 ''optimal'' version of the EVPI (when only the most cost-effective intervention
 is included in the market) and the mixed strategy one (when more than one
-intervention is considered in the market)
+intervention is considered in the market).
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -211,8 +214,7 @@ Pharmacoeconomics 27(8), 645-655 doi:10.2165/11310250</p>
 <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in Health
 Economics.  Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.</p>
-<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London</p>
+<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code></p></div>
@@ -242,7 +244,7 @@ London</p>
       <span class='kw'>mkt.shares</span><span class='kw'>=</span><span class='kw'>NULL</span>,  <span class='co'># the vector of market shares can be defined </span>
                         <span class='co'>#  externally. If NULL, then each of the T </span>
                         <span class='co'>#  interventions will have 1/T market share</span>
-      <span class='kw'>plot</span><span class='kw'>=</span><span class='fl'>TRUE</span>)        <span class='co'># produces the plots</span></div><div class='output co'>#&gt; <span class='error'>Error in UseMethod("mixedAn", he): no applicable method for 'mixedAn' applied to an object of class "c('bcea', 'list')"</span></div><div class='input'>
+      <span class='kw'>plot</span><span class='kw'>=</span><span class='fl'>TRUE</span>)        <span class='co'># produces the plots</span></div><div class='output co'>#&gt; <span class='warning'>Warning: the condition has length &gt; 1 and only the first element will be used</span></div><div class='img'><img src='mixedAn-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

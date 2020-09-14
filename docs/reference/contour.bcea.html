@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Contour plots for the cost-effectiveness plane — contour.bcea • BCEA</title>
+<title>Contour Plots for the Cost-Effectiveness Plane — contour.bcea • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,11 +46,11 @@
 
 
 
-<meta property="og:title" content="Contour plots for the cost-effectiveness plane — contour.bcea" />
+<meta property="og:title" content="Contour Plots for the Cost-Effectiveness Plane — contour.bcea" />
 <meta property="og:description" content="Contour method for objects in the class bcea.
 Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
 of the bivariate density of the differentials of cost (y-axis) and
-effectiveness (x-axis)" />
+effectiveness (x-axis)." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -108,6 +108,9 @@ effectiveness (x-axis)" />
     <li>
       <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
     </li>
+    <li>
+      <a href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -134,7 +137,7 @@ effectiveness (x-axis)" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Contour plots for the cost-effectiveness plane</h1>
+    <h1>Contour Plots for the Cost-Effectiveness Plane</h1>
     <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/contour.bcea.R'><code>R/contour.bcea.R</code></a></small>
     <div class="hidden name"><code>contour.bcea.Rd</code></div>
     </div>
@@ -143,12 +146,12 @@ effectiveness (x-axis)" />
     <p>Contour method for objects in the class <code>bcea</code>.
 Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
 of the bivariate density of the differentials of cost (y-axis) and
-effectiveness (x-axis)</p>
+effectiveness (x-axis).</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for bcea</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/contour.html'>contour</a></span>(
-  <span class='no'>x</span>,
+  <span class='no'>he</span>,
   <span class='kw'>comparison</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
   <span class='kw'>nlevels</span> <span class='kw'>=</span> <span class='fl'>4</span>,
@@ -164,14 +167,14 @@ effectiveness (x-axis)</p>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
+      <th>he</th>
       <td><p>A <code>bcea</code> object containing the results of the Bayesian
-modelling and the economic evaluation</p></td>
+modelling and the economic evaluation.</p></td>
     </tr>
     <tr>
       <th>comparison</th>
       <td><p>In case of more than 2 interventions being analysed,
-selects which plot should be made.  By default the first comparison among
+selects which plot should be made. By default the first comparison among
 the possible ones will be plotted. If <code>graph="ggplot2"</code> any subset of
 the possible comparisons can be selected, and <code>comparison=NULL</code> will
 yield a plot of all the possible comparisons together.</p></td>
@@ -204,12 +207,12 @@ variable, with <code>FALSE</code> indicating to use the default position and
     <tr>
       <th>xlim</th>
       <td><p>The range of the plot along the x-axis. If NULL (default) it is
-determined by the range of the simulated values for <code>delta.e</code></p></td>
+determined by the range of the simulated values for <code>delta_e</code></p></td>
     </tr>
     <tr>
       <th>ylim</th>
       <td><p>The range of the plot along the y-axis. If NULL (default) it is
-determined by the range of the simulated values for <code>delta.c</code></p></td>
+determined by the range of the simulated values for <code>delta_c</code></p></td>
     </tr>
     <tr>
       <th>graph</th>
@@ -232,7 +235,7 @@ plotting. Should (partial-)match the two options <code>"base"</code> or
 <dt>ceplane</dt><dd><p>A ggplot object containing the plot. Returned only
 if <code>graph="ggplot2"</code>.</p></dd> Plots the cost-effectiveness plane with a
 scatterplot of all the simulated values from the (posterior) bivariate
-distribution of (Delta_e,Delta_c), the differentials of effectiveness and
+distribution of (Delta_e, Delta_c), the differentials of effectiveness and
 costs; superimposes a contour of the distribution and prints the estimated
 value of the probability of each quadrant (combination of positive/negative
 values for both Delta_e and Delta_c)
@@ -240,13 +243,12 @@ values for both Delta_e and Delta_c)
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
+Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.</p>
-<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London</p>
+<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>, <code><a href='ceplane.plot.html'>ceplane.plot</a></code>,
+    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>, <code>ceplane.plot</code>,
 <code><a href='contour2.html'>contour2</a></code></p></div>
 
   </div>

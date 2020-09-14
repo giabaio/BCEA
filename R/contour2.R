@@ -63,13 +63,13 @@
 #' 
 #' @export
 #' 
-contour2 <- function(he,
-                     wtp = 25000,
-                     xlim = NULL,
-                     ylim = NULL,
-                     comparison = NULL,
-                     graph_type = c("base", "ggplot2"),
-                     ...) {
+contour2.bcea <- function(he,
+                          wtp = 25000,
+                          xlim = NULL,
+                          ylim = NULL,
+                          comparison = NULL,
+                          graph_type = c("base", "ggplot2"),
+                          ...) {
   
   # Additional/optional arguments
   exArgs <- list(...)
@@ -335,3 +335,11 @@ contour2 <- function(he,
     return(contour)
   }
 }
+
+
+#' @export
+#' 
+contour2 <- function(he, ...) {
+  UseMethod('contour2', he)
+}
+

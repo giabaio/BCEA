@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>make.report — make.report • BCEA</title>
+<title>Make Report — make.report • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="make.report — make.report" />
-<meta property="og:description" content="Constructs the automated report from the output of the BCEA" />
+<meta property="og:title" content="Make Report — make.report" />
+<meta property="og:description" content="Constructs the automated report from the output of the BCEA." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -105,6 +105,9 @@
     <li>
       <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
     </li>
+    <li>
+      <a href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -131,13 +134,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>make.report</h1>
+    <h1>Make Report</h1>
     <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/make.report.R'><code>R/make.report.R</code></a></small>
     <div class="hidden name"><code>make.report.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Constructs the automated report from the output of the BCEA</p>
+    <p>Constructs the automated report from the output of the BCEA.</p>
     </div>
 
     <pre class="usage"><span class='fu'>make.report</span>(<span class='no'>he</span>, <span class='kw'>evppi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ext</span> <span class='kw'>=</span> <span class='st'>"pdf"</span>, <span class='kw'>echo</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
@@ -182,7 +185,7 @@ for all the relevant model parameters. If this is passed to the
 function (in the object <code>psa_sims</code>),
 then <code>make.report</code> will automatically construct an "Info-rank
 plot", which is a probabilistic form of tornado plot, based on the
-Expcted Value of Partial Information.  The user can also specify
+Expected Value of Partial Information.  The user can also specify
 the optional argument <code>show.tab</code> (default=FALSE); if set to
 <code>TRUE</code>, then a table with the values of the Info-rank is also
 shown.</p></td>
@@ -192,20 +195,20 @@ shown.</p></td>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
+Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.</p>
-<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London</p>
+<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Vaccine</span>)
-<span class='no'>m</span><span class='kw'>=</span><span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='no'>e</span>,<span class='no'>c</span>,<span class='kw'>ref</span><span class='kw'>=</span><span class='fl'>2</span>)
-<span class='fu'>makeReport</span>(<span class='no'>m</span>)</div><div class='output co'>#&gt; <span class='error'>Error in makeReport(m): could not find function "makeReport"</span></div><div class='input'># }
-</div></pre>
+    <pre class="examples"><div class='input'>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+  <span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Vaccine</span>)
+  <span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='no'>e</span>, <span class='no'>c</span>, <span class='kw'>ref</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+  <span class='fu'>make.report</span>(<span class='no'>m</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

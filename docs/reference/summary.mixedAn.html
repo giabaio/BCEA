@@ -106,6 +106,9 @@ economic evaluation of a given model" />
     <li>
       <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
     </li>
+    <li>
+      <a href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -209,13 +212,21 @@ London</p>
        <span class='kw'>mkt.shares</span><span class='kw'>=</span><span class='kw'>NULL</span>  <span class='co'># the vector of market shares can be defined </span>
                         <span class='co'>#  externally. If NULL, then each of the T </span>
                         <span class='co'>#  interventions will have 1/T market share</span>
-)</div><div class='output co'>#&gt; <span class='error'>Error in UseMethod("mixedAn", he): no applicable method for 'mixedAn' applied to an object of class "c('bcea', 'list')"</span></div><div class='input'>
+)
+
 <span class='co'># Prints a summary of the results</span>
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>ma</span>,       <span class='co'># uses the results of the mixed strategy analysis </span>
                   <span class='co'>#  (a "mixedAn" object)</span>
      <span class='kw'>wtp</span><span class='kw'>=</span><span class='fl'>25000</span>    <span class='co'># selects the relevant willingness to pay </span>
                   <span class='co'>#  (default: 25,000) </span>
-)</div><div class='output co'>#&gt; <span class='error'>Error in summary(ma, wtp = 25000): object 'ma' not found</span></div><div class='input'>
+)</div><div class='output co'>#&gt; 
+#&gt; Analysis of mixed strategy for willingness to pay parameter k = 25000
+#&gt; 
+#&gt; Reference intervention: Vaccination (50.00% market share)
+#&gt; Comparator intervention: Status Quo (50.00% market share)
+#&gt; 
+#&gt; Loss in the expected value of information = 0.61
+#&gt; </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

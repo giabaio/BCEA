@@ -109,6 +109,9 @@ parameter EVPPI and the SPDE-INLA method for larger parameter subsets." />
     <li>
       <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
     </li>
+    <li>
+      <a href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -147,11 +150,16 @@ subsets of parameters. Uses GAM non-parameteric regression for single
 parameter EVPPI and the SPDE-INLA method for larger parameter subsets.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>evppi</span>(<span class='no'>param_idx</span>, <span class='no'>input</span>, <span class='no'>he</span>, <span class='kw'>N</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>residuals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>evppi</span>(<span class='no'>he</span>, <span class='no'>param_idx</span>, <span class='no'>input</span>, <span class='kw'>N</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>residuals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>he</th>
+      <td><p>A <code>bcea</code> object containing the results of the Bayesian
+modelling and the economic evaluation.</p></td>
+    </tr>
     <tr>
       <th>param_idx</th>
       <td><p>A vector of parameters for which the EVPPI should be
@@ -165,11 +173,6 @@ parameters.</p></td>
 monitored by the call to JAGS or BUGS. The matrix should have column names
 matching the names of the parameters and the values in the vector parameter
 should match at least one of those values.</p></td>
-    </tr>
-    <tr>
-      <th>he</th>
-      <td><p>A <code>bcea</code> object containing the results of the Bayesian
-modelling and the economic evaluation.</p></td>
     </tr>
     <tr>
       <th>N</th>
@@ -295,8 +298,8 @@ approach. Medical Decision Making.</p>
 for speed: an efficient algorithm for calculation of single-parameter
 expected value of partial perfect information. Value in Health.</p>
 <p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
-<p>Baio, G, A Berardi, and A Heath. 2017. Bayesian Cost-Effectiveness Analysis with the R package BCEA.
-New York, NY: Springer. doi:10.1007/978-3-319-55718-2.</p>
+<p>Baio, G, A Berardi, and A Heath. 2017. Bayesian Cost-Effectiveness Analysis
+with the R package BCEA. New York, NY: Springer. doi:10.1007/978-3-319-55718-2.</p>
 <p>Heath A., Manolopoulou I., Baio G. (2016). Estimating the Expected Value of
 Partial Perfect Information in Health Economic Evaluations using Integrated
 Nested Laplace Approximation.  Statistics in Medicine.
@@ -306,8 +309,7 @@ http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full</p>
     <div class='dont-index'><p><code><a href='plot.evppi.html'>plot.evppi</a></code>, <code><a href='bcea.html'>bcea</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># See Baio G., Dawid A.P. (2011) for a detailed description of the </span>
+    <pre class="examples"><div class='input'><span class='co'># See Baio G., Dawid A.P. (2011) for a detailed description of the </span>
 <span class='co'># Bayesian model and economic problem</span>
 
 <span class='co'># Load the processed results of the MCMC simulation model</span>
@@ -330,17 +332,27 @@ http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full</p>
 #&gt; [1] 14 17 20
 #&gt; [1] "Linear dependence: removing column Repeat.GP[1,1]"</div><div class='input'>
 <span class='co'># Compute the EVPPI using INLA/SPDE</span>
-<span class='no'>x0</span> <span class='kw'>&lt;-</span> <span class='fu'>evppi</span>(<span class='kw'>param_idx</span> <span class='kw'>=</span> <span class='fl'>38</span>:<span class='fl'>40</span>, <span class='kw'>input</span> <span class='kw'>=</span> <span class='no'>inp</span>$<span class='no'>mat</span>, <span class='kw'>he</span> <span class='kw'>=</span> <span class='no'>m</span>)</div><div class='output co'>#&gt; 
+<span class='no'>x0</span> <span class='kw'>&lt;-</span> <span class='fu'>evppi</span>(<span class='kw'>he</span> <span class='kw'>=</span> <span class='no'>m</span>, <span class='kw'>param_idx</span> <span class='kw'>=</span> <span class='fl'>39</span>:<span class='fl'>40</span>, <span class='kw'>input</span> <span class='kw'>=</span> <span class='no'>inp</span>$<span class='no'>mat</span>)</div><div class='output co'>#&gt; [1] "method: GAM" "method: GAM"
+#&gt; 
 #&gt; Calculating fitted values for the GAM regression 
 #&gt; 
 #&gt; Calculating fitted values for the GAM regression 
-#&gt; Calculating EVPPI </div><div class='output co'>#&gt; <span class='error'>Error in prepare.output(parameters = params, inputs = inputs): object 'parameter' not found</span></div><div class='input'>
+#&gt; Calculating EVPPI </div><div class='input'>
 <span class='co'># using GAM regression</span>
-<span class='no'>x1</span> <span class='kw'>&lt;-</span> <span class='fu'>evppi</span>(<span class='kw'>param_idx</span> <span class='kw'>=</span> <span class='fl'>38</span>:<span class='fl'>40</span>, <span class='kw'>input</span> <span class='kw'>=</span> <span class='no'>inp</span>$<span class='no'>mat</span>, <span class='kw'>he</span> <span class='kw'>=</span> <span class='no'>m</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"GAM"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in structure(res, class = "evppi"): object 'res' not found</span></div><div class='input'>
+<span class='no'>x1</span> <span class='kw'>&lt;-</span> <span class='fu'>evppi</span>(<span class='kw'>he</span> <span class='kw'>=</span> <span class='no'>m</span>, <span class='kw'>param_idx</span> <span class='kw'>=</span> <span class='fl'>39</span>:<span class='fl'>40</span>, <span class='kw'>input</span> <span class='kw'>=</span> <span class='no'>inp</span>$<span class='no'>mat</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"GAM"</span>)</div><div class='output co'>#&gt; 
+#&gt; Calculating fitted values for the GAM regression 
+#&gt; 
+#&gt; Calculating fitted values for the GAM regression 
+#&gt; Calculating EVPPI </div><div class='input'>
 <span class='co'># using GP regression</span>
-<span class='no'>x2</span> <span class='kw'>&lt;-</span> <span class='fu'>evppi</span>(<span class='kw'>param_idx</span> <span class='kw'>=</span> <span class='fl'>38</span>:<span class='fl'>40</span>, <span class='kw'>input</span> <span class='kw'>=</span> <span class='no'>inp</span>$<span class='no'>mat</span>, <span class='kw'>he</span> <span class='kw'>=</span> <span class='no'>m</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"GP"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in structure(res, class = "evppi"): object 'res' not found</span></div><div class='input'>
+<span class='no'>x2</span> <span class='kw'>&lt;-</span> <span class='fu'>evppi</span>(<span class='kw'>he</span> <span class='kw'>=</span> <span class='no'>m</span>, <span class='kw'>param_idx</span> <span class='kw'>=</span> <span class='fl'>39</span>:<span class='fl'>40</span>, <span class='kw'>input</span> <span class='kw'>=</span> <span class='no'>inp</span>$<span class='no'>mat</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"GP"</span>)</div><div class='output co'>#&gt; 
+#&gt; Calculating fitted values for the GP regression 
+#&gt; 
+#&gt; Calculating fitted values for the GP regression 
+#&gt; Calculating EVPPI </div><div class='input'>
 <span class='co'># plot results</span>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>x0</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot(x0): object 'x0' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='no'>x0</span>$<span class='no'>k</span>, <span class='no'>x0</span>$<span class='no'>evppi</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='error'>Error in points(x0$k, x0$evppi, type = "l", lwd = 2, lty = 2): object 'x0' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='no'>x1</span>$<span class='no'>k</span>, <span class='no'>x1</span>$<span class='no'>evppi</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"red"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in points(x1$k, x1$evppi, type = "l", col = "red"): object 'x1' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='no'>x2</span>$<span class='no'>k</span>, <span class='no'>x2</span>$<span class='no'>evppi</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"blue"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in points(x2$k, x2$evppi, type = "l", col = "blue"): object 'x2' not found</span></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>x0</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: the condition has length &gt; 1 and only the first element will be used</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='no'>x0</span>$<span class='no'>k</span>, <span class='no'>x0</span>$<span class='no'>evppi</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='no'>x1</span>$<span class='no'>k</span>, <span class='no'>x1</span>$<span class='no'>evppi</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"red"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='no'>x2</span>$<span class='no'>k</span>, <span class='no'>x2</span>$<span class='no'>evppi</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"blue"</span>)</div><div class='img'><img src='evppi-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>x0</span>$<span class='no'>k</span>, <span class='no'>x0</span>$<span class='no'>evppi</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='no'>x1</span>$<span class='no'>k</span>, <span class='no'>x1</span>$<span class='no'>evppi</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"red"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='no'>x2</span>$<span class='no'>k</span>, <span class='no'>x2</span>$<span class='no'>evppi</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"blue"</span>)</div><div class='img'><img src='evppi-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="BCEAweb — BCEAweb" />
-<meta property="og:description" content="Launches the web-app" />
+<meta property="og:description" content="Launches the web-app." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -105,6 +105,9 @@
     <li>
       <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
     </li>
+    <li>
+      <a href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -137,7 +140,7 @@
     </div>
 
     <div class="ref-description">
-    <p>Launches the web-app</p>
+    <p>Launches the web-app.</p>
     </div>
 
     <pre class="usage"><span class='fu'>BCEAweb</span>(<span class='kw'>e</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>c</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>parameters</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
@@ -176,29 +179,16 @@ their own values using the web-interface</p></td>
     <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 Analysis in Health Economics.  Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.</p>
-<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London</p>
+<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Vaccine</span>)
-<span class='fu'>BCEAweb</span>(<span class='no'>e</span>,<span class='no'>c</span>,<span class='no'>vaccine</span>)</div><div class='output co'>#&gt;  [1] 14 15 16 17 18 19 20 21 22 29 44 45 46 47
-#&gt; [1] "Linear dependence: removing column pi[2,2]"
-#&gt;  [1] 14 15 16 17 18 19 20 21 22 29 44 45
-#&gt; [1] "Linear dependence: removing column pi[2,1]"
-#&gt;  [1] 14 15 16 17 18 19 20 21 22 29 44
-#&gt; [1] "Linear dependence: removing column pi[1,1]"
-#&gt; [1] 14 15 16 17 18 19 20 21 22
-#&gt; [1] "Linear dependence: removing column Repeat.GP[2,2]"
-#&gt; [1] 14 15 17 18 20 21
-#&gt; [1] "Linear dependence: removing column Repeat.GP[2,1]"
-#&gt; [1] 14 17 20
-#&gt; [1] "Linear dependence: removing column Repeat.GP[1,1]"</div><div class='output co'>#&gt; <span class='error'>Error in launch(e, c, parameters, ...): You need to install the R package 'shinythemes'. Please run in your R terminal:</span>
-#&gt; <span class='error'> install.packages('shinythemes')</span></div><div class='input'># }
-</div></pre>
+<span class='fu'>BCEAweb</span>(<span class='no'>e</span>,<span class='no'>c</span>,<span class='no'>vaccine</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

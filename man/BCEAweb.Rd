@@ -27,7 +27,7 @@ their own values using the web-interface}
 Launches the web-app.
 }
 \examples{
-\donttest{
+\dontrun{
 data(Vaccine)
 BCEAweb(e,c,vaccine)
 }
@@ -45,10 +45,10 @@ Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 \author{
 Gianluca Baio
 }
-\keyword{Expected}
-\keyword{Health}
+\keyword{"Expected}
+\keyword{"Health}
 \keyword{economic}
-\keyword{evaluation,}
-\keyword{information}
+\keyword{evaluation"}
+\keyword{information"}
 \keyword{of}
 \keyword{value}

@@ -45,13 +45,10 @@ m <- bcea(e=e,                  # defines the variables of
                                 # in a grid from the interval (0, Kmax)
 
 # Now can save the simulation exercise in an object using sim_table()
-st <- sim_table(m,         # uses the results of the economic evaluation 
-                           #  (a 'bcea' object)
-                wtp=25000) # selects the particular value for k
+sim_table(m,         # uses the results of the economic evaluation 
+                     #  (a 'bcea' object)
+          wtp=25000) # selects the particular value for k
                
-# The table can be explored. For example, checking the 
-# element 'Table' of the object 'st'
-
 }
 \references{
 Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity

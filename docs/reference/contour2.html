@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Specialised contour plot for objects in the class "bcea" — contour2 • BCEA</title>
+<title>Specialised CE-plane Contour Plot — contour2 • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,7 @@
 
 
 
-<meta property="og:title" content="Specialised contour plot for objects in the class "bcea" — contour2" />
+<meta property="og:title" content="Specialised CE-plane Contour Plot — contour2" />
 <meta property="og:description" content="Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
 of the bivariate density of the differentials of cost (y-axis) and
 effectiveness (x-axis).  Also adds the sustainability area (i.e. below the
@@ -108,6 +108,9 @@ selected value of the willingness-to-pay threshold)." />
     <li>
       <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
     </li>
+    <li>
+      <a href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -134,7 +137,7 @@ selected value of the willingness-to-pay threshold)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Specialised contour plot for objects in the class "bcea"</h1>
+    <h1>Specialised CE-plane Contour Plot</h1>
     <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/contour2.R'><code>R/contour2.R</code></a></small>
     <div class="hidden name"><code>contour2.Rd</code></div>
     </div>
@@ -152,7 +155,7 @@ selected value of the willingness-to-pay threshold).</p>
   <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>comparison</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>),
+  <span class='kw'>graph_type</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>),
   <span class='no'>...</span>
 )</pre>
 
@@ -182,20 +185,20 @@ appropriate limits).</p></td>
     <tr>
       <th>comparison</th>
       <td><p>The comparison being plotted. Default to <code>NULL</code>
-chooses the first comparison if <code>graph="base"</code>. If
-<code>graph="ggplot2"</code> the default value will choose all the possible
+chooses the first comparison if <code>graph_type="base"</code>. If
+<code>graph_type="ggplot2"</code> the default value will choose all the possible
 comparisons. Any subset of the possible comparisons can be selected (e.g.,
 <code>comparison=c(1,3)</code>).</p></td>
     </tr>
     <tr>
-      <th>graph</th>
+      <th>graph_type</th>
       <td><p>A string used to select the graphical engine to use for
 plotting. Should (partial-)match the two options <code>"base"</code> or
 <code>"ggplot2"</code>. Default value is <code>"base"</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments to be passed to <code><a href='ceplane.plot.html'>ceplane.plot</a></code>. See the
+      <td><p>Arguments to be passed to <code>ceplane.plot</code>. See the
 relative manual page for more details.</p></td>
     </tr>
     </table>
@@ -205,7 +208,7 @@ relative manual page for more details.</p></td>
     
 
 <dt>contour</dt><dd><p>A ggplot item containing the requested plot.
-Returned only if <code>graph="ggplot2"</code>.</p></dd> Plots the cost-effectiveness
+Returned only if <code>graph_type="ggplot2"</code>.</p></dd> Plots the cost-effectiveness
 plane with a scatterplot of all the simulated values from the (posterior)
 bivariate distribution of (Delta_e,Delta_c), the differentials of
 effectiveness and costs; superimposes a contour of the distribution and
@@ -214,25 +217,33 @@ prints the value of the ICER, together with the sustainability area.
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
+Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.</p>
-<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London</p>
+<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>, <code><a href='ceplane.plot.html'>ceplane.plot</a></code>,
+    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>, <code>ceplane.plot</code>,
 <code><a href='contour.bcea.html'>contour.bcea</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='co'>### create the bcea object m for the smoking cessation example</span>
+<span class='co'>## create the bcea object m for the smoking cessation example</span>
 <span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Smoking</span>)
-<span class='no'>m</span><span class='kw'>=</span><span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='no'>e</span>,<span class='no'>c</span>,<span class='kw'>ref</span><span class='kw'>=</span><span class='fl'>4</span>,<span class='kw'>interventions</span><span class='kw'>=</span><span class='no'>treats</span>,<span class='kw'>Kmax</span><span class='kw'>=</span><span class='fl'>500</span>)
-<span class='co'>### produce the plot</span>
-<span class='fu'>contour2</span>(<span class='no'>m</span>,<span class='kw'>wtp</span><span class='kw'>=</span><span class='fl'>200</span>,<span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"base"</span>)</div><div class='output co'>#&gt; <span class='message'>The first available comparison will be selected.</span>
-#&gt; <span class='message'>              To plot multiple comparisons together please use the ggplot2 version. Please see ?contour2 for additional details.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to min; returning Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to max; returning -Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to min; returning Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to max; returning -Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to min; returning Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to max; returning -Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to min; returning Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to max; returning -Inf</span></div><div class='output co'>#&gt; <span class='error'>Error in seq.default(100 * m.c/wtp, 100 * M.c/wtp, step): 'from' must be a finite number</span></div><div class='input'><span class='co'># \donttest{</span>
-<span class='co'>### or use ggplot2 to plot multiple comparisons</span>
-<span class='fu'>contour2</span>(<span class='no'>m</span>,<span class='kw'>wtp</span><span class='kw'>=</span><span class='fl'>200</span>,<span class='kw'>ICER.size</span><span class='kw'>=</span><span class='fl'>2</span>,<span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"ggplot2"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in MASS::kde2d(delta.e[, i], delta.c[, i], n = 300, h = c(sd(delta.e[,     i])/scale, sd(delta.c[, i])/scale)): object 'delta.e' not found</span></div><div class='input'># }
+<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='no'>e</span>, <span class='no'>c</span>, <span class='kw'>ref</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>interventions</span> <span class='kw'>=</span> <span class='no'>treats</span>, <span class='kw'>Kmax</span> <span class='kw'>=</span> <span class='fl'>500</span>)
+
+<span class='co'>## produce the plot</span>
+<span class='fu'>contour2</span>(<span class='no'>m</span>,
+         <span class='kw'>wtp</span> <span class='kw'>=</span> <span class='fl'>200</span>,
+         <span class='kw'>graph_type</span> <span class='kw'>=</span> <span class='st'>"base"</span>)</div><div class='output co'>#&gt; <span class='message'>The first available comparison will be selected.</span>
+#&gt; <span class='message'>              To plot multiple comparisons together please use the ggplot2 version.</span>
+#&gt; <span class='message'>              Please see ?contour2 for additional details.</span></div><div class='img'><img src='contour2-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># \donttest{</span>
+<span class='co'>## or use ggplot2 to plot multiple comparisons</span>
+<span class='fu'>contour2</span>(<span class='no'>m</span>,
+         <span class='kw'>wtp</span> <span class='kw'>=</span> <span class='fl'>200</span>,
+         <span class='kw'>ICER.size</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+         <span class='kw'>graph_type</span> <span class='kw'>=</span> <span class='st'>"ggplot2"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Duplicated aesthetics after name standardisation: colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: geom, border, include, line_colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: label.pos</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='output co'>#&gt; <span class='error'>Error: Aesthetics must be valid data columns. Problematic aesthetic(s): y = c. </span>
+#&gt; <span class='error'>Did you mistype the name of a data column or forget to add after_stat()?</span></div><div class='img'><img src='contour2-2.png' alt='' width='700' height='433' /></div><div class='input'># }
 
 </div></pre>
   </div>
