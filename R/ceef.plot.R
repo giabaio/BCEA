@@ -113,44 +113,43 @@
 #' 
 #' @export
 #' 
-ceef.plot <- function(he,
-                      comparators = NULL,
-                      pos = c(1, 1),
-                      start.from.origins = TRUE,
-                      threshold = NULL,
-                      flip = FALSE,
-                      dominance = TRUE,
-                      relative = FALSE,
-                      print.summary = TRUE,
-                      graph_type = c("base", "ggplot2"),
-                      ...) {
+ceef.plot.bcea <- function(he,
+                           comparators = NULL,
+                           pos = c(1, 1),
+                           start.from.origins = TRUE,
+                           threshold = NULL,
+                           flip = FALSE,
+                           dominance = TRUE,
+                           relative = FALSE,
+                           print.summary = TRUE,
+                           graph_type = c("base", "ggplot2"),
+                           ...) {
    
    if(is.null(he$c) | is.null(he$e))
       stop("Please use the bcea() function from BCEA version >= 2.1-0 or attach the vectors e and c to the bcea object.
-           Please see ?ceef.plot for additional details.")
+           Please see ?ceef.plot for additional details.", call. = FALSE)
    
    ## if threshold is NULL, then bound to pi/2, which is atan(Inf)
    ## else if positive, bound to the increase angle given the slope
    if(is.null(threshold))
       threshold <- pi/2
-   else{
-      if(threshold<=0){
+   else {
+      if (threshold <= 0) {
          warning("The value of the cost-effectiveness threshold should be positive. The argument will be ignored.")
          threshold <- pi/2
-      }
-      else
+      } else
          threshold <- atan(threshold)
    }
    # Gives you the possibility of suppressing the plot (if 'print.plot' set to FALSE)
    exArgs <- list(...)
    
-   if(exists("print.plot",exArgs)){
+   if (exists("print.plot",exArgs)) {
       print.plot <- exArgs$print.plot
    } else {
       print.plot <- TRUE}
    
    ### selects the comparators. No need for recursion
-   if(!is.null(comparators)){
+   if (!is.null(comparators)) {
       stopifnot(all(comparators %in% 1:he$n_comparators))
       # adjusts bcea object for the correct number of dimensions and comparators
       he$comp <- he$comp[comparators]
@@ -177,7 +176,7 @@ ceef.plot <- function(he,
    
    stopifnot(he$n_comparators >= 2)
    
-   base.graphics <- ifelse(isTRUE(pmatch(graph_type,c("base","ggplot2")) == 2), FALSE, TRUE)
+   base.graphics <- pmatch(graph_type,c("base","ggplot2")) != 2
    
    ### no visible binding note
    c.avg <- e.avg <- x <- y <- e <- e.orig <- c.orig <- NA_real_
@@ -336,11 +335,11 @@ ceef.plot <- function(he,
       ### Print the summary table
       cat("\nCost-effectiveness efficiency frontier summary \n\n")
       cat("Interventions on the efficiency frontier:\n")
-      print(ceef.points,quote=F,digits=5,justify="center")
+      print(ceef.points,quote=FALSE,digits=5,justify="center")
       cat("\n")
       if(length(no.ceef)>0){
          cat("Interventions not on the efficiency frontier:\n")
-         print(noceef.points,quote=F,digits=5,justify="center")
+         print(noceef.points,quote=FALSE,digits=5,justify="center")
       }
    }
    if(print.summary)
@@ -578,7 +577,7 @@ ceef.plot <- function(he,
                legend.title = ggplot2::element_blank(),
                legend.background = ggplot2::element_blank(),
                text = ggplot2::element_text(size = 11),
-               legend.key.size = grid::unit(.66, "lines"),
+               legend.key.size = grid::unit(0.66, "lines"),
                legend.spacing = grid::unit(-1.25, "line"),
                panel.grid = ggplot2::element_blank(),
                legend.key = ggplot2::element_blank(),
@@ -594,5 +593,12 @@ ceef.plot <- function(he,
          print(ceplane)
       }
    }
+}
+
+
+#' @export
+#' 
+ceef.plot <- function(he, ...) {
+   UseMethod('ceef.plot', he)
 }
 

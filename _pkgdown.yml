@@ -12,19 +12,18 @@ reference:
   - '`new_bcea`'
   - '`setReferenceGroup<-`'
   - '`setKmax<-`'
-  
 - title: Plotting
 - contents:
-  - '`ceac.plot`'
-  - '`ceaf.plot`'
-  - '`ceef.plot`'
-  - '`ceplane.plot`'
+  - '`ceac.plot.bcea`'
+  - '`ceaf.plot.bcea`'
+  - '`ceef.plot.bcea`'
+  - '`ceplane.plot.bcea`'
   - '`contour.bcea`'
-  - '`contour2`'
-  - '`eib.plot`'
-  - '`evi.plot`'
-  - '`ib.plot`'
-  - '`info.rank`'
+  - '`contour2.bcea`'
+  - '`eib.plot.bcea`'
+  - '`evi.plot.bcea`'
+  - '`ib.plot.bcea`'
+  - '`info.rank.bcea`'
   - '`plot.bcea`'
   - '`plot.CEriskav`'
   - '`plot.evppi`'
@@ -43,7 +42,7 @@ reference:
 - title: Outputs
 - contents:
   - '`make.report`'
-  - '`sim.table`'
+  - '`sim.table.bcea`'
   - '`summary.bcea`'
   - '`summary.mixedAn`'
 - title: Miscellaneous

@@ -1,5 +1,5 @@
 
-#' Cost-effectiveness analysis with multiple comparison
+#' Cost-effectiveness Analysis With Multiple Comparison
 #' 
 #' Computes and plots the probability that each of the n_int interventions
 #' being analysed is the most cost-effective and the cost-effectiveness
@@ -15,10 +15,9 @@
 #' 
 #' @author Gianluca Baio
 #' @seealso \code{\link{bcea}}, \code{\link{mce.plot}}, \code{\link{ceaf.plot}}
-#' @keywords Health economic evaluation Multiple comparison
+#' @keywords "Health economic evaluation" "Multiple comparison"
 #' 
 #' @examples
-#' 
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 #' # Bayesian model and economic problem
 #' 

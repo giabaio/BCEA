@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>calculate credible intervals — eib.plot.cri • BCEA</title>
+<title>Expected Value of Information (EVI) Plot — evi.plot.bcea • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="calculate credible intervals — eib.plot.cri" />
-<meta property="og:description" content="calculate credible intervals" />
+<meta property="og:title" content="Expected Value of Information (EVI) Plot — evi.plot.bcea" />
+<meta property="og:description" content="Plots the Expected Value of Information (EVI) against the willingness to pay" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -134,19 +134,66 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>calculate credible intervals</h1>
-    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/eibplot_helpers.R'><code>R/eibplot_helpers.R</code></a></small>
-    <div class="hidden name"><code>eib.plot.cri.Rd</code></div>
+    <h1>Expected Value of Information (EVI) Plot</h1>
+    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/evi.plot.R'><code>R/evi.plot.R</code></a></small>
+    <div class="hidden name"><code>evi.plot.bcea.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>calculate credible intervals</p>
+    <p>Plots the Expected Value of Information (EVI) against the willingness to pay</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for cri</span>
-<span class='fu'><a href='eib.plot.html'>eib.plot</a></span>(<span class='no'>he</span>, <span class='no'>alpha</span>, <span class='no'>cri.quantile</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for bcea</span>
+<span class='fu'><a href='evi.plot.html'>evi.plot</a></span>(<span class='no'>he</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>, <span class='st'>"plotly"</span>), <span class='no'>...</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>he</th>
+      <td><p>A <code>bcea</code> object containing the results of the Bayesian
+modelling and the economic evaluation.</p></td>
+    </tr>
+    <tr>
+      <th>graph</th>
+      <td><p>A string used to select the graphical engine to use for
+plotting. Should (partial-)match the three options <code>"base"</code>,
+<code>"ggplot2"</code> or <code>"plotly"</code>. Default value is <code>"base"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional graphical arguments:</p><ul>
+<li><p><code>line_colors</code> to specify the EVPI line colour - all graph types.</p></li>
+<li><p><code>line_types</code> to specify the line type (lty) - all graph types.</p></li>
+<li><p><code>area_include</code> to specify whether to include the area under the EVPI curve - plotly only.</p></li>
+<li><p><code>area_color</code> to specify the area under the colour curve - plotly only.</p></li>
+</ul></td>
+    </tr>
+    </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    
+
+<dt>eib</dt><dd><p>If <code>graph="ggplot2"</code> a ggplot object, or if <code>graph="plotly"</code> 
+  a plotly object containing the requested plot. Nothing is returned when <code>graph="base"</code>, 
+  the default.</p></dd> The function produces a plot of the
+  Expected Value of Information as a function of the discrete grid
+  approximation of the willingness to pay parameter. The break even point(s)
+  (i.e. the point in which the EIB=0, ie when the optimal decision changes
+  from one intervention to another) is(are) also showed.
+
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
+Analysis in Health Economics.  Statistical Methods in Medical Research
+doi:10.1177/0962280211419832.</p>
+<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
+London</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>, <code>ceac.plot</code>,
+<code>ceplane.plot</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

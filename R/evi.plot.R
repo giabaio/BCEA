@@ -1,5 +1,5 @@
 
-#' Expected Value of Information (EVI) plot
+#' Expected Value of Information (EVI) Plot
 #' 
 #' Plots the Expected Value of Information (EVI) against the willingness to pay
 #' 
@@ -32,7 +32,8 @@
 #' @keywords Health economic evaluation Expected value of information
 #' @export
 #' 
-evi.plot <- function(he, graph = c("base","ggplot2","plotly"), ...) {
+evi.plot.bcea <- function(he,
+                          graph = c("base","ggplot2","plotly"), ...) {
 
     # choose graphical engine -----
   if (is.null(graph) || is.na(graph)) 
@@ -204,4 +205,11 @@ evi.plot <- function(he, graph = c("base","ggplot2","plotly"), ...) {
     evi <- plotly::config(evi, displayModeBar = FALSE)
     return(evi)
   }
+}
+
+
+#' @export
+#' 
+evi.plot <- function(he, ...) {
+  UseMethod('evi.plot', he)
 }

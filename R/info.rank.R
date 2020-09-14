@@ -8,6 +8,7 @@
 #' parameter) to EVPI. This represents the relative 'importance' of each
 #' parameter in terms of the expected value of information.
 #' 
+#' @template args-he
 #' @param parameter A vector of parameters for which the individual EVPPI
 #' should be calculated. This can be given as a string (or vector of strings)
 #' of names or a numeric vector, corresponding to the column numbers of
@@ -16,7 +17,6 @@
 #' monitored by the call to JAGS or BUGS. The matrix should have column names
 #' matching the names of the parameters and the values in the vector parameter
 #' should match at least one of those values.
-#' @template args-he
 #' @param wtp A value of the wtp for which the analysis should be performed. If
 #' not specified then the break-even point for the current model will be used.
 #' @param howManyPars Optional maximum number of parameters to be included in the bar plot. 
@@ -56,16 +56,15 @@
 #' @export
 #' @importFrom rlang .data
 #' 
-info.rank <- function(parameter,
-                      input,
-                      he,
-                      wtp = he$k[min(which(he$k >= he$ICER))],
-                      howManyPars = NULL,
-                      graph = c("base", "plotly"),
-                      ...) {
+info.rank.bcea <- function(he,
+                           parameter,
+                           input,
+                           wtp = he$k[min(which(he$k >= he$ICER))],
+                           howManyPars = NULL,
+                           graph = c("base", "plotly"),
+                           ...) {
   
-  
-  base.graphics <- ifelse(isTRUE(pmatch(graph,c("base","plotly")) == 2), FALSE, TRUE)
+  base.graphics <- pmatch(graph,c("base","plotly")) != 2
   if (!requireNamespace("plotly", quietly = FALSE)) {
     base.graphics <- TRUE
     warning("Package plotly not found; falling back to base graphics.")
@@ -225,4 +224,11 @@ info.rank <- function(parameter,
       space,
       howManyPars) 
   }
+}
+
+
+#' @export
+#' 
+info.rank <- function(he, ...) {
+  UseMethod('info.rank', he)
 }

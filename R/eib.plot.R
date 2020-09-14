@@ -69,13 +69,13 @@
 #' @importFrom grid unit
 #' @export
 #' 
-eib.plot <- function(he,
-                     comparison = NULL,
-                     pos = c(1, 0),
-                     size = NULL,
-                     plot.cri = NULL,
-                     graph = c("base", "ggplot2", "plotly"),
-                     ...) {
+eib.plot.bcea <- function(he,
+                          comparison = NULL,
+                          pos = c(1, 0),
+                          size = NULL,
+                          plot.cri = NULL,
+                          graph = c("base", "ggplot2", "plotly"),
+                          ...) {
   
   ##TODO: this is needed because its not defined in bcea()
   he$change_comp <- FALSE
@@ -711,3 +711,11 @@ eib.plot <- function(he,
     return(eib)
   }
 }
+
+
+#' @export
+#' 
+eib.plot <- function(he, ...) {
+  UseMethod('eib.plot', he)
+}
+

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>calculate credible intervals — eib.plot.cri • BCEA</title>
+<title>Info-Rank Plot — info.rank.bcea • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,12 @@
 
 
 
-<meta property="og:title" content="calculate credible intervals — eib.plot.cri" />
-<meta property="og:description" content="calculate credible intervals" />
+<meta property="og:title" content="Info-Rank Plot — info.rank.bcea" />
+<meta property="og:description" content="Produces a plot similar to a Tornado-plot, but based on the analysis of the
+EVPPI. For each parameter and value of the willingness-to-pay threshold, a
+barchart is plotted to describe the ratio of EVPPI (specific to that
+parameter) to EVPI. This represents the relative 'importance' of each
+parameter in terms of the expected value of information." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -134,19 +138,106 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>calculate credible intervals</h1>
-    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/eibplot_helpers.R'><code>R/eibplot_helpers.R</code></a></small>
-    <div class="hidden name"><code>eib.plot.cri.Rd</code></div>
+    <h1>Info-Rank Plot</h1>
+    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/info.rank.R'><code>R/info.rank.R</code></a></small>
+    <div class="hidden name"><code>info.rank.bcea.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>calculate credible intervals</p>
+    <p>Produces a plot similar to a Tornado-plot, but based on the analysis of the
+EVPPI. For each parameter and value of the willingness-to-pay threshold, a
+barchart is plotted to describe the ratio of EVPPI (specific to that
+parameter) to EVPI. This represents the relative 'importance' of each
+parameter in terms of the expected value of information.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for cri</span>
-<span class='fu'><a href='eib.plot.html'>eib.plot</a></span>(<span class='no'>he</span>, <span class='no'>alpha</span>, <span class='no'>cri.quantile</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for bcea</span>
+<span class='fu'><a href='info.rank.html'>info.rank</a></span>(
+  <span class='no'>he</span>,
+  <span class='no'>parameter</span>,
+  <span class='no'>input</span>,
+  <span class='kw'>wtp</span> <span class='kw'>=</span> <span class='no'>he</span>$<span class='no'>k</span>[<span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span>(<span class='no'>he</span>$<span class='no'>k</span> <span class='kw'>&gt;=</span> <span class='no'>he</span>$<span class='no'>ICER</span>))],
+  <span class='kw'>howManyPars</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"plotly"</span>),
+  <span class='no'>...</span>
+)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>he</th>
+      <td><p>A <code>bcea</code> object containing the results of the Bayesian
+modelling and the economic evaluation.</p></td>
+    </tr>
+    <tr>
+      <th>parameter</th>
+      <td><p>A vector of parameters for which the individual EVPPI
+should be calculated. This can be given as a string (or vector of strings)
+of names or a numeric vector, corresponding to the column numbers of
+important parameters.</p></td>
+    </tr>
+    <tr>
+      <th>input</th>
+      <td><p>A matrix containing the simulations for all the parameters
+monitored by the call to JAGS or BUGS. The matrix should have column names
+matching the names of the parameters and the values in the vector parameter
+should match at least one of those values.</p></td>
+    </tr>
+    <tr>
+      <th>wtp</th>
+      <td><p>A value of the wtp for which the analysis should be performed. If
+not specified then the break-even point for the current model will be used.</p></td>
+    </tr>
+    <tr>
+      <th>howManyPars</th>
+      <td><p>Optional maximum number of parameters to be included in the bar plot. 
+Includes all parameters by default.</p></td>
+    </tr>
+    <tr>
+      <th>graph</th>
+      <td><p>A string used to select the graphical enging to use for plotting.
+Should (partial-)match one of the two options "base" or "plotly". Default value is "base"</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional options. These include graphical parameters that the
+user can specify:</p><ul>
+<li><p><code>xlim</code> = limits of the x-axis; ca = font size for the axis
+label (default = 0.7 of full size).</p></li>
+<li><p><code>cn</code> = font size for the parameter names
+vector (default = 0.7 of full size) - base graphics only.</p></li>
+<li><p><code>mai</code> = margins of the graph (default = c(1.36,1.5,1,1)) - base graphics only.</p></li>
+<li><p><code>rel</code> = logical argument that specifies whether the ratio of
+EVPPI to EVPI (<code>rel=TRUE</code>, default) or the absolute value of the EVPPI
+should be used for the analysis.</p></li>
+</ul></td>
+    </tr>
+    </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    
+
+<dt>res</dt><dd><p>With base graphics: A data.frame containing the ranking of the parameters
+  with the value of the selected summary, for the chosen wtp; with plotly: a plotly object, 
+  incorporating in the $rank element the data.frame as above.</p></dd>
+  The function produces a 'Info-rank' plot. This is an extension of standard 'Tornado
+  plots' and presents a ranking of the model parameters in terms of their
+  impact on the expected value of information. For each parameter, the
+  specific individual EVPPI is computed and used to measure the impact of
+  uncertainty in that parameter over the decision-making process, in terms of
+  how large the expected value of gaining more information is.
+
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
+Analysis in Health Economics.  Statistical Methods in Medical Research
+doi:10.1177/0962280211419832.</p>
+<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>, <code><a href='evppi.html'>evppi</a></code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

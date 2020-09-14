@@ -4,7 +4,7 @@
 \alias{eib.plot.cri}
 \title{calculate credible intervals}
 \usage{
-eib.plot.cri(he, alpha, cri.quantile)
+\method{eib.plot}{cri}(he, alpha, cri.quantile)
 }
 \description{
 calculate credible intervals

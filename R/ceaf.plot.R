@@ -69,8 +69,8 @@
 #' 
 #' @export
 #' 
-ceaf.plot <- function(mce,
-                      graph = c("base", "ggplot2")) {
+ceaf.plot.pairwise <- function(mce,
+                               graph = c("base", "ggplot2")) {
   
   graph <- match.arg(graph)
   base_graphics <- pmatch(graph, c("base", "ggplot2")) != 2
@@ -123,3 +123,12 @@ ceaf.plot <- function(mce,
     return(ggceaf)
   }
 }
+
+
+#' @export
+#' 
+ceaf.plot <- function(he, ...) {
+  UseMethod('ceaf.plot', he)
+}
+
+
