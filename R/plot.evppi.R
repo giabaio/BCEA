@@ -23,7 +23,7 @@
 #' @seealso \code{\link{bcea}}, \code{\link{evppi}}
 #' @references
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
-#' @keywords Health economic evaluation Expected value of information
+#' @keywords "Health economic evaluation" "Expected value of information"
 #' 
 #' @export
 #' 
@@ -85,9 +85,11 @@ plot.evppi <- function (x,
       points(x$k, x$evppi, type = "l", col = col, lty = 1)
     }
     cmd <- "EVPPI for the selected\nsubset of parameters"
-    if (nchar(x$parameters[1]) <= 25) {
-      cmd <- paste("EVPPI for ", x$parameters, sep = "")
+    
+    if (nchar(x$params[1]) <= 25) {
+      cmd <- paste("EVPPI for ", x$params, sep = "")
     }
+    
     if (length(x$index) > 1 & (x$method == "Strong & Oakley (univariate)" || 
                                x$method == "Sadatsafavi et al")) {
       for (i in seq_along(x$index)) {
@@ -100,7 +102,7 @@ plot.evppi <- function (x,
              paste("(", i, ")", sep = ""), cex = 0.7, pos = 2)
       }
       cmd <- paste("(", paste(1:length(x$index)), ") EVPPI for ", 
-                   x$parameters, sep = "")
+                   x$params, sep = "")
     }
     legend(
       alt.legend,
@@ -108,8 +110,8 @@ plot.evppi <- function (x,
       col = c("black", col),
       cex = 0.7,
       bty = "n",
-      lty = c(1, 1:length(x$parameters)),
-      lwd = c(2, rep(1, length(x$parameters)))
+      lty = c(1, 1:length(x$params)),
+      lwd = c(2, rep(1, length(x$params)))
     )
     return(invisible(NULL))
   }

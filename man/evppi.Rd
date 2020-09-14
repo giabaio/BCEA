@@ -144,17 +144,21 @@ m <- bcea(e, c, ref = 2, interventions = treats)
 inp <- createInputs(vaccine)
 
 # Compute the EVPPI using INLA/SPDE
-x0 <- evppi(he = m, param_idx = 38:40, input = inp$mat)
+x0 <- evppi(he = m, param_idx = 39:40, input = inp$mat)
 
 # using GAM regression
-x1 <- evppi(he = m, param_idx = 38:40, input = inp$mat, method = "GAM")
+x1 <- evppi(he = m, param_idx = 39:40, input = inp$mat, method = "GAM")
 
 # using GP regression
-x2 <- evppi(he = m, param_idx = 38:40, input = inp$mat, method = "GP")
+x2 <- evppi(he = m, param_idx = 39:40, input = inp$mat, method = "GP")
 
 # plot results
 plot(x0)
 points(x0$k, x0$evppi, type = "l", lwd = 2, lty = 2)
+points(x1$k, x1$evppi, type = "l", col = "red")
+points(x2$k, x2$evppi, type = "l", col = "blue")
+
+plot(x0$k, x0$evppi, type = "l", lwd = 2, lty = 2)
 points(x1$k, x1$evppi, type = "l", col = "red")
 points(x2$k, x2$evppi, type = "l", col = "blue")
 
@@ -185,11 +189,11 @@ http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full
 \author{
 Anna Heath, Gianluca Baio
 }
-\keyword{Expected}
-\keyword{Health}
+\keyword{"Expected}
+\keyword{"Health}
 \keyword{economic}
-\keyword{evaluation}
-\keyword{information}
+\keyword{evaluation"}
+\keyword{information"}
 \keyword{of}
 \keyword{partial}
 \keyword{value}

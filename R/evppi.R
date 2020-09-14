@@ -131,9 +131,11 @@
 #' Nested Laplace Approximation.  Statistics in Medicine.
 #' http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full
 #' 
-#' @keywords Health economic evaluation Expected value of partial information
-#' @examples
+#' @keywords "Health economic evaluation" "Expected value of partial information"
 #' 
+#' @export
+#' 
+#' @examples
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 #' # Bayesian model and economic problem
 #'
@@ -147,13 +149,13 @@
 #' inp <- createInputs(vaccine)
 #' 
 #' # Compute the EVPPI using INLA/SPDE
-#' x0 <- evppi(he = m, param_idx = 38:40, input = inp$mat)
+#' x0 <- evppi(he = m, param_idx = 39:40, input = inp$mat)
 #' 
 #' # using GAM regression
-#' x1 <- evppi(he = m, param_idx = 38:40, input = inp$mat, method = "GAM")
+#' x1 <- evppi(he = m, param_idx = 39:40, input = inp$mat, method = "GAM")
 #' 
 #' # using GP regression
-#' x2 <- evppi(he = m, param_idx = 38:40, input = inp$mat, method = "GP")
+#' x2 <- evppi(he = m, param_idx = 39:40, input = inp$mat, method = "GP")
 #' 
 #' # plot results
 #' plot(x0)
@@ -161,8 +163,10 @@
 #' points(x1$k, x1$evppi, type = "l", col = "red")
 #' points(x2$k, x2$evppi, type = "l", col = "blue")
 #' 
-#' @export
+#' plot(x0$k, x0$evppi, type = "l", lwd = 2, lty = 2)
+#' points(x1$k, x1$evppi, type = "l", col = "red")
+#' points(x2$k, x2$evppi, type = "l", col = "blue")
 #' 
 evppi <- function(he, param_idx, input, N = NULL, plot = FALSE, residuals = TRUE,...)
-  UseMethod("evppi", param_idx)
+  UseMethod("evppi", he)
 

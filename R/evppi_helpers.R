@@ -345,28 +345,28 @@ compute.evppi <- function(he,fit.full) {
 
 #'
 prepare.output <- function(parameters, inputs) {
-  if (length(parameter) == 1) {
-    if (is.numeric(parameter)) {
-      name <- colnames(inputs)[parameter]
+  
+  if (length(parameters) == 1) {
+    if (is.numeric(parameters)) {
+      name <- colnames(inputs)[parameters]
     } else {
-      name <- parameter
+      name <- parameters
     }
-  }
-  else {
-    if (is.numeric(parameter)) {
-      n.param <- length(parameter)
-      end <- colnames(input)[parameter[n.param]]
+  } else {
+    if (is.numeric(parameters)) {
+      n.param <- length(parameters)
+      end <- colnames(input)[parameters[n.param]]
       name.mid <-
-        paste(colnames(inputs)[parameter[1:n.param - 1]],
+        paste(colnames(inputs)[parameters[1:n.param - 1]],
               ", ",
               sep = "",
               collapse = " ")
       name <- paste(name.mid, "and ", end, sep = "",
                     collapse = " ")
     } else {
-      n.param <- length(parameter)
-      end <- parameter[n.param]
-      name.mid <- paste(parameter[1:n.param - 1],
+      n.param <- length(parameters)
+      end <- parameters[n.param]
+      name.mid <- paste(parameters[1:n.param - 1],
                         ", ", sep = "", collapse = " ")
       name <- paste(name.mid, "and ", end, sep = "",
                     collapse = " ")

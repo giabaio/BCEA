@@ -48,7 +48,7 @@ evppi.bcea <- function(he,
   }
   
   robust <- NULL
-  extra_args <- list(...)   #extra_args <- list()
+  extra_args <- list(...)
   
   if (!exists("suppress.messages", where = extra_args)) {
     suppress.messages <- FALSE
@@ -78,24 +78,21 @@ evppi.bcea <- function(he,
         list(rep("INLA", he$n_comparators - 1),
              rep("INLA", he$n_comparators - 1))
       }
-  } else {
     
-    if (inherits(extra_args$method, "list")) {
-      
-      #####TODO: this is a list tho...
-      if (extra_args$method == "sad" | extra_args$method == "so") {
-        extra_args$method <- extra_args$method
+    print(paste("method:", extra_args$method))
+    
+  }
+  
+  if (!inherits(extra_args$method, "list")) {
+    
+    if (extra_args$method != "sad" & extra_args$method != "so") {
+      if (length(extra_args$method) > 1) {
+        extra_args$method <- list(extra_args$method,
+                                  extra_args$method)
       } else {
-        if (length(extra_args$method) > 1) {
-          extra_args$method <- list(extra_args$method,
-                                    extra_args$method)
-        }
-        if (length(extra_args$method) == 1) {
-          
-          extra_args$method <-
-            list(rep(extra_args$method, he$n_comparators - 1),
-                 rep(extra_args$method, he$n_comparators - 1))
-        }
+        extra_args$method <-
+          list(rep(extra_args$method, he$n_comparators - 1),
+               rep(extra_args$method, he$n_comparators - 1))
       }
     }
   }
@@ -108,7 +105,6 @@ evppi.bcea <- function(he,
     }
   }
   
-  
   # int.ord ----
   
   if (!exists("int.ord", where = extra_args)) {
@@ -116,6 +112,7 @@ evppi.bcea <- function(he,
       list(rep(1, he$n_comparators - 1),
            rep(1, he$n_comparators - 1))
   }
+  
   if (!inherits(extra_args$int.ord, "list")) {
     
     extra_args$int.ord <-
@@ -426,11 +423,11 @@ evppi.bcea <- function(he,
         if (method == "GAM" || method == "G") {
           method <- "GAM"
           mesh <- robust <- NULL
-          if (!isTRUE(requireNamespace("mgcv", quietly = TRUE))) {
+          if (!requireNamespace("mgcv", quietly = TRUE)) {
             stop("You need to install the package 'mgcv'. Please run in your R terminal:\n 
                  install.packages('mgcv')", call. = FALSE)
           }
-          if (isTRUE(requireNamespace("mgcv", quietly = TRUE))) {
+          if (requireNamespace("mgcv", quietly = TRUE)) {
             if (!suppress.messages) {
               cat("\n")
               cat("Calculating fitted values for the GAM regression \n")
@@ -469,18 +466,18 @@ evppi.bcea <- function(he,
                         n.sim = n_sim)
         }
         if (method == "INLA") {
-          if (!isTRUE(requireNamespace("INLA", quietly = TRUE))) {
+          if (!requireNamespace("INLA", quietly = TRUE)) {
             stop("You need to install the packages 'INLA' and 'splancs'. Please run in your R terminal:\n 
                  install.packages('INLA', repos='http://www.math.ntnu.no/inla/R/stable')\n
                  and\n install.packages('splancs')", call. = FALSE)
           }
-          if (!isTRUE(requireNamespace("ldr", quietly = TRUE))) {
+          if (!requireNamespace("ldr", quietly = TRUE)) {
             stop("You need to install the package 'ldr'. Please run in your R terminal:\n
                  install.packages('ldr')", call. = FALSE)
           }
-          if (isTRUE(requireNamespace("ldr", quietly = TRUE))) {
+          if (requireNamespace("ldr", quietly = TRUE)) {
             
-            if (isTRUE(requireNamespace("INLA", quietly = TRUE))) {
+            if (requireNamespace("INLA", quietly = TRUE)) {
               if (!is.element("INLA", (.packages()))) {
                 attachNamespace("INLA")
               }
