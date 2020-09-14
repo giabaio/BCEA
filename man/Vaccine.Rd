@@ -30,50 +30,57 @@ vaccination}
 A data list including the variables needed for the influenza
 vaccination.  The variables are as follows:
 
-\describe{ \item{list("c")}{a matrix of simulations from the posterior
+\describe{
+\item{list("c")}{a matrix of simulations from the posterior
 distribution of the overall costs associated with the two treatments}
 \item{list("cost.GP")}{a matrix of simulations from the posterior
 distribution of the costs for GP visits associated with the two treatments}
 \item{list("cost.hosp")}{a matrix of simulations from the posterior
 distribution of the costs for hospitalisations associated with the two
-treatments} \item{list("cost.otc")}{a matrix of simulations from the
-posterior distribution of the costs for over-the-counter medications
-associated with the two treatments} \item{list("cost.time.off")}{a matrix of
-simulations from the posterior distribution of the costs for time off work
-associated with the two treatments} \item{list("cost.time.vac")}{a matrix of
-simulations from the posterior distribution of the costs for time needed to
-get the vaccination associated with the two treatments}
+treatments}
+\item{list("cost.otc")}{a matrix of simulations from the posterior distribution
+of the costs for over-the-counter medications associated with the two treatments}
+\item{list("cost.time.off")}{a matrix of simulations from the posterior
+distribution of the costs for time off work associated with the two treatments}
+\item{list("cost.time.vac")}{a matrix of simulations from the posterior
+distribution of the costs for time needed to get the vaccination associated
+with the two treatments}
 \item{list("cost.travel")}{a matrix of simulations from the posterior
 distribution of the costs for travel to get vaccination associated with the
-two treatments} \item{list("cost.trt1")}{a matrix of simulations from the
+two treatments}
+\item{list("cost.trt1")}{a matrix of simulations from the
 posterior distribution of the overall costs for first line of treatment
-associated with the two interventions} \item{list("cost.trt2")}{a matrix of
-simulations from the posterior distribution of the overall costs for second
-line of treatment associated with the two interventions}
+associated with the two interventions}
+\item{list("cost.trt2")}{a matrix of simulations from the posterior distribution
+of the overall costs for second line of treatment associated with the two
+interventions}
 \item{list("cost.vac")}{a matrix of simulations from the posterior
-distribution of the costs for vaccination} \item{list("e")}{a matrix of
-simulations from the posterior distribution of the clinical benefits
-associated with the two treatments} \item{list("N")}{the number of subjects
-in the reference population} \item{list("N.outcomes")}{the number of
-clinical outcomes analysed} \item{list("N.resources")}{the number of
-health-care resources under study} \item{list("QALYs.adv")}{a vector from
-the posterior distribution of the QALYs associated with advert events}
+distribution of the costs for vaccination}
+\item{list("e")}{a matrix of simulations from the posterior distribution of
+the clinical benefits associated with the two treatments}
+\item{list("N")}{the number of subjects in the reference population}
+\item{list("N.outcomes")}{the number of clinical outcomes analysed}
+\item{list("N.resources")}{the number of health-care resources under study}
+\item{list("QALYs.adv")}{a vector from the posterior distribution of the
+QALYs associated with advert events}
 \item{list("QALYs.death")}{a vector from the posterior distribution of the
-QALYs associated with death} \item{list("QALYs.hosp")}{a vector from the
-posterior distribution of the QALYs associated with hospitalisation}
+QALYs associated with death}
+\item{list("QALYs.hosp")}{a vector from the posterior distribution of the
+QALYs associated with hospitalisation}
 \item{list("QALYs.inf")}{a vector from the posterior distribution of the
-QALYs associated with influenza infection} \item{list("QALYs.pne")}{a vector
-from the posterior distribution of the QALYs associated with penumonia}
+QALYs associated with influenza infection}
+\item{list("QALYs.pne")}{a vector from the posterior distribution of the
+QALYs associated with penumonia}
 \item{list("treats")}{a vector of labels associated with the two treatments}
 \item{list("vaccine")}{a \code{rjags} object containing the simulations for
-the parameters used in the original model} \item{list("vaccine_mat")}{a
-matrix containing the simulations for the parameters used in the original
-model} }
+the parameters used in the original model}
+\item{list("vaccine_mat")}{a matrix containing the simulations for the
+parameters used in the original model}}
 }
 \source{
 Adapted from Turner D, Wailoo A, Cooper N, Sutton A, Abrams K,
-Nicholson K.  The cost-effectiveness of influenza vaccination of healthy
-adults 50-64 years of age.  Vaccine. 2006;24:1035-1043.
+Nicholson K. The cost-effectiveness of influenza vaccination of healthy
+adults 50-64 years of age. Vaccine. 2006;24:1035-1043.
 }
 \description{
 This data set contains the results of the Bayesian analysis used to model
@@ -84,13 +91,13 @@ the clinical output and the costs associated with an influenza vaccination.
 data(Vaccine)
 
 \donttest{
-m=bcea(e,c,ref=1,interventions=treats)
+m <- bcea(e, c, ref = 1, interventions = treats)
 }
 
 }
 \references{
 Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
+Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 }
 \keyword{datasets}

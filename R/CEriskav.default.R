@@ -1,10 +1,11 @@
 
 #' @export
 #'
-CEriskav.default <- function(he,
-                             r = NULL,
-                             comparison = 1) {
-  ### COMPARISON IS USED TO SELECT THE COMPARISON FOR WHICH THE ANALYSIS IS CARRIED OUT!!!
+CEriskav.bcea <- function(he,
+                          r = NULL,
+                          comparison = 1) {
+  
+  ### COMPARISON IS USED TO SELECT THE COMPARISON FOR WHICH THE ANALYSIS IS CARRIED OUT
   # Reference: Baio G, Dawid AP (2011).
   # Default vector of risk aversion parameters
   
@@ -15,8 +16,8 @@ CEriskav.default <- function(he,
   # expected utilities & EVPI for risk aversion cases
   K <- length(he$k)
   R <- length(r)
-  Ur <- array(NA, c(dim(he$U),R))
-  Urstar <- array(NA, c(dim(he$Ustar),R))
+  Ur <- array(NA, c(dim(he$U), R))
+  Urstar <- array(NA, c(dim(he$Ustar), R))
   
   for (i in seq_len(K)) {
     for (l in seq_len(R)) {
@@ -27,22 +28,17 @@ CEriskav.default <- function(he,
     }
   }
   
-  if (he$n_comparisons == 1) {
-    IBr <- Ur[, , he$ref, ] - Ur[, , he$comp, ]
-  }
-  if (he$n_comparisons > 1) {
-    IBr <- Ur[, , he$ref, ] - Ur[, , he$comp[comparison], ]
-  }
+  IBr <- Ur[, , he$ref, ] - Ur[, , he$comp[comparison], ]
   
   eibr <- apply(IBr, c(2,3), mean)
-  vir <- array(NA, c(he$n.sim,K,R))
+  vir <- array(NA, c(he$n_sim, K, R))
   
   for (i in seq_len(K)) {
     for (l in seq_len(R)) {
       vir[, i, l] <- Urstar[, i, l] - max(apply(Ur[, i, , l], 2, mean))
     }
   }
-  evir <- apply(vir, c(2,3) ,mean)
+  evir <- apply(vir, c(2, 3), mean)
   
   structure(
     list(Ur = Ur,
@@ -56,3 +52,11 @@ CEriskav.default <- function(he,
          k = he$k),
     class = "CEriskav")
 }
+
+
+#' @export
+#'
+CEriskav.default <- function(he, ...) {
+  stop("No available method.", call. = FALSE)
+}
+

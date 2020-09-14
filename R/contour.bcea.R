@@ -136,8 +136,7 @@ contour.bcea <- function(he,
   }
   
   alt.legend <- pos
-  base.graphics <-
-    ifelse(isTRUE(pmatch(graph, c("base", "ggplot2")) == 2), FALSE, TRUE)
+  base.graphics <- pmatch(graph, c("base", "ggplot2")) != 2
   
   if (base.graphics) {
     if (is.null(comparison) | length(comparison) > 1) {
@@ -167,7 +166,7 @@ contour.bcea <- function(he,
       m.e <- range(he$delta_e)[1]
       M.e <- range(he$delta_e)[2]
       
-      ##TODO: this isnt how to use ifelse()
+      ##TODO: this isnt how to use ifelse(); refactor
       
       # Changes the range so that the plot always shows the x and y axes
       ch1 <- ifelse(m.e > 0,
@@ -207,6 +206,7 @@ contour.bcea <- function(he,
           # normalise the density and use levels in the contour
           density$z <-
             (density$z - min(density$z)) / (max(density$z) - min(density$z))
+          
           graphics::contour(
             density$x,
             density$y,

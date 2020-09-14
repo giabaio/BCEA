@@ -339,7 +339,8 @@ evppi.default <- function(param_idx,
       method <- "Strong & Oakley (univariate)"
       n_seps <- NULL
       if (!exists("n.blocks", where = extra_args)) {
-        stop("Please specify the param_idx 'n.blocks' to use the Strong and Oakley univariate method", call. = FALSE)
+        stop("Please specify the param_idx 'n.blocks' to use the Strong and Oakley univariate method",
+             call. = FALSE)
       }
       else {
         n.blocks <- extra_args$n.blocks
@@ -586,8 +587,7 @@ evppi.default <- function(param_idx,
           time. <- c(projections$time, mesh$time, fit$time)
           time. <- sum(time.)
           time[[k]][l] <- (time.)
-        }
-        else {
+        } else {
           time. <- fit$time
           time[[k]][l] <- time.
         }
@@ -596,7 +596,9 @@ evppi.default <- function(param_idx,
     if (!suppress.messages) {cat("Calculating EVPPI \n")}
     
     comp <- compute.evppi(he = he, fit.full = fit.full)
+    
     name <- prepare.output(parameters = params, inputs = inputs)
+    
     time[[3]] <- comp$time
     names(time) <- c("Fitting for Effects",
                      "Fitting for Costs",
@@ -629,3 +631,4 @@ evppi.default <- function(param_idx,
   
   structure(res, class = "evppi")
 }
+

@@ -1,3 +1,4 @@
+
 shiny::shinyUI(
   {shiny::tagList(
     shiny::tags$head(shiny::tags$link(rel='shortcut icon', href='favicon.ico')),
@@ -533,13 +534,13 @@ shiny::shinyUI(
                                                                                                    shiny::p(shiny::h5(shiny::strong("b. Mesh controls (smaller values = faster but LESS accurate)")))
                                                                                      ),
                                                                                      shiny::column(3,
-                                                                                                   shiny::sliderInput('cutoff_inla',ticks=F,
+                                                                                                   shiny::sliderInput('cutoff_inla',ticks=FALSE,
                                                                                                                       "Density of points",
                                                                                                                       min=.1,max=.5,value = .3)
                                                                                      ),
                                                                                      shiny::column(3,
                                                                                                    shiny::sliderInput('convex_in',
-                                                                                                                      "Inner boundary",ticks=F,
+                                                                                                                      "Inner boundary",ticks=FALSE,
                                                                                                                       value=0.5,max=0.7,min=0.3,step=.01)
                                                                                      ),
                                                                                      shiny::column(3,

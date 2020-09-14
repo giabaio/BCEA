@@ -40,12 +40,14 @@
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' @keywords Health economic evaluation Bayesian model
 #' @import ggplot2
+#' @importFrom grDevices ps.options pdf.options
 #' 
 #' @examples
 #' 
 #' ## create the bcea object m for the smoking cessation example
 #' data(Smoking)
 #' m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+#' 
 #' ## produce the plot
 #' contour2(m,
 #'          wtp = 200,
@@ -88,20 +90,19 @@ contour2 <- function(he,
             " vs ",
             he$interventions[he$comp],
             sep = "")
-  }
-  else {
+  } else {
     title <- exArgs$title
   }
   
-  base.graphics <- ifelse(isTRUE(pmatch(graph_type,c("base","ggplot2"))==2),FALSE,TRUE) 
+  base.graphics <- pmatch(graph_type,c("base","ggplot2")) !=2
   
-  if(base.graphics) {
+  if (base.graphics) {
     # Encodes characters so that the graph can be saved as ps or pdf
     ps.options(encoding="CP1250")
     pdf.options(encoding="CP1250")
     
     # Selects the first comparison by default if not selected
-    if(is.null(comparison)){
+    if (is.null(comparison)){
       message("The first available comparison will be selected.
               To plot multiple comparisons together please use the ggplot2 version.
               Please see ?contour2 for additional details.")
@@ -116,11 +117,11 @@ contour2 <- function(he,
                        he$interventions[he$ref],
                        " vs ",
                        he$interventions[he$comp[comparison]], sep = "")
-      } 
-      else {title <- exArgs$title}
+      } else {
+        title <- exArgs$title}
       
-      he$delta_e <- he$delta_e[,comparison]
-      he$delta_c <- he$delta_c[,comparison]
+      he$delta_e <- he$delta_e[, comparison]
+      he$delta_c <- he$delta_c[, comparison]
       he$comp <- he$comp[comparison]
       he$ICER <- he$ICER[comparison]
     }
@@ -158,15 +159,26 @@ contour2 <- function(he,
       m.c <- ylim[1]
       M.c <- ylim[2]}
     
-    plot(xx,yy,col="white",xlim=c(m.e,M.e),ylim=c(m.c,M.c), 
-         xlab=xlab,ylab=ylab,
-         main=title,axes=F)
+    plot(xx,
+         yy,
+         col = "white",
+         xlim = c(m.e, M.e),
+         ylim = c(m.c, M.c),
+         xlab = xlab,
+         ylab = ylab,
+         main = title,
+         axes = FALSE)
+    
     polygon(c(min(xx),seq(min(xx),max(xx),step),max(xx)),
             c(min(yy),wtp*seq(min(xx),max(xx),step),min(yy)),
             col="grey95",border="black")
+    
     #	polygon(c(xx,xx),c(yy,rev(yy)),col="grey95",border="black")
-    axis(1); axis(2); box()
-    points(he$delta_e,he$delta_c,pch=20,cex=.35,col="grey55")
+    axis(1)
+    axis(2)
+    box()
+    points(x = he$delta_e,
+           y = he$delta_c,pch=20,cex=0.35,col="grey55")
     abline(h=0,col="dark grey")
     abline(v=0,col="dark grey")
     text(
@@ -176,12 +188,15 @@ contour2 <- function(he,
             format(
               he$ICER, digits = 6, nsmall = 2),
             sep = ""),
-      cex = .95,
+      cex = 0.95,
       pos = 2,
       col = "red")
-    points(mean(he$delta_e),mean(he$delta_c),pch=20,col="red",cex=1)
+    points(x = mean(he$delta_e),
+           y = mean(he$delta_c),pch=20,col="red",cex=1)
+    
     t1 <- paste("k==",format(wtp,digits=3,nsmall=2,scientific=FALSE),sep="")
-    text(x.pt,y.pt,parse(text=t1),cex=.8,pos=4)
+    
+    text(x.pt,y.pt,parse(text=t1),cex=0.8,pos=4)
     
     # And then plots the contour
     requireNamespace("MASS")
@@ -206,15 +221,28 @@ contour2 <- function(he,
     ch3 <- ifelse(m.c>0,m.c<--m.c,m.c<-m.c)
     ch4 <- ifelse(M.c<0,M.c<--M.c,M.c<-M.c)
     
-    par(new=TRUE)
-    contour(density$x,density$y,density$z,add=TRUE,nlevels=nlevels,drawlabels=FALSE,lwd=1.5)
-    return(invisible(NULL))
-  } # end if base.graphics
-  else{
+    par(new = TRUE)
+    graphics::contour(
+      density$x,
+      density$y,
+      density$z,
+      add = TRUE,
+      nlevels = nlevels,
+      drawlabels = FALSE,
+      lwd = 1.5)
     
-    if(!isTRUE(requireNamespace("ggplot2",quietly=TRUE)&requireNamespace("grid",quietly=TRUE))){
+    return(invisible(NULL))
+  } else {
+    
+    if(!(requireNamespace("ggplot2",quietly=TRUE) &
+         requireNamespace("grid",quietly=TRUE))){
       message("falling back to base graphics\n")
-      contour2(he,comparison=comparison,xlim=xlim,ylim=ylim,wtp=wtp,graph="base")
+      contour2(he,
+               comparison = comparison,
+               xlim = xlim,
+               ylim = ylim,
+               wtp = wtp,
+               graph = "base")
       return(invisible(NULL))
     }
     scale <- 0.5
@@ -234,16 +262,18 @@ contour2 <- function(he,
                         h = c(sd(delta_e) / scale, sd(delta_c) / scale)
                       ))
       density <-
-        data.frame(expand.grid("e" = density$x,
-                               "c" = density$y),
-                   "z" = as.vector(density$z))
+        data.frame(expand.grid(
+          e = density$x,
+          c = density$y),
+          z = as.vector(density$z))
       contour <-
         ceplane.plot(he, wtp = wtp, graph = "ggplot2", ...) +
         geom_contour(aes(z=z,x=e,y=c),data=density,colour="black",bins=nlevels)
     }
-    if(he$n_comparisons>1&is.null(comparison)) {
+    if(he$n_comparisons > 1 &
+       is.null(comparison)) {
       densitydf <- data.frame()
-      for(i in 1:he$n_comparisons) {
+      for(i in seq_len(he$n_comparisons)) {
         density <- with(he,
                         MASS::kde2d(
                           delta_e[, i],
@@ -254,15 +284,17 @@ contour2 <- function(he,
                         ))
         densitydf <-
           rbind(densitydf,
-                cbind(expand.grid(density$x, density$y),
-                      as.vector(density$z)))
+                cbind(expand.grid(
+                  x = density$x,
+                  y = density$y),
+                  z = as.vector(density$z)))
       }
-      names(densitydf) <- c("e", "c", "z")
       densitydf <-
         cbind(densitydf, "comparison" = as.factor(sort(
           rep(1:he$n_comparisons, dim(densitydf)[1] / he$n_comparisons)
         )))
-      contour <- ceplane.plot(he, wtp = wtp, graph = "ggplot2", ...) +
+      contour <-
+        ceplane.plot(he, wtp = wtp, graph = "ggplot2", ...) +
         geom_contour(data=densitydf,
                      aes(x=e,y=c,z=z,colour=comparison),
                      bins=nlevels,
@@ -271,32 +303,35 @@ contour2 <- function(he,
     if(he$n_comparisons>1&!is.null(comparison)) {
       # adjusts bcea object for the correct number of dimensions and comparators
       he$comp <- he$comp[comparison]
-      he$delta_e <- he$delta_e[,comparison]
-      he$delta_c <- he$delta_c[,comparison]
-      he$n_comparators=length(comparison)+1
-      he$n_comparisons=length(comparison)
-      he$interventions=he$interventions[sort(c(he$ref,he$comp))]
-      he$ICER=he$ICER[comparison]
-      he$ib=he$ib[,,comparison]
-      he$eib=he$eib[,comparison]
-      he$U=he$U[,,sort(c(he$ref,comparison+1))]
-      he$ceac=he$ceac[,comparison]
-      he$ref=rank(c(he$ref,he$comp))[1]
-      he$comp=rank(c(he$ref,he$comp))[-1]
+      he$delta_e <- he$delta_e[, comparison]
+      he$delta_c <- he$delta_c[, comparison]
+      he$n_comparators <- length(comparison) + 1
+      he$n_comparisons <- length(comparison)
+      he$interventions <- he$interventions[sort(c(he$ref, he$comp))]
+      he$ICER <- he$ICER[comparison]
+      he$ib <- he$ib[, , comparison]
+      he$eib <- he$eib[, comparison]
+      he$U <- he$U[ , , sort(c(he$ref,comparison + 1))]
+      he$ceac <- he$ceac[, comparison]
+      he$ref <- rank(c(he$ref, he$comp))[1]
+      he$comp <- rank(c(he$ref, he$comp))[-1]
       he$change_comp <- TRUE
       
-      return(contour2(
-        he,
-        wtp = wtp,
-        xlim = xlim,
-        ylim = ylim,
-        comparison = NULL,
-        graph = "ggplot2",
-        ...
-      ))
+      return(
+        contour2(he,
+                 wtp = wtp,
+                 xlim = xlim,
+                 ylim = ylim,
+                 comparison = NULL,
+                 graph = "ggplot2",
+                 ...))
     }
     
-    contour <- contour + coord_cartesian(xlim=xlim,ylim=ylim)
+    contour <-
+      contour +
+      coord_cartesian(xlim = xlim,
+                      ylim = ylim)
+    
     return(contour)
-  } # end if !base.graphics
+  }
 }

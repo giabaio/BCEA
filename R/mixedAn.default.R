@@ -12,7 +12,7 @@ mixedAn.default <- function(he,
   if(is.null(mkt.shares)==TRUE){
     mkt.shares <- rep(1,he$n_comparators)/he$n_comparators
   }
-  temp <- array(NA,c(he$n.sim,length(he$k),he$n_comparators))
+  temp <- array(NA,c(he$n_sim,length(he$k),he$n_comparators))
   for (j in 1:he$n_comparators) {
     temp[,,j] <- mkt.shares[j]*he$U[,,j]
   }

@@ -40,7 +40,7 @@
 #' ceplane.plot(he,
 #'              graph = "ggplot2",
 #'              wtp=200,
-#'              theme = theme_linedraw())
+#'              theme = ggplot2::theme_linedraw())
 #'              
 ceplane_plot_ggplot.bcea <- function(he,
                                      wtp,

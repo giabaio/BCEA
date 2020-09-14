@@ -8,6 +8,7 @@
 #' 
 #' @return 
 #' @keywords hplot
+#' @export
 #' 
 #' @examples
 #'

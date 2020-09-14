@@ -34,7 +34,7 @@
 #' @param plot A logical value indicating whether the function should produce
 #' the summary plot or not.
 #' @return An object of the class "bcea" containing the following elements
-#' \item{n.sim}{Number of simulations produced by the Bayesian model}
+#' \item{n_sim}{Number of simulations produced by the Bayesian model}
 #' \item{n.comparators}{Number of interventions being analysed}
 #' \item{n.comparisons}{Number of possible pairwise comparisons}
 #' \item{delta.e}{For each possible comparison, the differential in the

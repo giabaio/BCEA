@@ -85,4 +85,6 @@
 #' }
 #' 
 #' @export
-CEriskav <- function(he, r = NULL, comparison = 1) UseMethod("CEriskav", he)
+CEriskav <- function(he, r = NULL, comparison = 1)
+  UseMethod("CEriskav", he)
+
