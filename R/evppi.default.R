@@ -11,9 +11,9 @@
 #' for computational reasons rather than to aid fit.
 #' You can still plot the INLA mesh elements but not output the meshes.
 #' 
+#' @template args-he
 #' @param param_idx 
 #' @param input 
-#' @template args-he 
 #' @param N 
 #' @param plot 
 #' @param residuals 
@@ -24,12 +24,12 @@
 #'
 #' @examples
 #' 
-evppi.default <- function(param_idx,
-                          input,
-                          he,
-                          N = NULL,
-                          plot = FALSE,
-                          residuals = TRUE, ...) {
+evppi.bcea <- function(he,
+                       param_idx,
+                       input,
+                       N = NULL,
+                       plot = FALSE,
+                       residuals = TRUE, ...) {
   
   if (is.null(colnames(input))) {
     colnames(input) <- paste0("theta", 1:dim(input)[2])
@@ -630,5 +630,11 @@ evppi.default <- function(param_idx,
   }
   
   structure(res, class = "evppi")
+}
+
+#' @export
+#' 
+evppi.default <- function(he, ...) {
+  stop("No method available", call. = FALSE)
 }
 

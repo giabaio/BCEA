@@ -123,8 +123,8 @@
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' 
-#' Baio, G, A Berardi, and A Heath. 2017. Bayesian Cost-Effectiveness Analysis with the R package BCEA.
-#' New York, NY: Springer. doi:10.1007/978-3-319-55718-2.
+#' Baio, G, A Berardi, and A Heath. 2017. Bayesian Cost-Effectiveness Analysis
+#' with the R package BCEA. New York, NY: Springer. doi:10.1007/978-3-319-55718-2.
 #' 
 #' Heath A., Manolopoulou I., Baio G. (2016). Estimating the Expected Value of
 #' Partial Perfect Information in Health Economic Evaluations using Integrated
@@ -147,13 +147,13 @@
 #' inp <- createInputs(vaccine)
 #' 
 #' # Compute the EVPPI using INLA/SPDE
-#' x0 <- evppi(param_idx = 38:40, input = inp$mat, he = m)
+#' x0 <- evppi(he = m, param_idx = 38:40, input = inp$mat)
 #' 
 #' # using GAM regression
-#' x1 <- evppi(param_idx = 38:40, input = inp$mat, he = m, method = "GAM")
+#' x1 <- evppi(he = m, param_idx = 38:40, input = inp$mat, method = "GAM")
 #' 
 #' # using GP regression
-#' x2 <- evppi(param_idx = 38:40, input = inp$mat, he = m, method = "GP")
+#' x2 <- evppi(he = m, param_idx = 38:40, input = inp$mat, method = "GP")
 #' 
 #' # plot results
 #' plot(x0)
@@ -163,6 +163,6 @@
 #' 
 #' @export
 #' 
-evppi <- function(param_idx, input, he, N = NULL, plot = FALSE, residuals = TRUE,...)
+evppi <- function(he, param_idx, input, N = NULL, plot = FALSE, residuals = TRUE,...)
   UseMethod("evppi", param_idx)
 

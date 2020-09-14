@@ -6,9 +6,12 @@
 \title{Expected Value of Perfect Partial Information (EVPPI) for Selected
 Parameters}
 \usage{
-evppi(param_idx, input, he, N = NULL, plot = FALSE, residuals = TRUE, ...)
+evppi(he, param_idx, input, N = NULL, plot = FALSE, residuals = TRUE, ...)
 }
 \arguments{
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
+
 \item{param_idx}{A vector of parameters for which the EVPPI should be
 calculated. This can be given as a string (or vector of strings) of names or
 a numeric vector, corresponding to the column numbers of important
@@ -18,9 +21,6 @@ parameters.}
 monitored by the call to JAGS or BUGS. The matrix should have column names
 matching the names of the parameters and the values in the vector parameter
 should match at least one of those values.}
-
-\item{he}{A \code{bcea} object containing the results of the Bayesian
-modelling and the economic evaluation.}
 
 \item{N}{The number of PSA simulations used to calculate the EVPPI. The
 default uses all the available samples.}
@@ -144,13 +144,13 @@ m <- bcea(e, c, ref = 2, interventions = treats)
 inp <- createInputs(vaccine)
 
 # Compute the EVPPI using INLA/SPDE
-x0 <- evppi(param_idx = 38:40, input = inp$mat, he = m)
+x0 <- evppi(he = m, param_idx = 38:40, input = inp$mat)
 
 # using GAM regression
-x1 <- evppi(param_idx = 38:40, input = inp$mat, he = m, method = "GAM")
+x1 <- evppi(he = m, param_idx = 38:40, input = inp$mat, method = "GAM")
 
 # using GP regression
-x2 <- evppi(param_idx = 38:40, input = inp$mat, he = m, method = "GP")
+x2 <- evppi(he = m, param_idx = 38:40, input = inp$mat, method = "GP")
 
 # plot results
 plot(x0)
@@ -171,8 +171,8 @@ expected value of partial perfect information. Value in Health.
 
 Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 
-Baio, G, A Berardi, and A Heath. 2017. Bayesian Cost-Effectiveness Analysis with the R package BCEA.
-New York, NY: Springer. doi:10.1007/978-3-319-55718-2.
+Baio, G, A Berardi, and A Heath. 2017. Bayesian Cost-Effectiveness Analysis
+with the R package BCEA. New York, NY: Springer. doi:10.1007/978-3-319-55718-2.
 
 Heath A., Manolopoulou I., Baio G. (2016). Estimating the Expected Value of
 Partial Perfect Information in Health Economic Evaluations using Integrated

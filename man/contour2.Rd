@@ -59,6 +59,7 @@ selected value of the willingness-to-pay threshold).
 ## create the bcea object m for the smoking cessation example
 data(Smoking)
 m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+
 ## produce the plot
 contour2(m,
          wtp = 200,
