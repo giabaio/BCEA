@@ -2,15 +2,14 @@
 #' Summary Plot of the Health Economic Analysis
 #' 
 #' Plots in a single graph the Cost-Effectiveness plane, the Expected
-#' Incremental Benefit, the CEAC and the EVPI
+#' Incremental Benefit, the CEAC and the EVPI.
 #' 
 #' The default position of the legend for the cost-effectiveness plane
 #' (produced by \code{\link{ceplane.plot}}) is set to \code{c(1,1.025)}
 #' overriding its default for \code{pos=FALSE}, since multiple ggplot2 plots
 #' are rendered in a slightly different way than single plots.
 #' 
-#' @template args-he
-#' 
+#' @template args-he 
 #' @param comparison Selects the comparator, in case of more than two
 #' interventions being analysed. The value is passed to
 #' \code{\link{ceplane.plot}}, \code{\link{eib.plot}} and
@@ -48,12 +47,11 @@
 #' Analysis in Health Economics. Statistical Methods in Medical Research
 #' doi:10.1177/0962280211419832.
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
+#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' 
-#' @keywords Health economic evaluation
+#' @keywords "Health economic evaluation"
 #' 
 #' @examples
-#' 
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 #' # Bayesian model and economic problem
 #'
@@ -75,11 +73,11 @@
 #'       )
 #'
 #' # Plots the summary plots for the "bcea" object m using base graphics
-#' plot(he, graph="base")
+#' plot(he, graph = "base")
 #' 
 #' # Plots the same summary plots using ggplot2
 #' if(require(ggplot2)){
-#' plot(he, graph="ggplot2")
+#' plot(he, graph = "ggplot2")
 #' 
 #' ##### Example of a customized plot.bcea with ggplot2
 #' plot(he,
@@ -141,37 +139,8 @@ plot.bcea <- function(he,
       return(invisible(NULL))
     }
     
-    ####### multiplot ###### 
-    # source: R graphics cookbook
     if (all(is_req_pkgs)) {
-      
-      multiplot <- function(plotlist = NULL,
-                            file,
-                            cols = 1,
-                            layout = NULL, ...) {
-        
-        plots <- c(extra_args, plotlist)
-        n_plots <- length(plots)
-        if (is.null(layout)) {
-          layout <- matrix(seq(1, cols*ceiling(n_plots/cols)),
-                           ncol = cols,
-                           nrow = ceiling(n_plots/cols))
-        }
-        if (n_plots == 1) {
-          print(plots[[1]])
-        } else {
-          grid::grid.newpage()
-          grid::pushViewport(
-            grid::viewport(layout = grid::grid.layout(nrow(layout), ncol(layout))))
-          
-          for (i in seq_len(n_plots)) {
-            matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
-            print(plots[[i]], vp = grid::viewport(layout.pos.row = matchidx$row,
-                                                  layout.pos.col = matchidx$col))
-          }
-        }
-      }
-      
+
       theme_params <- 
         list(text = element_text(size = 9),
              legend.key.size = grid::unit(0.5, "lines"),
@@ -184,7 +153,6 @@ plot.bcea <- function(he,
                size = 11.5,
                hjust = 0.5))
       
-      ##TODO: modifylist with above?
       theme_add <- purrr::keep(extra_args, is.theme)
       
       ceplane.pos <- ifelse(pos, pos, c(1, 1.025))
@@ -219,7 +187,40 @@ plot.bcea <- function(he,
         do.call(theme, theme_params) +
         theme_add
       
-      multiplot(ceplane, ceac, eib, evi, cols = 2)
+      multiplot(list(ceplane, ceac, eib, evi), cols = 2, extra_args)
+    }
+  }
+}
+
+
+#' source: R graphics cookbook
+#' 
+multiplot <- function(plotlist = NULL,
+                      file,
+                      cols = 1,
+                      layout = NULL,
+                      extra_args, ...) {
+  
+  n_plots <- length(plotlist)
+
+  if (is.null(layout)) {
+    layout <- matrix(seq(1, cols*ceiling(n_plots/cols)),
+                     ncol = cols,
+                     nrow = ceiling(n_plots/cols))
+  }
+  if (n_plots == 1) {
+    print(plotlist[[1]])
+  } else {
+    grid::grid.newpage()
+    
+    grid::pushViewport(
+      grid::viewport(layout = grid::grid.layout(nrow(layout), ncol(layout))))
+    
+    for (i in seq_len(n_plots)) {
+      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+      print(plotlist[[i]],
+            vp = grid::viewport(layout.pos.row = matchidx$row,
+                                layout.pos.col = matchidx$col))
     }
   }
 }

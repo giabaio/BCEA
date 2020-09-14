@@ -1,5 +1,6 @@
 
-#
+#' @export
+#' 
 sim_table <- function(he, ...) UseMethod("sim_table", he)
 
 
@@ -32,8 +33,7 @@ sim_table <- function(he, ...) UseMethod("sim_table", he)
 #' @keywords Health economic evaluation
 #' @import dplyr
 #' 
-#' @examples
-#' 
+#' @examples 
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 #' # Bayesian model and economic problem
 #'
@@ -68,7 +68,8 @@ sim_table.bcea <- function(he,
   
   if (!is.element(wtp, he$k)) {
     if (!is.na(he$step)) {
-      # The user has selected a non-acceptable value for wtp, but has not specified wtp in the call to bcea
+      # The user has selected a non-acceptable value for wtp,
+      # but has not specified wtp in the call to bcea
       stop(
         sprintf("The willingness to pay parameter is defined in the interval [0- %f], with increments of %f \n",
                 he$Kmax, he$step), call. = FALSE)
@@ -112,7 +113,7 @@ sim_table.bcea <- function(he,
 
 #' @export
 #' 
-sim_table.default <- function(he, ..) {
+sim_table.default <- function(he, ...) {
   
   stop("No method for this object. Run bcea().", call. = FALSE)
 }

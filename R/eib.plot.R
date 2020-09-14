@@ -112,11 +112,13 @@ eib.plot <- function(he,
         "colors" = "black",
         "types" = NULL,
         "cri_colors" = "grey50"))
-  plot_aes_args = c("area_include",
+  
+  plot_aes_args <- c("area_include",
                     "area_color",
                     "line_colors",
                     "line_types",
                     "line_cri_colors")
+  
   cri.quantile <- TRUE
   if (length(exArgs) >= 1) {
     if (exists("cri.quantile", where = exArgs))
@@ -151,7 +153,7 @@ eib.plot <- function(he,
   
   ### if plot.cri is null, if comp=1 plot them otherwise do not (clutter!)
   if(is.null(plot.cri) & isTRUE(he$n_comparisons==1 | is.null(comparison)))
-    plot.cri <- ifelse(he$n_comparisons == 1, TRUE, FALSE)
+    plot.cri <- he$n_comparisons == 1
   
   ### calculate credible intervals if necessary
   if(isTRUE(plot.cri))
@@ -327,8 +329,8 @@ eib.plot <- function(he,
     }
   } else if (graph_choice == 2) {
 
-    if(!isTRUE(requireNamespace("ggplot2", quietly = TRUE) &
-               requireNamespace("grid", quietly = TRUE))) {
+    if(!(requireNamespace("ggplot2", quietly = TRUE) &
+         requireNamespace("grid", quietly = TRUE))) {
       message("falling back to base graphics\n")
       eib.plot(he, pos = alt.legend, graph = "base")
       return(invisible(NULL))
@@ -346,28 +348,32 @@ eib.plot <- function(he,
         opt.theme <- opt.theme + obj
     
     if (he$n_comparisons == 1) {
+      
       data.psa <- data.frame(
-        "k" = he$k,
-        "eib" = he$eib, 
-        "comparison" = as.factor(
+        k = he$k,
+        eib = c(he$eib), 
+        comparison = as.factor(
           rep(1:he$n_comparison, each = length(he$k)))
         )
+      
       if (plot.cri) 
         data.psa <- cbind(data.psa, cri)
+      
       if (is.null(plot_aes$line$types))
         plot_aes$line$types <- 1:he$n_comparisons
+      
       eib <-
-        ggplot(data.psa, aes(k, eib)) +
+        ggplot(data.psa, aes(x = k, y = eib)) +
         theme_bw() +
         geom_hline(aes(yintercept = 0), colour = "grey")
+      
       if (!he$change_comp) {
         eib <-
           eib +
           geom_line(
-            colour = plot_aes$line$colors[1],
-            linetype = plot_aes$line$types[1])
-      }
-      else{
+            linetype = plot_aes$line$types[1],
+            colour = plot_aes$line$colors[1])
+      } else {
         eib <-
           eib + 
           geom_line(linetype = plot_aes$line$types[1],
@@ -409,15 +415,15 @@ eib.plot <- function(he,
                is.null(comparison)) {
       data.psa <-
         data.frame(
-          "k" = c(he$k),
-          "eib" = c(he$eib),
-          "comparison" = as.factor(
+          k = c(he$k),
+          eib = c(he$eib),
+          comparison = as.factor(
             rep(1:he$n_comparison, each = length(he$k)))
         )
       if (plot.cri)
         data.psa <- cbind(data.psa, cri)
-      # labels for legend
-      comparisons.label <- with(he, paste0(interventions[ref]," vs ",interventions[comp]))
+      comparisons.label <-
+        paste0(he$interventions[he$ref]," vs ", he$interventions[he$comp])
       
       # linetype is the indicator of the comparison.
       # 1 = solid, 2 = dashed, 3 = dotted, 4 = dotdash, 5 = longdash, 6 = twodash
@@ -526,8 +532,7 @@ eib.plot <- function(he,
     if (alt.legend) {
       alt.legend <- "bottom"
       eib <- eib + theme(legend.direction = "vertical")
-    }
-    else {
+    } else {
       if (is.character(alt.legend)) {
         choices <- c("left", "right", "bottom", "top")
         alt.legend <- choices[pmatch(alt.legend, choices)]
@@ -538,7 +543,7 @@ eib.plot <- function(he,
       if (length(alt.legend) > 1)
         jus <- alt.legend
       if (length(alt.legend) == 1 & !is.character(alt.legend)) {
-        alt.legend <- c(1,0)
+        alt.legend <- c(1, 0)
         jus <- alt.legend
       }
     }
@@ -617,12 +622,12 @@ eib.plot <- function(he,
       ifelse(grepl(pattern = "^rgba\\(", x = x), x, plotly::toRGB(x, 0.4)))
     # data frame
     data.psa <- data.frame(
-      "k" = he$k,
-      "eib" = c(he$eib),
-      "comparison" = as.factor(c(
+      k = he$k,
+      eib = c(he$eib),
+      comparison = as.factor(c(
         vapply(1:he$n_comparisons, function(x) rep(x, length(he$k)))
       )),
-      "label" = as.factor(c(
+      label = as.factor(c(
         vapply(comparisons.label, function(x) rep(x, length(he$k)))
       )))
     if (plot.cri)

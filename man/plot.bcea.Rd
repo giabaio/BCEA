@@ -49,7 +49,7 @@ health economic evaluation.
 }
 \description{
 Plots in a single graph the Cost-Effectiveness plane, the Expected
-Incremental Benefit, the CEAC and the EVPI
+Incremental Benefit, the CEAC and the EVPI.
 }
 \details{
 The default position of the legend for the cost-effectiveness plane
@@ -58,7 +58,6 @@ overriding its default for \code{pos=FALSE}, since multiple ggplot2 plots
 are rendered in a slightly different way than single plots.
 }
 \examples{
-
 # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 # Bayesian model and economic problem
 
@@ -80,11 +79,11 @@ he <- bcea(
       )
 
 # Plots the summary plots for the "bcea" object m using base graphics
-plot(he, graph="base")
+plot(he, graph = "base")
 
 # Plots the same summary plots using ggplot2
 if(require(ggplot2)){
-plot(he, graph="ggplot2")
+plot(he, graph = "ggplot2")
 
 ##### Example of a customized plot.bcea with ggplot2
 plot(he,
@@ -101,7 +100,7 @@ Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
 \code{\link{bcea}},
@@ -113,6 +112,6 @@ Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
 \author{
 Gianluca Baio, Andrea Berardi
 }
-\keyword{Health}
+\keyword{"Health}
 \keyword{economic}
-\keyword{evaluation}
+\keyword{evaluation"}
