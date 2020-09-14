@@ -3,8 +3,8 @@
 \name{mixedAn}
 \alias{mixedAn}
 \alias{mixedAn.default}
-\title{Cost-effectiveness analysis when multiple (possibly non cost-effective)
-interventions are present on the market}
+\title{Cost-Effectiveness Analysis When Multiple (Possibly Non-Cost-Effective)
+Interventions are Present on the Market}
 \usage{
 mixedAn(he, mkt.shares = NULL, plot = FALSE)
 }
@@ -51,11 +51,11 @@ as a function of the willingness to pay}
 The function can also produce a graph showing the difference between the
 ''optimal'' version of the EVPI (when only the most cost-effective intervention
 is included in the market) and the mixed strategy one (when more than one
-intervention is considered in the market)
+intervention is considered in the market).
 }
 \description{
 Runs the cost-effectiveness analysis, but accounts for the fact that more
-than one intervention is present on the market
+than one intervention is present on the market.
 }
 \examples{
 
@@ -94,8 +94,7 @@ Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in Health
 Economics.  Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
 \code{\link{bcea}}
@@ -103,8 +102,8 @@ London
 \author{
 Gianluca Baio
 }
-\keyword{Health}
-\keyword{Mixed}
-\keyword{analysis}
+\keyword{"Health}
+\keyword{"Mixed}
+\keyword{analysis"}
 \keyword{economic}
-\keyword{evaluation}
+\keyword{evaluation"}

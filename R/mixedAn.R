@@ -1,9 +1,9 @@
 
-#' Cost-effectiveness analysis when multiple (possibly non cost-effective)
-#' interventions are present on the market
+#' Cost-Effectiveness Analysis When Multiple (Possibly Non-Cost-Effective)
+#' Interventions are Present on the Market
 #' 
 #' Runs the cost-effectiveness analysis, but accounts for the fact that more
-#' than one intervention is present on the market
+#' than one intervention is present on the market.
 #' 
 #' @aliases mixedAn mixedAn.default
 #' @template args-he
@@ -43,11 +43,12 @@
 #' The function can also produce a graph showing the difference between the
 #' ''optimal'' version of the EVPI (when only the most cost-effective intervention
 #' is included in the market) and the mixed strategy one (when more than one
-#' intervention is considered in the market)
+#' intervention is considered in the market).
 #' 
 #' @author Gianluca Baio
 #' @seealso \code{\link{bcea}}
-#' @references Baio, G. and Russo, P. (2009).A decision-theoretic framework for
+#' @references
+#' Baio, G. and Russo, P. (2009).A decision-theoretic framework for
 #' the application of cost-effectiveness analysis in regulatory processes.
 #' Pharmacoeconomics 27(8), 645-655 doi:10.2165/11310250
 #' 
@@ -55,9 +56,8 @@
 #' Economics.  Statistical Methods in Medical Research
 #' doi:10.1177/0962280211419832.
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-#' London
-#' @keywords Health economic evaluation Mixed analysis
+#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+#' @keywords "Health economic evaluation" "Mixed analysis"
 #' @examples
 #' 
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
@@ -87,5 +87,6 @@
 #' 
 #' @export
 #' 
-mixedAn <- function(he, mkt.shares = NULL, plot = FALSE) UseMethod("mixedAn", he)
+mixedAn <- function(he, mkt.shares = NULL, plot = FALSE)
+  UseMethod("mixedAn", he)
 

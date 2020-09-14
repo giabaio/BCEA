@@ -68,7 +68,6 @@
 #' @import ggplot2
 #' 
 #' @examples 
-#' 
 #' data("Vaccine")
 #' he <- BCEA::bcea(e, c)
 #' ceac.plot(he)
@@ -77,14 +76,17 @@
 #' ceac.plot(he, graph = "ggplot2")
 #' ceac.plot(he, graph = "plotly")
 #' 
-#' ceac.plot(he, graph = "ggplot2", title = "my title", line = list(colors = "green"), theme = theme_dark())
+#' ceac.plot(he, graph = "ggplot2",
+#'           title = "my title",
+#'           line = list(colors = "green"),
+#'           theme = ggplot2::theme_dark())
 #'
 #' ## more interventions
-#' he2 <- BCEA::bcea(cbind(e,e - 0.0002), cbind(c,c + 5))
+#' he2 <- BCEA::bcea(cbind(e, e - 0.0002), cbind(c, c + 5))
 #' mypalette <- RColorBrewer::brewer.pal(3, "Accent")
 #' ceac.plot(he2, graph = "ggplot2",
 #'           title = "my title",
-#'           theme = theme_dark(),
+#'           theme = ggplot2::theme_dark(),
 #'           pos = TRUE,
 #'           line = list(colors = mypalette))
 #

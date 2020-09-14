@@ -44,7 +44,7 @@ Constructs the automated report from the output of the BCEA.
 }
 \examples{
 
-\dontrun {
+\dontrun{
   data(Vaccine)
   m <- bcea(e, c, ref = 2)
   make.report(m)

@@ -47,7 +47,7 @@
 #' 
 #' @examples
 #' 
-#' \dontrun {
+#' \dontrun{
 #'   data(Vaccine)
 #'   m <- bcea(e, c, ref = 2)
 #'   make.report(m)

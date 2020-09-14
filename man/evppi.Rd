@@ -130,7 +130,6 @@ use GAM if the number of parameters is <5 and INLA otherwise.
 }
 
 \examples{
-
 # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 # Bayesian model and economic problem
 

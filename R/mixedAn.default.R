@@ -1,6 +1,9 @@
-mixedAn.default <- function(he,
-                            mkt.shares = NULL,
-                            plot = FALSE) {
+
+#' @export
+#'
+mixedAn.bcea <- function(he,
+                         mkt.shares = NULL,
+                         plot = FALSE) {
   
   # mkt.shares is a vector of market shares for each comparators
   # if no value is provided, then assumes uniform distribution
@@ -9,18 +12,17 @@ mixedAn.default <- function(he,
   # Reference: Baio G, Russo P (2009).
   
   Ubar <- OL.star <- evi.star <- NULL
-  if(is.null(mkt.shares)==TRUE){
+  if (is.null(mkt.shares)) {
     mkt.shares <- rep(1,he$n_comparators)/he$n_comparators
   }
   temp <- array(NA,c(he$n_sim,length(he$k),he$n_comparators))
-  for (j in 1:he$n_comparators) {
-    temp[,,j] <- mkt.shares[j]*he$U[,,j]
+  for (j in seq_len(he$n_comparators)) {
+    temp[, , j] <- mkt.shares[j]*he$U[, , j]
   }
-  Ubar <- apply(temp,c(1,2),sum)
+  Ubar <- apply(temp, c(1, 2), sum)
   OL.star <- he$Ustar - Ubar
-  evi.star <- apply(OL.star,2,mean)
+  evi.star <- apply(OL.star, 2, mean)
   
-  ## Outputs of the function
   ma <- list(
     Ubar = Ubar,
     OL.star = OL.star,
@@ -36,8 +38,17 @@ mixedAn.default <- function(he,
     evi = he$evi)
   
   class(ma) <- "mixedAn"
+  
   if(plot) {
     plot.mixedAn(ma)
   }
   return(ma)
 }
+
+
+#' @export
+#' 
+mixedAn.default <- function(he, ...) {
+  stop("No method available", call. = TRUE)
+}
+
