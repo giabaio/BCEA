@@ -95,7 +95,7 @@ plot.bcea <- function(x,comparison=NULL,wtp=25000,pos=FALSE,graph=c("base","ggpl
     op <- par(mfrow=c(2,2))
     ceplane.plot(x,comparison=comparison,wtp=wtp,pos=pos,graph="base",...)
     eib.plot(x,comparison=comparison,pos=pos,graph="base",...)
-    ceac.plot(x,comparison=comparison,pos=pos,graph="base")
+    ceac.plot(x,comparison=comparison,pos=pos,graph="base",...)
     evi.plot(x,graph="base")
     par(op)
   }
@@ -149,7 +149,7 @@ plot.bcea <- function(x,comparison=NULL,wtp=25000,pos=FALSE,graph=c("base","ggpl
         theme.multiplot
       eib <- eib.plot(x,pos=pos,comparison=comparison,graph="ggplot2",...) +
         theme.multiplot
-      ceac <- ceac.plot(x,pos=pos,comparison=comparison,graph="ggplot2") +
+      ceac <- ceac.plot(x,pos=pos,comparison=comparison,graph="ggplot2",...) +
         theme.multiplot
       evi <- evi.plot(x,graph="ggplot2") +
         theme.multiplot
