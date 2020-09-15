@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cost-Effectiveness Acceptability Frontier (CEAF) plot — ceaf.plot.pairwise • BCEA</title>
+<title>Contour Plots for the Cost-Effectiveness Plane — contour.bcea • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,9 +46,11 @@
 
 
 
-<meta property="og:title" content="Cost-Effectiveness Acceptability Frontier (CEAF) plot — ceaf.plot.pairwise" />
-<meta property="og:description" content="Produces a plot the Cost-Effectiveness Acceptability Frontier (CEAF)
-against the willingness to pay threshold." />
+<meta property="og:title" content="Contour Plots for the Cost-Effectiveness Plane — contour.bcea" />
+<meta property="og:description" content="Contour method for objects in the class bcea.
+Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
+of the bivariate density of the differentials of cost (y-axis) and
+effectiveness (x-axis)." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -135,27 +137,84 @@ against the willingness to pay threshold." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Cost-Effectiveness Acceptability Frontier (CEAF) plot</h1>
-    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/ceaf.plot.R'><code>R/ceaf.plot.R</code></a></small>
-    <div class="hidden name"><code>ceaf.plot.Rd</code></div>
+    <h1>Contour Plots for the Cost-Effectiveness Plane</h1>
+    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/contour.R'><code>R/contour.R</code></a></small>
+    <div class="hidden name"><code>contour.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Produces a plot the Cost-Effectiveness Acceptability Frontier (CEAF)
-against the willingness to pay threshold.</p>
+    <p>Contour method for objects in the class <code>bcea</code>.
+Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
+of the bivariate density of the differentials of cost (y-axis) and
+effectiveness (x-axis).</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for pairwise</span>
-<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>))
+    <pre class="usage"><span class='co'># S3 method for bcea</span>
+<span class='fu'>contour</span>(
+  <span class='no'>he</span>,
+  <span class='kw'>comparison</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>nlevels</span> <span class='kw'>=</span> <span class='fl'>4</span>,
+  <span class='kw'>levels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>pos</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>0</span>),
+  <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>),
+  <span class='no'>...</span>
+)
 
-<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>contour</span>(<span class='no'>he</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>mce</th>
-      <td><p>The output of the call to the function <code><a href='multi.ce.html'>multi.ce</a></code></p></td>
+      <th>he</th>
+      <td><p>A <code>bcea</code> object containing the results of the Bayesian
+modelling and the economic evaluation.</p></td>
+    </tr>
+    <tr>
+      <th>comparison</th>
+      <td><p>In case of more than 2 interventions being analysed,
+selects which plot should be made. By default the first comparison among
+the possible ones will be plotted. If <code>graph="ggplot2"</code> any subset of
+the possible comparisons can be selected, and <code>comparison=NULL</code> will
+yield a plot of all the possible comparisons together.</p></td>
+    </tr>
+    <tr>
+      <th>scale</th>
+      <td><p>Scales the plot as a function of the observed standard
+deviation.</p></td>
+    </tr>
+    <tr>
+      <th>nlevels</th>
+      <td><p>Number of levels to be plotted in the contour.</p></td>
+    </tr>
+    <tr>
+      <th>levels</th>
+      <td><p>Numeric vector of levels at which to draw contour lines. Will
+be ignored using <code>graph="ggplot2"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>pos</th>
+      <td><p>Parameter to set the position of the legend. Can be given in form
+of a string <code>(bottom|top)(right|left)</code> for base graphics and
+<code>bottom</code>, <code>top</code>, <code>left</code> or <code>right</code> for ggplot2. It can
+be a two-elements vector, which specifies the relative position on the x and
+y axis respectively, or alternatively it can be in form of a logical
+variable, with <code>FALSE</code> indicating to use the default position and
+<code>TRUE</code> to place the legend on the bottom of the plot. Default value is
+<code><a href='Vaccine.html'>c(1,0)</a></code>, that is the bottomright corner inside the plot area.</p></td>
+    </tr>
+    <tr>
+      <th>xlim</th>
+      <td><p>The range of the plot along the x-axis. If NULL (default) it is
+determined by the range of the simulated values for <code>delta_e</code></p></td>
+    </tr>
+    <tr>
+      <th>ylim</th>
+      <td><p>The range of the plot along the y-axis. If NULL (default) it is
+determined by the range of the simulated values for <code>delta_c</code></p></td>
     </tr>
     <tr>
       <th>graph</th>
@@ -163,67 +222,38 @@ against the willingness to pay threshold.</p>
 plotting. Should (partial-)match the two options <code>"base"</code> or
 <code>"ggplot2"</code>. Default value is <code>"base"</code>.</p></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments to 'plot.window', 'title', 'Axis' and
+'box', typically graphical parameters such as 'cex.axis'. Will be ignored if
+<code>graph="ggplot2"</code>.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     
 
-<dt>ceaf</dt><dd><p>A ggplot object containing the plot. Returned only if
-<code>graph="ggplot2"</code>.</p></dd>
+<dt>ceplane</dt><dd><p>A ggplot object containing the plot. Returned only
+if <code>graph="ggplot2"</code>.</p></dd> Plots the cost-effectiveness plane with a
+scatterplot of all the simulated values from the (posterior) bivariate
+distribution of (Delta_e, Delta_c), the differentials of effectiveness and
+costs; superimposes a contour of the distribution and prints the estimated
+value of the probability of each quadrant (combination of positive/negative
+values for both Delta_e and Delta_c)
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Baio G, Dawid AP. (2011). Probabilistic Sensitivity
+    <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.</p>
-<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London.</p>
+<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>, <code><a href='multi.ce.html'>multi.ce</a></code></p></div>
+    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>,
+         <code>ceplane.plot</code>,
+         <code><a href='contour2.html'>contour2</a></code></p></div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># See Baio G., Dawid A.P. (2011) for a detailed description of the </span>
-<span class='co'># Bayesian model and economic problem</span>
-
-<span class='co'># Load the processed results of the MCMC simulation model</span>
-<span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Vaccine</span>)
-
-<span class='co'># Runs the health economic evaluation using BCEA</span>
-<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(
-      <span class='kw'>e</span><span class='kw'>=</span><span class='no'>e</span>,
-      <span class='kw'>c</span><span class='kw'>=</span><span class='no'>c</span>,                  <span class='co'># defines the variables of </span>
-                            <span class='co'>#  effectiveness and cost</span>
-      <span class='kw'>ref</span><span class='kw'>=</span><span class='fl'>2</span>,                <span class='co'># selects the 2nd row of (e, c) </span>
-                            <span class='co'>#  as containing the reference intervention</span>
-      <span class='kw'>interventions</span><span class='kw'>=</span><span class='no'>treats</span>, <span class='co'># defines the labels to be associated </span>
-                            <span class='co'>#  with each intervention</span>
-      <span class='kw'>Kmax</span><span class='kw'>=</span><span class='fl'>50000</span>,           <span class='co'># maximum value possible for the willingness </span>
-                            <span class='co'>#  to pay threshold; implies that k is chosen </span>
-                            <span class='co'>#  in a grid from the interval (0, Kmax)</span>
-      <span class='kw'>plot</span><span class='kw'>=</span><span class='fl'>FALSE</span>            <span class='co'># inhibits graphical output</span>
-)
-
-<span class='co'># \donttest{</span>
-<span class='no'>mce</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='multi.ce.html'>multi.ce</a></span>(<span class='no'>m</span>)          <span class='co'># uses the results of the economic analysis </span>
-<span class='co'># }</span>
-
-<span class='co'># \donttest{</span>
-<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>)              <span class='co'># plots the CEAF </span></div><div class='img'><img src='ceaf.plot-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-
-<span class='co'># \donttest{</span>
-<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"g"</span>) <span class='co'># uses ggplot2 </span></div><div class='img'><img src='ceaf.plot-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-
-<span class='co'># \donttest{</span>
-<span class='co'># Use the smoking cessation dataset</span>
-<span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Smoking</span>)
-<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='no'>e</span>, <span class='no'>c</span>, <span class='kw'>ref</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>intervention</span> <span class='kw'>=</span> <span class='no'>treats</span>, <span class='kw'>Kmax</span> <span class='kw'>=</span> <span class='fl'>500</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='no'>mce</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='multi.ce.html'>multi.ce</a></span>(<span class='no'>m</span>)
-<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>)</div><div class='img'><img src='ceaf.plot-3.png' alt='' width='700' height='433' /></div><div class='input'># }
-
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

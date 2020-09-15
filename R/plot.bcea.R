@@ -153,7 +153,7 @@ plot.bcea <- function(he,
       
       ceplane.pos <- ifelse(pos, pos, c(1, 1.025))
       
-      #warnings...
+      #TODO: warnings...
       ceplane <-
         ceplane.plot(he,
                      wtp = wtp,

@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Cost-Effectiveness Acceptability Curve (CEAC) Plot By Graph Device — ceac_plot_graph" />
-<meta property="og:description" content="Choice of base, ggplot2 or plotly." />
+<meta property="og:description" content="Choice of base R, ggplot2 or plotly." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -140,16 +140,16 @@
     </div>
 
     <div class="ref-description">
-    <p>Choice of base, ggplot2 or plotly.</p>
+    <p>Choice of base R, ggplot2 or plotly.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ceac_plot_base</span>(<span class='no'>he</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>ceac_plot_base</span>(<span class='no'>he</span>, <span class='no'>pos_legend</span>, <span class='no'>graph_params</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for pairwise</span>
-<span class='fu'>ceac_plot_base</span>(<span class='no'>he</span>, <span class='no'>pos_legend</span>, <span class='no'>graph_params</span>)
+<span class='fu'>ceac_plot_base</span>(<span class='no'>he</span>, <span class='no'>pos_legend</span>, <span class='no'>graph_params</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for bcea</span>
-<span class='fu'>ceac_plot_base</span>(<span class='no'>he</span>, <span class='no'>pos_legend</span>, <span class='no'>graph_params</span>)
+<span class='fu'>ceac_plot_base</span>(<span class='no'>he</span>, <span class='no'>pos_legend</span>, <span class='no'>graph_params</span>, <span class='no'>...</span>)
 
 <span class='fu'>ceac_plot_ggplot</span>(<span class='no'>he</span>, <span class='no'>pos_legend</span>, <span class='no'>graph_params</span>, <span class='no'>...</span>)
 
@@ -161,6 +161,27 @@
 
 <span class='fu'>ceac_plot_plotly</span>(<span class='no'>he</span>, <span class='kw'>pos_legend</span> <span class='kw'>=</span> <span class='no'>pos</span>, <span class='no'>graph_params</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>he</th>
+      <td><p>A <code>bcea</code> object containing the results of the Bayesian
+modelling and the economic evaluation.</p></td>
+    </tr>
+    <tr>
+      <th>pos_legend</th>
+      <td><p>Legend position</p></td>
+    </tr>
+    <tr>
+      <th>graph_params</th>
+      <td><p>Aesthetic ggplot parameters</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments</p></td>
+    </tr>
+    </table>
 
 
   </div>

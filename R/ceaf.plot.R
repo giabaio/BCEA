@@ -67,6 +67,7 @@
 #' ceaf.plot(mce)
 #' }
 #' 
+#' @rdname ceaf.plot
 #' @export
 #' 
 ceaf.plot.pairwise <- function(mce,
@@ -125,10 +126,11 @@ ceaf.plot.pairwise <- function(mce,
 }
 
 
+#' @rdname ceaf.plot
 #' @export
 #' 
-ceaf.plot <- function(he, ...) {
-  UseMethod('ceaf.plot', he)
+ceaf.plot <- function(mce, ...) {
+  UseMethod('ceaf.plot', mce)
 }
 
 

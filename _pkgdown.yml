@@ -16,7 +16,7 @@ reference:
 - contents:
   - '`ceac.plot.bcea`'
   - '`ceac_plot_graph`'
-  - '`ceaf.plot.bcea`'
+  - '`ceaf.plot`'
   - '`ceef.plot.bcea`'
   - '`ceplane.plot.bcea`'
   - '`ceplane_plot_graph`'
@@ -44,7 +44,7 @@ reference:
 - title: Outputs
 - contents:
   - '`make.report`'
-  - '`sim.table.bcea`'
+  - '`sim_table.bcea`'
   - '`summary.bcea`'
   - '`summary.mixedAn`'
 - title: Miscellaneous

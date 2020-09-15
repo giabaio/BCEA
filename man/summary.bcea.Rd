@@ -27,6 +27,7 @@ evaluation.
 
 data(Vaccine)
 
+he <- bcea(e,c, interventions = treats, ref = 2)
 summary(he)
 
 }

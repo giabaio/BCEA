@@ -2,7 +2,7 @@
 % Please edit documentation in R/summary.mixedAn.R
 \name{summary.mixedAn}
 \alias{summary.mixedAn}
-\title{Summary methods for objects in the class \code{mixedAn} (mixed analysis)}
+\title{Summary Methods For Objects in the Class \code{mixedAn} (Mixed Analysis)}
 \usage{
 \method{summary}{mixedAn}(object, wtp = 25000, ...)
 }
@@ -23,7 +23,7 @@ interventions in the market.
 }
 \description{
 Prints a summary table for the results of the mixed analysis for the
-economic evaluation of a given model
+economic evaluation of a given model.
 }
 \examples{
 
@@ -69,11 +69,11 @@ Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in Health
 Economics.  Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
-\code{\link{bcea}}, \code{\link{mixedAn}}
+\code{\link{bcea}},
+         \code{\link{mixedAn}}
 }
 \author{
 Gianluca Baio

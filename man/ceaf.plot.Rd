@@ -2,9 +2,12 @@
 % Please edit documentation in R/ceaf.plot.R
 \name{ceaf.plot.pairwise}
 \alias{ceaf.plot.pairwise}
+\alias{ceaf.plot}
 \title{Cost-Effectiveness Acceptability Frontier (CEAF) plot}
 \usage{
 \method{ceaf.plot}{pairwise}(mce, graph = c("base", "ggplot2"))
+
+ceaf.plot(mce, ...)
 }
 \arguments{
 \item{mce}{The output of the call to the function \code{\link{multi.ce}}}

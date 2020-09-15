@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Expected Incremental Benefit (EIB) Plot — eib.plot • BCEA</title>
+<title>Expected Incremental Benefit (EIB) Plot — eib.plot.bcea • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,7 @@
 
 
 
-<meta property="og:title" content="Expected Incremental Benefit (EIB) Plot — eib.plot" />
+<meta property="og:title" content="Expected Incremental Benefit (EIB) Plot — eib.plot.bcea" />
 <meta property="og:description" content="Produces a plot of the Expected Incremental Benefit (EIB) as a function of
 the willingness to pay." />
 <meta property="og:image" content="/logo.png" />
@@ -145,7 +145,8 @@ the willingness to pay." />
 the willingness to pay.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>eib.plot</span>(
+    <pre class="usage"><span class='co'># S3 method for bcea</span>
+<span class='fu'>eib.plot</span>(
   <span class='no'>he</span>,
   <span class='kw'>comparison</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>pos</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>0</span>),
@@ -153,7 +154,9 @@ the willingness to pay.</p>
   <span class='kw'>plot.cri</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>graph</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>, <span class='st'>"plotly"</span>),
   <span class='no'>...</span>
-)</pre>
+)
+
+<span class='fu'>eib.plot</span>(<span class='no'>he</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -244,8 +247,9 @@ doi:10.1177/0962280211419832.</p>
 <p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>, <code><a href='ib.plot.html'>ib.plot</a></code>,
-<code>ceplane.plot</code></p></div>
+    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>,
+         <code>ib.plot</code>,
+         <code>ceplane.plot</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
