@@ -2,6 +2,7 @@
 % Please edit documentation in R/contour2.R
 \name{contour2.bcea}
 \alias{contour2.bcea}
+\alias{contour2}
 \title{Specialised CE-plane Contour Plot}
 \usage{
 \method{contour2}{bcea}(
@@ -13,6 +14,8 @@
   graph_type = c("base", "ggplot2"),
   ...
 )
+
+contour2(he, ...)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
@@ -55,7 +58,6 @@ effectiveness (x-axis).  Also adds the sustainability area (i.e. below the
 selected value of the willingness-to-pay threshold).
 }
 \examples{
-
 ## create the bcea object m for the smoking cessation example
 data(Smoking)
 m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
@@ -82,14 +84,15 @@ doi:10.1177/0962280211419832.
 Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
-\code{\link{bcea}}, \code{\link{ceplane.plot}},
-\code{\link{contour.bcea}}
+\code{\link{bcea}},
+         \code{\link{ceplane.plot}},
+         \code{\link{contour.bcea}}
 }
 \author{
 Gianluca Baio, Andrea Berardi
 }
-\keyword{Bayesian}
-\keyword{Health}
+\keyword{"Bayesian}
+\keyword{"Health}
 \keyword{economic}
-\keyword{evaluation}
-\keyword{model}
+\keyword{evaluation"}
+\keyword{model"}

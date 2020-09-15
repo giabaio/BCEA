@@ -17,6 +17,9 @@ multiplot(plotlist = NULL, cols = 1, layout = NULL, extra_args, ...)
 
 \item{...}{Potential further arguments.}
 }
+\value{
+Plot
+}
 \description{
 Arrange plots in grid. Source from R graphics cookbook.
 }

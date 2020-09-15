@@ -198,6 +198,7 @@ plot.bcea <- function(he,
 #' @param layout Matrix
 #' @param extra_args List of plotting arguments
 #' @param ... Potential further arguments.
+#' @return Plot
 #' 
 multiplot <- function(plotlist = NULL,
                       cols = 1,

@@ -2,6 +2,7 @@
 % Please edit documentation in R/eib.plot.R
 \name{eib.plot.bcea}
 \alias{eib.plot.bcea}
+\alias{eib.plot}
 \title{Expected Incremental Benefit (EIB) Plot}
 \usage{
 \method{eib.plot}{bcea}(
@@ -13,6 +14,8 @@
   graph = c("base", "ggplot2", "plotly"),
   ...
 )
+
+eib.plot(he, ...)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
@@ -86,15 +89,16 @@ doi:10.1177/0962280211419832.
 Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
-\code{\link{bcea}}, \code{\link{ib.plot}},
-\code{\link{ceplane.plot}}
+\code{\link{bcea}},
+         \code{\link{ib.plot}},
+         \code{\link{ceplane.plot}}
 }
 \author{
 Gianluca Baio, Andrea Berardi
 }
-\keyword{Benefit}
-\keyword{Expected}
-\keyword{Health}
+\keyword{"Expected}
+\keyword{"Health}
+\keyword{Benefit"}
 \keyword{Incremental}
 \keyword{economic}
-\keyword{evaluation}
+\keyword{evaluation"}

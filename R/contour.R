@@ -1,99 +1,7 @@
 
-#' Contour Plots for the Cost-Effectiveness Plane
-#'
-#' Contour method for objects in the class \code{bcea}.
-#' Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
-#' of the bivariate density of the differentials of cost (y-axis) and
-#' effectiveness (x-axis).
-#'
-#' @template args-he
-#' @param comparison In case of more than 2 interventions being analysed,
-#' selects which plot should be made. By default the first comparison among
-#' the possible ones will be plotted. If \code{graph="ggplot2"} any subset of
-#' the possible comparisons can be selected, and \code{comparison=NULL} will
-#' yield a plot of all the possible comparisons together.
-#' @param scale Scales the plot as a function of the observed standard
-#' deviation.
-#' @param levels Numeric vector of levels at which to draw contour lines. Will
-#' be ignored using \code{graph="ggplot2"}.
-#' @param nlevels Number of levels to be plotted in the contour.
-#' @param pos Parameter to set the position of the legend. Can be given in form
-#' of a string \code{(bottom|top)(right|left)} for base graphics and
-#' \code{bottom}, \code{top}, \code{left} or \code{right} for ggplot2. It can
-#' be a two-elements vector, which specifies the relative position on the x and
-#' y axis respectively, or alternatively it can be in form of a logical
-#' variable, with \code{FALSE} indicating to use the default position and
-#' \code{TRUE} to place the legend on the bottom of the plot. Default value is
-#' \code{c(1,0)}, that is the bottomright corner inside the plot area.
-#' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the two options \code{"base"} or
-#' \code{"ggplot2"}. Default value is \code{"base"}.
-#' @param xlim The range of the plot along the x-axis. If NULL (default) it is
-#' determined by the range of the simulated values for \code{delta_e}
-#' @param ylim The range of the plot along the y-axis. If NULL (default) it is
-#' determined by the range of the simulated values for \code{delta_c}
-#' @param ...  Additional arguments to 'plot.window', 'title', 'Axis' and
-#' 'box', typically graphical parameters such as 'cex.axis'. Will be ignored if
-#' \code{graph="ggplot2"}.
-#' @return \item{ceplane}{ A ggplot object containing the plot. Returned only
-#' if \code{graph="ggplot2"}. } Plots the cost-effectiveness plane with a
-#' scatterplot of all the simulated values from the (posterior) bivariate
-#' distribution of (Delta_e, Delta_c), the differentials of effectiveness and
-#' costs; superimposes a contour of the distribution and prints the estimated
-#' value of the probability of each quadrant (combination of positive/negative
-#' values for both Delta_e and Delta_c)
-#' @author Gianluca Baio, Andrea Berardi
-#' @seealso \code{\link{bcea}}, \code{\link{ceplane.plot}},
-#' \code{\link{contour2}}
-#' @references
-#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics. Statistical Methods in Medical Research
-#' doi:10.1177/0962280211419832.
-#'
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
-#' @keywords Health economic evaluation Bayesian model
-#' 
-#' @import ggplot2
-#' @importFrom MASS kde2d
-#' @importFrom grid unit
-#'
+#' @rdname contour
 #' @export
-#'
-#' @examples
-#'
-#' data(Vaccine)
-#'
-#' # Runs the health economic evaluation using BCEA
-#' m <- bcea(e=e,
-#'           c=c,              # defines the variables of 
-#'                             #  effectiveness and cost
-#'       ref=2,                # selects the 2nd row of (e,c) 
-#'                             #  as containing the reference intervention
-#'       interventions=treats, # defines the labels to be associated 
-#'                             #  with each intervention
-#'       Kmax=50000,           # maximum value possible for the willingness 
-#'                             #  to pay threshold; implies that k is chosen 
-#'                             #  in a grid from the interval (0,Kmax)
-#'       plot=TRUE             # plots the results
-#' )
-#' 
-#' contour(m)
-#' contour(m, graph = "ggplot2)
-#' 
-#' # Plots the contour and scatterplot of the bivariate 
-#' # distribution of (Delta_e, Delta_c)
-#' contour(m,          # uses the results of the economic evaluation 
-#'                     #  (a "bcea" object)
-#'       comparison=1, # if more than 2 interventions, selects the 
-#'                     #  pairwise comparison 
-#'       nlevels=4,    # selects the number of levels to be 
-#'                     #  plotted (default=4)
-#'       levels=NULL,  # specifies the actual levels to be plotted 
-#'                     #  (default=NULL, so that R will decide)
-#'       scale=0.5,    # scales the bandwidths for both x- and 
-#'                     #  y-axis (default=0.5)
-#'       graph="base"  # uses base graphics to produce the plot
-#' )
+#' @inheritParams contour
 #' 
 contour.bcea <- function(he,
                          comparison = 1,
@@ -110,29 +18,29 @@ contour.bcea <- function(he,
   # by default it is the first possible
   
   # Additional/optional arguments
-  exArgs <- list(...)
-  if (!exists("xlab", where = exArgs)) {
+  extra_args <- list(...)
+  if (!exists("xlab", where = extra_args)) {
     xlab <- "Effectiveness differential"
   } else {
-    xlab <- exArgs$xlab
+    xlab <- extra_args$xlab
   }
-  if (!exists("ylab", where = exArgs)) {
+  
+  if (!exists("ylab", where = extra_args)) {
     ylab <- "Cost differential"
   } else {
-    ylab <- exArgs$ylab
+    ylab <- extra_args$ylab
   }
-  if (!exists("title", where = exArgs)) {
+  
+  if (!exists("title", where = extra_args)) {
     title <-
       paste(
         "Cost effectiveness plane contour plot\n",
         he$interventions[he$ref],
         " vs ",
         he$interventions[he$comp],
-        sep = ""
-      )
-  }
-  else {
-    title <- exArgs$title
+        sep = "")
+  } else {
+    title <- extra_args$title
   }
   
   alt.legend <- pos
@@ -143,8 +51,7 @@ contour.bcea <- function(he,
       message(
         "The first available comparison will be selected.
         To plot multiple comparisons together please use the ggplot2 version.
-        Please see ?contour.bcea for additional details."
-      )
+        Please see ?contour.bcea for additional details.")
       comparison <- 1
     }
     
@@ -196,10 +103,8 @@ contour.bcea <- function(he,
         ylab = ylab,
         main = title,
         xlim = c(m.e, M.e),
-        ylim = c(m.c, M.c)
-      )
-      abline(h = 0, col = "dark grey")
-      abline(v = 0, col = "dark grey")
+        ylim = c(m.c, M.c))
+      abline(h = 0, v = 0, col = "dark grey")
       
       if (!any(is.na(density$z))) {
         if (!is.null(levels)) {
@@ -213,8 +118,7 @@ contour.bcea <- function(he,
             density$z,
             add = TRUE,
             levels = levels,
-            drawlabels = TRUE
-          )
+            drawlabels = TRUE)
         }
         if (is.null(levels)) {
           graphics::contour(
@@ -273,18 +177,17 @@ contour.bcea <- function(he,
     }
     
     if (he$n_comparisons > 1) {
-      if (!exists("title", where = exArgs)) {
+      if (!exists("title", where = extra_args)) {
         title <-
           paste(
             "Cost effectiveness plane contour plot \n",
             he$interventions[he$ref],
             " vs ",
             he$interventions[he$comp[comparison]],
-            sep = ""
-          )
+            sep = "")
       }
       else {
-        title <- exArgs$title
+        title <- extra_args$title
       }
       
       density <-
@@ -341,8 +244,7 @@ contour.bcea <- function(he,
         xlim = c(m.e, M.e),
         ylim = c(m.c, M.c)
       )
-      abline(h = 0, col = "dark grey")
-      abline(v = 0, col = "dark grey")
+      abline(h = 0, v = 0, col = "dark grey")
       
       if (!any(is.na(density$z))) {
         graphics::contour(
@@ -538,7 +440,6 @@ contour.bcea <- function(he,
           size = rel(3.5))
     }
     if (he$n_comparisons > 1 & is.null(comparison)) {
-      # creates dataframe for plotting
       kd <- data.frame(
         delta_e = c(as.matrix(he$delta_e)),
         delta_c = c(as.matrix(he$delta_c)),
@@ -554,8 +455,9 @@ contour.bcea <- function(he,
                          length.out = (he$n_comparisons + 1))[-(he$n_comparisons + 1)]))
       comparisons.label <-
         paste0(he$interventions[he$ref], " vs ", he$interventions[he$comp])
-      do.nothing = function(x, limits)
-        return(x)
+      
+      do.nothing <- function(x, limits) x
+
       # plot limits
       range.e <- range(kd$delta_e)
       range.c <- range(kd$delta_c)
@@ -582,8 +484,7 @@ contour.bcea <- function(he,
               as.matrix(he$delta_e)[, i],
               as.matrix(he$delta_c)[, i],
               n = 300,
-              h = c(sd(as.matrix(he$delta_e)[, i]) / scale, sd(as.matrix(he$delta_c)[, i]) / scale)
-            )
+              h = c(sd(as.matrix(he$delta_e)[, i]) / scale, sd(as.matrix(he$delta_c)[, i]) / scale))
           temp <-
             data.frame(expand.grid(e = temp$x,
                                    c = temp$y),
@@ -638,38 +539,36 @@ contour.bcea <- function(he,
       )
     }
     
-    if (!exists("title", where = exArgs)) {
+    if (!exists("title", where = extra_args)) {
       labs.title <- "Cost-Effectiveness Plane"
-      labs.title <- paste0(labs.title,
-                           ifelse(
-                             he$n_comparisons == 1,
-                             paste0("\n", he$interventions[he$ref], " vs ", he$interventions[-he$ref]),
-                             paste0(ifelse(
-                               isTRUE(he$mod),
-                               paste0(
-                                 "\n",
-                                 he$interventions[he$ref],
-                                 " vs ",
-                                 paste0(he$interventions[he$comp], collapse =
-                                          ", ")
-                               ),
-                               ""
-                             ))
-                           ))
+      labs.title <-
+        paste0(labs.title,
+               ifelse(
+                 he$n_comparisons == 1,
+                 paste0("\n", he$interventions[he$ref], " vs ", he$interventions[-he$ref]),
+                 paste0(ifelse(
+                   isTRUE(he$mod),
+                   paste0(
+                     "\n",
+                     he$interventions[he$ref],
+                     " vs ",
+                     paste0(he$interventions[he$comp], collapse = ", ")
+                   ),
+                   ""))
+               ))
     } else {
-      labs.title <- exArgs$title
+      labs.title <- extra_args$title
     }
     
     ceplane <-
       ceplane + labs(title = labs.title, x = xlab, y = ylab)
     
     jus <- NULL
-    if (isTRUE(alt.legend)) {
+    if (alt.legend) {
       alt.legend = "bottom"
       ceplane <-
         ceplane + theme(legend.direction = "vertical")
-    }
-    else{
+    } else {
       if (is.character(alt.legend)) {
         choices <- c("left", "right", "bottom", "top")
         alt.legend <- choices[pmatch(alt.legend, choices)]
@@ -702,14 +601,109 @@ contour.bcea <- function(he,
           lineheight = 1.05,
           face = "bold",
           size = 14.3,
-          hjust = 0.5
-        )
+          hjust = 0.5)
       )
     return(ceplane)
-  } # !base.graphics
+  }
 }
 
 
+#' Contour Plots for the Cost-Effectiveness Plane
+#'
+#' Contour method for objects in the class \code{bcea}.
+#' Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
+#' of the bivariate density of the differentials of cost (y-axis) and
+#' effectiveness (x-axis).
+#'
+#' @template args-he
+#' @param comparison In case of more than 2 interventions being analysed,
+#' selects which plot should be made. By default the first comparison among
+#' the possible ones will be plotted. If \code{graph="ggplot2"} any subset of
+#' the possible comparisons can be selected, and \code{comparison=NULL} will
+#' yield a plot of all the possible comparisons together.
+#' @param scale Scales the plot as a function of the observed standard
+#' deviation.
+#' @param levels Numeric vector of levels at which to draw contour lines. Will
+#' be ignored using \code{graph="ggplot2"}.
+#' @param nlevels Number of levels to be plotted in the contour.
+#' @param pos Parameter to set the position of the legend. Can be given in form
+#' of a string \code{(bottom|top)(right|left)} for base graphics and
+#' \code{bottom}, \code{top}, \code{left} or \code{right} for ggplot2. It can
+#' be a two-elements vector, which specifies the relative position on the x and
+#' y axis respectively, or alternatively it can be in form of a logical
+#' variable, with \code{FALSE} indicating to use the default position and
+#' \code{TRUE} to place the legend on the bottom of the plot. Default value is
+#' \code{c(1,0)}, that is the bottomright corner inside the plot area.
+#' @param graph A string used to select the graphical engine to use for
+#' plotting. Should (partial-)match the two options \code{"base"} or
+#' \code{"ggplot2"}. Default value is \code{"base"}.
+#' @param xlim The range of the plot along the x-axis. If NULL (default) it is
+#' determined by the range of the simulated values for \code{delta_e}
+#' @param ylim The range of the plot along the y-axis. If NULL (default) it is
+#' determined by the range of the simulated values for \code{delta_c}
+#' @param ...  Additional arguments to 'plot.window', 'title', 'Axis' and
+#' 'box', typically graphical parameters such as 'cex.axis'. Will be ignored if
+#' \code{graph="ggplot2"}.
+#' 
+#' @return \item{ceplane}{ A ggplot object containing the plot. Returned only
+#' if \code{graph="ggplot2"}. } Plots the cost-effectiveness plane with a
+#' scatterplot of all the simulated values from the (posterior) bivariate
+#' distribution of (Delta_e, Delta_c), the differentials of effectiveness and
+#' costs; superimposes a contour of the distribution and prints the estimated
+#' value of the probability of each quadrant (combination of positive/negative
+#' values for both Delta_e and Delta_c)
+#' @author Gianluca Baio, Andrea Berardi
+#' @references
+#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
+#' Analysis in Health Economics. Statistical Methods in Medical Research
+#' doi:10.1177/0962280211419832.
+#'
+#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+#' @seealso \code{\link{bcea}},
+#'          \code{\link{ceplane.plot}},
+#'          \code{\link{contour2}}
+#' @keywords "Health economic evaluation" "Bayesian model"
+#' 
+#' @import ggplot2
+#' @importFrom MASS kde2d
+#' @importFrom grid unit
+#' 
+#' @examples
+#' data(Vaccine)
+#'
+#' # Runs the health economic evaluation using BCEA
+#' m <- bcea(e=e,
+#'           c=c,              # defines the variables of 
+#'                             #  effectiveness and cost
+#'       ref=2,                # selects the 2nd row of (e,c) 
+#'                             #  as containing the reference intervention
+#'       interventions=treats, # defines the labels to be associated 
+#'                             #  with each intervention
+#'       Kmax=50000,           # maximum value possible for the willingness 
+#'                             #  to pay threshold; implies that k is chosen 
+#'                             #  in a grid from the interval (0,Kmax)
+#'       plot=TRUE             # plots the results
+#' )
+#' 
+#' contour(m)
+#' contour(m, graph = "ggplot2)
+#' 
+#' # Plots the contour and scatterplot of the bivariate 
+#' # distribution of (Delta_e, Delta_c)
+#' contour(m,          # uses the results of the economic evaluation 
+#'                     #  (a "bcea" object)
+#'       comparison=1, # if more than 2 interventions, selects the 
+#'                     #  pairwise comparison 
+#'       nlevels=4,    # selects the number of levels to be 
+#'                     #  plotted (default=4)
+#'       levels=NULL,  # specifies the actual levels to be plotted 
+#'                     #  (default=NULL, so that R will decide)
+#'       scale=0.5,    # scales the bandwidths for both x- and 
+#'                     #  y-axis (default=0.5)
+#'       graph="base"  # uses base graphics to produce the plot
+#' )
+#' 
+#' @rdname contour
 #' @export
 #' 
 contour <- function(he, ...) {

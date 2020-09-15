@@ -1,4 +1,5 @@
 
+#' @rdname sim_table
 #' @export
 #' 
 sim_table <- function(he, ...) UseMethod("sim_table", he)
@@ -57,6 +58,7 @@ sim_table <- function(he, ...) UseMethod("sim_table", he)
 #'           wtp=25000) # selects the particular value for k
 #'                
 #' @export
+#' @rdname sim_table
 #' 
 sim_table.bcea <- function(he,
                            wtp = 25000) {
