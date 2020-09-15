@@ -1,5 +1,5 @@
 
-#' Cost-Effectiveness Acceptability Curve (CEAC) plot
+#' Cost-Effectiveness Acceptability Curve (CEAC) Plot
 #' 
 #' Produces a plot of the Cost-Effectiveness Acceptability Curve (CEAC) against
 #' the willingness to pay threshold.
@@ -129,7 +129,12 @@ ceac.plot.bcea <- function(he,
 }
 
 
+#' Cost-Effectiveness Acceptability Curve (CEAC) Plot Generic
+#' 
+#' Produces a plot of the Cost-Effectiveness Acceptability Curve (CEAC) against
+#' the willingness to pay threshold.
 #' @export
+#' @seealso \code{\link{ceac.plot.bcea}}
 #' 
 ceac.plot <- function(he, ...) {
   UseMethod('ceac.plot', he)

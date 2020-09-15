@@ -2,12 +2,28 @@
 % Please edit documentation in R/base_methods.R
 \name{print.bcea}
 \alias{print.bcea}
-\title{data("Vaccine")
-he <- BCEA::bcea(e, c)}
+\title{bcea Print Method}
 \usage{
-\method{print}{bcea}(x, digits = getOption("digits"), give.attr = FALSE, no.list = TRUE, ...)
+\method{print}{bcea}(he, digits = getOption("digits"), give.attr = FALSE, no.list = TRUE, ...)
+}
+\arguments{
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
+
+\item{digits}{Minimal number of significant digits, see \code{\link{print.default}}.}
+
+\item{give.attr}{Logical; if TRUE (default), show attributes as sub structures.}
+
+\item{no.list}{Logical; if TRUE, no ‘list of ...’ nor the class are printed.}
+
+\item{...}{Potential further arguments.}
 }
 \description{
+bcea Print Method
+}
+\examples{
 data("Vaccine")
 he <- BCEA::bcea(e, c)
+
 }
+\keyword{print}

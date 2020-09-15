@@ -1,5 +1,6 @@
 
-#
+#' @keywords dplot
+#' 
 ceplane_base_params <- function(he,
                                 wtp,
                                 graph_params) {

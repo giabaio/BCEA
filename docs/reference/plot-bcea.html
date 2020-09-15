@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cost-Effectiveness Acceptability Curve (CEAC) plot — ceac.plot.bcea • BCEA</title>
+<title>Cost-Effectiveness Acceptability Curve (CEAC) Plot — ceac.plot.bcea • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,7 @@
 
 
 
-<meta property="og:title" content="Cost-Effectiveness Acceptability Curve (CEAC) plot — ceac.plot.bcea" />
+<meta property="og:title" content="Cost-Effectiveness Acceptability Curve (CEAC) Plot — ceac.plot.bcea" />
 <meta property="og:description" content="Produces a plot of the Cost-Effectiveness Acceptability Curve (CEAC) against
 the willingness to pay threshold." />
 <meta property="og:image" content="/logo.png" />
@@ -135,7 +135,7 @@ the willingness to pay threshold." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Cost-Effectiveness Acceptability Curve (CEAC) plot</h1>
+    <h1>Cost-Effectiveness Acceptability Curve (CEAC) Plot</h1>
     <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/ceac.plot.R'><code>R/ceac.plot.R</code></a></small>
     <div class="hidden name"><code>plot-bcea.Rd</code></div>
     </div>
@@ -146,7 +146,7 @@ the willingness to pay threshold.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for bcea</span>
-<span class='fu'>ceac.plot</span>(
+<span class='fu'><a href='ceac.plot.html'>ceac.plot</a></span>(
   <span class='no'>he</span>,
   <span class='kw'>comparison</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>pos</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>0</span>),
@@ -238,21 +238,25 @@ re-written as</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='Smoking.html'>data</a></span>(<span class='st'>"Vaccine"</span>)
 <span class='no'>he</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>BCEA</span><span class='kw ns'>::</span><span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='no'>e</span>, <span class='no'>c</span>)
-<span class='fu'>ceac.plot</span>(<span class='no'>he</span>)</div><div class='input'>
-<span class='fu'>ceac.plot</span>(<span class='no'>he</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"base"</span>)</div><div class='img'><img src='plot-bcea-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>ceac.plot</span>(<span class='no'>he</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"ggplot2"</span>)</div><div class='img'><img src='plot-bcea-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>ceac.plot</span>(<span class='no'>he</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"plotly"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: minimal value for n is 3, returning requested palette with 3 different levels</span></div><div class='output co'>#&gt; <span class='warning'>Warning: minimal value for n is 3, returning requested palette with 3 different levels</span></div><div class='input'>
-<span class='fu'>ceac.plot</span>(<span class='no'>he</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"ggplot2"</span>,
+<span class='fu'><a href='ceac.plot.html'>ceac.plot</a></span>(<span class='no'>he</span>)</div><div class='input'>
+<span class='fu'><a href='ceac.plot.html'>ceac.plot</a></span>(<span class='no'>he</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"base"</span>)</div><div class='img'><img src='plot-bcea-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='ceac.plot.html'>ceac.plot</a></span>(<span class='no'>he</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"ggplot2"</span>)</div><div class='img'><img src='plot-bcea-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='ceac.plot.html'>ceac.plot</a></span>(<span class='no'>he</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"plotly"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `arrange_()` is deprecated as of dplyr 0.7.0.</span>
+#&gt; <span class='warning'>Please use `arrange()` instead.</span>
+#&gt; <span class='warning'>See vignette('programming') for more help</span>
+#&gt; <span class='warning'><span style='color: #555555;'>This warning is displayed once every 8 hours.</span><span></span>
+#&gt; <span class='warning'></span><span style='color: #555555;'>Call `lifecycle::last_warnings()` to see where this warning was generated.</span><span></span></div><div class='output co'>#&gt; <span class='warning'>Warning: minimal value for n is 3, returning requested palette with 3 different levels</span></div><div class='output co'>#&gt; <span class='warning'>Warning: minimal value for n is 3, returning requested palette with 3 different levels</span></div><div class='input'>
+<span class='fu'><a href='ceac.plot.html'>ceac.plot</a></span>(<span class='no'>he</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"ggplot2"</span>,
           <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"my title"</span>,
           <span class='kw'>line</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>colors</span> <span class='kw'>=</span> <span class='st'>"green"</span>),
           <span class='kw'>theme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_dark</a></span>())</div><div class='img'><img src='plot-bcea-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>## more interventions</span>
 <span class='no'>he2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>BCEA</span><span class='kw ns'>::</span><span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='no'>e</span>, <span class='no'>e</span> - <span class='fl'>0.0002</span>), <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='no'>c</span>, <span class='no'>c</span> + <span class='fl'>5</span>))
 <span class='no'>mypalette</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>RColorBrewer</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html'>brewer.pal</a></span>(<span class='fl'>3</span>, <span class='st'>"Accent"</span>)
-<span class='fu'>ceac.plot</span>(<span class='no'>he2</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"ggplot2"</span>,
+<span class='fu'><a href='ceac.plot.html'>ceac.plot</a></span>(<span class='no'>he2</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"ggplot2"</span>,
           <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"my title"</span>,
           <span class='kw'>theme</span> <span class='kw'>=</span> <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_dark</a></span>(),
           <span class='kw'>pos</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-          <span class='kw'>line</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>colors</span> <span class='kw'>=</span> <span class='no'>mypalette</span>))</div><div class='img'><img src='plot-bcea-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>ceac.plot</span>(<span class='no'>he</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"base"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"my title"</span>, <span class='kw'>line</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>colors</span> <span class='kw'>=</span> <span class='st'>"green"</span>))</div><div class='img'><img src='plot-bcea-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>ceac.plot</span>(<span class='no'>he2</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"base"</span>)</div><div class='output co'>#&gt; <span class='message'>Wrong number of colours provided. Falling back to default</span></div><div class='img'><img src='plot-bcea-6.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'>ceac.plot</span>(<span class='no'>he2</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"plotly"</span>, <span class='kw'>pos</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>)</div></pre>
+          <span class='kw'>line</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>colors</span> <span class='kw'>=</span> <span class='no'>mypalette</span>))</div><div class='img'><img src='plot-bcea-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='ceac.plot.html'>ceac.plot</a></span>(<span class='no'>he</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"base"</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"my title"</span>, <span class='kw'>line</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>colors</span> <span class='kw'>=</span> <span class='st'>"green"</span>))</div><div class='img'><img src='plot-bcea-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='ceac.plot.html'>ceac.plot</a></span>(<span class='no'>he2</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"base"</span>)</div><div class='output co'>#&gt; <span class='message'>Wrong number of colours provided. Falling back to default</span></div><div class='img'><img src='plot-bcea-6.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='ceac.plot.html'>ceac.plot</a></span>(<span class='no'>he2</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"plotly"</span>, <span class='kw'>pos</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>)</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

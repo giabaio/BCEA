@@ -1,5 +1,6 @@
 
-#
+#' @keywords dplot
+#' 
 setup_params <- function(graph_params) {
   
   list(xlim = graph_params$xlim,
@@ -14,7 +15,8 @@ setup_params <- function(graph_params) {
 }
 
 
-#
+#' @keywords dplot
+#' 
 polygon_params <- function(graph_params, wtp) {
   
   x_min <- graph_params$xlim[1]
@@ -32,7 +34,8 @@ polygon_params <- function(graph_params, wtp) {
 }
 
 
-#
+#' @keywords dplot
+#' 
 points_params <- function(graph_params) {
   
   list(pch = 20,
@@ -41,7 +44,8 @@ points_params <- function(graph_params) {
 }
 
 
-#
+#' @keywords dplot
+#' 
 k_text <- function(graph_params, wtp) {
   
   x_k <- graph_params$xlim[1]
@@ -57,7 +61,8 @@ k_text <- function(graph_params, wtp) {
 }
 
 
-#
+#' @keywords dplot
+#' 
 icer_params <- function(graph_params, he) {
 
   x_adj <- diff(graph_params$xlim)*0.04
@@ -77,7 +82,8 @@ icer_params <- function(graph_params, he) {
 }
 
 
-#
+#' @keywords dplot
+#' 
 icer_label <- function(he) {
   
   if (he$n_comparisons == 1) {

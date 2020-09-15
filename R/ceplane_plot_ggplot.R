@@ -1,12 +1,9 @@
 
-#' ceplane_plot_ggplot
+#' @rdname ceplane_plot_graph
 #'
-#' @template args-he
-#' @param wtp 
-#' @param pos_legend 
-#' @param graph_params 
-#' @param ... 
-#'
+#' @inheritParams ceplane_plot_base.bcea
+#' @return For ggplot2 returns ggplot2 object
+#' 
 #' @import ggplot2
 #' @importFrom grid unit
 #' @importFrom purrr keep
@@ -43,7 +40,7 @@
 #'              theme = ggplot2::theme_linedraw())
 #'              
 ceplane_plot_ggplot.bcea <- function(he,
-                                     wtp,
+                                     wtp = 25000,
                                      pos_legend,
                                      graph_params, ...) {
   
@@ -95,8 +92,10 @@ ceplane_plot_ggplot.bcea <- function(he,
 }
 
 
+#' @rdname ceplane_plot_graph
 #' @export
 #' 
 ceplane_plot_ggplot <- function(he, ...) {
   UseMethod('ceplane_plot_ggplot', he)
 }
+

@@ -1,6 +1,6 @@
 # themes for ggplot functions ---------------------------------------------
 
-
+#'
 theme_default <- function() {
   
   theme_bw() %+replace%

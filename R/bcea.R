@@ -1,5 +1,5 @@
 
-#' Bayesian Cost-Effectiveness Analysis
+#' Create Bayesian Cost-Effectiveness Analysis Object
 #' 
 #' Cost-effectiveness analysis based on the results of a simulation model for a
 #' variable of clinical benefits (e) and of costs (c). Produces results to be

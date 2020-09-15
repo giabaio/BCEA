@@ -59,8 +59,7 @@ models (one matrix with n_sim x n_ints simulations for each model).
 
 }
 \references{
-Baio G. (2012). Bayesian Methods in Health Economics.
-CRC/Chapman Hall, London
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
 \code{\link{bcea}}

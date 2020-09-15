@@ -1,4 +1,11 @@
 
+#' @rdname ceac_plot_graph
+#' 
+#' @template args-he
+#' @param pos_legend
+#' @param graph_params
+#' @param ... Additional arguments
+#' 
 #' @keywords hplot
 #' 
 ceac_plot_ggplot <- function(he,
@@ -7,6 +14,8 @@ ceac_plot_ggplot <- function(he,
   UseMethod("ceac_plot_ggplot", he)
 
 
+#' @rdname ceac_plot_graph
+#' @inheritParams ceac_plot_ggplot
 #' @keywords hplot
 #' 
 #' @export
@@ -20,6 +29,8 @@ ceac_plot_ggplot.pairwise <- function(he,
               "p_best_interv", ...)
 }
 
+#' @rdname ceac_plot_graph
+#' @inheritParams ceac_plot_ggplot
 #' @keywords hplot
 #' 
 #' @export
@@ -34,7 +45,6 @@ ceac_plot_ggplot.bcea <- function(he,
 }
 
 #' @noRd
-#' 
 #' @keywords hplot
 #' 
 #' @export

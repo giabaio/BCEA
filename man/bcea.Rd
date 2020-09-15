@@ -4,7 +4,7 @@
 \alias{bcea}
 \alias{bcea.default}
 \alias{CEanalysis}
-\title{Bayesian Cost-Effectiveness Analysis}
+\title{Create Bayesian Cost-Effectiveness Analysis Object}
 \usage{
 bcea(
   e,

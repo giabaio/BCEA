@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bayesian Cost-Effectiveness Analysis — bcea • BCEA</title>
+<title>Create Bayesian Cost-Effectiveness Analysis Object — bcea • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,7 @@
 
 
 
-<meta property="og:title" content="Bayesian Cost-Effectiveness Analysis — bcea" />
+<meta property="og:title" content="Create Bayesian Cost-Effectiveness Analysis Object — bcea" />
 <meta property="og:description" content="Cost-effectiveness analysis based on the results of a simulation model for a
 variable of clinical benefits (e) and of costs (c). Produces results to be
 post-processed to give the health economic analysis. The output is stored in
@@ -137,7 +137,7 @@ an object of the class &quot;bcea&quot;." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Bayesian Cost-Effectiveness Analysis</h1>
+    <h1>Create Bayesian Cost-Effectiveness Analysis Object</h1>
     <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/bcea.R'><code>R/bcea.R</code></a></small>
     <div class="hidden name"><code>bcea.Rd</code></div>
     </div>
@@ -365,7 +365,7 @@ doi:10.1177/0962280211419832.</p>
 )</div><div class='img'><img src='bcea-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the contour and scatterplot of the bivariate </span>
 <span class='co'>#   distribution of (Delta_e,Delta_c)</span>
-<span class='fu'><a href='contour2.html'>contour2</a></span>(<span class='no'>m</span>,       <span class='co'># uses the results of the economic evaluation </span>
+<span class='fu'>contour2</span>(<span class='no'>m</span>,       <span class='co'># uses the results of the economic evaluation </span>
                   <span class='co'>#  (a "bcea" object)</span>
       <span class='kw'>wtp</span><span class='kw'>=</span><span class='fl'>25000</span>,  <span class='co'># selects the willingness-to-pay threshold</span>
       <span class='kw'>xl</span><span class='kw'>=</span><span class='kw'>NULL</span>,    <span class='co'># assumes default values</span>
@@ -375,7 +375,7 @@ doi:10.1177/0962280211419832.</p>
 #&gt; <span class='message'>              Please see ?contour2 for additional details.</span></div><div class='output co'>#&gt; <span class='error'>Error in xy.coords(x, y): 'list' object cannot be coerced to type 'double'</span></div><div class='img'><img src='bcea-5.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Using ggplot2</span>
 <span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"ggplot2"</span>)) {
-<span class='fu'><a href='contour2.html'>contour2</a></span>(<span class='no'>m</span>,           <span class='co'># uses the results of the economic evaluation </span>
+<span class='fu'>contour2</span>(<span class='no'>m</span>,           <span class='co'># uses the results of the economic evaluation </span>
                       <span class='co'>#  (a "bcea" object)</span>
       <span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"ggplot2"</span>,<span class='co'># selects the graphical engine</span>
       <span class='kw'>wtp</span><span class='kw'>=</span><span class='fl'>25000</span>,      <span class='co'># selects the willingness-to-pay threshold</span>
@@ -385,9 +385,9 @@ doi:10.1177/0962280211419832.</p>
 )
 }</div><div class='output co'>#&gt; <span class='error'>Error in is.finite(x): default method not implemented for type 'list'</span></div><div class='input'>
 <span class='co'># Plots the Expected Incremental Benefit for the "bcea" object m</span>
-<span class='fu'><a href='eib.plot.html'>eib.plot</a></span>(<span class='no'>m</span>)</div><div class='img'><img src='bcea-6.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>eib.plot</span>(<span class='no'>m</span>)</div><div class='img'><img src='bcea-6.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the distribution of the Incremental Benefit</span>
-<span class='fu'><a href='ib.plot.html'>ib.plot</a></span>(<span class='no'>m</span>,        <span class='co'># uses the results of the economic evaluation </span>
+<span class='fu'>ib.plot</span>(<span class='no'>m</span>,        <span class='co'># uses the results of the economic evaluation </span>
                   <span class='co'>#  (a "bcea" object)</span>
     <span class='kw'>comparison</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='co'># if more than 2 interventions, selects the </span>
                   <span class='co'>#  pairwise comparison </span>
@@ -397,9 +397,9 @@ doi:10.1177/0962280211419832.</p>
 )</div><div class='output co'>#&gt; <span class='error'>Error in he$ib[w, ]: incorrect number of dimensions</span></div><div class='input'><span class='co'>#</span>
 <span class='co'># Produces a plot of the CEAC against a grid of values for the </span>
 <span class='co'># willingness to pay threshold</span>
-<span class='fu'>ceac.plot</span>(<span class='no'>m</span>)</div><div class='img'><img src='bcea-7.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='ceac.plot.html'>ceac.plot</a></span>(<span class='no'>m</span>)</div><div class='img'><img src='bcea-7.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the Expected Value of Information for the "bcea" object m</span>
-<span class='fu'><a href='evi.plot.html'>evi.plot</a></span>(<span class='no'>m</span>)</div><div class='img'><img src='bcea-8.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='fu'>evi.plot</span>(<span class='no'>m</span>)</div><div class='img'><img src='bcea-8.png' alt='' width='700' height='433' /></div><div class='input'># }
 
 </div></pre>
   </div>

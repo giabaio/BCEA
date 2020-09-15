@@ -2,10 +2,10 @@
 #' Summary Method for Objects of Class \code{bcea}
 #' 
 #' Produces a table printout with some summary results of the health economic
-#' evaluation
+#' evaluation.
 #' 
 #' @template args-he
-#' @param wtp The value of the willingness to pay threshold to be used in the
+#' @param wtp The value of the willingness to pay threshold used in the
 #'   summary table.
 #' @param ...  Additional arguments affecting the summary produced.
 #' 
@@ -15,7 +15,7 @@
 #' @seealso \code{\link{bcea}}
 #' @references
 #' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics.  Statistical Methods in Medical Research
+#' Analysis in Health Economics. Statistical Methods in Medical Research
 #' doi:10.1177/0962280211419832.
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.

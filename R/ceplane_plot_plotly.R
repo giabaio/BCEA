@@ -25,19 +25,16 @@ tabulate_means <- function(he,
 }
 
 
-#' ceplane_plot_plotly
+#' @rdname ceplane_plot_graph
+#'  
+#' @inheritParams ceplane_plot_base.bcea
 #' 
-#' @template args-he
-#' @param wtp
-#' @param graph_params
-#' @param pos_legend
-#' 
-#' @return Plot in Viewer
+#' @return For plotly returns a plot in the Viewer
 #' @inherit plotly
 #' @export
 #' 
 ceplane_plot_plotly.bcea <- function(he,
-                                     wtp,
+                                     wtp = 25000,
                                      graph_params,
                                      pos_legend) {
   
@@ -225,7 +222,7 @@ ceplane_plot_plotly.bcea <- function(he,
 }
 
 
-
+#' @rdname ceplane_plot_graph
 #' @export
 #' 
 ceplane_plot_plotly <- function(he, ...) {

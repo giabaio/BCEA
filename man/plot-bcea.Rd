@@ -2,7 +2,7 @@
 % Please edit documentation in R/ceac.plot.R
 \name{ceac.plot.bcea}
 \alias{ceac.plot.bcea}
-\title{Cost-Effectiveness Acceptability Curve (CEAC) plot}
+\title{Cost-Effectiveness Acceptability Curve (CEAC) Plot}
 \usage{
 \method{ceac.plot}{bcea}(
   he,

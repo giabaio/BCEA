@@ -165,3 +165,4 @@ summary.mixedAn <- function(object,
   cat("\n"
   )
 }
+

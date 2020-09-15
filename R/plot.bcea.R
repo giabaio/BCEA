@@ -5,15 +5,12 @@
 #' Incremental Benefit, the CEAC and the EVPI.
 #' 
 #' The default position of the legend for the cost-effectiveness plane
-#' (produced by \code{\link{ceplane.plot}}) is set to \code{c(1,1.025)}
+#' (produced by \code{\link{ceplane.plot}}) is set to \code{c(1, 1.025)}
 #' overriding its default for \code{pos=FALSE}, since multiple ggplot2 plots
 #' are rendered in a slightly different way than single plots.
 #' 
 #' @template args-he 
-#' @param comparison Selects the comparator, in case of more than two
-#' interventions being analysed. The value is passed to
-#' \code{\link{ceplane.plot}}, \code{\link{eib.plot}} and
-#' \code{\link{ceac.plot}}.
+#' @template args-comparison
 #' @param wtp The value of the willingness to pay parameter. It is passed to
 #' \code{\link{ceplane.plot}}.
 #' @param pos Parameter to set the position of the legend. Can be given in form
@@ -32,8 +29,7 @@
 #' \code{graph="ggplot2"} and the arguments are named theme objects they will
 #' be added to each plot.
 #' 
-#' @return The function produces a plot with four graphical summaries of the
-#' health economic evaluation.
+#' @return A plot with four graphical summaries of the health economic evaluation.
 #' 
 #' @author Gianluca Baio, Andrea Berardi
 #' 
@@ -49,7 +45,7 @@
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' 
-#' @keywords "Health economic evaluation"
+#' @keywords "Health economic evaluation" hplot
 #' 
 #' @examples
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
@@ -193,10 +189,17 @@ plot.bcea <- function(he,
 }
 
 
-#' source: R graphics cookbook
+#' multiplot
+#' 
+#' Arrange plots in grid. Source from R graphics cookbook.
+#' 
+#' @param plotlist List of ggplot objects
+#' @param cols Number of columns
+#' @param layout Matrix
+#' @param extra_args List of plotting arguments
+#' @param ... Potential further arguments.
 #' 
 multiplot <- function(plotlist = NULL,
-                      file,
                       cols = 1,
                       layout = NULL,
                       extra_args, ...) {

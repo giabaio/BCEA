@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>bcea Print Method — print.bcea • BCEA</title>
+<title>Cost-Effectiveness Acceptability Curve (CEAC) Plot By Graph Device — ceac_plot_graph • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="bcea Print Method — print.bcea" />
-<meta property="og:description" content="bcea Print Method" />
+<meta property="og:title" content="Cost-Effectiveness Acceptability Curve (CEAC) Plot By Graph Device — ceac_plot_graph" />
+<meta property="og:description" content="Choice of base, ggplot2 or plotly." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -134,48 +134,35 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>bcea Print Method</h1>
-    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/base_methods.R'><code>R/base_methods.R</code></a></small>
-    <div class="hidden name"><code>print.bcea.Rd</code></div>
+    <h1>Cost-Effectiveness Acceptability Curve (CEAC) Plot By Graph Device</h1>
+    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/ceac_plot_base.R'><code>R/ceac_plot_base.R</code></a>, <a href='https://github.com/giabaio/BCEA/blob/master/R/ceac_plot_ggplot.R'><code>R/ceac_plot_ggplot.R</code></a>, <a href='https://github.com/giabaio/BCEA/blob/master/R/ceac_plot_plotly.R'><code>R/ceac_plot_plotly.R</code></a></small>
+    <div class="hidden name"><code>ceac_plot_graph.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>bcea Print Method</p>
+    <p>Choice of base, ggplot2 or plotly.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for bcea</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>he</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"digits"</span>), <span class='kw'>give.attr</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>no.list</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>ceac_plot_base</span>(<span class='no'>he</span>, <span class='no'>...</span>)
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>he</th>
-      <td><p>A <code>bcea</code> object containing the results of the Bayesian
-modelling and the economic evaluation.</p></td>
-    </tr>
-    <tr>
-      <th>digits</th>
-      <td><p>Minimal number of significant digits, see <code><a href='https://rdrr.io/r/base/print.default.html'>print.default</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>give.attr</th>
-      <td><p>Logical; if TRUE (default), show attributes as sub structures.</p></td>
-    </tr>
-    <tr>
-      <th>no.list</th>
-      <td><p>Logical; if TRUE, no ‘list of ...’ nor the class are printed.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Potential further arguments.</p></td>
-    </tr>
-    </table>
+<span class='co'># S3 method for pairwise</span>
+<span class='fu'>ceac_plot_base</span>(<span class='no'>he</span>, <span class='no'>pos_legend</span>, <span class='no'>graph_params</span>)
+
+<span class='co'># S3 method for bcea</span>
+<span class='fu'>ceac_plot_base</span>(<span class='no'>he</span>, <span class='no'>pos_legend</span>, <span class='no'>graph_params</span>)
+
+<span class='fu'>ceac_plot_ggplot</span>(<span class='no'>he</span>, <span class='no'>pos_legend</span>, <span class='no'>graph_params</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for pairwise</span>
+<span class='fu'>ceac_plot_ggplot</span>(<span class='no'>he</span>, <span class='no'>pos_legend</span>, <span class='no'>graph_params</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for bcea</span>
+<span class='fu'>ceac_plot_ggplot</span>(<span class='no'>he</span>, <span class='no'>pos_legend</span>, <span class='no'>graph_params</span>, <span class='no'>...</span>)
+
+<span class='fu'>ceac_plot_plotly</span>(<span class='no'>he</span>, <span class='kw'>pos_legend</span> <span class='kw'>=</span> <span class='no'>pos</span>, <span class='no'>graph_params</span>)</pre>
 
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='Smoking.html'>data</a></span>(<span class='st'>"Vaccine"</span>)
-<span class='no'>he</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>BCEA</span><span class='kw ns'>::</span><span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='no'>e</span>, <span class='no'>c</span>)</div></pre>
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -1,5 +1,5 @@
 
-#' @noRd
+#' @rdname ceac_plot_graph
 #' 
 #' @import plotly
 #' @export

@@ -15,9 +15,11 @@ reference:
 - title: Plotting
 - contents:
   - '`ceac.plot.bcea`'
+  - '`ceac_plot_graph`'
   - '`ceaf.plot.bcea`'
   - '`ceef.plot.bcea`'
   - '`ceplane.plot.bcea`'
+  - '`ceplane_plot_graph`'
   - '`contour.bcea`'
   - '`contour2.bcea`'
   - '`eib.plot.bcea`'

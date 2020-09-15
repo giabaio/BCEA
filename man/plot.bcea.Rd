@@ -18,9 +18,9 @@
 modelling and the economic evaluation.}
 
 \item{comparison}{Selects the comparator, in case of more than two
-interventions being analysed. The value is passed to
-\code{\link{ceplane.plot}}, \code{\link{eib.plot}} and
-\code{\link{ceac.plot}}.}
+interventions being analysed. Default as NULL plots all the comparisons
+together. Any subset of the possible comparisons can be selected (e.g.,
+\code{comparison=c(1,3)} or \code{comparison=2}).}
 
 \item{wtp}{The value of the willingness to pay parameter. It is passed to
 \code{\link{ceplane.plot}}.}
@@ -44,8 +44,7 @@ can be supplied to the functions in this way. In addition if
 be added to each plot.}
 }
 \value{
-The function produces a plot with four graphical summaries of the
-health economic evaluation.
+A plot with four graphical summaries of the health economic evaluation.
 }
 \description{
 Plots in a single graph the Cost-Effectiveness plane, the Expected
@@ -53,7 +52,7 @@ Incremental Benefit, the CEAC and the EVPI.
 }
 \details{
 The default position of the legend for the cost-effectiveness plane
-(produced by \code{\link{ceplane.plot}}) is set to \code{c(1,1.025)}
+(produced by \code{\link{ceplane.plot}}) is set to \code{c(1, 1.025)}
 overriding its default for \code{pos=FALSE}, since multiple ggplot2 plots
 are rendered in a slightly different way than single plots.
 }
@@ -115,3 +114,4 @@ Gianluca Baio, Andrea Berardi
 \keyword{"Health}
 \keyword{economic}
 \keyword{evaluation"}
+\keyword{hplot}

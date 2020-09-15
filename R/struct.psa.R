@@ -35,8 +35,8 @@
 #' 
 #' @author Gianluca Baio
 #' @seealso \code{\link{bcea}}
-#' @references Baio G. (2012). Bayesian Methods in Health Economics.
-#' CRC/Chapman Hall, London
+#' @references
+#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' 
 #' @export
 #' 

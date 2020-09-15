@@ -2,10 +2,21 @@
 % Please edit documentation in R/plot.bcea.R
 \name{multiplot}
 \alias{multiplot}
-\title{source: R graphics cookbook}
+\title{multiplot}
 \usage{
-multiplot(plotlist = NULL, file, cols = 1, layout = NULL, extra_args, ...)
+multiplot(plotlist = NULL, cols = 1, layout = NULL, extra_args, ...)
+}
+\arguments{
+\item{plotlist}{List of ggplot objects}
+
+\item{cols}{Number of columns}
+
+\item{layout}{Matrix}
+
+\item{extra_args}{List of plotting arguments}
+
+\item{...}{Potential further arguments.}
 }
 \description{
-source: R graphics cookbook
+Arrange plots in grid. Source from R graphics cookbook.
 }
