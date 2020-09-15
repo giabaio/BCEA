@@ -4,18 +4,18 @@
 \alias{multiplot}
 \title{multiplot}
 \usage{
-multiplot(plotlist = NULL, cols = 1, layout = NULL, extra_args, ...)
+multiplot(plotlist = NULL, cols = 1, layout_config = NULL, extra_args, ...)
 }
 \arguments{
 \item{plotlist}{List of ggplot objects}
 
 \item{cols}{Number of columns}
 
-\item{layout}{Matrix}
-
 \item{extra_args}{List of plotting arguments}
 
 \item{...}{Potential further arguments.}
+
+\item{layout}{Matrix}
 }
 \value{
 Plot

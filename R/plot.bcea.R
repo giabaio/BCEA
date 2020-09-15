@@ -153,6 +153,7 @@ plot.bcea <- function(he,
       
       ceplane.pos <- ifelse(pos, pos, c(1, 1.025))
       
+      #warnings...
       ceplane <-
         ceplane.plot(he,
                      wtp = wtp,
@@ -183,7 +184,9 @@ plot.bcea <- function(he,
         do.call(theme, theme_params) +
         theme_add
       
-      multiplot(list(ceplane, ceac, eib, evi), cols = 2, extra_args)
+      multiplot(list(ceplane, ceac, eib, evi),
+                cols = 2,
+                extra_args = extra_args)
     }
   }
 }
@@ -202,13 +205,13 @@ plot.bcea <- function(he,
 #' 
 multiplot <- function(plotlist = NULL,
                       cols = 1,
-                      layout = NULL,
+                      layout_config = NULL,
                       extra_args, ...) {
   
   n_plots <- length(plotlist)
 
-  if (is.null(layout)) {
-    layout <- matrix(seq(1, cols*ceiling(n_plots/cols)),
+  if (is.null(layout_config)) {
+    layout_config <- matrix(seq(1, cols*ceiling(n_plots/cols)),
                      ncol = cols,
                      nrow = ceiling(n_plots/cols))
   }
@@ -218,13 +221,16 @@ multiplot <- function(plotlist = NULL,
     grid::grid.newpage()
     
     grid::pushViewport(
-      grid::viewport(layout = grid::grid.layout(nrow(layout), ncol(layout))))
+      grid::viewport(layout =
+                       grid::grid.layout(nrow(layout_config),
+                                         ncol(layout_config))))
     
     for (i in seq_len(n_plots)) {
-      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+      matchidx <- as.data.frame(which(layout_config == i, arr.ind = TRUE))
       print(plotlist[[i]],
             vp = grid::viewport(layout.pos.row = matchidx$row,
                                 layout.pos.col = matchidx$col))
     }
   }
 }
+
