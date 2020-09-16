@@ -24,7 +24,6 @@
 #' 
 #' @template args-he
 #' @template args-comparison
-#' 
 #' @param pos Parameter to set the position of the legend (only relevant for
 #'   multiple interventions, ie more than 2 interventions being compared). Can be
 #'   given in form of a string \code{(bottom|top)(right|left)} for base graphics

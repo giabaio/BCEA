@@ -33,7 +33,8 @@
 #' @export
 #' 
 evi.plot.bcea <- function(he,
-                          graph = c("base","ggplot2","plotly"), ...) {
+                          graph = c("base","ggplot2","plotly"),
+                          ...) {
 
     # choose graphical engine -----
   if (is.null(graph) || is.na(graph)) 

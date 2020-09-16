@@ -25,7 +25,6 @@
 #' @export
 #' 
 #' @examples 
-#' 
 #' data(Vaccine)
 #' 
 #' he <- bcea(e,c, interventions = treats, ref = 2)
@@ -39,22 +38,21 @@ summary.bcea <- function(he,
     message(
       cat(paste0(
         "NB: k (wtp) is defined in the interval [",
-        min(he$k),
-        " - ",
-        wtp,
-        "]\n")))
+        min(he$k), " - ", wtp, "]\n")))
   }
   
   if (!is.element(wtp, he$k)) {
     if (!is.na(he$step)) {
-      # The user has selected a non-acceptable value for wtp, but has not specified wtp in the call to bcea
+      # The user has selected a non-acceptable value for wtp,
+      # but has not specified wtp in the call to bcea
       stop(
         paste0(
           "The willingness to pay parameter is defined in the interval [0-",
           he$Kmax,
           "], with increments of ",
           he$step,
-          "\n"), call. = FALSE)
+          "\n"),
+        call. = FALSE)
     } else {
       # The user has actually specified wtp as input in the call to bcea
       he_k <- paste(he$k, collapse = " ")
@@ -62,7 +60,8 @@ summary.bcea <- function(he,
         paste0("The willingness to pay parameter is defined as:\n[",
                he_k,
                "]\nPlease select a suitable value",
-               collapse = " "), call. = FALSE)
+               collapse = " "),
+        call. = FALSE)
     }
   }
   
@@ -85,7 +84,7 @@ summary.bcea <- function(he,
   }
   
   if (he$n_comparisons > 1) {
-    for (i in 1:he$n_comparisons) {
+    for (i in seq_len(he$n_comparisons)) {
       comp_tab[i, 2] <-
         sum(Table[1:he$n_sim, paste0("IB", he$ref, "_", he$comp[i])] > 0) / he$n_sim
       comp_tab[i, 3] <- he$ICER[i]

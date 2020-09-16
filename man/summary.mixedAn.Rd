@@ -29,7 +29,7 @@ economic evaluation of a given model.
 
 # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 # Bayesian model and economic problem
-#
+
 # Load the processed results of the MCMC simulation model
 data(Vaccine)
 
@@ -61,12 +61,12 @@ summary(ma,       # uses the results of the mixed strategy analysis
 
 }
 \references{
-Baio, G. and Russo, P. (2009).A decision-theoretic framework for
+Baio, G. and Russo, P. (2009). A decision-theoretic framework for
 the application of cost-effectiveness analysis in regulatory processes.
 Pharmacoeconomics 27(8), 645-655 doi:10.2165/11310250
 
 Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in Health
-Economics.  Statistical Methods in Medical Research
+Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 
 Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.

@@ -115,10 +115,10 @@ plot.bcea <- function(he,
     
     ceac.plot(he,
               pos = pos,
-              graph = "base")
+              graph = "base", ...)
     
     evi.plot(he,
-             graph = "base")
+             graph = "base", ...)
     par(op)
   } else {
     
@@ -132,12 +132,13 @@ plot.bcea <- function(he,
         wtp = wtp,
         pos = pos,
         graph = "base", ...)
+      
       return(invisible(NULL))
     }
     
     if (all(is_req_pkgs)) {
-
-      theme_params <- 
+      
+      default_params <- 
         list(text = element_text(size = 9),
              legend.key.size = grid::unit(0.5, "lines"),
              legend.spacing = grid::unit(-1.25, "line"),
@@ -148,6 +149,9 @@ plot.bcea <- function(he,
                face = "bold",
                size = 11.5,
                hjust = 0.5))
+      
+      extra_params <- extra_args[names(default_params)]
+      global_params <- modifyList(default_params, extra_params)
       
       theme_add <- purrr::keep(extra_args, is.theme)
       
@@ -160,7 +164,7 @@ plot.bcea <- function(he,
                      pos = ceplane.pos,
                      comparison = comparison,
                      graph = "ggplot2", ...) +
-        do.call(theme, theme_params) +
+        do.call(theme, global_params) +
         theme_add
       
       eib <-
@@ -168,20 +172,20 @@ plot.bcea <- function(he,
                  pos = pos,
                  comparison = comparison,
                  graph = "ggplot2", ...) +
-        do.call(theme, theme_params) +
+        do.call(theme, global_params) +
         theme_add
       
       ceac <-
         ceac.plot(he,
                   pos = pos,
                   comparison = comparison,
-                  graph = "ggplot2") +
-        do.call(theme, theme_params) +
+                  graph = "ggplot2", ...) +
+        do.call(theme, global_params) +
         theme_add
       
       evi <-
-        evi.plot(he, graph = "ggplot2") +
-        do.call(theme, theme_params) +
+        evi.plot(he, graph = "ggplot2", ...) +
+        do.call(theme, global_params) +
         theme_add
       
       multiplot(list(ceplane, ceac, eib, evi),
@@ -192,9 +196,9 @@ plot.bcea <- function(he,
 }
 
 
-#' multiplot
+#' Plot Multiple bcea Graphs
 #' 
-#' Arrange plots in grid. Source from R graphics cookbook.
+#' Arrange plots in grid. Sourced from R graphics cookbook.
 #' 
 #' @param plotlist List of ggplot objects
 #' @param cols Number of columns
@@ -209,11 +213,11 @@ multiplot <- function(plotlist = NULL,
                       extra_args, ...) {
   
   n_plots <- length(plotlist)
-
+  
   if (is.null(layout_config)) {
     layout_config <- matrix(seq(1, cols*ceiling(n_plots/cols)),
-                     ncol = cols,
-                     nrow = ceiling(n_plots/cols))
+                            ncol = cols,
+                            nrow = ceiling(n_plots/cols))
   }
   if (n_plots == 1) {
     print(plotlist[[1]])
