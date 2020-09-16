@@ -192,51 +192,7 @@ plot.bcea <- function(he,
         theme_add
       
       multiplot(list(ceplane, ceac, eib, evi),
-                cols = 2,
-                extra_args = extra_args)
-    }
-  }
-}
-
-
-#' Plot Multiple bcea Graphs
-#' 
-#' Arrange plots in grid. Sourced from R graphics cookbook.
-#' 
-#' @param plotlist List of ggplot objects
-#' @param cols Number of columns
-#' @param layout Matrix
-#' @param extra_args List of plotting arguments
-#' @param ... Potential further arguments.
-#' @return Plot
-#' 
-multiplot <- function(plotlist = NULL,
-                      cols = 1,
-                      layout_config = NULL,
-                      extra_args, ...) {
-  
-  n_plots <- length(plotlist)
-  
-  if (is.null(layout_config)) {
-    layout_config <- matrix(seq(1, cols*ceiling(n_plots/cols)),
-                            ncol = cols,
-                            nrow = ceiling(n_plots/cols))
-  }
-  if (n_plots == 1) {
-    print(plotlist[[1]])
-  } else {
-    grid::grid.newpage()
-    
-    grid::pushViewport(
-      grid::viewport(layout =
-                       grid::grid.layout(nrow(layout_config),
-                                         ncol(layout_config))))
-    
-    for (i in seq_len(n_plots)) {
-      matchidx <- as.data.frame(which(layout_config == i, arr.ind = TRUE))
-      print(plotlist[[i]],
-            vp = grid::viewport(layout.pos.row = matchidx$row,
-                                layout.pos.col = matchidx$col))
+                cols = 2)
     }
   }
 }
