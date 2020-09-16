@@ -150,8 +150,11 @@ plot.bcea <- function(he,
                size = 11.5,
                hjust = 0.5))
       
-      extra_params <- extra_args[names(default_params)]
-      global_params <- modifyList(default_params, extra_params)
+      keep_param <-
+        names(default_params)[names(default_params) %in% names(extra_args)]
+      
+      extra_params <- extra_args[keep_param]
+      global_params <- modifyList(default_params, extra_params, keep.null = TRUE)
       
       theme_add <- purrr::keep(extra_args, is.theme)
       
