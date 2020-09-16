@@ -109,6 +109,20 @@ a.anchor {
 }
 
 /* Navbar submenu --------------------------*/
+.navbar {
+  min-height: 70px !important;
+}
+.navbar-light {
+  background: #94b9c5 !important; 
+  box-shadow: 0 0.125rem 0.25rem 0 rgba(0,0,0,.11)
+}
+/* Navigation bar text */
+.navbar-light {
+  font-family: '{{ .Get "nav_font" }}', sans-serif;
+  font-weight: 400;
+  line-height: 1.25;
+  text-rendering: optimizeLegibility;
+}
 
 .dropdown-submenu {
   position: relative;

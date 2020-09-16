@@ -1,0 +1,646 @@
+@import url("http://www.statistica.it/gianluca/css/academic.css")
+@import url("http://statistica.it/gianluca/styles.css")
+
+/*************************************************
+ *  Hugo Academic: an academic theme for Hugo.
+ *  Designed by @GeorgeCushen.
+ *  https://github.com/gcushen/hugo-academic
+ **************************************************/
+
+
+/*************************************************
+ *  Home Sections
+ **************************************************/
+
+@keyframes intro {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* This bit makes the homepage wider */
+.container {
+  max-width: 85% !important;
+  padding: .4rem 20px 0 20px;
+  margin: 0 auto 0 auto;
+}
+
+.home-section {
+/*  background-color: {{ .Get "home_section_odd" }}; */
+  /* This changes the space between sections */
+  /* padding: 110px 0 110px 0; */
+  padding: 30px 0 30px 0;
+  animation: intro 0.3s both;
+  animation-delay: 0.15s;
+}
+
+.home-section:first-of-type {
+  padding-top: 50px;
+}
+
+/********************************************
+* Page width
+********************************************/
+.article-container {
+  /* default - changed GB Sept 2018
+  max-width: 760px;
+  */
+  max-width: 80% !important;
+  padding: 1rem 20px 0 20px;
+  margin: 0 auto 0 auto;
+}
+
+
+/*************************************************
+ *  Card component
+ **************************************************/
+
+.card-simple {
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  border: 1px solid rgba(0,0,0,.09);
+  border-radius: 3px;
+  margin-top: 20px;
+  padding: 15px 20px 15px 20px;
+}
+
+.card-simple:first-of-type {
+  margin-top: 0;
+}
+
+.card-simple p.read-more {
+  margin: 0;
+}
+
+.dark .card-simple {
+  background: rgb(40, 42, 54);
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  border: 1px solid rgb(68, 71, 90);
+}
+
+.card {
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: #fff;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+  transition: all 0.2s ease-out;
+}
+
+.card .card-image {
+  display: block;
+  position: relative;
+  min-height: 100px;
+}
+
+.card h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.card h4 a {
+  color: #000;
+  border-bottom: solid 1px transparent;
+}
+
+.card h4 a:hover {
+  color: #000;
+  border-bottom: solid 1px #000;
+  text-decoration: none;
+}
+
+.card .card-text {
+  padding: 0.75rem 1rem 0.75rem;
+}
+
+.card .card-text p {
+  color: rgba(0,0,0,0.54);
+  font-size: 0.75rem;
+}
+
+.dark .card-text p {
+  color: rgb(248, 248, 242);
+}
+
+.card p:last-child {
+  margin-bottom: 0;
+}
+
+.card .card-image.hover-overlay:before {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  content: " ";
+  opacity: 0;
+  transition: all 0.2s ease-out;
+}
+
+.card .card-image.hover-overlay:after {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  transform: translate(0, -50%);
+  opacity: 0;
+  transition: all 0.2s ease-out;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  content: '\f0c1';
+  text-align: center;
+  font-size: 3rem;
+  color: #666;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card:hover .card-image.hover-overlay:before {
+  opacity: 0.8;
+}
+
+.card:hover .card-image.hover-overlay:after {
+  opacity: 0.6;
+}
+
+
+
+/*************************************************
+ *  Biography
+ **************************************************/
+
+#profile {
+  text-align: center;
+  padding: 30px 10px;
+  position: relative;
+}
+
+#profile .portrait {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+#profile .portrait-title h2 {
+  font-size: 1.75em;
+  font-weight: 300;
+  color: #000000;
+  margin: 20px 0 10px 0;
+}
+
+#profile .portrait-title h3 {
+  font-size: .85rem;
+  font-weight: 300;
+  color: rgba(0,0,0, 0.54);
+  margin: 0px 0 10px 0;
+}
+
+ul.network-icon {
+  display: inline-flex;
+  flex-direction: row;
+  /*flex-wrap: wrap;*/
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin-top: 30px;
+  /* This makes the icons a little smaller */
+  transform: scale(.7);
+}
+
+
+/*************************************************
+ *  Navigation Bar
+ **************************************************/
+
+.navbar {
+  min-height: 70px !important;
+}
+.navbar-light {
+  background: #94b9c5 !important; 
+  box-shadow: 0 0.125rem 0.25rem 0 rgba(0,0,0,.11)
+}
+/* Navigation bar text */
+.navbar-light {
+  font-family: '{{ .Get "nav_font" }}', sans-serif;
+  font-weight: 400;
+  line-height: 1.25;
+  text-rendering: optimizeLegibility;
+}
+
+
+/* 
+* Font size
+*  h1{font-size:36px} h2{font-size:30px} h3{font-size:24px} h4{font-size:20px} h5{font-size:18px} h6{font-size:16px}
+*/
+
+
+
+/*************************************************
+ *  Article Alerts (Shortcode) and Asides (Mmark)
+ **************************************************/
+
+/* Style asides as Bootstrap alerts. */
+.article-style aside {
+  @extend .alert;
+}
+
+/* Asides use <p> block element whereas alerts use <div>. */
+.article-style aside p,
+div.alert > div {
+  position: relative;
+  display: block;
+  font-size: 1rem;
+  margin-left: 2rem;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+div.alert div > * {
+  margin-bottom: .5rem;  /* Use smaller paragraph spacing than usual. */
+}
+
+div.alert div > :last-child {
+  margin-bottom: 0;
+  /* this option makes the block as big as the text it contains */
+  display: inline-block;
+}
+
+.article-style aside p::before,
+div.alert > div:first-child::before {
+  position: absolute;
+  top: -0.5rem;
+  left: -2rem;
+  font-size: 1.5rem;
+  color: #209cee;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  content: '\f05a';
+  width: 1.5rem;
+  text-align: center;
+  /* this option makes the block as big as the text it contains */
+  display: inline-block;
+}
+
+div.alert-warning > div:first-child::before {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  color: #ff3860;
+  content: '\f071';
+  /* this option makes the block as big as the text it contains */
+  display: inline-block;
+}
+
+// Creates a new option for a block of code (alert)
+div.alert-wink > div:first-child::before {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  color: #30698a;
+  content: '\f58c';
+  /* this option makes the block as big as the text it contains */
+  display: inline-block;
+}
+
+.article-style aside a,
+div.alert a {
+  color: currentColor;
+  text-decoration: none;
+  border-bottom: solid 1px currentColor;
+  /* this option makes the block as big as the text it contains */
+  display: inline-block;
+}
+
+.article-style aside,
+.alert-note {
+  color: #12537e;
+  background-color: #f6fbfe;
+  border-color: #209cee;
+  /* this option makes the block as big as the text it contains */
+  display: inline-block;
+}
+
+.alert-warning {
+  color: #cd0930;
+  background-color: #fff5f7;
+  border-color: #ff3860;
+  /* this option makes the block as big as the text it contains */
+  display: inline-block;
+}
+
+// Creates a new option for a block of code (alert)
+.alert-wink { 
+  color: #12537e;
+  background-color: #c3dfe8;
+  border-color:#03526b;
+  /* this option makes the block as big as the text it contains */
+  display: inline-block;
+}
+
+
+/*************************************************
+ *  Documentation layout
+ **************************************************/
+
+.docs-article-container {
+  /* default - changed GB Sept 2018
+  max-width: 760px;
+  */
+  max-width: 95% !important;
+}
+
+/* Documentation: article footer. */
+
+.docs .body-footer {
+  border-top: 1px solid #e8e8e8;
+  margin-top: 30px;
+  padding-top: 10px;
+  font-size: 14px;
+  color: #707070;
+}
+
+/* Docs content. */
+
+.docs-content {
+  order: 1;
+  position: relative;
+}
+
+.docs-content>h2[id],
+.docs-content>h3[id],
+.docs-content>h4[id] {
+  pointer-events: none;
+}
+
+.docs-content>ol li,
+.docs-content>ul li {
+  margin-bottom: .25rem;
+}
+
+/* Docs search. */
+
+.docs-search {
+  position: relative;
+  padding: 1rem 15px;
+  margin-right: -15px;
+  margin-left: -15px;
+  border-bottom: 1px solid rgba(0, 0, 0, .05);
+}
+
+.docs-search .form-control:focus {
+  border-color: $sta-primary;
+  box-shadow: 0 0 0 3px $sta-primary-light;
+}
+
+/* Docs sidebar. */
+
+.docs-sidebar {
+  order: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, .1)
+}
+
+@media (min-width:768px) {
+  .docs-sidebar {
+    border-right: 1px solid rgba(0, 0, 0, .1)
+  }
+  @supports ((position:-webkit-sticky) or (position:sticky)) {
+    .docs-sidebar {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 50px;
+      z-index: 10;
+      height: calc(100vh - 50px)
+    }
+  }
+}
+
+@media (min-width:1200px) {
+  .docs-sidebar {
+    border-right: 1px solid rgba(0, 0, 0, .1)
+  }
+  @supports ((position:-webkit-sticky) or (position:sticky)) {
+    .docs-sidebar {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 70px;
+      z-index: 10;
+      height: calc(100vh - 70px)
+    }
+  }
+}
+
+@media (min-width:1200px) {
+  .docs-sidebar {
+    flex: 0 1 320px
+  }
+}
+
+/* Docs sidebar li>a. */
+
+.docs-sidebar .nav>li>a {
+  display: block;
+  padding: .25rem 1.5rem;
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, .65);
+}
+
+.docs-sidebar .nav>li>a:hover {
+  color: rgba(0, 0, 0, .85);
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.docs-sidebar .docs-toc-item.active a,
+.docs-sidebar .nav>.active:hover>a,
+.docs-sidebar .nav>.active>a {
+  font-weight: bold;
+  color: $sta-primary;
+  background-color: transparent;
+}
+
+/* Docs links. */
+
+.docs-toggle {
+  line-height: 1;
+  font-size: 1.2rem;
+  color: $sta-primary;
+  background-color: transparent;
+}
+
+.docs-links {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+@media (min-width:768px) {
+  @supports ((position:-webkit-sticky) or (position:sticky)) {
+    .docs-links {
+      max-height: calc(100vh - 5rem - 70px);
+      overflow-y: auto;
+    }
+  }
+}
+
+@media (min-width:768px) {
+  .docs-links {
+    display: block!important;
+  }
+}
+
+/* Docs TOC. */
+
+.docs-toc {
+  order: 2;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  font-size: .875rem
+}
+
+@supports ((position:-webkit-sticky) or (position:sticky)) {
+  .docs-toc {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 70px;
+    height: calc(100vh - 70px);
+    overflow-y: auto
+  }
+}
+
+/* Docs TOC item links. */
+
+.docs-toc-link {
+  display: block;
+  padding: .25rem 1.5rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, .65);
+}
+
+.docs-toc-link:hover {
+  color: rgba(0, 0, 0, .85);
+  text-decoration: none;
+}
+
+.docs-toc-item.active {
+  margin-bottom: 1rem;
+}
+
+.docs-toc-item.active:not(:first-child) {
+  margin-top: 1rem;
+}
+
+.docs-toc-item.active>.docs-toc-link {
+  color: rgba(0, 0, 0, .85);
+}
+
+.docs-toc-item.active>.docs-toc-link:hover {
+  background-color: transparent;
+}
+
+.docs-sidenav {
+  display: block;
+}
+
+/* Docs TOC nav. */
+
+.docs-toc-title {
+  color: #b5b5b5;
+  font-size: .875rem;
+  font-weight: 600;
+  padding-left: calc(1.5rem + 1px);
+}
+
+#TableOfContents {
+  padding-left: 0;
+  border-left: 1px solid #eee;
+}
+
+#TableOfContents ul,
+ul.toc-top {
+  padding-left: 0;
+}
+
+// TOC indentation for each level.
+#TableOfContents ul ul {
+  padding-left: 0.8rem;
+}
+
+#TableOfContents li {
+  display: block;
+}
+
+#TableOfContents li a,
+.toc-top li a {
+  display: block;
+  padding: .125rem 1.5rem;
+  color: #99979c;
+  font-size: 0.7rem;
+}
+
+#TableOfContents li a:hover,
+.toc-top li a:hover {
+  color: $sta-primary;
+  text-decoration: none;
+}
+
+/* ScrollSpy active link style. */
+#TableOfContents li a.active {
+  color: $sta-primary;
+  font-weight: 700;
+}
+
+/* Docs achnorjs links. */
+
+.anchorjs-link {
+  font-weight: 400;
+  color: $sta-primary-dark;
+  transition: color .16s linear;
+}
+
+.anchorjs-link:hover {
+  color: $sta-primary;
+  text-decoration: none;
+}
+
+/* Forms */
+label{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 500px;
+    text-align: left; /*Change to right here if you want it close to the inputs*/
+}
+input {
+  display: inline-block;
+  float: left;
+}
+button {
+  border-radius: 50px;
+  font-size: 22px;
+  border: 4px solid #555555;
+  margin: 4px 4px;
+}
+/*
+OPTIONS AVAILABLE:
+  background-color: #4CAF50;
+  border-radius: 25px;
+  border: none;
+  color: black;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  margin: 4px 4px;
+*/
