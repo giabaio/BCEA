@@ -1,3 +1,5 @@
+# compute all bcea statistics ---------------------------------------------
+
 
 #' Compute kstar
 #'
@@ -185,7 +187,7 @@ compute_ol <- function(Ustar,
 }
 
 
-#
+#'
 rowMax <- function(dat) apply(dat, 1, max)
 
 
@@ -220,5 +222,96 @@ compute_U <- function(df_ce, k) {
         dimnames = list(sims = NULL,
                         k = NULL,
                         ints = interv_names))
+}
+
+
+#' Compute Incremental Benefit
+#'
+#' Sample of incremental net monetary benefit for each
+#' willingness-to-pay threshold, \eqn{k}, and comparator.
+#' 
+#' Defined as:
+#' 
+#' \deqn{IB = u(e,c; 1) - u(e,c; 0)}
+#' 
+#' If the net benefit function is used as utility function,
+#' the definition can be re-written as
+#' 
+#' \deqn{IB = k\cdot\Delta_e - \Delta_c}.
+#'
+#' @param df_ce Dataframe of cost and effectiveness deltas
+#' @param k Vector of willingness to pay values
+#'
+#' @import dplyr
+#' 
+#' @return Array with dimensions (k x sim x ints)
+#' 
+#' @export
+#' @seealso \code{\link{compute_EIB}}
+#'
+compute_IB <- function(df_ce, k) {
+  
+  sims <- unique(df_ce$sim)
+  ints <- unique(df_ce$ints)
+  comp_names <- comp_names_from_(df_ce)
+  
+  df_ce <-
+    df_ce %>% 
+    filter(ints != ref) %>%
+    rename(comps = ints)
+  
+  ib_df <-
+    data.frame(k = rep(k, each = nrow(df_ce)),
+               df_ce) %>% 
+    mutate(ib = k*delta_e - delta_c) %>%
+    arrange(comps, sim, k)
+  
+  array(ib_df$ib,
+        dim = c(length(k),
+                length(sims),
+                length(ints) - 1),
+        dimnames = list(k = NULL,
+                        sims = NULL,
+                        ints = comp_names))
+}
+
+
+#' Compute Incremental Cost-Effectiveness Ratio
+#'
+#' Defined as
+#' 
+#' \deqn{ICER = \Delta_c/\Delta_e}
+#'
+#' @param df_ce Cost-effectiveness dataframe 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' 
+compute_ICER <- function(df_ce) {
+  
+  comp_names <- comp_names_from_(df_ce)
+  
+  df_ce %>%
+    filter(ints != ref) %>% 
+    group_by(ints) %>% 
+    summarise(ICER = mean(delta_c)/mean(delta_e)) %>% 
+    ungroup() %>% 
+    select(ICER) %>%  # required to match current format 
+    unlist() %>% 
+    setNames(comp_names)
+}
+
+
+#'
+comp_names_from_ <- function(df_ce) {
+  
+  df_ce[, c("ref", "ints", "interv_names")] %>%
+    filter(ref != ints) %>%
+    distinct() %>%
+    arrange(ints) %>% 
+    select(interv_names) %>% 
+    unlist()
 }
 
