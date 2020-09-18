@@ -18,11 +18,13 @@
 #' @param col Sets the color for the lines depicted in the graph.
 #' @param ...  Arguments to be passed to methods, such as graphical parameters
 #' (see \code{\link{par}}).
+#' @return Plot with base R or ggplot 2.
 #' 
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}}, \code{\link{evppi}}
 #' @references
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
+#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+#' 
 #' @keywords "Health economic evaluation" "Expected value of information"
 #' 
 #' @export
@@ -90,8 +92,9 @@ plot.evppi <- function (x,
       cmd <- paste("EVPPI for ", x$params, sep = "")
     }
     
-    if (length(x$index) > 1 & (x$method == "Strong & Oakley (univariate)" || 
-                               x$method == "Sadatsafavi et al")) {
+    if (length(x$index) > 1 &
+        (x$method == "Strong & Oakley (univariate)" || 
+         x$method == "Sadatsafavi et al")) {
       for (i in seq_along(x$index)) {
         points(x$k,
                x$evppi[[i]],
@@ -116,8 +119,8 @@ plot.evppi <- function (x,
     return(invisible(NULL))
   }
   else {
-    if (!isTRUE(requireNamespace("ggplot2", quietly = TRUE) & 
-                requireNamespace("grid", quietly = TRUE))) {
+    if (!(requireNamespace("ggplot2", quietly = TRUE) & 
+          requireNamespace("grid", quietly = TRUE))) {
       message("Falling back to base graphics\n")
       plot.evppi(x, pos = c(0, 0.8), graph = "base", col)
       return(invisible(NULL))

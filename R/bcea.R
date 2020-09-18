@@ -148,7 +148,7 @@
 #'       graph="ggplot2",
 #'       pos="top",
 #'       size=5,
-#'       ICER.size=1.5,
+#'       ICER_size=1.5,
 #'       label.pos=FALSE,
 #'       opt.theme=ggplot2::theme(text=ggplot2::element_text(size=8))
 #' )

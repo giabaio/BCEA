@@ -23,8 +23,6 @@
 #' @export
 #' @seealso \code{\link{compute_EIB}}
 #'
-#' @examples
-#' 
 compute_IB <- function(df_ce, k) {
     
   sims <- unique(df_ce$sim)

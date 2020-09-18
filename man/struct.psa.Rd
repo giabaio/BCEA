@@ -32,7 +32,7 @@ appearing first is the reference and the other(s) is(are) the comparator(s)}
 
 \item{interventions}{Defines the labels to be associated with each
 intervention. By default and if \code{NULL}, assigns labels in the form
-"Intervention1", ... , "Intervention T"}
+"Intervention1", ... , "InterventionT"}
 
 \item{Kmax}{Maximum value of the willingness to pay to be considered.
 Default value is \code{k=50000}. The willingness to pay is then approximated
@@ -42,6 +42,9 @@ on a discrete grid in the interval \code{[0,Kmax]}. The grid is equal to
 
 \item{plot}{A logical value indicating whether the function should produce
 the summary plot or not}
+}
+\value{
+List object of bcea object, model weights and DIC
 }
 \description{
 Computes the weights to be associated with a set of competing models in
@@ -54,9 +57,6 @@ effect is a list containing the measure of effectiveness computed from the
 various models (one matrix with n_sim x n_ints simulations for each model)
 cost is a list containing the measure of costs computed from the various
 models (one matrix with n_sim x n_ints simulations for each model).
-}
-\examples{
-
 }
 \references{
 Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.

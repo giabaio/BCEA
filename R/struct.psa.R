@@ -24,7 +24,7 @@
 #' appearing first is the reference and the other(s) is(are) the comparator(s)
 #' @param interventions Defines the labels to be associated with each
 #' intervention. By default and if \code{NULL}, assigns labels in the form
-#' "Intervention1", ... , "Intervention T"
+#' "Intervention1", ... , "InterventionT"
 #' @param Kmax Maximum value of the willingness to pay to be considered.
 #' Default value is \code{k=50000}. The willingness to pay is then approximated
 #' on a discrete grid in the interval \code{[0,Kmax]}. The grid is equal to
@@ -33,14 +33,13 @@
 #' @param plot A logical value indicating whether the function should produce
 #' the summary plot or not
 #' 
+#' @return List object of bcea object, model weights and DIC
 #' @author Gianluca Baio
 #' @seealso \code{\link{bcea}}
 #' @references
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' 
 #' @export
-#' 
-#' @examples
 #' 
 struct.psa <- function(models,
                        effect,
@@ -50,30 +49,34 @@ struct.psa <- function(models,
                        Kmax = 50000,
                        plot = FALSE) {
   
-  n.models <- length(models)  # number of models to be combined
+  n.models <- length(models)
   
-  if(n.models == 1) {
-    stop("NB: Needs at least two models to run structural PSA", call. = FALSE)
+  if (n.models == 1) {
+    stop("NB: Needs at least two models to run structural PSA",
+         call. = FALSE)
   }
-  d <- w <- numeric()		# initialises the relevant vectors
-  mdl <- list()		     	# and list
+  d <- w <- numeric()
+  mdl <- list()
+  
   for (i in seq_len(n.models)) {
     # 1. checks whether each model has been run using JAGS or BUGS    
-    if(class(models[[i]]) == "rjags") {
-      if(!isTRUE(requireNamespace("R2jags", quietly = TRUE))) {
-        stop("You need to install the package 'R2jags'.
-             Please run in your R terminal:\n install.packages('R2jags')", call. = FALSE)
+    if (class(models[[i]]) == "rjags") {
+      if (!(requireNamespace("R2jags", quietly = TRUE))) {
+        stop ("You need to install the package 'R2jags'.
+             Please run in your R terminal:\n install.packages('R2jags')",
+              call. = FALSE)
       }
-      if (isTRUE(requireNamespace("R2jags", quietly = TRUE))) {
+      if (requireNamespace("R2jags", quietly = TRUE)) {
         mdl[[i]] <- models[[i]]$BUGSoutput  # if model is run using R2jags/rjags        
       }
     }
-    if(class(models[[i]]) == "bugs") {		# if model is run using R2WinBUGS/R2OpenBUGS
-      if(!isTRUE(requireNamespace("R2OpenBUGS", quietly = TRUE))) {
-        stop("You need to install the package 'R2OpenBUGS'.
-             Please run in your R terminal:\n install.packages('R2OpenBUGS')", call. = FALSE)
+    if (class(models[[i]]) == "bugs") {		# if model is run using R2WinBUGS/R2OpenBUGS
+      if (!(requireNamespace("R2OpenBUGS", quietly = TRUE))) {
+        stop ("You need to install the package 'R2OpenBUGS'.
+             Please run in your R terminal:\n install.packages('R2OpenBUGS')",
+              call. = FALSE)
       }
-      if(isTRUE(requireNamespace("R2OpenBUGS", quietly = TRUE))) {
+      if (requireNamespace("R2OpenBUGS", quietly = TRUE)) {
         mdl[[i]] <- models[[i]]
       }
     }
@@ -110,3 +113,4 @@ struct.psa <- function(models,
        w = w,
        DIC = d)
 }
+

@@ -10,6 +10,9 @@
 #' @param ... Potential further arguments
 #' @return ggplot TableGrob object
 #' 
+#' @importFrom gridExtra grid.arrange
+#' @export
+#' 
 multiplot <- function(plotlist = NULL,
                       cols = 1,
                       layout_config = NULL) {

@@ -2,7 +2,7 @@
 #' Set Reference Group
 #'
 #' @template args-he
-#' @param ref 
+#' @param ref Reference group number
 #'
 #' @return
 #' @export
@@ -34,7 +34,7 @@
 #' Set Maximum Willingness to Pay
 #'
 #' @template args-he
-#' @param Kmax 
+#' @param Kmax Maximum willingness to pay
 #'
 #' @return
 #' @export

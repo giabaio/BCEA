@@ -1,5 +1,10 @@
 
-#' choose graphical engine
+#' Choose Graphical Engine
+#' 
+#' From base R, ggplot2 or plotly.
+#'
+#' @param graph Type names; string
+#' @return Plot ID integer 1:base R; 2:ggplot2; 3:plotly
 #'
 #' @keywords dplot
 #' 
@@ -28,19 +33,19 @@ select_plot_type <- function(graph) {
 }
 
 
-#
+#'
 is_baseplot <- function(graph) {
   
   select_plot_type(graph) == 1
 }
 
-#
+#'
 is_ggplot <- function(graph) {
   
   select_plot_type(graph) == 2
 }
 
-#
+#'
 is_plotly <- function(graph) {
   
   select_plot_type(graph) == 3

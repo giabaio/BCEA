@@ -1,13 +1,13 @@
 
-#' Select best option for each value of willingness to pay
+#' Select Best Option For Each Value Of Willingness To Pay
 #'
 #' @param eib Expected incremental benefit 
+#' @param ref Reference group number
+#' @param comp Comparison group number(s)
 #'
-#' @return
+#' @return Group index
 #' @export
 #'
-#' @examples
-#' 
 best_interv_given_k <- function(eib,
                                 ref,
                                 comp) {

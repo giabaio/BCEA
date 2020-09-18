@@ -88,7 +88,7 @@ plot(he, graph = "ggplot2")
 plot(he,
   graph = "ggplot2",                                      # use ggplot2
   theme = theme(plot.title=element_text(size=rel(1.25))), # theme elements must have a name
-  ICER.size = 1.5,                                        # hidden option in ceplane.plot
+  ICER_size = 1.5,                                        # hidden option in ceplane.plot
   size = rel(2.5)                                         # modifies the size of k = labels
   )                                                       # in ceplane.plot and eib.plot
 }

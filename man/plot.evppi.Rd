@@ -29,12 +29,15 @@ plotting. Should (partial-)match the two options \code{"base"} or
 \item{...}{Arguments to be passed to methods, such as graphical parameters
 (see \code{\link{par}}).}
 }
+\value{
+Plot with base R or ggplot 2.
+}
 \description{
 Plot Expected Value of Partial Information With Respect to a
 Set of Parameters
 }
 \references{
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
 \code{\link{bcea}}, \code{\link{evppi}}

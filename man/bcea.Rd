@@ -42,10 +42,10 @@ on a discrete grid in the interval \code{[0, Kmax]}. The grid is equal to
 \code{wtp} if the parameter is given, or composed of \code{501} elements if
 \code{wtp = NULL} (the default).}
 
-\item{wtp}{A(n optional) vector wtp including the values of the willingness
+\item{wtp}{A(n optional) vector including the values of the willingness
 to pay grid. If not specified then BCEA will construct a grid of 501 values
-from 0 to Kmax. This option is useful when performing intensive computations
-(e.g. for the EVPPI).}
+from 0 to \code{Kmax}. This option is useful when performing intensive
+computations (e.g. for the EVPPI).}
 
 \item{plot}{A logical value indicating whether the function should produce
 the summary plot or not.}
@@ -109,7 +109,6 @@ post-processed to give the health economic analysis. The output is stored in
 an object of the class "bcea".
 }
 \examples{
-
 # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 # Bayesian model and economic problem
 
@@ -117,52 +116,57 @@ an object of the class "bcea".
 data(Vaccine)
 
 # Runs the health economic evaluation using BCEA
-m <- bcea(e=e,
-          c=c,              # defines the variables of 
+m <- bcea(
+      e=e,
+      c=c,                  # defines the variables of 
                             #  effectiveness and cost
-      ref=2,                # selects the 2nd row of (e,c) 
+      ref=2,                # selects the 2nd row of (e, c) 
                             #  as containing the reference intervention
       interventions=treats, # defines the labels to be associated 
                             #  with each intervention
       Kmax=50000,           # maximum value possible for the willingness 
                             #  to pay threshold; implies that k is chosen 
-                            #  in a grid from the interval (0,Kmax)
+                            #  in a grid from the interval (0, Kmax)
       plot=TRUE             # plots the results
 )
 
 # Creates a summary table
-summary(m,      # uses the results of the economic evaluation 
-                #  (a "bcea" object)
+summary(
+      m,         # uses the results of the economic evaluation 
+                 #  (a "bcea" object)
       wtp=25000	# selects the particular value for k 
 )
 
 \donttest{
-#
+
 # Plots the cost-effectiveness plane using base graphics
-ceplane.plot(m,      # plots the Cost-Effectiveness plane
+ceplane.plot(
+      m,             # plots the Cost-Effectiveness plane
       comparison=1,  # if more than 2 interventions, selects the
                      #  pairwise comparison 
       wtp=25000,     # selects the relevant willingness to pay 
                      #  (default: 25,000) 
       graph="base"   # selects base graphics (default)
 )
-#
+
 # Plots the cost-effectiveness plane using ggplot2
-if(requireNamespace("ggplot2")){
-ceplane.plot(m,      # plots the Cost-Effectiveness plane
+if (requireNamespace("ggplot2")) {
+ceplane.plot(
+      m,             # plots the Cost-Effectiveness plane
       comparison=1,  # if more than 2 interventions, selects the
                      #  pairwise comparison 
       wtp=25000,     # selects the relevant willingness to pay 
                      #  (default: 25,000) 
       graph="ggplot2"# selects ggplot2 as the graphical engine
 )
-#
+
 # Some more options
-ceplane.plot(m,
+ceplane.plot(
+      m,
       graph="ggplot2",
       pos="top",
       size=5,
-      ICER.size=1.5,
+      ICER_size=1.5,
       label.pos=FALSE,
       opt.theme=ggplot2::theme(text=ggplot2::element_text(size=8))
 )
@@ -170,7 +174,8 @@ ceplane.plot(m,
 
 # Plots the contour and scatterplot of the bivariate 
 # distribution of (Delta_e,Delta_c)
-contour(m,          # uses the results of the economic evaluation 
+contour(
+      m,            # uses the results of the economic evaluation 
                     #  (a "bcea" object)
       comparison=1, # if more than 2 interventions, selects the 
                     #  pairwise comparison 
@@ -185,21 +190,23 @@ contour(m,          # uses the results of the economic evaluation
 
 # Plots the contour and scatterplot of the bivariate 
 #   distribution of (Delta_e,Delta_c)
-contour2(m,       # uses the results of the economic evaluation 
+contour2(
+      m,          # uses the results of the economic evaluation 
                   #  (a "bcea" object)
       wtp=25000,  # selects the willingness-to-pay threshold
-      xl=NULL,    # assumes default values
-      yl=NULL     # assumes default values
+      xlim=NULL,    # assumes default values
+      ylim=NULL     # assumes default values
 )
 
 # Using ggplot2
 if (requireNamespace("ggplot2")) {
-contour2(m,           # uses the results of the economic evaluation 
+contour2(
+      m,              # uses the results of the economic evaluation 
                       #  (a "bcea" object)
       graph="ggplot2",# selects the graphical engine
       wtp=25000,      # selects the willingness-to-pay threshold
-      xl=NULL,        # assumes default values
-      yl=NULL,        # assumes default values
+      xlim=NULL,      # assumes default values
+      ylim=NULL,      # assumes default values
       label.pos=FALSE # alternative position for the wtp label
 )
 }
@@ -208,7 +215,8 @@ contour2(m,           # uses the results of the economic evaluation
 eib.plot(m)
 
 # Plots the distribution of the Incremental Benefit
-ib.plot(m,        # uses the results of the economic evaluation 
+ib.plot(
+    m,            # uses the results of the economic evaluation 
                   #  (a "bcea" object)
     comparison=1, # if more than 2 interventions, selects the 
                   #  pairwise comparison 
@@ -216,7 +224,7 @@ ib.plot(m,        # uses the results of the economic evaluation
                   #  to pay (default: 25,000)
     graph="base"  # uses base graphics
 )
-#
+
 # Produces a plot of the CEAC against a grid of values for the 
 # willingness to pay threshold
 ceac.plot(m)

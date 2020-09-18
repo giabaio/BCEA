@@ -108,11 +108,9 @@ an object of the class &quot;bcea&quot;." />
     <li>
       <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
     </li>
+    <li class="divider"></li>
     <li>
-      <a href="../articles/plot_bcea.html">plot.bcea</a>
-    </li>
-    <li>
-      <a href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+      <a href="../articles/index.html">More...</a>
     </li>
   </ul>
 </li>
@@ -373,9 +371,9 @@ doi:10.1177/0962280211419832.</p>
       <span class='kw'>wtp</span><span class='kw'>=</span><span class='fl'>25000</span>,  <span class='co'># selects the willingness-to-pay threshold</span>
       <span class='kw'>xl</span><span class='kw'>=</span><span class='kw'>NULL</span>,    <span class='co'># assumes default values</span>
       <span class='kw'>yl</span><span class='kw'>=</span><span class='kw'>NULL</span>     <span class='co'># assumes default values</span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: the condition has length &gt; 1 and only the first element will be used</span></div><div class='output co'>#&gt; <span class='message'>The first available comparison will be selected.</span>
+)</div><div class='output co'>#&gt; <span class='message'>The first available comparison will be selected.</span>
 #&gt; <span class='message'>              To plot multiple comparisons together please use the ggplot2 version.</span>
-#&gt; <span class='message'>              Please see ?contour2 for additional details.</span></div><div class='output co'>#&gt; <span class='error'>Error in xy.coords(x, y): 'list' object cannot be coerced to type 'double'</span></div><div class='img'><img src='bcea-5.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; <span class='message'>              Please see ?contour2 for additional details.</span></div><div class='img'><img src='bcea-5.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Using ggplot2</span>
 <span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"ggplot2"</span>)) {
 <span class='fu'><a href='contour2.html'>contour2</a></span>(<span class='no'>m</span>,           <span class='co'># uses the results of the economic evaluation </span>
@@ -386,9 +384,9 @@ doi:10.1177/0962280211419832.</p>
       <span class='kw'>yl</span><span class='kw'>=</span><span class='kw'>NULL</span>,        <span class='co'># assumes default values</span>
       <span class='kw'>label.pos</span><span class='kw'>=</span><span class='fl'>FALSE</span> <span class='co'># alternative position for the wtp label</span>
 )
-}</div><div class='output co'>#&gt; <span class='error'>Error in is.finite(x): default method not implemented for type 'list'</span></div><div class='input'>
+}</div><div class='output co'>#&gt; <span class='warning'>Warning: Duplicated aesthetics after name standardisation: colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: geom, border, include, line_colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: label.pos</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='img'><img src='bcea-6.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the Expected Incremental Benefit for the "bcea" object m</span>
-<span class='fu'><a href='eib.plot.html'>eib.plot</a></span>(<span class='no'>m</span>)</div><div class='img'><img src='bcea-6.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='eib.plot.html'>eib.plot</a></span>(<span class='no'>m</span>)</div><div class='img'><img src='bcea-7.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the distribution of the Incremental Benefit</span>
 <span class='fu'>ib.plot</span>(<span class='no'>m</span>,        <span class='co'># uses the results of the economic evaluation </span>
                   <span class='co'>#  (a "bcea" object)</span>
@@ -397,12 +395,12 @@ doi:10.1177/0962280211419832.</p>
     <span class='kw'>wtp</span><span class='kw'>=</span><span class='fl'>25000</span>,    <span class='co'># selects the relevant willingness </span>
                   <span class='co'>#  to pay (default: 25,000)</span>
     <span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"base"</span>  <span class='co'># uses base graphics</span>
-)</div><div class='output co'>#&gt; <span class='error'>Error in he$ib[w, ]: incorrect number of dimensions</span></div><div class='input'><span class='co'>#</span>
+)</div><div class='img'><img src='bcea-8.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'>#</span>
 <span class='co'># Produces a plot of the CEAC against a grid of values for the </span>
 <span class='co'># willingness to pay threshold</span>
-<span class='fu'><a href='ceac.plot.html'>ceac.plot</a></span>(<span class='no'>m</span>)</div><div class='img'><img src='bcea-7.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='ceac.plot.html'>ceac.plot</a></span>(<span class='no'>m</span>)</div><div class='img'><img src='bcea-9.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the Expected Value of Information for the "bcea" object m</span>
-<span class='fu'>evi.plot</span>(<span class='no'>m</span>)</div><div class='img'><img src='bcea-8.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='fu'>evi.plot</span>(<span class='no'>m</span>)</div><div class='img'><img src='bcea-10.png' alt='' width='700' height='433' /></div><div class='input'># }
 
 </div></pre>
   </div>

@@ -44,7 +44,7 @@
 #'   \item \code{area_include}: logical, include area under the CEAC curves - plotly only.
 #'   \item \code{area_color}: specifies the AUC colour - plotly only.}
 #'   
-#' @return \item{ceac} {If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 
+#' @return \item{ceac}{If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 
 #'   a plotly object containing the requested plot. Nothing is returned when \code{graph = "base"}, 
 #'   the default.} The function produces a plot of the
 #'   cost-effectiveness acceptability curve against the discrete grid of possible

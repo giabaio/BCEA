@@ -24,7 +24,6 @@ Produces a table printout with some summary results of the health economic
 evaluation.
 }
 \examples{
-
 data(Vaccine)
 
 he <- bcea(e,c, interventions = treats, ref = 2)

@@ -2,19 +2,20 @@
 % Please edit documentation in R/best_interv_given_k.R
 \name{best_interv_given_k}
 \alias{best_interv_given_k}
-\title{Select best option for each value of willingness to pay}
+\title{Select Best Option For Each Value Of Willingness To Pay}
 \usage{
 best_interv_given_k(eib, ref, comp)
 }
 \arguments{
 \item{eib}{Expected incremental benefit}
+
+\item{ref}{Reference group number}
+
+\item{comp}{Comparison group number(s)}
 }
 \value{
-
+Group index
 }
 \description{
-Select best option for each value of willingness to pay
-}
-\examples{
-
+Select Best Option For Each Value Of Willingness To Pay
 }

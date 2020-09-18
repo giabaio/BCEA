@@ -2,7 +2,7 @@
 % Please edit documentation in R/ib.plot.R
 \name{ib.plot.bcea}
 \alias{ib.plot.bcea}
-\title{Incremental Benefit (IB) distribution Plot}
+\title{Incremental Benefit (IB) Distribution Plot}
 \usage{
 \method{ib.plot}{bcea}(
   he,
@@ -25,7 +25,7 @@ forces R to consider the first non-reference intervention as the comparator.}
 \item{wtp}{The value of the willingness to pay threshold. Default value at
 \code{25000}.}
 
-\item{bw}{Identifies the smoothing bandwith used to construct the kernel
+\item{bw}{Identifies the smoothing bandwidth used to construct the kernel
 estimation of the IB density.}
 
 \item{n}{The number of equally spaced points at which the density is to be
@@ -51,11 +51,10 @@ the willingness to pay threshold.
 }
 \references{
 Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
+Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
 \code{\link{bcea}}, \code{\link{ib.plot}},
@@ -64,6 +63,6 @@ London
 \author{
 Gianluca Baio, Andrea Berardi
 }
-\keyword{Health}
+\keyword{"Health}
 \keyword{economic}
-\keyword{evaluation}
+\keyword{evaluation"}

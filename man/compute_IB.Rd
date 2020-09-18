@@ -28,9 +28,6 @@ the definition can be re-written as
 
 \deqn{IB = k\cdot\Delta_e - \Delta_c}.
 }
-\examples{
-
-}
 \seealso{
 \code{\link{compute_EIB}}
 }

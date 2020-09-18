@@ -27,7 +27,8 @@ Imports:
     reshape2,
     rlang,
     rmarkdown,
-    withr
+    withr,
+    gridExtra
 Suggests: 
     grid,
     INLA,

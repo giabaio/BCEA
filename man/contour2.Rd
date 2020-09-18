@@ -71,7 +71,7 @@ contour2(m,
 ## or use ggplot2 to plot multiple comparisons
 contour2(m,
          wtp = 200,
-         ICER.size = 2,
+         ICER_size = 2,
          graph_type = "ggplot2")
 }
 
