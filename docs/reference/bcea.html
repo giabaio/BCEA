@@ -6,8 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bayesian Cost-Effectiveness Analysis — bcea • BCEA</title>
+<title>Create Bayesian Cost-Effectiveness Analysis Object — bcea • BCEA</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -39,11 +46,12 @@
 
 
 
-<meta property="og:title" content="Bayesian Cost-Effectiveness Analysis — bcea" />
+<meta property="og:title" content="Create Bayesian Cost-Effectiveness Analysis Object — bcea" />
 <meta property="og:description" content="Cost-effectiveness analysis based on the results of a simulation model for a
 variable of clinical benefits (e) and of costs (c). Produces results to be
 post-processed to give the health economic analysis. The output is stored in
-an object of the class &quot;bcea&quot;" />
+an object of the class &quot;bcea&quot;." />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -100,6 +108,10 @@ an object of the class &quot;bcea&quot;" />
     <li>
       <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
     </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../articles/index.html">More...</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -126,7 +138,7 @@ an object of the class &quot;bcea&quot;" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Bayesian Cost-Effectiveness Analysis</h1>
+    <h1>Create Bayesian Cost-Effectiveness Analysis Object</h1>
     <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/bcea.R'><code>R/bcea.R</code></a></small>
     <div class="hidden name"><code>bcea.Rd</code></div>
     </div>
@@ -135,7 +147,7 @@ an object of the class &quot;bcea&quot;" />
     <p>Cost-effectiveness analysis based on the results of a simulation model for a
 variable of clinical benefits (e) and of costs (c). Produces results to be
 post-processed to give the health economic analysis. The output is stored in
-an object of the class "bcea"</p>
+an object of the class "bcea".</p>
     </div>
 
     <pre class="usage"><span class='fu'>bcea</span>(
@@ -143,6 +155,7 @@ an object of the class "bcea"</p>
   <span class='no'>c</span>,
   <span class='kw'>ref</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>interventions</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>.comparison</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>Kmax</span> <span class='kw'>=</span> <span class='fl'>50000</span>,
   <span class='kw'>wtp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
@@ -166,7 +179,7 @@ cost for each intervention being considered. In general it is a matrix with
     <tr>
       <th>ref</th>
       <td><p>Defines which intervention (columns of <code>e</code> or <code>c</code>) is
-considered to be the reference strategy. The default value <code>ref=1</code>
+considered to be the reference strategy. The default value <code>ref = 1</code>
 means that the intervention associated with the first column of <code>e</code> or
 <code>c</code> is the reference and the one(s) associated with the other column(s)
 is(are) the comparators.</p></td>
@@ -175,15 +188,15 @@ is(are) the comparators.</p></td>
       <th>interventions</th>
       <td><p>Defines the labels to be associated with each
 intervention. By default and if <code>NULL</code>, assigns labels in the form
-"Intervention1", ... , "Intervention T".</p></td>
+"Intervention1", ... , "InterventionT".</p></td>
     </tr>
     <tr>
       <th>Kmax</th>
       <td><p>Maximum value of the willingness to pay to be considered.
-Default value is <code>k=50000</code>. The willingness to pay is then approximated
-on a discrete grid in the interval <code>[0,Kmax]</code>. The grid is equal to
+Default value is <code>k = 50000</code>. The willingness to pay is then approximated
+on a discrete grid in the interval <code>[0, Kmax]</code>. The grid is equal to
 <code>wtp</code> if the parameter is given, or composed of <code>501</code> elements if
-<code>wtp=NULL</code> (the default).</p></td>
+<code>wtp = NULL</code> (the default).</p></td>
     </tr>
     <tr>
       <th>wtp</th>
@@ -197,66 +210,81 @@ from 0 to Kmax. This option is useful when performing intensive computations
       <td><p>A logical value indicating whether the function should produce
 the summary plot or not.</p></td>
     </tr>
+    <tr>
+      <th>comparison</th>
+      <td><p>Selects the comparator, in case of more than two
+interventions being analysed. Default as NULL plots all the comparisons
+together. Any subset of the possible comparisons can be selected (e.g.,
+<code>comparison=c(1,3)</code> or <code>comparison=2</code>).</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An object of the class "bcea" containing the following elements</p>
-<dt>n.sim</dt><dd><p>Number of simulations produced by the Bayesian model</p></dd>
+<dt>n_sim</dt><dd><p>Number of simulations produced by the Bayesian model</p></dd>
 <dt>n.comparators</dt><dd><p>Number of interventions being analysed</p></dd>
 <dt>n.comparisons</dt><dd><p>Number of possible pairwise comparisons</p></dd>
 <dt>delta.e</dt><dd><p>For each possible comparison, the differential in the
-effectiveness measure</p></dd> <dt>delta.c</dt><dd><p>For each possible comparison, the
-differential in the cost measure</p></dd> <dt>ICER</dt><dd><p>The value of the Incremental
-Cost-Effectiveness Ratio</p></dd> <dt>Kmax</dt><dd><p>The maximum value assumed for the
-willingness to pay threshold</p></dd> <dt>k</dt><dd><p>The vector of values for the grid
-approximation of the willingness to pay</p></dd> <dt>ceac</dt><dd><p>The value for the
-Cost-Effectiveness Acceptability Curve, as a function of the willingness to
-pay</p></dd> <dt>ib</dt><dd><p>The distribution of the Incremental Benefit, for a given
-willingness to pay</p></dd> <dt>eib</dt><dd><p>The value for the Expected Incremental
-Benefit, as a function of the willingness to pay</p></dd> <dt>kstar</dt><dd><p>The grid
-approximation of the break even point(s)</p></dd> <dt>best</dt><dd><p>A vector containing
-the numeric label of the intervention that is the most cost-effective for
-each value of the willingness to pay in the selected grid approximation</p></dd>
+effectiveness measure</p></dd>
+<dt>delta.c</dt><dd><p>For each possible comparison, the differential in the cost
+measure</p></dd>
+<dt>ICER</dt><dd><p>The value of the Incremental Cost-Effectiveness Ratio</p></dd>
+<dt>Kmax</dt><dd><p>The maximum value assumed for the willingness to pay threshold</p></dd>
+<dt>k</dt><dd><p>The vector of values for the grid approximation of the willingness
+to pay</p></dd>
+<dt>ceac</dt><dd><p>The value for the Cost-Effectiveness Acceptability Curve,
+as a function of the willingness to pay</p></dd>
+<dt>ib</dt><dd><p>The distribution of the Incremental Benefit, for a given
+willingness to pay</p></dd>
+<dt>eib</dt><dd><p>The value for the Expected Incremental Benefit, as a function of
+the willingness to pay</p></dd>
+<dt>kstar</dt><dd><p>The grid approximation of the break even point(s)</p></dd>
+<dt>best</dt><dd><p>A vector containing the numeric label of the intervention that
+is the most cost-effective for each value of the willingness to pay in the
+selected grid approximation</p></dd>
 <dt>U</dt><dd><p>An array including the value of the expected utility for each
 simulation from the Bayesian model, for each value of the grid approximation
 of the willingness to pay and for each intervention being considered</p></dd>
 <dt>vi</dt><dd><p>An array including the value of information for each simulation
 from the Bayesian model and for each value of the grid approximation of the
-willingness to pay</p></dd> <dt>Ustar</dt><dd><p>An array including the maximum
-"known-distribution" utility for each simulation from the Bayesian model and
-for each value of the grid approximation of the willingness to pay</p></dd>
+willingness to pay</p></dd>
+<dt>Ustar</dt><dd><p>An array including the maximum "known-distribution" utility for
+ each simulation from the Bayesian model and for each value of the grid
+ approximation of the willingness to pay</p></dd>
 <dt>ol</dt><dd><p>An array including the opportunity loss for each simulation from
 the Bayesian model and for each value of the grid approximation of the
-willingness to pay</p></dd> <dt>evi</dt><dd><p>The vector of values for the Expected Value
-of Information, as a function of the willingness to pay</p></dd>
-<dt>interventions</dt><dd><p>A vector of labels for all the interventions
-considered</p></dd> <dt>ref</dt><dd><p>The numeric index associated with the intervention
-used as reference in the analysis</p></dd> <dt>comp</dt><dd><p>The numeric index(es)
-associated with the intervention(s) used as comparator(s) in the analysis</p></dd>
+willingness to pay</p></dd>
+<dt>evi</dt><dd><p>The vector of values for the Expected Value of Information, as
+a function of the willingness to pay</p></dd>
+<dt>interventions</dt><dd><p>A vector of labels for all the interventions considered</p></dd>
+<dt>ref</dt><dd><p>The numeric index associated with the intervention used as
+reference in the analysis</p></dd>
+<dt>comp</dt><dd><p>The numeric index(es) associated with the intervention(s) used
+as comparator(s) in the analysis</p></dd>
 <dt>step</dt><dd><p>The step used to form the grid approximation to the willingness
-to pay</p></dd> <dt>e</dt><dd><p>The <code>e</code> matrix used to generate the object (see
-Arguments)</p></dd> <dt>c</dt><dd><p>The <code>c</code> matrix used to generate the object (see
-Arguments)</p></dd>
+to pay</p></dd>
+<dt>e</dt><dd><p>The <code>e</code> matrix used to generate the object (see Arguments)</p></dd>
+<dt>c</dt><dd><p>The <code>c</code> matrix used to generate the object (see Arguments)</p></dd>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
+    <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in
+Health Economics.  Statistical Methods in Medical Research.
 doi:10.1177/0962280211419832.</p>
-<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London</p>
+<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># See Baio G., Dawid A.P. (2011) for a detailed description of the </span>
 <span class='co'># Bayesian model and economic problem</span>
-<span class='co'>#</span>
+
 <span class='co'># Load the processed results of the MCMC simulation model</span>
 <span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Vaccine</span>)
 
 <span class='co'># Runs the health economic evaluation using BCEA</span>
-<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'>bcea</span>(<span class='kw'>e</span><span class='kw'>=</span><span class='no'>e</span>,<span class='kw'>c</span><span class='kw'>=</span><span class='no'>c</span>,          <span class='co'># defines the variables of </span>
+<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'>bcea</span>(<span class='kw'>e</span><span class='kw'>=</span><span class='no'>e</span>,
+          <span class='kw'>c</span><span class='kw'>=</span><span class='no'>c</span>,              <span class='co'># defines the variables of </span>
                             <span class='co'>#  effectiveness and cost</span>
       <span class='kw'>ref</span><span class='kw'>=</span><span class='fl'>2</span>,                <span class='co'># selects the 2nd row of (e,c) </span>
                             <span class='co'>#  as containing the reference intervention</span>
@@ -265,26 +293,46 @@ London</p>
       <span class='kw'>Kmax</span><span class='kw'>=</span><span class='fl'>50000</span>,           <span class='co'># maximum value possible for the willingness </span>
                             <span class='co'>#  to pay threshold; implies that k is chosen </span>
                             <span class='co'>#  in a grid from the interval (0,Kmax)</span>
-      <span class='kw'>plot</span><span class='kw'>=</span><span class='fl'>TRUE</span>          <span class='co'># plots the results</span>
-)</div><div class='output co'>#&gt; <span class='error'>Error in prepare_graph_params_ceplane(...): object 'exArgs' not found</span></div><div class='input'>
+      <span class='kw'>plot</span><span class='kw'>=</span><span class='fl'>TRUE</span>             <span class='co'># plots the results</span>
+)</div><div class='img'><img src='bcea-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Creates a summary table</span>
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>m</span>,      <span class='co'># uses the results of the economic evaluation </span>
                 <span class='co'>#  (a "bcea" object)</span>
       <span class='kw'>wtp</span><span class='kw'>=</span><span class='fl'>25000</span> <span class='co'># selects the particular value for k </span>
-)</div><div class='output co'>#&gt; <span class='error'>Error in summary(m, wtp = 25000): object 'm' not found</span></div><div class='input'>
+)</div><div class='output co'>#&gt; 
+#&gt; Cost-effectiveness analysis summary 
+#&gt; 
+#&gt; Reference intervention:  Vaccination
+#&gt; Comparator intervention: Status Quo
+#&gt; 
+#&gt; Optimal decision: choose Status Quo for k &lt; 20100 and Vaccination for k &gt;= 20100
+#&gt; 
+#&gt; 
+#&gt; Analysis for willingness to pay parameter k = 25000
+#&gt; 
+#&gt;             Expected utility
+#&gt; Status Quo           -36.054
+#&gt; Vaccination          -34.826
+#&gt; 
+#&gt;                              EIB  CEAC  ICER
+#&gt; Vaccination vs Status Quo 1.2284 0.529 20098
+#&gt; 
+#&gt; Optimal intervention (max expected utility) for k = 25000: Vaccination
+#&gt;            
+#&gt; EVPI 3.0287</div><div class='input'>
 <span class='co'># \donttest{</span>
 <span class='co'>#</span>
 <span class='co'># Plots the cost-effectiveness plane using base graphics</span>
-<span class='fu'><a href='ceplane.plot.html'>ceplane.plot</a></span>(<span class='no'>m</span>,      <span class='co'># plots the Cost-Effectiveness plane</span>
+<span class='fu'>ceplane.plot</span>(<span class='no'>m</span>,      <span class='co'># plots the Cost-Effectiveness plane</span>
       <span class='kw'>comparison</span><span class='kw'>=</span><span class='fl'>1</span>,  <span class='co'># if more than 2 interventions, selects the</span>
                      <span class='co'>#  pairwise comparison </span>
       <span class='kw'>wtp</span><span class='kw'>=</span><span class='fl'>25000</span>,     <span class='co'># selects the relevant willingness to pay </span>
                      <span class='co'>#  (default: 25,000) </span>
       <span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"base"</span>   <span class='co'># selects base graphics (default)</span>
-)</div><div class='output co'>#&gt; <span class='error'>Error in prepare_graph_params_ceplane(...): object 'exArgs' not found</span></div><div class='input'><span class='co'>#</span>
+)</div><div class='img'><img src='bcea-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'>#</span>
 <span class='co'># Plots the cost-effectiveness plane using ggplot2</span>
 <span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"ggplot2"</span>)){
-<span class='fu'><a href='ceplane.plot.html'>ceplane.plot</a></span>(<span class='no'>m</span>,      <span class='co'># plots the Cost-Effectiveness plane</span>
+<span class='fu'>ceplane.plot</span>(<span class='no'>m</span>,      <span class='co'># plots the Cost-Effectiveness plane</span>
       <span class='kw'>comparison</span><span class='kw'>=</span><span class='fl'>1</span>,  <span class='co'># if more than 2 interventions, selects the</span>
                      <span class='co'>#  pairwise comparison </span>
       <span class='kw'>wtp</span><span class='kw'>=</span><span class='fl'>25000</span>,     <span class='co'># selects the relevant willingness to pay </span>
@@ -293,7 +341,7 @@ London</p>
 )
 <span class='co'>#</span>
 <span class='co'># Some more options</span>
-<span class='fu'><a href='ceplane.plot.html'>ceplane.plot</a></span>(<span class='no'>m</span>,
+<span class='fu'>ceplane.plot</span>(<span class='no'>m</span>,
       <span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"ggplot2"</span>,
       <span class='kw'>pos</span><span class='kw'>=</span><span class='st'>"top"</span>,
       <span class='kw'>size</span><span class='kw'>=</span><span class='fl'>5</span>,
@@ -301,10 +349,10 @@ London</p>
       <span class='kw'>label.pos</span><span class='kw'>=</span><span class='fl'>FALSE</span>,
       <span class='kw'>opt.theme</span><span class='kw'>=</span><span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span>(<span class='kw'>text</span><span class='kw'>=</span><span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span>(<span class='kw'>size</span><span class='kw'>=</span><span class='fl'>8</span>))
 )
-}</div><div class='output co'>#&gt; <span class='error'>Error in prepare_graph_params_ceplane(...): object 'exArgs' not found</span></div><div class='input'><span class='co'>#</span>
+}</div><div class='output co'>#&gt; <span class='warning'>Warning: Duplicated aesthetics after name standardisation: colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: geom, border, include, line_colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: label.pos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Duplicated aesthetics after name standardisation: colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: geom, border, include, line_colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: label.pos</span></div><div class='img'><img src='bcea-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the contour and scatterplot of the bivariate </span>
 <span class='co'># distribution of (Delta_e,Delta_c)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/contour.html'>contour</a></span>(<span class='no'>m</span>,          <span class='co'># uses the results of the economic evalaution </span>
+<span class='fu'><a href='contour.html'>contour</a></span>(<span class='no'>m</span>,          <span class='co'># uses the results of the economic evaluation </span>
                     <span class='co'>#  (a "bcea" object)</span>
       <span class='kw'>comparison</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='co'># if more than 2 interventions, selects the </span>
                     <span class='co'>#  pairwise comparison </span>
@@ -312,21 +360,23 @@ London</p>
                     <span class='co'>#  plotted (default=4)</span>
       <span class='kw'>levels</span><span class='kw'>=</span><span class='kw'>NULL</span>,  <span class='co'># specifies the actual levels to be plotted </span>
                     <span class='co'>#  (default=NULL, so that R will decide)</span>
-      <span class='kw'>scale</span><span class='kw'>=</span><span class='fl'>0.5</span>,    <span class='co'># scales the bandwiths for both x- and </span>
+      <span class='kw'>scale</span><span class='kw'>=</span><span class='fl'>0.5</span>,    <span class='co'># scales the bandwidths for both x- and </span>
                     <span class='co'>#  y-axis (default=0.5)</span>
       <span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"base"</span>  <span class='co'># uses base graphics to produce the plot</span>
-)</div><div class='output co'>#&gt; <span class='error'>Error in contour(m, comparison = 1, nlevels = 4, levels = NULL, scale = 0.5,     graph = "base"): object 'm' not found</span></div><div class='input'><span class='co'>#</span>
+)</div><div class='img'><img src='bcea-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the contour and scatterplot of the bivariate </span>
 <span class='co'>#   distribution of (Delta_e,Delta_c)</span>
-<span class='fu'><a href='contour2.html'>contour2</a></span>(<span class='no'>m</span>,       <span class='co'># uses the results of the economic evalaution </span>
+<span class='fu'><a href='contour2.html'>contour2</a></span>(<span class='no'>m</span>,       <span class='co'># uses the results of the economic evaluation </span>
                   <span class='co'>#  (a "bcea" object)</span>
       <span class='kw'>wtp</span><span class='kw'>=</span><span class='fl'>25000</span>,  <span class='co'># selects the willingness-to-pay threshold</span>
       <span class='kw'>xl</span><span class='kw'>=</span><span class='kw'>NULL</span>,    <span class='co'># assumes default values</span>
       <span class='kw'>yl</span><span class='kw'>=</span><span class='kw'>NULL</span>     <span class='co'># assumes default values</span>
-)</div><div class='output co'>#&gt; <span class='error'>Error in paste("Cost effectiveness plane \n", he$interventions[he$ref],     " vs ", he$interventions[he$comp], sep = ""): object 'm' not found</span></div><div class='input'><span class='co'>#</span>
+)</div><div class='output co'>#&gt; <span class='message'>The first available comparison will be selected.</span>
+#&gt; <span class='message'>              To plot multiple comparisons together please use the ggplot2 version.</span>
+#&gt; <span class='message'>              Please see ?contour2 for additional details.</span></div><div class='img'><img src='bcea-5.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Using ggplot2</span>
-<span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"ggplot2"</span>)){
-<span class='fu'><a href='contour2.html'>contour2</a></span>(<span class='no'>m</span>,           <span class='co'># uses the results of the economic evalaution </span>
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"ggplot2"</span>)) {
+<span class='fu'><a href='contour2.html'>contour2</a></span>(<span class='no'>m</span>,           <span class='co'># uses the results of the economic evaluation </span>
                       <span class='co'>#  (a "bcea" object)</span>
       <span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"ggplot2"</span>,<span class='co'># selects the graphical engine</span>
       <span class='kw'>wtp</span><span class='kw'>=</span><span class='fl'>25000</span>,      <span class='co'># selects the willingness-to-pay threshold</span>
@@ -334,24 +384,23 @@ London</p>
       <span class='kw'>yl</span><span class='kw'>=</span><span class='kw'>NULL</span>,        <span class='co'># assumes default values</span>
       <span class='kw'>label.pos</span><span class='kw'>=</span><span class='fl'>FALSE</span> <span class='co'># alternative position for the wtp label</span>
 )
-}</div><div class='output co'>#&gt; <span class='error'>Error in paste("Cost effectiveness plane \n", he$interventions[he$ref],     " vs ", he$interventions[he$comp], sep = ""): object 'm' not found</span></div><div class='input'><span class='co'>#</span>
+}</div><div class='output co'>#&gt; <span class='warning'>Warning: Duplicated aesthetics after name standardisation: colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: geom, border, include, line_colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: label.pos</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='img'><img src='bcea-6.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the Expected Incremental Benefit for the "bcea" object m</span>
-<span class='fu'><a href='eib.plot.html'>eib.plot</a></span>(<span class='no'>m</span>)</div><div class='output co'>#&gt; <span class='error'>Error in isTRUE(he$n.comparisons == 1 | is.null(comparison)): object 'm' not found</span></div><div class='input'><span class='co'>#</span>
+<span class='fu'><a href='eib.plot.html'>eib.plot</a></span>(<span class='no'>m</span>)</div><div class='img'><img src='bcea-7.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the distribution of the Incremental Benefit</span>
-<span class='fu'><a href='ib.plot.html'>ib.plot</a></span>(<span class='no'>m</span>,        <span class='co'># uses the results of the economic evalaution </span>
+<span class='fu'>ib.plot</span>(<span class='no'>m</span>,        <span class='co'># uses the results of the economic evaluation </span>
                   <span class='co'>#  (a "bcea" object)</span>
     <span class='kw'>comparison</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='co'># if more than 2 interventions, selects the </span>
                   <span class='co'>#  pairwise comparison </span>
     <span class='kw'>wtp</span><span class='kw'>=</span><span class='fl'>25000</span>,    <span class='co'># selects the relevant willingness </span>
                   <span class='co'>#  to pay (default: 25,000)</span>
     <span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"base"</span>  <span class='co'># uses base graphics</span>
-)</div><div class='output co'>#&gt; <span class='error'>Error in stopifnot(comparison &lt;= he$n.comparison): object 'm' not found</span></div><div class='input'><span class='co'>#</span>
+)</div><div class='img'><img src='bcea-8.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'>#</span>
 <span class='co'># Produces a plot of the CEAC against a grid of values for the </span>
 <span class='co'># willingness to pay threshold</span>
-<span class='fu'><a href='plot-bcea.html'>ceac.plot</a></span>(<span class='no'>m</span>)</div><div class='output co'>#&gt; <span class='error'>Error in ceac_plot_base(he, pos_legend = pos, graph_params): object 'm' not found</span></div><div class='input'><span class='co'>#</span>
+<span class='fu'><a href='ceac.plot.html'>ceac.plot</a></span>(<span class='no'>m</span>)</div><div class='img'><img src='bcea-9.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the Expected Value of Information for the "bcea" object m</span>
-<span class='fu'><a href='evi.plot.html'>evi.plot</a></span>(<span class='no'>m</span>)</div><div class='output co'>#&gt; <span class='error'>Error in with(he, data.frame(k = c(k), evi = c(evi))): object 'm' not found</span></div><div class='input'>#
-# }
+<span class='fu'>evi.plot</span>(<span class='no'>m</span>)</div><div class='img'><img src='bcea-10.png' alt='' width='700' height='433' /></div><div class='input'># }
 
 </div></pre>
   </div>

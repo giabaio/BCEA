@@ -4,20 +4,32 @@
 \alias{compute_vi}
 \title{Compute Value of Information}
 \usage{
-compute_vi(n_sim, K, Ustar, U)
+compute_vi(Ustar, U)
 }
 \arguments{
-\item{n_sim}{}
+\item{Ustar}{Maximum utility value (sim x k)}
 
-\item{K}{}
-
-\item{Ustar}{}
-
-\item{U}{}
+\item{U}{Net monetary benefit (sim x k x interv)}
 }
 \value{
-vi
+Array with dimensions (sim x k)
 }
 \description{
-Compute Value of Information
+The difference between the maximum utility computed for the current
+parameter configuration \eqn{U^*} and the utility of the intervention which
+is associated with the maximum utility overall.
+}
+\details{
+The value of obtaining additional information on the parameter \eqn{\theta}
+to reduce the uncertainty in the decisional process.
+It is defined as:
+
+\deqn{\text{VI}(\theta) := U^*(\theta) - \mathcal{U}^*}
+
+with \eqn{U^*(\theta)} the maximum utility value for the given simulation
+among all comparators and \eqn{\mathcal{U}^*(\theta)} the expected utility
+gained by the adoption of the cost-effective intervention.
+}
+\seealso{
+\code{\link{compute_ol}}
 }

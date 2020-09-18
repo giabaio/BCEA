@@ -6,8 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Expected Incremental Benefit (EIB) plot — eib.plot • BCEA</title>
+<title>Expected Incremental Benefit (EIB) Plot — eib.plot.bcea • BCEA</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -39,9 +46,10 @@
 
 
 
-<meta property="og:title" content="Expected Incremental Benefit (EIB) plot — eib.plot" />
+<meta property="og:title" content="Expected Incremental Benefit (EIB) Plot — eib.plot.bcea" />
 <meta property="og:description" content="Produces a plot of the Expected Incremental Benefit (EIB) as a function of
-the willingness to pay" />
+the willingness to pay." />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -98,6 +106,10 @@ the willingness to pay" />
     <li>
       <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
     </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../articles/index.html">More...</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -124,17 +136,18 @@ the willingness to pay" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Expected Incremental Benefit (EIB) plot</h1>
+    <h1>Expected Incremental Benefit (EIB) Plot</h1>
     <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/eib.plot.R'><code>R/eib.plot.R</code></a></small>
     <div class="hidden name"><code>eib.plot.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Produces a plot of the Expected Incremental Benefit (EIB) as a function of
-the willingness to pay</p>
+the willingness to pay.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>eib.plot</span>(
+    <pre class="usage"><span class='co'># S3 method for bcea</span>
+<span class='fu'>eib.plot</span>(
   <span class='no'>he</span>,
   <span class='kw'>comparison</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>pos</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>0</span>),
@@ -142,7 +155,9 @@ the willingness to pay</p>
   <span class='kw'>plot.cri</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>graph</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>, <span class='st'>"plotly"</span>),
   <span class='no'>...</span>
-)</pre>
+)
+
+<span class='fu'>eib.plot</span>(<span class='no'>he</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -228,14 +243,14 @@ the discrete grid approximation of the ICER.
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
+Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.</p>
-<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London</p>
+<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>, <code><a href='ib.plot.html'>ib.plot</a></code>,
-<code><a href='ceplane.plot.html'>ceplane.plot</a></code></p></div>
+    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>,
+         <code>ib.plot</code>,
+         <code>ceplane.plot</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

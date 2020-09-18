@@ -1,11 +1,25 @@
 
+#' @rdname ceac_plot_graph
+#' 
+#' @template args-he
+#' @param pos_legend
+#' @param graph_params
+#' @param ... Additional arguments
+#' 
 #' @keywords hplot
 #' 
 ceac_plot_ggplot <- function(he,
                              pos_legend,
-                             graph_params, ...) UseMethod("ceac_plot_ggplot", he)
+                             graph_params, ...)
+  UseMethod("ceac_plot_ggplot", he)
 
-#
+
+#' @rdname ceac_plot_graph
+#' @inheritParams ceac_plot_ggplot
+#' @keywords hplot
+#' 
+#' @export
+#' 
 ceac_plot_ggplot.pairwise <- function(he,
                                       pos_legend,
                                       graph_params, ...) {
@@ -15,11 +29,15 @@ ceac_plot_ggplot.pairwise <- function(he,
               "p_best_interv", ...)
 }
 
+#' @rdname ceac_plot_graph
+#' @inheritParams ceac_plot_ggplot
 #' @keywords hplot
 #' 
-ceac_plot_ggplot.default <- function(he,
-                                     pos_legend,
-                                     graph_params, ...) {
+#' @export
+#' 
+ceac_plot_ggplot.bcea <- function(he,
+                                  pos_legend,
+                                  graph_params, ...) {
   ceac_ggplot(he,
               pos_legend,
               graph_params,
@@ -27,8 +45,9 @@ ceac_plot_ggplot.default <- function(he,
 }
 
 #' @noRd
-#' 
 #' @keywords hplot
+#' 
+#' @export
 #' 
 ceac_ggplot <- function(he,
                         pos_legend,
@@ -36,7 +55,7 @@ ceac_ggplot <- function(he,
                         ceac, ...) {
   
   extra_params <- list(...)
-
+  
   ceac_dat <- he[[ceac]]
   n_lines <- ncol(ceac_dat)
   

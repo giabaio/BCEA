@@ -2,7 +2,7 @@
 % Please edit documentation in R/multi.ce.R
 \name{multi.ce}
 \alias{multi.ce}
-\title{Cost-effectiveness analysis with multiple comparison}
+\title{Cost-effectiveness Analysis With Multiple Comparison}
 \usage{
 multi.ce(he)
 }
@@ -23,7 +23,6 @@ being analysed is the most cost-effective and the cost-effectiveness
 acceptability frontier.
 }
 \examples{
-
 # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 # Bayesian model and economic problem
 
@@ -53,8 +52,8 @@ mce <- multi.ce(m)          # uses the results of the economic analysis
 \author{
 Gianluca Baio
 }
-\keyword{Health}
-\keyword{Multiple}
-\keyword{comparison}
+\keyword{"Health}
+\keyword{"Multiple}
+\keyword{comparison"}
 \keyword{economic}
-\keyword{evaluation}
+\keyword{evaluation"}

@@ -6,8 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Summary method for objects in the class <code>bcea</code> — summary.bcea • BCEA</title>
+<title>Summary Method for Objects of Class <code>bcea</code> — summary.bcea • BCEA</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -39,9 +46,10 @@
 
 
 
-<meta property="og:title" content="Summary method for objects in the class <code>bcea</code> — summary.bcea" />
+<meta property="og:title" content="Summary Method for Objects of Class <code>bcea</code> — summary.bcea" />
 <meta property="og:description" content="Produces a table printout with some summary results of the health economic
-evaluation" />
+evaluation." />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -98,6 +106,10 @@ evaluation" />
     <li>
       <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
     </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../articles/index.html">More...</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -124,30 +136,30 @@ evaluation" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Summary method for objects in the class <code>bcea</code></h1>
+    <h1>Summary Method for Objects of Class <code>bcea</code></h1>
     <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/summary.bcea.R'><code>R/summary.bcea.R</code></a></small>
     <div class="hidden name"><code>summary.bcea.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Produces a table printout with some summary results of the health economic
-evaluation</p>
+evaluation.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for bcea</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='kw'>wtp</span> <span class='kw'>=</span> <span class='fl'>25000</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>he</span>, <span class='kw'>wtp</span> <span class='kw'>=</span> <span class='fl'>25000</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
+      <th>he</th>
       <td><p>A <code>bcea</code> object containing the results of the Bayesian
 modelling and the economic evaluation.</p></td>
     </tr>
     <tr>
       <th>wtp</th>
-      <td><p>The value of the willingness to pay threshold to be used in the
+      <td><p>The value of the willingness to pay threshold used in the
 summary table.</p></td>
     </tr>
     <tr>
@@ -163,14 +175,40 @@ output and synthetic information on the economic measures (EIB, CEAC, EVPI).</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
+Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.</p>
-<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London</p>
+<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code></p></div>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Vaccine</span>)
+
+<span class='no'>he</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='no'>e</span>,<span class='no'>c</span>, <span class='kw'>interventions</span> <span class='kw'>=</span> <span class='no'>treats</span>, <span class='kw'>ref</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>he</span>)</div><div class='output co'>#&gt; 
+#&gt; Cost-effectiveness analysis summary 
+#&gt; 
+#&gt; Reference intervention:  Vaccination
+#&gt; Comparator intervention: Status Quo
+#&gt; 
+#&gt; Optimal decision: choose Status Quo for k &lt; 20100 and Vaccination for k &gt;= 20100
+#&gt; 
+#&gt; 
+#&gt; Analysis for willingness to pay parameter k = 25000
+#&gt; 
+#&gt;             Expected utility
+#&gt; Status Quo           -36.054
+#&gt; Vaccination          -34.826
+#&gt; 
+#&gt;                              EIB  CEAC  ICER
+#&gt; Vaccination vs Status Quo 1.2284 0.529 20098
+#&gt; 
+#&gt; Optimal intervention (max expected utility) for k = 25000: Vaccination
+#&gt;            
+#&gt; EVPI 3.0287</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

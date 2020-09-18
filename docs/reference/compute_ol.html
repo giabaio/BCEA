@@ -6,8 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute ol — compute_ol • BCEA</title>
+<title>Compute Opportunity Loss — compute_ol • BCEA</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -39,8 +46,11 @@
 
 
 
-<meta property="og:title" content="Compute ol — compute_ol" />
-<meta property="og:description" content="Compute ol" />
+<meta property="og:title" content="Compute Opportunity Loss — compute_ol" />
+<meta property="og:description" content="The difference between the maximum utility computed for the current
+parameter configuration (e.g. at the current simulation) \(U^*\) and the current
+utility of the intervention associated with the maximum utility overall." />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -97,6 +107,10 @@
     <li>
       <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
     </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../articles/index.html">More...</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -123,45 +137,53 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute ol</h1>
+    <h1>Compute Opportunity Loss</h1>
     <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/compute_xxx.R'><code>R/compute_xxx.R</code></a></small>
     <div class="hidden name"><code>compute_ol.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Compute ol</p>
+    <p>The difference between the maximum utility computed for the current
+parameter configuration (e.g. at the current simulation) \(U^*\) and the current
+utility of the intervention associated with the maximum utility overall.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>compute_ol</span>(<span class='no'>n_sim</span>, <span class='no'>K</span>, <span class='no'>Ustar</span>, <span class='no'>U</span>, <span class='no'>best</span>)</pre>
+    <pre class="usage"><span class='fu'>compute_ol</span>(<span class='no'>Ustar</span>, <span class='no'>U</span>, <span class='no'>best</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>n_sim</th>
-      <td></td>
-    </tr>
-    <tr>
-      <th>K</th>
-      <td></td>
-    </tr>
-    <tr>
       <th>Ustar</th>
-      <td></td>
+      <td><p>Maximum utility value (sim x k)</p></td>
     </tr>
     <tr>
       <th>U</th>
-      <td></td>
+      <td><p>Net monetary benefit (sim x k x interv)</p></td>
     </tr>
     <tr>
       <th>best</th>
-      <td></td>
+      <td><p>Best intervention for given willingness-to-pay (k)</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>ol</p>
+    <p>Array with dimensions (sim x k)</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>In mathematical notation,
+$$\text{OL}(\theta) := U^*(\theta) - U(\theta^\tau)$$</p>
+<p>where \(\tau\) is the intervention associated with the overall maximum utility
+and \(U^*(\theta)\) is the maximum utility value among the comparators in the given simulation.
+The opportunity loss is a non-negative quantity, since \(U(\theta^\tau)\leq U^*(\theta)\).</p>
+<p>In all simulations where the intervention is more
+cost-effective (i.e. when incremental benefit is positive), then \(OL(\theta) = 0\)
+as there would be no opportunity loss, if the parameter configuration were the
+one obtained in the current simulation.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='compute_vi.html'>compute_vi</a></code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -6,8 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cost-Effectiveness Efficiency Frontier (CEAF) plot — ceef.plot • BCEA</title>
+<title>Cost-Effectiveness Efficiency Frontier (CEAF) Plot — ceef.plot • BCEA</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -39,8 +46,9 @@
 
 
 
-<meta property="og:title" content="Cost-Effectiveness Efficiency Frontier (CEAF) plot — ceef.plot" />
-<meta property="og:description" content="Produces a plot of the Cost-Effectiveness Efficiency Frontier (CEEF)" />
+<meta property="og:title" content="Cost-Effectiveness Efficiency Frontier (CEAF) Plot — ceef.plot" />
+<meta property="og:description" content="Cost-Effectiveness Efficiency Frontier (CEAF) Plot" />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -97,6 +105,9 @@
     <li>
       <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
     </li>
+    <li>
+      <a href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -123,13 +134,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Cost-Effectiveness Efficiency Frontier (CEAF) plot</h1>
+    <h1>Cost-Effectiveness Efficiency Frontier (CEAF) Plot</h1>
     <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/ceef.plot.R'><code>R/ceef.plot.R</code></a></small>
     <div class="hidden name"><code>ceef.plot.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Produces a plot of the Cost-Effectiveness Efficiency Frontier (CEEF)</p>
+    <p>Cost-Effectiveness Efficiency Frontier (CEAF) Plot</p>
     </div>
 
     <pre class="usage"><span class='fu'>ceef.plot</span>(
@@ -142,7 +153,7 @@
   <span class='kw'>dominance</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>relative</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>print.summary</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>),
+  <span class='kw'>graph_type</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>),
   <span class='no'>...</span>
 )</pre>
 
@@ -152,13 +163,12 @@
     <tr>
       <th>he</th>
       <td><p>A <code>bcea</code> object containing the results of the Bayesian
-modelling and the economic evaluation. The list needs to include the
-<code>e</code> and <code>c</code> matrices used to generate the object; see Details.</p></td>
+modelling and the economic evaluation.</p></td>
     </tr>
     <tr>
       <th>comparators</th>
       <td><p>Vector specifying the comparators to be included in the
-frontier analysis. Must be of length &gt; 1. Default as <code>NULL</code> includes
+frontier analysis. It must have a length &gt; 1. Default as <code>NULL</code> includes
 all the available comparators.</p></td>
     </tr>
     <tr>
@@ -208,15 +218,15 @@ comparator?</p></td>
 printed along with the graph?  See Details for additional information.</p></td>
     </tr>
     <tr>
-      <th>graph</th>
+      <th>graph_type</th>
       <td><p>A string used to select the graphical engine to use for
 plotting. Should (partial-)match the two options <code>"base"</code> or
 <code>"ggplot2"</code>. Default value is <code>"base"</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>If <code>graph="ggplot2"</code> and a named theme object is supplied,
-it will be added to the ggplot object. Ignored if <code>graph="base"</code>.
+      <td><p>If <code>graph_type="ggplot2"</code> and a named theme object is supplied,
+it will be added to the ggplot object. Ignored if <code>graph_type="base"</code>.
 Setting the optional argument <code>include.ICER</code> to <code>TRUE</code> will print
 the ICERs in the summary tables, if produced.</p></td>
     </tr>
@@ -227,7 +237,7 @@ the ICERs in the summary tables, if produced.</p></td>
     
 
 <dt>ceplane</dt><dd><p>A ggplot object containing the plot. Returned only
-if <code>graph="ggplot2"</code>.</p></dd> The function produces a plot of the
+if <code>graph_type="ggplot2"</code>.</p></dd> The function produces a plot of the
 cost-effectiveness efficiency frontier. The dots show the simulated values
 for the intervention-specific distributions of the effectiveness and costs.
 The circles indicate the average of each bivariate distribution, with the
@@ -238,9 +248,11 @@ dominance regions are plotted, indicating the areas of dominance.
 Interventions in the areas between the dominance region and the frontier are
 in a situation of extended dominance.
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="back-compatibility-with-bcea-previous-versions"><a class="anchor" href="#back-compatibility-with-bcea-previous-versions"></a>Back compatibility with BCEA previous versions</h2>
 
-    <p>The <code>bcea</code> objects did not include the generating <code>e</code> and <code>c</code>
+    
+
+<p>The <code>bcea</code> objects did not include the generating <code>e</code> and <code>c</code>
 matrices in BCEA versions &lt;2.1-0. This function is not compatible with
 objects created with previous versions. The matrices can be appended to
 <code>bcea</code> objects obtained using previous versions, making sure that the
@@ -262,8 +274,7 @@ represent differential costs and benefits compared to the reference
 intervention (indexed by <code>ref</code> in the <code><a href='bcea.html'>bcea</a></code> function).</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Baio G. (2012). Bayesian Methods in Health Economics.
-CRC/Chapman Hall, London.</p>
+    <p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
 <p>IQWIG (2009). General methods for the Assessment of the Relation of Benefits
 to Cost, Version 1.0. IQWIG, November 2009.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -272,18 +283,41 @@ to Cost, Version 1.0. IQWIG, November 2009.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='co'>### create the bcea object m for the smoking cessation example</span>
+<span class='co'>## create the bcea object m for the smoking cessation example</span>
 <span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Smoking</span>)
-<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='no'>e</span>,<span class='no'>c</span>,<span class='kw'>ref</span><span class='kw'>=</span><span class='fl'>4</span>,<span class='kw'>Kmax</span><span class='kw'>=</span><span class='fl'>500</span>,<span class='kw'>interventions</span><span class='kw'>=</span><span class='no'>treats</span>)
-<span class='co'>### produce the plot</span>
-<span class='fu'>ceef.plot</span>(<span class='no'>m</span>,<span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"base"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in 1:he$n.comparators: argument of length 0</span></div><div class='input'><span class='co'># \donttest{</span>
-<span class='co'>### tweak the options</span>
-<span class='fu'>ceef.plot</span>(<span class='no'>m</span>,<span class='kw'>flip</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>dominance</span><span class='kw'>=</span><span class='fl'>FALSE</span>,<span class='kw'>start.from.origins</span><span class='kw'>=</span><span class='fl'>FALSE</span>,
-          <span class='kw'>print.summary</span><span class='kw'>=</span><span class='fl'>FALSE</span>,<span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"base"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in 1:he$n.comparators: argument of length 0</span></div><div class='input'><span class='co'>### or use ggplot2 instead</span>
+<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='no'>e</span>, <span class='no'>c</span>, <span class='kw'>ref</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>Kmax</span> <span class='kw'>=</span> <span class='fl'>500</span>, <span class='kw'>interventions</span> <span class='kw'>=</span> <span class='no'>treats</span>)
+
+<span class='co'>## produce plot</span>
+<span class='fu'>ceef.plot</span>(<span class='no'>m</span>, <span class='kw'>graph_type</span> <span class='kw'>=</span> <span class='st'>"base"</span>)</div><div class='output co'>#&gt; 
+#&gt; Cost-effectiveness efficiency frontier summary 
+#&gt; 
+#&gt; Interventions on the efficiency frontier:
+#&gt;                   Effectiveness   Costs Increase slope Increase angle
+#&gt; No treatment            0.41051   0.000           0.00         0.0000
+#&gt; Self-help               0.69875  45.733         158.66         1.5645
+#&gt; Group counselling       1.13303 143.301         224.67         1.5663
+#&gt; 
+#&gt; Interventions not on the efficiency frontier:
+#&gt;                        Effectiveness  Costs     Dominance type
+#&gt; Individual counselling       0.89536 94.919 Extended dominance</div><div class='img'><img src='ceef.plot-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># \donttest{</span>
+<span class='co'>## tweak the options</span>
+<span class='co'>## flip axis</span>
+<span class='fu'>ceef.plot</span>(<span class='no'>m</span>,
+          <span class='kw'>flip</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+          <span class='kw'>dominance</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+          <span class='kw'>start.from.origins</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+          <span class='kw'>print.summary</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+          <span class='kw'>graph_type</span> <span class='kw'>=</span> <span class='st'>"base"</span>)</div><div class='img'><img src='ceef.plot-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'>## or use ggplot2 instead</span>
 <span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='no'>ggplot2</span>)){
-<span class='fu'>ceef.plot</span>(<span class='no'>m</span>,<span class='kw'>dominance</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>start.from.origins</span><span class='kw'>=</span><span class='fl'>FALSE</span>,<span class='kw'>pos</span><span class='kw'>=</span><span class='fl'>TRUE</span>,
-          <span class='kw'>print.summary</span><span class='kw'>=</span><span class='fl'>FALSE</span>,<span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"ggplot2"</span>)
-}</div><div class='output co'>#&gt; <span class='message'>Loading required package: ggplot2</span></div><div class='output co'>#&gt; <span class='error'>Error in 1:he$n.comparators: argument of length 0</span></div><div class='input'># }
+<span class='fu'>ceef.plot</span>(<span class='no'>m</span>,
+          <span class='kw'>dominance</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+          <span class='kw'>start.from.origins</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+          <span class='kw'>pos</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+          <span class='kw'>print.summary</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+          <span class='kw'>graph_type</span> <span class='kw'>=</span> <span class='st'>"ggplot2"</span>)
+ }</div><div class='output co'>#&gt; <span class='message'>Loading required package: ggplot2</span></div><div class='img'><img src='ceef.plot-3.png' alt='' width='700' height='433' /></div><div class='input'># }
 
 </div></pre>
   </div>

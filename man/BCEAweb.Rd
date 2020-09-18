@@ -24,10 +24,10 @@ their own values using the web-interface}
 \item{...}{Additional parameters.}
 }
 \description{
-Launches the web-app
+Launches the web-app.
 }
 \examples{
-\donttest{
+\dontrun{
 data(Vaccine)
 BCEAweb(e,c,vaccine)
 }
@@ -37,8 +37,7 @@ Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 Analysis in Health Economics.  Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
 \code{\link{bcea}}
@@ -46,10 +45,10 @@ London
 \author{
 Gianluca Baio
 }
-\keyword{Expected}
-\keyword{Health}
+\keyword{"Expected}
+\keyword{"Health}
 \keyword{economic}
-\keyword{evaluation,}
-\keyword{information}
+\keyword{evaluation"}
+\keyword{information"}
 \keyword{of}
 \keyword{value}

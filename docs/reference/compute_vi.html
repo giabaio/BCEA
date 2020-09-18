@@ -8,6 +8,13 @@
 
 <title>Compute Value of Information — compute_vi • BCEA</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -40,7 +47,10 @@
 
 
 <meta property="og:title" content="Compute Value of Information — compute_vi" />
-<meta property="og:description" content="Compute Value of Information" />
+<meta property="og:description" content="The difference between the maximum utility computed for the current
+parameter configuration \(U^*\) and the utility of the intervention which
+is associated with the maximum utility overall." />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -97,6 +107,10 @@
     <li>
       <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
     </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../articles/index.html">More...</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -129,35 +143,41 @@
     </div>
 
     <div class="ref-description">
-    <p>Compute Value of Information</p>
+    <p>The difference between the maximum utility computed for the current
+parameter configuration \(U^*\) and the utility of the intervention which
+is associated with the maximum utility overall.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>compute_vi</span>(<span class='no'>n_sim</span>, <span class='no'>K</span>, <span class='no'>Ustar</span>, <span class='no'>U</span>)</pre>
+    <pre class="usage"><span class='fu'>compute_vi</span>(<span class='no'>Ustar</span>, <span class='no'>U</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>n_sim</th>
-      <td></td>
-    </tr>
-    <tr>
-      <th>K</th>
-      <td></td>
-    </tr>
-    <tr>
       <th>Ustar</th>
-      <td></td>
+      <td><p>Maximum utility value (sim x k)</p></td>
     </tr>
     <tr>
       <th>U</th>
-      <td></td>
+      <td><p>Net monetary benefit (sim x k x interv)</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>vi</p>
+    <p>Array with dimensions (sim x k)</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The value of obtaining additional information on the parameter \(\theta\)
+to reduce the uncertainty in the decisional process.
+It is defined as:</p>
+<p>$$\text{VI}(\theta) := U^*(\theta) - \mathcal{U}^*$$</p>
+<p>with \(U^*(\theta)\) the maximum utility value for the given simulation
+among all comparators and \(\mathcal{U}^*(\theta)\) the expected utility
+gained by the adoption of the cost-effective intervention.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='compute_ol.html'>compute_ol</a></code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

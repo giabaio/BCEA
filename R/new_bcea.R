@@ -1,12 +1,14 @@
 
 #' Constructor for bcea
 #'
-#' @param df_ce dataframe of all simulation eff and cost
-#' @param k vector of willingness to pay values
+#' @param df_ce Dataframe of all simulation eff and cost
+#' @param k Vector of willingness to pay values
 #'
-#' @import reshape2, dplyr
+#' @import reshape2 dplyr
 #'
-#' @return
+#' @return List object of class bcea.
+#' @seealso bcea
+#' 
 #' @export
 #'
 new_bcea <- function(df_ce, k) {
@@ -31,24 +33,43 @@ new_bcea <- function(df_ce, k) {
   
   U <- compute_U(df_ce, k)
   
-  Ustar <- compute_Ustar(n_sim, K, U)
+  Ustar <- compute_Ustar(U)
   
-  vi <- compute_vi(n_sim, K, Ustar, U)
+  vi <- compute_vi(Ustar, U)
   
-  ol <- compute_ol(n_sim, K, Ustar, U, best)
+  ol <- compute_ol(Ustar, U, best)
   
   evi <- colMeans(ol)
   
+  interv_names <- levels(df_ce$interv_names)
+  
+  e_dat <-
+    reshape2::dcast(sim ~ interv_names,
+                    value.var = "eff1",
+                    data = df_ce)[, -1]
+  
+  c_dat <-
+    reshape2::dcast(sim ~ interv_names,
+                    value.var = "cost1",
+                    data = df_ce)[, -1]
+  
+  
+  delta_e <- 
+    reshape2::dcast(sim ~ interv_names,
+                    value.var = "delta_e",
+                    data = df_ce_comp)[, -1, drop = FALSE]
+  
+  delta_c <- 
+    reshape2::dcast(sim ~ interv_names,
+                    value.var = "delta_c",
+                    data = df_ce_comp)[, -1, drop = FALSE] 
+
   he <- 
     list(n_sim = length(unique(df_ce$sim)),
          n_comparators = length(comp) + 1,
          n_comparisons = length(comp),
-         delta_e = dcast(sim ~ interv_names,
-                         value.var = "delta_e",
-                         data = df_ce_comp)[, -1],
-         delta_c = dcast(sim ~ interv_names,
-                         value.var = "delta_c",
-                         data = df_ce_comp)[, -1],
+         delta_e = delta_e,
+         delta_c = delta_c,
          ICER = ICER,
          Kmax = max(k),
          k = k,
@@ -62,16 +83,13 @@ new_bcea <- function(df_ce, k) {
          Ustar = Ustar,
          ol = ol,
          evi = evi,
-         interventions = sort(unique(df_ce$interv_names)),
          ref = ref,
          comp = comp,
          step = k[2] - k[1],
-         e = dcast(sim ~ interv_names,
-                   value.var = "eff1",
-                   data = df_ce)[, -1],
-         c = dcast(sim ~ interv_names,
-                   value.var = "cost1",
-                   data = df_ce)[, -1])
+         interventions = interv_names,
+         e = as.matrix(e_dat),
+         c = as.matrix(c_dat))
   
   structure(he, class = c("bcea", class(he)))
 }
+

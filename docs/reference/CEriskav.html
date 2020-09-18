@@ -6,8 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cost-effectiveness analysis including a parameter of risk aversion — CEriskav • BCEA</title>
+<title>Cost-effectiveness Analysis Including a Parameter of Risk Aversion — CEriskav • BCEA</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -39,10 +46,11 @@
 
 
 
-<meta property="og:title" content="Cost-effectiveness analysis including a parameter of risk aversion — CEriskav" />
+<meta property="og:title" content="Cost-effectiveness Analysis Including a Parameter of Risk Aversion — CEriskav" />
 <meta property="og:description" content="Extends the standard cost-effectiveness analysis to modify the utility
 function so that risk aversion of the decision maker is explicitly accounted
 for." />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -99,6 +107,10 @@ for." />
     <li>
       <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
     </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../articles/index.html">More...</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -125,7 +137,7 @@ for." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Cost-effectiveness analysis including a parameter of risk aversion</h1>
+    <h1>Cost-effectiveness Analysis Including a Parameter of Risk Aversion</h1>
     <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/CEriskav.R'><code>R/CEriskav.R</code></a></small>
     <div class="hidden name"><code>CEriskav.Rd</code></div>
     </div>
@@ -167,29 +179,33 @@ elements:</p>
 <dt>Ur</dt><dd><p>An array containing the simulated values for all the
 ''known-distribution'' utilities for all interventions, all the values of
 the willingness to pay parameter and for all the possible values of
-<code>r</code></p></dd> <dt>Urstar</dt><dd><p>An array containing the simulated values for the
+<code>r</code></p></dd>
+<dt>Urstar</dt><dd><p>An array containing the simulated values for the
 maximum ''known-distribution'' expected utility for all the values of the
 willingness to pay parameter and for all the possible values of <code>r</code></p></dd>
 <dt>IBr</dt><dd><p>An array containing the simulated values for the distribution of
 the Incremental Benefit for all the values of the willingness to pay and for
-all the possible values of <code>r</code></p></dd> <dt>eibr</dt><dd><p>An array containing the
-Expected Incremental Benefit for each value of the willingness to pay
-parameter and for all the possible values of <code>r</code></p></dd> <dt>vir</dt><dd><p>An array
-containing all the simulations for the Value of Information for each value
-of the willingness to pay parameter and for all the possible values of
-<code>r</code></p></dd> <dt>evir</dt><dd><p>An array containing the Expected Value of Information
+all the possible values of <code>r</code></p></dd>
+<dt>eibr</dt><dd><p>An array containing the Expected Incremental Benefit for each
+value of the willingness to pay parameter and for all the possible values of
+<code>r</code></p></dd>
+<dt>vir</dt><dd><p>An array containing all the simulations for the Value of
+Information for each value of the willingness to pay parameter and for all
+the possible values of <code>r</code></p></dd>
+<dt>evir</dt><dd><p>An array containing the Expected Value of Information
 for each value of the willingness to pay parameter and for all the possible
-values of <code>r</code></p></dd> <dt>R</dt><dd><p>The number of possible values for the
-parameter of risk aversion <code>r</code></p></dd> <dt>r</dt><dd><p>The vector containing all the
-possible values for the parameter of risk aversion <code>r</code></p></dd>
+values of <code>r</code></p></dd>
+<dt>R</dt><dd><p>The number of possible values for the parameter of risk aversion
+<code>r</code></p></dd>
+<dt>r</dt><dd><p>The vector containing all the possible values for the parameter of
+risk aversion <code>r</code></p></dd>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
+Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.</p>
-<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London</p>
+<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code></p></div>
@@ -198,25 +214,25 @@ London</p>
     <pre class="examples"><div class='input'>
 <span class='co'># See Baio G., Dawid A.P. (2011) for a detailed description of the </span>
 <span class='co'># Bayesian model and economic problem</span>
-<span class='co'>#</span>
+
 <span class='co'># Load the processed results of the MCMC simulation model</span>
 <span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Vaccine</span>)
-<span class='co'># </span>
+
 <span class='co'># Runs the health economic evaluation using BCEA</span>
 <span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='kw'>e</span><span class='kw'>=</span><span class='no'>e</span>,<span class='kw'>c</span><span class='kw'>=</span><span class='no'>c</span>,          <span class='co'># defines the variables of </span>
                             <span class='co'>#  effectiveness and cost</span>
-      <span class='kw'>ref</span><span class='kw'>=</span><span class='fl'>2</span>,                <span class='co'># selects the 2nd row of (e,c) </span>
+      <span class='kw'>ref</span><span class='kw'>=</span><span class='fl'>2</span>,                <span class='co'># selects the 2nd row of (e, c) </span>
                             <span class='co'>#  as containing the reference intervention</span>
       <span class='kw'>interventions</span><span class='kw'>=</span><span class='no'>treats</span>, <span class='co'># defines the labels to be associated </span>
                             <span class='co'>#  with each intervention</span>
       <span class='kw'>Kmax</span><span class='kw'>=</span><span class='fl'>50000</span>            <span class='co'># maximum value possible for the willingness </span>
                             <span class='co'>#  to pay threshold; implies that k is chosen </span>
-                            <span class='co'>#  in a grid from the interval (0,Kmax)</span>
+                            <span class='co'>#  in a grid from the interval (0, Kmax)</span>
 )
-<span class='co'>#</span>
+
 <span class='co'># Define the vector of values for the risk aversion parameter, r, eg:</span>
-<span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='fl'>0.0000000001</span>,<span class='fl'>0.005</span>,<span class='fl'>0.020</span>,<span class='fl'>0.035</span>)
-<span class='co'>#</span>
+<span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='fl'>1e-10</span>, <span class='fl'>0.005</span>, <span class='fl'>0.020</span>, <span class='fl'>0.035</span>)
+
 <span class='co'># Run the cost-effectiveness analysis accounting for risk aversion</span>
 <span class='co'># \donttest{</span>
 <span class='no'>cr</span> <span class='kw'>&lt;-</span> <span class='fu'>CEriskav</span>(<span class='no'>m</span>,     <span class='co'># uses the results of the economic evalaution </span>
@@ -225,9 +241,8 @@ London</p>
                       <span class='co'>#  aversion parameter </span>
         <span class='kw'>comparison</span><span class='kw'>=</span><span class='fl'>1</span>  <span class='co'># if more than 2 interventions, selects the </span>
                       <span class='co'>#  pairwise comparison </span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: first element used of 'length.out' argument</span></div><div class='output co'>#&gt; <span class='error'>Error in seq_len(he$n.comparators): argument must be coercible to non-negative integer</span></div><div class='input'># }
-
-</div></pre>
+)
+<span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

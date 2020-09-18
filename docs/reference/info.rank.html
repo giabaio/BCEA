@@ -6,8 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Info-rank plot — info.rank • BCEA</title>
+<title>Info-Rank Plot — info.rank • BCEA</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -39,12 +46,13 @@
 
 
 
-<meta property="og:title" content="Info-rank plot — info.rank" />
+<meta property="og:title" content="Info-Rank Plot — info.rank" />
 <meta property="og:description" content="Produces a plot similar to a Tornado-plot, but based on the analysis of the
 EVPPI. For each parameter and value of the willingness-to-pay threshold, a
 barchart is plotted to describe the ratio of EVPPI (specific to that
 parameter) to EVPI. This represents the relative 'importance' of each
 parameter in terms of the expected value of information." />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -101,6 +109,9 @@ parameter in terms of the expected value of information." />
     <li>
       <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
     </li>
+    <li>
+      <a href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -127,7 +138,7 @@ parameter in terms of the expected value of information." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Info-rank plot</h1>
+    <h1>Info-Rank Plot</h1>
     <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/info.rank.R'><code>R/info.rank.R</code></a></small>
     <div class="hidden name"><code>info.rank.Rd</code></div>
     </div>
@@ -169,8 +180,8 @@ should match at least one of those values.</p></td>
     </tr>
     <tr>
       <th>he</th>
-      <td><p>A <code>bcea</code> object (the result of the call to the function
-<code><a href='bcea.html'>bcea</a></code>).</p></td>
+      <td><p>A <code>bcea</code> object containing the results of the Bayesian
+modelling and the economic evaluation.</p></td>
     </tr>
     <tr>
       <th>wtp</th>
@@ -209,8 +220,8 @@ should be used for the analysis.</p></li>
 
 <dt>res</dt><dd><p>With base graphics: A data.frame containing the ranking of the parameters
   with the value of the selected summary, for the chosen wtp; with plotly: a plotly object, 
-  incorporating in the $rank element the data.frame as above.</p></dd> The function
-  produces a 'Info-rank' plot. This is an extension of standard 'Tornado
+  incorporating in the $rank element the data.frame as above.</p></dd>
+  The function produces a 'Info-rank' plot. This is an extension of standard 'Tornado
   plots' and presents a ranking of the model parameters in terms of their
   impact on the expected value of information. For each parameter, the
   specific individual EVPPI is computed and used to measure the impact of
@@ -222,8 +233,7 @@ should be used for the analysis.</p></li>
     <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 Analysis in Health Economics.  Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.</p>
-<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London</p>
+<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>, <code><a href='evppi.html'>evppi</a></code></p></div>

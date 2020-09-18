@@ -2,20 +2,17 @@
 % Please edit documentation in R/compute_xxx.R
 \name{compute_Ustar}
 \alias{compute_Ustar}
-\title{Compute Ustar statistic}
+\title{Compute Ustar Statistic}
 \usage{
-compute_Ustar(n_sim, K, U)
+compute_Ustar(U)
 }
 \arguments{
-\item{n_sim}{}
-
-\item{K}{}
-
-\item{U}{}
+\item{U}{Net monetary benefit (sim x k x intervs)}
 }
 \value{
-Ustar
+Array with dimensions (sim x k)
 }
 \description{
-Compute Ustar statistic
+The maximum utility value among the comparators, indicating which
+intervention produced the most benefits at each simulation.
 }

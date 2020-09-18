@@ -1,5 +1,5 @@
 
-#' Diagnostic plots for the results of the EVPPI
+#' Diagnostic Plots For The Results Of The EVPPI
 #' 
 #' The function produces either a residual plot comparing the fitted
 #' values from the INLA-SPDE Gaussian Process regression to the residuals.
@@ -31,21 +31,19 @@
 #' plot' or the 'qqplot plot'.
 #' @param interv Specifies the interventions for which diagnostic tests should be
 #' performed (if there are many options being compared)
-#' @return plot
+#' @return Plot
 #' 
 #' @author Gianluca Baio, Anna Heath
 #' @seealso \code{\link{bcea}}, \code{\link{evppi}}
-#' @references Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics.  Statistical Methods in Medical Research
+#' @references
+#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
+#' Analysis in Health Economics. Statistical Methods in Medical Research
 #' doi:10.1177/0962280211419832.
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-#' London
-#' @keywords Health economic evaluation, Value of Information
+#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' 
+#' @keywords "Health economic evaluation" "Value of Information"
 #' @export
-#' 
-#' @examples
 #'  
 diag.evppi <- function(evppi,
                        he,
@@ -53,7 +51,8 @@ diag.evppi <- function(evppi,
                        interv = 1) {
   
   if (interv > 1 && dim(evppi$fitted.costs)[2] == 1) {
-    stop("There is only one comparison possible, so 'interv' set to 1 (default)", call. = FALSE)}
+    stop("There is only one comparison possible, so 'interv' set to 1 (default)",
+         call. = FALSE)}
   
   plot_type <- match.arg(plot_type)
   is_residual <- pmatch(plot_type, c("residuals", "qqplot")) != 2
@@ -65,7 +64,8 @@ diag.evppi <- function(evppi,
   }
 }
 
-#
+
+#'
 evppi_residual_plot <- function(evppi,
                                 he,
                                 interv) {
@@ -75,8 +75,9 @@ evppi_residual_plot <- function(evppi,
   fitted <- list(cost = evppi$fitted.costs[, interv],
                  eff = evppi$fitted.effects[, interv])
   
-  residual <- list(cost = as.matrix(he$delta.c)[evppi$select, interv] - fitted$cost,
-                   eff = as.matrix(he$delta.e)[evppi$select, interv] - fitted$eff)
+  residual <-
+    list(cost = as.matrix(he$delta.c)[evppi$select, interv] - fitted$cost,
+         eff = as.matrix(he$delta.e)[evppi$select, interv] - fitted$eff)
   cex <- 0.8
   
   plot(fitted$cost,
@@ -98,7 +99,8 @@ evppi_residual_plot <- function(evppi,
   par(op)
 }
 
-#
+
+#'
 evppi_qq_plot <- function(evppi,
                           he,
                           interv) {
@@ -116,3 +118,4 @@ evppi_qq_plot <- function(evppi,
   
   par(op)
 }
+

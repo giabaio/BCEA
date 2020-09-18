@@ -2,11 +2,17 @@
 % Please edit documentation in R/select_plot_type.R
 \name{select_plot_type}
 \alias{select_plot_type}
-\title{choose graphical engine}
+\title{Choose Graphical Engine}
 \usage{
 select_plot_type(graph)
 }
+\arguments{
+\item{graph}{Type names; string}
+}
+\value{
+Plot ID integer 1:base R; 2:ggplot2; 3:plotly
+}
 \description{
-choose graphical engine
+From base R, ggplot2 or plotly.
 }
 \keyword{dplot}

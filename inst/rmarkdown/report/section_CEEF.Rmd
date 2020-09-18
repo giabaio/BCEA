@@ -1,0 +1,24 @@
+
+## Cost-effectiveness efficiency frontier
+
+The _Cost-Effectiveness Efficiency Frontier_ (CEEF) compares the net costs and benefits of different interventions in a given therapeutic area. It is different from the common differential approach (e.g. based on the Cost-Effectiveness plane), because it is based on the _net_ measures. The predicted costs and effectiveness for the interventions under consideration are compared directly to the costs and effectiveness for the treatments that are currently available. The frontier in itself defines the set of interventions for which cost is at an acceptable level for the benefits given by the treatment. A new intervention is _efficient_ if its average effectiveness is greater than any of the currently available alternatives, or its cost are lower than that associated with other interventions of the same effectiveness.
+
+In the following plot, the circles indicate the mean for the cost and effectiveness distributions for each treatment option. The number in each circle corresponds to the order of the treatments in the legend. If the number is black then the intervention is on the efficiency frontier. Grey numbers indicate dominated treatments. 
+
+
+```{r, echo=echo, comment=" ", warning=FALSE, message=FALSE, fig.width=4.6, fig.height=4.6, fig.align=align, warning=FALSE, message=FALSE, comment=NA}
+n.ints <- m$n_comparators
+
+if (n.ints == 2) {
+  graph <- "base"
+  pos <- c(1, 1)
+} else {
+  graph <- "ggplot2"
+  pos <- TRUE
+}
+ceef.plot(m, graph = graph)
+```
+
+The summary is composed of two tables, reporting information for the comparators included on the frontier. It also details the average health effects and costs for the comparators not on the frontier, if any. For the interventions included on the frontier, the slope of the frontier segment connecting the intervention to the previous efficient one and the angle inclination of the segment (with respect to the $x-$axis), measured in radians, are also reported. In particular, the slope can be interpreted as the increase in costs for an additional unit in effectiveness, i.e. the ICER for the comparison against the previous treatment. 
+
+The dominance type for comparators not on the efficiency frontier is reported in the output table. This can be of two types: absolute or extended dominance. An intervention is absolutely dominated if another comparator has both lower costs and greater health benefits, i.e. the ICER for at least one pairwise comparison is negative. Comparators in a situation of extended dominance are not wholly inefficient, but are dominated because a combination of two other interventions will provide more benefits for lower costs. 

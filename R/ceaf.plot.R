@@ -22,7 +22,7 @@
 #' London.
 #' @keywords hplot Health economic evaluation Multiple comparison
 #' 
-#' @import ggplot2, grid
+#' @import ggplot2 grid
 #' 
 #' @examples
 #' 
@@ -67,10 +67,11 @@
 #' ceaf.plot(mce)
 #' }
 #' 
+#' @rdname ceaf.plot
 #' @export
 #' 
-ceaf.plot <- function(mce,
-                      graph = c("base", "ggplot2")) {
+ceaf.plot.pairwise <- function(mce,
+                               graph = c("base", "ggplot2")) {
   
   graph <- match.arg(graph)
   base_graphics <- pmatch(graph, c("base", "ggplot2")) != 2
@@ -123,3 +124,13 @@ ceaf.plot <- function(mce,
     return(ggceaf)
   }
 }
+
+
+#' @rdname ceaf.plot
+#' @export
+#' 
+ceaf.plot <- function(mce, ...) {
+  UseMethod('ceaf.plot', mce)
+}
+
+

@@ -12,19 +12,19 @@
 
 ## Fixes
 
-# BCEA 2.3-1.1<sup>^</sup>
+# BCEA 2.3-1.1
 26 Aug 2019
 	
-# BCEA 2.3-1<sup>^</sup>
+# BCEA 2.3-1
 5 Aug 2019
  
-# BCEA 2.2-6<sup>^</sup>
+# BCEA 2.2-6
 11 July 2018
 
 * Fix in `evppi` to allow N to be selected in all methods
 * Fix `diag.evppi`
 
-# BCEA 2.2-5<sup>^</sup>
+# BCEA 2.2-5
 18 Nov 2016
 
 * Some changes to EVPPI
@@ -34,13 +34,13 @@ Nov 2016
 
 * Fixes for new ggplot2 version (`legend.spacing()` and `plot.title` hjust argument)
 
-# BCEA 2.2-3<sup>^</sup>
+# BCEA 2.2-3
 22 May 2016
 
 * Major update for the EVPPI to include PFC
 * Fixed issues with info.rank
 
-# BCEA 2.2-2<sup>^</sup>
+# BCEA 2.2-2
 25 Jan 2016
 
 * Minor change to `ceef.plot` to align with ggplot2 v2.0.0
@@ -56,7 +56,7 @@ Oct 2015
 * Cleaned up and aligned with R's settings
 * `EVPPI` function polished up
 
-# BCEA 2.1-1<sup>^</sup>
+# BCEA 2.1-1
 6 May 2015 2015
 
 * New function for EVPPI using SPDE-INLA
@@ -66,7 +66,7 @@ Oct 2015
 * It is now possible to run bcea for a scalar wtp
 * Old evppi function and method has been renamed `evppi0`, which means there's also a new `plot.evppi0` method
 	  
-# BCEA 2.1-0<sup>^</sup>
+# BCEA 2.1-0
 13 Jan 2015
 
 * Migrated from `if(require())` to `if(requireNamespace(,quietly=TRUE))`
@@ -92,13 +92,13 @@ Oct 2014
 
 * `ceac.plot` and `eib.plot`: option comparison included for base graphics
 
-# BCEA 2.0-2<sup>^</sup>
+# BCEA 2.0-2
 2 Dec 2013
 
-# BCEA 2.0-1<sup>^</sup>
+# BCEA 2.0-1
 31 July 2013
 
-# BCEA 2.0<sup>^</sup>
+# BCEA 2.0
 30 July 2013
 
 ## Feature updates
@@ -110,18 +110,18 @@ Oct 2014
 
 # BCEA 1.3-1
 
-# BCEA 1.3-0<sup>^</sup>
+# BCEA 1.3-0
 3 July 2013
 
 # BCEA 1.2
 17 September 2012
 
-# BCEA 1.1.1<sup>^</sup>
+# BCEA 1.1.1
 22 Feb 2013
 
-# BCEA 1.1<sup>^</sup>
+# BCEA 1.1
 15 Sept 2012
 
 
-# BCEA 1.0<sup>^</sup>
+# BCEA 1.0
 13 May 2012

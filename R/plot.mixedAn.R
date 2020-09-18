@@ -1,10 +1,9 @@
 
-#' Summary plot of the health economic analysis when the mixed analysis is
-#' considered
+#' Summary Plot of the Health Economic Analysis When the Mixed Analysis is
+#' Considered
 #' 
-#' Compares the optimal scenario to the mixed case in terms of the EVPI
-#' 
-#' 
+#' Compares the optimal scenario to the mixed case in terms of the EVPI.
+#'  
 #' @param x An object of class \code{mixedAn}, given as output of the call to
 #' the function \code{\link{mixedAn}}.
 #' @param y.limits Range of the y-axis for the graph. The default value is
@@ -31,7 +30,8 @@
 #' 
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}}, \code{\link{mixedAn}}
-#' @references Baio, G. and Russo, P. (2009).A decision-theoretic framework for
+#' @references
+#' Baio, G. and Russo, P. (2009).A decision-theoretic framework for
 #' the application of cost-effectiveness analysis in regulatory processes.
 #' Pharmacoeconomics 27(8), 645-655 doi:10.2165/11310250
 #' 
@@ -39,8 +39,7 @@
 #' Economics.  Statistical Methods in Medical Research
 #' doi:10.1177/0962280211419832.
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-#' London
+#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
 #' @keywords Health economic evaluation Mixed analysis
 #' 
 #' @examples
@@ -91,7 +90,7 @@ plot.mixedAn <- function(x,
   base.graphics <- pmatch(graph, c("base", "ggplot2")) != 2
   
   if(is.null(y.limits)){
-    y.limits=range(x$evi,x$evi.star)
+    y.limits <- range(x$evi,x$evi.star)
   }
   
   if(base.graphics) {
@@ -111,17 +110,18 @@ plot.mixedAn <- function(x,
         alt.legend <- FALSE
     }
     if(is.logical(alt.legend)){
-      if(!alt.legend)
-        alt.legend="topright"
+      alt.legend <- 
+        if(!alt.legend)
+        "topright"
       else
-        alt.legend="topleft"
+        "topleft"
     }
     
-    plot(x$k,x$evi,t="l",xlab="Willingness to pay",ylab="EVPI",
+    plot(x$k,x$evi,type="l",xlab="Willingness to pay",ylab="EVPI",
          main="Expected Value of Information",ylim=y.limits)
     polygon(c(x$k,rev(x$k)),c(x$evi.star,rev(x$evi)),density=20,col="grey")
-    points(x$k,x$evi.star,t="l",col="red")
-    points(x$k,x$evi,t="l",col="black")
+    points(x$k,x$evi.star,type="l",col="red")
+    points(x$k,x$evi,type="l",col="black")
     txt <- c("Optimal strategy","Mixed strategy:",
              paste("   ",x$interventions,"=",format(100*x$mkt.shares,digits=3,nsmall=2),"%",sep=""))
     cols <- c("black","red",rep("white",length(x$interventions)))
@@ -140,7 +140,7 @@ plot.mixedAn <- function(x,
       
       # legend
       txt <- c("Optimal strategy",paste0("Mixed strategy:", paste0("\n   ",x$interventions,"=",format(100*x$mkt.shares,digits=3,nsmall=2),"%",collapse="")))
-      colours=c("black","red")
+      colours <- c("black","red")
       
       df <- data.frame("k"=x$k,"evi"=x$evi,"evi.star"=x$evi.star)
       evi <- ggplot2::ggplot(df,ggplot2::aes(x=k)) + ggplot2::theme_bw() +
@@ -155,16 +155,16 @@ plot.mixedAn <- function(x,
                        legend.key=ggplot2::element_blank(),plot.title=ggplot2::element_text(face="bold",hjust=0.5))
       jus <- NULL
       if(isTRUE(alt.legend)) {
-        alt.legend="bottom"
+        alt.legend <- "bottom"
         evi <- evi + ggplot2::theme(legend.direction="vertical")
       }
       else{
         if(is.character(alt.legend)) {
           choices <- c("left", "right", "bottom", "top")
           alt.legend <- choices[pmatch(alt.legend,choices)]
-          jus="center"
+          jus <- "center"
           if(is.na(alt.legend))
-            alt.legend=FALSE
+            alt.legend <- FALSE
         }
         if(length(alt.legend)>1)
           jus <- alt.legend

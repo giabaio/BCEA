@@ -1,0 +1,17 @@
+
+## Expected value of perfect information
+
+One measure to quantify the value of additional information is known as the _Expected Value of Perfect Information_ (EVPI). This measure translates the uncertainty associated with the cost-effectiveness evaluation in the model into an economic quantity. This quantification is based on the _Opportunity Loss_ (OL), which is a measure of the potential losses caused by choosing the most cost-effective intervention _on average_ when it does not result in the intervention with the highest utility in a 'possible future'. A future can be thought of as obtaining enough data to know the exact value of the utilities for the different interventions. This would allow the decision makers to known the optimal treatment with certainty. The opportunity loss occurs when the optimal treatment on average is non-optimal for a specific point in the distribution for the utilities.
+
+To calculate the EVPI practically, possible futures for the different utilities are represented by the simulations. The utility values in each simulation are assumed to be known, corresponding to a possible future, which could happen with a probability based on the current available knowledge included in and represented by the model. The opportunity loss is the difference between the maximum value of the simulation-specific (known-distribution) utility $\mbox{NB}^*(\bm\theta)=k\Delta_e-\Delta_c$ and the utility for the intervention resulting in the overall maximum expected utility $\mbox{NB}(\bm\theta^\tau)$, where $\tau=\text{arg max}_t  ~\mathcal{NB}^t$.
+
+Usually, for a large number simulations the OL will be 0 as the optimal treatment on average will also be the optimal treatment for the majority of simulations. This means that the opportunity loss is always positive as either we choose the current optimal treatment or the treatment with a higher utility value for that specific simulation. The EVPI is then defined as the average of the opportunity loss. This measures the average potential losses in utility caused by the simulation specific optimal decision being non-optimal in reality.
+
+If the probability of cost-effectiveness is low then more simulations will give a non-zero opportunity loss and consequently the EVPI will be higher. This means that  if the probability of cost-effectiveness is very high, it is unlikely that more information would be worthwhile, as the most cost-effective treatment is already evident. However, the EVPI gives additional information over the EVPI as it takes into account the opportunity lost as well as simply the probability of cost-effectiveness. 
+
+For example, there may be a setting where the probability of cost-effectiveness is low, so the decision maker believes that decision uncertainty is important. However, this is simply because the two treatments are very similar in both costs and effectiveness. In this case the OL will be low as the utilities will be similar for both treatments for all simulations. Therefore, the cost of making the incorrect decision is very low. This will be reflected in the EVPI but not in the CEAC and implies that the optimal treatment can be chosen with little financial risk, even with a low probability of cost-effectiveness.
+
+
+```{r, echo=echo, fig.width=4.6, fig.height=4.6, fig.align=align, warning=FALSE, message=FALSE, comment=NA}
+evi.plot(m)
+```

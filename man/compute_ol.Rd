@@ -2,24 +2,38 @@
 % Please edit documentation in R/compute_xxx.R
 \name{compute_ol}
 \alias{compute_ol}
-\title{Compute ol}
+\title{Compute Opportunity Loss}
 \usage{
-compute_ol(n_sim, K, Ustar, U, best)
+compute_ol(Ustar, U, best)
 }
 \arguments{
-\item{n_sim}{}
+\item{Ustar}{Maximum utility value (sim x k)}
 
-\item{K}{}
+\item{U}{Net monetary benefit (sim x k x interv)}
 
-\item{Ustar}{}
-
-\item{U}{}
-
-\item{best}{}
+\item{best}{Best intervention for given willingness-to-pay (k)}
 }
 \value{
-ol
+Array with dimensions (sim x k)
 }
 \description{
-Compute ol
+The difference between the maximum utility computed for the current
+parameter configuration (e.g. at the current simulation) \eqn{U^*} and the current
+utility of the intervention associated with the maximum utility overall.
+}
+\details{
+In mathematical notation,
+\deqn{\text{OL}(\theta) := U^*(\theta) - U(\theta^\tau)}
+
+where \eqn{\tau} is the intervention associated with the overall maximum utility
+and \eqn{U^*(\theta)} is the maximum utility value among the comparators in the given simulation.
+The opportunity loss is a non-negative quantity, since \eqn{U(\theta^\tau)\leq U^*(\theta)}.
+
+In all simulations where the intervention is more
+cost-effective (i.e. when incremental benefit is positive), then \eqn{OL(\theta) = 0}
+as there would be no opportunity loss, if the parameter configuration were the
+one obtained in the current simulation.
+}
+\seealso{
+\code{\link{compute_vi}}
 }

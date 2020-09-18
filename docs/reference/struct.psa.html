@@ -6,8 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Structural PSA — struct.psa • BCEA</title>
+<title>Structural Probability Sensitivity Analysis — struct.psa • BCEA</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -39,9 +46,10 @@
 
 
 
-<meta property="og:title" content="Structural PSA — struct.psa" />
+<meta property="og:title" content="Structural Probability Sensitivity Analysis — struct.psa" />
 <meta property="og:description" content="Computes the weights to be associated with a set of competing models in
-order to perform structural PSA" />
+order to perform structural PSA." />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -98,6 +106,10 @@ order to perform structural PSA" />
     <li>
       <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
     </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../articles/index.html">More...</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -124,14 +136,14 @@ order to perform structural PSA" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Structural PSA</h1>
+    <h1>Structural Probability Sensitivity Analysis</h1>
     <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/struct.psa.R'><code>R/struct.psa.R</code></a></small>
     <div class="hidden name"><code>struct.psa.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Computes the weights to be associated with a set of competing models in
-order to perform structural PSA</p>
+order to perform structural PSA.</p>
     </div>
 
     <pre class="usage"><span class='fu'>struct.psa</span>(
@@ -141,7 +153,7 @@ order to perform structural PSA</p>
   <span class='kw'>ref</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>interventions</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>Kmax</span> <span class='kw'>=</span> <span class='fl'>50000</span>,
-  <span class='kw'>plot</span> <span class='kw'>=</span> <span class='no'>F</span>
+  <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -166,7 +178,7 @@ models (one matrix with n.sim x n.ints simulations for each model)</p></td>
     </tr>
     <tr>
       <th>ref</th>
-      <td><p>Defines which intervention is considered to be the reference
+      <td><p>Which intervention is considered to be the reference
 strategy. The default value <code>ref=1</code> means that the intervention
 appearing first is the reference and the other(s) is(are) the comparator(s)</p></td>
     </tr>
@@ -191,14 +203,24 @@ the summary plot or not</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The model is a list containing the output from either R2jags or R2OpenBUGS /
+R2WinBUGS for all the models that need to be combined in the model average
+effect is a list containing the measure of effectiveness computed from the 
+various models (one matrix with n_sim x n_ints simulations for each model)
+cost is a list containing the measure of costs computed from the various
+models (one matrix with n_sim x n_ints simulations for each model).</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Baio G. (2012). Bayesian Methods in Health Economics.
-CRC/Chapman Hall, London</p>
+    <p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code></p></div>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

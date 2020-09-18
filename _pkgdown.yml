@@ -5,42 +5,48 @@ reference:
 - title: Main
 - contents:
   - '`BCEA-package`'
-  - '`bcea.default`'
   - '`bcea`'
+  - '`bcea.default`'
   - '`BCEAweb`'
   - '`multi.ce`'
   - '`new_bcea`'
+  - '`setReferenceGroup<-`'
+  - '`setKmax<-`'
 - title: Plotting
 - contents:
+  - '`ceac.plot.bcea`'
+  - '`ceac_plot_graph`'
   - '`ceaf.plot`'
-  - '`ceef.plot`'
-  - '`ceplane.plot`'
+  - '`ceef.plot.bcea`'
+  - '`ceplane.plot.bcea`'
+  - '`ceplane_plot_graph`'
   - '`contour.bcea`'
-  - '`eib.plot`'
-  - '`evi.plot`'
-  - '`contour2`'
-  - '`ib.plot`'
-  - '`ceac.plot`'
+  - '`contour2.bcea`'
+  - '`eib.plot.bcea`'
+  - '`evi.plot.bcea`'
+  - '`ib.plot.bcea`'
+  - '`info.rank.bcea`'
   - '`plot.bcea`'
   - '`plot.CEriskav`'
   - '`plot.evppi`'
   - '`plot.mixedAn`'
-  - '`info.rank`'
 - title: Statistics
 - contents:
+  - '`best_interv_given_k`'
+  - '`compute_CEAC`'
+  - '`compute_EIB`'
   - '`compute_IB`'
   - '`compute_kstar`'
   - '`compute_ol`'
   - '`compute_U`'
   - '`compute_Ustar`'
   - '`compute_vi`'
-  - '`best_interv_given_k`'
 - title: Outputs
 - contents:
+  - '`make.report`'
+  - '`sim_table.bcea`'
   - '`summary.bcea`'
   - '`summary.mixedAn`'
-  - '`sim.table`'
-  - '`make.report`'
 - title: Miscellaneous
 - contents:
   - '`CEriskav`'
@@ -54,4 +60,15 @@ reference:
 - contents:
   - '`Smoking`'
   - '`Vaccine`'
+
+
+articles:
+- title: Basics
+  navbar: ~
+  contents:
+  # - plot_bcea
+  - ceac
+- title: Advanced
+  contents:
+  - Set_bcea_parameters
 

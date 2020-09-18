@@ -1,146 +1,203 @@
-###summary.bcea#################################################################################################
-## Summary of the results
 
-
-#' Summary method for objects in the class \code{bcea}
+#' Summary Method for Objects of Class \code{bcea}
 #' 
 #' Produces a table printout with some summary results of the health economic
-#' evaluation
+#' evaluation.
 #' 
-#' 
-#' @param object A \code{bcea} object containing the results of the Bayesian
-#' modelling and the economic evaluation.
-#' @param wtp The value of the willingness to pay threshold to be used in the
-#' summary table.
+#' @template args-he
+#' @param wtp The value of the willingness to pay threshold used in the
+#'   summary table.
 #' @param ...  Additional arguments affecting the summary produced.
+#' 
 #' @return Prints a summary table with some information on the health economic
 #' output and synthetic information on the economic measures (EIB, CEAC, EVPI).
 #' @author Gianluca Baio
 #' @seealso \code{\link{bcea}}
-#' @references Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics.  Statistical Methods in Medical Research
+#' @references
+#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
+#' Analysis in Health Economics. Statistical Methods in Medical Research
 #' doi:10.1177/0962280211419832.
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-#' London
+#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' @keywords Health economic evaluation
-#' @export summary.bcea
-summary.bcea <- function(object,
+#' @importFrom crayon green
+#' 
+#' @export
+#' 
+#' @examples 
+#' data(Vaccine)
+#' 
+#' he <- bcea(e,c, interventions = treats, ref = 2)
+#' summary(he)
+#' 
+summary.bcea <- function(he,
                          wtp = 25000,...) {
   
-  if(max(object$k)<wtp) {
-    wtp <- max(object$k)
-    cat(paste("NB: k (wtp) is defined in the interval [",min(object$k)," - ",wtp,"]\n",sep=""))
+  if (max(he$k) < wtp) {
+    wtp <- max(he$k)
+    message(
+      cat(paste0(
+        "NB: k (wtp) is defined in the interval [",
+        min(he$k), " - ", wtp, "]\n")))
   }
-  if (!is.element(wtp,object$k)) {
-    if (!is.na(object$step)) {# The user has selected a non-acceptable value for wtp, but has not specified wtp in the call to bcea
-      stop(paste("The willingness to pay parameter is defined in the interval [0-",object$Kmax,
-                 "], with increments of ",object$step,"\n",sep=""))
-    } else { # The user has actually specified wtp as input in the call to bcea
-      tmp <- paste(object$k,collapse=" ")
-      stop(paste0("The willingness to pay parameter is defined as:\n[",tmp,"]\nPlease select a suitable value",collapse=" "))
+  
+  if (!is.element(wtp, he$k)) {
+    if (!is.na(he$step)) {
+      # The user has selected a non-acceptable value for wtp,
+      # but has not specified wtp in the call to bcea
+      stop(
+        paste0(
+          "The willingness to pay parameter is defined in the interval [0-",
+          he$Kmax,
+          "], with increments of ",
+          he$step,
+          "\n"),
+        call. = FALSE)
+    } else {
+      # The user has actually specified wtp as input in the call to bcea
+      he_k <- paste(he$k, collapse = " ")
+      stop(
+        paste0("The willingness to pay parameter is defined as:\n[",
+               he_k,
+               "]\nPlease select a suitable value",
+               collapse = " "),
+        call. = FALSE)
     }
   }
-  ind.table <- which(object$k==wtp)
-  cols.u <- 1:object$n.comparators
-  cols.ustar <- max(cols.u)+1
-  cols.ib <- (cols.ustar+1):(cols.ustar+object$n.comparisons)
-  cols.ol <- max(cols.ib)+1
-  cols.vi <- cols.ol+1
-  n.cols <- cols.vi
   
-  Table <- matrix(NA,(object$n.sim+1),n.cols)
-  Table[1:object$n.sim,cols.u] <- object$U[,ind.table,]
-  Table[1:object$n.sim,cols.ustar] <- object$Ustar[,ind.table]
-  if(length(dim(object$ib))==2){Table[1:object$n.sim,cols.ib] <- object$ib[ind.table,]}
-  if(length(dim(object$ib))>2){Table[1:object$n.sim,cols.ib] <- object$ib[ind.table,,]}
-  Table[1:object$n.sim,cols.ol] <- object$ol[,ind.table]
-  Table[1:object$n.sim,cols.vi] <- object$vi[,ind.table]
-  if(length(dim(object$ib))==2){
-    Table[(object$n.sim+1),] <- c(apply(object$U[,ind.table,],2,mean),mean(object$Ustar[,ind.table]),
-                                  mean(object$ib[ind.table,]),mean(object$ol[,ind.table]),mean(object$vi[,ind.table]))     
-  }
-  if(length(dim(object$ib))>2){
-    Table[(object$n.sim+1),] <- c(apply(object$U[,ind.table,],2,mean),mean(object$Ustar[,ind.table]),
-                                  apply(object$ib[ind.table,,],2,mean),mean(object$ol[,ind.table]),mean(object$vi[,ind.table]))
+  Table <- sim_table.bcea(he)$Table
+  
+  EU_tab <- matrix(NA, he$n_comparators, 1)
+  EU_tab[, 1] <-
+    unlist(Table[he$n_sim + 1, paste0("U", 1:he$n_comparators)])
+  colnames(EU_tab) <- "Expected utility"
+  rownames(EU_tab) <- he$interventions
+  
+  comp_tab <- matrix(NA, he$n_comparisons, 3)
+  comp_tab[, 1] <-
+    unlist(Table[he$n_sim + 1, paste0("IB", he$ref, "_", he$comp)])
+  
+  if (he$n_comparisons == 1) {
+    comp_tab[, 2] <-
+      sum(Table[1:he$n_sim, paste0("IB", he$ref, "_", he$comp)] > 0) / he$n_sim
+    comp_tab[, 3] <- he$ICER
   }
   
-  names.cols <- c(paste("U",seq(1:object$n.comparators),sep=""),"U*",
-                  paste("IB",object$ref,"_",object$comp,sep=""),"OL","VI")
-  colnames(Table) <- names.cols
-  
-  tab1 <- matrix(NA,object$n.comparators,1)
-  tab1[,1] <- Table[object$n.sim+1,(paste("U",seq(1:object$n.comparators),sep=""))]
-  colnames(tab1) <- "Expected utility"
-  rownames(tab1) <- object$interventions
-  
-  tab2 <- matrix(NA,object$n.comparisons,3)
-  tab2[,1] <- Table[object$n.sim+1,paste("IB",object$ref,"_",object$comp,sep="")]
-  if (object$n.comparisons==1) {
-    tab2[,2] <- sum(Table[1:object$n.sim,paste("IB",object$ref,"_",object$comp,sep="")]>0)/object$n.sim
-    tab2[,3] <- object$ICER
-  }
-  if (object$n.comparisons>1) {
-    for (i in 1:object$n.comparisons) {
-      tab2[i,2] <- sum(Table[1:object$n.sim,paste("IB",object$ref,"_",object$comp[i],sep="")]>0)/object$n.sim
-      tab2[i,3] <- object$ICER[i]
+  if (he$n_comparisons > 1) {
+    for (i in seq_len(he$n_comparisons)) {
+      comp_tab[i, 2] <-
+        sum(Table[1:he$n_sim, paste0("IB", he$ref, "_", he$comp[i])] > 0) / he$n_sim
+      comp_tab[i, 3] <- he$ICER[i]
     }
   }
-  colnames(tab2) <- c("EIB","CEAC","ICER")
-  rownames(tab2) <- paste(object$interventions[object$ref]," vs ",object$interventions[object$comp],sep="")
   
-  tab3 <- matrix(NA,1,1)
-  tab3[,1] <- Table[object$n.sim+1,"VI"]
-  rownames(tab3) <- "EVPI"
-  colnames(tab3) <- ""
+  colnames(comp_tab) <- c("EIB", "CEAC", "ICER")
+  rownames(comp_tab) <-
+    paste0(he$interventions[he$ref], " vs ", he$interventions[he$comp])
   
-  ## Prints the summary table
+  evpi_tab <- matrix(NA, 1, 1)
+  evpi_tab[, 1] <- Table[he$n_sim + 1, "VI"]
+  rownames(evpi_tab) <- "EVPI"                  #TODO: this is different value to book??
+  colnames(evpi_tab) <- ""
+  
+  ## prints the summary table
   cat("\n")
   cat("Cost-effectiveness analysis summary \n")
   cat("\n")
-  cat(paste("Reference intervention:  ",object$interventions[object$ref],"\n",sep=""))
-  if(object$n.comparisons==1) {
-    text.temp <- paste("Comparator intervention: ",object$interventions[object$comp],"\n",sep="")
-    cat(text.temp)
+  cat(paste0("Reference intervention:  ", he$interventions[he$ref], "\n"))
+  # cat(paste0("Reference intervention:  ", green(he$interventions[he$ref]), "\n"))
+  
+  if (he$n_comparisons == 1) {
+    cat(
+      paste0("Comparator intervention: ",
+             he$interventions[he$comp],
+             # green(he$interventions[he$comp]),
+             "\n"))
   }
   
-  if(object$n.comparisons>1) {
-    text.temp <- paste("Comparator intervention(s): ",object$interventions[object$comp[1]],"\n",sep="")
-    cat(text.temp)
-    for (i in 2:object$n.comparisons) {
-      cat(paste("                          : ",object$interventions[object$comp[i]],"\n",sep=""))
+  if (he$n_comparisons > 1) {
+    cat(
+      paste0("Comparator intervention(s): ",
+             he$interventions[he$comp[1]],
+             "\n"))
+    for (i in 2:he$n_comparisons) {
+      cat(paste0("                          : ", he$interventions[he$comp[i]], "\n"))
+      # cat(paste0("                          : ", green(he$interventions[he$comp[i]]), "\n"))
     }
   }
   cat("\n")
-  if(length(object$kstar)==0 & !is.na(object$step)){
-    cat(paste(object$interventions[object$best[1]]," dominates for all k in [",
-              min(object$k)," - ",max(object$k),"] \n",sep=""))
+  if (length(he$kstar) == 0 & !is.na(he$step)) {
+    cat(
+      paste0(
+        he$interventions[he$best[1]],
+        " dominates for all k in [",
+        min(he$k),
+        " - ",
+        max(he$k),
+        "] \n"))
   }
-  if(length(object$kstar)==1 & !is.na(object$step)){
-    cat(paste("Optimal decision: choose ",object$interventions[object$best[object$k==object$kstar-object$step]],
-              " for k<",object$kstar," and ",object$interventions[object$best[object$k==object$kstar]],
-              " for k>=",object$kstar,"\n",sep=""))
+  if (length(he$kstar) == 1 & !is.na(he$step)) {
+    kstar <- he$k[which(diff(he$best) == 1) + 1]
+    cat(
+      paste0(
+        "Optimal decision: choose ",
+        he$interventions[he$best[1]],
+        " for k < ",
+        kstar,
+        " and ",
+        he$interventions[he$best[he$k == kstar]],
+        " for k >= ",
+        kstar,
+        "\n"))
   }
-  if(length(object$kstar)>1 & !is.na(object$step)){
-    cat(paste("Optimal decision: choose ",object$interventions[object$best[object$k==object$kstar[1]-object$step]],
-              " for k < ",object$kstar[1],"\n",sep=""))
-    for (i in 2:length(object$kstar)) {
-      cat(paste("                         ",object$interventions[object$best[object$k==object$kstar[i]-object$step]],
-                " for ",object$kstar[i-1]," <= k < ",object$kstar[i],"\n",sep=""))
+  if (length(he$kstar) > 1 & !is.na(he$step)) {
+    cat(
+      paste0(
+        "Optimal decision: choose ",
+        he$interventions[he$best[he$k == he$kstar[1] - he$step]],
+        " for k < ",
+        he$kstar[1],
+        "\n"))
+    for (i in 2:length(he$kstar)) {
+      cat(paste0(
+        "                         ",
+        he$interventions[he$best[he$k == he$kstar[i] - he$step]],
+        " for ",
+        he$kstar[i - 1],
+        " <= k < ",
+        he$kstar[i],
+        "\n"))
     }
-    cat(paste("                         ",object$interventions[object$best[object$k==object$kstar[length(object$kstar)]]],
-              " for k >= ",object$kstar[length(object$kstar)],"\n",sep=""))
+    cat(paste0(
+      "                         ",
+      he$interventions[he$best[he$k == he$kstar[length(he$kstar)]]],
+      " for k >= ",
+      he$kstar[length(he$kstar)],
+      "\n"))
   }
   cat("\n\n")
-  cat(paste("Analysis for willingness to pay parameter k = ",wtp,"\n",sep=""))
+  cat(paste0("Analysis for willingness to pay parameter k = ", wtp, "\n"))
   cat("\n")
-  print(tab1,quote=F,digits=5,justify="center")
+  print(EU_tab,
+        quote = FALSE,
+        digits = 5,
+        justify = "center")
   cat("\n")
-  print(tab2,quote=F,digits=5,justify="center")
+  print(comp_tab,
+        quote = FALSE,
+        digits = 5,
+        justify = "center")
   cat("\n")
-  cat(paste("Optimal intervention (max expected utility) for k=",wtp,": ",
-            object$interventions[object$best][object$k==wtp],"\n",sep=""))
-  print(tab3,quote=F,digits=5,justify="center")
+  cat(
+    paste0(
+      "Optimal intervention (max expected utility) for k = ",
+      wtp,
+      ": ",
+      he$interventions[he$best][he$k == wtp],
+      "\n"))
+  print(evpi_tab,
+        quote = FALSE,
+        digits = 5,
+        justify = "center")
 }
-
 

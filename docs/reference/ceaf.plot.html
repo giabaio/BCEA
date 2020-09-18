@@ -6,8 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cost-Effectiveness Acceptability Frontier (CEAF) plot — ceaf.plot • BCEA</title>
+<title>Cost-Effectiveness Acceptability Frontier (CEAF) plot — ceaf.plot.pairwise • BCEA</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -39,9 +46,10 @@
 
 
 
-<meta property="og:title" content="Cost-Effectiveness Acceptability Frontier (CEAF) plot — ceaf.plot" />
-<meta property="og:description" content="Produces a plot the Cost-Effectiveness Acceptability Frontier (CEAF) against
-the willingness to pay threshold" />
+<meta property="og:title" content="Cost-Effectiveness Acceptability Frontier (CEAF) plot — ceaf.plot.pairwise" />
+<meta property="og:description" content="Produces a plot the Cost-Effectiveness Acceptability Frontier (CEAF)
+against the willingness to pay threshold." />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -98,6 +106,10 @@ the willingness to pay threshold" />
     <li>
       <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
     </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../articles/index.html">More...</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -130,11 +142,14 @@ the willingness to pay threshold" />
     </div>
 
     <div class="ref-description">
-    <p>Produces a plot the Cost-Effectiveness Acceptability Frontier (CEAF) against
-the willingness to pay threshold</p>
+    <p>Produces a plot the Cost-Effectiveness Acceptability Frontier (CEAF)
+against the willingness to pay threshold.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>))</pre>
+    <pre class="usage"><span class='co'># S3 method for pairwise</span>
+<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>))
+
+<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -160,11 +175,11 @@ plotting. Should (partial-)match the two options <code>"base"</code> or
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
+    <p>Baio G, Dawid AP. (2011). Probabilistic Sensitivity
+Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.</p>
 <p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London</p>
+London.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>, <code><a href='multi.ce.html'>multi.ce</a></code></p></div>
@@ -173,39 +188,41 @@ London</p>
     <pre class="examples"><div class='input'>
 <span class='co'># See Baio G., Dawid A.P. (2011) for a detailed description of the </span>
 <span class='co'># Bayesian model and economic problem</span>
-<span class='co'>#</span>
+
 <span class='co'># Load the processed results of the MCMC simulation model</span>
 <span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Vaccine</span>)
-<span class='co'># </span>
+
 <span class='co'># Runs the health economic evaluation using BCEA</span>
-<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='kw'>e</span><span class='kw'>=</span><span class='no'>e</span>,<span class='kw'>c</span><span class='kw'>=</span><span class='no'>c</span>,          <span class='co'># defines the variables of </span>
+<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(
+      <span class='kw'>e</span><span class='kw'>=</span><span class='no'>e</span>,
+      <span class='kw'>c</span><span class='kw'>=</span><span class='no'>c</span>,                  <span class='co'># defines the variables of </span>
                             <span class='co'>#  effectiveness and cost</span>
-      <span class='kw'>ref</span><span class='kw'>=</span><span class='fl'>2</span>,                <span class='co'># selects the 2nd row of (e,c) </span>
+      <span class='kw'>ref</span><span class='kw'>=</span><span class='fl'>2</span>,                <span class='co'># selects the 2nd row of (e, c) </span>
                             <span class='co'>#  as containing the reference intervention</span>
       <span class='kw'>interventions</span><span class='kw'>=</span><span class='no'>treats</span>, <span class='co'># defines the labels to be associated </span>
                             <span class='co'>#  with each intervention</span>
       <span class='kw'>Kmax</span><span class='kw'>=</span><span class='fl'>50000</span>,           <span class='co'># maximum value possible for the willingness </span>
                             <span class='co'>#  to pay threshold; implies that k is chosen </span>
-                            <span class='co'>#  in a grid from the interval (0,Kmax)</span>
+                            <span class='co'>#  in a grid from the interval (0, Kmax)</span>
       <span class='kw'>plot</span><span class='kw'>=</span><span class='fl'>FALSE</span>            <span class='co'># inhibits graphical output</span>
 )
-<span class='co'>#</span>
+
 <span class='co'># \donttest{</span>
 <span class='no'>mce</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='multi.ce.html'>multi.ce</a></span>(<span class='no'>m</span>)          <span class='co'># uses the results of the economic analysis </span>
 <span class='co'># }</span>
-<span class='co'>#</span>
+
 <span class='co'># \donttest{</span>
 <span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>)              <span class='co'># plots the CEAF </span></div><div class='img'><img src='ceaf.plot-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-<span class='co'>#</span>
+
 <span class='co'># \donttest{</span>
-<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>, <span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"g"</span>)   <span class='co'># uses ggplot2 </span></div><div class='output co'>#&gt; <span class='error'>Error in ggplot(df, aes(x = k, y = ceaf)): could not find function "ggplot"</span></div><div class='input'><span class='co'># }</span>
+<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"g"</span>) <span class='co'># uses ggplot2 </span></div><div class='img'><img src='ceaf.plot-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 <span class='co'># \donttest{</span>
 <span class='co'># Use the smoking cessation dataset</span>
 <span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Smoking</span>)
-<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='no'>e</span>,<span class='no'>c</span>,<span class='kw'>ref</span><span class='kw'>=</span><span class='fl'>4</span>,<span class='kw'>intervention</span><span class='kw'>=</span><span class='no'>treats</span>,<span class='kw'>Kmax</span><span class='kw'>=</span><span class='fl'>500</span>,<span class='kw'>plot</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
+<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='no'>e</span>, <span class='no'>c</span>, <span class='kw'>ref</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>intervention</span> <span class='kw'>=</span> <span class='no'>treats</span>, <span class='kw'>Kmax</span> <span class='kw'>=</span> <span class='fl'>500</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='no'>mce</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='multi.ce.html'>multi.ce</a></span>(<span class='no'>m</span>)
-<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>)</div><div class='img'><img src='ceaf.plot-2.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>)</div><div class='img'><img src='ceaf.plot-3.png' alt='' width='700' height='433' /></div><div class='input'># }
 
 </div></pre>
   </div>

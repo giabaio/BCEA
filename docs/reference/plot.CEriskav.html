@@ -6,8 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Summary plot of the health economic analysis when risk aversion is included — plot.CEriskav • BCEA</title>
+<title>Plots EIB for the Risk Aversion Case — plot.CEriskav • BCEA</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -39,9 +46,9 @@
 
 
 
-<meta property="og:title" content="Summary plot of the health economic analysis when risk aversion is included — plot.CEriskav" />
-<meta property="og:description" content="Plots the EIB and the EVPI when risk aversion is included in the utility
-function" />
+<meta property="og:title" content="Plots EIB for the Risk Aversion Case — plot.CEriskav" />
+<meta property="og:description" content="Summary plot of the health economic analysis when risk aversion is included." />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -98,6 +105,10 @@ function" />
     <li>
       <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
     </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../articles/index.html">More...</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -124,18 +135,17 @@ function" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Summary plot of the health economic analysis when risk aversion is included</h1>
+    <h1>Plots EIB for the Risk Aversion Case</h1>
     <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/plot.CEriskav.R'><code>R/plot.CEriskav.R</code></a></small>
     <div class="hidden name"><code>plot.CEriskav.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Plots the EIB and the EVPI when risk aversion is included in the utility
-function</p>
+    <p>Summary plot of the health economic analysis when risk aversion is included.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for CEriskav</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>pos</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>graph</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>), <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>pos</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>graph</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>), <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -181,13 +191,16 @@ one is the EIB as a function of the discrete grid approximation of the
 willingness parameter for each of the possible values of the risk aversion
 parameter, r. The second one is a similar plot for the EVPI.
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Plots the EIB and the EVPI when risk aversion is included in the utility
+function.#'</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 Analysis in Health Economics.  Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.</p>
-<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London</p>
+<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>, <code><a href='CEriskav.html'>CEriskav</a></code></p></div>
@@ -224,20 +237,21 @@ London</p>
                       <span class='co'>#  aversion parameter</span>
         <span class='kw'>comparison</span><span class='kw'>=</span><span class='fl'>1</span>  <span class='co'># if more than 2 interventions, selects the </span>
                       <span class='co'>#  pairwise comparison </span>
-)</div><div class='output co'>#&gt; <span class='warning'>Warning: first element used of 'length.out' argument</span></div><div class='output co'>#&gt; <span class='error'>Error in seq_len(he$n.comparators): argument must be coercible to non-negative integer</span></div><div class='input'><span class='co'># }</span>
+)
+<span class='co'># }</span>
 <span class='co'>#</span>
 <span class='co'># Now produce the plots</span>
 <span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>cr</span> <span class='co'># uses the results of the risk aversion </span>
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>cr</span> <span class='co'># uses the results of the risk aversion </span>
         <span class='co'>#  analysis (a "CEriskav" object)</span>
-)</div><div class='output co'>#&gt; <span class='error'>Error in plot(cr): object 'cr' not found</span></div><div class='input'><span class='co'># }</span>
+)</div><div class='img'><img src='plot.CEriskav-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='plot.CEriskav-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 <span class='co'>### Alternative options, using ggplot2</span>
 <span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>cr</span>,
+<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>cr</span>,
   <span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"ggplot2"</span>,
   <span class='kw'>plot</span><span class='kw'>=</span><span class='st'>"ask"</span>          <span class='co'># plot option can be specified as</span>
                       <span class='co'>#  "dev.new" (default), "x11" or "ask"</span>
-  )</div><div class='output co'>#&gt; <span class='error'>Error in plot(cr, graph = "ggplot2", plot = "ask"): object 'cr' not found</span></div><div class='input'># }
+  )</div><div class='img'><img src='plot.CEriskav-3.png' alt='' width='700' height='433' /></div><div class='img'><img src='plot.CEriskav-4.png' alt='' width='700' height='433' /></div><div class='input'># }
 
 </div></pre>
   </div>
