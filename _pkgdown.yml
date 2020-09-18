@@ -61,3 +61,14 @@ reference:
   - '`Smoking`'
   - '`Vaccine`'
 
+
+articles:
+- title: Basics
+  navbar: ~
+  contents:
+  # - plot_bcea
+  - ceac
+- title: Advanced
+  contents:
+  - Set_bcea_parameters
+

@@ -8,7 +8,7 @@
 #' @param layout Matrix
 #' @param extra_args List of plotting arguments
 #' @param ... Potential further arguments
-#' @return ggplot object
+#' @return ggplot TableGrob object
 #' 
 multiplot <- function(plotlist = NULL,
                       cols = 1,
