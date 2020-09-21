@@ -1,3 +1,4 @@
+
 options(shiny.maxRequestSize=1024*1024^2)
 source("utils.R")
 
@@ -596,7 +597,7 @@ function(input, output, session) {
           quiet(x <- evppi(input$evppi_parameters,input_data,m(),method=met,
                            residuals=TRUE,N=input$how_many_sims,
                            # These are the method-specific options
-                           n.sim=input$sim_hyper,
+                           n_sim=input$sim_hyper,
                            formula=form,
                            int.ord=c(input$int.ord1,input$int.ord2), #input$formula_inla,
                            cutoff=(2*0.3-input$cutoff_inla),
@@ -648,15 +649,15 @@ function(input, output, session) {
     })
     reset_num_sims <- shiny::reactive({
       # Prevents from selecting more PSA runs than there are available
-      if (input$how_many_sims > m()$n.sim) {
-        shiny::updateNumericInput(session,'how_many_sims',value=m()$n.sim)
+      if (input$how_many_sims > m()$n_sim) {
+        shiny::updateNumericInput(session,'how_many_sims',value=m()$n_sim)
       }
     })
     
     output$option_GP <- shiny::renderUI({
       shiny::numericInput("sim_hyper","a. Number of PSA runs to estimate the hyperparameters",
                           value=500,
-                          min=m()$n.sim/2,max=m()$n.sim)
+                          min=m()$n_sim/2,max=m()$n_sim)
     })
     
     output$wtp_values <- shiny::renderUI({

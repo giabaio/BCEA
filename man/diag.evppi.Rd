@@ -2,7 +2,7 @@
 % Please edit documentation in R/diag.evppi.R
 \name{diag.evppi}
 \alias{diag.evppi}
-\title{Diagnostic plots for the results of the EVPPI}
+\title{Diagnostic Plots For The Results Of The EVPPI}
 \usage{
 diag.evppi(evppi, he, plot_type = c("residuals", "qqplot"), interv = 1)
 }
@@ -20,7 +20,7 @@ plot' or the 'qqplot plot'.}
 performed (if there are many options being compared)}
 }
 \value{
-plot
+Plot
 }
 \description{
 The function produces either a residual plot comparing the fitted
@@ -47,16 +47,12 @@ distribution (y-coordinate) plotted against the same quantile of the first
 distribution (x-coordinate). If the two distributions being compared are
 identical, the Q-Q plot follows the 45 degrees line.
 }
-\examples{
- 
-}
 \references{
 Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
+Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
 \code{\link{bcea}}, \code{\link{evppi}}
@@ -64,9 +60,9 @@ London
 \author{
 Gianluca Baio, Anna Heath
 }
-\keyword{Health}
-\keyword{Information}
-\keyword{Value}
+\keyword{"Health}
+\keyword{"Value}
+\keyword{Information"}
 \keyword{economic}
-\keyword{evaluation,}
+\keyword{evaluation"}
 \keyword{of}

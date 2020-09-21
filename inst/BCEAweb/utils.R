@@ -1,8 +1,13 @@
-# Loads all utility functions
+# Loads all utility functions ---------------------------------------------
 
-#########################################################################################################################
-mcmc2bugs <- function(x, model.file = NULL, program = "", DIC = FALSE, 
-                      DICOutput = NULL, n.iter = NULL, n.burnin = 0, n.thin = 1){
+mcmc2bugs <- function(x,
+                      model.file = NULL,
+                      program = "",
+                      DIC = FALSE,
+                      DICOutput = NULL,
+                      n.iter = NULL,
+                      n.burnin = 0,
+                      n.thin = 1) {
   
   ### R script (mainly derived from the function jags in the R2jags package to load coda & put it in bugs/rjags format)
   ## Here's how you do it:
@@ -30,7 +35,7 @@ mcmc2bugs <- function(x, model.file = NULL, program = "", DIC = FALSE,
 as.bugs.array2 <- function(sims.array, model.file=NULL, program="jags",
                            DIC=FALSE, DICOutput=NULL, n.iter=NULL, n.burnin=0, n.thin=1){
   ## 'sims.array' is supposed to be a 3-way array with
-  # n.sims*n.chains*n.parameters simulations, and
+  # n_sims*n.chains*n.parameters simulations, and
   # the 3rd component of dimnames(x) should have the parameter names.
   
   ## From Andrew Gelman's bugs.r function
@@ -40,7 +45,7 @@ as.bugs.array2 <- function(sims.array, model.file=NULL, program="jags",
   n.keep       <- d[1]
   n.chains     <- d[2]
   n.parameters <- d[3]
-  n.sims       <- n.keep*n.chains
+  n_sims       <- n.keep*n.chains
   if (is.null(n.iter)){
     n.iter <- (n.keep + n.burnin)*n.thin
   }
@@ -52,7 +57,7 @@ as.bugs.array2 <- function(sims.array, model.file=NULL, program="jags",
   }
   parameters.to.save <- unique(sapply(strsplit(parameter.names, "\\["), "[", 1))
   #
-  sims <- matrix(NA, n.sims, n.parameters)
+  sims <- matrix(NA, n_sims, n.parameters)
   root.long <- character(n.parameters)
   indexes.long <- vector(n.parameters, mode = "list")
   for (i in 1:n.parameters) {
@@ -138,7 +143,7 @@ as.bugs.array2 <- function(sims.array, model.file=NULL, program="jags",
       }
     }
   }
-  sims <- sims[sample(n.sims), , drop = FALSE]
+  sims <- sims[sample(n_sims), , drop = FALSE]
   sims.list <- summary.mean <- summary.sd <- summary.median <- summary.025 <-  summary.975 <- vector(n.roots, mode = "list")
   names(sims.list) <- names(summary.mean) <- names(summary.sd) <- names(summary.median) <- names(summary.025) <- names(summary.975) <- root.short
   for (j in 1:n.roots) {
@@ -153,7 +158,7 @@ as.bugs.array2 <- function(sims.array, model.file=NULL, program="jags",
     }
     if (program=="bugs") {
       temp2 <- dimension.short[j]:1
-      sims.list[[j]] <- aperm(array(sims[, long.short[[j]]], c(n.sims, rev(n.indexes.short[[j]]))), c(1, (dimension.short[j] + 1):2))
+      sims.list[[j]] <- aperm(array(sims[, long.short[[j]]], c(n_sims, rev(n.indexes.short[[j]]))), c(1, (dimension.short[j] + 1):2))
       summary.mean[[j]] <- aperm(array(summary[long.short[[j]], "mean"], rev(n.indexes.short[[j]])), temp2)
       summary.sd[[j]] <- aperm(array(summary[long.short[[j]], "sd"], rev(n.indexes.short[[j]])), temp2)
       summary.median[[j]] <- aperm(array(summary[long.short[[j]], "50%"], rev(n.indexes.short[[j]])), temp2)
@@ -163,8 +168,8 @@ as.bugs.array2 <- function(sims.array, model.file=NULL, program="jags",
     }
     if (program=="jags") {
       ##fix this list
-      #sims.list[[j]] <- aperm(array(sims[, long.short[[j]]], c(n.sims, rev(n.indexes.short[[j]]))), c(1, (dimension.short[j] + 1):2))
-      sims.list[[j]] <- array(sims[, long.short[[j]]], c(n.sims, n.indexes.short[[j]]))
+      #sims.list[[j]] <- aperm(array(sims[, long.short[[j]]], c(n_sims, rev(n.indexes.short[[j]]))), c(1, (dimension.short[j] + 1):2))
+      sims.list[[j]] <- array(sims[, long.short[[j]]], c(n_sims, n.indexes.short[[j]]))
       #sims.list[[j]] <- sims[, long.short[[j]]]
       summary.mean[[j]] <- array(summary[long.short[[j]],"mean"],n.indexes.short[[j]])
       summary.sd[[j]] <- array(summary[long.short[[j]],"sd"],n.indexes.short[[j]])
@@ -176,7 +181,7 @@ as.bugs.array2 <- function(sims.array, model.file=NULL, program="jags",
   }
   summary <- summary[rank.long, ]
   #all <- list(n.chains = n.chains, n.iter = n.iter, n.burnin = n.burnin,
-  #        n.thin = n.thin, n.keep = n.keep, n.sims = n.sims,
+  #        n.thin = n.thin, n.keep = n.keep, n_sims = n_sims,
   #        sims.array = sims.array[, , rank.long, drop = FALSE], sims.list = sims.list,
   #        sims.matrix = sims[, rank.long], summary = summary, mean = summary.mean,
   #        sd = summary.sd, median = summary.median, root.short = root.short,
@@ -185,7 +190,7 @@ as.bugs.array2 <- function(sims.array, model.file=NULL, program="jags",
   #        is.DIC=DIC, p02.5=summary.025, p97.5=summary.975)
   
   all <- list(n.chains = n.chains, n.iter = n.iter, n.burnin = n.burnin,
-              n.thin = n.thin, n.keep = n.keep, n.sims = n.sims,
+              n.thin = n.thin, n.keep = n.keep, n_sims = n_sims,
               sims.array = sims.array[,,rank.long,drop = FALSE], sims.list = sims.list,
               sims.matrix = sims[, rank.long], summary = summary, mean = summary.mean,
               sd = summary.sd, median = summary.median, root.short = root.short,
@@ -273,7 +278,7 @@ plotGR <- function(m,ind) {
   mdl <- m$BUGSoutput
   ind2 <- 1:dim(mdl$summary)[1]
   plot(mdl$summary[,"Rhat"],xlab="Saved parameters",ylab="Gelman-Rubin diagnostic",
-       axes=F,col="white")
+       axes=FALSE,col="white")
   thresh <- 1.1
   abline(h=thresh,col="dark grey",lwd=2)
   text(ind2[-ind],mdl$summary[ind2[-ind],"Rhat"],
@@ -291,7 +296,7 @@ plot.neff <- function(m,ind) {
   ind2 <- 1:dim(mdl$summary)[1]
   plot(ind2,mdl$summary[,"n.eff"],
        xlab="Saved parameters",ylab="Effective sample size",
-       axes=F,col="white",ylim=c(1,mdl$n.sims))
+       axes=FALSE,col="white",ylim=c(1,mdl$n_sims))
   text(ind2[-ind],mdl$summary[ind2[-ind],"n.eff"],
        row.names(mdl$summary)[ind2[-ind]],cex=.8)
   text(ind,mdl$summary[ind,"n.eff"],rownames(mdl$summary)[ind],
@@ -314,4 +319,5 @@ quiet <- function(x) {
   sink(tempfile()) 
   on.exit(sink()) 
   invisible(force(x)) 
-} 
+}
+

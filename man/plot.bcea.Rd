@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.bcea.R
 \name{plot.bcea}
 \alias{plot.bcea}
-\title{Summary plot of the health economic analysis}
+\title{Summary Plot of the Health Economic Analysis}
 \usage{
 \method{plot}{bcea}(
   he,
@@ -18,9 +18,9 @@
 modelling and the economic evaluation.}
 
 \item{comparison}{Selects the comparator, in case of more than two
-interventions being analysed. The value is passed to
-\code{\link{ceplane.plot}}, \code{\link{eib.plot}} and
-\code{\link{ceac.plot}}.}
+interventions being analysed. Default as NULL plots all the comparisons
+together. Any subset of the possible comparisons can be selected (e.g.,
+\code{comparison=c(1,3)} or \code{comparison=2}).}
 
 \item{wtp}{The value of the willingness to pay parameter. It is passed to
 \code{\link{ceplane.plot}}.}
@@ -44,21 +44,19 @@ can be supplied to the functions in this way. In addition if
 be added to each plot.}
 }
 \value{
-The function produces a plot with four graphical summaries of the
-health economic evaluation.
+A plot with four graphical summaries of the health economic evaluation.
 }
 \description{
 Plots in a single graph the Cost-Effectiveness plane, the Expected
-Incremental Benefit, the CEAC and the EVPI
+Incremental Benefit, the CEAC and the EVPI.
 }
 \details{
 The default position of the legend for the cost-effectiveness plane
-(produced by \code{\link{ceplane.plot}}) is set to \code{c(1,1.025)}
+(produced by \code{\link{ceplane.plot}}) is set to \code{c(1, 1.025)}
 overriding its default for \code{pos=FALSE}, since multiple ggplot2 plots
 are rendered in a slightly different way than single plots.
 }
 \examples{
-
 # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 # Bayesian model and economic problem
 
@@ -80,17 +78,17 @@ he <- bcea(
       )
 
 # Plots the summary plots for the "bcea" object m using base graphics
-plot(he, graph="base")
+plot(he, graph = "base")
 
 # Plots the same summary plots using ggplot2
 if(require(ggplot2)){
-plot(he, graph="ggplot2")
+plot(he, graph = "ggplot2")
 
 ##### Example of a customized plot.bcea with ggplot2
 plot(he,
   graph = "ggplot2",                                      # use ggplot2
   theme = theme(plot.title=element_text(size=rel(1.25))), # theme elements must have a name
-  ICER.size = 1.5,                                        # hidden option in ceplane.plot
+  ICER_size = 1.5,                                        # hidden option in ceplane.plot
   size = rel(2.5)                                         # modifies the size of k = labels
   )                                                       # in ceplane.plot and eib.plot
 }
@@ -98,10 +96,10 @@ plot(he,
 }
 \references{
 Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
+Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
 \code{\link{bcea}},
@@ -113,6 +111,7 @@ Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
 \author{
 Gianluca Baio, Andrea Berardi
 }
-\keyword{Health}
+\keyword{"Health}
 \keyword{economic}
-\keyword{evaluation}
+\keyword{evaluation"}
+\keyword{hplot}

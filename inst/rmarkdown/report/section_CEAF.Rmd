@@ -1,0 +1,18 @@
+
+## Cost-effectiveness acceptability frontier
+
+In addition to the CEAC, we can also visualise the uncertainty in the decision-making process using the _Cost-Effectiveness Acceptability Frontier_ (CEAF). The frontier is defined as the maximum value of the probability of cost-effectiveness among all comparators. It is an indication of the uncertainty associated with choosing the cost effective intervention. In other terms, higher frontier values correspond to lower decision uncertainty.
+
+
+```{r, echo=echo, fig.width=4.6, fig.height=4.6, fig.align=align, warning=FALSE, message=FALSE, comment=NA}
+n.ints <- m$n_comparators
+
+if (n.ints == 2) {
+  graph <- "base"
+  pos <- c(1, 1)
+} else {
+  graph <- "ggplot2"
+  pos <- TRUE
+}
+ceaf.plot(multi.ce(m), graph = graph)
+```

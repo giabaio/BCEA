@@ -28,6 +28,7 @@ bcea.default <- function(eff,
                          cost,
                          ref = 1,
                          interventions = NULL,
+                         .comparison = NULL,
                          Kmax = 50000,
                          wtp = NULL,
                          plot = FALSE) {
@@ -50,7 +51,7 @@ bcea.default <- function(eff,
   if (any(dim(eff) != dim(cost)))
     stop("eff and cost are not the same dimensions.", call. = FALSE)
   
-  if (!is.double(ref) | ref < 1 | ref > ncol(eff))
+  if (!is.numeric(ref) | ref < 1 | ref > ncol(eff))
     stop("reference is not in available interventions.", call. = FALSE)
   
   n_sim <- dim(eff)[1]
@@ -62,7 +63,7 @@ bcea.default <- function(eff,
     if (is.null(interventions)) {
       paste("intervention", intervs)
     } else {
-      interventions}
+      as.factor(interventions)}
   
   if (!is.null(wtp)) {
     k <- sort(unique(wtp))
@@ -71,9 +72,6 @@ bcea.default <- function(eff,
     k <- seq(0, Kmax, by = step)
   }
   
-  # create complete data input dataframe
-  ##TODO: convert to matrix for faster computation?
-  
   df_ce <-
     data.frame(
       sim = 1:n_sim,
@@ -81,7 +79,7 @@ bcea.default <- function(eff,
       ints = rep(intervs, each = n_sim),
       eff = matrix(eff, ncol = 1),
       cost = matrix(cost, ncol = 1))
-
+  
   df_ce <- 
     df_ce %>%
     select(-ref) %>% 
@@ -93,9 +91,12 @@ bcea.default <- function(eff,
     mutate(delta_e = eff0 - eff1,
            delta_c = cost0 - cost1)   ##TODO: is this the wrong way around?...
   
-  df_ce$interv_names <- interv_names[df_ce$ints]
+  df_ce$interv_names <- factor(interv_names[df_ce$ints],
+                               levels = interv_names)
   
   he <- new_bcea(df_ce, k)
+  
+  he <- setComparisons(he, .comparison)
   
   ##TODO: should separate out this really  
   if (plot)

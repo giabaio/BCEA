@@ -1,20 +1,16 @@
 
-#' Summary plot of the health economic analysis
+#' Summary Plot of the Health Economic Analysis
 #' 
 #' Plots in a single graph the Cost-Effectiveness plane, the Expected
-#' Incremental Benefit, the CEAC and the EVPI
+#' Incremental Benefit, the CEAC and the EVPI.
 #' 
 #' The default position of the legend for the cost-effectiveness plane
-#' (produced by \code{\link{ceplane.plot}}) is set to \code{c(1,1.025)}
+#' (produced by \code{\link{ceplane.plot}}) is set to \code{c(1, 1.025)}
 #' overriding its default for \code{pos=FALSE}, since multiple ggplot2 plots
 #' are rendered in a slightly different way than single plots.
 #' 
-#' @template args-he
-#' 
-#' @param comparison Selects the comparator, in case of more than two
-#' interventions being analysed. The value is passed to
-#' \code{\link{ceplane.plot}}, \code{\link{eib.plot}} and
-#' \code{\link{ceac.plot}}.
+#' @template args-he 
+#' @template args-comparison
 #' @param wtp The value of the willingness to pay parameter. It is passed to
 #' \code{\link{ceplane.plot}}.
 #' @param pos Parameter to set the position of the legend. Can be given in form
@@ -33,8 +29,7 @@
 #' \code{graph="ggplot2"} and the arguments are named theme objects they will
 #' be added to each plot.
 #' 
-#' @return The function produces a plot with four graphical summaries of the
-#' health economic evaluation.
+#' @return A plot with four graphical summaries of the health economic evaluation.
 #' 
 #' @author Gianluca Baio, Andrea Berardi
 #' 
@@ -43,16 +38,16 @@
 #'          \code{\link{eib.plot}},
 #'          \code{\link{ceac.plot}},
 #'          \code{\link{evi.plot}}
-#' @references Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics.  Statistical Methods in Medical Research
+#' @references
+#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
+#' Analysis in Health Economics. Statistical Methods in Medical Research
 #' doi:10.1177/0962280211419832.
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
+#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' 
-#' @keywords Health economic evaluation
+#' @keywords "Health economic evaluation" hplot
 #' 
 #' @examples
-#' 
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 #' # Bayesian model and economic problem
 #'
@@ -74,17 +69,17 @@
 #'       )
 #'
 #' # Plots the summary plots for the "bcea" object m using base graphics
-#' plot(he, graph="base")
+#' plot(he, graph = "base")
 #' 
 #' # Plots the same summary plots using ggplot2
 #' if(require(ggplot2)){
-#' plot(he, graph="ggplot2")
+#' plot(he, graph = "ggplot2")
 #' 
 #' ##### Example of a customized plot.bcea with ggplot2
 #' plot(he,
 #'   graph = "ggplot2",                                      # use ggplot2
 #'   theme = theme(plot.title=element_text(size=rel(1.25))), # theme elements must have a name
-#'   ICER.size = 1.5,                                        # hidden option in ceplane.plot
+#'   ICER_size = 1.5,                                        # hidden option in ceplane.plot
 #'   size = rel(2.5)                                         # modifies the size of k = labels
 #'   )                                                       # in ceplane.plot and eib.plot
 #' }
@@ -101,7 +96,7 @@ plot.bcea <- function(he,
   
   named_args <- c(as.list(environment()), list(...))
   graph <- match.arg(graph)
-  use_base_graphics <- pmatch(graph, c("base","ggplot2")) != 2
+  use_base_graphics <- pmatch(graph, c("base", "ggplot2")) != 2
   extra_args <- list(...)
   
   if (use_base_graphics) {
@@ -120,10 +115,10 @@ plot.bcea <- function(he,
     
     ceac.plot(he,
               pos = pos,
-              graph = "base")
+              graph = "base", ...)
     
     evi.plot(he,
-             graph = "base")
+             graph = "base", ...)
     par(op)
   } else {
     
@@ -137,41 +132,13 @@ plot.bcea <- function(he,
         wtp = wtp,
         pos = pos,
         graph = "base", ...)
+      
       return(invisible(NULL))
     }
     
-    ####### multiplot ###### 
-    # source: R graphics cookbook
     if (all(is_req_pkgs)) {
       
-      multiplot <- function(plotlist = NULL,
-                            file,
-                            cols = 1,
-                            layout = NULL, ...) {
-        
-        plots <- c(extra_args, plotlist)
-        n_plots <- length(plots)
-        if (is.null(layout)) {
-          layout <- matrix(seq(1, cols*ceiling(n_plots/cols)),
-                           ncol = cols,
-                           nrow = ceiling(n_plots/cols))
-        }
-        if (n_plots == 1) {
-          print(plots[[1]])
-        } else {
-          grid::grid.newpage()
-          grid::pushViewport(
-            grid::viewport(layout = grid::grid.layout(nrow(layout), ncol(layout))))
-          
-          for (i in seq_len(n_plots)) {
-            matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
-            print(plots[[i]], vp = grid::viewport(layout.pos.row = matchidx$row,
-                                                  layout.pos.col = matchidx$col))
-          }
-        }
-      }
-      
-      theme_params <- 
+      default_params <- 
         list(text = element_text(size = 9),
              legend.key.size = grid::unit(0.5, "lines"),
              legend.spacing = grid::unit(-1.25, "line"),
@@ -183,18 +150,24 @@ plot.bcea <- function(he,
                size = 11.5,
                hjust = 0.5))
       
-      ##TODO: modifylist with above?
+      keep_param <-
+        names(default_params)[names(default_params) %in% names(extra_args)]
+      
+      extra_params <- extra_args[keep_param]
+      global_params <- modifyList(default_params, extra_params, keep.null = TRUE)
+      
       theme_add <- purrr::keep(extra_args, is.theme)
       
       ceplane.pos <- ifelse(pos, pos, c(1, 1.025))
       
+      #TODO: warnings...
       ceplane <-
         ceplane.plot(he,
                      wtp = wtp,
                      pos = ceplane.pos,
                      comparison = comparison,
                      graph = "ggplot2", ...) +
-        do.call(theme, theme_params) +
+        do.call(theme, global_params) +
         theme_add
       
       eib <-
@@ -202,23 +175,25 @@ plot.bcea <- function(he,
                  pos = pos,
                  comparison = comparison,
                  graph = "ggplot2", ...) +
-        do.call(theme, theme_params) +
+        do.call(theme, global_params) +
         theme_add
       
       ceac <-
         ceac.plot(he,
                   pos = pos,
                   comparison = comparison,
-                  graph = "ggplot2") +
-        do.call(theme, theme_params) +
+                  graph = "ggplot2", ...) +
+        do.call(theme, global_params) +
         theme_add
       
       evi <-
-        evi.plot(he, graph = "ggplot2") +
-        do.call(theme, theme_params) +
+        evi.plot(he, graph = "ggplot2", ...) +
+        do.call(theme, global_params) +
         theme_add
       
-      multiplot(ceplane, ceac, eib, evi, cols = 2)
+      multiplot(list(ceplane, ceac, eib, evi),
+                cols = 2)
     }
   }
 }
+
