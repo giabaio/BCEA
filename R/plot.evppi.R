@@ -36,7 +36,7 @@ plot.evppi <- function (x,
                         ...) {
   
   alt.legend <- pos
-  base.graphics <- pmatch(graph, c("base", "ggplot2")) != 2
+  base.graphics <- pmatch(graph, c("base", "ggplot2"))[1] != 2
   
   stopifnot(inherits(x, "evppi"))
   
