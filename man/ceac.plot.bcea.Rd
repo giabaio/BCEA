@@ -44,7 +44,7 @@ plotting. Should (partial-)match the three options \code{"base"},
  \item \code{area_color}: specifies the AUC colour - plotly only.}}
 }
 \value{
-\item{ceac} {If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 
+\item{ceac}{If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 
   a plotly object containing the requested plot. Nothing is returned when \code{graph = "base"}, 
   the default.} The function produces a plot of the
   cost-effectiveness acceptability curve against the discrete grid of possible
@@ -110,7 +110,8 @@ Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
-\code{\link{bcea}}
+\code{\link{bcea}},
+         \code{\link{plot.bcea}}
 }
 \author{
 Gianluca Baio, Andrea Berardi

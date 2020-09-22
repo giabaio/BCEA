@@ -30,7 +30,7 @@ tabulate_means <- function(he,
 #' @inheritParams ceplane_plot_base.bcea
 #' 
 #' @return For plotly returns a plot in the Viewer
-#' @inherit plotly
+#' @importFrom plotly toRGB plot_ly add_trace layout config
 #' @export
 #' 
 ceplane_plot_plotly.bcea <- function(he,

@@ -1,7 +1,7 @@
 
 #' @rdname ceac_plot_graph
 #' 
-#' @import plotly
+#' @importFrom plotly add_trace plot_ly toRGB layout config
 #' @export
 #' 
 ceac_plot_plotly <- function(he,
