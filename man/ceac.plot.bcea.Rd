@@ -110,7 +110,8 @@ Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
-\code{\link{bcea}}
+\code{\link{bcea}},
+         \code{\link{plot.bcea}}
 }
 \author{
 Gianluca Baio, Andrea Berardi

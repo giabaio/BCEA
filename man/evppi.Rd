@@ -179,11 +179,12 @@ with the R package BCEA. New York, NY: Springer. doi:10.1007/978-3-319-55718-2.
 
 Heath A., Manolopoulou I., Baio G. (2016). Estimating the Expected Value of
 Partial Perfect Information in Health Economic Evaluations using Integrated
-Nested Laplace Approximation.  Statistics in Medicine.
+Nested Laplace Approximation. Statistics in Medicine.
 http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full
 }
 \seealso{
-\code{\link{plot.evppi}}, \code{\link{bcea}}
+\code{\link{plot.evppi}},
+         \code{\link{bcea}}
 }
 \author{
 Anna Heath, Gianluca Baio

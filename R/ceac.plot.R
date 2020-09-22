@@ -20,8 +20,6 @@
 #' 
 #' effectively depending on the willingness to pay value \eqn{k}.
 #' 
-#' @rdname plot-bcea
-#' 
 #' @template args-he
 #' @template args-comparison
 #' @param pos Parameter to set the position of the legend (only relevant for
@@ -54,7 +52,8 @@
 #'   that uncertainty in the cost-effectiveness of the comparator is very low.
 #'   
 #' @author Gianluca Baio, Andrea Berardi
-#' @seealso \code{\link{bcea}}
+#' @seealso \code{\link{bcea}},
+#'          \code{\link{plot.bcea}}
 #' @references
 #' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 #'   Analysis in Health Economics. Statistical Methods in Medical Research

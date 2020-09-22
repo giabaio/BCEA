@@ -109,7 +109,8 @@
 #' \item{method}{A string indicating the method used to estimate the EVPPI.}
 #' 
 #' @author Anna Heath, Gianluca Baio
-#' @seealso \code{\link{plot.evppi}}, \code{\link{bcea}}
+#' @seealso \code{\link{plot.evppi}},
+#'          \code{\link{bcea}}
 #' 
 #' @references
 #' Strong M., Oakley J. and Brennan A. (2014). Estimating
@@ -128,7 +129,7 @@
 #' 
 #' Heath A., Manolopoulou I., Baio G. (2016). Estimating the Expected Value of
 #' Partial Perfect Information in Health Economic Evaluations using Integrated
-#' Nested Laplace Approximation.  Statistics in Medicine.
+#' Nested Laplace Approximation. Statistics in Medicine.
 #' http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full
 #' 
 #' @keywords "Health economic evaluation" "Expected value of partial information"
