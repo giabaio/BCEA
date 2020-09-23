@@ -4,11 +4,12 @@ output:
 	pdf_document
 	word_document
 ---
+
 ```{r, echo=FALSE}
-if(input$format=="PDF") {
-    align="center"
+if (input$format == "PDF") {
+    align = "center"
 } else {
-    align="default"
+    align = "default"
 }
 ```
 

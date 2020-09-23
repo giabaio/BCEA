@@ -70,15 +70,16 @@ evppi_residual_plot <- function(evppi,
                                 he,
                                 interv) {
   
-  op <- par(mfrow = c(1, 2))
-  
   fitted <- list(cost = evppi$fitted.costs[, interv],
                  eff = evppi$fitted.effects[, interv])
   
   residual <-
-    list(cost = as.matrix(he$delta.c)[evppi$select, interv] - fitted$cost,
-         eff = as.matrix(he$delta.e)[evppi$select, interv] - fitted$eff)
+    list(cost = as.matrix(he$delta_c)[evppi$select, interv] - fitted$cost,
+         eff = as.matrix(he$delta_e)[evppi$select, interv] - fitted$eff)
+  
   cex <- 0.8
+  
+  op <- par(mfrow = c(1, 2))
   
   plot(fitted$cost,
        residual$cost,
