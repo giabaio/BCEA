@@ -4,11 +4,12 @@ output:
 	pdf_document
 	word_document
 ---
+
 ```{r, echo=FALSE}
-if(input$format=="PDF") {
-    align="center"
+if (input$format == "PDF") {
+    align = "center"
 } else {
-    align="default"
+    align = "default"
 }
 ```
 
@@ -17,10 +18,16 @@ The following graph shows the Expected Incremental Benefit (EIB), as a function 
 
 The value for $k$ in correspondence of which the line crosses the $x-$axis is termed the '_break-even point_' and represents the point(s) at which the optimal decision changes. The graph also reports the 95% credible limits around the EIB.
 
-
-```{r, echo=FALSE,fig.width=4.6, fig.height=4.6, fig.align=align}
+```{r, echo=FALSE, fig.width=4.6, fig.height=4.6, fig.align=align}
 #fig.cap="The Expected Incremental Benefit as a function of the willingness-to-pay",
-n.ints <- m()$n.comparators
-if (n.ints==2) {graph="base"; pos=c(1,1)} else {graph="ggplot2"; pos=TRUE}
-eib.plot(m(),graph=graph,pos=pos)
+n.ints <- m()$n_comparators
+
+if (n.ints == 2) {
+  graph = "base"
+  pos = c(1,1)
+} else {
+    graph = "ggplot2"
+    pos = TRUE}
+
+eib.plot(he = m(), graph = graph, pos = pos)
 ```

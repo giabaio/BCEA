@@ -26,7 +26,6 @@
 #' intervention (indexed by \code{ref} in the \code{\link{bcea}} function).
 #' 
 #' @template args-he
-#' 
 #' @param comparators Vector specifying the comparators to be included in the
 #' frontier analysis. It must have a length > 1. Default as \code{NULL} includes
 #' all the available comparators.
@@ -160,17 +159,17 @@ ceef.plot.bcea <- function(he,
       he$comp <- rank(c(he$ref, he$comp))[-1]
       he$change_comp <- TRUE
       ### bceanew
-      he$e <- he$e[,comparators]
-      he$c <- he$c[,comparators]
+      he$e <- he$e[, comparators]
+      he$c <- he$c[, comparators]
    }
    
    ### If the incremental analysis (relative to the reference) is required, needs to modify the BCEA object
-   if(relative) {
+   if (relative) {
       temp <- he
-      temp$e <- temp$c <- matrix(NA,he$n_sim,he$n_comparators)
-      temp$e[,he$ref] <- temp$c[,he$ref] <- rep(0, he$n_sim)
-      temp$e[,-he$ref] <- -he$delta.e
-      temp$c[,-he$ref] <- -he$delta.c
+      temp$e <- temp$c <- matrix(NA, he$n_sim, he$n_comparators)
+      temp$e[, he$ref] <- temp$c[, he$ref] <- rep(0, he$n_sim)
+      temp$e[, -he$ref] <- -he$delta.e
+      temp$c[, -he$ref] <- -he$delta.c
       he <- temp
    }
    
@@ -183,40 +182,40 @@ ceef.plot.bcea <- function(he,
    
    ### if the effectiveness is negative or !start.from.origins, rescale
    ec.min <- with(he,
-                  c(min(apply(e,2,mean)),
-                    apply(c,2,mean)[which.min(apply(e,2,mean))],
-                    which.min(apply(e,2,mean))))
+                  c(min(apply(e, 2, mean)),
+                    apply(c,2,mean)[which.min(apply(e, 2, mean))],
+                    which.min(apply(e, 2, mean))))
    e.neg <- ec.min[1] < 0
-   c.neg <- any(apply(he$c,2,mean) < 0)
+   c.neg <- any(apply(he$c, 2, mean) < 0)
    
-   if(e.neg & !c.neg & start.from.origins){
+   if (e.neg & !c.neg & start.from.origins){
       message("Benefits are negative, the frontier will not start from the origins")
       start.from.origins <- FALSE
    }
-   if(!e.neg & c.neg & start.from.origins){
+   if (!e.neg & c.neg & start.from.origins){
       message("Costs are negative, the frontier will not start from the origins")
       start.from.origins <- FALSE
    }
-   if(e.neg & c.neg & start.from.origins){
+   if (e.neg & c.neg & start.from.origins){
       message("Costs and benefits are negative, the frontier will not start from the origins")
       start.from.origins <- FALSE
    }
-   e.neg <- ifelse(start.from.origins,e.neg,TRUE)
+   e.neg <- ifelse(start.from.origins, e.neg, TRUE)
    
    ### frontier calculation
    data.avg <-
       data.frame(
-         "e.avg" = apply(he$e,2,mean)-ifelse(!e.neg,0,ec.min[1]),
-         "c.avg" = apply(he$c,2,mean)-ifelse(!e.neg,0,ec.min[2]))
+         "e.avg" = apply(he$e,2,mean) - ifelse(!e.neg,0,ec.min[1]),
+         "c.avg" = apply(he$c,2,mean) - ifelse(!e.neg,0,ec.min[2]))
    data.avg <- cbind(data.avg,
                      data.avg,as.factor(c(1:dim(data.avg)[1])))
    names(data.avg)[3:5] <- c("e.orig","c.orig","comp")
-   orig.avg <- data.avg[,3:5]
+   orig.avg <- data.avg[, 3:5]
    ### check for interventions with zero costs and effectiveness
-   comp <- ifelse(any(apply(data.avg[,1:2],
+   comp <- ifelse(any(apply(data.avg[, 1:2],
                             1,
                             function(x) isTRUE(sum(x) == 0 & prod(x) == 0))),
-                  which(apply(data.avg[,1:2],1,sum)==0 & apply(data.avg[,1:2],1,prod)==0),0)
+                  which(apply(data.avg[, 1:2],1,sum)==0 & apply(data.avg[, 1:2],1,prod)==0),0)
    ### contains the points connecting the frontier. Always starts from the origins
    ceef.points <-
       data.frame(
@@ -226,10 +225,13 @@ ceef.plot.bcea <- function(he,
    
    repeat{
       if(prod(dim(data.avg))==0) break
+      
       theta <- with(data.avg,atan(c.avg/e.avg))
       theta.min <- min(theta,na.rm=TRUE)
+      
       if(theta.min>threshold) break
-      index <- which(theta==theta.min)
+      index <- which(theta == theta.min)
+      
       if(length(index)>1)
          index=index[which.min(data.avg$e.avg[index])]
       ceef.points <- with(data.avg,rbind(ceef.points,c(e.orig[index],c.orig[index],comp[index])))
@@ -241,11 +243,11 @@ ceef.plot.bcea <- function(he,
    
    ceef.points$slope <- NA
    ## calculate slopes
-   for(i in 2:dim(ceef.points)[1])
-      ceef.points$slope[i] <- with(ceef.points,(y[i]-y[i-1])/(x[i]-x[i-1]))
+   for (i in 2:dim(ceef.points)[1])
+      ceef.points$slope[i] <- with(ceef.points, (y[i]-y[i-1])/(x[i]-x[i-1]))
    
    ## workaround for start.from.origins == FALSE: remove first row if slope is negative
-   while(dim(ceef.points)[1]>1 & ceef.points$slope[2]<0){
+   while (dim(ceef.points)[1]>1 & ceef.points$slope[2]<0) {
       ceef.points <- ceef.points[-1,]
       ceef.points$slope[1] <- NA
    }
@@ -264,15 +266,15 @@ ceef.plot.bcea <- function(he,
    orig.avg[,2] <- orig.avg[,2]+ifelse(!e.neg,0,ec.min[2])
    
    ### Summary table function
-   ceef.summary <- function(he,ceef.points,orig.avg,include.ICER=FALSE,...){
+   ceef.summary <- function(he, ceef.points, orig.avg, include.ICER=FALSE,...){
       ## Tables adaptation and formatting
       no.ceef <- which(!1:he$n_comparators %in% ceef.points$comp)
       ## Interventions included
-      if(ceef.points$comp[1]==0)
+      if (ceef.points$comp[1] == 0)
          ceef.points <- ceef.points[-1,]
       rownames(ceef.points) <- he$interventions[as.numeric(levels(ceef.points$comp)[ceef.points$comp])]
       
-      if(!include.ICER){
+      if (!include.ICER){
          ceef.points[,5] <- atan(ceef.points[,4]^(1*ifelse(!flip,1,-1)))
          ceef.points <- ceef.points[,-3]
          colnames(ceef.points) <- c("Effectiveness","Costs","Increase slope","Increase angle")
@@ -289,7 +291,9 @@ ceef.plot.bcea <- function(he,
          ceef.points[,3] <- ICERs
          ceef.points[,5] <- atan(ceef.points[,4]^(1*ifelse(!flip,1,-1)))
          colnames(ceef.points) <-
-            c("Effectiveness","Costs",paste0("ICER ",he$interventions[he$ref]," vs."),"Increase slope","Increase angle")
+            c("Effectiveness",
+              "Costs", paste0("ICER ",he$interventions[he$ref]," vs."),
+              "Increase slope","Increase angle")
       }
       if(flip) colnames(ceef.points)[1:2] <- colnames(ceef.points[2:1])
       
@@ -316,11 +320,11 @@ ceef.plot.bcea <- function(he,
          }
          
          how.dominated <- rep("Extended dominance",length(no.ceef))
-         for(i in 1:length(no.ceef))
-            for(j in 1:dim(ceef.points)[1]){
+         for (i in seq_along(no.ceef))
+            for (j in 1:dim(ceef.points)[1]){
                ## if the product of the deltas is negative it is dominated
                ## cannot be dominant since not on the frontier 
-               if((noceef.points[i,1]-ceef.points[j,1])*(noceef.points[i,2]-ceef.points[j,2])<0){
+               if((noceef.points[i, 1] - ceef.points[j,1])*(noceef.points[i,2]-ceef.points[j,2])<0){
                   how.dominated[i] <- "Absolute dominance"
                   ## alternative:
                   # how.dominated[i] <- paste0("Dominated by ",rownames(ceef.points)[j])
@@ -329,20 +333,20 @@ ceef.plot.bcea <- function(he,
             }
          noceef.points[,ifelse(!include.ICER,3,4)] <- how.dominated
          rownames(noceef.points) <- he$interventions[no.ceef]
-         if(flip) colnames(noceef.points)[1:2] <- colnames(noceef.points)[2:1]
+         if (flip) colnames(noceef.points)[1:2] <- colnames(noceef.points)[2:1]
       }
       
       ### Print the summary table
       cat("\nCost-effectiveness efficiency frontier summary \n\n")
       cat("Interventions on the efficiency frontier:\n")
-      print(ceef.points,quote=FALSE,digits=5,justify="center")
+      print(ceef.points, quote = FALSE, digits = 5, justify = "center")
       cat("\n")
-      if(length(no.ceef)>0){
+      if (length(no.ceef) > 0){
          cat("Interventions not on the efficiency frontier:\n")
          print(noceef.points,quote=FALSE,digits=5,justify="center")
       }
    }
-   if(print.summary)
+   if (print.summary)
       ceef.summary(he,ceef.points,orig.avg,...)
    
    
@@ -430,9 +434,7 @@ ceef.plot.bcea <- function(he,
                }
          }
          
-         ### plot the axes
-         abline(h=0,col="grey")
-         abline(v=0,col="grey")
+         abline(h = 0, v = 0, col = "grey")
          
          ### plot the scatter
          for(i in 1:he$n_comparators)
@@ -448,7 +450,7 @@ ceef.plot.bcea <- function(he,
          ### add circles
          points(orig.avg[,-3],pch=21,cex=2,bg="white",col="black")
          ### add text; grey if not on the frontier
-         for(i in 1:he$n_comparators){
+         for (i in seq_len(he$n_comparators)) {
             text(orig.avg[i,-3],
                  labels=orig.avg[i,3],
                  col=ifelse(i %in% ceef.points$comp,"black","grey60"),
@@ -456,7 +458,7 @@ ceef.plot.bcea <- function(he,
          }
          ### legend text
          text <- paste(1:he$n_comparators, ":", he$interventions)
-         legend(pos,text,col=colour,cex=.7,bty="n",lty=1)
+         legend(pos,text,col=colour,cex=0.7,bty="n",lty=1)
          
          ### needed for dominance areas overwriting the outer box
          box()
@@ -465,8 +467,8 @@ ceef.plot.bcea <- function(he,
    ##### ***** ggplot2 ***** #####
    else{
       if(print.plot){
-         if(!isTRUE(requireNamespace("ggplot2",quietly=TRUE) &
-                    requireNamespace("grid",quietly=TRUE))){
+         if(!(requireNamespace("ggplot2",quietly=TRUE) &
+              requireNamespace("grid",quietly=TRUE))){
             message("Falling back to base graphics\n")
             
             ceef.plot(
@@ -498,7 +500,7 @@ ceef.plot.bcea <- function(he,
                          ymax = 2*max(abs(range(scatter.data$c))),
                          xmin = -2*max(abs(range(scatter.data$e))),
                          alpha = 0.35,
-                         fill="grey75")
+                         fill = "grey75")
          }
          
          ceplane <- ceplane +
@@ -521,21 +523,18 @@ ceef.plot.bcea <- function(he,
                data = orig.avg,
                ggplot2::aes(x = e.orig, y = c.orig),
                size = 5.5,
-               colour = "black"
-            ) +
+               colour = "black") +
             ggplot2::geom_point(
                data = orig.avg,
                ggplot2::aes(x = e.orig, y = c.orig),
                size = 4.5,
-               colour = "white"
-            ) +
+               colour = "white") +
             ### set graphical parameters
             ggplot2::scale_colour_manual(
                "",
                labels = paste0(1:he$n_comparators, ": ", he$interventions),
                values = colour,
-               na.value = "black"
-            ) +
+               na.value = "black") +
             ggplot2::labs(title = "Cost-effectiveness efficiency frontier", x =
                              xlab, y = ylab) +
             ggplot2::theme_bw()

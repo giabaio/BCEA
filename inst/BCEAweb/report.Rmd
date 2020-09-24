@@ -26,35 +26,46 @@ iEVPPI <- FALSE
 iEVPPIerror <- FALSE
 
 # If all NULL, then no data loaded for the parameters
-check1 <- all(is.null(param()),is.null(param2()))
+check1 <- all(is.null(param()), is.null(param2()))
+
 # If 0 then no economic analysis executed
-check2 <- input$buttonsum==0
+check2 <- input$buttonsum == 0
+```
 
-if(!check1 & !is.null(input$assumption)) iAssumption <- TRUE
+```{r echo=FALSE}
+if (!check1 & !is.null(input$assumption)) iAssumption <- TRUE
+```
 
-if(!check2 & !is.null(input$bcea)) {
+```{r echo=FALSE}
+if (!check2 & !is.null(input$bcea)) {
   iEcEval <- TRUE
-  for(i in 1:length(input$bcea)) {
-    if(input$bcea[i] == "Cost-effectiveness analysis") iCEAnalysis <- TRUE
-    if(input$bcea[i] == "Cost-effectiveness plane") iCEPlane <- TRUE
-    if(input$bcea[i] == "Expected Incremental Benefit") iEIB <- TRUE
-    if(input$bcea[i] == "Efficiency frontier") iCEEF <- TRUE
+  
+  for (i in seq_along(input$bcea)) {
+    if (input$bcea[i] == "Cost-effectiveness analysis") iCEAnalysis <- TRUE
+    if (input$bcea[i] == "Cost-effectiveness plane") iCEPlane <- TRUE
+    if (input$bcea[i] == "Expected Incremental Benefit") iEIB <- TRUE
+    if (input$bcea[i] == "Efficiency frontier") iCEEF <- TRUE
   }
 }
+```
 
-if(!is.null(input$psa) & !check2) {
+```{r echo=FALSE}
+if (!is.null(input$psa) & !check2) {
   iPSA <- TRUE
-  for(i in 1:length(input$psa)){
-    if(input$psa[i] == "CEAC") iCEAC <- TRUE
-    if(input$psa[i] == "CEAF") iCEAF <- TRUE  #& !is.null(mce()$ceaf)) iCEAF <- TRUE
-    if(input$psa[i] == "EVPI") iEVPI <- TRUE  #& !is.null(m()$evi)) iEVPI <- TRUE
-    if(input$psa[i] == "Multi-comparison CEAC") iMCEAC <- TRUE  #& !is.null(mce()$ceaf)) iMCEAC <- TRUE
-    if(input$psa[i] == "Info-rank" & !is.null(make_info_rank()$rank)) iIR <- TRUE 
-    if(input$psa[i] == "EVPPI" & !is.null(compute_evppi()$evppi)) iEVPPI <- TRUE
+
+  for (i in seq_along(input$psa)){
+    if (input$psa[i] == "CEAC") iCEAC <- TRUE
+    if (input$psa[i] == "CEAF") iCEAF <- TRUE  #& !is.null(mce()$ceaf)) iCEAF <- TRUE
+    if (input$psa[i] == "EVPI") iEVPI <- TRUE  #& !is.null(m()$evi)) iEVPI <- TRUE
+    if (input$psa[i] == "Multi-comparison CEAC") iMCEAC <- TRUE  #& !is.null(mce()$ceaf)) iMCEAC <- TRUE
+    if (input$psa[i] == "Info-rank" & !is.null(make_info_rank()$rank)) iIR <- TRUE
+    if (input$psa[i] == "EVPPI" & !is.null(compute_evppi()$evppi)) iEVPPI <- TRUE
   }
 }
+```
 
-if(iMCEAC || iCEAF){
+```{r echo=FALSE}
+if (iMCEAC || iCEAF){
   m.mce <- multi.ce(m())
 }
 ```
@@ -100,3 +111,4 @@ if(iMCEAC || iCEAF){
 
 ```{r child='chunks/EVPPIerror.Rmd', eval=iEVPPIerror}
 ```
+

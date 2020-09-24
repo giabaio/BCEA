@@ -4,11 +4,12 @@ output:
 	pdf_document
 	word_document
 ---
+
 ```{r, echo=FALSE}
-if(input$format=="PDF") {
-    align="center"
+if (input$format == "PDF") {
+    align = "center"
 } else {
-    align="default"
+    align = "default"
 }
 ```
 
@@ -31,11 +32,15 @@ if (length(wtp)>1) {
 }
 
 check_consistency <- any(compute_evppi()$evppi>compute_evppi()$evi)
+
 sol_inla <- "1) increasing the interaction order; 2) modifying the options in the mesh control, to improve accuracy of the 'spatial' component estimation; 3) increasing the sample of PSA runs used to perform the estimation."
+
 sol_gp <- "increasing the number of PSA runs used to estimate the hyperparameters of the GP regression model; 2) increasing the sample of PSA runs used to perform the estimation."
+
 sol <- ifelse(all(compute_evppi()$method=="INLA"),sol_inla,sol_gp)
+
 if (check_consistency) {
-    cat(paste0("**WARNING**: the estimated EVPPI is higher than the respective value of the EVPI. This is not possible, so the estimation procedure for the EVPPI should be checked carefully (e.g. by assessing the diagnostic plots in the next sub-section)!\n Possible solutions include ",sol))
+    cat(paste0("**WARNING**: the estimated EVPPI is higher than the respective value of the EVPI. This is not possible, so the estimation procedure for the EVPPI should be checked carefully (e.g. by assessing the diagnostic plots in the next sub-section)!\n Possible solutions include ", sol))
 }
 
 ```
@@ -48,12 +53,12 @@ The following graphs can be used to assess the model and method used to perform 
 Since the calculation methods are based on some form of underlying normality of the process describing the distribution of the Net Benefits, the _Q-Q Plot_ for both costs and effects should show points lying on top of the 45 degrees line. Substantial departure from linearity in this graph indicate poor model fitting.
 
 
-
-```{r, echo=FALSE,fig.width=5.5, fig.height=4,fig.align=align}
+```{r, echo=FALSE, fig.width=5.5, fig.height=4, fig.align=align}
 cat("\n\n")
-diag.evppi(compute_evppi(), m(), diag="residuals")
+diag.evppi(compute_evppi(), m(), plot_type = "residuals")
 ```
 
-```{r, echo=FALSE,fig.width=5.5, fig.height=4,fig.align=align}
-diag.evppi(compute_evppi(), m(), diag="qqplot")
+```{r, echo=FALSE, fig.width=5.5, fig.height=4, fig.align=align}
+diag.evppi(compute_evppi(), m(), plot_type = "qqplot")
 ```
+
