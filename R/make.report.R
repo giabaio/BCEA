@@ -31,14 +31,14 @@
 #' shown.
 #' 
 #' @author Gianluca Baio
-#' @seealso \code{\link{bcea}}
+#' @seealso [bcea()]
 #' @references
 #' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 #' Analysis in Health Economics. Statistical Methods in Medical Research
 #' doi:10.1177/0962280211419832.
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
-#' @keywords "Health economic evaluation", "Expected value of information"
+#' @concept "Health economic evaluation", "Expected value of information"
 #' @importFrom rmarkdown render
 #' @importFrom withr with_options
 #' @importFrom knitr opts_knit

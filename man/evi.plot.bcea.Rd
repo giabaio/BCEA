@@ -18,7 +18,8 @@ plotting. Should (partial-)match the three options \code{"base"},
 \itemize{
   \item \code{line_colors} to specify the EVPI line colour - all graph types.
   \item \code{line_types} to specify the line type (lty) - all graph types.
-  \item \code{area_include} to specify whether to include the area under the EVPI curve - plotly only.
+  \item \code{area_include} to specify whether to include the area under the
+  EVPI curve - plotly only.
   \item \code{area_color} to specify the area under the colour curve - plotly only.}}
 }
 \value{
@@ -31,19 +32,19 @@ plotting. Should (partial-)match the three options \code{"base"},
   from one intervention to another) is(are) also showed.
 }
 \description{
-Plots the Expected Value of Information (EVI) against the willingness to pay
+Plots the Expected Value of Information (EVI) against the willingness to pay.
 }
 \references{
 Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 Analysis in Health Economics.  Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
-\code{\link{bcea}}, \code{\link{ceac.plot}},
-\code{\link{ceplane.plot}}
+[bcea()],
+         [ceac.plot()],
+         [ceplane.plot()]
 }
 \author{
 Gianluca Baio, Andrea Berardi

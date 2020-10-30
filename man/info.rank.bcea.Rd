@@ -76,7 +76,8 @@ doi:10.1177/0962280211419832.
 Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
-\code{\link{bcea}}, \code{\link{evppi}}
+[bcea()],
+         [evppi()]
 }
 \author{
 Anna Heath, Gianluca Baio, Andrea Berardi

@@ -11,16 +11,16 @@
 #' @return \item{ceaf}{ A ggplot object containing the plot. Returned only if
 #' \code{graph="ggplot2"}. }
 #' @author Gianluca Baio, Andrea Berardi
-#' @seealso \code{\link{bcea}}, \code{\link{multi.ce}}
+#' @seealso [bcea()], [multi.ce()]
 #' 
 #' @references
 #' Baio G, Dawid AP. (2011). Probabilistic Sensitivity
 #' Analysis in Health Economics. Statistical Methods in Medical Research
 #' doi:10.1177/0962280211419832.
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-#' London.
-#' @keywords hplot Health economic evaluation Multiple comparison
+#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+#' @keywords hplot
+#' @concept "Health economic evaluation" "Multiple comparison"
 #' 
 #' @import ggplot2 grid
 #' 

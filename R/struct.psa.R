@@ -35,7 +35,7 @@
 #' 
 #' @return List object of bcea object, model weights and DIC
 #' @author Gianluca Baio
-#' @seealso \code{\link{bcea}}
+#' @seealso [bcea()]
 #' @references
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' 

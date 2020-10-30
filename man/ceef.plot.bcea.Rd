@@ -147,13 +147,9 @@ IQWIG (2009). General methods for the Assessment of the Relation of Benefits
 to Cost, Version 1.0. IQWIG, November 2009.
 }
 \seealso{
-\code{\link{bcea}}
+[bcea()]
 }
 \author{
 Andrea Berardi, Gianluca Baio
 }
-\keyword{Health}
-\keyword{Multiple}
-\keyword{comparisons}
-\keyword{economic}
-\keyword{evaluation}
+\concept{"Health economic evaluation" "Multiple comparisons"}

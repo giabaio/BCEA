@@ -29,9 +29,10 @@
 #' strategy one (when more than one intervention is considered in the market).
 #' 
 #' @author Gianluca Baio, Andrea Berardi
-#' @seealso \code{\link{bcea}}, \code{\link{mixedAn}}
+#' @seealso [bcea()],
+#'          [mixedAn()]
 #' @references
-#' Baio, G. and Russo, P. (2009).A decision-theoretic framework for
+#' Baio, G. and Russo, P. (2009). A decision-theoretic framework for
 #' the application of cost-effectiveness analysis in regulatory processes.
 #' Pharmacoeconomics 27(8), 645-655 doi:10.2165/11310250
 #' 
@@ -40,7 +41,7 @@
 #' doi:10.1177/0962280211419832.
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
-#' @keywords Health economic evaluation Mixed analysis
+#' @concept "Health economic evaluation" "Mixed analysis"
 #' 
 #' @examples
 #' 

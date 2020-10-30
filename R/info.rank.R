@@ -45,7 +45,9 @@
 #'   uncertainty in that parameter over the decision-making process, in terms of
 #'   how large the expected value of gaining more information is.
 #' @author Anna Heath, Gianluca Baio, Andrea Berardi
-#' @seealso \code{\link{bcea}}, \code{\link{evppi}}
+#' @seealso [bcea()],
+#'          [evppi()]
+#' 
 #' @references
 #' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 #' Analysis in Health Economics. Statistical Methods in Medical Research
@@ -174,7 +176,7 @@ info.rank.bcea <- function(he,
     invisible(force(x))
   }
   
-  exArgs <- list(...)
+  extra_args <- list(...)
   if (is.null(wtp)) {wtp = he$k[min(which(he$k >= he$ICER))]}
   
   if (class(parameter[1]) == "character") {
@@ -199,9 +201,9 @@ info.rank.bcea <- function(he,
     names(chk2) <- colnames(input[, chk2])
     
     # Can do the analysis on a smaller number of PSA runs
-    if (exists("N", where = exArgs)) {
-      N <- exArgs$N
-      } else {N <- he$n_sim}
+    if (exists("N", where = extra_args)) {
+      N <- extra_args$N
+    } else {N <- he$n_sim}
     
     if (any(!is.na(N)) & length(N) > 1) {
       select <- N
@@ -217,7 +219,7 @@ info.rank.bcea <- function(he,
     m$k <- wtp
     x <- list()
     
-    for (i in 1:length(chk2)) {
+    for (i in seq_along(chk2)) {
       x[[i]] <- quiet(
         evppi(he = m, param_idx = chk2[i], input = input, N = N))
     }
@@ -226,56 +228,62 @@ info.rank.bcea <- function(he,
     
     # Optional inputs
     if (base.graphics) {
-      if (exists("ca", where = exArgs)) {
-        ca <- exArgs$ca
-      } else {ca <- 0.7}
-      if (exists("cn", where = exArgs)) {
-        cn <- exArgs$cn
-      } else {cn <- 0.7}
+      if (exists("ca", where = extra_args)) {
+        ca <- extra_args$ca
+      } else {
+        ca <- 0.7
+      }
+      if (exists("cn", where = extra_args)) {
+        cn <- extra_args$cn
+      } else {
+        cn <- 0.7
+      }
       xlab <- "Proportion of total EVPI"
-      if (exists("rel", where = exArgs)) {
-        if (!exArgs$rel) {
+      if (exists("rel", where = extra_args)) {
+        if (!extra_args$rel) {
           scores <- unlist(lapply(x, function(x) x$evppi))
           xlab <- "Absolute value of the EVPPI"
         }
       }
-      if (exists("xlim", where = exArgs)) {
-        xlim <- exArgs$xlim
+      if (exists("xlim", where = extra_args)) {
+        xlim <- extra_args$xlim
       } else {xlim <- c(0, range(scores)[2])}
-      if (exists("mai", where = exArgs)) {
-        mai <- exArgs$mai
-      } else {mai <- c(1.36 ,1.5, 1,1)}
-      if (exists("tit", where = exArgs)) {
-        tit <- exArgs$tit
+      if (exists("mai", where = extra_args)) {
+        mai <- extra_args$mai
+      } else {mai <- c(1.36, 1.5, 1, 1)}
+      if (exists("tit", where = extra_args)) {
+        tit <- extra_args$tit
       } else {tit <- paste0("Info-rank plot for willingness to pay = ", wtp)}
-      if (exists("space", where = exArgs)) {
-        space <- exArgs$space
+      if (exists("space", where = extra_args)) {
+        space <- extra_args$space
       } else {space <- 0.5}
     } else {
       ca <- NULL
-      if (exists("ca", where = exArgs)) {
-        warning("Argument ca was specified in info.rank.plotly but is not an accepted argument. Parameter will be ignored.")}
+      if (exists("ca", where = extra_args)) {
+        warning("Argument ca was specified in info.rank.plotly but is not an accepted argument.
+                Parameter will be ignored.")}
       cn <- NULL
-      if (exists("cn", where = exArgs)) {
-        warning("Argument cn was specified in info.rank.plotly but is not an accepted argument. Parameter will be ignored.")}
+      if (exists("cn", where = extra_args)) {
+        warning("Argument cn was specified in info.rank.plotly but is not an accepted argument.
+                Parameter will be ignored.")}
       xlab <- "Proportion of total EVPI"
-      if (exists("rel", where = exArgs)) {
-        if (!exArgs$rel) {
+      if (exists("rel", where = extra_args)) {
+        if (!extra_args$rel) {
           scores <- unlist(lapply(x, function(x) x$evppi))
           xlab <- "Absolute value of the EVPPI"
         }
       }
-      if (exists("xlim", where = exArgs)) {
-        xlim <- exArgs$xlim
+      if (exists("xlim", where = extra_args)) {
+        xlim <- extra_args$xlim
       } else {xlim <- NULL}
-      if (exists("mai", where = exArgs)) {
-        mai <- exArgs$mai
+      if (exists("mai", where = extra_args)) {
+        mai <- extra_args$mai
       } else {mai <- NULL}
-      if (exists("tit", where = exArgs)) {
-        tit <- exArgs$tit
+      if (exists("tit", where = extra_args)) {
+        tit <- extra_args$tit
       } else {tit <- paste0("Info-rank plot for willingness to pay = ", wtp)}
-      if (exists("space", where = exArgs)) {
-        space = exArgs$space
+      if (exists("space", where = extra_args)) {
+        space = extra_args$space
       } else {space <- NULL}
     }
     

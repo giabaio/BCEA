@@ -73,18 +73,13 @@ Baio G, Dawid AP. (2011). Probabilistic Sensitivity
 Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London.
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
-\code{\link{bcea}}, \code{\link{multi.ce}}
+[bcea()], [multi.ce()]
 }
 \author{
 Gianluca Baio, Andrea Berardi
 }
-\keyword{Health}
-\keyword{Multiple}
-\keyword{comparison}
-\keyword{economic}
-\keyword{evaluation}
+\concept{"Health economic evaluation" "Multiple comparison"}
 \keyword{hplot}

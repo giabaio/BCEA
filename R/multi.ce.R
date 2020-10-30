@@ -14,7 +14,9 @@
 #'    \item{ceaf}{A vector containing the cost-effectiveness acceptability frontier}
 #' 
 #' @author Gianluca Baio
-#' @seealso \code{\link{bcea}}, \code{\link{mce.plot}}, \code{\link{ceaf.plot}}
+#' @seealso [bcea()],
+#'          [mce.plot()],
+#'          [ceaf.plot()]
 #' @keywords "Health economic evaluation" "Multiple comparison"
 #' 
 #' @examples

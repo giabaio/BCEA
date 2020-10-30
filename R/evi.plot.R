@@ -1,7 +1,7 @@
 
 #' Expected Value of Information (EVI) Plot
 #' 
-#' Plots the Expected Value of Information (EVI) against the willingness to pay
+#' Plots the Expected Value of Information (EVI) against the willingness to pay.
 #' 
 #' @template args-he
 #' @param graph A string used to select the graphical engine to use for
@@ -11,7 +11,8 @@
 #'   \itemize{
 #'     \item \code{line_colors} to specify the EVPI line colour - all graph types.
 #'     \item \code{line_types} to specify the line type (lty) - all graph types.
-#'     \item \code{area_include} to specify whether to include the area under the EVPI curve - plotly only.
+#'     \item \code{area_include} to specify whether to include the area under the
+#'     EVPI curve - plotly only.
 #'     \item \code{area_color} to specify the area under the colour curve - plotly only.}
 #' @return \item{eib}{ If \code{graph="ggplot2"} a ggplot object, or if \code{graph="plotly"} 
 #'   a plotly object containing the requested plot. Nothing is returned when \code{graph="base"}, 
@@ -21,19 +22,21 @@
 #'   (i.e. the point in which the EIB=0, ie when the optimal decision changes
 #'   from one intervention to another) is(are) also showed.
 #' @author Gianluca Baio, Andrea Berardi
-#' @seealso \code{\link{bcea}}, \code{\link{ceac.plot}},
-#' \code{\link{ceplane.plot}}
-#' @references Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
+#' @seealso [bcea()],
+#'          [ceac.plot()],
+#'          [ceplane.plot()]
+#' 
+#' @references
+#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 #' Analysis in Health Economics.  Statistical Methods in Medical Research
 #' doi:10.1177/0962280211419832.
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-#' London
+#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' @keywords Health economic evaluation Expected value of information
 #' @export
 #' 
 evi.plot.bcea <- function(he,
-                          graph = c("base","ggplot2","plotly"),
+                          graph = c("base", "ggplot2", "plotly"),
                           ...) {
 
     # choose graphical engine -----
@@ -58,6 +61,7 @@ evi.plot.bcea <- function(he,
                    "line" = list("colors" = "black", "types" = NULL))
   plot_aes_args = c("area_include", "area_color", "line_colors", "line_types")
   cri.quantile <- TRUE
+  
   if (length(exArgs) >= 1) {
     # if existing, read and store title, xlab and ylab
     for (annotation in names(plot_annotations$exist)) {
@@ -84,10 +88,12 @@ evi.plot.bcea <- function(he,
     plot_annotations$ylab = "EVPI"
   # dataset
   data.psa <- with(he,data.frame("k" = c(k), "evi" = c(evi)))
+  
   if (graph_choice == 1) {
     # base graphics version -----
     plot(
-      data.psa$k, data.psa$evi, t = "l",
+      data.psa$k, data.psa$evi,
+      type = "l",
       xlab = plot_annotations$xlab,
       ylab = plot_annotations$ylab,
       main = plot_annotations$title,
@@ -97,25 +103,24 @@ evi.plot.bcea <- function(he,
     if (length(he$kstar) == 1) {
       points(
         rep(he$kstar, 3), c(-10000, he$evi[he$k == he$kstar] / 2, he$evi[he$k == he$kstar]),
-        t = "l", lty = 2, col = "dark grey")
+        type = "l", lty = 2, col = "dark grey")
       points(c(-10000, he$kstar / 2, he$kstar), rep(he$evi[he$k == he$kstar], 3),
-        t = "l", lty = 2, col = "dark grey")
+        type = "l", lty = 2, col = "dark grey")
     }
     if (length(he$kstar) > 1) {
-      for (i in 1:length(he$kstar)) {
+      for (i in seq_along(he$kstar)) {
         points(
           rep(he$kstar[i], 3), c(-10000, he$evi[he$k == he$kstar[i]] / 2, he$evi[he$k == he$kstar[i]]),
-          t = "l", lty = 2, col = "dark grey")
+          type = "l", lty = 2, col = "dark grey")
         points(
           c(-10000, he$kstar[i] / 2, he$kstar[i]), rep(he$evi[he$k == he$kstar[i]], 3),
-          t = "l", lty = 2, col = "dark grey")
+          type = "l", lty = 2, col = "dark grey")
       }
     }
   } else if (graph_choice == 2) {
     # ggplot2 version -----
-    if (!isTRUE(
-      requireNamespace("ggplot2", quietly = TRUE) &
-      requireNamespace("grid", quietly = TRUE))) {
+    if (!(requireNamespace("ggplot2", quietly = TRUE) &
+          requireNamespace("grid", quietly = TRUE))) {
       message("falling back to base graphics\n")
       evi.plot(he, graph = "base", ...)
       return(invisible(NULL))
@@ -134,10 +139,11 @@ evi.plot.bcea <- function(he,
     if (length(he$kstar) != 0) {
       kstars = length(he$kstar)
       evi.at.kstar <- numeric(kstars)
-      for (i in 1:kstars) {
+      
+      for (i in seq_len(kstars)) {
         evi.at.kstar[i] <- with(he, evi[which.min(abs(k - kstar[i]))])
       }
-      for (i in 1:kstars) {
+      for (i in seq_len(kstars)) {
         evi <- evi + 
           ggplot2::annotate(
             "segment",
@@ -160,7 +166,7 @@ evi.plot.bcea <- function(he,
     evi <- evi +
       ggplot2::theme(
         text = ggplot2::element_text(size = 11),
-        legend.key.size = grid::unit(.66, "lines"),
+        legend.key.size = grid::unit(0.66, "lines"),
         legend.spacing = grid::unit(-1.25, "line"),
         panel.grid = ggplot2::element_blank(),
         legend.key = ggplot2::element_blank(),
@@ -177,13 +183,14 @@ evi.plot.bcea <- function(he,
     plot_aes$area$color = sapply(plot_aes$area$color, function(x)
       ifelse(grepl(pattern = "^rgba\\(", x = x), x, plotly::toRGB(x, 0.4)))
     # legend
-    legend_list = list(orientation = "h", xanchor = "center", x = .5)
+    legend_list = list(orientation = "h", xanchor = "center", x = 0.5)
     # actual plot
     evi <- plotly::plot_ly(data.psa, x = ~k)
     evi <- plotly::add_trace(
       evi,
       y = ~evi,
-      type = "scatter", mode = "lines",
+      type = "scatter",
+      mode = "lines",
       name = "EVPI",
       fill = ifelse(plot_aes$area$include, "tozeroy", "none"),
       fillcolor = plot_aes$area$color,
@@ -214,3 +221,4 @@ evi.plot.bcea <- function(he,
 evi.plot <- function(he, ...) {
   UseMethod('evi.plot', he)
 }
+

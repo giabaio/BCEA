@@ -41,7 +41,7 @@
 #' risk aversion \code{r}}
 #' 
 #' @author Gianluca Baio
-#' @seealso \code{\link{bcea}}
+#' @seealso [bcea()]
 #' @references
 #' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 #' Analysis in Health Economics. Statistical Methods in Medical Research
@@ -49,7 +49,7 @@
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' 
-#' @keywords Health economic evaluation Risk aversion
+#' @concept "Health economic evaluation" "Risk aversion"
 #' @examples
 #' 
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 

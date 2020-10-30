@@ -47,7 +47,9 @@ mce <- multi.ce(m)          # uses the results of the economic analysis
 
 }
 \seealso{
-\code{\link{bcea}}, \code{\link{mce.plot}}, \code{\link{ceaf.plot}}
+[bcea()],
+         [mce.plot()],
+         [ceaf.plot()]
 }
 \author{
 Gianluca Baio

@@ -62,14 +62,16 @@
 #' function or a rgba colour string, e.g. \code{'rgba(1, 1, 1, 1)'}.
 #'   
 #' @author Gianluca Baio, Andrea Berardi
-#' @seealso \code{\link{bcea}}
+#' @seealso [bcea()]
+#' 
 #' @references
 #' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in Health Economics.
 #' Statistical Methods in Medical Research. doi:10.1177/0962280211419832.
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' 
-#' @keywords hplot Health economic evaluation Cost Effectiveness Plane
+#' @keywords hplot
+#' @concept "Health economic evaluation" "Cost Effectiveness Plane"
 #' 
 #' @examples
 #' ## create the bcea object for the smoking cessation example

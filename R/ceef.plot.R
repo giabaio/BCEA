@@ -73,13 +73,13 @@
 #' Interventions in the areas between the dominance region and the frontier are
 #' in a situation of extended dominance.
 #' @author Andrea Berardi, Gianluca Baio
-#' @seealso \code{\link{bcea}}
+#' @seealso [bcea()]
 #' @references
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' 
 #' IQWIG (2009). General methods for the Assessment of the Relation of Benefits
 #' to Cost, Version 1.0. IQWIG, November 2009.
-#' @keywords Health economic evaluation Multiple comparisons
+#' @concept "Health economic evaluation" "Multiple comparisons"
 #' @examples
 #' 
 #' ## create the bcea object m for the smoking cessation example

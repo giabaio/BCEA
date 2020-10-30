@@ -183,17 +183,10 @@ Nested Laplace Approximation. Statistics in Medicine.
 http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full
 }
 \seealso{
-\code{\link{plot.evppi}},
-         \code{\link{bcea}}
+[plot.evppi()],
+         [bcea()]
 }
 \author{
 Anna Heath, Gianluca Baio
 }
-\keyword{"Expected}
-\keyword{"Health}
-\keyword{economic}
-\keyword{evaluation"}
-\keyword{information"}
-\keyword{of}
-\keyword{partial}
-\keyword{value}
+\concept{"Health economic evaluation" "Expected value of partial information"}

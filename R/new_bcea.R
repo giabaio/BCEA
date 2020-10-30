@@ -7,7 +7,7 @@
 #' @import reshape2 dplyr
 #'
 #' @return List object of class bcea.
-#' @seealso bcea
+#' @seealso [bcea()]
 #' 
 #' @export
 #'
