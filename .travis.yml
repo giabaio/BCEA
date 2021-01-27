@@ -30,56 +30,57 @@
 
 # Sample .travis.yml for R projects
 
-language: R
-warnings_are_errors: true
-sudo: required
+language: r
 
-r_binary_packages: 
-  - rjags 
-  - R2jags
-
-before_install:
-  - fname=travis_helpers.sh
-  - wget -O ${fname} http://bit.ly/travis_helpers
-  - cat ${fname}; source ${fname}; rm ${fname}  
-  - cat DESCRIPTION
-  - jags_install  
-  - export PROJ_DIR=`basename ${TRAVIS_BUILD_DIR}`
-  - export PACKAGE_NAME=`package_name`
-
-script:
-  - echo "Overriding travis R script"
-
-jobs:
-  include:
-    - script:
-      - cd ..
-      - travis_wait 100 R CMD build ${PROJ_DIR} ${R_BUILD_ARGS}
-      - PKG_FILE_NAME=$(ls -1t *.tar.gz | head -n 1)
-      - travis_wait 100 R CMD check ${R_CHECK_ARGS} "${PKG_FILE_NAME}";
-      os: linux
-    - script:
-      - cd ..
-      - travis_wait 100 R CMD build ${PROJ_DIR} ${R_BUILD_ARGS}
-      - PKG_FILE_NAME=$(ls -1t *.tar.gz | head -n 1)
-      - travis_wait 100 R CMD check ${R_CHECK_ARGS} "${PKG_FILE_NAME}";
-      os: osx
-  
-env:
- global:
-  - NOT_CRAN=TRUE
-  - RGL_USE_NULL=TRUE
-  - R_BUILD_ARGS=" --no-manual"
-  - R_CHECK_ARGS=" --timings --as-cran --no-manual"
-
-install:
-  - Rscript -e 'install.packages("devtools", repos = "http://cran.rstudio.com")'
-  - Rscript -e 'install.packages(c("ggplot2", "R2OpenBUGS", "ldr", "splancs"), repos = "http://cran.rstudio.com")'
-  - Rscript -e 'install.packages("INLA", repos=c(getOption("repos"), INLA="https://inla.r-inla-download.org/R/stable"), dep=TRUE)'
-  - Rscript -e 'install.packages(c("shiny","shinythemes","R2jags"),repos="http://cran.rstudio.com")'
-
-notifications:
-  email:
-    on_success: change
-    on_failure: change
-    
+# warnings_are_errors: true
+# sudo: required
+# 
+# r_binary_packages: 
+#   - rjags 
+#   - R2jags
+# 
+# before_install:
+#   - fname=travis_helpers.sh
+#   - wget -O ${fname} http://bit.ly/travis_helpers
+#   - cat ${fname}; source ${fname}; rm ${fname}  
+#   - cat DESCRIPTION
+#   - jags_install  
+#   - export PROJ_DIR=`basename ${TRAVIS_BUILD_DIR}`
+#   - export PACKAGE_NAME=`package_name`
+# 
+# script:
+#   - echo "Overriding travis R script"
+# 
+# jobs:
+#   include:
+#     - script:
+#       - cd ..
+#       - travis_wait 100 R CMD build ${PROJ_DIR} ${R_BUILD_ARGS}
+#       - PKG_FILE_NAME=$(ls -1t *.tar.gz | head -n 1)
+#       - travis_wait 100 R CMD check ${R_CHECK_ARGS} "${PKG_FILE_NAME}";
+#       os: linux
+#     - script:
+#       - cd ..
+#       - travis_wait 100 R CMD build ${PROJ_DIR} ${R_BUILD_ARGS}
+#       - PKG_FILE_NAME=$(ls -1t *.tar.gz | head -n 1)
+#       - travis_wait 100 R CMD check ${R_CHECK_ARGS} "${PKG_FILE_NAME}";
+#       os: osx
+#   
+# env:
+#  global:
+#   - NOT_CRAN=TRUE
+#   - RGL_USE_NULL=TRUE
+#   - R_BUILD_ARGS=" --no-manual"
+#   - R_CHECK_ARGS=" --timings --as-cran --no-manual"
+# 
+# install:
+#   - Rscript -e 'install.packages("devtools", repos = "http://cran.rstudio.com")'
+#   - Rscript -e 'install.packages(c("ggplot2", "R2OpenBUGS", "ldr", "splancs"), repos = "http://cran.rstudio.com")'
+#   - Rscript -e 'install.packages("INLA", repos=c(getOption("repos"), INLA="https://inla.r-inla-download.org/R/stable"), dep=TRUE)'
+#   - Rscript -e 'install.packages(c("shiny","shinythemes","R2jags"),repos="http://cran.rstudio.com")'
+# 
+# notifications:
+#   email:
+#     on_success: change
+#     on_failure: change
+#     
