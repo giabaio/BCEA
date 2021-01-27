@@ -1,12 +1,12 @@
 # BCEA --- development version <img src="man/figures/logo.png" align="right" />
 
 <!-- badges: start -->
-<!--
+
 [![Build status](https://img.shields.io/travis/giabaio/BCEA/master.svg?maxAge=0)](https://travis-ci.org/giabaio/BCEA)
 [![AppVeyor Build Status](https://img.shields.io/appveyor/ci/giabaio/BCEA/master.svg)](https://ci.appveyor.com/project/giabaio/BCEA) [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/BCEA)](https://cran.r-project.org/package=BCEA) [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/BCEA)](https://cran.r-project.org/package=BCEA)
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/grand-total/BCEA?color=orange)](	)
 [![CodeFactor](https://www.codefactor.io/repository/github/n8thangreen/bcea/badge/plots)](https://www.codefactor.io/repository/github/n8thangreen/bcea/overview/plots)
--->
+
 <!-- badges: end -->
 
 ## Contents
