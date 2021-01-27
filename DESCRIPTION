@@ -36,8 +36,6 @@ Suggests:
     mgcv,
     R2jags,
     R2OpenBUGS,
-    shiny,
-    shinythemes,
     splancs,
     testthat (>= 2.1.0),
     vdiffr
