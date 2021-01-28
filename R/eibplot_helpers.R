@@ -1,5 +1,13 @@
 
-#' calculate credible intervals
+#' Calculate Credible Intervals
+#' 
+#' @template args-he
+#' @param alpha
+#' @param cri.quantile
+#' 
+#' @return cri
+#' 
+#' @importFrom stats qnorm sd quantile
 #' 
 eib.plot.cri <- function(he,
                          alpha,
@@ -35,3 +43,4 @@ eib.plot.cri <- function(he,
   )
   return(cri)
 }
+

@@ -11,14 +11,7 @@
 #' for computational reasons rather than to aid fit.
 #' You can still plot the INLA mesh elements but not output the meshes.
 #' 
-#' @template args-he
-#' @param param_idx 
-#' @param input 
-#' @param N 
-#' @param plot 
-#' @param residuals 
-#' @param ... 
-#'
+#' @rdname evppi
 #' @return
 #' @export
 #'
@@ -59,6 +52,7 @@ evppi.bcea <- function(he,
   if (!exists("select", where = extra_args) & N == he$n_sim) {
     extra_args$select <- 1:he$n_sim
   }
+  
   if (!exists("select", where = extra_args) & N < he$n_sim) {
     extra_args$select <- sample(1:he$n_sim, size = N, replace = FALSE)
   }
@@ -99,7 +93,11 @@ evppi.bcea <- function(he,
   
   if (inherits(extra_args$method, "list")) {
     
-    if (length(extra_args$method[[1]]) + length(extra_args$method[[2]]) != 2*(he$n_comparators - 1)) {
+    len_methods <-
+      length(extra_args$method[[1]]) +
+      length(extra_args$method[[2]])
+    
+    if (len_methods != 2*(he$n_comparators - 1)) {
       stop(paste("The argument 'method' must be a list of length 2 with",
                  he$n_comparators - 1, "elements each."), call. = FALSE)
     }
@@ -126,11 +124,13 @@ evppi.bcea <- function(he,
     if (extra_args$method == "sal" || extra_args$method == "sad") {
       method <- "Sadatsafavi et al"
       n.blocks <- NULL
-      if (!exists("n_seps", where = extra_args)) {
-        n_seps <- 1
-      } else {
-        n_seps <- extra_args$n_seps
-      }
+      
+      n_seps <- 
+        if (!exists("n_seps", where = extra_args)) {
+          1
+        } else {
+          extra_args$n_seps}
+      
       if (length(params) == 1) {
         d <- he$n_comparators
         n <- he$n_sim
@@ -149,6 +149,7 @@ evppi.bcea <- function(he,
           for (i in seq_len(d - 1)) {
             for (j in (i + 1):d) {
               cm <- cumsum(nbs[, i] - nbs[, j])/n
+              
               if (nSegs[i, j] == 1) {
                 l <- which.min(cm)
                 u <- which.max(cm)
@@ -163,6 +164,7 @@ evppi.bcea <- function(he,
                   segPoints <- c(segPoints, segPoint)
                 }
               }
+              
               if (nSegs[i, j] == 2) {
                 distMaxMin <- 0
                 distMinMax <- 0

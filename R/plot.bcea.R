@@ -87,7 +87,7 @@
 #' @import ggplot2
 #' @export
 #' 
-plot.bcea <- function(he,
+plot.bcea <- function(x,
                       comparison = NULL,
                       wtp = 25000,
                       pos = FALSE,
@@ -102,22 +102,22 @@ plot.bcea <- function(he,
   if (use_base_graphics) {
     op <- par(mfrow = c(2,2))
     
-    ceplane.plot(he,
+    ceplane.plot(x,
                  comparison = comparison,
                  wtp = wtp,
                  pos = pos,
                  graph = "base",...)
     
-    eib.plot(he,
+    eib.plot(x,
              comparison = comparison,
              pos = pos,
              graph = "base",...)
     
-    ceac.plot(he,
+    ceac.plot(x,
               pos = pos,
               graph = "base", ...)
     
-    evi.plot(he,
+    evi.plot(x,
              graph = "base", ...)
     par(op)
   } else {
@@ -127,7 +127,7 @@ plot.bcea <- function(he,
     if (!all(is_req_pkgs)) {
       message("falling back to base graphics\n")
       plot.bcea(
-        he,
+        x,
         comparison = comparison,
         wtp = wtp,
         pos = pos,
@@ -162,7 +162,7 @@ plot.bcea <- function(he,
       
       #TODO: warnings...
       ceplane <-
-        ceplane.plot(he,
+        ceplane.plot(x,
                      wtp = wtp,
                      pos = ceplane.pos,
                      comparison = comparison,
@@ -171,7 +171,7 @@ plot.bcea <- function(he,
         theme_add
       
       eib <-
-        eib.plot(he,
+        eib.plot(x,
                  pos = pos,
                  comparison = comparison,
                  graph = "ggplot2", ...) +
@@ -179,7 +179,7 @@ plot.bcea <- function(he,
         theme_add
       
       ceac <-
-        ceac.plot(he,
+        ceac.plot(x,
                   pos = pos,
                   comparison = comparison,
                   graph = "ggplot2", ...) +
@@ -187,7 +187,7 @@ plot.bcea <- function(he,
         theme_add
       
       evi <-
-        evi.plot(he, graph = "ggplot2", ...) +
+        evi.plot(x, graph = "ggplot2", ...) +
         do.call(theme, global_params) +
         theme_add
       

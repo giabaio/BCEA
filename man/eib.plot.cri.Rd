@@ -2,10 +2,19 @@
 % Please edit documentation in R/eibplot_helpers.R
 \name{eib.plot.cri}
 \alias{eib.plot.cri}
-\title{calculate credible intervals}
+\title{Calculate Credible Intervals}
 \usage{
 \method{eib.plot}{cri}(he, alpha, cri.quantile)
 }
+\arguments{
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
+
+\item{cri.quantile}{}
+}
+\value{
+cri
+}
 \description{
-calculate credible intervals
+Calculate Credible Intervals
 }

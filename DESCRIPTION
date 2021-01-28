@@ -20,7 +20,10 @@ Imports:
     crayon,
     dplyr,
     ggplot2,
+    graphics,
+    INLA,
     knitr,
+    ldr,
     MASS,
     plotly,
     purrr,
@@ -29,10 +32,10 @@ Imports:
     rmarkdown,
     withr,
     gridExtra
+Depends:
+    R (>= 3.5.0)
 Suggests: 
     grid,
-    INLA,
-    ldr,
     mgcv,
     R2jags,
     R2OpenBUGS,
@@ -47,7 +50,6 @@ License: GPL-3
 URL: http://www.statistica.it/gianluca/BCEA,
      http://www.statistica.it/gianluca,
      https://github.com/giabaio/BCEA    
-Depends: R (>= 3.5.0)
 NeedsCompilation: no
 RoxygenNote: 7.1.1
 Encoding: UTF-8

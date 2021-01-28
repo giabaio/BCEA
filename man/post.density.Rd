@@ -6,6 +6,9 @@
 \usage{
 post.density(hyperparams, parameter, x, input.matrix)
 }
+\arguments{
+\item{input.matrix}{}
+}
 \description{
 GP Fitting
 }

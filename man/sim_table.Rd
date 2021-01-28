@@ -7,7 +7,7 @@
 \usage{
 sim_table(he, ...)
 
-\method{sim_table}{bcea}(he, wtp = 25000)
+\method{sim_table}{bcea}(he, wtp = 25000, ...)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian

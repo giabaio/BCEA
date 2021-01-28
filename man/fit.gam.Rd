@@ -6,6 +6,12 @@
 \usage{
 fit.gam(parameter, inputs, x, form)
 }
+\arguments{
+\item{form}{}
+}
+\value{
+List
+}
 \description{
 GAM Fitting
 }

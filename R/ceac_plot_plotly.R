@@ -5,7 +5,7 @@
 #' @export
 #' 
 ceac_plot_plotly <- function(he,
-                             pos_legend = pos,
+                             pos_legend = "left",
                              graph_params) {
   
   comparisons_label <-

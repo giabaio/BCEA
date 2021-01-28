@@ -58,6 +58,7 @@
 #' @export
 #' @importFrom rlang .data
 #' @importFrom dplyr slice desc
+#' @importFrom graphics barplot
 #' 
 info.rank.bcea <- function(he,
                            parameter,
@@ -67,7 +68,8 @@ info.rank.bcea <- function(he,
                            graph = c("base", "plotly"),
                            ...) {
   
-  base.graphics <- pmatch(graph,c("base","plotly")) != 2
+  base.graphics <- all(pmatch(graph,c("base","plotly")) != 2)
+  
   if (!requireNamespace("plotly", quietly = FALSE)) {
     base.graphics <- TRUE
     warning("Package plotly not found; falling back to base graphics.")
@@ -195,8 +197,9 @@ info.rank.bcea <- function(he,
   if (length(w) == 1) {
   } else {
     input <- input[, w]
-    chk1 <- which(apply(input, 2, var) > 0)   # only takes those with var>0
-    tmp <- lapply(1:dim(input)[2], function(x) table(input[, x])) # check those with <5 possible values (would break GAM)
+    chk1 <- which(apply(input, 2, "var") > 0)   # only takes those with var > 0
+    # check those with <5 possible values (would break GAM)
+    tmp <- lapply(1:dim(input)[2], function(x) table(input[, x]))
     chk2 <- which(unlist(lapply(tmp, function(x) length(x) >= 5)) == TRUE)
     names(chk2) <- colnames(input[, chk2])
     

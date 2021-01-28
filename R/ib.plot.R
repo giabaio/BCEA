@@ -45,9 +45,10 @@ ib.plot.bcea <- function(he,
                          bw = nbw,
                          n = 512,
                          xlim = NULL,
-                         graph = c("base", "ggplot2")) {
+                         graph = c("base", "ggplot2"),
+                         ...) {
   
-  base.graphics <- pmatch(graph, c("base", "ggplot2")) != 2
+  base.graphics <- all(pmatch(graph, c("base", "ggplot2")) != 2)
   
   # comparison controls which comparator is used when more than 2 interventions are present
   # bw and n control the level of smoothness of the kernel density estimation

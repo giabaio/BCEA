@@ -1,6 +1,10 @@
 
-#' extract separate parameter sets
-#'
+#' Extract Separate Parameter Sets
+#' 
+#' @param ... Additional arguments
+#' 
+#' @importFrom utils modifyList
+#' 
 ceplane_geom_params <- function(...) {
   
   extra_params <- list(...)
@@ -33,3 +37,4 @@ ceplane_geom_params <- function(...) {
       area = polygon_params,
       wtp = wtp_params))
 }
+

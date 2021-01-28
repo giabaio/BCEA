@@ -212,8 +212,8 @@ compute_U <- function(df_ce, k) {
   U_df <-
     data.frame(k = rep(k, each = nrow(df_ce)),
                df_ce) %>% 
-    mutate(U = k*eff1 - cost1) %>% 
-    arrange(ints, k, sim)
+    mutate(U = .data$k*.data$eff1 - .data$cost1) %>% 
+    arrange(.data$ints, .data$k, .data$sim)
   
   array(U_df$U,
         dim = c(length(sims),
@@ -257,14 +257,14 @@ compute_IB <- function(df_ce, k) {
   
   df_ce <-
     df_ce %>% 
-    filter(ints != ref) %>%
-    rename(comps = ints)
+    filter(ints != .data$ref) %>%
+    rename(comps = .data$ints)
   
   ib_df <-
     data.frame(k = rep(k, each = nrow(df_ce)),
                df_ce) %>% 
-    mutate(ib = k*delta_e - delta_c) %>%
-    arrange(comps, sim, k)
+    mutate(ib = .data$k*.data$delta_e - .data$delta_c) %>%
+    arrange(.data$comps, .data$sim, .data$k)
   
   array(ib_df$ib,
         dim = c(length(k),
@@ -283,7 +283,8 @@ compute_IB <- function(df_ce, k) {
 #' \deqn{ICER = \Delta_c/\Delta_e}
 #'
 #' @param df_ce Cost-effectiveness dataframe 
-#'
+#' @importFrom stats setNames
+#' 
 #' @return
 #' @export
 #'
@@ -294,24 +295,27 @@ compute_ICER <- function(df_ce) {
   comp_names <- comp_names_from_(df_ce)
   
   df_ce %>%
-    filter(ints != ref) %>% 
-    group_by(ints) %>% 
-    summarise(ICER = mean(delta_c)/mean(delta_e)) %>% 
+    filter(.data$ints != .data$ref) %>% 
+    group_by(.data$ints) %>% 
+    summarise(
+      ICER = mean(.data$delta_c)/mean(.data$delta_e)) %>% 
     ungroup() %>% 
-    select(ICER) %>%  # required to match current format 
+    select(.data$ICER) %>%  # required to match current format 
     unlist() %>% 
     setNames(comp_names)
 }
 
 
+#' Comparison Names From
+#' @param df_ce 
 #'
 comp_names_from_ <- function(df_ce) {
   
   df_ce[, c("ref", "ints", "interv_names")] %>%
-    filter(ref != ints) %>%
+    filter(.data$ref != .data$ints) %>%
     distinct() %>%
-    arrange(ints) %>% 
-    select(interv_names) %>% 
+    arrange(.data$ints) %>% 
+    select(.data$interv_names) %>% 
     unlist()
 }
 

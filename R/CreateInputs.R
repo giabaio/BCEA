@@ -40,7 +40,7 @@ create_inputs_evpi <- function(inputs,
    # remove redundant parameters (linear combination of columns or constant columns)
    # by M Strong
    cols_keep <- colnames(inputs)
-   const_params <- apply(inputs, 2, var) == 0
+   const_params <- apply(inputs, 2, "var") == 0
    if (sum(const_params) > 0) cols_keep <- cols_keep[!const_params]
    
    paramSet <- inputs[, cols_keep, drop = FALSE]
@@ -80,13 +80,15 @@ create_inputs_evpi <- function(inputs,
 
 #' @export
 #' 
-createInputs <- function(inputs, print_is_linear_comb = TRUE) {
+createInputs <- function(inputs,
+                         print_is_linear_comb = TRUE) {
    UseMethod("createInputs",  inputs)
 }
 
 #' @export
 #' 
-createInputs.rjags <- function(inputs, print_is_linear_comb = TRUE) {
+createInputs.rjags <- function(inputs,
+                               print_is_linear_comb = TRUE) {
    
    dat <- inputs$BUGSoutput$sims.matrix
    create_inputs_evpi(dat, print_is_linear_comb)
@@ -94,7 +96,8 @@ createInputs.rjags <- function(inputs, print_is_linear_comb = TRUE) {
 
 #' @export
 #' 
-createInputs.bugs <- function(inputs, print_is_linear_comb = TRUE) {
+createInputs.bugs <- function(inputs,
+                              print_is_linear_comb = TRUE) {
    
    dat <- inputs$sims.matrix
    create_inputs_evpi(dat, print_is_linear_comb)
@@ -102,35 +105,40 @@ createInputs.bugs <- function(inputs, print_is_linear_comb = TRUE) {
 
 #' @export
 #' 
-createInputs.stanfit <- function(inputs, print_is_linear_comb = TRUE) {
+createInputs.stanfit <- function(inputs,
+                                 print_is_linear_comb = TRUE) {
    
    create_inputs_evpi(inputs, print_is_linear_comb)
 }
 
 #' @export
 #' 
-createInputs.data.frame <- function(inputs, print_is_linear_comb = TRUE) {
+createInputs.data.frame <- function(inputs,
+                                    print_is_linear_comb = TRUE) {
    
    create_inputs_evpi(inputs, print_is_linear_comb)
 }
 
 #' @export
 #' 
-createInputs.matrix <- function(inputs, print_is_linear_comb = TRUE) {
+createInputs.matrix <- function(inputs,
+                                print_is_linear_comb = TRUE) {
    
    create_inputs_evpi(inputs, print_is_linear_comb)
 }
 
 #' @export
 #' 
-createInputs.numeric <- function(inputs, print_is_linear_comb = TRUE) {
+createInputs.numeric <- function(inputs,
+                                 print_is_linear_comb = TRUE) {
    
    create_inputs_evpi(inputs, print_is_linear_comb)
 }
 
 #' @export
 #' 
-createInputs.default <- function(inputs, print_is_linear_comb) {
+createInputs.default <- function(inputs,
+                                 print_is_linear_comb) {
    
    stop("MCMC variable not of required type.", call. = FALSE)
 }

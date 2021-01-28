@@ -9,7 +9,8 @@
 #' @export
 #' 
 tabulate_means <- function(he,
-                           comp_label = NULL) {
+                           comp_label = NULL,
+                           ...) {
   
   if (is.null(comp_label))
     comp_label <- 1:he$n_comparisons
@@ -27,16 +28,14 @@ tabulate_means <- function(he,
 
 #' @rdname ceplane_plot_graph
 #'  
-#' @inheritParams ceplane_plot_base.bcea
-#' 
 #' @return For plotly returns a plot in the Viewer
 #' @importFrom plotly toRGB plot_ly add_trace layout config
 #' @export
 #' 
 ceplane_plot_plotly.bcea <- function(he,
                                      wtp = 25000,
-                                     graph_params,
-                                     pos_legend) {
+                                     pos_legend,
+                                     graph_params) {
   
   comp_label <-
     paste(he$interventions[he$ref], "vs", he$interventions[he$comp])
@@ -222,7 +221,6 @@ ceplane_plot_plotly.bcea <- function(he,
 }
 
 
-#' @rdname ceplane_plot_graph
 #' @export
 #' 
 ceplane_plot_plotly <- function(he, ...) {

@@ -1,11 +1,13 @@
 
-#' prep_ceplane_params
+#' Prepare CE-plane Parameters
 #'
-#' In ggplot format, combine user supplied with defaults.
+#' In ggplot format, combine user-supplied
+#' parameters with defaults.
 #'
-#' @param he 
-#' @param wtp
-#' @param ... 
+#' @template args-he
+#' @param wtp Willingness-to-pay
+#' @param ... Additional arguments
+#' @importFrom grDevices grey.colors
 #'
 #' @return
 #' @export
@@ -52,3 +54,4 @@ prep_ceplane_params <- function(he, wtp, ...) {
   
   modifyList(default_params, graph_params)
 }
+

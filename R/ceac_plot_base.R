@@ -3,15 +3,15 @@
 #'
 #' Choice of base R, ggplot2 or plotly.
 #' @name ceac_plot_graph
+#' 
+#' @template args-he
+#' @param pos_legend Legend position
+#' @param graph_params Aesthetic ggplot parameters
+#' @param ... Additional arguments
 NULL
 
 
 #' @rdname ceac_plot_graph
-#' 
-#' @template args-he 
-#' @param pos_legend Legend position
-#' @param graph_params Aesthetic ggplot parameters
-#' @param ... Additional arguments
 #' @keywords hplot
 #' 
 #' @export
@@ -24,7 +24,6 @@ ceac_plot_base <- function(he,
 
 
 #' @rdname ceac_plot_graph
-#' @inheritParams ceac_plot_base
 #' @keywords hplot
 #' 
 #' @export
@@ -40,7 +39,6 @@ ceac_plot_base.pairwise <- function(he,
 }
 
 #' @rdname ceac_plot_graph
-#' @inheritParams ceac_plot_base
 #' @keywords hplot
 #' 
 #' @export
@@ -56,9 +54,10 @@ ceac_plot_base.bcea <- function(he,
 }
 
 #' @noRd
-#' @inheritParams ceac_plot_base
-#' @param ceac
+#' @inheritParams ceac_plot_graph
+#' @param ceac ceac index in he
 #' @keywords hplot
+#' @importFrom graphics matplot legend
 #' 
 #' @export
 #' 

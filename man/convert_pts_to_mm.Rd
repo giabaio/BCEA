@@ -2,10 +2,13 @@
 % Please edit documentation in R/convert_pts_to_mm.R
 \name{convert_pts_to_mm}
 \alias{convert_pts_to_mm}
-\title{use for base to ggplot}
+\title{Use for Base to ggplot}
 \usage{
 convert_pts_to_mm(x)
 }
+\arguments{
+\item{x}{pts}
+}
 \description{
-use for base to ggplot
+Use for Base to ggplot
 }

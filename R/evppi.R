@@ -168,6 +168,12 @@
 #' points(x1$k, x1$evppi, type = "l", col = "red")
 #' points(x2$k, x2$evppi, type = "l", col = "blue")
 #' 
-evppi <- function(he, param_idx, input, N = NULL, plot = FALSE, residuals = TRUE,...)
+evppi <- function(he,
+                  param_idx,
+                  input,
+                  N = NULL,
+                  plot = FALSE,
+                  residuals = TRUE,
+                  ...)
   UseMethod("evppi", he)
 

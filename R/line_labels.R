@@ -5,7 +5,7 @@ line_labels <- function(he, ...) UseMethod("line_labels", he)
 
 #' @export
 #' 
-line_labels.default <- function(he) {
+line_labels.default <- function(he, ...) {
   
   if (he$n_comparisons == 1) return("")
   
@@ -15,6 +15,6 @@ line_labels.default <- function(he) {
 
 #' @export
 #' 
-line_labels.pairwise <- function(he) {
+line_labels.pairwise <- function(he, ...) {
   he$interventions
 }

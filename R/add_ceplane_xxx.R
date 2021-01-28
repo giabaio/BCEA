@@ -1,5 +1,6 @@
 
-#
+#' @importFrom graphics axis
+#' 
 add_ceplane_setup <- function(plot_params) {
   
   do.call("plot",
@@ -9,7 +10,8 @@ add_ceplane_setup <- function(plot_params) {
   axis(2)
 }
 
-#
+#' @importFrom graphics polygon
+#' 
 add_ceplane_polygon <- function(plot_params) {
   
   do.call("polygon",
@@ -18,7 +20,8 @@ add_ceplane_polygon <- function(plot_params) {
   box()
 }
 
-#
+#' @importFrom graphics matplot
+#' 
 add_ceplane_points <- function(he,
                                plot_params) {
   do.call("matplot",
@@ -29,7 +32,8 @@ add_ceplane_points <- function(he,
           quote = TRUE)
 }
 
-#
+#' @importFrom graphics text points
+#' 
 add_ceplane_icer <- function(he,
                              plot_params) {
   
@@ -45,7 +49,8 @@ add_ceplane_icer <- function(he,
           quote = TRUE)
 }
 
-#
+#' @importFrom graphics text
+#' 
 add_ceplane_k_txt <- function(plot_params) {
   
   k_equals_txt <-
@@ -62,13 +67,15 @@ add_ceplane_k_txt <- function(plot_params) {
             plot_params$k_txt))
 }
 
-#
+#' @importFrom graphics legend
+#' 
 add_ceplane_legend <- function(legend_params) {
   
   do.call(legend, legend_params)
 }
 
-#
+#' @importFrom graphics abline
+#' 
 add_axes <- function() {
   
   abline(h = 0, v = 0, col = "dark grey")

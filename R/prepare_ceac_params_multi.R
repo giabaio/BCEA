@@ -1,7 +1,9 @@
 
 ##TODO: I can't find where this is used?...
 #
-prepare_ceac_params_multi <- function(...) {
+prepare_ceac_params_multi <- function(he,
+                                      pos,
+                                      ...) {
   
   alt.legend <- pos
   lty <- rep(1:6, ceiling(he$n_comparators/6))[1:he$n_comparators]

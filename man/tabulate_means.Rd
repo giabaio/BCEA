@@ -4,7 +4,7 @@
 \alias{tabulate_means}
 \title{Calculate Dataset For ICERs From bcea Object}
 \usage{
-tabulate_means(he, comp_label = NULL)
+tabulate_means(he, comp_label = NULL, ...)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian

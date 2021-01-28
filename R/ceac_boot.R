@@ -1,5 +1,10 @@
 
-#
+#' IB Bootstrapping
+#' 
+#' @template args-he
+#' @param k Willingness to pay
+#' @param R
+#' 
 ib_boot <- function (he, k, R) {
   
   k_idx <- which(he$k == k)
@@ -15,6 +20,14 @@ ib_boot <- function (he, k, R) {
 }
 
 
+#' CEAC Bootstrapping
+#' 
+#' @template args-he
+#' @param R
+#' 
+#' @importFrom stats quantile
+#' 
+#' @examples 
 #' res <- ceac_boot(he, R)
 #'
 #' plot(res[, 1] , type = "l")
@@ -22,7 +35,7 @@ ib_boot <- function (he, k, R) {
 #'
 ceac_boot <- function(he, R) {
   
-  res <- matrix(, nrow = length(he$k), ncol = 2)
+  ci <- matrix(, nrow = length(he$k), ncol = 2)
   
   for (i in seq_along(he$k)) {
     

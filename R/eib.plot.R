@@ -1,7 +1,7 @@
 
 #' @rdname eib.plot
+#' @importFrom graphics lines
 #' @export
-#' @inheritParams eib.plot
 #' 
 eib.plot.bcea <- function(he,
                           comparison = NULL,

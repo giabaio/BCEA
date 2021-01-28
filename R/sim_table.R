@@ -61,7 +61,7 @@ sim_table <- function(he, ...) UseMethod("sim_table", he)
 #' @rdname sim_table
 #' 
 sim_table.bcea <- function(he,
-                           wtp = 25000) {
+                           wtp = 25000, ...) {
   
   wtp <- min(wtp, he$Kmax)
   

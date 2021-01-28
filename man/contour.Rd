@@ -76,6 +76,42 @@ Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
 of the bivariate density of the differentials of cost (y-axis) and
 effectiveness (x-axis).
 }
+\examples{
+data(Vaccine)
+
+# Runs the health economic evaluation using BCEA
+m <- bcea(e=e,
+          c=c,              # defines the variables of 
+                            #  effectiveness and cost
+      ref=2,                # selects the 2nd row of (e,c) 
+                            #  as containing the reference intervention
+      interventions=treats, # defines the labels to be associated 
+                            #  with each intervention
+      Kmax=50000,           # maximum value possible for the willingness 
+                            #  to pay threshold; implies that k is chosen 
+                            #  in a grid from the interval (0,Kmax)
+      plot=TRUE             # plots the results
+)
+
+contour(m)
+contour(m, graph = "ggplot2")
+
+# Plots the contour and scatterplot of the bivariate 
+# distribution of (Delta_e, Delta_c)
+contour(m,          # uses the results of the economic evaluation 
+                    #  (a "bcea" object)
+      comparison=1, # if more than 2 interventions, selects the 
+                    #  pairwise comparison 
+      nlevels=4,    # selects the number of levels to be 
+                    #  plotted (default=4)
+      levels=NULL,  # specifies the actual levels to be plotted 
+                    #  (default=NULL, so that R will decide)
+      scale=0.5,    # scales the bandwidths for both x- and 
+                    #  y-axis (default=0.5)
+      graph="base"  # uses base graphics to produce the plot
+)
+
+}
 \references{
 Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 Analysis in Health Economics. Statistical Methods in Medical Research

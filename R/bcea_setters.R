@@ -57,6 +57,6 @@
 
 #' @export
 #'
-'setKmax<-.default' <- function(he, ref) {
+'setKmax<-.default' <- function(he, value) {
   stop("No method available.")
 }

@@ -2,10 +2,22 @@
 % Please edit documentation in R/ceplane_ggplot_params.R
 \name{ceplane_ggplot_params}
 \alias{ceplane_ggplot_params}
-\title{ceplane_ggplot_params}
+\title{CE-plane ggplot Parameters}
 \usage{
 ceplane_ggplot_params(he, wtp, pos_legend, graph_params, ...)
 }
+\arguments{
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
+
+\item{wtp}{Willingness to pay}
+
+\item{pos_legend}{Position of legend}
+
+\item{graph_params}{Other graphical parameters}
+
+\item{...}{Additional arguments}
+}
 \description{
-ceplane_ggplot_params
+CE-plane ggplot Parameters
 }

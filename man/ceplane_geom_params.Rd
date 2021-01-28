@@ -2,10 +2,13 @@
 % Please edit documentation in R/ceplane_geom_params.R
 \name{ceplane_geom_params}
 \alias{ceplane_geom_params}
-\title{extract separate parameter sets}
+\title{Extract Separate Parameter Sets}
 \usage{
 ceplane_geom_params(...)
 }
+\arguments{
+\item{...}{Additional arguments}
+}
 \description{
-extract separate parameter sets
+Extract Separate Parameter Sets
 }

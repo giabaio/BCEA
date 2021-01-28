@@ -4,16 +4,16 @@
 \alias{summary.bcea}
 \title{Summary Method for Objects of Class \code{bcea}}
 \usage{
-\method{summary}{bcea}(he, wtp = 25000, ...)
+\method{summary}{bcea}(object, wtp = 25000, ...)
 }
 \arguments{
-\item{he}{A \code{bcea} object containing the results of the Bayesian
-modelling and the economic evaluation.}
-
 \item{wtp}{The value of the willingness to pay threshold used in the
 summary table.}
 
 \item{...}{Additional arguments affecting the summary produced.}
+
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
 }
 \value{
 Prints a summary table with some information on the health economic
@@ -26,7 +26,7 @@ evaluation.
 \examples{
 data(Vaccine)
 
-he <- bcea(e,c, interventions = treats, ref = 2)
+he <- bcea(e, c, interventions = treats, ref = 2)
 summary(he)
 
 }

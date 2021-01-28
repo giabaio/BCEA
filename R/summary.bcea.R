@@ -27,11 +27,12 @@
 #' @examples 
 #' data(Vaccine)
 #' 
-#' he <- bcea(e,c, interventions = treats, ref = 2)
+#' he <- bcea(e, c, interventions = treats, ref = 2)
 #' summary(he)
 #' 
-summary.bcea <- function(he,
+summary.bcea <- function(object,
                          wtp = 25000,...) {
+  he <- object
   
   if (max(he$k) < wtp) {
     wtp <- max(he$k)

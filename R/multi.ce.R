@@ -18,6 +18,7 @@
 #'          [mce.plot()],
 #'          [ceaf.plot()]
 #' @keywords "Health economic evaluation" "Multiple comparison"
+#' @importFrom grDevices colors
 #' 
 #' @examples
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 

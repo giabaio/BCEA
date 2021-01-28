@@ -6,7 +6,6 @@
 #' post-processed to give the health economic analysis. The output is stored in
 #' an object of the class "bcea".
 #' 
-#' @aliases bcea bcea.default CEanalysis
 #' @param e An object containing \code{nsim} simulations for the variable of
 #' clinical effectiveness for each intervention being considered. In general it
 #' is a matrix with \code{nsim} rows and \code{nint} columns.
@@ -21,7 +20,10 @@
 #' @param interventions Defines the labels to be associated with each
 #' intervention. By default and if \code{NULL}, assigns labels in the form
 #' "Intervention1", ... , "InterventionT".
-#' @template args-comparison
+#' @param .comparison Selects the comparator, in case of more than two
+#' interventions being analysed. Default as NULL plots all the comparisons
+#' together. Any subset of the possible comparisons can be selected (e.g.,
+#' \code{comparison=c(1,3)} or \code{comparison = 2}).
 #' @param Kmax Maximum value of the willingness to pay to be considered.
 #' Default value is \code{k = 50000}. The willingness to pay is then approximated
 #' on a discrete grid in the interval \code{[0, Kmax]}. The grid is equal to

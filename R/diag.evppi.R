@@ -101,7 +101,9 @@ evppi_residual_plot <- function(evppi,
 }
 
 
-#'
+#' @importFrom graphics par
+#' @importFrom stats qqnorm qqline
+#' 
 evppi_qq_plot <- function(evppi,
                           he,
                           interv) {

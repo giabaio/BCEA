@@ -11,7 +11,8 @@
   bw = nbw,
   n = 512,
   xlim = NULL,
-  graph = c("base", "ggplot2")
+  graph = c("base", "ggplot2"),
+  ...
 )
 }
 \arguments{

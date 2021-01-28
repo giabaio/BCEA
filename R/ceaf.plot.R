@@ -1,15 +1,13 @@
 
-#' Cost-Effectiveness Acceptability Frontier (CEAF) plot
+#' @rdname ceaf.plot
 #' 
-#' Produces a plot the Cost-Effectiveness Acceptability Frontier (CEAF)
-#' against the willingness to pay threshold.
-#' 
-#' @param mce The output of the call to the function \code{\link{multi.ce}}
 #' @param graph A string used to select the graphical engine to use for
 #' plotting. Should (partial-)match the two options \code{"base"} or
 #' \code{"ggplot2"}. Default value is \code{"base"}.
+#' 
 #' @return \item{ceaf}{ A ggplot object containing the plot. Returned only if
 #' \code{graph="ggplot2"}. }
+#' 
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso [bcea()], [multi.ce()]
 #' 
@@ -23,6 +21,7 @@
 #' @concept "Health economic evaluation" "Multiple comparison"
 #' 
 #' @import ggplot2 grid
+#' @importFrom graphics lines
 #' 
 #' @examples
 #' 
@@ -66,15 +65,15 @@
 #' mce <- multi.ce(m)
 #' ceaf.plot(mce)
 #' }
-#' 
-#' @rdname ceaf.plot
+#'  
 #' @export
 #' 
 ceaf.plot.pairwise <- function(mce,
-                               graph = c("base", "ggplot2")) {
+                               graph = c("base", "ggplot2"),
+                               ...) {
   
   graph <- match.arg(graph)
-  base_graphics <- pmatch(graph, c("base", "ggplot2")) != 2
+  base_graphics <- all(pmatch(graph, c("base", "ggplot2")) != 2)
   
   if (!(requireNamespace("ggplot2", quietly = TRUE) &
         requireNamespace("grid", quietly = TRUE))) {
@@ -103,7 +102,7 @@ ceaf.plot.pairwise <- function(mce,
     df <- data.frame(k = mce$k,
                      ceaf = mce$ceaf)
     ggceaf <-
-      ggplot(df, aes(x = k, y = ceaf)) +
+      ggplot(df, aes(x = .data$k, y = .data$ceaf)) +
       theme_bw() +
       geom_line() +
       coord_cartesian(ylim = c(-0.05, 1.05)) +
@@ -126,7 +125,14 @@ ceaf.plot.pairwise <- function(mce,
 }
 
 
-#' @rdname ceaf.plot
+#' Cost-Effectiveness Acceptability Frontier (CEAF) plot
+#' 
+#' Produces a plot the Cost-Effectiveness Acceptability Frontier (CEAF)
+#' against the willingness to pay threshold.
+#' 
+#' @param mce The output of the call to the function \code{\link{multi.ce}}
+#' @param ... Additional arguments
+#' 
 #' @export
 #' 
 ceaf.plot <- function(mce, ...) {

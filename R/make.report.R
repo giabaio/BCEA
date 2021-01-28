@@ -84,7 +84,7 @@ make.report = function(he,
     } else {
       paste0("Report.", ext)}
   
-  psa_sims <- 
+  psa_params <- 
     if (exists("psa_sims", extra_args)) {
       extra_args$psa_sims
     } else {

@@ -5,7 +5,7 @@
 \alias{ceaf.plot}
 \title{Cost-Effectiveness Acceptability Frontier (CEAF) plot}
 \usage{
-\method{ceaf.plot}{pairwise}(mce, graph = c("base", "ggplot2"))
+\method{ceaf.plot}{pairwise}(mce, graph = c("base", "ggplot2"), ...)
 
 ceaf.plot(mce, ...)
 }
@@ -15,6 +15,8 @@ ceaf.plot(mce, ...)
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the two options \code{"base"} or
 \code{"ggplot2"}. Default value is \code{"base"}.}
+
+\item{...}{Additional arguments}
 }
 \value{
 \item{ceaf}{ A ggplot object containing the plot. Returned only if
@@ -66,7 +68,7 @@ m <- bcea(e, c, ref = 4, intervention = treats, Kmax = 500, plot = FALSE)
 mce <- multi.ce(m)
 ceaf.plot(mce)
 }
-
+ 
 }
 \references{
 Baio G, Dawid AP. (2011). Probabilistic Sensitivity

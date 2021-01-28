@@ -5,7 +5,7 @@
 \title{Summary Plot of the Health Economic Analysis}
 \usage{
 \method{plot}{bcea}(
-  he,
+  x,
   comparison = NULL,
   wtp = 25000,
   pos = FALSE,
@@ -14,9 +14,6 @@
 )
 }
 \arguments{
-\item{he}{A \code{bcea} object containing the results of the Bayesian
-modelling and the economic evaluation.}
-
 \item{comparison}{Selects the comparator, in case of more than two
 interventions being analysed. Default as NULL plots all the comparisons
 together. Any subset of the possible comparisons can be selected (e.g.,
@@ -42,6 +39,9 @@ functions.  Arguments like \code{size}, \code{ICER.size} and \code{plot.cri}
 can be supplied to the functions in this way. In addition if
 \code{graph="ggplot2"} and the arguments are named theme objects they will
 be added to each plot.}
+
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
 }
 \value{
 A plot with four graphical summaries of the health economic evaluation.
