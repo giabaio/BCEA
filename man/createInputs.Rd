@@ -2,15 +2,38 @@
 % Please edit documentation in R/CreateInputs.R
 \name{create_inputs_evpi}
 \alias{create_inputs_evpi}
+\alias{createInputs}
+\alias{createInputs.rjags}
+\alias{createInputs.bugs}
+\alias{createInputs.stanfit}
+\alias{createInputs.data.frame}
+\alias{createInputs.matrix}
+\alias{createInputs.numeric}
+\alias{createInputs.default}
 \title{Create Inputs for EVPI Calculation}
 \usage{
 create_inputs_evpi(inputs, print_is_linear_comb = TRUE)
+
+createInputs(inputs, print_is_linear_comb = TRUE)
+
+\method{createInputs}{rjags}(inputs, print_is_linear_comb = TRUE)
+
+\method{createInputs}{bugs}(inputs, print_is_linear_comb = TRUE)
+
+\method{createInputs}{stanfit}(inputs, print_is_linear_comb = TRUE)
+
+\method{createInputs}{data.frame}(inputs, print_is_linear_comb = TRUE)
+
+\method{createInputs}{matrix}(inputs, print_is_linear_comb = TRUE)
+
+\method{createInputs}{numeric}(inputs, print_is_linear_comb = TRUE)
+
+\method{createInputs}{default}(inputs, print_is_linear_comb)
 }
 \arguments{
 \item{inputs}{A \code{rjags}, \code{bugs} or \code{stanfit} object, containing
 the results of a call to either \code{jags}, (under \code{R2jags}), bugs
-(under \code{R2WinBUGS} or \code{R2OpenBUGS}), or \code{stan} (under
-\code{rstan}).}
+(under \code{R2WinBUGS} or \code{R2OpenBUGS}), or \code{stan} (under \code{rstan}).}
 
 \item{print_is_linear_comb}{A TRUE/FALSE indicator. If set to \code{TRUE} (default)
 then prints the output of the procedure trying to assess whether there are
@@ -18,9 +41,10 @@ some parameters that are a linear combination of others (in which case
 they are removed).}
 }
 \value{
-\item{mat}{A data.frame contaning all the simulations for all the
-monitored parameters} \item{parameters}{A character vectors listing the
-names of all the monitored parameters}
+\item{mat}{A data.frame containing all the simulations
+        for all the monitored parameters}
+        \item{parameters}{A character vectors listing the names
+        of all the monitored parameters}
 }
 \description{
 Creates an object containing the matrix with the parameters simulated using
@@ -33,11 +57,9 @@ constant values and removes them to only leave the fundamental parameters
 \code{.csv} or \code{.txt} file (eg as obtained using bootstrapping from a
 non-Bayesian model).
 }
-\examples{
-
-}
 \seealso{
-\code{\link{bcea}}, \code{\link{evppi}}
+\code{\link{bcea}},
+         \code{\link{evppi}}
 }
 \author{
 Gianluca Baio and Mark Strong

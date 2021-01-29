@@ -15,13 +15,6 @@
 #' @param graph A string used to select the graphical engine to use for
 #'   plotting. Should (partial-)match the three options \code{"base"},
 #'   \code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
-#' @param ...  If \code{graph = "ggplot2"} and a named theme object is supplied,
-#'   it will be added to the ggplot object. Additional arguments:
-#'  \itemize{
-#'   \item \code{line_colors}: specifies the line colour(s) - all graph types.
-#'   \item \code{line_types}: specifies the line type(s) as lty numeric values - all graph types.
-#'   \item \code{area_include}: logical, include area under the CEAC curves - plotly only.
-#'   \item \code{area_color}: specifies the AUC colour - plotly only.}
 #'   
 #' @return \item{ceac}{If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 
 #'   a plotly object containing the requested plot. Nothing is returned when \code{graph = "base"},
@@ -130,8 +123,13 @@ ceac.plot.bcea <- function(he,
 #' effectively depending on the willingness to pay value \eqn{k}.
 #' 
 #' @template args-he
-#' @param ...
-#' 
+#' @param ...  If \code{graph = "ggplot2"} and a named theme object is supplied,
+#'   it will be added to the ggplot object. Additional arguments:
+#'  \itemize{
+#'   \item \code{line_colors}: specifies the line colour(s) - all graph types.
+#'   \item \code{line_types}: specifies the line type(s) as lty numeric values - all graph types.
+#'   \item \code{area_include}: logical, include area under the CEAC curves - plotly only.
+#'   \item \code{area_color}: specifies the AUC colour - plotly only.} 
 #' @export
 #' @seealso \code{\link{ceac.plot.bcea}}
 #' 

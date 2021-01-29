@@ -1,12 +1,12 @@
 # evppi() helper functions ------------------------------------------------
 
 
-#' Prepare parameter
+#' Prepare Delta arrays
 #' 
 #' @template args-he 
-#' @param seq_rows 
-#' @param k 
-#' @param l
+#' @param seq_rows Rows of (e,c) to keep
+#' @param k e or c? 1 or 2.
+#' @param l Columns of (e,c) to keep
 #' 
 prep.x <- function(he,
                    seq_rows,
@@ -21,12 +21,12 @@ prep.x <- function(he,
   return(x)
 }
 
-#' GAM Fitting
+#' Gaussian Additive Model Fitting
 #' 
-#' @param parameter
-#' @param inputs
-#' @param x
-#' @param form
+#' @param parameter Parameter
+#' @param inputs Inputs
+#' @param x Response variable
+#' @param form Formula
 #' 
 #' @return List
 #' 
@@ -56,12 +56,12 @@ fit.gam <- function(parameter,
        time = time)
 }
 
-#' GP Fitting
+#' Gaussian Process Fitting
 #' 
-#' @param hyperparams
-#' @param parameter
-#' @param x
-#' @param input.matrix
+#' @param hyperparams Hyperparameters
+#' @param parameter Parameters
+#' @param x Response variable
+#' @param input.matrix Input data matrix
 #' 
 #' @importFrom stats dist dnorm
 #' 
@@ -130,9 +130,19 @@ estimate.hyperparams <- function(x,
   hyperparams
 }
 
+#' Fit Gaussian Process
+#' 
+#' @param parameter Parameters
+#' @param inputs Inputs
+#' @param x x
+#' @param n.sim Number of simulations 
+#'
 #' @importFrom stats dist 
 #' 
-fit.gp <- function(parameter, inputs, x, n.sim) {
+fit.gp <- function(parameter,
+                   inputs,
+                   x,
+                   n.sim) {
   tic <- proc.time()
   p <- length(parameter)
   input.matrix <- as.matrix(inputs[, parameter, drop = FALSE])
@@ -144,6 +154,7 @@ fit.gp <- function(parameter, inputs, x, n.sim) {
   N <- nrow(input.matrix)
   H <- cbind(1, input.matrix)
   q <- ncol(H)
+  
   hyperparams <-
     estimate.hyperparams(
       x = x,
@@ -156,22 +167,25 @@ fit.gp <- function(parameter, inputs, x, n.sim) {
                             upper = TRUE, diag = TRUE))^2))
   Astar <- A + nu.hat * diag(N)
   Astarinv <- chol2inv(chol(Astar))
+  
   rm(Astar)
   gc()
+  
   AstarinvY <- Astarinv %*% x
   tHAstarinv <- t(H) %*% Astarinv
   tHAHinv <- solve(tHAstarinv %*% H)
   betahat <- tHAHinv %*% (tHAstarinv %*% x)
   Hbetahat <- H %*% betahat
   resid <- x - Hbetahat
-  fitted<- Hbetahat + A %*% (Astarinv %*%
-                               resid)
+  fitted <- Hbetahat + A %*% (Astarinv %*% resid)
   AAstarinvH <- A %*% t(tHAstarinv)
-  sigmasqhat <- as.numeric(t(resid) %*% Astarinv %*%
-                             resid)/(N - q - 2)
+  sigmasqhat <-
+    as.numeric(t(resid) %*% Astarinv %*% resid)/(N - q - 2)
+  
   rm(A, Astarinv, AstarinvY, tHAstarinv, tHAHinv,
      Hbetahat, resid, sigmasqhat)
   gc()
+  
   toc <- proc.time() - tic
   time <- toc[3]
   names(time) <- "Time to fit GP regression (seconds)"
@@ -183,6 +197,13 @@ fit.gp <- function(parameter, inputs, x, n.sim) {
 }
 
 #' INLA Fitting
+#'
+#' @param parameter Parameter
+#' @param inputs Inputs
+#' @param x x
+#' @param k k
+#' @param l l
+#'
 #' @importFrom ldr ldr bf pfc
 #' 
 make.proj <- function(parameter,
@@ -201,7 +222,8 @@ make.proj <- function(parameter,
   fit3 <-
     ldr::pfc(scale(inputs[, parameter]), scale.x, bx, structure = "unstr")
   struc <-
-    c("iso", "aniso", "unstr")[which(c(fit1$aic, fit2$aic, fit3$aic) == min(fit1$aic, fit2$aic, fit3$aic))]
+    c("iso", "aniso", "unstr")[
+      which(c(fit1$aic, fit2$aic, fit3$aic) == min(fit1$aic, fit2$aic, fit3$aic))]
   AIC.deg <- array()
   
   for (i in 2:7) {
@@ -234,18 +256,29 @@ make.proj <- function(parameter,
       numdir = 2)
   toc <- proc.time() - tic
   time <- toc[3]
+  
   if(dim.d > 2){
     cur <- c("effects","costs")
     warning(
-    paste("The dimension of the sufficient reduction for the incremental",cur[k],", column",l,", is",dim.d,".
-           Dimensions greater than 2 imply that the EVPPI approximation using INLA may be inaccurate.
-           Full residual checking using diag.evppi is required."))}
+      paste(
+        "The dimension of the sufficient reduction for the incremental",
+        cur[k], ", column", l, ", is", dim.d,
+        ".Dimensions greater than 2 imply that the EVPPI approximation using INLA may be inaccurate.
+        Full residual checking using diag.evppi is required."))
+  }
   names(time) <- "Time to fit find projections (seconds)"
   list(data = comp$R,
        time = time,
        dim = dim.d)
 }
 
+
+#' Plot Mesh
+#' 
+#' @param mesh Mesh
+#' @param data Data
+#' @param plot Plot; logical
+#'
 #' @importFrom utils select.list
 #' @importFrom grDevices dev.off
 #' 
@@ -282,6 +315,14 @@ plot.mesh <- function(mesh, data, plot) {
   }
 }
 
+#' Make Mesh
+#' 
+#' @param data Data
+#' @param convex.inner convex.inner 
+#' @param convex.outer convex.outer 
+#' @param cutoff Cut-off 
+#' @param max.edge Maximum edge 
+#'
 #' @importFrom INLA inla.nonconvex.hull inla.mesh.2d
 #' 
 make.mesh <- function(data,
@@ -297,8 +338,8 @@ make.mesh <- function(data,
   mesh <-
     INLA::inla.mesh.2d(
       loc = data,
-      boundary = list(inner,outer),
-      max.edge = c(max.edge,max.edge),
+      boundary = list(inner, outer),
+      max.edge = c(max.edge, max.edge),
       cutoff = c(cutoff))
   toc <- proc.time() - tic
   time <- toc[3]
@@ -309,6 +350,21 @@ make.mesh <- function(data,
 }
 
 
+#' Fit INLA
+#' 
+#' @param parameter Parameters
+#' @param inputs Inputs
+#' @param x x
+#' @param mesh Mesh 
+#' @param data.scale data.scale 
+#' @param int.ord int.ord 
+#' @param convex.inner convex.inner 
+#' @param convex.outer convex.outer 
+#' @param cutoff Cut-off 
+#' @param max.edge Maximum edge 
+#' @param h.value h.value 
+#' @param family family 
+#'
 #' @importFrom INLA inla inla.spde2.matern inla.stack.data inla.stack.A
 #' @importFrom stats as.formula
 #' 
@@ -394,7 +450,7 @@ fit.inla <- function(parameter,
 
 
 #'
-compute.evppi <- function(he,fit.full) {
+compute.evppi <- function(he, fit.full) {
   EVPPI <- array()
   tic <- proc.time()
   for (i in seq_along(he$k)) {

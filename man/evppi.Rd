@@ -3,13 +3,12 @@
 \name{evppi}
 \alias{evppi}
 \alias{evppi.default}
-\alias{evppi.bcea}
 \title{Expected Value of Perfect Partial Information (EVPPI) for Selected
 Parameters}
 \usage{
 evppi(he, param_idx, input, N = NULL, plot = FALSE, residuals = TRUE, ...)
 
-\method{evppi}{bcea}(he, param_idx, input, N = NULL, plot = FALSE, residuals = TRUE, ...)
+\method{evppi}{default}(he, ...)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
@@ -63,23 +62,11 @@ parameters for which the EVPPI was calculated, used for plotting the EVPPI.}
 \item{fit.e}{The object produced by the model fit for the effects.}
 \item{formula}{The formula used to fit the model.}
 \item{method}{A string indicating the method used to estimate the EVPPI.}
-
-
 }
 \description{
 Calculates the Expected Value of Perfect Partial Information (EVPPI) for
 subsets of parameters. Uses GAM non-parameteric regression for single
 parameter EVPPI and the SPDE-INLA method for larger parameter subsets.
-
-This function has been completely changed and restructured to make it possible to change regression method.
-The method argument can now be given as a list. The first element element in the list is a vector giving the
-regression method for the effects. The second gives the regression method for the costs. The `method' argument
-can also be given as before which then uses the same regression method for all curves.
-All other extra_args can be given as before. 'int.ord' can be updated using the list formulation above to give
-the interactions for each different curve.
-The formula argument for GAM can only be given once, either 'te()' or 's() + s()' as this is
-for computational reasons rather than to aid fit.
-You can still plot the INLA mesh elements but not output the meshes.
 }
 \details{
 The single parameter EVPPI has been calculated using the non-parametric GAM
@@ -175,7 +162,6 @@ points(x2$k, x2$evppi, type = "l", col = "blue")
 plot(x0$k, x0$evppi, type = "l", lwd = 2, lty = 2)
 points(x1$k, x1$evppi, type = "l", col = "red")
 points(x2$k, x2$evppi, type = "l", col = "blue")
-
 
 }
 \references{

@@ -285,11 +285,9 @@ compute_IB <- function(df_ce, k) {
 #' @param df_ce Cost-effectiveness dataframe 
 #' @importFrom stats setNames
 #' 
-#' @return
+#' @return ICER for all comparisons
 #' @export
 #'
-#' @examples
-#' 
 compute_ICER <- function(df_ce) {
   
   comp_names <- comp_names_from_(df_ce)
@@ -307,7 +305,7 @@ compute_ICER <- function(df_ce) {
 
 
 #' Comparison Names From
-#' @param df_ce 
+#' @param df_ce Cost-effectiveness dataframe 
 #'
 comp_names_from_ <- function(df_ce) {
   

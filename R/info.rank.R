@@ -1,14 +1,6 @@
 
-#' Info-Rank Plot
+#' @rdname inf.rank
 #' 
-#' @description 
-#' Produces a plot similar to a Tornado-plot, but based on the analysis of the
-#' EVPPI. For each parameter and value of the willingness-to-pay threshold, a
-#' barchart is plotted to describe the ratio of EVPPI (specific to that
-#' parameter) to EVPI. This represents the relative 'importance' of each
-#' parameter in terms of the expected value of information.
-#' 
-#' @template args-he
 #' @param parameter A vector of parameters for which the individual EVPPI
 #' should be calculated. This can be given as a string (or vector of strings)
 #' of names or a numeric vector, corresponding to the column numbers of
@@ -23,18 +15,7 @@
 #' Includes all parameters by default. 
 #' @param graph A string used to select the graphical enging to use for plotting.
 #' Should (partial-)match one of the two options "base" or "plotly". Default value is "base"
-#' @param ... Additional options. These include graphical parameters that the
-#'   user can specify:
-#'   \itemize{
-#'   \item \code{xlim} = limits of the x-axis; ca = font size for the axis
-#'   label (default = 0.7 of full size).
-#'   \item \code{cn} = font size for the parameter names
-#'   vector (default = 0.7 of full size) - base graphics only.
-#'   \item \code{mai} = margins of the graph (default = c(1.36,1.5,1,1)) - base graphics only.
-#'   \item \code{rel} = logical argument that specifies whether the ratio of
-#'   EVPPI to EVPI (\code{rel=TRUE}, default) or the absolute value of the EVPPI
-#'   should be used for the analysis.
-#'   }
+#' 
 #' @return \item{res}{With base graphics: A data.frame containing the ranking of the parameters
 #'   with the value of the selected summary, for the chosen wtp; with plotly: a plotly object, 
 #'   incorporating in the $rank element the data.frame as above.}
@@ -45,8 +26,8 @@
 #'   uncertainty in that parameter over the decision-making process, in terms of
 #'   how large the expected value of gaining more information is.
 #' @author Anna Heath, Gianluca Baio, Andrea Berardi
-#' @seealso [bcea()],
-#'          [evppi()]
+#' @seealso \code{\link{bcea}},
+#'          \code{\link{evppi}}
 #' 
 #' @references
 #' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
@@ -158,12 +139,13 @@ info.rank.bcea <- function(he,
                         marker = list(color = "royalblue"))
       
       p <- 
-        plotly::layout(p,
-                       xaxis = list(hoverformat = ".2f", title = xlab, range = xlim),
-                       yaxis = list(hoverformat = ".2f", title = ""),
-                       margin = mai,
-                       bargap = space,
-                       title = tit)
+        plotly::layout(
+          p,
+          xaxis = list(hoverformat = ".2f", title = xlab, range = xlim),
+          yaxis = list(hoverformat = ".2f", title = ""),
+          margin = mai,
+          bargap = space,
+          title = tit)
       
       p$rank <- data.frame(parameter = res[order(-res$info), 1],
                            info = res[order(-res$info), 2])
@@ -231,16 +213,16 @@ info.rank.bcea <- function(he,
     
     # Optional inputs
     if (base.graphics) {
-      if (exists("ca", where = extra_args)) {
-        ca <- extra_args$ca
-      } else {
-        ca <- 0.7
-      }
-      if (exists("cn", where = extra_args)) {
-        cn <- extra_args$cn
-      } else {
-        cn <- 0.7
-      }
+      ca <- 
+        if (exists("ca", where = extra_args)) {
+          extra_args$ca
+        } else {0.7}
+      
+      cn <- 
+        if (exists("cn", where = extra_args)) {
+          extra_args$cn
+        } else {0.7}
+      
       xlab <- "Proportion of total EVPI"
       if (exists("rel", where = extra_args)) {
         if (!extra_args$rel) {
@@ -248,18 +230,26 @@ info.rank.bcea <- function(he,
           xlab <- "Absolute value of the EVPPI"
         }
       }
-      if (exists("xlim", where = extra_args)) {
-        xlim <- extra_args$xlim
-      } else {xlim <- c(0, range(scores)[2])}
-      if (exists("mai", where = extra_args)) {
-        mai <- extra_args$mai
-      } else {mai <- c(1.36, 1.5, 1, 1)}
-      if (exists("tit", where = extra_args)) {
-        tit <- extra_args$tit
-      } else {tit <- paste0("Info-rank plot for willingness to pay = ", wtp)}
-      if (exists("space", where = extra_args)) {
-        space <- extra_args$space
-      } else {space <- 0.5}
+      
+      xlim <- 
+        if (exists("xlim", where = extra_args)) {
+          extra_args$xlim
+        } else {c(0, range(scores)[2])}
+      
+      mai <- 
+        if (exists("mai", where = extra_args)) {
+          extra_args$mai
+        } else {c(1.36, 1.5, 1, 1)}
+      
+      tit <- 
+        if (exists("tit", where = extra_args)) {
+          extra_args$tit
+        } else {paste0("Info-rank plot for willingness to pay = ", wtp)}
+      
+      space <- 
+        if (exists("space", where = extra_args)) {
+          extra_args$space
+        } else {0.5}
     } else {
       ca <- NULL
       if (exists("ca", where = extra_args)) {
@@ -276,18 +266,27 @@ info.rank.bcea <- function(he,
           xlab <- "Absolute value of the EVPPI"
         }
       }
-      if (exists("xlim", where = extra_args)) {
-        xlim <- extra_args$xlim
-      } else {xlim <- NULL}
-      if (exists("mai", where = extra_args)) {
-        mai <- extra_args$mai
-      } else {mai <- NULL}
-      if (exists("tit", where = extra_args)) {
-        tit <- extra_args$tit
-      } else {tit <- paste0("Info-rank plot for willingness to pay = ", wtp)}
-      if (exists("space", where = extra_args)) {
-        space = extra_args$space
-      } else {space <- NULL}
+      
+      xlim <- 
+        if (exists("xlim", where = extra_args)) {
+          extra_args$xlim
+        } else {NULL}
+      
+      mai <- 
+        if (exists("mai", where = extra_args)) {
+          extra_args$mai
+        } else {NULL}
+      
+      tit <-
+        if (exists("tit", where = extra_args)) {
+          extra_args$tit
+        } else {
+          paste0("Info-rank plot for willingness to pay = ", wtp)}
+      
+      space <- 
+        if (exists("space", where = extra_args)) {
+          extra_args$space
+        } else {NULL}
     }
     
     make.barplot(
@@ -305,6 +304,28 @@ info.rank.bcea <- function(he,
 }
 
 
+#' Information-Rank Plot
+#' 
+#' Produces a plot similar to a Tornado-plot, but based on the analysis of the
+#' EVPPI. For each parameter and value of the willingness-to-pay threshold, a
+#' barchart is plotted to describe the ratio of EVPPI (specific to that
+#' parameter) to EVPI. This represents the relative 'importance' of each
+#' parameter in terms of the expected value of information.
+#' 
+#' @template args-he
+#' @param ... Additional options. These include graphical parameters that the
+#'   user can specify:
+#'   \itemize{
+#'   \item \code{xlim} = limits of the x-axis; ca = font size for the axis
+#'   label (default = 0.7 of full size).
+#'   \item \code{cn} = font size for the parameter names
+#'   vector (default = 0.7 of full size) - base graphics only.
+#'   \item \code{mai} = margins of the graph (default = c(1.36,1.5,1,1)) - base graphics only.
+#'   \item \code{rel} = logical argument that specifies whether the ratio of
+#'   EVPPI to EVPI (\code{rel=TRUE}, default) or the absolute value of the EVPPI
+#'   should be used for the analysis.
+#'   }
+#' @return a barplot
 #' @export
 #' 
 info.rank <- function(he, ...) {

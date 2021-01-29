@@ -9,11 +9,9 @@
 #' @param ... Additional arguments
 #' @importFrom grDevices grey.colors
 #'
-#' @return
+#' @return List pf graph parameters
 #' @export
 #'
-#' @examples
-#' 
 prep_ceplane_params <- function(he, wtp, ...) {
   
   graph_params <- list(...)

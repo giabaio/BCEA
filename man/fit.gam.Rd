@@ -2,16 +2,22 @@
 % Please edit documentation in R/evppi_helpers.R
 \name{fit.gam}
 \alias{fit.gam}
-\title{GAM Fitting}
+\title{Gaussian Additive Model Fitting}
 \usage{
 fit.gam(parameter, inputs, x, form)
 }
 \arguments{
-\item{form}{}
+\item{parameter}{Parameter}
+
+\item{inputs}{Inputs}
+
+\item{x}{Response variable}
+
+\item{form}{Formula}
 }
 \value{
 List
 }
 \description{
-GAM Fitting
+Gaussian Additive Model Fitting
 }

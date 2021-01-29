@@ -38,7 +38,13 @@ variable, with \code{FALSE} indicating to use the default position and
 plotting. Should (partial-)match the three options \code{"base"},
 \code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.}
 
-\item{...}{}
+\item{...}{If \code{graph = "ggplot2"} and a named theme object is supplied,
+ it will be added to the ggplot object. Additional arguments:
+\itemize{
+ \item \code{line_colors}: specifies the line colour(s) - all graph types.
+ \item \code{line_types}: specifies the line type(s) as lty numeric values - all graph types.
+ \item \code{area_include}: logical, include area under the CEAC curves - plotly only.
+ \item \code{area_color}: specifies the AUC colour - plotly only.}}
 }
 \value{
 \item{ceac}{If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 

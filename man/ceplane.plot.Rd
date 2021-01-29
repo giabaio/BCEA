@@ -2,6 +2,7 @@
 % Please edit documentation in R/ceplane.plot.R
 \name{ceplane.plot.bcea}
 \alias{ceplane.plot.bcea}
+\alias{ceplane.plot}
 \title{Cost-effectiveness Plane Plot}
 \usage{
 \method{ceplane.plot}{bcea}(
@@ -12,6 +13,8 @@
   graph = c("base", "ggplot2", "plotly"),
   ...
 )
+
+ceplane.plot(he, ...)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
@@ -74,13 +77,13 @@ If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"}
   specified, all scatterplots are graphed using different colours.
 }
 \description{
-Produces a scatter plot of the cost-effectiveness plane, together with the
-sustainability area, as a function of the selected willingness to pay
-threshold.
+Produces a scatter plot of the cost-effectiveness plane,
+together with the sustainability area, as a function of
+the selected willingness to pay threshold.
 }
 \details{
 In the plotly version, point_colors, ICER_colors and area_color can also
-be specified as rgba colours using either the \code{\link[plotly]{toRGB}{plotly::toRGB}}
+be specified as rgba colours using either the \code{\link[plotly]{toRGB}}
 function or a rgba colour string, e.g. \code{'rgba(1, 1, 1, 1)'}.
 }
 \examples{
@@ -112,7 +115,8 @@ Statistical Methods in Medical Research. doi:10.1177/0962280211419832.
 Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
-[bcea()]
+\code{\link{bcea}},
+         \code{\link{ceplane_plot_graph}}
 }
 \author{
 Gianluca Baio, Andrea Berardi

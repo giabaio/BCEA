@@ -22,9 +22,9 @@ eib.plot(he, ...)
 modelling and the economic evaluation.}
 
 \item{comparison}{Selects the comparator, in case of more than two
-interventions being analysed.  Default as \code{NULL} plots all the
-comparisons together. Any subset of the possible comparisons can be selected
-(e.g., \code{comparison=c(1,3)} or \code{comparison=2}).}
+interventions being analysed. Default as NULL plots all the comparisons
+together. Any subset of the possible comparisons can be selected (e.g.,
+\code{comparison=c(1,3)} or \code{comparison=2}).}
 
 \item{pos}{Parameter to set the position of the legend; for a single
 comparison plot, the ICER legend position. Can be given in form of a string
@@ -73,13 +73,34 @@ a plotly object containing the requested plot. Nothing is returned when \code{gr
 the default.} The function produces a plot of the
 Expected Incremental Benefit as a function of the discrete grid
 approximation of the willingness to pay parameter. The break even point
-(i.e. the point in which the EIB=0, ie when the optimal decision changes
-from one intervention to another) is also showed by default. The value k* is
+(i.e. the point in which the EIB = 0, i.e. when the optimal decision changes
+from one intervention to another) is also showed by default. The value `k*` is
 the discrete grid approximation of the ICER.
 }
 \description{
 Produces a plot of the Expected Incremental Benefit (EIB) as a function of
 the willingness to pay.
+}
+\examples{
+data(Vaccine)
+ 
+# Runs the health economic evaluation using BCEA
+m <- bcea(
+      e=e,
+      c=c,                  # defines the variables of 
+                            #  effectiveness and cost
+      ref=2,                # selects the 2nd row of (e, c) 
+                            #  as containing the reference intervention
+      interventions=treats, # defines the labels to be associated 
+                            #  with each intervention
+      Kmax=50000,           # maximum value possible for the willingness 
+                            #  to pay threshold; implies that k is chosen 
+                            #  in a grid from the interval (0, Kmax)
+      plot=TRUE             # plots the results
+)
+eib.plot(m)
+eib.plot(m, graph = "ggplot2") + ggplot2::theme_linedraw()
+
 }
 \references{
 Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity

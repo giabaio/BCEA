@@ -5,9 +5,7 @@
 #' 
 #' @param plotlist List of ggplot objects
 #' @param cols Number of columns
-#' @param layout Matrix
-#' @param extra_args List of plotting arguments
-#' @param ... Potential further arguments
+#' @param layout_config Matrix of plot configuration
 #' @return ggplot TableGrob object
 #' 
 #' @importFrom gridExtra grid.arrange

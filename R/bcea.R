@@ -6,12 +6,14 @@
 #' post-processed to give the health economic analysis. The output is stored in
 #' an object of the class "bcea".
 #' 
-#' @param e An object containing \code{nsim} simulations for the variable of
+#' @param eff An object containing \code{nsim} simulations for the variable of
 #' clinical effectiveness for each intervention being considered. In general it
 #' is a matrix with \code{nsim} rows and \code{nint} columns.
-#' @param c An object containing \code{nsim} simulations for the variable of
+#' This are partially matched with `e` from previous version of `BCEA` for back-compatibility.
+#' @param cost An object containing \code{nsim} simulations for the variable of
 #' cost for each intervention being considered. In general it is a matrix with
 #' \code{nsim} rows and \code{nint} columns.
+#' This are partially matched with `c` from previous version of `BCEA` for back-compatibility.
 #' @param ref Defines which intervention (columns of \code{e} or \code{c}) is
 #' considered to be the reference strategy. The default value \code{ref = 1}
 #' means that the intervention associated with the first column of \code{e} or
@@ -220,13 +222,13 @@
 #' 
 #' @export
 #' 
-bcea <- function(e,
-                 c,
+bcea <- function(eff,
+                 cost,
                  ref = 1,
                  interventions = NULL,
                  .comparison = NULL,
                  Kmax = 50000,
                  wtp = NULL,
                  plot = FALSE)
-  UseMethod("bcea", e)
+  UseMethod("bcea", eff)
 

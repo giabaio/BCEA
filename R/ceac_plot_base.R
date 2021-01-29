@@ -53,7 +53,9 @@ ceac_plot_base.bcea <- function(he,
                "ceac")
 }
 
-#' @noRd
+
+#' CEAC Matrix Plot
+#' 
 #' @inheritParams ceac_plot_graph
 #' @param ceac ceac index in he
 #' @keywords hplot

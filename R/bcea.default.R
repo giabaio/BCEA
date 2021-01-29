@@ -14,12 +14,6 @@ bcea.default <- function(eff,
                          wtp = NULL,
                          plot = FALSE) {
   
-  ##TODO: S3 only dispatches on the first argument so how does e and c work? change to list?
-  ##      in fact why is this S3?
-  ##TODO: how to check that e and c are the right way round?
-  ##TODO: can we dispatch directly on jags/BUGS output?
-  
-  
   if (!is.matrix(cost) | !is.matrix(eff))
     stop("eff and cost must be matrices.", call. = FALSE)
   

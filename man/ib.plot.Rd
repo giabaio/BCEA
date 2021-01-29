@@ -2,6 +2,7 @@
 % Please edit documentation in R/ib.plot.R
 \name{ib.plot.bcea}
 \alias{ib.plot.bcea}
+\alias{ib.plot}
 \title{Incremental Benefit (IB) Distribution Plot}
 \usage{
 \method{ib.plot}{bcea}(
@@ -14,6 +15,8 @@
   graph = c("base", "ggplot2"),
   ...
 )
+
+ib.plot(he, ...)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
@@ -37,6 +40,8 @@ estimated.}
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the two options \code{"base"} or
 \code{"ggplot2"}. Default value is \code{"base"}.}
+
+\item{...}{Additional arguments}
 }
 \value{
 \item{ib}{ A ggplot object containing the requested plot. Returned
@@ -58,9 +63,9 @@ doi:10.1177/0962280211419832.
 Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
-[bcea()],
-         [ib.plot()],
-         [ceplane.plot()]
+\code{\link{bcea}},
+         \code{\link{ib.plot}},
+         \code{\link{ceplane.plot}}
 }
 \author{
 Gianluca Baio, Andrea Berardi

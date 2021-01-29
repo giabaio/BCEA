@@ -19,6 +19,7 @@
 #' @param ...  Arguments to be passed to methods, such as graphical parameters
 #' (see \code{\link{par}}).
 #' @return Plot with base R or ggplot 2.
+#' @import grid ggplot2
 #' 
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}}, \code{\link{evppi}}
@@ -90,9 +91,9 @@ plot.evppi <- function (x,
       cmd <- paste("EVPPI for ", x$params, sep = "")
     }
     
-    if (length(x$index) > 1 &
-        (x$method == "Strong & Oakley (univariate)" || 
-         x$method == "Sadatsafavi et al")) {
+    if (length(x$index) > 1 &&
+        (("Strong & Oakley (univariate)" %in% x$method) || 
+         ("Sadatsafavi et al" %in% x$method))) {
       for (i in seq_along(x$index)) {
         points(x$k,
                x$evppi[[i]],

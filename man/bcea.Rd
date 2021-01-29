@@ -6,8 +6,8 @@
 \title{Create Bayesian Cost-Effectiveness Analysis Object}
 \usage{
 bcea(
-  e,
-  c,
+  eff,
+  cost,
   ref = 1,
   interventions = NULL,
   .comparison = NULL,
@@ -28,13 +28,15 @@ bcea(
 )
 }
 \arguments{
-\item{e}{An object containing \code{nsim} simulations for the variable of
+\item{eff}{An object containing \code{nsim} simulations for the variable of
 clinical effectiveness for each intervention being considered. In general it
-is a matrix with \code{nsim} rows and \code{nint} columns.}
+is a matrix with \code{nsim} rows and \code{nint} columns.
+This are partially matched with `e` from previous version of `BCEA` for back-compatibility.}
 
-\item{c}{An object containing \code{nsim} simulations for the variable of
+\item{cost}{An object containing \code{nsim} simulations for the variable of
 cost for each intervention being considered. In general it is a matrix with
-\code{nsim} rows and \code{nint} columns.}
+\code{nsim} rows and \code{nint} columns.
+This are partially matched with `c` from previous version of `BCEA` for back-compatibility.}
 
 \item{ref}{Defines which intervention (columns of \code{e} or \code{c}) is
 considered to be the reference strategy. The default value \code{ref = 1}

@@ -11,6 +11,8 @@ tabulate_means(he, comp_label = NULL, ...)
 modelling and the economic evaluation.}
 
 \item{comp_label}{Optional vector of strings with comparison labels}
+
+\item{...}{Additional arguments}
 }
 \value{
 A data.frame object including mean outcomes, comparison identifier,

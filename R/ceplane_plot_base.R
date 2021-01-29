@@ -25,6 +25,8 @@ ceplane_plot_base.bcea <- function(he,
   add_ceplane_legend(legend_params)
 }
 
+
+#' @rdname ceplane_plot_graph
 #' @export
 #' 
 ceplane_plot_base <- function(he, ...) {

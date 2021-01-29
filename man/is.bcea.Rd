@@ -4,7 +4,11 @@
 \alias{is.bcea}
 \title{Check bcea Class}
 \usage{
-is.bcea(x)
+is.bcea(he)
+}
+\arguments{
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
 }
 \value{
 \code{is.bcea} returns TRUE or FALSE depending on whether its argument is a bcea class object.

@@ -9,7 +9,8 @@
 #' overriding its default for \code{pos=FALSE}, since multiple ggplot2 plots
 #' are rendered in a slightly different way than single plots.
 #' 
-#' @template args-he 
+#' @param x A \code{bcea} object containing the results of the Bayesian
+#' modelling and the economic evaluation.
 #' @template args-comparison
 #' @param wtp The value of the willingness to pay parameter. It is passed to
 #' \code{\link{ceplane.plot}}.

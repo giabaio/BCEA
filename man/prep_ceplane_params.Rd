@@ -15,12 +15,9 @@ modelling and the economic evaluation.}
 \item{...}{Additional arguments}
 }
 \value{
-
+List pf graph parameters
 }
 \description{
 In ggplot format, combine user-supplied
 parameters with defaults.
-}
-\examples{
-
 }

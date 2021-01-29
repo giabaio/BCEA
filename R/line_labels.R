@@ -1,8 +1,13 @@
 
+#' Create Labels for Plot
+#' @template args-he
+#' @param ... Additional arguments
 #' @export
 #' 
 line_labels <- function(he, ...) UseMethod("line_labels", he)
 
+
+#' @rdname line_labels
 #' @export
 #' 
 line_labels.default <- function(he, ...) {
@@ -13,8 +18,11 @@ line_labels.default <- function(he, ...) {
         he$interventions[he$comp])
 }
 
+
+#' @rdname line_labels
 #' @export
 #' 
 line_labels.pairwise <- function(he, ...) {
   he$interventions
 }
+

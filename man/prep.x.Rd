@@ -2,7 +2,7 @@
 % Please edit documentation in R/evppi_helpers.R
 \name{prep.x}
 \alias{prep.x}
-\title{Prepare parameter}
+\title{Prepare Delta arrays}
 \usage{
 prep.x(he, seq_rows, k, l)
 }
@@ -10,12 +10,12 @@ prep.x(he, seq_rows, k, l)
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
-\item{seq_rows}{}
+\item{seq_rows}{Rows of (e,c) to keep}
 
-\item{k}{}
+\item{k}{e or c? 1 or 2.}
 
-\item{l}{}
+\item{l}{Columns of (e,c) to keep}
 }
 \description{
-Prepare parameter
+Prepare Delta arrays
 }

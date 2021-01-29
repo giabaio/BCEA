@@ -102,8 +102,8 @@ struct.psa <- function(models,
   
   # perform the economic analysis on the averaged model
   he <-
-    bcea(e = e,
-         c = c,
+    bcea(eff = e,
+         cost = c,
          ref = ref,
          interventions = interventions,
          Kmax = Kmax,

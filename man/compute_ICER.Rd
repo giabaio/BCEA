@@ -10,14 +10,11 @@ compute_ICER(df_ce)
 \item{df_ce}{Cost-effectiveness dataframe}
 }
 \value{
-
+ICER for all comparisons
 }
 \description{
 Defined as
 }
 \details{
 \deqn{ICER = \Delta_c/\Delta_e}
-}
-\examples{
-
 }

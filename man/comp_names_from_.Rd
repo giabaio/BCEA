@@ -7,7 +7,7 @@
 comp_names_from_(df_ce)
 }
 \arguments{
-\item{df_ce}{}
+\item{df_ce}{Cost-effectiveness dataframe}
 }
 \description{
 Comparison Names From

@@ -1,19 +1,10 @@
 
-#' Expected Value of Information (EVI) Plot
+#' @rdname evi.plot
 #' 
-#' Plots the Expected Value of Information (EVI) against the willingness to pay.
-#' 
-#' @template args-he
 #' @param graph A string used to select the graphical engine to use for
 #' plotting. Should (partial-)match the three options \code{"base"},
 #' \code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
-#' @param ... Additional graphical arguments:
-#'   \itemize{
-#'     \item \code{line_colors} to specify the EVPI line colour - all graph types.
-#'     \item \code{line_types} to specify the line type (lty) - all graph types.
-#'     \item \code{area_include} to specify whether to include the area under the
-#'     EVPI curve - plotly only.
-#'     \item \code{area_color} to specify the area under the colour curve - plotly only.}
+#' 
 #' @return \item{eib}{ If \code{graph="ggplot2"} a ggplot object, or if \code{graph="plotly"} 
 #'   a plotly object containing the requested plot. Nothing is returned when \code{graph="base"}, 
 #'   the default.} The function produces a plot of the
@@ -22,9 +13,9 @@
 #'   (i.e. the point in which the EIB=0, ie when the optimal decision changes
 #'   from one intervention to another) is(are) also showed.
 #' @author Gianluca Baio, Andrea Berardi
-#' @seealso [bcea()],
-#'          [ceac.plot()],
-#'          [ceplane.plot()]
+#' @seealso \code{\link{bcea}},
+#'          \code{\link{ceac.plot}},
+#'          \code{\link{ceplane.plot}}
 #' 
 #' @references
 #' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
@@ -40,7 +31,7 @@ evi.plot.bcea <- function(he,
                           ...) {
 
     # choose graphical engine -----
-  if (is.null(graph) || is.na(graph)) 
+  if (any(is.null(graph)) || any(is.na(graph))) 
     graph = "base"
   graph_choice <- pmatch(graph[1], c("base", "ggplot2", "plotly"), nomatch = 1)
   if (graph_choice == 2 &&
@@ -216,6 +207,19 @@ evi.plot.bcea <- function(he,
 }
 
 
+#' Expected Value of Information (EVI) Plot
+#' 
+#' Plots the Expected Value of Information (EVI) against the willingness to pay.
+#' 
+#' @template args-he
+#' @param ... Additional graphical arguments:
+#'   \itemize{
+#'     \item \code{line_colors} to specify the EVPI line colour - all graph types.
+#'     \item \code{line_types} to specify the line type (lty) - all graph types.
+#'     \item \code{area_include} to specify whether to include the area under the
+#'     EVPI curve - plotly only.
+#'     \item \code{area_color} to specify the area under the colour curve - plotly only.}
+#'     
 #' @export
 #' 
 evi.plot <- function(he, ...) {

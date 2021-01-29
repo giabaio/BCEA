@@ -1,18 +1,17 @@
 
-#' evppi.default
+#' @rdname evppi
 #'
 #' This function has been completely changed and restructured to make it possible to change regression method.
 #' The method argument can now be given as a list. The first element element in the list is a vector giving the
-#' regression method for the effects. The second gives the regression method for the costs. The `method' argument
-#' can also be given as before which then uses the same regression method for all curves.
+#' regression method for the effects. The second gives the regression method for the costs.
+#' The `method' argument can also be given as before which then uses the same regression method for all curves.
 #' All other extra_args can be given as before. 'int.ord' can be updated using the list formulation above to give
 #' the interactions for each different curve.
 #' The formula argument for GAM can only be given once, either 'te()' or 's() + s()' as this is
 #' for computational reasons rather than to aid fit.
 #' You can still plot the INLA mesh elements but not output the meshes.
 #' 
-#' @rdname evppi
-#' @return
+#' @return Object of class evppi
 #' @export
 #'
 #' @examples
@@ -340,8 +339,7 @@ evppi.bcea <- function(he,
       if (!exists("n.blocks", where = extra_args)) {
         stop("Please specify the param_idx 'n.blocks' to use the Strong and Oakley univariate method",
              call. = FALSE)
-      }
-      else {
+      } else {
         n.blocks <- extra_args$n.blocks
       }
       S <- he$n_sim
@@ -631,6 +629,7 @@ evppi.bcea <- function(he,
   structure(res, class = "evppi")
 }
 
+#' @rdname evppi
 #' @export
 #' 
 evppi.default <- function(he, ...) {

@@ -34,7 +34,8 @@ Imports:
     gridExtra
 Depends:
     R (>= 3.5.0)
-Suggests: 
+Suggests:
+    RColorBrewer,
     grid,
     mgcv,
     R2jags,
@@ -43,9 +44,11 @@ Suggests:
     testthat (>= 2.1.0),
     vdiffr
 Additional_repositories: https://inla.r-inla-download.org/R/stable/
-Description: Produces an economic evaluation of a sample of suitable variables of cost and effectiveness / utility for two or more interventions,
+Description: Produces an economic evaluation of a sample of suitable variables of
+             cost and effectiveness / utility for two or more interventions,
              e.g. from a Bayesian model in the form of MCMC simulations.
-             This package computes the most cost-effective alternative and produces graphical summaries and probabilistic sensitivity analysis.
+             This package computes the most cost-effective alternative and
+             produces graphical summaries and probabilistic sensitivity analysis.
 License: GPL-3
 URL: http://www.statistica.it/gianluca/BCEA,
      http://www.statistica.it/gianluca,
@@ -54,3 +57,4 @@ NeedsCompilation: no
 RoxygenNote: 7.1.1
 Encoding: UTF-8
 VignetteBuilder: knitr
+

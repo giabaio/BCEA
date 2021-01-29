@@ -1,10 +1,6 @@
 
-#' Incremental Benefit (IB) Distribution Plot
-#' 
-#' Plots the distribution of the Incremental Benefit (IB) for a given value of
-#' the willingness to pay threshold.
-#' 
-#' @template args-he
+#' @rdname ib.plot
+#'
 #' @param comparison In the case of multiple interventions, specifies the one
 #' to be used in comparison with the reference. Default value of \code{NULL}
 #' forces R to consider the first non-reference intervention as the comparator.
@@ -26,9 +22,9 @@
 #' distribution (ie when the reference is more cost-effective than the
 #' comparator).
 #' @author Gianluca Baio, Andrea Berardi
-#' @seealso [bcea()],
-#'          [ib.plot()],
-#'          [ceplane.plot()]
+#' @seealso \code{\link{bcea}},
+#'          \code{\link{ib.plot}},
+#'          \code{\link{ceplane.plot}}
 #' 
 #' @references
 #' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
@@ -237,6 +233,13 @@ ib.plot.bcea <- function(he,
 }
 
 
+#' Incremental Benefit (IB) Distribution Plot
+#' 
+#' Plots the distribution of the Incremental Benefit (IB) for a given value of
+#' the willingness to pay threshold.
+#' 
+#' @template args-he
+#' @param ... Additional arguments
 #' @export
 #' 
 ib.plot <- function(he, ...) {

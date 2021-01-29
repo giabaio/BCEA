@@ -1,5 +1,9 @@
 
-#' legend positioning not great - must be customized case by case
+#' Legend Positioning
+#' 
+#' @param pos_legend Position of legend
+#' @return String
+#'
 #' @export
 #' 
 make_legend_plotly <- function(pos_legend) {

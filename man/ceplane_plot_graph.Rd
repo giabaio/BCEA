@@ -3,16 +3,25 @@
 %   R/ceplane_plot_graph.R, R/ceplane_plot_plotly.R
 \name{ceplane_plot_base.bcea}
 \alias{ceplane_plot_base.bcea}
+\alias{ceplane_plot_base}
 \alias{ceplane_plot_ggplot.bcea}
+\alias{ceplane_plot_ggplot}
 \alias{ceplane_plot_graph}
 \alias{ceplane_plot_plotly.bcea}
+\alias{ceplane_plot_plotly}
 \title{Cost-Effectiveness Plane Plot By Graph Device}
 \usage{
 \method{ceplane_plot_base}{bcea}(he, wtp = 25000, pos_legend, graph_params, ...)
 
+ceplane_plot_base(he, ...)
+
 \method{ceplane_plot_ggplot}{bcea}(he, wtp = 25000, pos_legend, graph_params, ...)
 
-\method{ceplane_plot_plotly}{bcea}(he, wtp = 25000, pos_legend, graph_params)
+ceplane_plot_ggplot(he, ...)
+
+\method{ceplane_plot_plotly}{bcea}(he, wtp = 25000, pos_legend, graph_params, ...)
+
+ceplane_plot_plotly(he, ...)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian

@@ -37,7 +37,6 @@ ceac_plot_ggplot.bcea <- function(he,
               "ceac", ...)
 }
 
-#' @noRd
 #' @rdname ceac_plot_graph
 #' @param ceac ceac index in he
 #' @keywords hplot

@@ -7,6 +7,9 @@
 \method{print}{bcea}(x, digits = getOption("digits"), give.attr = FALSE, no.list = TRUE, ...)
 }
 \arguments{
+\item{x}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
+
 \item{digits}{Minimal number of significant digits, see \code{\link{print.default}}.}
 
 \item{give.attr}{Logical; if TRUE (default), show attributes as sub structures.}
@@ -14,9 +17,6 @@
 \item{no.list}{Logical; if TRUE, no ‘list of ...’ nor the class are printed.}
 
 \item{...}{Potential further arguments.}
-
-\item{he}{A \code{bcea} object containing the results of the Bayesian
-modelling and the economic evaluation.}
 }
 \description{
 bcea Print Method

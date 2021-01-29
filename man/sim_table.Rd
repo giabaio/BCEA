@@ -13,6 +13,8 @@ sim_table(he, ...)
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
+\item{...}{Additional arguments}
+
 \item{wtp}{The value of the willingness to pay threshold to be used in the
 summary table.}
 }

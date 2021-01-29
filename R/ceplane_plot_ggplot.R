@@ -91,6 +91,7 @@ ceplane_plot_ggplot.bcea <- function(he,
 }
 
 
+#' @rdname ceplane_plot_graph
 #' @export
 #' 
 ceplane_plot_ggplot <- function(he, ...) {

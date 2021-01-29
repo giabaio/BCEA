@@ -1,15 +1,18 @@
 
 #' Check bcea Class
+#' @template args-he
 #' @export
 #' 
 #' @return
 #' \code{is.bcea} returns TRUE or FALSE depending on whether its argument is a bcea class object.
 #' 
-is.bcea <- function(x) inherits(x, "bcea")
+is.bcea <- function(he) inherits(he, "bcea")
+
 
 #' bcea Print Method
 #' 
-#' @template args-he
+#' @param x A \code{bcea} object containing the results of the Bayesian
+#'        modelling and the economic evaluation.
 #' @param digits Minimal number of significant digits, see \code{\link{print.default}}.
 #' @param give.attr Logical; if TRUE (default), show attributes as sub structures.
 #' @param no.list Logical; if TRUE, no ‘list of ...’ nor the class are printed.

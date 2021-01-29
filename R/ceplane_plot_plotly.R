@@ -3,6 +3,8 @@
 #'
 #' @template args-he
 #' @param comp_label Optional vector of strings with comparison labels
+#' @param ... Additional arguments
+#' 
 #' @return A data.frame object including mean outcomes, comparison identifier,
 #'   comparison label and associated ICER
 #' 
@@ -35,7 +37,7 @@ tabulate_means <- function(he,
 ceplane_plot_plotly.bcea <- function(he,
                                      wtp = 25000,
                                      pos_legend,
-                                     graph_params) {
+                                     graph_params, ...) {
   
   comp_label <-
     paste(he$interventions[he$ref], "vs", he$interventions[he$comp])
@@ -221,6 +223,9 @@ ceplane_plot_plotly.bcea <- function(he,
 }
 
 
+#' @rdname ceplane_plot_graph
+#' @template args-he
+#' @param ... Additional arguments
 #' @export
 #' 
 ceplane_plot_plotly <- function(he, ...) {

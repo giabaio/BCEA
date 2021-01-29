@@ -1,35 +1,16 @@
 
-#' Create Inputs for EVPI Calculation
+#' @rdname createInputs
 #' 
-#' Creates an object containing the matrix with the parameters simulated using
-#' the MCMC procedure (using JAGS, BUGS or Stan) and a vector of parameters
-#' (strings) that can be used to perform the expected value of partial
-#' information analysis. In the process, \code{CreateInputs} also checks for
-#' linear dependency among columns of the PSA samples or columns having
-#' constant values and removes them to only leave the fundamental parameters
-#' (to run VoI analysis). This also deals with simulations stored in a
-#' \code{.csv} or \code{.txt} file (eg as obtained using bootstrapping from a
-#' non-Bayesian model).
-#' 
-#' @param inputs A \code{rjags}, \code{bugs} or \code{stanfit} object, containing
-#' the results of a call to either \code{jags}, (under \code{R2jags}), bugs
-#' (under \code{R2WinBUGS} or \code{R2OpenBUGS}), or \code{stan} (under
-#' \code{rstan}).
-#' @param print_is_linear_comb A TRUE/FALSE indicator. If set to \code{TRUE} (default)
-#' then prints the output of the procedure trying to assess whether there are
-#' some parameters that are a linear combination of others (in which case
-#' they are removed).
-#' 
-#' @return \item{mat}{A data.frame contaning all the simulations for all the
-#' monitored parameters} \item{parameters}{A character vectors listing the
-#' names of all the monitored parameters}
+#' @return \item{mat}{A data.frame containing all the simulations
+#'         for all the monitored parameters}
+#'         \item{parameters}{A character vectors listing the names
+#'         of all the monitored parameters}
 #' 
 #' @author Gianluca Baio and Mark Strong
-#' @seealso \code{\link{bcea}}, \code{\link{evppi}}
+#' @seealso \code{\link{bcea}},
+#'          \code{\link{evppi}}
 #' @keywords R2jags R2WinBUGS R2OpenBUGS
 #' @export
-#' 
-#' @examples 
 #' 
 create_inputs_evpi <- function(inputs,
                                print_is_linear_comb = TRUE) {
@@ -78,6 +59,27 @@ create_inputs_evpi <- function(inputs,
         parameters = colnames(data.frame(paramSet)))
 }
 
+
+#' Create Inputs for EVPI Calculation
+#' 
+#' Creates an object containing the matrix with the parameters simulated using
+#' the MCMC procedure (using JAGS, BUGS or Stan) and a vector of parameters
+#' (strings) that can be used to perform the expected value of partial
+#' information analysis. In the process, \code{CreateInputs} also checks for
+#' linear dependency among columns of the PSA samples or columns having
+#' constant values and removes them to only leave the fundamental parameters
+#' (to run VoI analysis). This also deals with simulations stored in a
+#' \code{.csv} or \code{.txt} file (eg as obtained using bootstrapping from a
+#' non-Bayesian model).
+#' 
+#' @param inputs A \code{rjags}, \code{bugs} or \code{stanfit} object, containing
+#' the results of a call to either \code{jags}, (under \code{R2jags}), bugs
+#' (under \code{R2WinBUGS} or \code{R2OpenBUGS}), or \code{stan} (under \code{rstan}).
+#' @param print_is_linear_comb A TRUE/FALSE indicator. If set to \code{TRUE} (default)
+#' then prints the output of the procedure trying to assess whether there are
+#' some parameters that are a linear combination of others (in which case
+#' they are removed).
+#' 
 #' @export
 #' 
 createInputs <- function(inputs,
@@ -85,6 +87,7 @@ createInputs <- function(inputs,
    UseMethod("createInputs",  inputs)
 }
 
+#' @rdname createInputs
 #' @export
 #' 
 createInputs.rjags <- function(inputs,
@@ -94,6 +97,7 @@ createInputs.rjags <- function(inputs,
    create_inputs_evpi(dat, print_is_linear_comb)
 }
 
+#' @rdname createInputs
 #' @export
 #' 
 createInputs.bugs <- function(inputs,
@@ -103,6 +107,7 @@ createInputs.bugs <- function(inputs,
    create_inputs_evpi(dat, print_is_linear_comb)
 }
 
+#' @rdname createInputs
 #' @export
 #' 
 createInputs.stanfit <- function(inputs,
@@ -111,6 +116,7 @@ createInputs.stanfit <- function(inputs,
    create_inputs_evpi(inputs, print_is_linear_comb)
 }
 
+#' @rdname createInputs
 #' @export
 #' 
 createInputs.data.frame <- function(inputs,
@@ -119,6 +125,7 @@ createInputs.data.frame <- function(inputs,
    create_inputs_evpi(inputs, print_is_linear_comb)
 }
 
+#' @rdname createInputs
 #' @export
 #' 
 createInputs.matrix <- function(inputs,
@@ -127,6 +134,7 @@ createInputs.matrix <- function(inputs,
    create_inputs_evpi(inputs, print_is_linear_comb)
 }
 
+#' @rdname createInputs
 #' @export
 #' 
 createInputs.numeric <- function(inputs,
@@ -135,11 +143,13 @@ createInputs.numeric <- function(inputs,
    create_inputs_evpi(inputs, print_is_linear_comb)
 }
 
+#' @rdname createInputs
 #' @export
 #' 
 createInputs.default <- function(inputs,
                                  print_is_linear_comb) {
    
-   stop("MCMC variable not of required type.", call. = FALSE)
+   stop("MCMC variable not of required type.",
+        call. = FALSE)
 }
 

@@ -4,13 +4,15 @@
 \alias{eib.plot.cri}
 \title{Calculate Credible Intervals}
 \usage{
-\method{eib.plot}{cri}(he, alpha, cri.quantile)
+\method{eib.plot}{cri}(he, alpha = 0.05, cri.quantile)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
-\item{cri.quantile}{}
+\item{alpha}{Significance level, 0 - 1}
+
+\item{cri.quantile}{Credible interval quantile?; logical}
 }
 \value{
 cri

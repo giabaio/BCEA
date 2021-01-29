@@ -10,11 +10,11 @@ setReferenceGroup(he) <- value
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
-\item{ref}{Reference group number}
+\item{value}{Reference group number}
 }
 \value{
-
+bcea-type objects
 }
 \description{
-Set Reference Group
+Alternative way to define (e,c) reference group.
 }

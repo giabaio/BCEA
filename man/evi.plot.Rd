@@ -2,9 +2,12 @@
 % Please edit documentation in R/evi.plot.R
 \name{evi.plot.bcea}
 \alias{evi.plot.bcea}
+\alias{evi.plot}
 \title{Expected Value of Information (EVI) Plot}
 \usage{
 \method{evi.plot}{bcea}(he, graph = c("base", "ggplot2", "plotly"), ...)
+
+evi.plot(he, ...)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
@@ -42,9 +45,9 @@ doi:10.1177/0962280211419832.
 Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
-[bcea()],
-         [ceac.plot()],
-         [ceplane.plot()]
+\code{\link{bcea}},
+         \code{\link{ceac.plot}},
+         \code{\link{ceplane.plot}}
 }
 \author{
 Gianluca Baio, Andrea Berardi
