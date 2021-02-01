@@ -3,7 +3,6 @@
 \docType{data}
 \name{Vaccine}
 \alias{Vaccine}
-\alias{c}
 \alias{c.pts}
 \alias{cost.GP}
 \alias{cost.hosp}
@@ -14,7 +13,6 @@
 \alias{cost.trt1}
 \alias{cost.trt2}
 \alias{cost.vac}
-\alias{e}
 \alias{e.pts}
 \alias{N}
 \alias{N.outcomes}
@@ -24,7 +22,6 @@
 \alias{QALYs.hosp}
 \alias{QALYs.inf}
 \alias{QALYs.pne}
-\alias{treats}
 \alias{vaccine}
 \alias{vaccine_mat}
 \title{Data set for the Bayesian model for the cost-effectiveness of influenza
@@ -32,7 +29,6 @@ vaccination}
 \format{
 A data list including the variables needed for the influenza
 vaccination. The variables are as follows:
-
 \describe{
   \item{list("c")}{a matrix of simulations from the posterior
   distribution of the overall costs associated with the two treatments}

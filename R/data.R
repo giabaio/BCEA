@@ -8,7 +8,6 @@
 #' 
 #' @name Smoking
 #' @docType data
-#' 
 #' @aliases Smoking c data e life.years pi smoking smoking_output treats
 #' @format A data list including the variables needed for the smoking cessation
 #' cost-effectiveness analysis. The variables are as follows:
@@ -37,11 +36,9 @@
 #'  meta-analysis model based on the data contained in the \code{smoking} object}
 #' \item{list("treats")}{a vector of labels associated with the four strategies}
 #' }
-#' 
 #' @references Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
 #' @source Effectiveness data adapted from Hasselblad V. (1998). Meta-analysis
 #' of Multitreatment Studies. Medical Decision Making 1998;18:37-43.
-#' 
 #' Cost and population characteristics data adapted from various sources:
 #' \itemize{
 #'    \item Taylor, D.H. Jr, et al. (2002). Benefits of smoking
@@ -73,13 +70,11 @@ NULL
 #' 
 #' @name Vaccine
 #' @docType data
-#' 
-#' @aliases Vaccine c c.pts cost.GP cost.hosp cost.otc cost.time.off cost.time.vac
-#' cost.travel cost.trt1 cost.trt2 cost.vac e e.pts N N.outcomes N.resources
-#' QALYs.adv QALYs.death QALYs.hosp QALYs.inf QALYs.pne treats vaccine vaccine_mat
+#' @aliases Vaccine c.pts cost.GP cost.hosp cost.otc cost.time.off cost.time.vac
+#' cost.travel cost.trt1 cost.trt2 cost.vac e.pts N N.outcomes N.resources
+#' QALYs.adv QALYs.death QALYs.hosp QALYs.inf QALYs.pne vaccine vaccine_mat
 #' @format A data list including the variables needed for the influenza
 #' vaccination. The variables are as follows:
-#' 
 #' \describe{
 #'   \item{list("c")}{a matrix of simulations from the posterior
 #'   distribution of the overall costs associated with the two treatments}
@@ -129,7 +124,6 @@ NULL
 #'   \item{list("vaccine_mat")}{a matrix containing the simulations for the
 #'   parameters used in the original model}
 #'   }
-#' 
 #' @references Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 #' Analysis in Health Economics. Statistical Methods in Medical Research
 #' doi:10.1177/0962280211419832.

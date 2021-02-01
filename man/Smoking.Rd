@@ -45,7 +45,6 @@ cost-effectiveness analysis. The variables are as follows:
 \source{
 Effectiveness data adapted from Hasselblad V. (1998). Meta-analysis
 of Multitreatment Studies. Medical Decision Making 1998;18:37-43.
-
 Cost and population characteristics data adapted from various sources:
 \itemize{
    \item Taylor, D.H. Jr, et al. (2002). Benefits of smoking
@@ -72,7 +71,6 @@ m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
 }
 }
 \references{
-Baio G. (2012). Bayesian Methods in Health Economics.
-CRC/Chapman Hall, London
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
 }
 \keyword{datasets}

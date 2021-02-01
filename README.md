@@ -5,7 +5,7 @@
 [![Travis build status](https://travis-ci.com/n8thangreen/BCEA.svg?branch=dev)](https://travis-ci.com/n8thangreen/BCEA)
 [![AppVeyor Build Status](https://img.shields.io/appveyor/ci/giabaio/BCEA/master.svg)](https://ci.appveyor.com/project/giabaio/BCEA) [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/BCEA)](https://cran.r-project.org/package=BCEA) [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/BCEA)](https://cran.r-project.org/package=BCEA)
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/grand-total/BCEA?color=orange)](	)
-[![CodeFactor](https://www.codefactor.io/repository/github/n8thangreen/bcea/badge/plots)](https://www.codefactor.io/repository/github/n8thangreen/bcea/overview/plots)
+[![CodeFactor](https://www.codefactor.io/repository/github/n8thangreen/bcea/badge)](https://www.codefactor.io/repository/github/n8thangreen/bcea)
 
 <!-- badges: end -->
 
@@ -35,20 +35,20 @@ This is the **development** version of BCEA (currently 2.4). It contains a major
 The development version can be installed using this GitHub repository. On Windows machines, you need to install a few dependencies, including [Rtools](https://cran.r-project.org/bin/windows/Rtools/) first, e.g. by running
 
 ```r
-pkgs <- c("MASS","Rtools","devtools")
+pkgs <- c("MASS", "Rtools", "devtools")
 repos <- c("https://cran.rstudio.com", "https://inla.r-inla-download.org/R/stable") 
-install.packages(pkgs,repos=repos,dependencies = "Depends")
+install.packages(pkgs,repos=repos, dependencies = "Depends")
 ```
 before installing the package using `devtools`:
 
 ```r
-devtools::install_github("giabaio/BCEA",ref="dev")
+devtools::install_github("giabaio/BCEA", ref="dev")
 ```
 Under Linux or MacOS, it is sufficient to install the package via `devtools`:
 
 ```r
 install.packages("devtools")
-devtools:install_github("giabaio/BCEA",ref="dev")
+devtools:install_github("giabaio/BCEA", ref="dev")
 ```
 
 ## Further details
