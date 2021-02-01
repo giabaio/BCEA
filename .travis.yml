@@ -1,6 +1,6 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-#
-#language: R
+
+
 #cache: packages
 
 warnings_are_errors: false
@@ -19,27 +19,6 @@ before_install:
  - sudo apt-get update
  - sudo apt-get install r-cran-rjags
 #  - Rscript -e 'update.packages(ask = FALSE)'
-#
-#install:
-#  - Rscript -e 'install.packages("devtools", repos = "http://cran.rstudio.com")'
-#  - Rscript -e 'install.packages(c("ggplot2", "R2OpenBUGS", "mcmcplots", "ggmcmc","ggthemes"), repos = "http://cran.rstudio.com")'
-#  - Rscript -e 'install.packages("R2jags", repos = "http://cran.rstudio.com")'
-#  - Rscript -e 'install.packages("INLA", repos = c("http://www.math.ntnu.no/inla/R/stable", "http://cran.rstudio.com"))'
-#  - Rscript -e 'install.packages(c("shiny","shinythemes"),repos="http://cran.rstudio.com")'
-#
-#
-#
-
-# Sample .travis.yml for R projects
-
-language: r
-
-# warnings_are_errors: true
-# sudo: required
-# 
-r_binary_packages:
-  - rjags
-  - R2jags
 # 
 # before_install:
 #   - fname=travis_helpers.sh
@@ -50,6 +29,27 @@ r_binary_packages:
 #   - export PROJ_DIR=`basename ${TRAVIS_BUILD_DIR}`
 #   - export PACKAGE_NAME=`package_name`
 # 
+
+#install:
+#  - Rscript -e 'install.packages(c("ggplot2", "R2OpenBUGS", "mcmcplots", "ggmcmc","ggthemes"), repos = "http://cran.rstudio.com")'
+#  - Rscript -e 'install.packages("R2jags", repos = "http://cran.rstudio.com")'
+#  - Rscript -e 'install.packages("INLA", repos = c("http://www.math.ntnu.no/inla/R/stable", "http://cran.rstudio.com"))'
+#  - Rscript -e 'install.packages(c("shiny","shinythemes"), repos="http://cran.rstudio.com")'
+#
+# install:
+#   - Rscript -e 'install.packages("devtools", repos = "http://cran.rstudio.com")'
+#   - Rscript -e 'install.packages(c("ggplot2", "R2OpenBUGS", "ldr", "splancs"), repos = "http://cran.rstudio.com")'
+#   - Rscript -e 'install.packages("INLA", repos=c(getOption("repos"), INLA="https://inla.r-inla-download.org/R/stable"), dep=TRUE)'
+#   - Rscript -e 'install.packages(c("shiny","shinythemes","R2jags"), repos="http://cran.rstudio.com")'
+#
+
+language: r
+
+ 
+r_binary_packages:
+  - rjags
+  - R2jags
+  
 # script:
 #   - echo "Overriding travis R script"
 # 
@@ -74,12 +74,6 @@ r_binary_packages:
 #   - RGL_USE_NULL=TRUE
 #   - R_BUILD_ARGS=" --no-manual"
 #   - R_CHECK_ARGS=" --timings --as-cran --no-manual"
-# 
-# install:
-#   - Rscript -e 'install.packages("devtools", repos = "http://cran.rstudio.com")'
-#   - Rscript -e 'install.packages(c("ggplot2", "R2OpenBUGS", "ldr", "splancs"), repos = "http://cran.rstudio.com")'
-#   - Rscript -e 'install.packages("INLA", repos=c(getOption("repos"), INLA="https://inla.r-inla-download.org/R/stable"), dep=TRUE)'
-#   - Rscript -e 'install.packages(c("shiny","shinythemes","R2jags"),repos="http://cran.rstudio.com")'
 # 
 # notifications:
 #   email:
