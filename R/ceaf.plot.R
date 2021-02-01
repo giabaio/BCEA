@@ -2,14 +2,15 @@
 #' @rdname ceaf.plot
 #' 
 #' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the two options \code{"base"} or
+#' plotting. Should (partial-) match the two options \code{"base"} or
 #' \code{"ggplot2"}. Default value is \code{"base"}.
 #' 
-#' @return \item{ceaf}{ A ggplot object containing the plot. Returned only if
-#' \code{graph="ggplot2"}. }
+#' @return \item{ceaf}{A ggplot object containing the plot. Returned only if
+#' \code{graph="ggplot2"}.}
 #' 
 #' @author Gianluca Baio, Andrea Berardi
-#' @seealso [bcea()], [multi.ce()]
+#' @seealso \code{\link{bcea}},
+#'          \code{\link{multi.ce}}
 #' 
 #' @references
 #' Baio G, Dawid AP. (2011). Probabilistic Sensitivity

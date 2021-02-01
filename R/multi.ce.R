@@ -1,7 +1,7 @@
 
 #' Cost-effectiveness Analysis With Multiple Comparison
 #' 
-#' Computes and plots the probability that each of the n_int interventions
+#' Computes and plots the probability that each of the `n_int` interventions
 #' being analysed is the most cost-effective and the cost-effectiveness
 #' acceptability frontier.
 #' 
@@ -14,9 +14,9 @@
 #'    \item{ceaf}{A vector containing the cost-effectiveness acceptability frontier}
 #' 
 #' @author Gianluca Baio
-#' @seealso [bcea()],
-#'          [mce.plot()],
-#'          [ceaf.plot()]
+#' @seealso \code{\link{bcea}},
+#'          \code{\link{mce.plot}},
+#'          \code{\link{ceaf.plot}}
 #' @keywords "Health economic evaluation" "Multiple comparison"
 #' @importFrom grDevices colors
 #' 

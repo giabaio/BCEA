@@ -12,14 +12,14 @@
 #' estimated.
 #' @param xlim The limits of the plot on the x-axis.
 #' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the two options \code{"base"} or
+#' plotting. Should (partial-) match the two options \code{"base"} or
 #' \code{"ggplot2"}. Default value is \code{"base"}.
 #' 
 #' @return \item{ib}{ A ggplot object containing the requested plot. Returned
 #' only if \code{graph="ggplot2"}. } The function produces a plot of the
 #' distribution of the Incremental Benefit for a given value of the willingness
 #' to pay parameter. The dashed area indicates the positive part of the
-#' distribution (ie when the reference is more cost-effective than the
+#' distribution (i.e. when the reference is more cost-effective than the
 #' comparator).
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}},

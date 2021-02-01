@@ -33,14 +33,14 @@ containing the requested plots. Returned only if \code{graph="ggplot2"}.}
 The function produces two plots for the risk aversion analysis. The first
 one is the EIB as a function of the discrete grid approximation of the
 willingness parameter for each of the possible values of the risk aversion
-parameter, r. The second one is a similar plot for the EVPI.
+parameter, \code{r}. The second one is a similar plot for the EVPI.
 }
 \description{
 Summary plot of the health economic analysis when risk aversion is included.
 }
 \details{
 Plots the EIB and the EVPI when risk aversion is included in the utility
-function.#'
+function.
 }
 \examples{
 

@@ -8,7 +8,7 @@
 #' Possibilities are jpeg and postscript
 #' @return Object of class mixedAn
 #' 
-#' @reference: Baio G, Russo P (2009).
+#' @references Baio G, Russo P (2009).
 #' @export
 #'
 mixedAn.bcea <- function(he,

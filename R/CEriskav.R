@@ -41,7 +41,7 @@
 #' risk aversion \code{r}}
 #' 
 #' @author Gianluca Baio
-#' @seealso [bcea()]
+#' @seealso \code{\link{bcea}}
 #' @references
 #' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 #' Analysis in Health Economics. Statistical Methods in Medical Research

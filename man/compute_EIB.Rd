@@ -22,7 +22,7 @@ When considering a pairwise comparison
 such as the status quo, \eqn{t = 0}), it is defined as the difference between the
 expected utilities of the two alternatives:
 
-\deqn{eib := \mbox{E}[u(e,c;1)] - \mbox{E}[u(e,c;0)] = \mathcal{U}^1 - \mathcal{U}^0}.
+\deqn{eib := \mbox{E}[u(e,c;1)] - \mbox{E}[u(e,c;0)] = \mathcal{U}^1 - \mathcal{U}^0.}
 
 Analysis of the expected incremental benefit describes how the decision changes
 for different values of the threshold. The EIB marginalises out the uncertainty,

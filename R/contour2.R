@@ -160,7 +160,7 @@ contour2.bcea <- function(he,
 #' @return \item{contour}{ A ggplot item containing the requested plot.
 #' Returned only if \code{graph_type="ggplot2"}. } Plots the cost-effectiveness
 #' plane with a scatterplot of all the simulated values from the (posterior)
-#' bivariate distribution of (Delta_e,Delta_c), the differentials of
+#' bivariate distribution of (\eqn{\Delta_e, \Delta_c}), the differentials of
 #' effectiveness and costs; superimposes a contour of the distribution and
 #' prints the value of the ICER, together with the sustainability area.
 #' @author Gianluca Baio, Andrea Berardi

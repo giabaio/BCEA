@@ -26,8 +26,8 @@
 #'   that uncertainty in the cost-effectiveness of the comparator is very low.
 #'   
 #' @author Gianluca Baio, Andrea Berardi
-#' @seealso [bcea()],
-#'          [plot.bcea()]
+#' @seealso \code{\link{bcea}},
+#'          \code{\link{plot.bcea}}
 #' @references
 #' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 #'   Analysis in Health Economics. Statistical Methods in Medical Research

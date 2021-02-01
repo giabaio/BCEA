@@ -28,13 +28,16 @@ should match at least one of those values.}
 default uses all the available samples.}
 
 \item{plot}{A logical value indicating whether the triangular mesh for
-SPDE-INLA should be plotted. Default set to F.}
+SPDE-INLA should be plotted. Default set to `FALSE`.}
 
 \item{residuals}{A logical value indicating whether the fitted values for
-the SPDE-INLA method should be outputted. Default set to T.}
+the SPDE-INLA method should be outputted. Default set to `TRUE`.}
 
 \item{...}{Additional arguments. The default methods to compute the EVPPI
-are: - For single-parameter: GAM regression.  - For multi-parameter:
+are:
+- For single-parameter:
+GAM regression.
+- For multi-parameter:
 INLA/SPDE. However, it is possible (mainly for backward compatibility) to
 use different methods. For single-parameter, the user can specify the method
 of Sadatsafavi et al or the method of Strong & Oakley. In order to do so, it
@@ -65,7 +68,7 @@ parameters for which the EVPPI was calculated, used for plotting the EVPPI.}
 }
 \description{
 Calculates the Expected Value of Perfect Partial Information (EVPPI) for
-subsets of parameters. Uses GAM non-parameteric regression for single
+subsets of parameters. Uses GAM non-parametric regression for single
 parameter EVPPI and the SPDE-INLA method for larger parameter subsets.
 }
 \details{
@@ -185,8 +188,8 @@ Nested Laplace Approximation. Statistics in Medicine.
 http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full
 }
 \seealso{
-[plot.evppi()],
-         [bcea()]
+\code{\link{bcea}},
+         \code{\link{plot.evppi}},
 }
 \author{
 Anna Heath, Gianluca Baio

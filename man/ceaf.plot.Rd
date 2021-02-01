@@ -13,14 +13,14 @@ ceaf.plot(mce, ...)
 \item{mce}{The output of the call to the function \code{\link{multi.ce}}}
 
 \item{graph}{A string used to select the graphical engine to use for
-plotting. Should (partial-)match the two options \code{"base"} or
+plotting. Should (partial-) match the two options \code{"base"} or
 \code{"ggplot2"}. Default value is \code{"base"}.}
 
 \item{...}{Additional arguments}
 }
 \value{
-\item{ceaf}{ A ggplot object containing the plot. Returned only if
-\code{graph="ggplot2"}. }
+\item{ceaf}{A ggplot object containing the plot. Returned only if
+\code{graph="ggplot2"}.}
 }
 \description{
 Produces a plot the Cost-Effectiveness Acceptability Frontier (CEAF)
@@ -78,7 +78,8 @@ doi:10.1177/0962280211419832.
 Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
-[bcea()], [multi.ce()]
+\code{\link{bcea}},
+         \code{\link{multi.ce}}
 }
 \author{
 Gianluca Baio, Andrea Berardi

@@ -68,12 +68,12 @@ quantification of the preference of the compared interventions, defined in terms
 of difference in utilities.
 Formally, the CEAC is defined as:
 
-\deqn{\text{CEAC} = P(\text{IB}(\theta) > 0)}
+\deqn{\textrm{CEAC} = P(\textrm{IB}(\theta) > 0)}
   
 If the net benefit function is used as utility function, the definition can be
 re-written as
 
-\deqn{\text{CEAC} = P(k\cdot\Delta_e - \Delta_c > 0)}
+\deqn{\textrm{CEAC} = P(k \cdot \Delta_e - \Delta_c > 0)}
 
 effectively depending on the willingness to pay value \eqn{k}.
 }
@@ -113,8 +113,8 @@ Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
-[bcea()],
-         [plot.bcea()]
+\code{\link{bcea}},
+         \code{\link{plot.bcea}}
 
 \code{\link{ceac.plot.bcea}}
 }

@@ -18,7 +18,7 @@ Original bcea object (list) of class "pairwise" with additional:
    \item{ceaf}{A vector containing the cost-effectiveness acceptability frontier}
 }
 \description{
-Computes and plots the probability that each of the n_int interventions
+Computes and plots the probability that each of the `n_int` interventions
 being analysed is the most cost-effective and the cost-effectiveness
 acceptability frontier.
 }
@@ -47,9 +47,9 @@ mce <- multi.ce(m)          # uses the results of the economic analysis
 
 }
 \seealso{
-[bcea()],
-         [mce.plot()],
-         [ceaf.plot()]
+\code{\link{bcea}},
+         \code{\link{mce.plot}},
+         \code{\link{ceaf.plot}}
 }
 \author{
 Gianluca Baio

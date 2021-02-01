@@ -39,7 +39,7 @@ bottom of the plot. Default value is \code{c(1,1)}, that is the topright
 corner inside the plot area.}
 
 \item{graph}{A string used to select the graphical engine to use for
-plotting. Should (partial-)match the two options \code{"base"} or
+plotting. Should (partial-) match the two options \code{"base"} or
 \code{"ggplot2"}. Default value is \code{"base"}.}
 
 \item{...}{If \code{graph = "ggplot2"} and a named theme object is supplied,

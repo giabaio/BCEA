@@ -309,7 +309,7 @@ info.rank.bcea <- function(he,
 #' Produces a plot similar to a Tornado-plot, but based on the analysis of the
 #' EVPPI. For each parameter and value of the willingness-to-pay threshold, a
 #' barchart is plotted to describe the ratio of EVPPI (specific to that
-#' parameter) to EVPI. This represents the relative 'importance' of each
+#' parameter) to EVPI. This represents the relative `importance' of each
 #' parameter in terms of the expected value of information.
 #' 
 #' @template args-he
@@ -320,12 +320,12 @@ info.rank.bcea <- function(he,
 #'   label (default = 0.7 of full size).
 #'   \item \code{cn} = font size for the parameter names
 #'   vector (default = 0.7 of full size) - base graphics only.
-#'   \item \code{mai} = margins of the graph (default = c(1.36,1.5,1,1)) - base graphics only.
+#'   \item \code{mai} = margins of the graph (default = c(1.36, 1.5, 1,1)) - base graphics only.
 #'   \item \code{rel} = logical argument that specifies whether the ratio of
 #'   EVPPI to EVPI (\code{rel=TRUE}, default) or the absolute value of the EVPPI
 #'   should be used for the analysis.
 #'   }
-#' @return a barplot
+#' @return Bar plot
 #' @export
 #' 
 info.rank <- function(he, ...) {

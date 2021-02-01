@@ -635,7 +635,7 @@ contour.bcea <- function(he,
 #' \code{TRUE} to place the legend on the bottom of the plot. Default value is
 #' \code{c(1,0)}, that is the bottomright corner inside the plot area.
 #' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the two options \code{"base"} or
+#' plotting. Should (partial-) match the two options \code{"base"} or
 #' \code{"ggplot2"}. Default value is \code{"base"}.
 #' @param xlim The range of the plot along the x-axis. If NULL (default) it is
 #' determined by the range of the simulated values for \code{delta_e}
@@ -648,10 +648,10 @@ contour.bcea <- function(he,
 #' @return \item{ceplane}{ A ggplot object containing the plot. Returned only
 #' if \code{graph="ggplot2"}. } Plots the cost-effectiveness plane with a
 #' scatterplot of all the simulated values from the (posterior) bivariate
-#' distribution of (Delta_e, Delta_c), the differentials of effectiveness and
+#' distribution of (\eqn{\Delta_e, \Delta_c}), the differentials of effectiveness and
 #' costs; superimposes a contour of the distribution and prints the estimated
 #' value of the probability of each quadrant (combination of positive/negative
-#' values for both Delta_e and Delta_c)
+#' values for both \eqn{\Delta_e} and \eqn{\Delta_c})
 #' @author Gianluca Baio, Andrea Berardi
 #' @references
 #' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity

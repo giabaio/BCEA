@@ -14,9 +14,9 @@ modelling and the economic evaluation.}
 
 \item{graph_params}{Aesthetic ggplot parameters}
 
-\item{ceac}{ceac index in he}
+\item{ceac}{`ceac` index in `he`}
 }
 \description{
-CEAC Matrix Plot
+CEAC plot using `matplot` in Base R.
 }
 \keyword{hplot}

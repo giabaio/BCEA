@@ -3,7 +3,7 @@
 #' Parameters
 #' 
 #' Calculates the Expected Value of Perfect Partial Information (EVPPI) for
-#' subsets of parameters. Uses GAM non-parameteric regression for single
+#' subsets of parameters. Uses GAM non-parametric regression for single
 #' parameter EVPPI and the SPDE-INLA method for larger parameter subsets.
 #' 
 #' The single parameter EVPPI has been calculated using the non-parametric GAM
@@ -24,11 +24,14 @@
 #' @param N The number of PSA simulations used to calculate the EVPPI. The
 #' default uses all the available samples.
 #' @param plot A logical value indicating whether the triangular mesh for
-#' SPDE-INLA should be plotted. Default set to F.
+#' SPDE-INLA should be plotted. Default set to `FALSE`.
 #' @param residuals A logical value indicating whether the fitted values for
-#' the SPDE-INLA method should be outputted. Default set to T.
+#' the SPDE-INLA method should be outputted. Default set to `TRUE`.
 #' @param ...  Additional arguments. The default methods to compute the EVPPI
-#' are: - For single-parameter: GAM regression.  - For multi-parameter:
+#' are:
+#' - For single-parameter:
+#' GAM regression.
+#' - For multi-parameter:
 #' INLA/SPDE. However, it is possible (mainly for backward compatibility) to
 #' use different methods. For single-parameter, the user can specify the method
 #' of Sadatsafavi et al or the method of Strong & Oakley. In order to do so, it
@@ -109,8 +112,8 @@
 #' \item{method}{A string indicating the method used to estimate the EVPPI.}
 #' 
 #' @author Anna Heath, Gianluca Baio
-#' @seealso [plot.evppi()],
-#'          [bcea()]
+#' @seealso \code{\link{bcea}},
+#'          \code{\link{plot.evppi}},
 #' 
 #' @references
 #' Strong M., Oakley J. and Brennan A. (2014). Estimating

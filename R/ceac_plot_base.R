@@ -56,8 +56,10 @@ ceac_plot_base.bcea <- function(he,
 
 #' CEAC Matrix Plot
 #' 
+#' CEAC plot using `matplot` in Base R.
+#' 
 #' @inheritParams ceac_plot_graph
-#' @param ceac ceac index in he
+#' @param ceac `ceac` index in `he`
 #' @keywords hplot
 #' @importFrom graphics matplot legend
 #' 
