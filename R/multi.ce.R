@@ -15,7 +15,6 @@
 #' 
 #' @author Gianluca Baio
 #' @seealso \code{\link{bcea}},
-#'          \code{\link{mce.plot}},
 #'          \code{\link{ceaf.plot}}
 #' @keywords "Health economic evaluation" "Multiple comparison"
 #' @importFrom grDevices colors

@@ -43,7 +43,7 @@ ceac_plot_plotly <- function(he,
       name = ~label,
       fillcolor = graph_params$area$color,
       color = ~comparison,
-      colors = graph_params$line$colors,
+      colors = graph_params$plot$line$colors,
       linetype = ~comparison,
       linetypes = graph_params$line$types)
   

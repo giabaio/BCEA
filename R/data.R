@@ -38,8 +38,7 @@
 #' \item{list("treats")}{a vector of labels associated with the four strategies}
 #' }
 #' 
-#' @references Baio G. (2012). Bayesian Methods in Health Economics.
-#' CRC/Chapman Hall, London
+#' @references Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
 #' @source Effectiveness data adapted from Hasselblad V. (1998). Meta-analysis
 #' of Multitreatment Studies. Medical Decision Making 1998;18:37-43.
 #' 
