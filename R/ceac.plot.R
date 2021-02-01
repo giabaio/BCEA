@@ -113,12 +113,12 @@ ceac.plot.bcea <- function(he,
 #' of difference in utilities.
 #' Formally, the CEAC is defined as:
 #' 
-#' \deqn{\text{CEAC} = P(\text{IB}(\theta) > 0)}
+#' \deqn{\textrm{CEAC} = P(\textrm{IB}(\theta) > 0)}
 #'   
 #' If the net benefit function is used as utility function, the definition can be
 #' re-written as
 #' 
-#' \deqn{\text{CEAC} = P(k\cdot\Delta_e - \Delta_c > 0)}
+#' \deqn{\textrm{CEAC} = P(k \cdot \Delta_e - \Delta_c > 0)}
 #' 
 #' effectively depending on the willingness to pay value \eqn{k}.
 #' 

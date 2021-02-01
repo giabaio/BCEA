@@ -3,11 +3,14 @@
 \docType{data}
 \name{Smoking}
 \alias{Smoking}
+\alias{c}
 \alias{data}
+\alias{e}
 \alias{life.years}
 \alias{pi}
 \alias{smoking}
 \alias{smoking_output}
+\alias{treats}
 \title{Data set for the Bayesian model for the cost-effectiveness of smoking
 cessation interventions}
 \format{
