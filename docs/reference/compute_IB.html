@@ -137,7 +137,7 @@ willingness-to-pay threshold, \(k\), and comparator." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Compute Incremental Benefit</h1>
-    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/compute_IB.R'><code>R/compute_IB.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/compute_xxx.R'><code>R/compute_xxx.R</code></a></small>
     <div class="hidden name"><code>compute_IB.Rd</code></div>
     </div>
 
@@ -146,7 +146,7 @@ willingness-to-pay threshold, \(k\), and comparator." />
 willingness-to-pay threshold, \(k\), and comparator.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>compute_IB</span>(<span class='no'>df_ce</span>, <span class='no'>k</span>)</pre>
+    <pre class="usage"><span class='fu'>compute_IB</span><span class='op'>(</span><span class='va'>df_ce</span>, <span class='va'>k</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -167,17 +167,14 @@ willingness-to-pay threshold, \(k\), and comparator.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Defined as:</p>
-<p>$$IB = u(e,c; 1) - u(e,c; 0)$$</p>
+<p>$$IB = u(e,c; 1) - u(e,c; 0).$$</p>
 <p>If the net benefit function is used as utility function,
 the definition can be re-written as</p>
-<p>$$IB = k\cdot\Delta_e - \Delta_c$$.</p>
+<p>$$IB = k\cdot\Delta_e - \Delta_c.$$</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='compute_EIB.html'>compute_EIB</a></code></p></div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -193,7 +190,7 @@ the definition can be re-written as</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

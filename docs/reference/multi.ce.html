@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Cost-effectiveness Analysis With Multiple Comparison — multi.ce" />
-<meta property="og:description" content="Computes and plots the probability that each of the n_int interventions
+<meta property="og:description" content="Computes and plots the probability that each of the `n_int` interventions
 being analysed is the most cost-effective and the cost-effectiveness
 acceptability frontier." />
 <meta property="og:image" content="/logo.png" />
@@ -143,12 +143,12 @@ acceptability frontier." />
     </div>
 
     <div class="ref-description">
-    <p>Computes and plots the probability that each of the n_int interventions
+    <p>Computes and plots the probability that each of the `n_int` interventions
 being analysed is the most cost-effective and the cost-effectiveness
 acceptability frontier.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>multi.ce</span>(<span class='no'>he</span>)</pre>
+    <pre class="usage"><span class='fu'>multi.ce</span><span class='op'>(</span><span class='va'>he</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -170,30 +170,36 @@ modelling and the economic evaluation.</p></td>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>, <code>mce.plot</code>, <code><a href='ceaf.plot.html'>ceaf.plot</a></code></p></div>
+    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>,
+         <code><a href='ceaf.plot.pairwise.html'>ceaf.plot</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Gianluca Baio</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># See Baio G., Dawid A.P. (2011) for a detailed description of the </span>
 <span class='co'># Bayesian model and economic problem</span>
 
 <span class='co'># Load the processed results of the MCMC simulation model</span>
-<span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Vaccine</span>)
-
+<span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Vaccine</span><span class='op'>)</span>
+ 
 <span class='co'># Runs the health economic evaluation using BCEA</span>
 
-<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='kw'>e</span><span class='kw'>=</span><span class='no'>e</span>,<span class='kw'>c</span><span class='kw'>=</span><span class='no'>c</span>,          <span class='co'># defines the variables of </span>
+<span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span>e<span class='op'>=</span><span class='va'>e</span>,c<span class='op'>=</span><span class='va'>c</span>,          <span class='co'># defines the variables of </span>
                             <span class='co'>#  effectiveness and cost</span>
-      <span class='kw'>ref</span><span class='kw'>=</span><span class='fl'>2</span>,                <span class='co'># selects the 2nd row of (e,c) </span>
+      ref<span class='op'>=</span><span class='fl'>2</span>,                <span class='co'># selects the 2nd row of (e,c) </span>
                             <span class='co'>#  as containing the reference intervention</span>
-      <span class='kw'>interventions</span><span class='kw'>=</span><span class='no'>treats</span>, <span class='co'># defines the labels to be associated </span>
+      interventions<span class='op'>=</span><span class='va'>treats</span>, <span class='co'># defines the labels to be associated </span>
                             <span class='co'>#  with each intervention</span>
-      <span class='kw'>Kmax</span><span class='kw'>=</span><span class='fl'>50000</span>,           <span class='co'># maximum value possible for the willingness </span>
+      Kmax<span class='op'>=</span><span class='fl'>50000</span>,           <span class='co'># maximum value possible for the willingness </span>
                             <span class='co'>#  to pay threshold; implies that k is chosen </span>
                             <span class='co'>#  in a grid from the interval (0,Kmax)</span>
-      <span class='kw'>plot</span><span class='kw'>=</span><span class='fl'>FALSE</span>            <span class='co'># inhibits graphical output</span>
-)
+      plot<span class='op'>=</span><span class='cn'>FALSE</span>            <span class='co'># inhibits graphical output</span>
+<span class='op'>)</span>
 
-<span class='no'>mce</span> <span class='kw'>&lt;-</span> <span class='fu'>multi.ce</span>(<span class='no'>m</span>)          <span class='co'># uses the results of the economic analysis </span></div></pre>
+<span class='va'>mce</span> <span class='op'>&lt;-</span> <span class='fu'>multi.ce</span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>          <span class='co'># uses the results of the economic analysis </span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -209,7 +215,7 @@ modelling and the economic evaluation.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

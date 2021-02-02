@@ -50,7 +50,7 @@ Parameters — evppi • BCEA</title>
 <meta property="og:title" content="Expected Value of Perfect Partial Information (EVPPI) for Selected
 Parameters — evppi" />
 <meta property="og:description" content="Calculates the Expected Value of Perfect Partial Information (EVPPI) for
-subsets of parameters. Uses GAM non-parameteric regression for single
+subsets of parameters. Uses GAM non-parametric regression for single
 parameter EVPPI and the SPDE-INLA method for larger parameter subsets." />
 <meta property="og:image" content="/logo.png" />
 
@@ -141,17 +141,20 @@ parameter EVPPI and the SPDE-INLA method for larger parameter subsets." />
     <div class="page-header">
     <h1>Expected Value of Perfect Partial Information (EVPPI) for Selected
 Parameters</h1>
-    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/evppi.R'><code>R/evppi.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/evppi.R'><code>R/evppi.R</code></a>, <a href='https://github.com/giabaio/BCEA/blob/master/R/evppi.default.R'><code>R/evppi.default.R</code></a></small>
     <div class="hidden name"><code>evppi.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Calculates the Expected Value of Perfect Partial Information (EVPPI) for
-subsets of parameters. Uses GAM non-parameteric regression for single
+subsets of parameters. Uses GAM non-parametric regression for single
 parameter EVPPI and the SPDE-INLA method for larger parameter subsets.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>evppi</span>(<span class='no'>he</span>, <span class='no'>param_idx</span>, <span class='no'>input</span>, <span class='kw'>N</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>residuals</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>evppi</span><span class='op'>(</span><span class='va'>he</span>, <span class='va'>param_idx</span>, <span class='va'>input</span>, N <span class='op'>=</span> <span class='cn'>NULL</span>, plot <span class='op'>=</span> <span class='cn'>FALSE</span>, residuals <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for default</span>
+<span class='fu'>evppi</span><span class='op'>(</span><span class='va'>he</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -183,17 +186,20 @@ default uses all the available samples.</p></td>
     <tr>
       <th>plot</th>
       <td><p>A logical value indicating whether the triangular mesh for
-SPDE-INLA should be plotted. Default set to F.</p></td>
+SPDE-INLA should be plotted. Default set to `FALSE`.</p></td>
     </tr>
     <tr>
       <th>residuals</th>
       <td><p>A logical value indicating whether the fitted values for
-the SPDE-INLA method should be outputted. Default set to T.</p></td>
+the SPDE-INLA method should be outputted. Default set to `TRUE`.</p></td>
     </tr>
     <tr>
       <th>...</th>
       <td><p>Additional arguments. The default methods to compute the EVPPI
-are: - For single-parameter: GAM regression.  - For multi-parameter:
+are:
+- For single-parameter:
+GAM regression.
+- For multi-parameter:
 INLA/SPDE. However, it is possible (mainly for backward compatibility) to
 use different methods. For single-parameter, the user can specify the method
 of Sadatsafavi et al or the method of Strong &amp; Oakley. In order to do so, it
@@ -303,24 +309,29 @@ expected value of partial perfect information. Value in Health.</p>
 with the R package BCEA. New York, NY: Springer. doi:10.1007/978-3-319-55718-2.</p>
 <p>Heath A., Manolopoulou I., Baio G. (2016). Estimating the Expected Value of
 Partial Perfect Information in Health Economic Evaluations using Integrated
-Nested Laplace Approximation.  Statistics in Medicine.
+Nested Laplace Approximation. Statistics in Medicine.
 http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='plot.evppi.html'>plot.evppi</a></code>, <code><a href='bcea.html'>bcea</a></code></p></div>
+    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>,
+         <code><a href='plot.evppi.html'>plot.evppi</a></code>,</p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Anna Heath, Gianluca Baio</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># See Baio G., Dawid A.P. (2011) for a detailed description of the </span>
 <span class='co'># Bayesian model and economic problem</span>
 
 <span class='co'># Load the processed results of the MCMC simulation model</span>
-<span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Vaccine</span>)
+<span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Vaccine</span><span class='op'>)</span>
 
 <span class='co'># Run the health economic evaluation using BCEA</span>
-<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='no'>e</span>, <span class='no'>c</span>, <span class='kw'>ref</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>interventions</span> <span class='kw'>=</span> <span class='no'>treats</span>)
+<span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>c</span>, ref <span class='op'>=</span> <span class='fl'>2</span>, interventions <span class='op'>=</span> <span class='va'>treats</span><span class='op'>)</span>
 
 <span class='co'># Compute the EVPPI for a bunch of parameters</span>
-<span class='no'>inp</span> <span class='kw'>&lt;-</span> <span class='fu'>createInputs</span>(<span class='no'>vaccine</span>)</div><div class='output co'>#&gt;  [1] 14 15 16 17 18 19 20 21 22 29 44 45 46 47
+<span class='va'>inp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='create_inputs_evpi.html'>createInputs</a></span><span class='op'>(</span><span class='va'>vaccine</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] 14 15 16 17 18 19 20 21 22 29 44 45 46 47
 #&gt; [1] "Linear dependence: removing column pi[2,2]"
 #&gt;  [1] 14 15 16 17 18 19 20 21 22 29 44 45
 #&gt; [1] "Linear dependence: removing column pi[2,1]"
@@ -333,27 +344,37 @@ http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full</p>
 #&gt; [1] 14 17 20
 #&gt; [1] "Linear dependence: removing column Repeat.GP[1,1]"</div><div class='input'>
 <span class='co'># Compute the EVPPI using INLA/SPDE</span>
-<span class='no'>x0</span> <span class='kw'>&lt;-</span> <span class='fu'>evppi</span>(<span class='kw'>he</span> <span class='kw'>=</span> <span class='no'>m</span>, <span class='kw'>param_idx</span> <span class='kw'>=</span> <span class='fl'>39</span>:<span class='fl'>40</span>, <span class='kw'>input</span> <span class='kw'>=</span> <span class='no'>inp</span>$<span class='no'>mat</span>)</div><div class='output co'>#&gt; [1] "method: GAM" "method: GAM"
+<span class='va'>x0</span> <span class='op'>&lt;-</span> <span class='fu'>evppi</span><span class='op'>(</span>he <span class='op'>=</span> <span class='va'>m</span>, param_idx <span class='op'>=</span> <span class='fl'>39</span><span class='op'>:</span><span class='fl'>40</span>, input <span class='op'>=</span> <span class='va'>inp</span><span class='op'>$</span><span class='va'>mat</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "method: GAM" "method: GAM"
 #&gt; 
 #&gt; Calculating fitted values for the GAM regression 
 #&gt; 
 #&gt; Calculating fitted values for the GAM regression 
 #&gt; Calculating EVPPI </div><div class='input'>
 <span class='co'># using GAM regression</span>
-<span class='no'>x1</span> <span class='kw'>&lt;-</span> <span class='fu'>evppi</span>(<span class='kw'>he</span> <span class='kw'>=</span> <span class='no'>m</span>, <span class='kw'>param_idx</span> <span class='kw'>=</span> <span class='fl'>39</span>:<span class='fl'>40</span>, <span class='kw'>input</span> <span class='kw'>=</span> <span class='no'>inp</span>$<span class='no'>mat</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"GAM"</span>)</div><div class='output co'>#&gt; 
+<span class='va'>x1</span> <span class='op'>&lt;-</span> <span class='fu'>evppi</span><span class='op'>(</span>he <span class='op'>=</span> <span class='va'>m</span>, param_idx <span class='op'>=</span> <span class='fl'>39</span><span class='op'>:</span><span class='fl'>40</span>, input <span class='op'>=</span> <span class='va'>inp</span><span class='op'>$</span><span class='va'>mat</span>, method <span class='op'>=</span> <span class='st'>"GAM"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Calculating fitted values for the GAM regression 
 #&gt; 
 #&gt; Calculating fitted values for the GAM regression 
 #&gt; Calculating EVPPI </div><div class='input'>
 <span class='co'># using GP regression</span>
-<span class='no'>x2</span> <span class='kw'>&lt;-</span> <span class='fu'>evppi</span>(<span class='kw'>he</span> <span class='kw'>=</span> <span class='no'>m</span>, <span class='kw'>param_idx</span> <span class='kw'>=</span> <span class='fl'>39</span>:<span class='fl'>40</span>, <span class='kw'>input</span> <span class='kw'>=</span> <span class='no'>inp</span>$<span class='no'>mat</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"GP"</span>)</div><div class='output co'>#&gt; 
+<span class='va'>x2</span> <span class='op'>&lt;-</span> <span class='fu'>evppi</span><span class='op'>(</span>he <span class='op'>=</span> <span class='va'>m</span>, param_idx <span class='op'>=</span> <span class='fl'>39</span><span class='op'>:</span><span class='fl'>40</span>, input <span class='op'>=</span> <span class='va'>inp</span><span class='op'>$</span><span class='va'>mat</span>, method <span class='op'>=</span> <span class='st'>"GP"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Calculating fitted values for the GP regression 
 #&gt; 
 #&gt; Calculating fitted values for the GP regression 
 #&gt; Calculating EVPPI </div><div class='input'>
 <span class='co'># plot results</span>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>x0</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: the condition has length &gt; 1 and only the first element will be used</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='no'>x0</span>$<span class='no'>k</span>, <span class='no'>x0</span>$<span class='no'>evppi</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='no'>x1</span>$<span class='no'>k</span>, <span class='no'>x1</span>$<span class='no'>evppi</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"red"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='no'>x2</span>$<span class='no'>k</span>, <span class='no'>x2</span>$<span class='no'>evppi</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"blue"</span>)</div><div class='img'><img src='evppi-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>x0</span>$<span class='no'>k</span>, <span class='no'>x0</span>$<span class='no'>evppi</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='no'>x1</span>$<span class='no'>k</span>, <span class='no'>x1</span>$<span class='no'>evppi</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"red"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='no'>x2</span>$<span class='no'>k</span>, <span class='no'>x2</span>$<span class='no'>evppi</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"blue"</span>)</div><div class='img'><img src='evppi-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x0</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>ggplot2 method not yet implemented for this function: falling back to base graphics</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>x0</span><span class='op'>$</span><span class='va'>k</span>, <span class='va'>x0</span><span class='op'>$</span><span class='va'>evppi</span>, type <span class='op'>=</span> <span class='st'>"l"</span>, lwd <span class='op'>=</span> <span class='fl'>2</span>, lty <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>x1</span><span class='op'>$</span><span class='va'>k</span>, <span class='va'>x1</span><span class='op'>$</span><span class='va'>evppi</span>, type <span class='op'>=</span> <span class='st'>"l"</span>, col <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>x2</span><span class='op'>$</span><span class='va'>k</span>, <span class='va'>x2</span><span class='op'>$</span><span class='va'>evppi</span>, type <span class='op'>=</span> <span class='st'>"l"</span>, col <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span>
+</div><div class='img'><img src='evppi-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x0</span><span class='op'>$</span><span class='va'>k</span>, <span class='va'>x0</span><span class='op'>$</span><span class='va'>evppi</span>, type <span class='op'>=</span> <span class='st'>"l"</span>, lwd <span class='op'>=</span> <span class='fl'>2</span>, lty <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>x1</span><span class='op'>$</span><span class='va'>k</span>, <span class='va'>x1</span><span class='op'>$</span><span class='va'>evppi</span>, type <span class='op'>=</span> <span class='st'>"l"</span>, col <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>x2</span><span class='op'>$</span><span class='va'>k</span>, <span class='va'>x2</span><span class='op'>$</span><span class='va'>evppi</span>, type <span class='op'>=</span> <span class='st'>"l"</span>, col <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span>
+</div><div class='img'><img src='evppi-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -370,7 +391,7 @@ http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

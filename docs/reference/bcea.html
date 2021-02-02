@@ -139,7 +139,7 @@ an object of the class &quot;bcea&quot;." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create Bayesian Cost-Effectiveness Analysis Object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/bcea.R'><code>R/bcea.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/bcea.R'><code>R/bcea.R</code></a>, <a href='https://github.com/giabaio/BCEA/blob/master/R/bcea.default.R'><code>R/bcea.default.R</code></a></small>
     <div class="hidden name"><code>bcea.Rd</code></div>
     </div>
 
@@ -150,31 +150,45 @@ post-processed to give the health economic analysis. The output is stored in
 an object of the class "bcea".</p>
     </div>
 
-    <pre class="usage"><span class='fu'>bcea</span>(
-  <span class='no'>e</span>,
-  <span class='no'>c</span>,
-  <span class='kw'>ref</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>interventions</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>.comparison</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>Kmax</span> <span class='kw'>=</span> <span class='fl'>50000</span>,
-  <span class='kw'>wtp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>bcea</span><span class='op'>(</span>
+  <span class='va'>eff</span>,
+  <span class='va'>cost</span>,
+  ref <span class='op'>=</span> <span class='fl'>1</span>,
+  interventions <span class='op'>=</span> <span class='cn'>NULL</span>,
+  .comparison <span class='op'>=</span> <span class='cn'>NULL</span>,
+  Kmax <span class='op'>=</span> <span class='fl'>50000</span>,
+  wtp <span class='op'>=</span> <span class='cn'>NULL</span>,
+  plot <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
+
+<span class='co'># S3 method for default</span>
+<span class='fu'>bcea</span><span class='op'>(</span>
+  <span class='va'>eff</span>,
+  <span class='va'>cost</span>,
+  ref <span class='op'>=</span> <span class='fl'>1</span>,
+  interventions <span class='op'>=</span> <span class='cn'>NULL</span>,
+  .comparison <span class='op'>=</span> <span class='cn'>NULL</span>,
+  Kmax <span class='op'>=</span> <span class='fl'>50000</span>,
+  wtp <span class='op'>=</span> <span class='cn'>NULL</span>,
+  plot <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>e</th>
+      <th>eff</th>
       <td><p>An object containing <code>nsim</code> simulations for the variable of
 clinical effectiveness for each intervention being considered. In general it
-is a matrix with <code>nsim</code> rows and <code>nint</code> columns.</p></td>
+is a matrix with <code>nsim</code> rows and <code>nint</code> columns.
+This are partially matched with `e' from previous version of `BCEA` for back-compatibility.</p></td>
     </tr>
     <tr>
-      <th>c</th>
+      <th>cost</th>
       <td><p>An object containing <code>nsim</code> simulations for the variable of
 cost for each intervention being considered. In general it is a matrix with
-<code>nsim</code> rows and <code>nint</code> columns.</p></td>
+<code>nsim</code> rows and <code>nint</code> columns.
+This are partially matched with `c' from previous version of `BCEA` for back-compatibility.</p></td>
     </tr>
     <tr>
       <th>ref</th>
@@ -191,6 +205,13 @@ intervention. By default and if <code>NULL</code>, assigns labels in the form
 "Intervention1", ... , "InterventionT".</p></td>
     </tr>
     <tr>
+      <th>.comparison</th>
+      <td><p>Selects the comparator, in case of more than two
+interventions being analysed. Default as NULL plots all the comparisons
+together. Any subset of the possible comparisons can be selected (e.g.,
+<code>comparison=c(1,3)</code> or <code>comparison = 2</code>).</p></td>
+    </tr>
+    <tr>
       <th>Kmax</th>
       <td><p>Maximum value of the willingness to pay to be considered.
 Default value is <code>k = 50000</code>. The willingness to pay is then approximated
@@ -200,22 +221,15 @@ on a discrete grid in the interval <code>[0, Kmax]</code>. The grid is equal to
     </tr>
     <tr>
       <th>wtp</th>
-      <td><p>A(n optional) vector wtp including the values of the willingness
+      <td><p>A(n optional) vector including the values of the willingness
 to pay grid. If not specified then BCEA will construct a grid of 501 values
-from 0 to Kmax. This option is useful when performing intensive computations
-(e.g. for the EVPPI).</p></td>
+from 0 to <code>Kmax</code>. This option is useful when performing intensive
+computations (e.g. for the EVPPI).</p></td>
     </tr>
     <tr>
       <th>plot</th>
       <td><p>A logical value indicating whether the function should produce
 the summary plot or not.</p></td>
-    </tr>
-    <tr>
-      <th>comparison</th>
-      <td><p>Selects the comparator, in case of more than two
-interventions being analysed. Default as NULL plots all the comparisons
-together. Any subset of the possible comparisons can be selected (e.g.,
-<code>comparison=c(1,3)</code> or <code>comparison=2</code>).</p></td>
     </tr>
     </table>
 
@@ -273,33 +287,39 @@ to pay</p></dd>
 Health Economics.  Statistical Methods in Medical Research.
 doi:10.1177/0962280211419832.</p>
 <p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Gianluca Baio, Andrea Berardi</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># See Baio G., Dawid A.P. (2011) for a detailed description of the </span>
+    <pre class="examples"><div class='input'><span class='co'># See Baio G., Dawid A.P. (2011) for a detailed description of the </span>
 <span class='co'># Bayesian model and economic problem</span>
 
 <span class='co'># Load the processed results of the MCMC simulation model</span>
-<span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Vaccine</span>)
+<span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Vaccine</span><span class='op'>)</span>
 
 <span class='co'># Runs the health economic evaluation using BCEA</span>
-<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'>bcea</span>(<span class='kw'>e</span><span class='kw'>=</span><span class='no'>e</span>,
-          <span class='kw'>c</span><span class='kw'>=</span><span class='no'>c</span>,              <span class='co'># defines the variables of </span>
+<span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'>bcea</span><span class='op'>(</span>
+      e<span class='op'>=</span><span class='va'>e</span>,
+      c<span class='op'>=</span><span class='va'>c</span>,                  <span class='co'># defines the variables of </span>
                             <span class='co'>#  effectiveness and cost</span>
-      <span class='kw'>ref</span><span class='kw'>=</span><span class='fl'>2</span>,                <span class='co'># selects the 2nd row of (e,c) </span>
+      ref<span class='op'>=</span><span class='fl'>2</span>,                <span class='co'># selects the 2nd row of (e, c) </span>
                             <span class='co'>#  as containing the reference intervention</span>
-      <span class='kw'>interventions</span><span class='kw'>=</span><span class='no'>treats</span>, <span class='co'># defines the labels to be associated </span>
+      interventions<span class='op'>=</span><span class='va'>treats</span>, <span class='co'># defines the labels to be associated </span>
                             <span class='co'>#  with each intervention</span>
-      <span class='kw'>Kmax</span><span class='kw'>=</span><span class='fl'>50000</span>,           <span class='co'># maximum value possible for the willingness </span>
+      Kmax<span class='op'>=</span><span class='fl'>50000</span>,           <span class='co'># maximum value possible for the willingness </span>
                             <span class='co'>#  to pay threshold; implies that k is chosen </span>
-                            <span class='co'>#  in a grid from the interval (0,Kmax)</span>
-      <span class='kw'>plot</span><span class='kw'>=</span><span class='fl'>TRUE</span>             <span class='co'># plots the results</span>
-)</div><div class='img'><img src='bcea-1.png' alt='' width='700' height='433' /></div><div class='input'>
+                            <span class='co'>#  in a grid from the interval (0, Kmax)</span>
+      plot<span class='op'>=</span><span class='cn'>TRUE</span>             <span class='co'># plots the results</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='bcea-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Creates a summary table</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>m</span>,      <span class='co'># uses the results of the economic evaluation </span>
-                <span class='co'>#  (a "bcea" object)</span>
-      <span class='kw'>wtp</span><span class='kw'>=</span><span class='fl'>25000</span> <span class='co'># selects the particular value for k </span>
-)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span>
+      <span class='va'>m</span>,         <span class='co'># uses the results of the economic evaluation </span>
+                 <span class='co'>#  (a "bcea" object)</span>
+      wtp<span class='op'>=</span><span class='fl'>25000</span>  <span class='co'># selects the particular value for k </span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Cost-effectiveness analysis summary 
 #&gt; 
 #&gt; Reference intervention:  Vaccination
@@ -321,86 +341,102 @@ doi:10.1177/0962280211419832.</p>
 #&gt;            
 #&gt; EVPI 3.0287</div><div class='input'>
 <span class='co'># \donttest{</span>
-<span class='co'>#</span>
+
 <span class='co'># Plots the cost-effectiveness plane using base graphics</span>
-<span class='fu'>ceplane.plot</span>(<span class='no'>m</span>,      <span class='co'># plots the Cost-Effectiveness plane</span>
-      <span class='kw'>comparison</span><span class='kw'>=</span><span class='fl'>1</span>,  <span class='co'># if more than 2 interventions, selects the</span>
+<span class='fu'><a href='ceplane.plot.bcea.html'>ceplane.plot</a></span><span class='op'>(</span>
+      <span class='va'>m</span>,             <span class='co'># plots the Cost-Effectiveness plane</span>
+      comparison<span class='op'>=</span><span class='fl'>1</span>,  <span class='co'># if more than 2 interventions, selects the</span>
                      <span class='co'>#  pairwise comparison </span>
-      <span class='kw'>wtp</span><span class='kw'>=</span><span class='fl'>25000</span>,     <span class='co'># selects the relevant willingness to pay </span>
+      wtp<span class='op'>=</span><span class='fl'>25000</span>,     <span class='co'># selects the relevant willingness to pay </span>
                      <span class='co'>#  (default: 25,000) </span>
-      <span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"base"</span>   <span class='co'># selects base graphics (default)</span>
-)</div><div class='img'><img src='bcea-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'>#</span>
+      graph<span class='op'>=</span><span class='st'>"base"</span>   <span class='co'># selects base graphics (default)</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='bcea-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the cost-effectiveness plane using ggplot2</span>
-<span class='kw'>if</span>(<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"ggplot2"</span>)){
-<span class='fu'>ceplane.plot</span>(<span class='no'>m</span>,      <span class='co'># plots the Cost-Effectiveness plane</span>
-      <span class='kw'>comparison</span><span class='kw'>=</span><span class='fl'>1</span>,  <span class='co'># if more than 2 interventions, selects the</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"ggplot2"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'><a href='ceplane.plot.bcea.html'>ceplane.plot</a></span><span class='op'>(</span>
+      <span class='va'>m</span>,             <span class='co'># plots the Cost-Effectiveness plane</span>
+      comparison<span class='op'>=</span><span class='fl'>1</span>,  <span class='co'># if more than 2 interventions, selects the</span>
                      <span class='co'>#  pairwise comparison </span>
-      <span class='kw'>wtp</span><span class='kw'>=</span><span class='fl'>25000</span>,     <span class='co'># selects the relevant willingness to pay </span>
+      wtp<span class='op'>=</span><span class='fl'>25000</span>,     <span class='co'># selects the relevant willingness to pay </span>
                      <span class='co'>#  (default: 25,000) </span>
-      <span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"ggplot2"</span><span class='co'># selects ggplot2 as the graphical engine</span>
-)
-<span class='co'>#</span>
+      graph<span class='op'>=</span><span class='st'>"ggplot2"</span><span class='co'># selects ggplot2 as the graphical engine</span>
+<span class='op'>)</span>
+
 <span class='co'># Some more options</span>
-<span class='fu'>ceplane.plot</span>(<span class='no'>m</span>,
-      <span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"ggplot2"</span>,
-      <span class='kw'>pos</span><span class='kw'>=</span><span class='st'>"top"</span>,
-      <span class='kw'>size</span><span class='kw'>=</span><span class='fl'>5</span>,
-      <span class='kw'>ICER.size</span><span class='kw'>=</span><span class='fl'>1.5</span>,
-      <span class='kw'>label.pos</span><span class='kw'>=</span><span class='fl'>FALSE</span>,
-      <span class='kw'>opt.theme</span><span class='kw'>=</span><span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span>(<span class='kw'>text</span><span class='kw'>=</span><span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span>(<span class='kw'>size</span><span class='kw'>=</span><span class='fl'>8</span>))
-)
-}</div><div class='output co'>#&gt; <span class='warning'>Warning: Duplicated aesthetics after name standardisation: colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: geom, border, include, line_colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: label.pos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Duplicated aesthetics after name standardisation: colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: geom, border, include, line_colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: label.pos</span></div><div class='img'><img src='bcea-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='ceplane.plot.bcea.html'>ceplane.plot</a></span><span class='op'>(</span>
+      <span class='va'>m</span>,
+      graph<span class='op'>=</span><span class='st'>"ggplot2"</span>,
+      pos<span class='op'>=</span><span class='st'>"top"</span>,
+      size<span class='op'>=</span><span class='fl'>5</span>,
+      ICER_size<span class='op'>=</span><span class='fl'>1.5</span>,
+      label.pos<span class='op'>=</span><span class='cn'>FALSE</span>,
+      opt.theme<span class='op'>=</span><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>text<span class='op'>=</span><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size<span class='op'>=</span><span class='fl'>8</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Duplicated aesthetics after name standardisation: colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: geom, border, include, line_colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: label.pos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Duplicated aesthetics after name standardisation: colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: geom, border, include, line_colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: label.pos</span></div><div class='img'><img src='bcea-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the contour and scatterplot of the bivariate </span>
 <span class='co'># distribution of (Delta_e,Delta_c)</span>
-<span class='fu'><a href='contour.html'>contour</a></span>(<span class='no'>m</span>,          <span class='co'># uses the results of the economic evaluation </span>
+<span class='fu'><a href='contour.bcea.html'>contour</a></span><span class='op'>(</span>
+      <span class='va'>m</span>,            <span class='co'># uses the results of the economic evaluation </span>
                     <span class='co'>#  (a "bcea" object)</span>
-      <span class='kw'>comparison</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='co'># if more than 2 interventions, selects the </span>
+      comparison<span class='op'>=</span><span class='fl'>1</span>, <span class='co'># if more than 2 interventions, selects the </span>
                     <span class='co'>#  pairwise comparison </span>
-      <span class='kw'>nlevels</span><span class='kw'>=</span><span class='fl'>4</span>,    <span class='co'># selects the number of levels to be </span>
+      nlevels<span class='op'>=</span><span class='fl'>4</span>,    <span class='co'># selects the number of levels to be </span>
                     <span class='co'>#  plotted (default=4)</span>
-      <span class='kw'>levels</span><span class='kw'>=</span><span class='kw'>NULL</span>,  <span class='co'># specifies the actual levels to be plotted </span>
+      levels<span class='op'>=</span><span class='cn'>NULL</span>,  <span class='co'># specifies the actual levels to be plotted </span>
                     <span class='co'>#  (default=NULL, so that R will decide)</span>
-      <span class='kw'>scale</span><span class='kw'>=</span><span class='fl'>0.5</span>,    <span class='co'># scales the bandwidths for both x- and </span>
+      scale<span class='op'>=</span><span class='fl'>0.5</span>,    <span class='co'># scales the bandwidths for both x- and </span>
                     <span class='co'>#  y-axis (default=0.5)</span>
-      <span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"base"</span>  <span class='co'># uses base graphics to produce the plot</span>
-)</div><div class='img'><img src='bcea-4.png' alt='' width='700' height='433' /></div><div class='input'>
+      graph<span class='op'>=</span><span class='st'>"base"</span>  <span class='co'># uses base graphics to produce the plot</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='bcea-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the contour and scatterplot of the bivariate </span>
 <span class='co'>#   distribution of (Delta_e,Delta_c)</span>
-<span class='fu'><a href='contour2.html'>contour2</a></span>(<span class='no'>m</span>,       <span class='co'># uses the results of the economic evaluation </span>
+<span class='fu'><a href='contour2.bcea.html'>contour2</a></span><span class='op'>(</span>
+      <span class='va'>m</span>,          <span class='co'># uses the results of the economic evaluation </span>
                   <span class='co'>#  (a "bcea" object)</span>
-      <span class='kw'>wtp</span><span class='kw'>=</span><span class='fl'>25000</span>,  <span class='co'># selects the willingness-to-pay threshold</span>
-      <span class='kw'>xl</span><span class='kw'>=</span><span class='kw'>NULL</span>,    <span class='co'># assumes default values</span>
-      <span class='kw'>yl</span><span class='kw'>=</span><span class='kw'>NULL</span>     <span class='co'># assumes default values</span>
-)</div><div class='output co'>#&gt; <span class='message'>The first available comparison will be selected.</span>
+      wtp<span class='op'>=</span><span class='fl'>25000</span>,  <span class='co'># selects the willingness-to-pay threshold</span>
+      xlim<span class='op'>=</span><span class='cn'>NULL</span>,    <span class='co'># assumes default values</span>
+      ylim<span class='op'>=</span><span class='cn'>NULL</span>     <span class='co'># assumes default values</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>The first available comparison will be selected.</span>
 #&gt; <span class='message'>              To plot multiple comparisons together please use the ggplot2 version.</span>
 #&gt; <span class='message'>              Please see ?contour2 for additional details.</span></div><div class='img'><img src='bcea-5.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Using ggplot2</span>
-<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"ggplot2"</span>)) {
-<span class='fu'><a href='contour2.html'>contour2</a></span>(<span class='no'>m</span>,           <span class='co'># uses the results of the economic evaluation </span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"ggplot2"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'><a href='contour2.bcea.html'>contour2</a></span><span class='op'>(</span>
+      <span class='va'>m</span>,              <span class='co'># uses the results of the economic evaluation </span>
                       <span class='co'>#  (a "bcea" object)</span>
-      <span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"ggplot2"</span>,<span class='co'># selects the graphical engine</span>
-      <span class='kw'>wtp</span><span class='kw'>=</span><span class='fl'>25000</span>,      <span class='co'># selects the willingness-to-pay threshold</span>
-      <span class='kw'>xl</span><span class='kw'>=</span><span class='kw'>NULL</span>,        <span class='co'># assumes default values</span>
-      <span class='kw'>yl</span><span class='kw'>=</span><span class='kw'>NULL</span>,        <span class='co'># assumes default values</span>
-      <span class='kw'>label.pos</span><span class='kw'>=</span><span class='fl'>FALSE</span> <span class='co'># alternative position for the wtp label</span>
-)
-}</div><div class='output co'>#&gt; <span class='warning'>Warning: Duplicated aesthetics after name standardisation: colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: geom, border, include, line_colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: label.pos</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='img'><img src='bcea-6.png' alt='' width='700' height='433' /></div><div class='input'>
+      graph<span class='op'>=</span><span class='st'>"ggplot2"</span>,<span class='co'># selects the graphical engine</span>
+      wtp<span class='op'>=</span><span class='fl'>25000</span>,      <span class='co'># selects the willingness-to-pay threshold</span>
+      xlim<span class='op'>=</span><span class='cn'>NULL</span>,      <span class='co'># assumes default values</span>
+      ylim<span class='op'>=</span><span class='cn'>NULL</span>,      <span class='co'># assumes default values</span>
+      label.pos<span class='op'>=</span><span class='cn'>FALSE</span> <span class='co'># alternative position for the wtp label</span>
+<span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Duplicated aesthetics after name standardisation: colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: geom, border, include, line_colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: label.pos</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='img'><img src='bcea-6.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the Expected Incremental Benefit for the "bcea" object m</span>
-<span class='fu'><a href='eib.plot.html'>eib.plot</a></span>(<span class='no'>m</span>)</div><div class='img'><img src='bcea-7.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='eib.plot.bcea.html'>eib.plot</a></span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
+</div><div class='img'><img src='bcea-7.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the distribution of the Incremental Benefit</span>
-<span class='fu'>ib.plot</span>(<span class='no'>m</span>,        <span class='co'># uses the results of the economic evaluation </span>
+<span class='fu'><a href='ib.plot.bcea.html'>ib.plot</a></span><span class='op'>(</span>
+    <span class='va'>m</span>,            <span class='co'># uses the results of the economic evaluation </span>
                   <span class='co'>#  (a "bcea" object)</span>
-    <span class='kw'>comparison</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='co'># if more than 2 interventions, selects the </span>
+    comparison<span class='op'>=</span><span class='fl'>1</span>, <span class='co'># if more than 2 interventions, selects the </span>
                   <span class='co'>#  pairwise comparison </span>
-    <span class='kw'>wtp</span><span class='kw'>=</span><span class='fl'>25000</span>,    <span class='co'># selects the relevant willingness </span>
+    wtp<span class='op'>=</span><span class='fl'>25000</span>,    <span class='co'># selects the relevant willingness </span>
                   <span class='co'>#  to pay (default: 25,000)</span>
-    <span class='kw'>graph</span><span class='kw'>=</span><span class='st'>"base"</span>  <span class='co'># uses base graphics</span>
-)</div><div class='img'><img src='bcea-8.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'>#</span>
+    graph<span class='op'>=</span><span class='st'>"base"</span>  <span class='co'># uses base graphics</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='bcea-8.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Produces a plot of the CEAC against a grid of values for the </span>
 <span class='co'># willingness to pay threshold</span>
-<span class='fu'><a href='ceac.plot.html'>ceac.plot</a></span>(<span class='no'>m</span>)</div><div class='img'><img src='bcea-9.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='ceac.plot.bcea.html'>ceac.plot</a></span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
+</div><div class='img'><img src='bcea-9.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the Expected Value of Information for the "bcea" object m</span>
-<span class='fu'>evi.plot</span>(<span class='no'>m</span>)</div><div class='img'><img src='bcea-10.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='fu'><a href='evi.plot.bcea.html'>evi.plot</a></span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
+</div><div class='img'><img src='bcea-10.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 </div></pre>
   </div>
@@ -418,7 +454,7 @@ doi:10.1177/0962280211419832.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

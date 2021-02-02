@@ -151,17 +151,17 @@ selected value of the willingness-to-pay threshold).</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for bcea</span>
-<span class='fu'>contour2</span>(
-  <span class='no'>he</span>,
-  <span class='kw'>wtp</span> <span class='kw'>=</span> <span class='fl'>25000</span>,
-  <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>comparison</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>graph_type</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>),
-  <span class='no'>...</span>
-)
+<span class='fu'>contour2</span><span class='op'>(</span>
+  <span class='va'>he</span>,
+  wtp <span class='op'>=</span> <span class='fl'>25000</span>,
+  xlim <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ylim <span class='op'>=</span> <span class='cn'>NULL</span>,
+  comparison <span class='op'>=</span> <span class='cn'>NULL</span>,
+  graph_type <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"base"</span>, <span class='st'>"ggplot2"</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
 
-<span class='fu'>contour2</span>(<span class='no'>he</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>contour2</span><span class='op'>(</span><span class='va'>he</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -202,7 +202,7 @@ plotting. Should (partial-)match the two options <code>"base"</code> or
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments to be passed to <code>ceplane.plot</code>. See the
+      <td><p>Arguments to be passed to <code><a href='ceplane.plot.bcea.html'>ceplane.plot</a></code>. See the
 relative manual page for more details.</p></td>
     </tr>
     </table>
@@ -214,7 +214,7 @@ relative manual page for more details.</p></td>
 <dt>contour</dt><dd><p>A ggplot item containing the requested plot.
 Returned only if <code>graph_type="ggplot2"</code>.</p></dd> Plots the cost-effectiveness
 plane with a scatterplot of all the simulated values from the (posterior)
-bivariate distribution of (Delta_e,Delta_c), the differentials of
+bivariate distribution of (\Delta_e, \Delta_c), the differentials of
 effectiveness and costs; superimposes a contour of the distribution and
 prints the value of the ICER, together with the sustainability area.
 
@@ -227,26 +227,31 @@ doi:10.1177/0962280211419832.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>,
-         <code>ceplane.plot</code>,
-         <code><a href='contour.html'>contour.bcea</a></code></p></div>
+         <code><a href='ceplane.plot.bcea.html'>ceplane.plot</a></code>,
+         <code><a href='contour.bcea.html'>contour.bcea</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Gianluca Baio, Andrea Berardi</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## create the bcea object m for the smoking cessation example</span>
-<span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Smoking</span>)
-<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='no'>e</span>, <span class='no'>c</span>, <span class='kw'>ref</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>interventions</span> <span class='kw'>=</span> <span class='no'>treats</span>, <span class='kw'>Kmax</span> <span class='kw'>=</span> <span class='fl'>500</span>)
+<span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Smoking</span><span class='op'>)</span>
+<span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>c</span>, ref <span class='op'>=</span> <span class='fl'>4</span>, interventions <span class='op'>=</span> <span class='va'>treats</span>, Kmax <span class='op'>=</span> <span class='fl'>500</span><span class='op'>)</span>
 
 <span class='co'>## produce the plot</span>
-<span class='fu'>contour2</span>(<span class='no'>m</span>,
-         <span class='kw'>wtp</span> <span class='kw'>=</span> <span class='fl'>200</span>,
-         <span class='kw'>graph_type</span> <span class='kw'>=</span> <span class='st'>"base"</span>)</div><div class='output co'>#&gt; <span class='message'>The first available comparison will be selected.</span>
+<span class='fu'>contour2</span><span class='op'>(</span><span class='va'>m</span>,
+         wtp <span class='op'>=</span> <span class='fl'>200</span>,
+         graph_type <span class='op'>=</span> <span class='st'>"base"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>The first available comparison will be selected.</span>
 #&gt; <span class='message'>              To plot multiple comparisons together please use the ggplot2 version.</span>
 #&gt; <span class='message'>              Please see ?contour2 for additional details.</span></div><div class='img'><img src='contour2-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># \donttest{</span>
 <span class='co'>## or use ggplot2 to plot multiple comparisons</span>
-<span class='fu'>contour2</span>(<span class='no'>m</span>,
-         <span class='kw'>wtp</span> <span class='kw'>=</span> <span class='fl'>200</span>,
-         <span class='kw'>ICER.size</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-         <span class='kw'>graph_type</span> <span class='kw'>=</span> <span class='st'>"ggplot2"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Duplicated aesthetics after name standardisation: colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: geom, border, include, line_colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: label.pos</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='img'><img src='contour2-2.png' alt='' width='700' height='433' /></div><div class='input'># }
+<span class='fu'>contour2</span><span class='op'>(</span><span class='va'>m</span>,
+         wtp <span class='op'>=</span> <span class='fl'>200</span>,
+         ICER_size <span class='op'>=</span> <span class='fl'>2</span>,
+         graph_type <span class='op'>=</span> <span class='st'>"ggplot2"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Duplicated aesthetics after name standardisation: colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: geom, border, include, line_colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: label.pos</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='img'><img src='contour2-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 </div></pre>
   </div>
@@ -264,7 +269,7 @@ doi:10.1177/0962280211419832.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

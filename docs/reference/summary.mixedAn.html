@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Summary Methods For Objects in the Class <code>mixedAn</code> (Mixed Analysis) — summary.mixedAn • BCEA</title>
+<title>Summary Methods For Objects in the Class mixedAn (Mixed Analysis) — summary.mixedAn • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,7 @@
 
 
 
-<meta property="og:title" content="Summary Methods For Objects in the Class <code>mixedAn</code> (Mixed Analysis) — summary.mixedAn" />
+<meta property="og:title" content="Summary Methods For Objects in the Class mixedAn (Mixed Analysis) — summary.mixedAn" />
 <meta property="og:description" content="Prints a summary table for the results of the mixed analysis for the
 economic evaluation of a given model." />
 <meta property="og:image" content="/logo.png" />
@@ -147,7 +147,7 @@ economic evaluation of a given model.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for mixedAn</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='kw'>wtp</span> <span class='kw'>=</span> <span class='fl'>25000</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>object</span>, wtp <span class='op'>=</span> <span class='fl'>25000</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -187,6 +187,9 @@ doi:10.1177/0962280211419832.</p>
 
     <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>,
          <code><a href='mixedAn.html'>mixedAn</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Gianluca Baio</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -194,33 +197,34 @@ doi:10.1177/0962280211419832.</p>
 <span class='co'># Bayesian model and economic problem</span>
 
 <span class='co'># Load the processed results of the MCMC simulation model</span>
-<span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Vaccine</span>)
+<span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Vaccine</span><span class='op'>)</span>
 
 <span class='co'># Runs the health economic evaluation using BCEA</span>
-<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='kw'>e</span><span class='kw'>=</span><span class='no'>e</span>,<span class='kw'>c</span><span class='kw'>=</span><span class='no'>c</span>,          <span class='co'># defines the variables of </span>
+<span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span>e<span class='op'>=</span><span class='va'>e</span>,c<span class='op'>=</span><span class='va'>c</span>,          <span class='co'># defines the variables of </span>
                             <span class='co'>#  effectiveness and cost</span>
-      <span class='kw'>ref</span><span class='kw'>=</span><span class='fl'>2</span>,                <span class='co'># selects the 2nd row of (e,c) </span>
+      ref<span class='op'>=</span><span class='fl'>2</span>,                <span class='co'># selects the 2nd row of (e,c) </span>
                             <span class='co'>#  as containing the reference intervention</span>
-      <span class='kw'>interventions</span><span class='kw'>=</span><span class='no'>treats</span>, <span class='co'># defines the labels to be associated </span>
+      interventions<span class='op'>=</span><span class='va'>treats</span>, <span class='co'># defines the labels to be associated </span>
                             <span class='co'>#  with each intervention</span>
-      <span class='kw'>Kmax</span><span class='kw'>=</span><span class='fl'>50000</span>            <span class='co'># maximum value possible for the willingness </span>
+      Kmax<span class='op'>=</span><span class='fl'>50000</span>            <span class='co'># maximum value possible for the willingness </span>
                             <span class='co'>#  to pay threshold; implies that k is chosen </span>
                             <span class='co'>#  in a grid from the interval (0,Kmax)</span>
-)
+<span class='op'>)</span>
 
-<span class='no'>ma</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='mixedAn.html'>mixedAn</a></span>(<span class='no'>m</span>,        <span class='co'># uses the results of the mixed strategy </span>
+<span class='va'>ma</span> <span class='op'>&lt;-</span> <span class='fu'><a href='mixedAn.html'>mixedAn</a></span><span class='op'>(</span><span class='va'>m</span>,        <span class='co'># uses the results of the mixed strategy </span>
                         <span class='co'>#  analysis (a "mixedAn" object)</span>
-       <span class='kw'>mkt.shares</span><span class='kw'>=</span><span class='kw'>NULL</span>  <span class='co'># the vector of market shares can be defined </span>
+       mkt.shares<span class='op'>=</span><span class='cn'>NULL</span>  <span class='co'># the vector of market shares can be defined </span>
                         <span class='co'>#  externally. If NULL, then each of the T </span>
                         <span class='co'>#  interventions will have 1/T market share</span>
-)
+<span class='op'>)</span>
 
 <span class='co'># Prints a summary of the results</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>ma</span>,       <span class='co'># uses the results of the mixed strategy analysis </span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>ma</span>,       <span class='co'># uses the results of the mixed strategy analysis </span>
                   <span class='co'>#  (a "mixedAn" object)</span>
-     <span class='kw'>wtp</span><span class='kw'>=</span><span class='fl'>25000</span>    <span class='co'># selects the relevant willingness to pay </span>
+     wtp<span class='op'>=</span><span class='fl'>25000</span>    <span class='co'># selects the relevant willingness to pay </span>
                   <span class='co'>#  (default: 25,000) </span>
-)</div><div class='output co'>#&gt; 
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Analysis of mixed strategy for willingness to pay parameter k = 25000
 #&gt; 
 #&gt; Reference intervention: Vaccination (50.00% market share)
@@ -244,7 +248,7 @@ doi:10.1177/0962280211419832.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
