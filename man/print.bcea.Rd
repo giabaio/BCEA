@@ -4,10 +4,10 @@
 \alias{print.bcea}
 \title{bcea Print Method}
 \usage{
-\method{print}{bcea}(he, digits = getOption("digits"), give.attr = FALSE, no.list = TRUE, ...)
+\method{print}{bcea}(x, digits = getOption("digits"), give.attr = FALSE, no.list = TRUE, ...)
 }
 \arguments{
-\item{he}{A \code{bcea} object containing the results of the Bayesian
+\item{x}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
 \item{digits}{Minimal number of significant digits, see \code{\link{print.default}}.}

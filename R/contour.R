@@ -1,7 +1,9 @@
 
 #' @rdname contour
+#' @importFrom stats sd
+#' @importFrom graphics par
+#' 
 #' @export
-#' @inheritParams contour
 #' 
 contour.bcea <- function(he,
                          comparison = 1,
@@ -44,7 +46,7 @@ contour.bcea <- function(he,
   }
   
   alt.legend <- pos
-  base.graphics <- pmatch(graph, c("base", "ggplot2")) != 2
+  base.graphics <- all(pmatch(graph, c("base", "ggplot2")) != 2)
   
   if (base.graphics) {
     if (is.null(comparison) | length(comparison) > 1) {
@@ -316,10 +318,8 @@ contour.bcea <- function(he,
     }
   } # if base.graphics
   else{
-    if (!isTRUE(
-      requireNamespace("ggplot2", quietly = TRUE) &
-      requireNamespace("grid", quietly = TRUE)
-    )) {
+    if (!requireNamespace("ggplot2", quietly = TRUE) &
+        requireNamespace("grid", quietly = TRUE)) {
       message("Falling back to base graphics\n")
       contour(
         he,
@@ -329,8 +329,7 @@ contour.bcea <- function(he,
         pos = alt.legend,
         levels = levels,
         graph = "base",
-        ...
-      )
+        ...)
       return(invisible(NULL))
     }
     
@@ -394,7 +393,7 @@ contour.bcea <- function(he,
         points.colour <- "black"
       
       ceplane <-
-        ggplot(kd, aes(e, c)) +
+        ggplot(kd, aes(.data$e, .data$c)) +
         geom_hline(aes(yintercept = 0), colour = "grey") +
         geom_vline(aes(xintercept = 0), colour = "grey") +
         theme_bw() +
@@ -419,7 +418,7 @@ contour.bcea <- function(he,
         ceplane <-
           ceplane +
           geom_contour(
-            aes(z = z),
+            aes(z = .data$z),
             data = density,
             colour = "black",
             bins = nlevels)
@@ -432,8 +431,8 @@ contour.bcea <- function(he,
         geom_text(
           data = labels.df,
           aes(
-            x = he,
-            y = y,
+            x = .data$he,
+            y = .data$y,
             hjust = hjust,
             label = label),
           parse = TRUE,
@@ -443,9 +442,9 @@ contour.bcea <- function(he,
       kd <- data.frame(
         delta_e = c(as.matrix(he$delta_e)),
         delta_c = c(as.matrix(he$delta_c)),
-        comparison = as.factor(sort(rep(
-          1:n_comparisons, dim(as.matrix(he$delta_e))[1]
-        )))
+        comparison =
+          as.factor(sort(
+            rep(1:he$n_comparisons, dim(as.matrix(he$delta_e))[1])))
       )
       
       # vector of values for colour, take out white, get integer values
@@ -465,7 +464,8 @@ contour.bcea <- function(he,
       range.c[1] <- ifelse(range.c[1] < 0, range.c[1], -range.c[1])
       
       ceplane <-
-        ggplot(kd, aes(x = delta_e, y = delta_c, col = comparison)) +
+        ggplot(kd,
+               aes(x = .data$delta_e, y = .data$delta_c, col = .data$comparison)) +
         geom_hline(yintercept = 0, colour = "grey") +
         geom_vline(xintercept = 0, colour = "grey") +
         theme_bw() +
@@ -496,7 +496,7 @@ contour.bcea <- function(he,
         densitydf$comparison <- as.factor(densitydf$comparison)
         ceplane <-
           ceplane +
-          geom_contour(aes(z = z, colour = comparison),
+          geom_contour(aes(z = .data$z, colour = .data$comparison),
                        data = densitydf,
                        bins = nlevels) +
           guides(colour = guide_legend(override.aes =
@@ -564,8 +564,8 @@ contour.bcea <- function(he,
       ceplane + labs(title = labs.title, x = xlab, y = ylab)
     
     jus <- NULL
-    if (alt.legend) {
-      alt.legend = "bottom"
+    if (all(alt.legend)) {
+      alt.legend <- "bottom"
       ceplane <-
         ceplane + theme(legend.direction = "vertical")
     } else {
@@ -635,7 +635,7 @@ contour.bcea <- function(he,
 #' \code{TRUE} to place the legend on the bottom of the plot. Default value is
 #' \code{c(1,0)}, that is the bottomright corner inside the plot area.
 #' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the two options \code{"base"} or
+#' plotting. Should (partial-) match the two options \code{"base"} or
 #' \code{"ggplot2"}. Default value is \code{"base"}.
 #' @param xlim The range of the plot along the x-axis. If NULL (default) it is
 #' determined by the range of the simulated values for \code{delta_e}
@@ -648,10 +648,10 @@ contour.bcea <- function(he,
 #' @return \item{ceplane}{ A ggplot object containing the plot. Returned only
 #' if \code{graph="ggplot2"}. } Plots the cost-effectiveness plane with a
 #' scatterplot of all the simulated values from the (posterior) bivariate
-#' distribution of (Delta_e, Delta_c), the differentials of effectiveness and
+#' distribution of (\eqn{\Delta_e, \Delta_c}), the differentials of effectiveness and
 #' costs; superimposes a contour of the distribution and prints the estimated
 #' value of the probability of each quadrant (combination of positive/negative
-#' values for both Delta_e and Delta_c)
+#' values for both \eqn{\Delta_e} and \eqn{\Delta_c})
 #' @author Gianluca Baio, Andrea Berardi
 #' @references
 #' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
@@ -686,7 +686,7 @@ contour.bcea <- function(he,
 #' )
 #' 
 #' contour(m)
-#' contour(m, graph = "ggplot2)
+#' contour(m, graph = "ggplot2")
 #' 
 #' # Plots the contour and scatterplot of the bivariate 
 #' # distribution of (Delta_e, Delta_c)

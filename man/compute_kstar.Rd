@@ -9,7 +9,7 @@ compute_kstar(k, best, ref)
 \arguments{
 \item{k}{Willingness-to-pay vector}
 
-\item{best}{Best intervention for each k}
+\item{best}{Best intervention for each `k`}
 
 \item{ref}{Reference intervention}
 }

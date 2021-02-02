@@ -5,9 +5,10 @@
 #' @param k Vector of willingness to pay values
 #'
 #' @import reshape2 dplyr
+#' @importFrom rlang int
 #'
 #' @return List object of class bcea.
-#' @seealso bcea
+#' @seealso \code{\link{bcea}}
 #' 
 #' @export
 #'
@@ -17,7 +18,7 @@ new_bcea <- function(df_ce, k) {
   n_sim <- length(unique(df_ce$sim))
   ref <- unique(df_ce$ref)
   comp <- (1:max(df_ce$ints))[-ref]
-  df_ce_comp <- df_ce %>% filter(ints != ref)
+  df_ce_comp <- df_ce %>% filter(.data$ints != ref)
   
   ICER <- compute_ICER(df_ce)
   

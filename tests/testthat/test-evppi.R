@@ -8,7 +8,7 @@ test_that("basic", {
 # # 1. Runs the full Bayesian model and then produces the overall economic evaluation
 # source("Utils.R")	# loads some useful functions
 # source("runModel.R")	# runs the full model
-# 
+# data("Vaccine")
 # 
 # # using the 2-stage MCMC approach
 # source("EVPPI_2stage.R")
@@ -27,7 +27,7 @@ test_that("basic", {
 # bcea.call <- "bcea(e=e.pts, c=c.pts, ref=2, interventions=treats)"
 # 
 # ev <-
-#   .evppi2stage(phi = par.int,
+#   evppi2stage(phi = par.int,
 #                phi.name,
 #                n.out = n.out,
 #                m,

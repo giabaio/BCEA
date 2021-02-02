@@ -9,3 +9,5 @@
 ^docs$
 ^pkgdown$
 ^\.httr-oauth$
+^CONDUCT\.md$
+^man-roxygen$

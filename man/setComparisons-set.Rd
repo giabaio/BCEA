@@ -13,8 +13,11 @@ modelling and the economic evaluation.}
 \item{value}{Comparison}
 }
 \value{
-
+bcea-type object
 }
 \description{
-Set Comparison Group
+One of the alternative way to set (e,c) comparison group.
+}
+\seealso{
+\code{\link{setComparisons}}
 }

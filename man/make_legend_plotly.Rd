@@ -2,10 +2,16 @@
 % Please edit documentation in R/make_legend_plotly.R
 \name{make_legend_plotly}
 \alias{make_legend_plotly}
-\title{legend positioning not great - must be customized case by case}
+\title{Legend Positioning}
 \usage{
 make_legend_plotly(pos_legend)
 }
+\arguments{
+\item{pos_legend}{Position of legend}
+}
+\value{
+String
+}
 \description{
-legend positioning not great - must be customized case by case
+Legend Positioning
 }

@@ -1,24 +1,5 @@
 
-#' Cost-Effectiveness Acceptability Curve (CEAC) Plot
-#' 
-#' Produces a plot of the Cost-Effectiveness Acceptability Curve (CEAC) against
-#' the willingness to pay threshold.
-#' 
-#' The CEAC estimates the probability of cost-effectiveness, with respect to a
-#' given willingness to pay threshold. The CEAC is used mainly to evaluate the
-#' uncertainty associated with the decision-making process, since it enables the
-#' quantification of the preference of the compared interventions, defined in terms
-#' of difference in utilities.
-#' Formally, the CEAC is defined as:
-#' 
-#' \deqn{\text{CEAC} = P(\text{IB}(\theta) > 0)}
-#'   
-#' If the net benefit function is used as utility function, the definition can be
-#' re-written as
-#' 
-#' \deqn{\text{CEAC} = P(k\cdot\Delta_e - \Delta_c > 0)}
-#' 
-#' effectively depending on the willingness to pay value \eqn{k}.
+#' @rdname ceac.plot
 #' 
 #' @template args-he
 #' @template args-comparison
@@ -34,16 +15,9 @@
 #' @param graph A string used to select the graphical engine to use for
 #'   plotting. Should (partial-)match the three options \code{"base"},
 #'   \code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
-#' @param ...  If \code{graph = "ggplot2"} and a named theme object is supplied,
-#'   it will be added to the ggplot object. Additional arguments:
-#'  \itemize{
-#'   \item \code{line_colors}: specifies the line colour(s) - all graph types.
-#'   \item \code{line_types}: specifies the line type(s) as lty numeric values - all graph types.
-#'   \item \code{area_include}: logical, include area under the CEAC curves - plotly only.
-#'   \item \code{area_color}: specifies the AUC colour - plotly only.}
 #'   
 #' @return \item{ceac}{If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 
-#'   a plotly object containing the requested plot. Nothing is returned when \code{graph = "base"}, 
+#'   a plotly object containing the requested plot. Nothing is returned when \code{graph = "base"},
 #'   the default.} The function produces a plot of the
 #'   cost-effectiveness acceptability curve against the discrete grid of possible
 #'   values for the willingness to pay parameter. Values of the CEAC closer to 1
@@ -127,10 +101,35 @@ ceac.plot.bcea <- function(he,
 }
 
 
-#' Cost-Effectiveness Acceptability Curve (CEAC) Plot Generic
+#' Cost-Effectiveness Acceptability Curve (CEAC) Plot
 #' 
 #' Produces a plot of the Cost-Effectiveness Acceptability Curve (CEAC) against
 #' the willingness to pay threshold.
+#' 
+#' The CEAC estimates the probability of cost-effectiveness, with respect to a
+#' given willingness to pay threshold. The CEAC is used mainly to evaluate the
+#' uncertainty associated with the decision-making process, since it enables the
+#' quantification of the preference of the compared interventions, defined in terms
+#' of difference in utilities.
+#' Formally, the CEAC is defined as:
+#' 
+#' \deqn{\textrm{CEAC} = P(\textrm{IB}(\theta) > 0)}
+#'   
+#' If the net benefit function is used as utility function, the definition can be
+#' re-written as
+#' 
+#' \deqn{\textrm{CEAC} = P(k \cdot \Delta_e - \Delta_c > 0)}
+#' 
+#' effectively depending on the willingness to pay value \eqn{k}.
+#' 
+#' @template args-he
+#' @param ...  If \code{graph = "ggplot2"} and a named theme object is supplied,
+#'   it will be added to the ggplot object. Additional arguments:
+#'  \itemize{
+#'   \item \code{line_colors}: specifies the line colour(s) - all graph types.
+#'   \item \code{line_types}: specifies the line type(s) as lty numeric values - all graph types.
+#'   \item \code{area_include}: logical, include area under the CEAC curves - plotly only.
+#'   \item \code{area_color}: specifies the AUC colour - plotly only.} 
 #' @export
 #' @seealso \code{\link{ceac.plot.bcea}}
 #' 

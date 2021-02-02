@@ -4,9 +4,10 @@
 #' Produces a table printout with some summary results of the health economic
 #' evaluation.
 #' 
-#' @template args-he
+#' @param object A \code{bcea} object containing the results of the Bayesian
+#'               modelling and the economic evaluation.
 #' @param wtp The value of the willingness to pay threshold used in the
-#'   summary table.
+#'            summary table.
 #' @param ...  Additional arguments affecting the summary produced.
 #' 
 #' @return Prints a summary table with some information on the health economic
@@ -27,11 +28,12 @@
 #' @examples 
 #' data(Vaccine)
 #' 
-#' he <- bcea(e,c, interventions = treats, ref = 2)
+#' he <- bcea(e, c, interventions = treats, ref = 2)
 #' summary(he)
 #' 
-summary.bcea <- function(he,
+summary.bcea <- function(object,
                          wtp = 25000,...) {
+  he <- object
   
   if (max(he$k) < wtp) {
     wtp <- max(he$k)

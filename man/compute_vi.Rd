@@ -24,7 +24,7 @@ The value of obtaining additional information on the parameter \eqn{\theta}
 to reduce the uncertainty in the decisional process.
 It is defined as:
 
-\deqn{\text{VI}(\theta) := U^*(\theta) - \mathcal{U}^*}
+\deqn{\textrm{VI}(\theta) := U^*(\theta) - \mathcal{U}^*}
 
 with \eqn{U^*(\theta)} the maximum utility value for the given simulation
 among all comparators and \eqn{\mathcal{U}^*(\theta)} the expected utility

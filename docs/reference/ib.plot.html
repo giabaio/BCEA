@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Incremental Benefit (IB) distribution plot — ib.plot • BCEA</title>
+<title>Incremental Benefit (IB) Distribution Plot — ib.plot.bcea • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,9 +46,9 @@
 
 
 
-<meta property="og:title" content="Incremental Benefit (IB) distribution plot — ib.plot" />
+<meta property="og:title" content="Incremental Benefit (IB) Distribution Plot — ib.plot.bcea" />
 <meta property="og:description" content="Plots the distribution of the Incremental Benefit (IB) for a given value of
-the willingness to pay threshold" />
+the willingness to pay threshold." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -106,8 +106,9 @@ the willingness to pay threshold" />
     <li>
       <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
     </li>
+    <li class="divider"></li>
     <li>
-      <a href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+      <a href="../articles/index.html">More...</a>
     </li>
   </ul>
 </li>
@@ -135,25 +136,29 @@ the willingness to pay threshold" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Incremental Benefit (IB) distribution plot</h1>
+    <h1>Incremental Benefit (IB) Distribution Plot</h1>
     <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/ib.plot.R'><code>R/ib.plot.R</code></a></small>
     <div class="hidden name"><code>ib.plot.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Plots the distribution of the Incremental Benefit (IB) for a given value of
-the willingness to pay threshold</p>
+the willingness to pay threshold.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ib.plot</span>(
-  <span class='no'>he</span>,
-  <span class='kw'>comparison</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>wtp</span> <span class='kw'>=</span> <span class='fl'>25000</span>,
-  <span class='kw'>bw</span> <span class='kw'>=</span> <span class='no'>nbw</span>,
-  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>512</span>,
-  <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>)
-)</pre>
+    <pre class="usage"><span class='co'># S3 method for bcea</span>
+<span class='fu'>ib.plot</span><span class='op'>(</span>
+  <span class='va'>he</span>,
+  comparison <span class='op'>=</span> <span class='cn'>NULL</span>,
+  wtp <span class='op'>=</span> <span class='fl'>25000</span>,
+  bw <span class='op'>=</span> <span class='va'>nbw</span>,
+  n <span class='op'>=</span> <span class='fl'>512</span>,
+  xlim <span class='op'>=</span> <span class='cn'>NULL</span>,
+  graph <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"base"</span>, <span class='st'>"ggplot2"</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
+
+<span class='fu'>ib.plot</span><span class='op'>(</span><span class='va'>he</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -176,7 +181,7 @@ forces R to consider the first non-reference intervention as the comparator.</p>
     </tr>
     <tr>
       <th>bw</th>
-      <td><p>Identifies the smoothing bandwith used to construct the kernel
+      <td><p>Identifies the smoothing bandwidth used to construct the kernel
 estimation of the IB density.</p></td>
     </tr>
     <tr>
@@ -191,8 +196,12 @@ estimated.</p></td>
     <tr>
       <th>graph</th>
       <td><p>A string used to select the graphical engine to use for
-plotting. Should (partial-)match the two options <code>"base"</code> or
+plotting. Should (partial-) match the two options <code>"base"</code> or
 <code>"ggplot2"</code>. Default value is <code>"base"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments</p></td>
     </tr>
     </table>
 
@@ -204,20 +213,23 @@ plotting. Should (partial-)match the two options <code>"base"</code> or
 only if <code>graph="ggplot2"</code>.</p></dd> The function produces a plot of the
 distribution of the Incremental Benefit for a given value of the willingness
 to pay parameter. The dashed area indicates the positive part of the
-distribution (ie when the reference is more cost-effective than the
+distribution (i.e. when the reference is more cost-effective than the
 comparator).
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
+Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.</p>
-<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London</p>
+<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>, <code>ib.plot</code>,
-<code>ceplane.plot</code></p></div>
+    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>,
+         <code>ib.plot</code>,
+         <code><a href='ceplane.plot.bcea.html'>ceplane.plot</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Gianluca Baio, Andrea Berardi</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -234,7 +246,7 @@ London</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

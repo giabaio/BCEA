@@ -1,6 +1,12 @@
 
-#' ceplane_ggplot_params
+#' CE-plane ggplot Parameters
 #' 
+#' @template args-he
+#' @param wtp Willingness to pay
+#' @param pos_legend Position of legend
+#' @param graph_params Other graphical parameters
+#' @param ... Additional arguments
+#'
 #' @import ggplot2
 #'
 ceplane_ggplot_params <- function(he,
@@ -33,7 +39,7 @@ ceplane_ggplot_params <- function(he,
       icer = list(
         data = data.frame(x = colMeans(he$delta_e),
                           y = colMeans(he$delta_c)),
-        mapping = aes(x = x, y = y),
+        mapping = aes(x = .data$x, y = .data$y),
         color = "red",
         size = convert_pts_to_mm(0.8),
         inherit.aes = FALSE),
@@ -64,7 +70,7 @@ ceplane_ggplot_params <- function(he,
         alpha = ifelse(ext_params$area$include, 0.8, 0),
         data = data.frame(x = graph_params$area$x,
                           y = graph_params$area$y),
-        mapping = aes(x = x, y = y),
+        mapping = aes(x = .data$x, y = .data$y),
         inherit.aes = FALSE))
   
   modifyList(default_params,

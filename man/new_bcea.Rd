@@ -18,5 +18,5 @@ List object of class bcea.
 Constructor for bcea
 }
 \seealso{
-bcea
+\code{\link{bcea}}
 }

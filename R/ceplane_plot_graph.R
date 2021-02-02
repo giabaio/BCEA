@@ -2,8 +2,13 @@
 #' Cost-Effectiveness Plane Plot By Graph Device
 #'
 #' Choice of base R, ggplot2 or plotly.
-#' @name ceplane_plot_graph
-#'
+#' 
+#' @template args-he
+#' @param wtp Willingness to pay threshold; default 25,000
+#' @param pos_legend Legend position
+#' @param graph_params Graph parameters in ggplot format
+#' @param ... Additional arguments
+#' 
 #' @examples
 #' # single comparator
 #' data(Vaccine)
@@ -48,4 +53,6 @@
 #'                   pos_legend = FALSE,
 #'                   graph_params = graph_params)
 #' 
+#' @name ceplane_plot_graph
 NULL
+

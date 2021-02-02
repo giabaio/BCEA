@@ -146,15 +146,15 @@ order to perform structural PSA." />
 order to perform structural PSA.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>struct.psa</span>(
-  <span class='no'>models</span>,
-  <span class='no'>effect</span>,
-  <span class='no'>cost</span>,
-  <span class='kw'>ref</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>interventions</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>Kmax</span> <span class='kw'>=</span> <span class='fl'>50000</span>,
-  <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>struct.psa</span><span class='op'>(</span>
+  <span class='va'>models</span>,
+  <span class='va'>effect</span>,
+  <span class='va'>cost</span>,
+  ref <span class='op'>=</span> <span class='fl'>1</span>,
+  interventions <span class='op'>=</span> <span class='cn'>NULL</span>,
+  Kmax <span class='op'>=</span> <span class='fl'>50000</span>,
+  plot <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -186,7 +186,7 @@ appearing first is the reference and the other(s) is(are) the comparator(s)</p><
       <th>interventions</th>
       <td><p>Defines the labels to be associated with each
 intervention. By default and if <code>NULL</code>, assigns labels in the form
-"Intervention1", ... , "Intervention T"</p></td>
+"Intervention1", ... , "InterventionT"</p></td>
     </tr>
     <tr>
       <th>Kmax</th>
@@ -203,6 +203,9 @@ the summary plot or not</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>List object of bcea object, model weights and DIC</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The model is a list containing the output from either R2jags or R2OpenBUGS /
@@ -217,10 +220,10 @@ models (one matrix with n_sim x n_ints simulations for each model).</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-</div></pre>
+    <p>Gianluca Baio</p>
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -236,7 +239,7 @@ models (one matrix with n_sim x n_ints simulations for each model).</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

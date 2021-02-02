@@ -11,11 +11,7 @@ multiplot(plotlist = NULL, cols = 1, layout_config = NULL)
 
 \item{cols}{Number of columns}
 
-\item{layout}{Matrix}
-
-\item{extra_args}{List of plotting arguments}
-
-\item{...}{Potential further arguments}
+\item{layout_config}{Matrix of plot configuration}
 }
 \value{
 ggplot TableGrob object

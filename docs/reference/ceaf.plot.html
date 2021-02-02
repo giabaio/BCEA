@@ -147,9 +147,9 @@ against the willingness to pay threshold.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for pairwise</span>
-<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>))
+<span class='fu'>ceaf.plot</span><span class='op'>(</span><span class='va'>mce</span>, graph <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"base"</span>, <span class='st'>"ggplot2"</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>ceaf.plot</span><span class='op'>(</span><span class='va'>mce</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,8 +161,12 @@ against the willingness to pay threshold.</p>
     <tr>
       <th>graph</th>
       <td><p>A string used to select the graphical engine to use for
-plotting. Should (partial-)match the two options <code>"base"</code> or
+plotting. Should (partial-) match the two options <code>"base"</code> or
 <code>"ggplot2"</code>. Default value is <code>"base"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments</p></td>
     </tr>
     </table>
 
@@ -178,11 +182,14 @@ plotting. Should (partial-)match the two options <code>"base"</code> or
     <p>Baio G, Dawid AP. (2011). Probabilistic Sensitivity
 Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.</p>
-<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London.</p>
+<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>, <code><a href='multi.ce.html'>multi.ce</a></code></p></div>
+    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>,
+         <code><a href='multi.ce.html'>multi.ce</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Gianluca Baio, Andrea Berardi</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -190,40 +197,43 @@ London.</p>
 <span class='co'># Bayesian model and economic problem</span>
 
 <span class='co'># Load the processed results of the MCMC simulation model</span>
-<span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Vaccine</span>)
+<span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Vaccine</span><span class='op'>)</span>
 
 <span class='co'># Runs the health economic evaluation using BCEA</span>
-<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(
-      <span class='kw'>e</span><span class='kw'>=</span><span class='no'>e</span>,
-      <span class='kw'>c</span><span class='kw'>=</span><span class='no'>c</span>,                  <span class='co'># defines the variables of </span>
+<span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span>
+      e<span class='op'>=</span><span class='va'>e</span>,
+      c<span class='op'>=</span><span class='va'>c</span>,                  <span class='co'># defines the variables of </span>
                             <span class='co'>#  effectiveness and cost</span>
-      <span class='kw'>ref</span><span class='kw'>=</span><span class='fl'>2</span>,                <span class='co'># selects the 2nd row of (e, c) </span>
+      ref<span class='op'>=</span><span class='fl'>2</span>,                <span class='co'># selects the 2nd row of (e, c) </span>
                             <span class='co'>#  as containing the reference intervention</span>
-      <span class='kw'>interventions</span><span class='kw'>=</span><span class='no'>treats</span>, <span class='co'># defines the labels to be associated </span>
+      interventions<span class='op'>=</span><span class='va'>treats</span>, <span class='co'># defines the labels to be associated </span>
                             <span class='co'>#  with each intervention</span>
-      <span class='kw'>Kmax</span><span class='kw'>=</span><span class='fl'>50000</span>,           <span class='co'># maximum value possible for the willingness </span>
+      Kmax<span class='op'>=</span><span class='fl'>50000</span>,           <span class='co'># maximum value possible for the willingness </span>
                             <span class='co'>#  to pay threshold; implies that k is chosen </span>
                             <span class='co'>#  in a grid from the interval (0, Kmax)</span>
-      <span class='kw'>plot</span><span class='kw'>=</span><span class='fl'>FALSE</span>            <span class='co'># inhibits graphical output</span>
-)
+      plot<span class='op'>=</span><span class='cn'>FALSE</span>            <span class='co'># inhibits graphical output</span>
+<span class='op'>)</span>
 
 <span class='co'># \donttest{</span>
-<span class='no'>mce</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='multi.ce.html'>multi.ce</a></span>(<span class='no'>m</span>)          <span class='co'># uses the results of the economic analysis </span>
+<span class='va'>mce</span> <span class='op'>&lt;-</span> <span class='fu'><a href='multi.ce.html'>multi.ce</a></span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>          <span class='co'># uses the results of the economic analysis </span>
 <span class='co'># }</span>
 
 <span class='co'># \donttest{</span>
-<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>)              <span class='co'># plots the CEAF </span></div><div class='img'><img src='ceaf.plot-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+<span class='fu'>ceaf.plot</span><span class='op'>(</span><span class='va'>mce</span><span class='op'>)</span>              <span class='co'># plots the CEAF </span>
+</div><div class='img'><img src='ceaf.plot-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 <span class='co'># \donttest{</span>
-<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='st'>"g"</span>) <span class='co'># uses ggplot2 </span></div><div class='img'><img src='ceaf.plot-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+<span class='fu'>ceaf.plot</span><span class='op'>(</span><span class='va'>mce</span>, graph <span class='op'>=</span> <span class='st'>"g"</span><span class='op'>)</span> <span class='co'># uses ggplot2 </span>
+</div><div class='img'><img src='ceaf.plot-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 <span class='co'># \donttest{</span>
 <span class='co'># Use the smoking cessation dataset</span>
-<span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Smoking</span>)
-<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='no'>e</span>, <span class='no'>c</span>, <span class='kw'>ref</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>intervention</span> <span class='kw'>=</span> <span class='no'>treats</span>, <span class='kw'>Kmax</span> <span class='kw'>=</span> <span class='fl'>500</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='no'>mce</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='multi.ce.html'>multi.ce</a></span>(<span class='no'>m</span>)
-<span class='fu'>ceaf.plot</span>(<span class='no'>mce</span>)</div><div class='img'><img src='ceaf.plot-3.png' alt='' width='700' height='433' /></div><div class='input'># }
-
+<span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Smoking</span><span class='op'>)</span>
+<span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>c</span>, ref <span class='op'>=</span> <span class='fl'>4</span>, intervention <span class='op'>=</span> <span class='va'>treats</span>, Kmax <span class='op'>=</span> <span class='fl'>500</span>, plot <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='va'>mce</span> <span class='op'>&lt;-</span> <span class='fu'><a href='multi.ce.html'>multi.ce</a></span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
+<span class='fu'>ceaf.plot</span><span class='op'>(</span><span class='va'>mce</span><span class='op'>)</span>
+</div><div class='img'><img src='ceaf.plot-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+ 
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -240,7 +250,7 @@ London.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

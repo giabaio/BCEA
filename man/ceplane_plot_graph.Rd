@@ -3,6 +3,7 @@
 %   R/ceplane_plot_graph.R, R/ceplane_plot_plotly.R
 \name{ceplane_plot_base.bcea}
 \alias{ceplane_plot_base.bcea}
+\alias{ceplane_plot_base}
 \alias{ceplane_plot_ggplot.bcea}
 \alias{ceplane_plot_ggplot}
 \alias{ceplane_plot_graph}
@@ -12,11 +13,13 @@
 \usage{
 \method{ceplane_plot_base}{bcea}(he, wtp = 25000, pos_legend, graph_params, ...)
 
+ceplane_plot_base(he, ...)
+
 \method{ceplane_plot_ggplot}{bcea}(he, wtp = 25000, pos_legend, graph_params, ...)
 
 ceplane_plot_ggplot(he, ...)
 
-\method{ceplane_plot_plotly}{bcea}(he, wtp = 25000, graph_params, pos_legend)
+\method{ceplane_plot_plotly}{bcea}(he, wtp = 25000, pos_legend, graph_params, ...)
 
 ceplane_plot_plotly(he, ...)
 }

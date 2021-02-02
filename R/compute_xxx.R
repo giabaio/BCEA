@@ -6,7 +6,7 @@
 #' Find willingness-to-pay threshold when optimal decision changes.
 #'  
 #' @param k Willingness-to-pay vector
-#' @param best Best intervention for each k
+#' @param best Best intervention for each `k`
 #' @param ref Reference intervention
 #'
 #' @return Array with dimensions
@@ -48,7 +48,7 @@ compute_CEAC <- function(ib) {
 #' such as the status quo, \eqn{t = 0}), it is defined as the difference between the
 #' expected utilities of the two alternatives:
 #' 
-#' \deqn{eib := \mbox{E}[u(e,c;1)] - \mbox{E}[u(e,c;0)] = \mathcal{U}^1 - \mathcal{U}^0}.
+#' \deqn{eib := \mbox{E}[u(e,c;1)] - \mbox{E}[u(e,c;0)] = \mathcal{U}^1 - \mathcal{U}^0.}
 #' 
 #' Analysis of the expected incremental benefit describes how the decision changes
 #' for different values of the threshold. The EIB marginalises out the uncertainty,
@@ -104,7 +104,7 @@ compute_Ustar <- function(U) {
 #' to reduce the uncertainty in the decisional process.
 #' It is defined as:
 #' 
-#' \deqn{\text{VI}(\theta) := U^*(\theta) - \mathcal{U}^*}
+#' \deqn{\textrm{VI}(\theta) := U^*(\theta) - \mathcal{U}^*}
 #' 
 #' with \eqn{U^*(\theta)} the maximum utility value for the given simulation
 #' among all comparators and \eqn{\mathcal{U}^*(\theta)} the expected utility
@@ -144,14 +144,14 @@ compute_vi <- function(Ustar, U) {
 #' utility of the intervention associated with the maximum utility overall.
 #' 
 #' In mathematical notation,
-#' \deqn{\text{OL}(\theta) := U^*(\theta) - U(\theta^\tau)}
+#' \deqn{\textrm{OL}(\theta) := U^*(\theta) - U(\theta^\tau)}
 #'
 #' where \eqn{\tau} is the intervention associated with the overall maximum utility
 #' and \eqn{U^*(\theta)} is the maximum utility value among the comparators in the given simulation.
 #' The opportunity loss is a non-negative quantity, since \eqn{U(\theta^\tau)\leq U^*(\theta)}.
 #' 
 #' In all simulations where the intervention is more
-#' cost-effective (i.e. when incremental benefit is positive), then \eqn{OL(\theta) = 0}
+#' cost-effective (i.e. when incremental benefit is positive), then \eqn{\textrm{OL}(\theta) = 0}
 #' as there would be no opportunity loss, if the parameter configuration were the
 #' one obtained in the current simulation.
 #' 
@@ -212,8 +212,8 @@ compute_U <- function(df_ce, k) {
   U_df <-
     data.frame(k = rep(k, each = nrow(df_ce)),
                df_ce) %>% 
-    mutate(U = k*eff1 - cost1) %>% 
-    arrange(ints, k, sim)
+    mutate(U = .data$k*.data$eff1 - .data$cost1) %>% 
+    arrange(.data$ints, .data$k, .data$sim)
   
   array(U_df$U,
         dim = c(length(sims),
@@ -232,12 +232,12 @@ compute_U <- function(df_ce, k) {
 #' 
 #' Defined as:
 #' 
-#' \deqn{IB = u(e,c; 1) - u(e,c; 0)}
+#' \deqn{IB = u(e,c; 1) - u(e,c; 0).}
 #' 
 #' If the net benefit function is used as utility function,
 #' the definition can be re-written as
 #' 
-#' \deqn{IB = k\cdot\Delta_e - \Delta_c}.
+#' \deqn{IB = k\cdot\Delta_e - \Delta_c.}
 #'
 #' @param df_ce Dataframe of cost and effectiveness deltas
 #' @param k Vector of willingness to pay values
@@ -257,14 +257,14 @@ compute_IB <- function(df_ce, k) {
   
   df_ce <-
     df_ce %>% 
-    filter(ints != ref) %>%
-    rename(comps = ints)
+    filter(ints != .data$ref) %>%
+    rename(comps = .data$ints)
   
   ib_df <-
     data.frame(k = rep(k, each = nrow(df_ce)),
                df_ce) %>% 
-    mutate(ib = k*delta_e - delta_c) %>%
-    arrange(comps, sim, k)
+    mutate(ib = .data$k*.data$delta_e - .data$delta_c) %>%
+    arrange(.data$comps, .data$sim, .data$k)
   
   array(ib_df$ib,
         dim = c(length(k),
@@ -283,35 +283,37 @@ compute_IB <- function(df_ce, k) {
 #' \deqn{ICER = \Delta_c/\Delta_e}
 #'
 #' @param df_ce Cost-effectiveness dataframe 
-#'
-#' @return
+#' @importFrom stats setNames
+#' 
+#' @return ICER for all comparisons
 #' @export
 #'
-#' @examples
-#' 
 compute_ICER <- function(df_ce) {
   
   comp_names <- comp_names_from_(df_ce)
   
   df_ce %>%
-    filter(ints != ref) %>% 
-    group_by(ints) %>% 
-    summarise(ICER = mean(delta_c)/mean(delta_e)) %>% 
+    filter(.data$ints != .data$ref) %>% 
+    group_by(.data$ints) %>% 
+    summarise(
+      ICER = mean(.data$delta_c)/mean(.data$delta_e)) %>% 
     ungroup() %>% 
-    select(ICER) %>%  # required to match current format 
+    select(.data$ICER) %>%  # required to match current format 
     unlist() %>% 
     setNames(comp_names)
 }
 
 
+#' Comparison Names From
+#' @param df_ce Cost-effectiveness dataframe 
 #'
 comp_names_from_ <- function(df_ce) {
   
   df_ce[, c("ref", "ints", "interv_names")] %>%
-    filter(ref != ints) %>%
+    filter(.data$ref != .data$ints) %>%
     distinct() %>%
-    arrange(ints) %>% 
-    select(interv_names) %>% 
+    arrange(.data$ints) %>% 
+    select(.data$interv_names) %>% 
     unlist()
 }
 

@@ -2,10 +2,13 @@
 % Please edit documentation in R/make.report.R
 \name{quiet}
 \alias{quiet}
-\title{allow to disable the cat messages}
+\title{Allow disabling of the cat messages}
 \usage{
 quiet(x)
 }
+\arguments{
+\item{x}{Object to quietly return}
+}
 \description{
-allow to disable the cat messages
+Allow disabling of the cat messages
 }

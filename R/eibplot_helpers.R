@@ -1,8 +1,16 @@
 
-#' calculate credible intervals
+#' Calculate Credible Intervals
+#' 
+#' @template args-he
+#' @param alpha Significance level, 0 - 1
+#' @param cri.quantile Credible interval quantile?; logical
+#' 
+#' @return cri
+#' 
+#' @importFrom stats qnorm sd quantile
 #' 
 eib.plot.cri <- function(he,
-                         alpha,
+                         alpha = 0.05,
                          cri.quantile) {
   
   if (alpha < 0 | alpha > 1) {
@@ -35,3 +43,4 @@ eib.plot.cri <- function(he,
   )
   return(cri)
 }
+
