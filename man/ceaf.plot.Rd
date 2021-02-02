@@ -5,7 +5,7 @@
 \alias{ceaf.plot}
 \title{Cost-Effectiveness Acceptability Frontier (CEAF) plot}
 \usage{
-\method{ceaf.plot}{pairwise}(mce, graph = c("base", "ggplot2"))
+\method{ceaf.plot}{pairwise}(mce, graph = c("base", "ggplot2"), ...)
 
 ceaf.plot(mce, ...)
 }
@@ -13,12 +13,14 @@ ceaf.plot(mce, ...)
 \item{mce}{The output of the call to the function \code{\link{multi.ce}}}
 
 \item{graph}{A string used to select the graphical engine to use for
-plotting. Should (partial-)match the two options \code{"base"} or
+plotting. Should (partial-) match the two options \code{"base"} or
 \code{"ggplot2"}. Default value is \code{"base"}.}
+
+\item{...}{Additional arguments}
 }
 \value{
-\item{ceaf}{ A ggplot object containing the plot. Returned only if
-\code{graph="ggplot2"}. }
+\item{ceaf}{A ggplot object containing the plot. Returned only if
+\code{graph="ggplot2"}.}
 }
 \description{
 Produces a plot the Cost-Effectiveness Acceptability Frontier (CEAF)
@@ -66,25 +68,21 @@ m <- bcea(e, c, ref = 4, intervention = treats, Kmax = 500, plot = FALSE)
 mce <- multi.ce(m)
 ceaf.plot(mce)
 }
-
+ 
 }
 \references{
 Baio G, Dawid AP. (2011). Probabilistic Sensitivity
 Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London.
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \seealso{
-\code{\link{bcea}}, \code{\link{multi.ce}}
+\code{\link{bcea}},
+         \code{\link{multi.ce}}
 }
 \author{
 Gianluca Baio, Andrea Berardi
 }
-\keyword{Health}
-\keyword{Multiple}
-\keyword{comparison}
-\keyword{economic}
-\keyword{evaluation}
+\concept{"Health economic evaluation" "Multiple comparison"}
 \keyword{hplot}

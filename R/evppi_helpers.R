@@ -1,6 +1,13 @@
 # evppi() helper functions ------------------------------------------------
 
-#'
+
+#' Prepare Delta arrays
+#' 
+#' @template args-he 
+#' @param seq_rows Rows of (e,c) to keep
+#' @param k e or c? 1 or 2.
+#' @param l Columns of (e,c) to keep
+#' 
 prep.x <- function(he,
                    seq_rows,
                    k,
@@ -14,9 +21,21 @@ prep.x <- function(he,
   return(x)
 }
 
-#' GAM Fitting
+#' Gaussian Additive Model Fitting
 #' 
-fit.gam <- function(parameter, inputs, x, form) {
+#' @param parameter Parameter
+#' @param inputs Inputs
+#' @param x Response variable
+#' @param form Formula
+#' 
+#' @return List
+#' 
+#' @importFrom stats update
+#' 
+fit.gam <- function(parameter,
+                    inputs,
+                    x,
+                    form) {
   tic <- proc.time()
   N <- nrow(inputs)
   p <- length(parameter)
@@ -37,9 +56,19 @@ fit.gam <- function(parameter, inputs, x, form) {
        time = time)
 }
 
-#' GP Fitting
+#' Gaussian Process Fitting
 #' 
-post.density <- function(hyperparams, parameter, x, input.matrix) {
+#' @param hyperparams Hyperparameters
+#' @param parameter Parameters
+#' @param x Response variable
+#' @param input.matrix Input data matrix
+#' 
+#' @importFrom stats dist dnorm
+#' 
+post.density <- function(hyperparams,
+                         parameter,
+                         x,
+                         input.matrix) {
   
   dinvgamma <- function(x, alpha, beta) {
     (beta^alpha)/gamma(alpha) *
@@ -76,7 +105,8 @@ post.density <- function(hyperparams, parameter, x, input.matrix) {
   return(l)
 }
 
-#'
+#' @importFrom stats optim
+#' 
 estimate.hyperparams <- function(x,
                                  input.matrix,
                                  parameter,
@@ -100,8 +130,19 @@ estimate.hyperparams <- function(x,
   hyperparams
 }
 
+#' Fit Gaussian Process
+#' 
+#' @param parameter Parameters
+#' @param inputs Inputs
+#' @param x x
+#' @param n.sim Number of simulations 
 #'
-fit.gp <- function(parameter, inputs, x, n.sim) {
+#' @importFrom stats dist 
+#' 
+fit.gp <- function(parameter,
+                   inputs,
+                   x,
+                   n.sim) {
   tic <- proc.time()
   p <- length(parameter)
   input.matrix <- as.matrix(inputs[, parameter, drop = FALSE])
@@ -109,11 +150,11 @@ fit.gp <- function(parameter, inputs, x, n.sim) {
   colmax <- apply(input.matrix, 2, max)
   colrange <- colmax - colmin
   input.matrix <- sweep(input.matrix, 2, colmin, "-")
-  input.matrix <- sweep(input.matrix, 2, colrange,
-                        "/")
+  input.matrix <- sweep(input.matrix, 2, colrange, "/")
   N <- nrow(input.matrix)
   H <- cbind(1, input.matrix)
   q <- ncol(H)
+  
   hyperparams <-
     estimate.hyperparams(
       x = x,
@@ -126,22 +167,25 @@ fit.gp <- function(parameter, inputs, x, n.sim) {
                             upper = TRUE, diag = TRUE))^2))
   Astar <- A + nu.hat * diag(N)
   Astarinv <- chol2inv(chol(Astar))
+  
   rm(Astar)
   gc()
+  
   AstarinvY <- Astarinv %*% x
   tHAstarinv <- t(H) %*% Astarinv
   tHAHinv <- solve(tHAstarinv %*% H)
   betahat <- tHAHinv %*% (tHAstarinv %*% x)
   Hbetahat <- H %*% betahat
   resid <- x - Hbetahat
-  fitted<- Hbetahat + A %*% (Astarinv %*%
-                               resid)
+  fitted <- Hbetahat + A %*% (Astarinv %*% resid)
   AAstarinvH <- A %*% t(tHAstarinv)
-  sigmasqhat <- as.numeric(t(resid) %*% Astarinv %*%
-                             resid)/(N - q - 2)
+  sigmasqhat <-
+    as.numeric(t(resid) %*% Astarinv %*% resid)/(N - q - 2)
+  
   rm(A, Astarinv, AstarinvY, tHAstarinv, tHAHinv,
      Hbetahat, resid, sigmasqhat)
   gc()
+  
   toc <- proc.time() - tic
   time <- toc[3]
   names(time) <- "Time to fit GP regression (seconds)"
@@ -153,8 +197,20 @@ fit.gp <- function(parameter, inputs, x, n.sim) {
 }
 
 #' INLA Fitting
+#'
+#' @param parameter Parameter
+#' @param inputs Inputs
+#' @param x x
+#' @param k k
+#' @param l l
+#'
+#' @importFrom ldr ldr bf pfc
 #' 
-make.proj <- function(parameter,inputs, x,k,l) {
+make.proj <- function(parameter,
+                      inputs,
+                      x,
+                      k,
+                      l) {
   tic <- proc.time()
   scale <- 8 / (range(x)[2] - range(x)[1])
   scale.x <- scale * x - mean(scale * x)
@@ -166,14 +222,17 @@ make.proj <- function(parameter,inputs, x,k,l) {
   fit3 <-
     ldr::pfc(scale(inputs[, parameter]), scale.x, bx, structure = "unstr")
   struc <-
-    c("iso", "aniso", "unstr")[which(c(fit1$aic, fit2$aic, fit3$aic) == min(fit1$aic, fit2$aic, fit3$aic))]
+    c("iso", "aniso", "unstr")[
+      which(c(fit1$aic, fit2$aic, fit3$aic) == min(fit1$aic, fit2$aic, fit3$aic))]
   AIC.deg <- array()
+  
   for (i in 2:7) {
     bx <- ldr::bf(scale.x, case = "poly", i)
     fit <-
       ldr::pfc(scale(inputs[, parameter]), scale.x, bx, structure = struc)
     AIC.deg[i] <- fit$aic
   }
+  
   deg <- which(AIC.deg == min(AIC.deg, na.rm = TRUE))
   d <- min(dim(inputs[, parameter])[2], deg)
   by <- ldr::bf(scale.x, case = "poly", deg)
@@ -185,8 +244,7 @@ make.proj <- function(parameter,inputs, x,k,l) {
       structure = struc,
       model = "pfc",
       numdir = d,
-      numdir.test = TRUE
-    )
+      numdir.test = TRUE)
   dim.d <- which(comp.d$aic == min(comp.d$aic)) - 1
   comp <-
     ldr::ldr(
@@ -195,20 +253,35 @@ make.proj <- function(parameter,inputs, x,k,l) {
       bx,
       structure = struc,
       model = "pfc",
-      numdir = 2
-    )
+      numdir = 2)
   toc <- proc.time() - tic
   time <- toc[3]
+  
   if(dim.d > 2){
     cur <- c("effects","costs")
-    warning(paste("The dimension of the sufficient reduction for the incremental",cur[k],", column",l,", is",dim.d,".
-                    Dimensions greater than 2 imply that the EVPPI approximation using INLA may be inaccurate.
-                    Full residual checking using diag.evppi is required."))}
-  names(time) = "Time to fit find projections (seconds)"
-  list(data = comp$R, time = time,dim=dim.d)
+    warning(
+      paste(
+        "The dimension of the sufficient reduction for the incremental",
+        cur[k], ", column", l, ", is", dim.d,
+        ".Dimensions greater than 2 imply that the EVPPI approximation using INLA may be inaccurate.
+        Full residual checking using diag.evppi is required."))
+  }
+  names(time) <- "Time to fit find projections (seconds)"
+  list(data = comp$R,
+       time = time,
+       dim = dim.d)
 }
 
+
+#' Plot Mesh
+#' 
+#' @param mesh Mesh
+#' @param data Data
+#' @param plot Plot; logical
 #'
+#' @importFrom utils select.list
+#' @importFrom grDevices dev.off
+#' 
 plot.mesh <- function(mesh, data, plot) {
   if (plot) {
     cat("\n")
@@ -217,13 +290,17 @@ plot.mesh <- function(mesh, data, plot) {
                           graphics = FALSE)
     if (choice == "yes") {
       exts <- c("jpeg", "pdf", "bmp", "png", "tiff")
-      ext <- select.list(exts, title = "Please select file extension",
+      ext <- select.list(exts,
+                         title = "Please select file extension",
                          graphics = FALSE)
       name <- paste0(getwd(), "/mesh.", ext)
       txt <- paste0(ext, "('", name, "')")
       eval(parse(text = txt))
       plot(mesh)
-      points(data, col = "blue", pch = 19, cex = 0.8)
+      points(data,
+             col = "blue",
+             pch = 19,
+             cex = 0.8)
       dev.off()
       txt <- paste0("Graph saved as: ", name)
       cat(txt)
@@ -231,11 +308,23 @@ plot.mesh <- function(mesh, data, plot) {
     }
     cat("\n")
     plot(mesh)
-    points(data, col = "blue", pch = 19, cex = 0.8)
+    points(data,
+           col = "blue",
+           pch = 19,
+           cex = 0.8)
   }
 }
 
+#' Make Mesh
+#' 
+#' @param data Data
+#' @param convex.inner convex.inner 
+#' @param convex.outer convex.outer 
+#' @param cutoff Cut-off 
+#' @param max.edge Maximum edge 
 #'
+#' @importFrom INLA inla.nonconvex.hull inla.mesh.2d
+#' 
 make.mesh <- function(data,
                       convex.inner,
                       convex.outer,
@@ -246,20 +335,51 @@ make.mesh <- function(data,
     INLA::inla.nonconvex.hull(data, convex = convex.inner)
   })
   outer <- INLA::inla.nonconvex.hull(data, convex = convex.outer)
-  mesh <- INLA::inla.mesh.2d(
-    loc=data, boundary=list(inner,outer),
-    max.edge=c(max.edge,max.edge),cutoff=c(cutoff))
+  mesh <-
+    INLA::inla.mesh.2d(
+      loc = data,
+      boundary = list(inner, outer),
+      max.edge = c(max.edge, max.edge),
+      cutoff = c(cutoff))
   toc <- proc.time() - tic
   time <- toc[3]
-  names(time) = "Time to fit determine the mesh (seconds)"
-  list(mesh = mesh, pts = data, time = time)
+  names(time) <- "Time to fit determine the mesh (seconds)"
+  list(mesh = mesh,
+       pts = data,
+       time = time)
 }
 
 
+#' Fit INLA
+#' 
+#' @param parameter Parameters
+#' @param inputs Inputs
+#' @param x x
+#' @param mesh Mesh 
+#' @param data.scale data.scale 
+#' @param int.ord int.ord 
+#' @param convex.inner convex.inner 
+#' @param convex.outer convex.outer 
+#' @param cutoff Cut-off 
+#' @param max.edge Maximum edge 
+#' @param h.value h.value 
+#' @param family family 
 #'
-fit.inla <- function(parameter, inputs, x, mesh,
-                     data.scale, int.ord, convex.inner, convex.outer,
-                     cutoff, max.edge, h.value, family) {
+#' @importFrom INLA inla inla.spde2.matern inla.stack.data inla.stack.A
+#' @importFrom stats as.formula
+#' 
+fit.inla <- function(parameter,
+                     inputs,
+                     x,
+                     mesh,
+                     data.scale,
+                     int.ord,
+                     convex.inner,
+                     convex.outer,
+                     cutoff,
+                     max.edge,
+                     h.value,
+                     family) {
   tic <- proc.time()
   inputs.scale <-
     scale(inputs, apply(inputs, 2, mean), apply(inputs, 2, sd))
@@ -269,7 +389,10 @@ fit.inla <- function(parameter, inputs, x, mesh,
     INLA::inla.spde.make.A(mesh = mesh,
                            loc = data.scale,
                            silent = 2L)
-  spde <- INLA::inla.spde2.matern(mesh = mesh, alpha = 2)
+  spde <-
+    INLA::inla.spde2.matern(
+      mesh = mesh,
+      alpha = 2)
   stk.real <-
     INLA::inla.stack(
       tag = "est",
@@ -297,8 +420,7 @@ fit.inla <- function(parameter, inputs, x, mesh,
       int.ord[1],
       "+b0+f(s,model=spde)",
       sep = "",
-      collapse = ""
-    )
+      collapse = "")
   }
   Result <- suppressMessages({
     INLA::inla(
@@ -328,23 +450,25 @@ fit.inla <- function(parameter, inputs, x, mesh,
 
 
 #'
-compute.evppi <- function(he,fit.full) {
+compute.evppi <- function(he, fit.full) {
   EVPPI <- array()
   tic <- proc.time()
-  for (i in 1:length(he$k)) {
-    NB.k <- -(he$k[i]*fit.full[[1]]-fit.full[[2]])
+  for (i in seq_along(he$k)) {
+    NB.k <- -(he$k[i]*fit.full[[1]] - fit.full[[2]])
     EVPPI[i] <- (mean(apply(NB.k, 1, max, na.rm = TRUE)) -
                    max(apply(NB.k, 2, mean, na.rm = TRUE)))
   }
   toc <- proc.time() - tic
   time <- toc[3]
-  names(time) = "Time to compute the EVPPI (in seconds)"
-  list(EVPPI = EVPPI, time = time)
+  names(time) <- "Time to compute the EVPPI (in seconds)"
+  list(EVPPI = EVPPI,
+       time = time)
 }
 
 
 #'
-prepare.output <- function(parameters, inputs) {
+prepare.output <- function(parameters,
+                           inputs) {
   
   if (length(parameters) == 1) {
     if (is.numeric(parameters)) {
@@ -354,21 +478,23 @@ prepare.output <- function(parameters, inputs) {
     }
   } else {
     if (is.numeric(parameters)) {
-      n.param <- length(parameters)
-      end <- colnames(input)[parameters[n.param]]
+      n_params <- length(parameters)
+      end <- colnames(inputs)[parameters[n_params]]
       name.mid <-
-        paste(colnames(inputs)[parameters[1:n.param - 1]],
+        paste(colnames(inputs)[parameters[1:n_params - 1]],
               ", ",
               sep = "",
               collapse = " ")
       name <- paste(name.mid, "and ", end, sep = "",
                     collapse = " ")
     } else {
-      n.param <- length(parameters)
-      end <- parameters[n.param]
-      name.mid <- paste(parameters[1:n.param - 1],
-                        ", ", sep = "", collapse = " ")
-      name <- paste(name.mid, "and ", end, sep = "",
+      n_params <- length(parameters)
+      end <- parameters[n_params]
+      name.mid <- paste(parameters[1:n_params - 1], ", ",
+                        sep = "",
+                        collapse = " ")
+      name <- paste(name.mid, "and ", end,
+                    sep = "",
                     collapse = " ")
     }
   }

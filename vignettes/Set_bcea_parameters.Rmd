@@ -3,7 +3,7 @@ title: "Set bcea() Parameters: Constructor and Setters"
 output: rmarkdown::html_vignette
 vignette: >
  %\VignetteIndexEntry{Set_bcea_parameters}
- %\VignetteEngine{knitr::rmarkdown}
+ %\VignetteEngine{knitr::knitr}
  %\VignetteEncoding{UTF-8}
 ---
  

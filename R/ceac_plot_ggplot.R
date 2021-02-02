@@ -1,11 +1,6 @@
 
 #' @rdname ceac_plot_graph
 #' 
-#' @template args-he
-#' @param pos_legend
-#' @param graph_params
-#' @param ... Additional arguments
-#' 
 #' @keywords hplot
 #' 
 ceac_plot_ggplot <- function(he,
@@ -15,7 +10,6 @@ ceac_plot_ggplot <- function(he,
 
 
 #' @rdname ceac_plot_graph
-#' @inheritParams ceac_plot_ggplot
 #' @keywords hplot
 #' 
 #' @export
@@ -30,7 +24,6 @@ ceac_plot_ggplot.pairwise <- function(he,
 }
 
 #' @rdname ceac_plot_graph
-#' @inheritParams ceac_plot_ggplot
 #' @keywords hplot
 #' 
 #' @export
@@ -44,7 +37,8 @@ ceac_plot_ggplot.bcea <- function(he,
               "ceac", ...)
 }
 
-#' @noRd
+#' @rdname ceac_plot_graph
+#' @param ceac ceac index in he
 #' @keywords hplot
 #' 
 #' @export
@@ -70,9 +64,9 @@ ceac_ggplot <- function(he,
   legend_params <- make_legend_ggplot(he, pos_legend)
   theme_add <- purrr::keep(extra_params, is.theme)
   
-  ggplot(data_psa, aes(k, ceac)) +
-    geom_line(aes(linetype = comparison,
-                  colour = factor(comparison))) +
+  ggplot(data_psa, aes(.data$k, .data$ceac)) +
+    geom_line(aes(linetype = .data$comparison,
+                  colour = factor(.data$comparison))) +
     theme_ceac() + 
     theme_add +                                            # theme
     scale_y_continuous(limits = c(0, 1)) +

@@ -5,7 +5,7 @@
 \title{Summary Plot of the Health Economic Analysis}
 \usage{
 \method{plot}{bcea}(
-  he,
+  x,
   comparison = NULL,
   wtp = 25000,
   pos = FALSE,
@@ -14,7 +14,7 @@
 )
 }
 \arguments{
-\item{he}{A \code{bcea} object containing the results of the Bayesian
+\item{x}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
 \item{comparison}{Selects the comparator, in case of more than two

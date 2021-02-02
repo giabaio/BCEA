@@ -23,14 +23,14 @@ utility of the intervention associated with the maximum utility overall.
 }
 \details{
 In mathematical notation,
-\deqn{\text{OL}(\theta) := U^*(\theta) - U(\theta^\tau)}
+\deqn{\textrm{OL}(\theta) := U^*(\theta) - U(\theta^\tau)}
 
 where \eqn{\tau} is the intervention associated with the overall maximum utility
 and \eqn{U^*(\theta)} is the maximum utility value among the comparators in the given simulation.
 The opportunity loss is a non-negative quantity, since \eqn{U(\theta^\tau)\leq U^*(\theta)}.
 
 In all simulations where the intervention is more
-cost-effective (i.e. when incremental benefit is positive), then \eqn{OL(\theta) = 0}
+cost-effective (i.e. when incremental benefit is positive), then \eqn{\textrm{OL}(\theta) = 0}
 as there would be no opportunity loss, if the parameter configuration were the
 one obtained in the current simulation.
 }

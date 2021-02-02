@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>multiplot — multiplot • BCEA</title>
+<title>Plot Multiple bcea Graphs — multiplot • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="multiplot — multiplot" />
-<meta property="og:description" content="Arrange plots in grid. Source from R graphics cookbook." />
+<meta property="og:title" content="Plot Multiple bcea Graphs — multiplot" />
+<meta property="og:description" content="Arrange plots in grid. Sourced from R graphics cookbook." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -135,16 +135,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>multiplot</h1>
-    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/plot.bcea.R'><code>R/plot.bcea.R</code></a></small>
+    <h1>Plot Multiple bcea Graphs</h1>
+    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/multiplot.R'><code>R/multiplot.R</code></a></small>
     <div class="hidden name"><code>multiplot.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Arrange plots in grid. Source from R graphics cookbook.</p>
+    <p>Arrange plots in grid. Sourced from R graphics cookbook.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>multiplot</span>(<span class='kw'>plotlist</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cols</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>layout_config</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>extra_args</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>multiplot</span><span class='op'>(</span>plotlist <span class='op'>=</span> <span class='cn'>NULL</span>, cols <span class='op'>=</span> <span class='fl'>1</span>, layout_config <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -158,22 +158,14 @@
       <td><p>Number of columns</p></td>
     </tr>
     <tr>
-      <th>extra_args</th>
-      <td><p>List of plotting arguments</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Potential further arguments.</p></td>
-    </tr>
-    <tr>
-      <th>layout</th>
-      <td><p>Matrix</p></td>
+      <th>layout_config</th>
+      <td><p>Matrix of plot configuration</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Plot</p>
+    <p>ggplot TableGrob object</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -190,7 +182,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

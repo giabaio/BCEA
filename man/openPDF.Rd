@@ -2,10 +2,13 @@
 % Please edit documentation in R/make.report.R
 \name{openPDF}
 \alias{openPDF}
-\title{automatically open pdf output using default pdf viewer}
+\title{Automatically open pdf output using default pdf viewer}
 \usage{
 openPDF(file_name)
 }
+\arguments{
+\item{file_name}{String file names for pdf}
+}
 \description{
-automatically open pdf output using default pdf viewer
+Automatically open pdf output using default pdf viewer
 }

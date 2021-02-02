@@ -2,10 +2,19 @@
 % Please edit documentation in R/evppi_helpers.R
 \name{post.density}
 \alias{post.density}
-\title{GP Fitting}
+\title{Gaussian Process Fitting}
 \usage{
 post.density(hyperparams, parameter, x, input.matrix)
 }
+\arguments{
+\item{hyperparams}{Hyperparameters}
+
+\item{parameter}{Parameters}
+
+\item{x}{Response variable}
+
+\item{input.matrix}{Input data matrix}
+}
 \description{
-GP Fitting
+Gaussian Process Fitting
 }

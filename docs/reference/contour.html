@@ -151,20 +151,20 @@ effectiveness (x-axis).</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for bcea</span>
-<span class='fu'>contour</span>(
-  <span class='no'>he</span>,
-  <span class='kw'>comparison</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>nlevels</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>levels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>pos</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>0</span>),
-  <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>),
-  <span class='no'>...</span>
-)
+<span class='fu'>contour</span><span class='op'>(</span>
+  <span class='va'>he</span>,
+  comparison <span class='op'>=</span> <span class='fl'>1</span>,
+  scale <span class='op'>=</span> <span class='fl'>0.5</span>,
+  nlevels <span class='op'>=</span> <span class='fl'>4</span>,
+  levels <span class='op'>=</span> <span class='cn'>NULL</span>,
+  pos <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>0</span><span class='op'>)</span>,
+  xlim <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ylim <span class='op'>=</span> <span class='cn'>NULL</span>,
+  graph <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"base"</span>, <span class='st'>"ggplot2"</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
 
-<span class='fu'>contour</span>(<span class='no'>he</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>contour</span><span class='op'>(</span><span class='va'>he</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -205,7 +205,7 @@ be a two-elements vector, which specifies the relative position on the x and
 y axis respectively, or alternatively it can be in form of a logical
 variable, with <code>FALSE</code> indicating to use the default position and
 <code>TRUE</code> to place the legend on the bottom of the plot. Default value is
-<code><a href='Vaccine.html'>c(1,0)</a></code>, that is the bottomright corner inside the plot area.</p></td>
+<code><a href='Smoking.html'>c(1,0)</a></code>, that is the bottomright corner inside the plot area.</p></td>
     </tr>
     <tr>
       <th>xlim</th>
@@ -220,7 +220,7 @@ determined by the range of the simulated values for <code>delta_c</code></p></td
     <tr>
       <th>graph</th>
       <td><p>A string used to select the graphical engine to use for
-plotting. Should (partial-)match the two options <code>"base"</code> or
+plotting. Should (partial-) match the two options <code>"base"</code> or
 <code>"ggplot2"</code>. Default value is <code>"base"</code>.</p></td>
     </tr>
     <tr>
@@ -238,10 +238,10 @@ plotting. Should (partial-)match the two options <code>"base"</code> or
 <dt>ceplane</dt><dd><p>A ggplot object containing the plot. Returned only
 if <code>graph="ggplot2"</code>.</p></dd> Plots the cost-effectiveness plane with a
 scatterplot of all the simulated values from the (posterior) bivariate
-distribution of (Delta_e, Delta_c), the differentials of effectiveness and
+distribution of (\Delta_e, \Delta_c), the differentials of effectiveness and
 costs; superimposes a contour of the distribution and prints the estimated
 value of the probability of each quadrant (combination of positive/negative
-values for both Delta_e and Delta_c)
+values for both \Delta_e and \Delta_c)
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -252,9 +252,48 @@ doi:10.1177/0962280211419832.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>,
-         <code>ceplane.plot</code>,
-         <code><a href='contour2.html'>contour2</a></code></p></div>
+         <code><a href='ceplane.plot.bcea.html'>ceplane.plot</a></code>,
+         <code><a href='contour2.bcea.html'>contour2</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
+    <p>Gianluca Baio, Andrea Berardi</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Vaccine</span><span class='op'>)</span>
+
+<span class='co'># Runs the health economic evaluation using BCEA</span>
+<span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span>e<span class='op'>=</span><span class='va'>e</span>,
+          c<span class='op'>=</span><span class='va'>c</span>,              <span class='co'># defines the variables of </span>
+                            <span class='co'>#  effectiveness and cost</span>
+      ref<span class='op'>=</span><span class='fl'>2</span>,                <span class='co'># selects the 2nd row of (e,c) </span>
+                            <span class='co'>#  as containing the reference intervention</span>
+      interventions<span class='op'>=</span><span class='va'>treats</span>, <span class='co'># defines the labels to be associated </span>
+                            <span class='co'>#  with each intervention</span>
+      Kmax<span class='op'>=</span><span class='fl'>50000</span>,           <span class='co'># maximum value possible for the willingness </span>
+                            <span class='co'>#  to pay threshold; implies that k is chosen </span>
+                            <span class='co'>#  in a grid from the interval (0,Kmax)</span>
+      plot<span class='op'>=</span><span class='cn'>TRUE</span>             <span class='co'># plots the results</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='contour-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>contour</span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: coercing argument of type 'double' to logical</span></div><div class='img'><img src='contour-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>contour</span><span class='op'>(</span><span class='va'>m</span>, graph <span class='op'>=</span> <span class='st'>"ggplot2"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: coercing argument of type 'double' to logical</span></div><div class='img'><img src='contour-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Plots the contour and scatterplot of the bivariate </span>
+<span class='co'># distribution of (Delta_e, Delta_c)</span>
+<span class='fu'>contour</span><span class='op'>(</span><span class='va'>m</span>,          <span class='co'># uses the results of the economic evaluation </span>
+                    <span class='co'>#  (a "bcea" object)</span>
+      comparison<span class='op'>=</span><span class='fl'>1</span>, <span class='co'># if more than 2 interventions, selects the </span>
+                    <span class='co'>#  pairwise comparison </span>
+      nlevels<span class='op'>=</span><span class='fl'>4</span>,    <span class='co'># selects the number of levels to be </span>
+                    <span class='co'>#  plotted (default=4)</span>
+      levels<span class='op'>=</span><span class='cn'>NULL</span>,  <span class='co'># specifies the actual levels to be plotted </span>
+                    <span class='co'>#  (default=NULL, so that R will decide)</span>
+      scale<span class='op'>=</span><span class='fl'>0.5</span>,    <span class='co'># scales the bandwidths for both x- and </span>
+                    <span class='co'>#  y-axis (default=0.5)</span>
+      graph<span class='op'>=</span><span class='st'>"base"</span>  <span class='co'># uses base graphics to produce the plot</span>
+<span class='op'>)</span>
+</div><div class='img'><img src='contour-4.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -270,7 +309,7 @@ doi:10.1177/0962280211419832.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

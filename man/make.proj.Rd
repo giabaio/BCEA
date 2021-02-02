@@ -6,6 +6,17 @@
 \usage{
 make.proj(parameter, inputs, x, k, l)
 }
+\arguments{
+\item{parameter}{Parameter}
+
+\item{inputs}{Inputs}
+
+\item{x}{x}
+
+\item{k}{k}
+
+\item{l}{l}
+}
 \description{
 INLA Fitting
 }

@@ -10,9 +10,13 @@ A package to post-process the results of a Bayesian health economic model
 and produce standardised output for the analysis of the results.
 }
 \details{
-\tabular{ll}{ Package: \tab BCEA\cr Type: \tab Package\cr Version: \tab
-2.4\cr Date: \tab 2020-07-21\cr License: \tab GPL2 \cr LazyLoad: \tab
-yes\cr }
+\tabular{ll}{ Package: \tab BCEA\cr
+              Type: \tab Package\cr
+              Version: \tab 2.4\cr
+              Date: \tab 2020-07-21\cr
+              License: \tab GPL2 \cr
+              LazyLoad: \tab Yes\cr }
+              
 BCEA produces a health economic evaluation given a random sample of
 suitable variables of costs and clinical benefits for two or more
 interventions, e.g. using results of a Bayesian model (possibly based on
@@ -33,7 +37,6 @@ Analysis with the R package BCEA. Springer
 }
 \author{
 Gianluca Baio, Andrea Berardi, Anna Heath
-#' Maintainer: Gianluca Baio <gianluca@stats.ucl.ac.uk>
 }
 \keyword{"Bayesian}
 \keyword{"Health}

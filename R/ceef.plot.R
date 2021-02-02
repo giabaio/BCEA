@@ -1,66 +1,42 @@
 
-#' Cost-Effectiveness Efficiency Frontier (CEAF) Plot
+#' @rdname ceef.plot
 #' 
-#' @section Back compatibility with BCEA previous versions:
-#' The \code{bcea} objects did not include the generating \code{e} and \code{c}
-#' matrices in BCEA versions <2.1-0. This function is not compatible with
-#' objects created with previous versions. The matrices can be appended to
-#' \code{bcea} objects obtained using previous versions, making sure that the
-#' class of the object remains unaltered.
-#' 
-#' The argument \code{print.summary} allows for printing a brief summary of the
-#' efficiency frontier, with default to \code{TRUE}. Two tables are plotted,
-#' one for the interventions included in the frontier and one for the dominated
-#' interventions. The average costs and clinical benefits are included for each
-#' intervention. The frontier table includes the slope for the increase in the
-#' frontier and the non-frontier table displays the dominance type of each
-#' dominated intervention. Please note that the slopes are defined as the
-#' increment in the costs for a unit increment in the benefits even if
-#' \code{flip = TRUE} for consistency with the ICER definition. The angle of
-#' increase is in radians and depends on the definition of the axes, i.e. on
-#' the value given to the \code{flip} argument.
-#' 
-#' If the argument \code{relative} is set to \code{TRUE}, the graph will not
-#' display the absolute measures of costs and benefits. Instead the axes will
-#' represent differential costs and benefits compared to the reference
-#' intervention (indexed by \code{ref} in the \code{\link{bcea}} function).
-#' 
-#' @template args-he
 #' @param comparators Vector specifying the comparators to be included in the
 #' frontier analysis. It must have a length > 1. Default as \code{NULL} includes
 #' all the available comparators.
 #' @param pos Parameter to set the position of the legend. Can be given in form
-#' of a string \code{(bottom|top)(right|left)} for base graphics and
-#' \code{bottom}, \code{top}, \code{left} or \code{right} for ggplot2. It can
-#' be a two-elements vector, which specifies the relative position on the x and
-#' y axis respectively, or alternatively it can be in form of a logical
-#' variable, with \code{FALSE} indicating to use the default position and
-#' \code{TRUE} to place it on the bottom of the plot. Default value is
-#' \code{c(1,1)}, that is the topright corner inside the plot area.
+#'  of a string \code{(bottom|top)(right|left)} for base graphics and
+#'  \code{bottom}, \code{top}, \code{left} or \code{right} for ggplot2. It can
+#'  be a two-elements vector, which specifies the relative position on the x and
+#'  y axis respectively, or alternatively it can be in form of a logical
+#'  variable, with \code{FALSE} indicating to use the default position and
+#'  \code{TRUE} to place it on the bottom of the plot. Default value is
+#'  \code{c(1,1)}, that is the topright corner inside the plot area.
 #' @param start.from.origins Logical. Should the frontier start from the
-#' origins of the axes? The argument is reset to \code{FALSE} if the average
-#' effectiveness and/or costs of at least one comparator are negative.
+#'  origins of the axes? The argument is reset to \code{FALSE} if the average
+#'  effectiveness and/or costs of at least one comparator are negative.
 #' @param threshold Specifies if the efficiency should be defined based on a
-#' willingness-to-pay threshold value. If set to \code{NULL} (the default), no
-#' conditions are included on the slope increase. If a positive value is passed
-#' as argument, to be efficient an intervention also requires to have an ICER
-#' for the comparison versus the last efficient strategy not greater than the
-#' specified threshold value. A negative value will be ignored with a warning.
+#'  willingness-to-pay threshold value. If set to \code{NULL} (the default), no
+#'  conditions are included on the slope increase. If a positive value is passed
+#'  as argument, to be efficient an intervention also requires to have an ICER
+#'  for the comparison versus the last efficient strategy not greater than the
+#'  specified threshold value. A negative value will be ignored with a warning.
 #' @param flip Logical. Should the axes of the plane be inverted?
 #' @param dominance Logical. Should the dominance regions be included in the
-#' plot?
+#'  plot?
 #' @param relative Logical. Should the plot display the absolute measures (the
-#' default as \code{FALSE}) or the differential outcomes versus the reference
-#' comparator?
+#'  default as \code{FALSE}) or the differential outcomes versus the reference
+#'  comparator?
 #' @param print.summary Logical. Should the efficiency frontier summary be
-#' printed along with the graph?  See Details for additional information.
+#'  printed along with the graph?  See Details for additional information.
 #' @param graph_type A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the two options \code{"base"} or
-#' \code{"ggplot2"}. Default value is \code{"base"}.
-#' @param \dots If \code{graph_type="ggplot2"} and a named theme object is supplied,
-#' it will be added to the ggplot object. Ignored if \code{graph_type="base"}.
-#' Setting the optional argument \code{include.ICER} to \code{TRUE} will print
-#' the ICERs in the summary tables, if produced.
+#'  plotting. Should (partial-)match the two options \code{"base"} or
+#'  \code{"ggplot2"}. Default value is \code{"base"}.
+#' @param ... If \code{graph_type="ggplot2"} and a named theme object is supplied,
+#'  it will be added to the ggplot object. Ignored if \code{graph_type="base"}.
+#'  Setting the optional argument \code{include.ICER} to \code{TRUE} will print
+#'  the ICERs in the summary tables, if produced.
+#' 
 #' @return \item{ceplane}{ A ggplot object containing the plot. Returned only
 #' if \code{graph_type="ggplot2"}. } The function produces a plot of the
 #' cost-effectiveness efficiency frontier. The dots show the simulated values
@@ -79,7 +55,10 @@
 #' 
 #' IQWIG (2009). General methods for the Assessment of the Relation of Benefits
 #' to Cost, Version 1.0. IQWIG, November 2009.
-#' @keywords Health economic evaluation Multiple comparisons
+#' @concept "Health economic evaluation" "Multiple comparisons"
+#' @importFrom graphics rect abline points legend box
+#' @importFrom grDevices colours
+#' 
 #' @examples
 #' 
 #' ## create the bcea object m for the smoking cessation example
@@ -124,13 +103,13 @@ ceef.plot.bcea <- function(he,
                            graph_type = c("base", "ggplot2"),
                            ...) {
    
-   if(is.null(he$c) | is.null(he$e))
+   if (any(is.null(he$c)) || any(is.null(he$e)))
       stop("Please use the bcea() function from BCEA version >= 2.1-0 or attach the vectors e and c to the bcea object.
            Please see ?ceef.plot for additional details.", call. = FALSE)
    
    ## if threshold is NULL, then bound to pi/2, which is atan(Inf)
    ## else if positive, bound to the increase angle given the slope
-   if(is.null(threshold))
+   if (is.null(threshold))
       threshold <- pi/2
    else {
       if (threshold <= 0) {
@@ -142,7 +121,7 @@ ceef.plot.bcea <- function(he,
    # Gives you the possibility of suppressing the plot (if 'print.plot' set to FALSE)
    exArgs <- list(...)
    
-   if (exists("print.plot",exArgs)) {
+   if (exists("print.plot", exArgs)) {
       print.plot <- exArgs$print.plot
    } else {
       print.plot <- TRUE}
@@ -175,7 +154,7 @@ ceef.plot.bcea <- function(he,
    
    stopifnot(he$n_comparators >= 2)
    
-   base.graphics <- pmatch(graph_type,c("base","ggplot2")) != 2
+   base.graphics <- all(pmatch(graph_type,c("base","ggplot2")) != 2)
    
    ### no visible binding note
    c.avg <- e.avg <- x <- y <- e <- e.orig <- c.orig <- NA_real_
@@ -188,15 +167,15 @@ ceef.plot.bcea <- function(he,
    e.neg <- ec.min[1] < 0
    c.neg <- any(apply(he$c, 2, mean) < 0)
    
-   if (e.neg & !c.neg & start.from.origins){
+   if (e.neg && !c.neg & start.from.origins){
       message("Benefits are negative, the frontier will not start from the origins")
       start.from.origins <- FALSE
    }
-   if (!e.neg & c.neg & start.from.origins){
+   if (!e.neg && c.neg & start.from.origins){
       message("Costs are negative, the frontier will not start from the origins")
       start.from.origins <- FALSE
    }
-   if (e.neg & c.neg & start.from.origins){
+   if (e.neg && c.neg & start.from.origins){
       message("Costs and benefits are negative, the frontier will not start from the origins")
       start.from.origins <- FALSE
    }
@@ -205,8 +184,8 @@ ceef.plot.bcea <- function(he,
    ### frontier calculation
    data.avg <-
       data.frame(
-         "e.avg" = apply(he$e,2,mean) - ifelse(!e.neg,0,ec.min[1]),
-         "c.avg" = apply(he$c,2,mean) - ifelse(!e.neg,0,ec.min[2]))
+         "e.avg" = apply(he$e, 2, mean) - ifelse(!e.neg, 0, ec.min[1]),
+         "c.avg" = apply(he$c, 2, mean) - ifelse(!e.neg, 0, ec.min[2]))
    data.avg <- cbind(data.avg,
                      data.avg,as.factor(c(1:dim(data.avg)[1])))
    names(data.avg)[3:5] <- c("e.orig","c.orig","comp")
@@ -215,7 +194,7 @@ ceef.plot.bcea <- function(he,
    comp <- ifelse(any(apply(data.avg[, 1:2],
                             1,
                             function(x) isTRUE(sum(x) == 0 & prod(x) == 0))),
-                  which(apply(data.avg[, 1:2],1,sum)==0 & apply(data.avg[, 1:2],1,prod)==0),0)
+                  which(apply(data.avg[, 1:2], 1, sum) == 0 & apply(data.avg[, 1:2], 1, prod) == 0), 0)
    ### contains the points connecting the frontier. Always starts from the origins
    ceef.points <-
       data.frame(
@@ -224,34 +203,34 @@ ceef.plot.bcea <- function(he,
          comp = comp)
    
    repeat{
-      if(prod(dim(data.avg))==0) break
+      if (prod(dim(data.avg)) == 0) break
       
       theta <- with(data.avg,atan(c.avg/e.avg))
-      theta.min <- min(theta,na.rm=TRUE)
+      theta.min <- min(theta, na.rm = TRUE)
       
-      if(theta.min>threshold) break
+      if (theta.min > threshold) break
       index <- which(theta == theta.min)
       
-      if(length(index)>1)
+      if (length(index) > 1)
          index=index[which.min(data.avg$e.avg[index])]
-      ceef.points <- with(data.avg,rbind(ceef.points,c(e.orig[index],c.orig[index],comp[index])))
-      data.avg[,1:2] <-
-         data.avg[,3:4]-matrix(rep(as.numeric(data.avg[index,3:4]),dim(data.avg)[1]),ncol=2,byrow=TRUE)
-      data.avg <- subset(subset(data.avg,c.avg*e.avg>0),c.avg+e.avg>0)
+      ceef.points <- with(data.avg,
+                          rbind(ceef.points, c(e.orig[index], c.orig[index], comp[index])))
+      data.avg[, 1:2] <-
+         data.avg[,3:4]-matrix(rep(as.numeric(data.avg[index, 3:4]), dim(data.avg)[1]), ncol = 2, byrow = TRUE)
+      data.avg <- subset(subset(data.avg,c.avg*e.avg > 0), c.avg+e.avg > 0)
    }
    ceef.points$comp <- factor(ceef.points$comp)
    
    ceef.points$slope <- NA
    ## calculate slopes
    for (i in 2:dim(ceef.points)[1])
-      ceef.points$slope[i] <- with(ceef.points, (y[i]-y[i-1])/(x[i]-x[i-1]))
+      ceef.points$slope[i] <- with(ceef.points, (y[i] - y[i-1])/(x[i] - x[i-1]))
    
    ## workaround for start.from.origins == FALSE: remove first row if slope is negative
-   while (dim(ceef.points)[1]>1 & ceef.points$slope[2]<0) {
-      ceef.points <- ceef.points[-1,]
+   while (dim(ceef.points)[1] > 1 && ceef.points$slope[2] < 0) {
+      ceef.points <- ceef.points[-1, ]
       ceef.points$slope[1] <- NA
    }
-   
    
    ## set data.frame for points
    scatter.data <- data.frame(
@@ -260,30 +239,31 @@ ceef.plot.bcea <- function(he,
       comp = as.factor(sort(rep(1:he$n_comparators,he$n_sim))))
    
    ### re-adjustment of data sets
-   ceef.points[,1] <- ceef.points[,1]+ifelse(!e.neg,0,ec.min[1])
-   ceef.points[,2] <- ceef.points[,2]+ifelse(!e.neg,0,ec.min[2])
-   orig.avg[,1] <- orig.avg[,1]+ifelse(!e.neg,0,ec.min[1])
-   orig.avg[,2] <- orig.avg[,2]+ifelse(!e.neg,0,ec.min[2])
+   ceef.points[,1] <- ceef.points[,1] + ifelse(!e.neg,0,ec.min[1])
+   ceef.points[,2] <- ceef.points[,2] + ifelse(!e.neg,0,ec.min[2])
+   orig.avg[,1] <- orig.avg[,1] + ifelse(!e.neg,0,ec.min[1])
+   orig.avg[,2] <- orig.avg[,2] + ifelse(!e.neg,0,ec.min[2])
    
    ### Summary table function
-   ceef.summary <- function(he, ceef.points, orig.avg, include.ICER=FALSE,...){
+   ceef.summary <- function(he, ceef.points, orig.avg, include.ICER = FALSE,...){
       ## Tables adaptation and formatting
       no.ceef <- which(!1:he$n_comparators %in% ceef.points$comp)
       ## Interventions included
       if (ceef.points$comp[1] == 0)
-         ceef.points <- ceef.points[-1,]
-      rownames(ceef.points) <- he$interventions[as.numeric(levels(ceef.points$comp)[ceef.points$comp])]
+         ceef.points <- ceef.points[-1, ]
+      rownames(ceef.points) <-
+         he$interventions[as.numeric(levels(ceef.points$comp)[ceef.points$comp])]
       
       if (!include.ICER){
          ceef.points[,5] <- atan(ceef.points[,4]^(1*ifelse(!flip,1,-1)))
          ceef.points <- ceef.points[,-3]
          colnames(ceef.points) <- c("Effectiveness","Costs","Increase slope","Increase angle")
       }
-      else{
+      else {
          ICERs <- numeric(dim(ceef.points)[1])
          index <- as.numeric(levels(ceef.points$comp)[ceef.points$comp])
-         for(i in 1:length(ICERs)){
-            if(ceef.points$comp[i]==he$ref)
+         for (i in seq_along(ICERs)){
+            if (ceef.points$comp[i] == he$ref)
                ICERs[i] <- NA_real_
             else
                ICERs[i] <- he$ICER[index[i]+ifelse(index[i]<he$ref,0,-1)]
@@ -292,24 +272,24 @@ ceef.plot.bcea <- function(he,
          ceef.points[,5] <- atan(ceef.points[,4]^(1*ifelse(!flip,1,-1)))
          colnames(ceef.points) <-
             c("Effectiveness",
-              "Costs", paste0("ICER ",he$interventions[he$ref]," vs."),
-              "Increase slope","Increase angle")
+              "Costs", paste0("ICER ", he$interventions[he$ref]," vs."),
+              "Increase slope", "Increase angle")
       }
-      if(flip) colnames(ceef.points)[1:2] <- colnames(ceef.points[2:1])
+      if (flip) colnames(ceef.points)[1:2] <- colnames(ceef.points[2:1])
       
       ## Interventions not included
-      if(length(no.ceef)>0){
+      if (length(no.ceef) > 0){
          noceef.points <- data.frame(matrix(NA_real_,ncol=4,nrow=length(no.ceef)))
          noceef.points[,1:2] <- orig.avg[no.ceef,-3]
          
-         if(!include.ICER){
+         if (!include.ICER){
             noceef.points <- noceef.points[,-3]
             colnames(noceef.points) <- c("Effectiveness","Costs","Dominance type")
          }
-         else{
+         else {
             ICERs <- numeric(dim(noceef.points)[1])
-            for(i in 1:length(ICERs)){
-               if(no.ceef[i]==he$ref)
+            for (i in seq_along(ICERs)) {
+               if(no.ceef[i] == he$ref)
                   ICERs[i] <- NA_real_
                else
                   ICERs[i] <- he$ICER[no.ceef[i]+ifelse(no.ceef[i]<he$ref,0,-1)]
@@ -595,6 +575,33 @@ ceef.plot.bcea <- function(he,
 }
 
 
+#' Cost-Effectiveness Efficiency Frontier (CEAF) Plot
+#' 
+#' Back compatibility with BCEA previous versions:
+#' The \code{bcea} objects did not include the generating \code{e} and \code{c}
+#' matrices in BCEA versions <2.1-0. This function is not compatible with
+#' objects created with previous versions. The matrices can be appended to
+#' \code{bcea} objects obtained using previous versions, making sure that the
+#' class of the object remains unaltered.
+#' 
+#' The argument \code{print.summary} allows for printing a brief summary of the
+#' efficiency frontier, with default to \code{TRUE}. Two tables are plotted,
+#' one for the interventions included in the frontier and one for the dominated
+#' interventions. The average costs and clinical benefits are included for each
+#' intervention. The frontier table includes the slope for the increase in the
+#' frontier and the non-frontier table displays the dominance type of each
+#' dominated intervention. Please note that the slopes are defined as the
+#' increment in the costs for a unit increment in the benefits even if
+#' \code{flip = TRUE} for consistency with the ICER definition. The angle of
+#' increase is in radians and depends on the definition of the axes, i.e. on
+#' the value given to the \code{flip} argument.
+#' 
+#' If the argument \code{relative} is set to \code{TRUE}, the graph will not
+#' display the absolute measures of costs and benefits. Instead the axes will
+#' represent differential costs and benefits compared to the reference
+#' intervention (indexed by \code{ref} in the \code{\link{bcea}} function).
+#' 
+#' @template args-he
 #' @export
 #' 
 ceef.plot <- function(he, ...) {

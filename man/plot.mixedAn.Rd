@@ -2,8 +2,7 @@
 % Please edit documentation in R/plot.mixedAn.R
 \name{plot.mixedAn}
 \alias{plot.mixedAn}
-\title{Summary Plot of the Health Economic Analysis When the Mixed Analysis is
-Considered}
+\title{Summary Plot of the Health Economic Analysis For Mixed Analysis}
 \usage{
 \method{plot}{mixedAn}(x, y.limits = NULL, pos = c(0, 1), graph = c("base", "ggplot2"), ...)
 }
@@ -79,7 +78,7 @@ plot(ma,graph="ggplot2")
 
 }
 \references{
-Baio, G. and Russo, P. (2009).A decision-theoretic framework for
+Baio, G. and Russo, P. (2009). A decision-theoretic framework for
 the application of cost-effectiveness analysis in regulatory processes.
 Pharmacoeconomics 27(8), 645-655 doi:10.2165/11310250
 
@@ -90,13 +89,10 @@ doi:10.1177/0962280211419832.
 Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
 }
 \seealso{
-\code{\link{bcea}}, \code{\link{mixedAn}}
+\code{\link{bcea}},
+         \code{\link{mixedAn}}
 }
 \author{
 Gianluca Baio, Andrea Berardi
 }
-\keyword{Health}
-\keyword{Mixed}
-\keyword{analysis}
-\keyword{economic}
-\keyword{evaluation}
+\concept{"Health economic evaluation" "Mixed analysis"}

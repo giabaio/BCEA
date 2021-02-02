@@ -16,5 +16,8 @@ together. Any subset of the possible comparisons can be selected (e.g.,
 \code{comparison=c(1,3)} or \code{comparison=2}).}
 }
 \description{
-Set Comparisons Group
+One of the alternative way to set (e,c) comparison group.
+}
+\seealso{
+\code{\link{setComparisons<-}}
 }

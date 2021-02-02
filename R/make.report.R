@@ -38,7 +38,7 @@
 #' doi:10.1177/0962280211419832.
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
-#' @keywords "Health economic evaluation", "Expected value of information"
+#' @concept "Health economic evaluation", "Expected value of information"
 #' @importFrom rmarkdown render
 #' @importFrom withr with_options
 #' @importFrom knitr opts_knit
@@ -84,7 +84,7 @@ make.report = function(he,
     } else {
       paste0("Report.", ext)}
   
-  psa_sims <- 
+  psa_params <- 
     if (exists("psa_sims", extra_args)) {
       extra_args$psa_sims
     } else {
@@ -125,7 +125,8 @@ make.report = function(he,
   })
 }
 
-#' allow to disable the cat messages
+#' Allow disabling of the cat messages
+#' @param x Object to quietly return
 #' 
 quiet <- function(x) { 
   sink(tempfile()) 
@@ -133,7 +134,9 @@ quiet <- function(x) {
   invisible(force(x)) 
 } 
 
-#' automatically open pdf output using default pdf viewer
+#' Automatically open pdf output using default pdf viewer
+#' 
+#' @param file_name String file names for pdf
 #' 
 openPDF <- function(file_name) {
   os <- .Platform$OS.type

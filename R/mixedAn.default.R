@@ -1,21 +1,25 @@
 
+#' @rdname mixedAn
+#' 
+#' mkt.shares is a vector of market shares for each comparators
+#' if no value is provided, then assumes uniform distribution
+#' dev is the device to which the graph should be printed
+#' default is x11() on screen.
+#' Possibilities are jpeg and postscript
+#' @return Object of class mixedAn
+#' 
+#' @references Baio G, Russo P (2009).
 #' @export
 #'
 mixedAn.bcea <- function(he,
                          mkt.shares = NULL,
                          plot = FALSE) {
   
-  # mkt.shares is a vector of market shares for each comparators
-  # if no value is provided, then assumes uniform distribution
-  # dev is the device to which the graph should be printed
-  # default is x11() --- on screen. Possibilities are jpeg and postscript
-  # Reference: Baio G, Russo P (2009).
-  
   Ubar <- OL.star <- evi.star <- NULL
   if (is.null(mkt.shares)) {
-    mkt.shares <- rep(1,he$n_comparators)/he$n_comparators
+    mkt.shares <- rep(1, he$n_comparators)/he$n_comparators
   }
-  temp <- array(NA,c(he$n_sim,length(he$k),he$n_comparators))
+  temp <- array(NA, c(he$n_sim,length(he$k), he$n_comparators))
   for (j in seq_len(he$n_comparators)) {
     temp[, , j] <- mkt.shares[j]*he$U[, , j]
   }
@@ -39,16 +43,19 @@ mixedAn.bcea <- function(he,
   
   class(ma) <- "mixedAn"
   
-  if(plot) {
+  if (plot) {
     plot.mixedAn(ma)
   }
   return(ma)
 }
 
 
+#' @rdname mixedAn
 #' @export
 #' 
-mixedAn.default <- function(he, ...) {
+mixedAn.default <- function(he,
+                            mkt.shares = NULL,
+                            plot = FALSE) {
   stop("No method available", call. = TRUE)
 }
 

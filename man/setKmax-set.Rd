@@ -10,11 +10,11 @@ setKmax(he) <- value
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
-\item{Kmax}{Maximum willingness to pay}
+\item{value}{Maximum willingness to pay}
 }
 \value{
-
+bcea-type oject
 }
 \description{
-Set Maximum Willingness to Pay
+Alternative way to define `K` statistic.
 }

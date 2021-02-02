@@ -1,7 +1,9 @@
 
 #' @rdname contour2
+#' @importFrom stats sd
+#' @importFrom graphics par
+#' 
 #' @export
-#' @inheritParams contour2
 #' 
 contour2.bcea <- function(he,
                           wtp = 25000,
@@ -114,10 +116,11 @@ contour2.bcea <- function(he,
     
     contour <-
       ceplane.plot(he, wtp = wtp, graph = "ggplot2", ...) +
-      geom_contour(data = densitydf, aes(x = x, y = y, z = z, group = comparison),
-                   colour = "black",
-                   bins = nlevels,
-                   linetype = 1, inherit.aes = FALSE)
+      geom_contour(
+        data = densitydf, aes(x = .data$x, y = .data$y, z = .data$z, group = .data$comparison),
+        colour = "black",
+        bins = nlevels,
+        linetype = 1, inherit.aes = FALSE)
     
     contour <-
       contour +
@@ -157,7 +160,7 @@ contour2.bcea <- function(he,
 #' @return \item{contour}{ A ggplot item containing the requested plot.
 #' Returned only if \code{graph_type="ggplot2"}. } Plots the cost-effectiveness
 #' plane with a scatterplot of all the simulated values from the (posterior)
-#' bivariate distribution of (Delta_e,Delta_c), the differentials of
+#' bivariate distribution of (\eqn{\Delta_e, \Delta_c}), the differentials of
 #' effectiveness and costs; superimposes a contour of the distribution and
 #' prints the value of the ICER, together with the sustainability area.
 #' @author Gianluca Baio, Andrea Berardi

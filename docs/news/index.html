@@ -140,43 +140,50 @@
 
     <div id="bcea-23-2" class="section level1">
 <h1 class="page-header" data-toc-text="2.3-2">
-<a href="#bcea-23-2" class="anchor"></a>BCEA 2.3-2<small> Unreleased </small>
-</h1>
+<a href="#bcea-23-2" class="anchor"></a>BCEA 2.3-2</h1>
 <ul>
-<li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
-<li>Major refactoring of code base</li>
-<li>Testing suite written</li>
-</ul>
-<div id="feature-updates" class="section level2">
-<h2 class="hasAnchor">
-<a href="#feature-updates" class="anchor"></a>Feature updates</h2>
+<li>Major refactoring of code base to improve robustness and extensibility.
 <ul>
-<li>Deprecated <code>mce.plot()</code>. Now dispatched on <code><a href="../reference/ceac.plot.html">ceac.plot()</a></code> for both <code><a href="../reference/multi.ce.html">multi.ce()</a></code> and <code><a href="../reference/bcea.html">bcea()</a></code> outputs.</li>
 <li>
-<code><a href="../reference/new_bcea.html">new_bcea()</a></code> constructor</li>
+<code><a href="../reference/bcea.html">bcea()</a></code> is now a helper function which calls the constructor <code><a href="../reference/new_bcea.html">new_bcea()</a></code>
+</li>
+<li>
+<code><a href="../reference/new_bcea.html">new_bcea()</a></code> composed of smaller HEE statistics functions e.g. <code><a href="../reference/compute_CEAC.html">compute_CEAC()</a></code>, <code><a href="../reference/compute_EIB.html">compute_EIB()</a></code>,…. This allows us to call and test them individually. It also allows more flexibility in changing or adding functionality to <code><a href="../reference/new_bcea.html">new_bcea()</a></code>.</li>
+<li>Main plotting functions <code>ceac_plot()</code> and <code>ceplane_plot()</code> have been rewritten. These functions now simply dispatch to the base R, ggplot2 or plotly versions. Internally, these functions, e.g.<code><a href="../reference/ceplane_plot_base.bcea.html">ceplane_plot_ggplot()</a></code>, are also split into parameter setting and plotting components. This modulisation allows us to add new layers to plots or modify existing parameter sets and defaults. It also means we can reuse some functionality across plots such as axes and legend setting.</li>
+<li>Plots and tables using S3 methods for bcea type object.</li>
+<li>New vignettes about CEAC plotting and comparison intervention setting.</li>
+<li>Tables updated. Duplication in <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> ands <code>sim.table()</code> removed.</li>
+<li>
+<code>CreateInputs()</code> used for EVPI calculation now dispatches S3 methods by rjags, BUGS, Stan and other R data types.</li>
 </ul>
-</div>
-<div id="fixes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#fixes" class="anchor"></a>Fixes</h2>
-</div>
+</li>
+<li>Extend ways to set comparison interventions. Subsets of comparison can still be set in a call to a plotting function as before. Now subsets can be set in both the original <code><a href="../reference/bcea.html">bcea()</a></code> construction or separately using a setter functions <code>setComparison()</code>.</li>
+<li>Similarly, maximum willingness to pay and the reference group can be set with <code>setKmax()</code> and <code>setReferenceGroup()</code>, respectively.</li>
+<li>
+<code>ceac_plot()</code> changes
+<ul>
+<li>Deprecated <code>mce.plot()</code>. Now dispatched on <code><a href="../reference/ceac.plot.bcea.html">ceac.plot()</a></code> for both <code><a href="../reference/multi.ce.html">multi.ce()</a></code> and <code><a href="../reference/bcea.html">bcea()</a></code> outputs.</li>
+<li>For a multiple comparison the plot for pairwise comparison over all interventions is returned by default. The alternative version of each comparision against the reference group is still available.</li>
+</ul>
+</li>
+<li>Additional documentation and examples.</li>
+<li>Testing suite written. This is not comprehensive as of yet.</li>
+<li>Added a <code>NEWS.md</code> file to track changes to the package. Details about previous releases, such as dates, versions, fixes and enhancements obtained from CRAN and code comments.</li>
+</ul>
 </div>
     <div id="bcea-23-11" class="section level1">
 <h1 class="page-header" data-toc-text="2.3-1.1">
-<a href="#bcea-23-11" class="anchor"></a><small> 2019-08-26 </small>BCEA 2.3-1.1<sup>^</sup>
-</h1>
+<a href="#bcea-23-11" class="anchor"></a>BCEA 2.3-1.1</h1>
 <p>26 Aug 2019</p>
 </div>
     <div id="bcea-23-1" class="section level1">
 <h1 class="page-header" data-toc-text="2.3-1">
-<a href="#bcea-23-1" class="anchor"></a><small> 2019-08-05 </small>BCEA 2.3-1<sup>^</sup>
-</h1>
+<a href="#bcea-23-1" class="anchor"></a>BCEA 2.3-1</h1>
 <p>5 Aug 2019</p>
 </div>
     <div id="bcea-22-6" class="section level1">
 <h1 class="page-header" data-toc-text="2.2-6">
-<a href="#bcea-22-6" class="anchor"></a><small> 2018-07-11 </small>BCEA 2.2-6<sup>^</sup>
-</h1>
+<a href="#bcea-22-6" class="anchor"></a>BCEA 2.2-6</h1>
 <p>11 July 2018</p>
 <ul>
 <li>Fix in <code>evppi</code> to allow N to be selected in all methods</li>
@@ -186,8 +193,7 @@
 </div>
     <div id="bcea-22-5" class="section level1">
 <h1 class="page-header" data-toc-text="2.2-5">
-<a href="#bcea-22-5" class="anchor"></a><small> 2016-11-18 </small>BCEA 2.2-5<sup>^</sup>
-</h1>
+<a href="#bcea-22-5" class="anchor"></a>BCEA 2.2-5</h1>
 <p>18 Nov 2016</p>
 <ul>
 <li>Some changes to EVPPI</li>
@@ -195,8 +201,7 @@
 </div>
     <div id="bcea-224" class="section level1">
 <h1 class="page-header" data-toc-text="2.2.4">
-<a href="#bcea-224" class="anchor"></a>BCEA 2.2.4<small> Unreleased </small>
-</h1>
+<a href="#bcea-224" class="anchor"></a>BCEA 2.2.4</h1>
 <p>Nov 2016</p>
 <ul>
 <li>Fixes for new ggplot2 version (<code>legend.spacing()</code> and <code>plot.title</code> hjust argument)</li>
@@ -204,8 +209,7 @@
 </div>
     <div id="bcea-22-3" class="section level1">
 <h1 class="page-header" data-toc-text="2.2-3">
-<a href="#bcea-22-3" class="anchor"></a><small> 2016-05-22 </small>BCEA 2.2-3<sup>^</sup>
-</h1>
+<a href="#bcea-22-3" class="anchor"></a>BCEA 2.2-3</h1>
 <p>22 May 2016</p>
 <ul>
 <li>Major update for the EVPPI to include PFC</li>
@@ -214,8 +218,7 @@
 </div>
     <div id="bcea-22-2" class="section level1">
 <h1 class="page-header" data-toc-text="2.2-2">
-<a href="#bcea-22-2" class="anchor"></a><small> 2016-01-25 </small>BCEA 2.2-2<sup>^</sup>
-</h1>
+<a href="#bcea-22-2" class="anchor"></a>BCEA 2.2-2</h1>
 <p>25 Jan 2016</p>
 <ul>
 <li>Minor change to <code>ceef.plot</code> to align with ggplot2 v2.0.0</li>
@@ -223,8 +226,7 @@
 </div>
     <div id="bcea-221" class="section level1">
 <h1 class="page-header" data-toc-text="2.2.1">
-<a href="#bcea-221" class="anchor"></a>BCEA 2.2.1<small> Unreleased </small>
-</h1>
+<a href="#bcea-221" class="anchor"></a>BCEA 2.2.1</h1>
 <p>Oct 2015</p>
 <ul>
 <li>Adds the info-rank plot</li>
@@ -232,8 +234,7 @@
 </div>
     <div id="bcea-22" class="section level1">
 <h1 class="page-header" data-toc-text="2.2">
-<a href="#bcea-22" class="anchor"></a>BCEA 2.2<small> Unreleased </small>
-</h1>
+<a href="#bcea-22" class="anchor"></a>BCEA 2.2</h1>
 <p>Oct 2015</p>
 <ul>
 <li>Cleaned up and aligned with R’s settings</li>
@@ -243,8 +244,7 @@
 </div>
     <div id="bcea-21-1" class="section level1">
 <h1 class="page-header" data-toc-text="2.1-1">
-<a href="#bcea-21-1" class="anchor"></a><small> 2015-05-06 </small>BCEA 2.1-1<sup>^</sup>
-</h1>
+<a href="#bcea-21-1" class="anchor"></a>BCEA 2.1-1</h1>
 <p>6 May 2015 2015</p>
 <ul>
 <li>New function for EVPPI using SPDE-INLA</li>
@@ -257,8 +257,7 @@
 </div>
     <div id="bcea-21-0" class="section level1">
 <h1 class="page-header" data-toc-text="2.1-0">
-<a href="#bcea-21-0" class="anchor"></a><small> 2015-01-13 </small>BCEA 2.1-0<sup>^</sup>
-</h1>
+<a href="#bcea-21-0" class="anchor"></a>BCEA 2.1-0</h1>
 <p>13 Jan 2015</p>
 <ul>
 <li>Migrated from <code>if(require())</code> to <code>if(requireNamespace(,quietly=TRUE))</code>
@@ -269,8 +268,7 @@
 </div>
     <div id="bcea-210-pre2" class="section level1">
 <h1 class="page-header" data-toc-text="2.1.0">
-<a href="#bcea-210-pre2" class="anchor"></a>BCEA 2.1.0-pre2<small> Unreleased </small>
-</h1>
+<a href="#bcea-210-pre2" class="anchor"></a>BCEA 2.1.0-pre2</h1>
 <p>Oct 2014</p>
 <ul>
 <li>modifications to <code>ceef.plot</code>, <code>createInputs</code>, <code>struct.psa</code>
@@ -279,8 +277,7 @@
 </div>
     <div id="bcea-21-0-pre1" class="section level1">
 <h1 class="page-header" data-toc-text="2.1-0">
-<a href="#bcea-21-0-pre1" class="anchor"></a>BCEA 2.1-0-pre1<small> 2015-01-13 </small>
-</h1>
+<a href="#bcea-21-0-pre1" class="anchor"></a>BCEA 2.1-0-pre1</h1>
 <p>13 Jan 2015</p>
 <ul>
 <li>Documentation updated</li>
@@ -289,14 +286,12 @@
 </div>
     <div id="bcea-20-2c" class="section level1">
 <h1 class="page-header" data-toc-text="2.0-2">
-<a href="#bcea-20-2c" class="anchor"></a>BCEA 2.0-2c<small> 2013-12-02 </small>
-</h1>
+<a href="#bcea-20-2c" class="anchor"></a>BCEA 2.0-2c</h1>
 <p>2 Dec 2013</p>
 </div>
     <div id="bcea-v20-2b" class="section level1">
 <h1 class="page-header" data-toc-text="2.0-2">
-<a href="#bcea-v20-2b" class="anchor"></a>BCEA v2.0-2b<small> 2013-12-02 </small>
-</h1>
+<a href="#bcea-v20-2b" class="anchor"></a>BCEA v2.0-2b</h1>
 <p>2 Dec 2013</p>
 <ul>
 <li>
@@ -305,24 +300,21 @@
 </div>
     <div id="bcea-20-2" class="section level1">
 <h1 class="page-header" data-toc-text="2.0-2">
-<a href="#bcea-20-2" class="anchor"></a><small> 2013-12-02 </small>BCEA 2.0-2<sup>^</sup>
-</h1>
+<a href="#bcea-20-2" class="anchor"></a>BCEA 2.0-2</h1>
 <p>2 Dec 2013</p>
 </div>
     <div id="bcea-20-1" class="section level1">
 <h1 class="page-header" data-toc-text="2.0-1">
-<a href="#bcea-20-1" class="anchor"></a><small> 2013-07-31 </small>BCEA 2.0-1<sup>^</sup>
-</h1>
+<a href="#bcea-20-1" class="anchor"></a>BCEA 2.0-1</h1>
 <p>31 July 2013</p>
 </div>
     <div id="bcea-20" class="section level1">
 <h1 class="page-header" data-toc-text="2.0">
-<a href="#bcea-20" class="anchor"></a><small> 2013-07-30 </small>BCEA 2.0<sup>^</sup>
-</h1>
+<a href="#bcea-20" class="anchor"></a>BCEA 2.0</h1>
 <p>30 July 2013</p>
-<div id="feature-updates-1" class="section level2">
+<div id="feature-updates" class="section level2">
 <h2 class="hasAnchor">
-<a href="#feature-updates-1" class="anchor"></a>Feature updates</h2>
+<a href="#feature-updates" class="anchor"></a>Feature updates</h2>
 <ul>
 <li>Implements two quick and general methods to compute the EVPPI</li>
 <li>Function <code>CreateInputs()</code>, which takes as input an object in the class rjags or bugs</li>
@@ -334,37 +326,31 @@
 </div>
     <div id="bcea-13-1" class="section level1">
 <h1 class="page-header" data-toc-text="1.3-1">
-<a href="#bcea-13-1" class="anchor"></a>BCEA 1.3-1<small> Unreleased </small>
-</h1>
+<a href="#bcea-13-1" class="anchor"></a>BCEA 1.3-1</h1>
 </div>
     <div id="bcea-13-0" class="section level1">
 <h1 class="page-header" data-toc-text="1.3-0">
-<a href="#bcea-13-0" class="anchor"></a><small> 2013-07-03 </small>BCEA 1.3-0<sup>^</sup>
-</h1>
+<a href="#bcea-13-0" class="anchor"></a>BCEA 1.3-0</h1>
 <p>3 July 2013</p>
 </div>
     <div id="bcea-12" class="section level1">
 <h1 class="page-header" data-toc-text="1.2">
-<a href="#bcea-12" class="anchor"></a>BCEA 1.2<small> Unreleased </small>
-</h1>
+<a href="#bcea-12" class="anchor"></a>BCEA 1.2</h1>
 <p>17 September 2012</p>
 </div>
     <div id="bcea-111" class="section level1">
 <h1 class="page-header" data-toc-text="1.1.1">
-<a href="#bcea-111" class="anchor"></a><small> 2013-02-22 </small>BCEA 1.1.1<sup>^</sup>
-</h1>
+<a href="#bcea-111" class="anchor"></a>BCEA 1.1.1</h1>
 <p>22 Feb 2013</p>
 </div>
     <div id="bcea-11" class="section level1">
 <h1 class="page-header" data-toc-text="1.1">
-<a href="#bcea-11" class="anchor"></a><small> 2012-09-15 </small>BCEA 1.1<sup>^</sup>
-</h1>
+<a href="#bcea-11" class="anchor"></a>BCEA 1.1</h1>
 <p>15 Sept 2012</p>
 </div>
     <div id="bcea-10" class="section level1">
 <h1 class="page-header" data-toc-text="1.0">
-<a href="#bcea-10" class="anchor"></a><small> 2012-05-13 </small>BCEA 1.0<sup>^</sup>
-</h1>
+<a href="#bcea-10" class="anchor"></a>BCEA 1.0</h1>
 <p>13 May 2012</p>
 </div>
   </div>
@@ -384,7 +370,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Summary Method for Objects of Class <code>bcea</code> — summary.bcea • BCEA</title>
+<title>Summary Method for Objects of Class bcea — summary.bcea • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,7 @@
 
 
 
-<meta property="og:title" content="Summary Method for Objects of Class <code>bcea</code> — summary.bcea" />
+<meta property="og:title" content="Summary Method for Objects of Class bcea — summary.bcea" />
 <meta property="og:description" content="Produces a table printout with some summary results of the health economic
 evaluation." />
 <meta property="og:image" content="/logo.png" />
@@ -147,13 +147,13 @@ evaluation.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for bcea</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>he</span>, <span class='kw'>wtp</span> <span class='kw'>=</span> <span class='fl'>25000</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>object</span>, wtp <span class='op'>=</span> <span class='fl'>25000</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>he</th>
+      <th>object</th>
       <td><p>A <code>bcea</code> object containing the results of the Bayesian
 modelling and the economic evaluation.</p></td>
     </tr>
@@ -181,13 +181,16 @@ doi:10.1177/0962280211419832.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Gianluca Baio</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Vaccine</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Vaccine</span><span class='op'>)</span>
 
-<span class='no'>he</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='no'>e</span>,<span class='no'>c</span>, <span class='kw'>interventions</span> <span class='kw'>=</span> <span class='no'>treats</span>, <span class='kw'>ref</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>he</span>)</div><div class='output co'>#&gt; 
+<span class='va'>he</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>c</span>, interventions <span class='op'>=</span> <span class='va'>treats</span>, ref <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>he</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; Cost-effectiveness analysis summary 
 #&gt; 
 #&gt; Reference intervention:  Vaccination
@@ -224,7 +227,7 @@ doi:10.1177/0962280211419832.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

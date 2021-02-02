@@ -1,7 +1,6 @@
 
 #' @rdname ceplane_plot_graph
 #'
-#' @inheritParams ceplane_plot_base.bcea
 #' @return For ggplot2 returns ggplot2 object
 #' 
 #' @import ggplot2
@@ -67,7 +66,7 @@ ceplane_plot_ggplot.bcea <- function(he,
   theme_add <- purrr::keep(list(...), is.theme)
   
   ggplot(delta_ce,
-         aes(x = delta_e, y = delta_c, col = comparison)) +
+         aes(x = .data$delta_e, y = .data$delta_c, col = .data$comparison)) +
     do.call(geom_polygon, graph_params$area) +
     theme_ceplane() +
     theme_add +

@@ -21,12 +21,12 @@ willingness-to-pay threshold, \eqn{k}, and comparator.
 \details{
 Defined as:
 
-\deqn{IB = u(e,c; 1) - u(e,c; 0)}
+\deqn{IB = u(e,c; 1) - u(e,c; 0).}
 
 If the net benefit function is used as utility function,
 the definition can be re-written as
 
-\deqn{IB = k\cdot\Delta_e - \Delta_c}.
+\deqn{IB = k\cdot\Delta_e - \Delta_c.}
 }
 \seealso{
 \code{\link{compute_EIB}}

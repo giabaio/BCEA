@@ -154,53 +154,55 @@ the clinical output and the costs associated with an influenza vaccination.</p>
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>A data list including the variables needed for the influenza
-vaccination.  The variables are as follows:</p>
-<dl'>
-<dt>list("c")</dt><dd><p>a matrix of simulations from the posterior
-distribution of the overall costs associated with the two treatments</p></dd>
-<dt>list("cost.GP")</dt><dd><p>a matrix of simulations from the posterior
-distribution of the costs for GP visits associated with the two treatments</p></dd>
-<dt>list("cost.hosp")</dt><dd><p>a matrix of simulations from the posterior
-distribution of the costs for hospitalisations associated with the two
-treatments</p></dd>
-<dt>list("cost.otc")</dt><dd><p>a matrix of simulations from the posterior distribution
-of the costs for over-the-counter medications associated with the two treatments</p></dd>
-<dt>list("cost.time.off")</dt><dd><p>a matrix of simulations from the posterior
-distribution of the costs for time off work associated with the two treatments</p></dd>
-<dt>list("cost.time.vac")</dt><dd><p>a matrix of simulations from the posterior
-distribution of the costs for time needed to get the vaccination associated
-with the two treatments</p></dd>
-<dt>list("cost.travel")</dt><dd><p>a matrix of simulations from the posterior
-distribution of the costs for travel to get vaccination associated with the
-two treatments</p></dd>
-<dt>list("cost.trt1")</dt><dd><p>a matrix of simulations from the
-posterior distribution of the overall costs for first line of treatment
-associated with the two interventions</p></dd>
-<dt>list("cost.trt2")</dt><dd><p>a matrix of simulations from the posterior distribution
-of the overall costs for second line of treatment associated with the two
-interventions</p></dd>
-<dt>list("cost.vac")</dt><dd><p>a matrix of simulations from the posterior
-distribution of the costs for vaccination</p></dd>
-<dt>list("e")</dt><dd><p>a matrix of simulations from the posterior distribution of
-the clinical benefits associated with the two treatments</p></dd>
-<dt>list("N")</dt><dd><p>the number of subjects in the reference population</p></dd>
-<dt>list("N.outcomes")</dt><dd><p>the number of clinical outcomes analysed</p></dd>
-<dt>list("N.resources")</dt><dd><p>the number of health-care resources under study</p></dd>
-<dt>list("QALYs.adv")</dt><dd><p>a vector from the posterior distribution of the
-QALYs associated with advert events</p></dd>
-<dt>list("QALYs.death")</dt><dd><p>a vector from the posterior distribution of the
-QALYs associated with death</p></dd>
-<dt>list("QALYs.hosp")</dt><dd><p>a vector from the posterior distribution of the
-QALYs associated with hospitalisation</p></dd>
-<dt>list("QALYs.inf")</dt><dd><p>a vector from the posterior distribution of the
-QALYs associated with influenza infection</p></dd>
-<dt>list("QALYs.pne")</dt><dd><p>a vector from the posterior distribution of the
-QALYs associated with penumonia</p></dd>
-<dt>list("treats")</dt><dd><p>a vector of labels associated with the two treatments</p></dd>
-<dt>list("vaccine")</dt><dd><p>a <code>rjags</code> object containing the simulations for
-the parameters used in the original model</p></dd>
-<dt>list("vaccine_mat")</dt><dd><p>a matrix containing the simulations for the
-parameters used in the original model</p></dd>
+vaccination. The variables are as follows:</p><dl>
+  <dt>list("c")</dt><dd><p>a matrix of simulations from the posterior
+  distribution of the overall costs associated with the two treatments</p></dd>
+  <dt>list("c.pts")</dt><dd><p></p></dd>
+  <dt>list("cost.GP")</dt><dd><p>a matrix of simulations from the posterior
+  distribution of the costs for GP visits associated with the two treatments</p></dd>
+  <dt>list("cost.hosp")</dt><dd><p>a matrix of simulations from the posterior
+  distribution of the costs for hospitalisations associated with the two
+  treatments</p></dd>
+  <dt>list("cost.otc")</dt><dd><p>a matrix of simulations from the posterior distribution
+  of the costs for over-the-counter medications associated with the two treatments</p></dd>
+  <dt>list("cost.time.off")</dt><dd><p>a matrix of simulations from the posterior
+  distribution of the costs for time off work associated with the two treatments</p></dd>
+  <dt>list("cost.time.vac")</dt><dd><p>a matrix of simulations from the posterior
+  distribution of the costs for time needed to get the vaccination associated
+  with the two treatments</p></dd>
+  <dt>list("cost.travel")</dt><dd><p>a matrix of simulations from the posterior
+  distribution of the costs for travel to get vaccination associated with the
+  two treatments</p></dd>
+  <dt>list("cost.trt1")</dt><dd><p>a matrix of simulations from the
+  posterior distribution of the overall costs for first line of treatment
+  associated with the two interventions</p></dd>
+  <dt>list("cost.trt2")</dt><dd><p>a matrix of simulations from the posterior distribution
+  of the overall costs for second line of treatment associated with the two
+  interventions</p></dd>
+  <dt>list("cost.vac")</dt><dd><p>a matrix of simulations from the posterior
+  distribution of the costs for vaccination</p></dd>
+  <dt>list("e")</dt><dd><p>a matrix of simulations from the posterior distribution of
+  the clinical benefits associated with the two treatments</p></dd>
+  <dt>list("e.pts")</dt><dd><p></p></dd>
+  <dt>list("N")</dt><dd><p>the number of subjects in the reference population</p></dd>
+  <dt>list("N.outcomes")</dt><dd><p>the number of clinical outcomes analysed</p></dd>
+  <dt>list("N.resources")</dt><dd><p>the number of health-care resources under study</p></dd>
+  <dt>list("QALYs.adv")</dt><dd><p>a vector from the posterior distribution of the
+  QALYs associated with advert events</p></dd>
+  <dt>list("QALYs.death")</dt><dd><p>a vector from the posterior distribution of the
+  QALYs associated with death</p></dd>
+  <dt>list("QALYs.hosp")</dt><dd><p>a vector from the posterior distribution of the
+  QALYs associated with hospitalisation</p></dd>
+  <dt>list("QALYs.inf")</dt><dd><p>a vector from the posterior distribution of the
+  QALYs associated with influenza infection</p></dd>
+  <dt>list("QALYs.pne")</dt><dd><p>a vector from the posterior distribution of the
+  QALYs associated with pneumonia</p></dd>
+  <dt>list("treats")</dt><dd><p>a vector of labels associated with the two treatments</p></dd>
+  <dt>list("vaccine")</dt><dd><p>a <code>rjags</code> object containing the simulations for
+  the parameters used in the original model</p></dd>
+  <dt>list("vaccine_mat")</dt><dd><p>a matrix containing the simulations for the
+  parameters used in the original model</p></dd>
+  
 </dl>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
@@ -216,11 +218,12 @@ doi:10.1177/0962280211419832.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='Smoking.html'>data</a></span>(<span class='no'>Vaccine</span>)
+<span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Vaccine</span><span class='op'>)</span>
 
 <span class='co'># \donttest{</span>
-<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span>(<span class='no'>e</span>, <span class='no'>c</span>, <span class='kw'>ref</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>interventions</span> <span class='kw'>=</span> <span class='no'>treats</span>)
-<span class='co'># }</span></div></pre>
+<span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>c</span>, ref <span class='op'>=</span> <span class='fl'>1</span>, interventions <span class='op'>=</span> <span class='va'>treats</span><span class='op'>)</span>
+<span class='co'># }</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -236,7 +239,7 @@ doi:10.1177/0962280211419832.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

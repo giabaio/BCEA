@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>calculate credible intervals — eib.plot.cri • BCEA</title>
+<title>Calculate Credible Intervals — eib.plot.cri • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="calculate credible intervals — eib.plot.cri" />
-<meta property="og:description" content="calculate credible intervals" />
+<meta property="og:title" content="Calculate Credible Intervals — eib.plot.cri" />
+<meta property="og:description" content="Calculate Credible Intervals" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -135,19 +135,39 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>calculate credible intervals</h1>
+    <h1>Calculate Credible Intervals</h1>
     <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/eibplot_helpers.R'><code>R/eibplot_helpers.R</code></a></small>
     <div class="hidden name"><code>eib.plot.cri.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>calculate credible intervals</p>
+    <p>Calculate Credible Intervals</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for cri</span>
-<span class='fu'><a href='eib.plot.html'>eib.plot</a></span>(<span class='no'>he</span>, <span class='no'>alpha</span>, <span class='no'>cri.quantile</span>)</pre>
+<span class='fu'><a href='eib.plot.bcea.html'>eib.plot</a></span><span class='op'>(</span><span class='va'>he</span>, alpha <span class='op'>=</span> <span class='fl'>0.05</span>, <span class='va'>cri.quantile</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>he</th>
+      <td><p>A <code>bcea</code> object containing the results of the Bayesian
+modelling and the economic evaluation.</p></td>
+    </tr>
+    <tr>
+      <th>alpha</th>
+      <td><p>Significance level, 0 - 1</p></td>
+    </tr>
+    <tr>
+      <th>cri.quantile</th>
+      <td><p>Credible interval quantile?; logical</p></td>
+    </tr>
+    </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>cri</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -164,7 +184,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

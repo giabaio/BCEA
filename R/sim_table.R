@@ -14,6 +14,7 @@ sim_table <- function(he, ...) UseMethod("sim_table", he)
 #' @template args-he
 #' @param wtp The value of the willingness to pay threshold to be used in the
 #'            summary table.
+#' @param ... Additional arguments
 #' 
 #' @return Produces the following elements:
 #'   \item{table}{A table with simulation statistics from the economic model}
@@ -61,7 +62,7 @@ sim_table <- function(he, ...) UseMethod("sim_table", he)
 #' @rdname sim_table
 #' 
 sim_table.bcea <- function(he,
-                           wtp = 25000) {
+                           wtp = 25000, ...) {
   
   wtp <- min(wtp, he$Kmax)
   

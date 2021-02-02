@@ -4,7 +4,7 @@
 #' Summary plot of the health economic analysis when risk aversion is included.
 #' 
 #' Plots the EIB and the EVPI when risk aversion is included in the utility
-#' function.#' 
+#' function.
 #' 
 #' @param x An object of the class \code{CEriskav}, containing the results of
 #' the economic analysis performed accounting for a risk aversion parameter
@@ -28,7 +28,7 @@
 #' The function produces two plots for the risk aversion analysis. The first
 #' one is the EIB as a function of the discrete grid approximation of the
 #' willingness parameter for each of the possible values of the risk aversion
-#' parameter, r. The second one is a similar plot for the EVPI.
+#' parameter, \code{r}. The second one is a similar plot for the EVPI.
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}}, \code{\link{CEriskav}}
 #' @references
@@ -38,6 +38,8 @@
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
 #' @keywords Health economic evaluation Risk aversion
+#' @importFrom grDevices dev.new devAskNewPage
+#' 
 #' @examples
 #' 
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 

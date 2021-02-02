@@ -6,13 +6,14 @@
 #' post-processed to give the health economic analysis. The output is stored in
 #' an object of the class "bcea".
 #' 
-#' @aliases bcea bcea.default CEanalysis
-#' @param e An object containing \code{nsim} simulations for the variable of
+#' @param eff An object containing \code{nsim} simulations for the variable of
 #' clinical effectiveness for each intervention being considered. In general it
 #' is a matrix with \code{nsim} rows and \code{nint} columns.
-#' @param c An object containing \code{nsim} simulations for the variable of
+#' This are partially matched with `e' from previous version of `BCEA` for back-compatibility.
+#' @param cost An object containing \code{nsim} simulations for the variable of
 #' cost for each intervention being considered. In general it is a matrix with
 #' \code{nsim} rows and \code{nint} columns.
+#' This are partially matched with `c' from previous version of `BCEA` for back-compatibility.
 #' @param ref Defines which intervention (columns of \code{e} or \code{c}) is
 #' considered to be the reference strategy. The default value \code{ref = 1}
 #' means that the intervention associated with the first column of \code{e} or
@@ -21,7 +22,10 @@
 #' @param interventions Defines the labels to be associated with each
 #' intervention. By default and if \code{NULL}, assigns labels in the form
 #' "Intervention1", ... , "InterventionT".
-#' @template args-comparison
+#' @param .comparison Selects the comparator, in case of more than two
+#' interventions being analysed. Default as NULL plots all the comparisons
+#' together. Any subset of the possible comparisons can be selected (e.g.,
+#' \code{comparison=c(1,3)} or \code{comparison = 2}).
 #' @param Kmax Maximum value of the willingness to pay to be considered.
 #' Default value is \code{k = 50000}. The willingness to pay is then approximated
 #' on a discrete grid in the interval \code{[0, Kmax]}. The grid is equal to
@@ -87,7 +91,8 @@
 #' doi:10.1177/0962280211419832.
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
-#' @keywords manip Health economic evaluation
+#' @keywords manip
+#' @concept Health economic evaluation
 #' @import dplyr
 #' 
 #' @examples
@@ -217,13 +222,13 @@
 #' 
 #' @export
 #' 
-bcea <- function(e,
-                 c,
+bcea <- function(eff,
+                 cost,
                  ref = 1,
                  interventions = NULL,
                  .comparison = NULL,
                  Kmax = 50000,
                  wtp = NULL,
                  plot = FALSE)
-  UseMethod("bcea", e)
+  UseMethod("bcea", eff)
 

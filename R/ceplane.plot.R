@@ -1,11 +1,6 @@
 
-#' Cost-effectiveness Plane Plot
+#' @rdname ceplane.plot
 #' 
-#' Produces a scatter plot of the cost-effectiveness plane, together with the
-#' sustainability area, as a function of the selected willingness to pay
-#' threshold.
-#' 
-#' @template args-he
 #' @param comparison Selects the comparator, in case of more than two
 #'   interventions being analysed. Default as \code{NULL} plots all the
 #'   comparisons together. Any subset of the possible comparisons can be selected
@@ -22,7 +17,7 @@
 #'   bottom of the plot. Default value is \code{c(1,1)}, that is the topright
 #'   corner inside the plot area.
 #' @param graph A string used to select the graphical engine to use for
-#'   plotting. Should (partial-)match the two options \code{"base"} or
+#'   plotting. Should (partial-) match the two options \code{"base"} or
 #'   \code{"ggplot2"}. Default value is \code{"base"}.
 #' @param ...  If \code{graph = "ggplot2"} and a named theme object is supplied,
 #'   it will be added to the ggplot object. Additional graphical arguments:
@@ -58,18 +53,22 @@
 #'   specified, all scatterplots are graphed using different colours.
 #'   
 #' @details In the plotly version, point_colors, ICER_colors and area_color can also
-#' be specified as rgba colours using either the \code{\link[plotly]{toRGB}{plotly::toRGB}}
+#' be specified as rgba colours using either the \code{\link[plotly]{toRGB}}
 #' function or a rgba colour string, e.g. \code{'rgba(1, 1, 1, 1)'}.
 #'   
 #' @author Gianluca Baio, Andrea Berardi
-#' @seealso \code{\link{bcea}}
+#' @seealso \code{\link{bcea}},
+#'          \code{\link{ceplane_plot_graph}}
+#' 
 #' @references
 #' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in Health Economics.
 #' Statistical Methods in Medical Research. doi:10.1177/0962280211419832.
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' 
-#' @keywords hplot Health economic evaluation Cost Effectiveness Plane
+#' @keywords hplot
+#' @concept "Health economic evaluation" "Cost Effectiveness Plane"
+#' @export
 #' 
 #' @examples
 #' ## create the bcea object for the smoking cessation example
@@ -92,8 +91,6 @@
 #' ceplane.plot(m, wtp = 200, graph = "plotly")
 #' ceplane.plot(m, wtp = 200, comparison = 1, graph = "plotly")
 #'  
-#' @export
-#' 
 ceplane.plot.bcea <- function(he,
                               comparison = NULL,
                               wtp = 25000,
@@ -131,7 +128,17 @@ ceplane.plot.bcea <- function(he,
 }
 
 
+#' Cost-effectiveness Plane Plot
+#' 
+#' Produces a scatter plot of the cost-effectiveness plane,
+#' together with the sustainability area, as a function of
+#' the selected willingness to pay threshold.
+#' 
+#' @template args-he
+#' 
 #' @export
+#' @name ceplane.plot
+#' @aliases ceplane.plot
 #' 
 ceplane.plot <- function(he, ...) {
   UseMethod('ceplane.plot', he)

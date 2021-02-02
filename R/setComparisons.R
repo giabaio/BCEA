@@ -1,9 +1,11 @@
 
 #' Set Comparisons Group
 #' 
+#' One of the alternative way to set (e,c) comparison group.
+#' 
 #' @template args-he
 #' @template args-comparison 
-#' 
+#' @seealso \code{\link{setComparisons<-}}
 #' @export
 #' 
 setComparisons <- function(he, comparison) {
@@ -15,8 +17,8 @@ setComparisons <- function(he, comparison) {
          call. = FALSE)
   
   res <- 
-    bcea(e = he$e,
-         c = he$c,
+    bcea(eff = he$e,
+         cost = he$c,
          ref = he$ref,
          interventions = he$interventions,
          Kmax = he$Kmax,
@@ -44,16 +46,19 @@ setComparisons <- function(he, comparison) {
 
 #' Set Comparison Group
 #'
+#' One of the alternative way to set (e,c) comparison group.
+#' 
 #' @template args-he
 #' @param value Comparison 
-#'
-#' @return
+#' @return bcea-type object
+#' @seealso \code{\link{setComparisons}}
 #' @export
 #'
 'setComparisons<-' <- function(he, value) {
   UseMethod('setComparisons<-', he)
 }
 
+#' @rdname setComparisons<-
 #' @export
 #'
 'setComparisons<-.bcea' <- function(he, value) {
@@ -61,6 +66,7 @@ setComparisons <- function(he, comparison) {
   setComparisons(he, value)
 }
 
+#' @rdname setComparisons<-
 #' @export
 #'
 'setComparisons<-.default' <- function(he, value) {

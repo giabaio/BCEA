@@ -64,10 +64,4 @@ Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 \author{
 Gianluca Baio
 }
-\keyword{"Expected}
-\keyword{"Health}
-\keyword{economic}
-\keyword{evaluation",}
-\keyword{information"}
-\keyword{of}
-\keyword{value}
+\concept{"Health economic evaluation", "Expected value of information"}
