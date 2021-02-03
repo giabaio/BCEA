@@ -237,7 +237,8 @@ info.rank.bcea <- function(he,
 #'   impact on the expected value of information. For each parameter, the
 #'   specific individual EVPPI is computed and used to measure the impact of
 #'   uncertainty in that parameter over the decision-making process, in terms of
-#'   how large the expected value of gaining more information is.#' @export
+#'   how large the expected value of gaining more information is.
+#' @export
 #' 
 info.rank <- function(he, ...) {
   UseMethod('info.rank', he)

@@ -32,7 +32,7 @@ should be used for the analysis.
   impact on the expected value of information. For each parameter, the
   specific individual EVPPI is computed and used to measure the impact of
   uncertainty in that parameter over the decision-making process, in terms of
-  how large the expected value of gaining more information is.#' @export
+  how large the expected value of gaining more information is.
 }
 \description{
 Produces a plot similar to a Tornado-plot, but based on the analysis of the
