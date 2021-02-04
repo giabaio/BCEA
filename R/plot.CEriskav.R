@@ -101,17 +101,18 @@ plot.CEriskav <- function(x,
                           ...) {
   
   alt.legend <- pos
-  base.graphics <- ifelse(isTRUE(pmatch(graph,c("base","ggplot2"))==2),FALSE,TRUE) 
+  base.graphics <-
+    ifelse(isTRUE(pmatch(graph, c("base","ggplot2")) == 2), FALSE, TRUE) 
   
   howplot <- NULL
   exArgs <- list(...)
-  if (length(exArgs)>=1)
-    if (exists("plot",where=exArgs))
+  if (length(exArgs) >= 1)
+    if (exists("plot", where = exArgs))
       howplot <- exArgs$plot
   
   if (base.graphics) {
     
-    if (is.numeric(alt.legend) && length(alt.legend) == 2){
+    if (is.numeric(alt.legend) && length(alt.legend) == 2) {
       legend_txt <- ""
       if (alt.legend[2] == 0)
         legend_txt <- paste0(legend_txt, "bottom")
@@ -125,7 +126,7 @@ plot.CEriskav <- function(x,
       if (length(grep("^(bottom|top)(left|right)$", legend_txt)) == 0)
         alt.legend <- FALSE
     }
-    if (is.logical(alt.legend)){
+    if (is.logical(alt.legend)) {
       alt.legend <- 
         if (!alt.legend) "topright"
       else "topleft"
@@ -187,16 +188,18 @@ plot.CEriskav <- function(x,
     
   } # base.graphics
   else {
-    if (!isTRUE(requireNamespace("ggplot2",quietly=TRUE) && requireNamespace("grid",quietly=TRUE))) {
+    if (!isTRUE(requireNamespace("ggplot2", quietly = TRUE) &&
+                requireNamespace("grid", quietly = TRUE))) {
       message("falling back to base graphics\n")
-      plot.CEriskav(x,graph="base",pos=pos,...)
+      plot.CEriskav(x, graph = "base", pos = pos,...)
       return(invisible(NULL))
     }
     # no visible bindings note
     k <- r <- NA_real_
     
-    linetypes <- rep(c(1,2,3,4,5,6),ceiling(x$R/6))[1:x$R]
-    df <- data.frame(cbind(rep(x$k,x$R),c(x$eibr),c(x$evir)),as.factor(sort(rep(1:x$R,length(x$k)))))
+    linetypes <- rep(c(1,2,3,4,5,6), ceiling(x$R/6))[1:x$R]
+    df <- data.frame(cbind(rep(x$k,x$R), c(x$eibr), c(x$evir)),
+                     as.factor(sort(rep(1:x$R, length(x$k)))))
     names(df) <- c("k","eibr","evir","r")
     
     # labels
@@ -207,45 +210,49 @@ plot.CEriskav <- function(x,
     }
     
     eibr <-
-      ggplot(df,ggplot2::aes(x=k,y=eibr,linetype=r))+
-      geom_hline(yintercept=0,linetype=1,colour="grey50") +
+      ggplot(df, aes(x = k, y = eibr, linetype = r)) +
+      geom_hline(yintercept = 0, linetype = 1, colour = "grey50") +
       geom_line()+
-      scale_linetype_manual("",labels=text,values=linetypes) + 
+      scale_linetype_manual("", labels = text, values = linetypes) + 
       theme_bw() +
-      labs(title="EIB as a function of the risk aversion parameter",x="Willingness to pay",y="EIB") +
+      labs(title = "EIB as a function of the risk aversion parameter",
+           x = "Willingness to pay",
+           y = "EIB") +
       theme(
         text = element_text(size = 11),
-        legend.key.size = unit(.66, "line"),
+        legend.key.size = unit(0.66, "line"),
         legend.spacing = unit(-1.25, "line"),
         panel.grid = element_blank(),
         legend.key = element_blank())
     
     ### evir ###
     evir <-
-      ggplot(df,ggplot2::aes(x=k,y=evir,linetype=r)) + 
-      geom_hline(yintercept=0,linetype=1,colour="grey50")+
+      ggplot(df, aes(x = k, y = evir, linetype = r)) + 
+      geom_hline(yintercept = 0, linetype = 1, colour = "grey50")+
       geom_line() + 
-      scale_linetype_manual("",labels=text,values=linetypes) + 
+      scale_linetype_manual("", labels = text, values = linetypes) + 
       theme_bw() +
-      labs(title="EVPI as a function of the risk aversion parameter",x="Willingness to pay",y="EVPI") +
+      labs(title = "EVPI as a function of the risk aversion parameter",
+           x = "Willingness to pay",
+           y = "EVPI") +
       theme(
         text = element_text(size = 11),
-        legend.key.size = unit(.66, "line"),
+        legend.key.size = unit(0.66, "line"),
         legend.spacing = unit(-1.25, "line"),
         panel.grid = element_blank(),
         legend.key = element_blank())
     jus <- NULL
-    if(isTRUE(alt.legend)) {
+    if (isTRUE(alt.legend)) {
       alt.legend <- "bottom"
-      eibr <- eibr + theme(legend.direction="vertical")
-      evir <- evir + theme(legend.direction="vertical")
+      eibr <- eibr + theme(legend.direction = "vertical")
+      evir <- evir + theme(legend.direction = "vertical")
     }
-    else{
-      if(is.character(alt.legend)) {
+    else {
+      if (is.character(alt.legend)) {
         choices <- c("left", "right", "bottom", "top")
         alt.legend <- choices[pmatch(alt.legend,choices)]
-        jus="center"
-        if(is.na(alt.legend))
+        jus <- "center"
+        if (is.na(alt.legend))
           alt.legend <- FALSE
       }
       if (length(alt.legend) > 1)
@@ -289,7 +296,7 @@ plot.CEriskav <- function(x,
         dev.new()
     }
     else{
-      opt <- c("x11","ask","dev.new")
+      opt <- c("x11", "ask", "dev.new")
       howplot <- ifelse(is.na(pmatch(howplot, opt)),
                         "dev.new",
                         opt[pmatch(howplot, opt)])
@@ -311,3 +318,4 @@ plot.CEriskav <- function(x,
   }
   
 }
+
