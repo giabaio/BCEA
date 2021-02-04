@@ -7,6 +7,7 @@
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/grand-total/BCEA?color=orange)](	)
 [![CodeFactor](https://www.codefactor.io/repository/github/n8thangreen/bcea/badge)](https://www.codefactor.io/repository/github/n8thangreen/bcea)
 
+[![R build status](https://github.com/n8thangreen/BCEA/workflows/R-CMD-check/badge.svg)](https://github.com/n8thangreen/BCEA/actions)
 <!-- badges: end -->
 
 ## Contents
