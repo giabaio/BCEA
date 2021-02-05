@@ -2,7 +2,7 @@
 title: "plot.bcea"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{bcea}
+  %\VignetteIndexEntry{plot.bcea}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
