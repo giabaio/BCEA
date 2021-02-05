@@ -1,8 +1,10 @@
 ---
 title: "plot.bcea"
-author: "N Green"
-date: "16/09/2020"
-output: html_document
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{bcea}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}
