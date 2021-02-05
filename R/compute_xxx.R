@@ -20,7 +20,7 @@ compute_kstar <- function(k, best, ref) {
     return(NA)    
   }
   
-  min(k[best != ref])
+  min(k[best == ref])
 }
 
 
