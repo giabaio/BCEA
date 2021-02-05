@@ -188,7 +188,7 @@ compute_ol <- function(Ustar,
 
 
 #'
-rowMax <- function(dat) apply(dat, 1, max)
+rowMax <- function(dat) do.call(pmax, as.data.frame(dat))
 
 
 #' Compute U Statistic

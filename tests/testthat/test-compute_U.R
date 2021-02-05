@@ -69,3 +69,4 @@ test_that("compute_U", {
   # expect_equivalent(cbind(ib_11, ib_21), res$ib[,,1 ])
   # expect_equivalent(cbind(ib_12, ib_22), res$ib[,,2 ])
 })
+

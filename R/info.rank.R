@@ -1,5 +1,6 @@
 
-#' @rdname inf.rank
+#' @rdname inf_rank
+#' @title Information-Rank Plot for bcea Class
 #' 
 #' @param parameter A vector of parameters for which the individual EVPPI
 #' should be calculated. This can be given as a string (or vector of strings)
@@ -16,15 +17,6 @@
 #' @param graph A string used to select the graphical enging to use for plotting.
 #' Should (partial-)match one of the two options "base" or "plotly". Default value is "base"
 #' 
-#' @return \item{res}{With base graphics: A data.frame containing the ranking of the parameters
-#'   with the value of the selected summary, for the chosen wtp; with plotly: a plotly object, 
-#'   incorporating in the $rank element the data.frame as above.}
-#'   The function produces a 'Info-rank' plot. This is an extension of standard 'Tornado
-#'   plots' and presents a ranking of the model parameters in terms of their
-#'   impact on the expected value of information. For each parameter, the
-#'   specific individual EVPPI is computed and used to measure the impact of
-#'   uncertainty in that parameter over the decision-making process, in terms of
-#'   how large the expected value of gaining more information is.
 #' @author Anna Heath, Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}},
 #'          \code{\link{evppi}}
@@ -36,11 +28,11 @@
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' @keywords dplot models
-#' @export
 #' @importFrom rlang .data
 #' @importFrom dplyr slice desc
 #' @importFrom graphics barplot
 #' 
+#' @export
 info.rank.bcea <- function(he,
                            parameter,
                            input,
@@ -49,7 +41,7 @@ info.rank.bcea <- function(he,
                            graph = c("base", "plotly"),
                            ...) {
   
-  base.graphics <- all(pmatch(graph,c("base","plotly")) != 2)
+  base.graphics <- all(pmatch(graph, c("base", "plotly")) != 2)
   
   if (!requireNamespace("plotly", quietly = FALSE)) {
     base.graphics <- TRUE
@@ -57,101 +49,12 @@ info.rank.bcea <- function(he,
   }
   
   # function to create the bar plot
-  if (base.graphics) {
-    make.barplot <- function(scores,
-                             chk2,
-                             tit,
-                             xlab,
-                             xlim,
-                             ca,
-                             cn,
-                             mai,
-                             space,
-                             howManyPars) {
-      
-      col <- rep(c("blue", "red"), length(chk2))
-      par(mai = mai)
-      res <- data.frame(
-        parameter = names(chk2),
-        info = scores,
-        row.names = NULL)
-      
-      if (requireNamespace("dplyr", quietly = FALSE)) {
-        res <- dplyr::arrange(res, dplyr::desc(.data$info))
-        
-        if (!is.null(howManyPars) &&
-            is.numeric(howManyPars) &&
-            howManyPars > 0) {
-          howManyPars = min(howManyPars, nrow(res))
-          res <- dplyr::slice(res, 1:howManyPars)
-        }
-      }
-      
-      barplot(
-        res[order(res$info), 2],
-        horiz = TRUE,
-        names.arg = res[order(res$info), 1],
-        cex.names = cn,
-        las = 1,
-        col = col,
-        cex.axis = ca,
-        xlab = xlab,
-        space = space,
-        main = tit,
-        xlim = xlim)
-      
-      par(mai = c(1.360000, 1.093333, 1.093333, 0.560000))
-      list(rank = data.frame(parameter = res[order(-res$info), 1],
-                             info = res[order(-res$info), 2]))
+  make.barplot <- 
+    if (base.graphics) {
+      make.barplot_base
+    } else {
+      make.barplot_plotly
     }
-  } else {
-    make.barplot <- function(scores,
-                             chk2,
-                             tit,
-                             xlab,
-                             xlim,
-                             ca,
-                             cn,
-                             mai,
-                             space,
-                             howManyPars) {
-      
-      res <- data.frame(
-        parameter = names(chk2),
-        info = scores)
-      
-      if (requireNamespace("dplyr", quietly = FALSE)) {
-        res <- dplyr::arrange(res, dplyr::desc(.data$info))
-        if (!is.null(howManyPars) &&
-            is.numeric(howManyPars) &&
-            howManyPars > 0) {
-          howManyPars = min(howManyPars, nrow(res))
-          res <- dplyr::slice(res, 1:howManyPars)
-        }
-      }
-      
-      p <- 
-        plotly::plot_ly(res,
-                        y = ~reorder(.data$parameter,.data$info),
-                        x = ~.data$info,
-                        orientation = "h",
-                        type = "bar",
-                        marker = list(color = "royalblue"))
-      
-      p <- 
-        plotly::layout(
-          p,
-          xaxis = list(hoverformat = ".2f", title = xlab, range = xlim),
-          yaxis = list(hoverformat = ".2f", title = ""),
-          margin = mai,
-          bargap = space,
-          title = tit)
-      
-      p$rank <- data.frame(parameter = res[order(-res$info), 1],
-                           info = res[order(-res$info), 2])
-      return(p)
-    }
-  }
   
   # Prevents BCEA::evppi from throwing messages
   quiet <- function(x) {
@@ -161,7 +64,7 @@ info.rank.bcea <- function(he,
   }
   
   extra_args <- list(...)
-  if (is.null(wtp)) {wtp = he$k[min(which(he$k >= he$ICER))]}
+  if (is.null(wtp)) wtp = he$k[min(which(he$k >= he$ICER))]
   
   if (class(parameter[1]) == "character") {
     parameters <- array()
@@ -194,10 +97,11 @@ info.rank.bcea <- function(he,
       select <- N
     } else {
       N <- min(he$n_sim,N, na.rm = TRUE)
-      if (N == he$n_sim) {
-        select <- 1:he$n_sim
-      } else {
-        select <- sample(1:he$n_sim, size = N, replace = FALSE)} 
+      select <- 
+        if (N == he$n_sim) {
+          1:he$n_sim
+        } else {
+          sample(1:he$n_sim, size = N, replace = FALSE)} 
     }
     
     m <- he
@@ -304,9 +208,9 @@ info.rank.bcea <- function(he,
 }
 
 
-#' Information-Rank Plot
+#' @title Information-Rank Plot
 #' 
-#' Produces a plot similar to a Tornado-plot, but based on the analysis of the
+#' @description Produces a plot similar to a Tornado-plot, but based on the analysis of the
 #' EVPPI. For each parameter and value of the willingness-to-pay threshold, a
 #' barchart is plotted to describe the ratio of EVPPI (specific to that
 #' parameter) to EVPI. This represents the relative `importance' of each
@@ -322,12 +226,21 @@ info.rank.bcea <- function(he,
 #'   vector (default = 0.7 of full size) - base graphics only.
 #'   \item \code{mai} = margins of the graph (default = c(1.36, 1.5, 1,1)) - base graphics only.
 #'   \item \code{rel} = logical argument that specifies whether the ratio of
-#'   EVPPI to EVPI (\code{rel=TRUE}, default) or the absolute value of the EVPPI
+#'   EVPPI to EVPI (\code{rel = TRUE}, default) or the absolute value of the EVPPI
 #'   should be used for the analysis.
 #'   }
-#' @return Bar plot
-#' @export
+#' @return \item{res}{With base graphics: A data.frame containing the ranking of the parameters
+#'   with the value of the selected summary, for the chosen wtp; with plotly: a plotly object, 
+#'   incorporating in the $rank element the data.frame as above.}
+#'   The function produces a 'Info-rank' plot. This is an extension of standard 'Tornado
+#'   plots' and presents a ranking of the model parameters in terms of their
+#'   impact on the expected value of information. For each parameter, the
+#'   specific individual EVPPI is computed and used to measure the impact of
+#'   uncertainty in that parameter over the decision-making process, in terms of
+#'   how large the expected value of gaining more information is.
+#' @name info_rank
 #' 
+#' @export
 info.rank <- function(he, ...) {
   UseMethod('info.rank', he)
 }

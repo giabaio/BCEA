@@ -86,7 +86,7 @@ ceplane_plot_ggplot.bcea <- function(he,
                               col = "black")) +
     do.call(geom_point, graph_params$icer) +
     do.call(annotate, graph_params$wtp) +
-    do.call(theme, graph_params$legend) +
+    do.call(theme, graph_params$legend) +    ##TODO: do these work?
     do.call(annotate, graph_params$icer_txt)
 }
 

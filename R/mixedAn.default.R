@@ -1,14 +1,6 @@
 
 #' @rdname mixedAn
 #' 
-#' mkt.shares is a vector of market shares for each comparators
-#' if no value is provided, then assumes uniform distribution
-#' dev is the device to which the graph should be printed
-#' default is x11() on screen.
-#' Possibilities are jpeg and postscript
-#' @return Object of class mixedAn
-#' 
-#' @references Baio G, Russo P (2009).
 #' @export
 #'
 mixedAn.bcea <- function(he,

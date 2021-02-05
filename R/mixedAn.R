@@ -11,6 +11,7 @@
 #' @param mkt.shares A vector of market shares associated with the
 #' interventions. Its size is the same as the number of possible comparators.
 #' By default, assumes uniform distribution for each intervention.
+#' 
 #' @param plot Logical value indicating whether the function should produce
 #' graphical output, via \code{\link{plot.mixedAn}}, or not. Default is set to
 #' \code{FALSE}.

@@ -11,6 +11,18 @@
 #' calculated using the SPDE-INLA regression method for Gaussian Process
 #' regression developed by Heath et al. (2015).
 #' 
+#' This function has been completely changed and restructured to make it possible
+#' to change regression method.
+#' The method argument can now be given as a list. The first element element in the
+#' list is a vector giving the regression method for the effects. The second gives
+#' the regression method for the costs. The `method' argument can also be given as
+#' before which then uses the same regression method for all curves.
+#' All other `extra_args` can be given as before. `int.ord` can be updated using the
+#' list formulation above to give the interactions for each different curve.
+#' The formula argument for GAM can only be given once, either `te()` or `s() + s()`
+#' as this is for computational reasons rather than to aid fit.
+#' You can still plot the INLA mesh elements but not output the meshes.
+#' 
 #' @aliases evppi evppi.default
 #' @param param_idx A vector of parameters for which the EVPPI should be
 #' calculated. This can be given as a string (or vector of strings) of names or
@@ -94,7 +106,7 @@
 #' By default, when no method is specified by the user, \code{evppi} will
 #' use GAM if the number of parameters is <5 and INLA otherwise.
 #' 
-#' @return
+#' @return Object of class `evppi`:
 #' \item{evppi}{The computed values of evppi for all values of the
 #'  parameter of willingness to pay.}
 #' \item{index}{A numerical vector with the index associated with the

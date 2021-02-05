@@ -67,11 +67,14 @@ ceplane_plot_plotly.bcea <- function(he,
   if (length(graph_params$point$sizes) != length(comp_label))
     graph_params$point$sizes <- rep_len(graph_params$point$sizes, length(comp_label))
   
-  if (length(graph_params$ICER$colors) != length(comp_label))
-    graph_params$ICER$colors <- rep_len("red", length(comp_label))
+  if (!"colors" %in% names(graph_params$ICER) ||
+      length(graph_params$ICER$colors) != length(comp_label))
+    graph_params$ICER <- c(graph_params$ICER,
+                           list(colors = rep_len("red", length(comp_label))))
   
-  if (length(graph_params$ICER$sizes) != length(comp_label))
-    graph_params$ICER$sizes <- rep_len(ICER_size, length(comp_label))
+  if (!"sizes" %in% names(graph_params$ICER) ||
+      length(graph_params$ICER$sizes) != length(comp_label))
+    graph_params$ICER$sizes <- rep_len(graph_params$ICER_size, length(comp_label))
   
   # plot limits
   range.e <- range(delta_ce$delta_e)
@@ -137,7 +140,7 @@ ceplane_plot_plotly.bcea <- function(he,
       color = ~comparison,
       hoverinfo = "name+x+y")
   
-  if (graph_params$area$include) {
+  if (graph_params$area_include) {
     
     ceplane <-
       ceplane %>% 
@@ -155,14 +158,14 @@ ceplane_plot_plotly.bcea <- function(he,
         showlegend = FALSE,
         inherit = FALSE)
     
-    graph_params$area$color <- "grey"
+    graph_params$area$col <- "grey"
     
     poly_col <-
     ifelse(
       grepl(pattern = "^rgba\\(",
-            x = graph_params$area$color),
+            x = graph_params$area$col),
       graph_params$area$color,
-      plotly::toRGB(graph_params$area$color, 0.5))
+      plotly::toRGB(graph_params$area$col, 0.5))
     
     ceplane <-
       ceplane %>% 
