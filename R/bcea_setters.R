@@ -1,19 +1,20 @@
 
-#' Set Reference Group
+#' @name setReferenceGroup_assign
+#' @title Set Reference Group
 #'
 #' Alternative way to define (e,c) reference group.
 #' 
 #' @template args-he
 #' @param value Reference group number
 #'
-#' @return bcea-type objects
+#' @return bcea-type object
 #' @export
 #'
 'setReferenceGroup<-' <- function(he, value) {
   UseMethod('setReferenceGroup<-', he)
 }
 
-#' @rdname setReferenceGroup<-
+#' @rdname setReferenceGroup_assign
 #' @export
 #'
 'setReferenceGroup<-.bcea' <- function(he, value) {
@@ -26,7 +27,7 @@
        plot = FALSE)
 }
 
-#' @rdname setReferenceGroup<-
+#' @rdname setReferenceGroup_assign
 #' @export
 #'
 'setReferenceGroup<-.default' <- function(he, value) {
@@ -35,21 +36,22 @@
 
 # -------------------------------------------------------------------------
 
-#' Set Maximum Willingness to Pay
+#' @name setKmax_assign
+#' @title Set Maximum Willingness to Pay
 #'
 #' Alternative way to define `K` statistic.
 #' 
 #' @template args-he
 #' @param value Maximum willingness to pay
 #'
-#' @return bcea-type oject
+#' @return bcea-type object
 #' @export
 #'
 'setKmax<-' <- function(he, value) {
   UseMethod('setKmax<-', he)
 }
 
-#' @rdname setKmax<-
+#' @rdname setKmax_assign
 #' @export
 #'
 'setKmax<-.bcea' <- function(he, value) {
@@ -62,7 +64,7 @@
        plot = FALSE)
 }
 
-#' @rdname setKmax<-
+#' @rdname setKmax_assign
 #' @export
 #'
 'setKmax<-.default' <- function(he, value) {

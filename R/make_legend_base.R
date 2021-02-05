@@ -59,5 +59,8 @@ where_legend <- function(he,
     else
       return("bottomright")
   }
+  
+  message("Legend position not recognised.")
+  return(NA)
 }
 

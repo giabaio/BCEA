@@ -45,10 +45,11 @@ prep_ceplane_params <- function(he, wtp, ...) {
                                 end = 0.7,
                                 alpha = 1),
            sizes = 0.35),
+         area_include = TRUE,
+         ICER_size = 2,
          area = list(
-           include = TRUE,
-           color = "grey95",
-           line_color = "black"))
+           # line_color = "black",
+           col = "grey95"))
   
   modifyList(default_params, graph_params)
 }

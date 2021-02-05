@@ -30,11 +30,11 @@ ceplane_geom_params <- function(...) {
   
   modifyList(
     list(
-      area = list(include = TRUE)),
+      area_include = TRUE,
+      wtp_label.pos = wtp_params),
     list(
       icer = icer_params,
       point = point_params,
-      area = polygon_params,
-      wtp = wtp_params))
+      area = polygon_params))
 }
 

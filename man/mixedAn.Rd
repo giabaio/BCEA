@@ -3,10 +3,13 @@
 \name{mixedAn}
 \alias{mixedAn}
 \alias{mixedAn.default}
+\alias{mixedAn.bcea}
 \title{Cost-Effectiveness Analysis When Multiple (Possibly Non-Cost-Effective)
 Interventions are Present on the Market}
 \usage{
 mixedAn(he, mkt.shares = NULL, plot = FALSE)
+
+\method{mixedAn}{bcea}(he, mkt.shares = NULL, plot = FALSE)
 
 \method{mixedAn}{default}(he, mkt.shares = NULL, plot = FALSE)
 }

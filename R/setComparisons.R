@@ -1,5 +1,6 @@
 
-#' Set Comparisons Group
+#' @name setComparisons
+#' @title Set Comparisons Group
 #' 
 #' One of the alternative way to set (e,c) comparison group.
 #' 
@@ -44,7 +45,8 @@ setComparisons <- function(he, comparison) {
 }
 
 
-#' Set Comparison Group
+#' @name setComparisons_assign
+#' @title Set Comparison Group
 #'
 #' One of the alternative way to set (e,c) comparison group.
 #' 
@@ -58,7 +60,7 @@ setComparisons <- function(he, comparison) {
   UseMethod('setComparisons<-', he)
 }
 
-#' @rdname setComparisons<-
+#' @rdname setComparisons_assign
 #' @export
 #'
 'setComparisons<-.bcea' <- function(he, value) {
@@ -66,7 +68,7 @@ setComparisons <- function(he, comparison) {
   setComparisons(he, value)
 }
 
-#' @rdname setComparisons<-
+#' @rdname setComparisons_assign
 #' @export
 #'
 'setComparisons<-.default' <- function(he, value) {

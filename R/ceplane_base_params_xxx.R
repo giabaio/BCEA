@@ -29,8 +29,8 @@ polygon_params <- function(graph_params, wtp) {
   
   list(x = polygon_x,
        y = polygon_y,
-       col = graph_params$area$color,
-       border = graph_params$area$line_color)
+       # border = graph_params$area$line_color,
+       col = graph_params$area$color)
 }
 
 

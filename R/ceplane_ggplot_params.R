@@ -27,7 +27,6 @@ ceplane_ggplot_params <- function(he,
     list(
       size = rel(3.5),         # relative size to what??...
       wtp = list(
-        label.pos = TRUE,
         geom = "text",
         x = graph_params$xlim[1],
         y = graph_params$ylim[1],
@@ -65,9 +64,9 @@ ceplane_ggplot_params <- function(he,
         geom = "line",
         color = "black"),
       area = list(
-        geom = "polygon",
-        fill = graph_params$area$color,
-        alpha = ifelse(ext_params$area$include, 0.8, 0),
+        # geom = "polygon",
+        fill = graph_params$area$col,
+        alpha = ifelse(ext_params$area_include, 0.8, 0),
         data = data.frame(x = graph_params$area$x,
                           y = graph_params$area$y),
         mapping = aes(x = .data$x, y = .data$y),

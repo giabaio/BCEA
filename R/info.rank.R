@@ -1,6 +1,6 @@
 
-
-#' @rdname inf.rank
+#' @rdname inf_rank
+#' @title Information-Rank Plot for bcea Class
 #' 
 #' @param parameter A vector of parameters for which the individual EVPPI
 #' should be calculated. This can be given as a string (or vector of strings)
@@ -28,11 +28,11 @@
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' @keywords dplot models
-#' @export
 #' @importFrom rlang .data
 #' @importFrom dplyr slice desc
 #' @importFrom graphics barplot
 #' 
+#' @export
 info.rank.bcea <- function(he,
                            parameter,
                            input,
@@ -208,9 +208,9 @@ info.rank.bcea <- function(he,
 }
 
 
-#' Information-Rank Plot
+#' @title Information-Rank Plot
 #' 
-#' Produces a plot similar to a Tornado-plot, but based on the analysis of the
+#' @description Produces a plot similar to a Tornado-plot, but based on the analysis of the
 #' EVPPI. For each parameter and value of the willingness-to-pay threshold, a
 #' barchart is plotted to describe the ratio of EVPPI (specific to that
 #' parameter) to EVPI. This represents the relative `importance' of each
@@ -226,7 +226,7 @@ info.rank.bcea <- function(he,
 #'   vector (default = 0.7 of full size) - base graphics only.
 #'   \item \code{mai} = margins of the graph (default = c(1.36, 1.5, 1,1)) - base graphics only.
 #'   \item \code{rel} = logical argument that specifies whether the ratio of
-#'   EVPPI to EVPI (\code{rel=TRUE}, default) or the absolute value of the EVPPI
+#'   EVPPI to EVPI (\code{rel = TRUE}, default) or the absolute value of the EVPPI
 #'   should be used for the analysis.
 #'   }
 #' @return \item{res}{With base graphics: A data.frame containing the ranking of the parameters
@@ -238,8 +238,9 @@ info.rank.bcea <- function(he,
 #'   specific individual EVPPI is computed and used to measure the impact of
 #'   uncertainty in that parameter over the decision-making process, in terms of
 #'   how large the expected value of gaining more information is.
-#' @export
+#' @name info_rank
 #' 
+#' @export
 info.rank <- function(he, ...) {
   UseMethod('info.rank', he)
 }

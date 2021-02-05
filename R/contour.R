@@ -456,7 +456,7 @@ contour.bcea <- function(he,
         paste0(he$interventions[he$ref], " vs ", he$interventions[he$comp])
       
       do.nothing <- function(x, limits) x
-
+      
       # plot limits
       range.e <- range(kd$delta_e)
       range.c <- range(kd$delta_c)
@@ -564,7 +564,8 @@ contour.bcea <- function(he,
       ceplane + labs(title = labs.title, x = xlab, y = ylab)
     
     jus <- NULL
-    if (all(alt.legend)) {
+    
+    if (isTRUE(alt.legend)) {
       alt.legend <- "bottom"
       ceplane <-
         ceplane + theme(legend.direction = "vertical")
@@ -578,7 +579,7 @@ contour.bcea <- function(he,
       }
       if (length(alt.legend) > 1)
         jus <- alt.legend
-      if (length(alt.legend) == 1 & !is.character(alt.legend)) {
+      if (length(alt.legend) == 1 && !is.character(alt.legend)) {
         alt.legend <- c(1, 0)
         jus <- alt.legend
       }
