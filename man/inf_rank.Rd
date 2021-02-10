@@ -15,6 +15,9 @@
 )
 }
 \arguments{
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
+
 \item{parameter}{A vector of parameters for which the individual EVPPI
 should be calculated. This can be given as a string (or vector of strings)
 of names or a numeric vector, corresponding to the column numbers of
@@ -33,6 +36,8 @@ Includes all parameters by default.}
 
 \item{graph}{A string used to select the graphical enging to use for plotting.
 Should (partial-)match one of the two options "base" or "plotly". Default value is "base"}
+
+\item{...}{Extra arguments}
 }
 \description{
 Information-Rank Plot for bcea Class

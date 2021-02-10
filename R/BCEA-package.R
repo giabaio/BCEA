@@ -6,8 +6,8 @@
 #' 
 #' \tabular{ll}{ Package: \tab BCEA\cr
 #'               Type: \tab Package\cr
-#'               Version: \tab 2.4\cr
-#'               Date: \tab 2020-07-21\cr
+#'               Version: \tab 2.4.1\cr
+#'               Date: \tab 2021-02-05\cr
 #'               License: \tab GPL2 \cr
 #'               LazyLoad: \tab Yes\cr }
 #'               
@@ -20,7 +20,7 @@
 #' 
 #' @aliases BCEA-package BCEA
 #' 
-#' @author Gianluca Baio, Andrea Berardi, Anna Heath
+#' @author Gianluca Baio, Andrea Berardi, Anna Heath, Nathan Green
 #' 
 #' @references
 #' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
