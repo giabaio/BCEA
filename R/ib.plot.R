@@ -168,8 +168,8 @@ ib.plot.bcea <- function(he,
     
     w <- which(he$k == wtp)
     if (he$n_comparisons == 1) {
-      nbw <- sd(he$ib[w, ])/1.5
-      density <- density(he$ib[w, ], bw = bw, n = n)
+      nbw <- sd(he$ib[w, ,1])/1.5
+      density <- density(he$ib[w, ,1], bw = bw, n = n)
       df <- data.frame(x = density$x,
                        y = density$y)
     }
