@@ -64,7 +64,7 @@ bcea.default <- function(eff,
           suffixes = c("0", "1"),
           all.x = FALSE) %>% 
     mutate(delta_e = .data$eff0 - .data$eff1,
-           delta_c = .data$cost0 - .data$cost1)   ##TODO: is this the wrong way around?...
+           delta_c = .data$cost0 - .data$cost1)
   
   df_ce$interv_names <- factor(interv_names[df_ce$ints],
                                levels = interv_names)

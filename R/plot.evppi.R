@@ -13,9 +13,9 @@
 #' bottom of the plot. Default value is \code{c(0,1)}, that is in the topleft
 #' corner inside the plot area.
 #' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the two options \code{"base"} or
+#' plotting. Should (partial-) match the two options \code{"base"} or
 #' \code{"ggplot2"}. Default value is \code{"base"}.
-#' @param col Sets the color for the lines depicted in the graph.
+#' @param col Sets the colour for the lines depicted in the graph.
 #' @param ...  Arguments to be passed to methods, such as graphical parameters
 #' (see \code{\link{par}}).
 #' @return Plot with base R or ggplot 2.
@@ -29,6 +29,20 @@
 #' @keywords "Health economic evaluation" "Expected value of information"
 #' 
 #' @export
+#' @examples
+#' 
+#' data(Vaccine)
+#' 
+#' # Run the health economic evaluation using BCEA
+#' m <- bcea(e, c, ref = 2, interventions = treats)
+#'
+#' # Compute the EVPPI for a bunch of parameters
+#' inp <- createInputs(vaccine)
+#' 
+#' # Compute the EVPPI using INLA/SPDE
+#' x0 <- evppi(he = m, param_idx = 39:40, input = inp$mat)
+#' 
+#' plot(x0)
 #' 
 plot.evppi <- function (x,
                         pos = c(0, 0.8),
@@ -81,14 +95,14 @@ plot.evppi <- function (x,
         col <- rep("black", length(x$parameters))
       }
     }
-    if (length(x$index) == 1 | length(x$index) > 1 & (class(x$method) == "list")) {
+    if (length(x$index) == 1 || length(x$index) > 1 && class(x$method) == "list") {
       col <- "black"
       points(x$k, x$evppi, type = "l", col = col, lty = 1)
     }
     cmd <- "EVPPI for the selected\nsubset of parameters"
     
     if (nchar(x$params[1]) <= 25) {
-      cmd <- paste("EVPPI for ", x$params, sep = "")
+      cmd <- paste0("EVPPI for ", x$params)
     }
     
     if (length(x$index) > 1 &&
@@ -101,10 +115,10 @@ plot.evppi <- function (x,
                col = col[i], 
                lty = i)
         text(par("usr")[2], x$evppi[[i]][length(x$k)], 
-             paste("(", i, ")", sep = ""), cex = 0.7, pos = 2)
+             paste0("(", i, ")"), cex = 0.7, pos = 2)
       }
-      cmd <- paste("(", paste(1:length(x$index)), ") EVPPI for ", 
-                   x$params, sep = "")
+      cmd <-
+        paste0("(", paste(1:length(x$index)), ") EVPPI for ", x$params)
     }
     legend(
       alt.legend,
@@ -127,7 +141,7 @@ plot.evppi <- function (x,
     else {
       message(
         "ggplot2 method not yet implemented for this function: falling back to base graphics\n")
-      plot.evppi(x, pos = c(0, 0.8), graph = "base", col)
+      plot.evppi(x, pos = c(0, 0.8), graph = "base", col = col)
       return(invisible(NULL))
     }
   }

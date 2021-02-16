@@ -14,10 +14,10 @@
 #' cost for each intervention being considered. In general it is a matrix with
 #' \code{nsim} rows and \code{nint} columns.
 #' This are partially matched with `c' from previous version of `BCEA` for back-compatibility.
-#' @param ref Defines which intervention (columns of \code{e} or \code{c}) is
+#' @param ref Defines which intervention (columns of \code{eff} or \code{cost}) is
 #' considered to be the reference strategy. The default value \code{ref = 1}
-#' means that the intervention associated with the first column of \code{e} or
-#' \code{c} is the reference and the one(s) associated with the other column(s)
+#' means that the intervention associated with the first column of \code{eff} or
+#' \code{cost} is the reference and the one(s) associated with the other column(s)
 #' is(are) the comparators.
 #' @param interventions Defines the labels to be associated with each
 #' intervention. By default and if \code{NULL}, assigns labels in the form
@@ -56,7 +56,7 @@
 #' willingness to pay}
 #' \item{eib}{The value for the Expected Incremental Benefit, as a function of
 #' the willingness to pay}
-#' \item{kstar}{The grid approximation of the break even point(s)}
+#' \item{kstar}{The grid approximation of the break-even point(s)}
 #' \item{best}{A vector containing the numeric label of the intervention that
 #' is the most cost-effective for each value of the willingness to pay in the
 #' selected grid approximation}
@@ -79,12 +79,12 @@
 #' reference in the analysis}
 #' \item{comp}{The numeric index(es) associated with the intervention(s) used
 #' as comparator(s) in the analysis}
-#' \item{step}{The step used to form the grid approximation to the willingness
+#' \item{step}{The step size used to form the grid approximation to the willingness
 #' to pay}
-#' \item{e}{The \code{e} matrix used to generate the object (see Arguments)}
-#' \item{c}{The \code{c} matrix used to generate the object (see Arguments)}
+#' \item{e}{The \code{eff} matrix used to generate the object (see Arguments)}
+#' \item{c}{The \code{cost} matrix used to generate the object (see Arguments)}
 #' 
-#' @author Gianluca Baio, Andrea Berardi
+#' @author Gianluca Baio, Andrea Berardi, Nathan Green
 #' @references
 #' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in
 #' Health Economics.  Statistical Methods in Medical Research.

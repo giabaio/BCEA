@@ -6,7 +6,7 @@
   * Main plotting functions `ceac_plot()` and `ceplane_plot()` have been rewritten. These functions now simply dispatch to the base R, ggplot2 or plotly versions. Internally, these functions, e.g.`ceplane_plot_ggplot()`, are also split into parameter setting and plotting components. This modulisation allows us to add new layers to plots or modify existing parameter sets and defaults. It also means we can reuse some functionality across plots such as axes and legend setting.
   * Plots and tables using S3 methods for `bcea` type object.
   * New vignettes about CEAC plotting and comparison intervention setting.
-  * Tables updated. Duplication in `summary()` and `sim.table()` removed.
+  * Tables updated. Duplication in `summary()` and `sim.table.bcea()` removed.
   * `CreateInputs()` used for EVPI calculation now dispatches S3 methods by JAGS, BUGS, Stan and other R data types. 
 * Extend ways to set comparison interventions. Subsets of comparison can still be set in a call to a plotting function as before. Now subsets can be set in both the original `bcea()` construction or separately using a setter functions `setComparison()`.
 * Similarly, maximum willingness to pay and the reference group can be set with `setKmax()` and `setReferenceGroup()`, respectively.
