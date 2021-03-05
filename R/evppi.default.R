@@ -1,6 +1,6 @@
 
 #' @rdname evppi
-#'
+#' 
 #' @export
 #'
 #' @examples
