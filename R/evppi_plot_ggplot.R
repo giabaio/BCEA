@@ -18,6 +18,7 @@ evppi_plot_ggplot <- function(he,
   plot_dat <-
     he[c("evi", "evppi", "k")] %>% 
     bind_rows() %>% 
+    ##TODO: for >1 evppi
     melt(id.vars = "k") %>% 
     mutate(variable = as.character(variable),
            variable = ifelse(variable == "evppi",
@@ -33,4 +34,3 @@ evppi_plot_ggplot <- function(he,
     xlab("Willingness to pay") +
     ylab("")
 }
-

@@ -40,12 +40,19 @@
 #' inp <- createInputs(vaccine)
 #' 
 #' # Compute the EVPPI using INLA/SPDE
-#' x0 <- evppi(he = m, param_idx = 39:40, input = inp$mat)
+#' x0 <- evppi(he = m, 39:40, input = inp$mat)
+#' x0 <- evppi(he = m, c(32,48,49), input = inp$mat)
 #' 
-#' plot(x0)
+#' plot(x0, pos = c(0,1))
+#' plot(x0, pos = "topright")
 #' 
-plot.evppi <- function (he,
-                        comparison = NULL,
+#' plot(x0, col = c("black", red"), pos = "topright")
+#' plot(x0, col = c(1,3), pos = "topright")
+#' 
+#' if (FALSE)
+#'  plot(x0, col = 3, pos = "topright")
+#' 
+plot.evppi <- function (evppi_obj,
                         pos = c(0, 0.8),
                         graph = c("base", "ggplot2"),
                         col = NULL,
@@ -53,30 +60,29 @@ plot.evppi <- function (he,
   
   graph <- match.arg(graph)
   
-  he <- setComparisons(he, comparison)
-  
   # graph_params <- prepare_evppi_params(...)
   
   if (is_baseplot(graph)) {
     
-    evppi_plot_base(he,
+    evppi_plot_base(evppi_obj,
                     pos_legend = pos,
                     # graph_params,
                     col)
     
   } else if (is_ggplot(graph)) {
     
-    evppi_plot_ggplot(he,
+    evppi_plot_ggplot(evppi_obj,
                       pos_legend = pos,
                       # graph_params,
                       ...)
-    
-  } else if (is_plotly(graph)) {
-    
-    evppi_plot_plotly(he,
-                      pos_legend = pos,
-                      graph_params)
   }
+  
+  # } else if (is_plotly(graph)) {
+  #   
+  #   evppi_plot_plotly(evppi_obj,
+  #                     pos_legend = pos,
+  #                     graph_params)
+  # }
 }
 
 
