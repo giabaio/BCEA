@@ -3,14 +3,9 @@
 helper_base_params <- function(he,
                                graph_params) {
   
-  n_lines <- 
-    if (inherits(he, "pairwise")) {
-      he$n_comparators
-    } else {
-      he$n_comparisons}
+  n_lines <- num_lines(he)
   
   if (n_lines == 1) {
-    
     default_params <- list(plot =
                              list(lwd = 1,
                                   line =
@@ -20,7 +15,6 @@ helper_base_params <- function(he,
   }
   
   if (n_lines > 1) {
-    
     default_params <-
       list(plot =
              list(lwd = ifelse(n_lines <= 6, 1, 1.5),

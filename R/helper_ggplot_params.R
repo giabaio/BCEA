@@ -6,23 +6,19 @@
 helper_ggplot_params <- function(he,
                                  graph_params) {
   
-  n_lines <- 
-    if (inherits(he, "pairwise")) {
-      he$n_comparators
-    } else {
-      he$n_comparisons}
+  n_lines <- num_lines(he)
   
   if (n_lines == 1) {
-    
-    default_params <- list(plot =
-                             list(labels = NULL,
-                                  line =
-                                    list(types = 1)))
-    graph_params <- modifyList(default_params, graph_params)
+    default_params <-
+      list(plot =
+             list(labels = NULL,
+                  line =
+                    list(types = 1)))
+    graph_params <-
+      modifyList(default_params, graph_params)
   }
   
   if (n_lines > 1) {
-    
     default_params <-
       list(plot =
              list(labels = line_labels(he),
