@@ -1,15 +1,33 @@
 # num_lines ---------------------------------------------------------------
 
 
-num_lines <- function(he) {
-  UseMethod('num_lines', he)
+#' @name num_lines
+#' 
+num_lines <- function(dat) {
+  UseMethod('num_lines', dat)
 }
 
-num_lines.pairwise <- function(he) {
-  he$n_comparators
+#' @rdname num_lines
+#' 
+num_lines.pairwise <- function(dat) {
+  dat$n_comparators
 }
 
-num_lines.default <- function(he) {
-  he$n_comparisons
+#' @rdname num_lines
+#' 
+num_lines.bcea <- function(dat) {
+  dat$n_comparisons
+}
+
+#' @rdname num_lines
+#' 
+num_lines.evppi <- function(dat) {
+  2
+}
+
+#' @rdname num_lines
+#' 
+num_lines.default <- function(dat) {
+  dat$n_comparisons
 }
 

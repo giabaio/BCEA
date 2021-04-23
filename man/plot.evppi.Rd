@@ -5,12 +5,15 @@
 \title{Plot Expected Value of Partial Information With Respect to a
 Set of Parameters}
 \usage{
-\method{plot}{evppi}(x, pos = c(0, 0.8), graph = c("base", "ggplot2"), col = NULL, ...)
+\method{plot}{evppi}(
+  evppi_obj,
+  pos = c(0, 0.8),
+  graph = c("base", "ggplot2"),
+  col = c(1, 1),
+  ...
+)
 }
 \arguments{
-\item{x}{An object in the class \code{evppi}, obtained by the call to the
-function \code{\link{evppi}}.}
-
 \item{pos}{Parameter to set the position of the legend. Can be given in form
 of a string \code{(bottom|top)(right|left)} for base graphics and
 \code{bottom|top|left|right} for ggplot2. It can be a two-elements vector,
@@ -21,13 +24,16 @@ bottom of the plot. Default value is \code{c(0,1)}, that is in the topleft
 corner inside the plot area.}
 
 \item{graph}{A string used to select the graphical engine to use for
-plotting. Should (partial-)match the two options \code{"base"} or
+plotting. Should (partial-) match the two options \code{"base"} or
 \code{"ggplot2"}. Default value is \code{"base"}.}
 
-\item{col}{Sets the color for the lines depicted in the graph.}
+\item{col}{Sets the colour for the lines depicted in the graph.}
 
 \item{...}{Arguments to be passed to methods, such as graphical parameters
 (see \code{\link{par}}).}
+
+\item{x}{An object in the class \code{evppi}, obtained by the call to the
+function \code{\link{evppi}}.}
 }
 \value{
 Plot with base R or ggplot 2.
@@ -35,6 +41,41 @@ Plot with base R or ggplot 2.
 \description{
 Plot Expected Value of Partial Information With Respect to a
 Set of Parameters
+}
+\examples{
+
+data(Vaccine)
+treats <- c("Status quo", "Vaccination")
+ 
+# Run the health economic evaluation using BCEA
+m <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
+
+# Compute the EVPPI for a bunch of parameters
+inp <- createInputs(vaccine)
+
+# Compute the EVPPI using INLA/SPDE
+x0 <- evppi(m, c("beta.1." , "beta.2."), input = inp$mat)
+x1 <- evppi(m, c(32,48,49), input = inp$mat)
+
+plot(x0, pos = c(0,1))
+plot(x1, pos = "topright")
+
+plot(x0, col = c("black", "red"), pos = "topright")
+plot(x0, col = c(2,3), pos = "bottomright")
+
+plot(x0, pos = c(0,1), graph = "ggplot2")
+plot(x1, pos = "top", graph = "ggplot2")
+
+plot(x0, col = c("black", "red"), pos = "right", graph = "ggplot2")
+plot(x0, col = c(2,3), size = c(1,2), pos = "bottom", graph = "ggplot2")
+
+plot(x0, graph = "ggplot2", theme = ggplot2::theme_linedraw())
+
+if (FALSE)
+ plot(x0, col = 3, pos = "topright")
+# The vector 'col' must have the number of elements for an EVPI
+# colour and each of the EVPPI parameters. Forced to black
+
 }
 \references{
 Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.

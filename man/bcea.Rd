@@ -38,10 +38,10 @@ cost for each intervention being considered. In general it is a matrix with
 \code{nsim} rows and \code{nint} columns.
 This are partially matched with `c' from previous version of `BCEA` for back-compatibility.}
 
-\item{ref}{Defines which intervention (columns of \code{e} or \code{c}) is
+\item{ref}{Defines which intervention (columns of \code{eff} or \code{cost}) is
 considered to be the reference strategy. The default value \code{ref = 1}
-means that the intervention associated with the first column of \code{e} or
-\code{c} is the reference and the one(s) associated with the other column(s)
+means that the intervention associated with the first column of \code{eff} or
+\code{cost} is the reference and the one(s) associated with the other column(s)
 is(are) the comparators.}
 
 \item{interventions}{Defines the labels to be associated with each
@@ -86,7 +86,7 @@ as a function of the willingness to pay}
 willingness to pay}
 \item{eib}{The value for the Expected Incremental Benefit, as a function of
 the willingness to pay}
-\item{kstar}{The grid approximation of the break even point(s)}
+\item{kstar}{The grid approximation of the break-even point(s)}
 \item{best}{A vector containing the numeric label of the intervention that
 is the most cost-effective for each value of the willingness to pay in the
 selected grid approximation}
@@ -109,10 +109,10 @@ a function of the willingness to pay}
 reference in the analysis}
 \item{comp}{The numeric index(es) associated with the intervention(s) used
 as comparator(s) in the analysis}
-\item{step}{The step used to form the grid approximation to the willingness
+\item{step}{The step size used to form the grid approximation to the willingness
 to pay}
-\item{e}{The \code{e} matrix used to generate the object (see Arguments)}
-\item{c}{The \code{c} matrix used to generate the object (see Arguments)}
+\item{e}{The \code{eff} matrix used to generate the object (see Arguments)}
+\item{c}{The \code{cost} matrix used to generate the object (see Arguments)}
 }
 \description{
 Cost-effectiveness analysis based on the results of a simulation model for a
@@ -254,7 +254,7 @@ doi:10.1177/0962280211419832.
 Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 }
 \author{
-Gianluca Baio, Andrea Berardi
+Gianluca Baio, Andrea Berardi, Nathan Green
 }
 \concept{Health economic evaluation}
 \keyword{manip}

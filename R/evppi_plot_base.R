@@ -1,18 +1,14 @@
 
-#' evppi_plot_base
+#' @rdname evppi_plot_graph
 #'
-#' @param evppi_obj 
-#' @param pos_legend 
-#' @param col
+#' @param annot Annotate EVPPI curve with parameter names
 #'
-#' @return NULL
 #' @export
 #'
-#' @examples
-#' 
-evppi_plot_base <- function(evppi_obj,
-                            pos_legend = pos,
-                            col = NULL) {
+evppi_plot_base.evppi <- function(evppi_obj,
+                                  pos_legend = pos,
+                                  col = NULL,
+                                  annot = FALSE) {
   
   legend_params <-
     evppi_legend_base(evppi_obj, pos_legend, col)
@@ -42,14 +38,25 @@ evppi_plot_base <- function(evppi_obj,
           lty = legend_params$lty[-1],
           add = TRUE)
   
-  text(x = par("usr")[2],
-       y = txt_coord_y, 
-       labels = paste0("(", evppi_obj$index, ")"),
-       cex = 0.7,
-       pos = 2)
+  if (annot) {
+    text(x = par("usr")[2],
+         y = txt_coord_y, 
+         labels = paste0("(", evppi_obj$index, ")", collapse = " "),
+         cex = 0.7,
+         pos = 2)
+  }
   
   do.call(legend, legend_params)
   
   return(invisible(NULL))
 }
+
+
+#' @rdname evppi_plot_graph
+#' @export
+#' 
+evppi_plot_base <- function(evppi_obj, ...) {
+  UseMethod('evppi_plot_base', evppi_obj)
+}
+
 

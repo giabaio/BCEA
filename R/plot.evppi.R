@@ -32,7 +32,8 @@
 #' @examples
 #' 
 #' data(Vaccine)
-#' 
+#' treats <- c("Status quo", "Vaccination")
+#'  
 #' # Run the health economic evaluation using BCEA
 #' m <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
 #'
@@ -40,14 +41,22 @@
 #' inp <- createInputs(vaccine)
 #' 
 #' # Compute the EVPPI using INLA/SPDE
-#' x0 <- evppi(he = m, 39:40, input = inp$mat)
-#' x1 <- evppi(he = m, c(32,48,49), input = inp$mat)
+#' x0 <- evppi(m, c("beta.1." , "beta.2."), input = inp$mat)
+#' x1 <- evppi(m, c(32,48,49), input = inp$mat)
 #' 
 #' plot(x0, pos = c(0,1))
 #' plot(x1, pos = "topright")
 #' 
-#' plot(x0, col = c("black", red"), pos = "topright")
-#' plot(x0, col = c(1,3), pos = "topright")
+#' plot(x0, col = c("black", "red"), pos = "topright")
+#' plot(x0, col = c(2,3), pos = "bottomright")
+#' 
+#' plot(x0, pos = c(0,1), graph = "ggplot2")
+#' plot(x1, pos = "top", graph = "ggplot2")
+#' 
+#' plot(x0, col = c("black", "red"), pos = "right", graph = "ggplot2")
+#' plot(x0, col = c(2,3), size = c(1,2), pos = "bottom", graph = "ggplot2")
+#' 
+#' plot(x0, graph = "ggplot2", theme = ggplot2::theme_linedraw())
 #' 
 #' if (FALSE)
 #'  plot(x0, col = 3, pos = "topright")
@@ -57,28 +66,27 @@
 plot.evppi <- function (evppi_obj,
                         pos = c(0, 0.8),
                         graph = c("base", "ggplot2"),
-                        col = NULL,
+                        col = c(1,1),
                         ...) {
   
   graph <- match.arg(graph)
-  
-  # graph_params <- prepare_evppi_params(...)
   
   if (is_baseplot(graph)) {
     
     evppi_plot_base(evppi_obj,
                     pos_legend = pos,
-                    # graph_params,
-                    col)
+                    col = col,
+                    ...)
     
   } else if (is_ggplot(graph)) {
     
     evppi_plot_ggplot(evppi_obj,
                       pos_legend = pos,
-                      # graph_params,
+                      col = col,
                       ...)
   }
   
+  ##TODO
   # } else if (is_plotly(graph)) {
   #   
   #   evppi_plot_plotly(evppi_obj,
@@ -87,4 +95,12 @@ plot.evppi <- function (evppi_obj,
   # }
 }
 
+
+#' @name evppi_plot_graph
+#' 
+#' @param evppi_obj Result of call to \code{createInputs()}
+#' @param pos_legend Legend position
+#' @param col Line colours; vector
+#' 
+NULL
 
