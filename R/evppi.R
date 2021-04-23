@@ -160,7 +160,7 @@
 #' treats <- c("Status quo", "Vaccination")
 #' 
 #' # Run the health economic evaluation using BCEA
-#' m <- bcea(e, c, ref = 2, interventions = treats)
+#' m <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
 #'
 #' # Compute the EVPPI for a bunch of parameters
 #' inp <- createInputs(vaccine)

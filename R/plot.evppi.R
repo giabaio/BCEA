@@ -34,23 +34,25 @@
 #' data(Vaccine)
 #' 
 #' # Run the health economic evaluation using BCEA
-#' m <- bcea(e, c, ref = 2, interventions = treats)
+#' m <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
 #'
 #' # Compute the EVPPI for a bunch of parameters
 #' inp <- createInputs(vaccine)
 #' 
 #' # Compute the EVPPI using INLA/SPDE
 #' x0 <- evppi(he = m, 39:40, input = inp$mat)
-#' x0 <- evppi(he = m, c(32,48,49), input = inp$mat)
+#' x1 <- evppi(he = m, c(32,48,49), input = inp$mat)
 #' 
 #' plot(x0, pos = c(0,1))
-#' plot(x0, pos = "topright")
+#' plot(x1, pos = "topright")
 #' 
 #' plot(x0, col = c("black", red"), pos = "topright")
 #' plot(x0, col = c(1,3), pos = "topright")
 #' 
 #' if (FALSE)
 #'  plot(x0, col = 3, pos = "topright")
+#' # The vector 'col' must have the number of elements for an EVPI
+#' # colour and each of the EVPPI parameters. Forced to black
 #' 
 plot.evppi <- function (evppi_obj,
                         pos = c(0, 0.8),
