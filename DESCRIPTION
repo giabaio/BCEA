@@ -1,41 +1,60 @@
 Package: BCEA
 Type: Package
 Title: Bayesian Cost Effectiveness Analysis
-Version: 2.3-2
-Date: 2020-01-30
+Version: 2.4.1
+Date: 2021-02-05
 Authors@R: c(
     person("Gianluca", "Baio",
             email = "gianluca@stats.ucl.ac.uk",
             role = c("aut", "cre")),
     person("Andrea", "Berardi",
-            email = "gianluca@stats.ucl.ac.uk",
+            email = "a.berardi@ucl.ac.uk",
             role = c("aut")),
     person("Anna", "Heath",
-            email = "gianluca@stats.ucl.ac.uk",
+            email = "anna.heath@sickkids.ca",
+            role = c("aut")),
+    person("Nathan", "Green",
+            email = "n.green@ucl.ac.uk",
             role = c("aut")))
-Suggests: 
+Imports:
+    crayon,
+    dplyr,
+    ggplot2,
+    graphics,
+    INLA,
+    knitr,
+    ldr,
+    MASS,
+    plotly,
+    purrr,
+    reshape2,
+    rlang,
+    rmarkdown,
+    withr,
+    gridExtra
+Depends:
+    R (>= 3.5.0)
+Suggests:
+    RColorBrewer,
+    grid,
+    mgcv,
     R2jags,
     R2OpenBUGS,
-    ggplot2,
-    grid,
-    INLA,
     splancs,
-    mgcv,
-    ldr,
-    shiny,
-    shinythemes,
-    knitr,
-    rmarkdown,
-    plotly,
-    testthat (>= 2.1.0)
-Imports: MASS, dplyr, rlang
+    testthat (>= 2.1.0),
+    vdiffr
 Additional_repositories: https://inla.r-inla-download.org/R/stable/
-Description: Produces an economic evaluation of a Bayesian model in the form of MCMC simulations. Given suitable variables of cost and effectiveness / utility for two or more interventions, This package computes the most cost-effective alternative and produces graphical summaries and probabilistic sensitivity analysis.
-License: GPL (>=2)
+Description: Produces an economic evaluation of a sample of suitable variables of
+             cost and effectiveness / utility for two or more interventions,
+             e.g. from a Bayesian model in the form of MCMC simulations.
+             This package computes the most cost-effective alternative and
+             produces graphical summaries and probabilistic sensitivity analysis.
+License: GPL-3
 URL: http://www.statistica.it/gianluca/BCEA,
      http://www.statistica.it/gianluca,
      https://github.com/giabaio/BCEA    
-Depends: R (>= 2.10)
 NeedsCompilation: no
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
 Encoding: UTF-8
+VignetteBuilder: knitr
+

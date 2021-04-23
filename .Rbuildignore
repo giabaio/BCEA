@@ -1,4 +1,13 @@
+^renv$
+^renv\.lock$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.travis\.yml$
 ^appveyor\.yml$
+^LICENSE\.md$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.httr-oauth$
+^CONDUCT\.md$
+^man-roxygen$
