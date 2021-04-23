@@ -32,118 +32,75 @@
 #' @examples
 #' 
 #' data(Vaccine)
-#' 
+#' treats <- c("Status quo", "Vaccination")
+#'  
 #' # Run the health economic evaluation using BCEA
-#' m <- bcea(e, c, ref = 2, interventions = treats)
+#' m <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
 #'
 #' # Compute the EVPPI for a bunch of parameters
 #' inp <- createInputs(vaccine)
 #' 
 #' # Compute the EVPPI using INLA/SPDE
-#' x0 <- evppi(he = m, param_idx = 39:40, input = inp$mat)
+#' x0 <- evppi(m, c("beta.1." , "beta.2."), input = inp$mat)
+#' x1 <- evppi(m, c(32,48,49), input = inp$mat)
 #' 
-#' plot(x0)
+#' plot(x0, pos = c(0,1))
+#' plot(x1, pos = "topright")
 #' 
-plot.evppi <- function (x,
+#' plot(x0, col = c("black", "red"), pos = "topright")
+#' plot(x0, col = c(2,3), pos = "bottomright")
+#' 
+#' plot(x0, pos = c(0,1), graph = "ggplot2")
+#' plot(x1, pos = "top", graph = "ggplot2")
+#' 
+#' plot(x0, col = c("black", "red"), pos = "right", graph = "ggplot2")
+#' plot(x0, col = c(2,3), size = c(1,2), pos = "bottom", graph = "ggplot2")
+#' 
+#' plot(x0, graph = "ggplot2", theme = ggplot2::theme_linedraw())
+#' 
+#' if (FALSE)
+#'  plot(x0, col = 3, pos = "topright")
+#' # The vector 'col' must have the number of elements for an EVPI
+#' # colour and each of the EVPPI parameters. Forced to black
+#' 
+plot.evppi <- function (evppi_obj,
                         pos = c(0, 0.8),
                         graph = c("base", "ggplot2"),
-                        col = NULL,
+                        col = c(1,1),
                         ...) {
   
-  alt.legend <- pos
-  base.graphics <- all(pmatch(graph, c("base", "ggplot2")) != 2)
+  graph <- match.arg(graph)
   
-  if (base.graphics) {
-    if (is.numeric(alt.legend) & length(alt.legend) == 2) {
-      temp <- ""
-      if (alt.legend[2] == 0) 
-        temp <- paste0(temp, "bottom")
-      else if (alt.legend[2] != 0.5) 
-        temp <- paste0(temp, "top")
-      if (alt.legend[1] == 1) 
-        temp <- paste0(temp, "right")
-      else temp <- paste0(temp, "left")
-      alt.legend <- temp
-      if (length(grep("^((bottom|top)(left|right)|right)$", 
-                      temp)) == 0) 
-        alt.legend <- FALSE
-    }
-    if (is.logical(alt.legend)) {
-      alt.legend <- 
-        if (!alt.legend) "topright"
-      else "topleft"
-    }
-    plot(
-      x$k,
-      x$evi,
-      type = "l",
-      xlab = "Willingness to pay",
-      ylab = "",
-      main = "Expected Value of Perfect Partial Information",
-      lwd = 2,
-      ylim = range(range(x$evi),
-                   range(x$evppi)))
-    if (is.null(col)) {
-      cols <- colors()
-      gr <- floor(seq(from = 261, to = 336, length.out = length(x$index)))
-      col <- cols[gr]
-    }
-    else {
-      if (length(col) != length(x$parameters)) {
-        message("The vector 'col' must have the same number of elements as the number of parameters.
-                Forced to black\n")
-        col <- rep("black", length(x$parameters))
-      }
-    }
-    if (length(x$index) == 1 || length(x$index) > 1 && class(x$method) == "list") {
-      col <- "black"
-      points(x$k, x$evppi, type = "l", col = col, lty = 1)
-    }
-    cmd <- "EVPPI for the selected\nsubset of parameters"
+  if (is_baseplot(graph)) {
     
-    if (nchar(x$params[1]) <= 25) {
-      cmd <- paste0("EVPPI for ", x$params)
-    }
+    evppi_plot_base(evppi_obj,
+                    pos_legend = pos,
+                    col = col,
+                    ...)
     
-    if (length(x$index) > 1 &&
-        (("Strong & Oakley (univariate)" %in% x$method) || 
-         ("Sadatsafavi et al" %in% x$method))) {
-      for (i in seq_along(x$index)) {
-        points(x$k,
-               x$evppi[[i]],
-               type = "l",
-               col = col[i], 
-               lty = i)
-        text(par("usr")[2], x$evppi[[i]][length(x$k)], 
-             paste0("(", i, ")"), cex = 0.7, pos = 2)
-      }
-      cmd <-
-        paste0("(", paste(1:length(x$index)), ") EVPPI for ", x$params)
-    }
-    legend(
-      alt.legend,
-      c("EVPI", cmd),
-      col = c("black", col),
-      cex = 0.7,
-      bty = "n",
-      lty = c(1, 1:length(x$params)),
-      lwd = c(2, rep(1, length(x$params)))
-    )
-    return(invisible(NULL))
+  } else if (is_ggplot(graph)) {
+    
+    evppi_plot_ggplot(evppi_obj,
+                      pos_legend = pos,
+                      col = col,
+                      ...)
   }
-  else {
-    if (!(requireNamespace("ggplot2", quietly = TRUE) & 
-          requireNamespace("grid", quietly = TRUE))) {
-      message("Falling back to base graphics\n")
-      plot.evppi(x, pos = c(0, 0.8), graph = "base", col)
-      return(invisible(NULL))
-    }
-    else {
-      message(
-        "ggplot2 method not yet implemented for this function: falling back to base graphics\n")
-      plot.evppi(x, pos = c(0, 0.8), graph = "base", col = col)
-      return(invisible(NULL))
-    }
-  }
+  
+  ##TODO
+  # } else if (is_plotly(graph)) {
+  #   
+  #   evppi_plot_plotly(evppi_obj,
+  #                     pos_legend = pos,
+  #                     graph_params)
+  # }
 }
+
+
+#' @name evppi_plot_graph
+#' 
+#' @param evppi_obj Result of call to \code{createInputs()}
+#' @param pos_legend Legend position
+#' @param col Line colours; vector
+#' 
+NULL
 

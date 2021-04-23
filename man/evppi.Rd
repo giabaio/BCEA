@@ -156,21 +156,33 @@ use GAM if the number of parameters is <5 and INLA otherwise.
 
 # Load the processed results of the MCMC simulation model
 data(Vaccine)
+treats <- c("Status quo", "Vaccination")
 
 # Run the health economic evaluation using BCEA
-m <- bcea(e, c, ref = 2, interventions = treats)
+m <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
 
 # Compute the EVPPI for a bunch of parameters
 inp <- createInputs(vaccine)
 
+EVPPI <- evppi(m, c("beta.1." , "beta.2."), inp$mat)
+plot(EVPPI)
+
+# deprecated (single parameter) methods
+EVPPI.so <- evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "so", n.blocks = 50)
+EVPPI.sad <- evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps = 1)
+
+##TODO:
+#plot(EVPPI.so)
+#plot(EVPPI.sad)
+
 # Compute the EVPPI using INLA/SPDE
-x0 <- evppi(he = m, param_idx = 39:40, input = inp$mat)
+x0 <- evppi(he = m, 39:40, input = inp$mat)
 
 # using GAM regression
-x1 <- evppi(he = m, param_idx = 39:40, input = inp$mat, method = "GAM")
+x1 <- evppi(he = m, 39:40, input = inp$mat, method = "GAM")
 
 # using GP regression
-x2 <- evppi(he = m, param_idx = 39:40, input = inp$mat, method = "GP")
+x2 <- evppi(he = m, 39:40, input = inp$mat, method = "GP")
 
 # plot results
 plot(x0)
@@ -182,6 +194,13 @@ plot(x0$k, x0$evppi, type = "l", lwd = 2, lty = 2)
 points(x1$k, x1$evppi, type = "l", col = "red")
 points(x2$k, x2$evppi, type = "l", col = "blue")
 
+data(Smoking)
+treats <- c("No intervention", "Self-help",
+"Individual counselling", "Group counselling")
+m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+inp <- createInputs(smoking_output)
+EVPPI <- evppi(m, c(2,3), inp$mat, h.value = 0.0000005)
+plot(EVPPI)
 
 }
 \references{
