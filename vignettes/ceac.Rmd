@@ -158,7 +158,7 @@ ceac.plot(he,
 
 ### Pair-wise comparisons
 
-Again, without loss of generality, if we assume that we are interested in intervention $i=1$, the we wish to calculate
+Again, without loss of generality, if we assume that we are interested in intervention $i=1$, then we wish to calculate
 
 $$
 p(NB_1 = \max\{NB_i : i \in S\} | k)
