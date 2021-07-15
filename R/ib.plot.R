@@ -4,6 +4,7 @@
 #' @param comparison In the case of multiple interventions, specifies the one
 #' to be used in comparison with the reference. Default value of \code{NULL}
 #' forces R to consider the first non-reference intervention as the comparator.
+#' Controls which comparator is used when more than 2 interventions are present
 #' @param wtp The value of the willingness to pay threshold. Default value at
 #' \code{25000}.
 #' @param bw Identifies the smoothing bandwidth used to construct the kernel
@@ -45,9 +46,6 @@ ib.plot.bcea <- function(he,
                          ...) {
   
   base.graphics <- all(pmatch(graph, c("base", "ggplot2")) != 2)
-  
-  # comparison controls which comparator is used when more than 2 interventions are present
-  # bw and n control the level of smoothness of the kernel density estimation
   
   if (!is.null(comparison))
     stopifnot(comparison <= he$n.comparison)

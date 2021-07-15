@@ -1,3 +1,4 @@
+
 #' @rdname inf_rank
 #' @title Information-Rank Plot for bcea Class
 #' 
@@ -34,6 +35,14 @@
 #' @importFrom graphics barplot
 #' 
 #' @export
+#' 
+#' @examples
+#' data("Vaccine")
+#' m <- bcea(e,c)
+#' inp <- createInputs(vaccine)
+#' info.rank(m, inp$parameters, inp$mat)
+#' info.rank(m, inp$parameters, inp$mat, graph = "base")
+#' 
 info.rank.bcea <- function(he,
                            parameter,
                            input,
@@ -49,14 +58,6 @@ info.rank.bcea <- function(he,
     warning("Package plotly not found; falling back to base graphics.")
   }
   
-  # function to create the bar plot
-  make.barplot <- 
-    if (base.graphics) {
-      make.barplot_base
-    } else {
-      make.barplot_plotly
-    }
-  
   # Prevents BCEA::evppi from throwing messages
   quiet <- function(x) {
     sink(tempfile())
@@ -65,7 +66,7 @@ info.rank.bcea <- function(he,
   }
   
   extra_args <- list(...)
-  if (is.null(wtp)) wtp = he$k[min(which(he$k >= he$ICER))]
+  if (is.null(wtp)) wtp <- he$k[min(which(he$k >= he$ICER))]
   
   if (class(parameter[1]) == "character") {
     parameters <- array()
@@ -80,131 +81,60 @@ info.rank.bcea <- function(he,
   # needs to exclude parameters with weird behaviour (ie all 0s)
   w <- unlist(lapply(parameter, function(x) which(colnames(input) == x)))
   
-  if (length(w) == 1) {
+  if (length(w) == 1) return()
+  
+  input <- input[, w]
+  chk1 <- which(apply(input, 2, "var") > 0)   # only takes those with var > 0
+  # check those with <5 possible values (would break GAM)
+  tmp <- lapply(1:dim(input)[2], function(x) table(input[, x]))
+  chk2 <- which(unlist(lapply(tmp, function(x) length(x) >= 5)) == TRUE)
+  names(chk2) <- colnames(input[, chk2])
+  
+  # Can do the analysis on a smaller number of PSA runs
+  if (exists("N", where = extra_args)) {
+    N <- extra_args$N
+  } else {N <- he$n_sim}
+  
+  if (any(!is.na(N)) & length(N) > 1) {
+    select <- N
   } else {
-    input <- input[, w]
-    chk1 <- which(apply(input, 2, "var") > 0)   # only takes those with var > 0
-    # check those with <5 possible values (would break GAM)
-    tmp <- lapply(1:dim(input)[2], function(x) table(input[, x]))
-    chk2 <- which(unlist(lapply(tmp, function(x) length(x) >= 5)) == TRUE)
-    names(chk2) <- colnames(input[, chk2])
-    
-    # Can do the analysis on a smaller number of PSA runs
-    if (exists("N", where = extra_args)) {
-      N <- extra_args$N
-    } else {N <- he$n_sim}
-    
-    if (any(!is.na(N)) & length(N) > 1) {
-      select <- N
-    } else {
-      N <- min(he$n_sim,N, na.rm = TRUE)
-      select <- 
-        if (N == he$n_sim) {
-          1:he$n_sim
-        } else {
-          sample(1:he$n_sim, size = N, replace = FALSE)} 
-    }
-    
-    m <- he
-    m$k <- wtp
-    x <- list()
-    
-    for (i in seq_along(chk2)) {
-      x[[i]] <- quiet(
-        evppi(he = m, param_idx = chk2[i], input = input, N = N))
-    }
-    scores <- unlist(lapply(x,
-                            function(x) x$evppi/x$evi[which(he$k == wtp)]))
-    
-    # Optional inputs
-    if (base.graphics) {
-      ca <- 
-        if (exists("ca", where = extra_args)) {
-          extra_args$ca
-        } else {0.7}
-      
-      cn <- 
-        if (exists("cn", where = extra_args)) {
-          extra_args$cn
-        } else {0.7}
-      
-      xlab <- "Proportion of total EVPI"
-      if (exists("rel", where = extra_args)) {
-        if (!extra_args$rel) {
-          scores <- unlist(lapply(x, function(x) x$evppi))
-          xlab <- "Absolute value of the EVPPI"
-        }
-      }
-      
-      xlim <- 
-        if (exists("xlim", where = extra_args)) {
-          extra_args$xlim
-        } else {c(0, range(scores)[2])}
-      
-      mai <- 
-        if (exists("mai", where = extra_args)) {
-          extra_args$mai
-        } else {c(1.36, 1.5, 1, 1)}
-      
-      tit <- 
-        if (exists("tit", where = extra_args)) {
-          extra_args$tit
-        } else {paste0("Info-rank plot for willingness to pay = ", wtp)}
-      
-      space <- 
-        if (exists("space", where = extra_args)) {
-          extra_args$space
-        } else {0.5}
-    } else {
-      ca <- NULL
-      if (exists("ca", where = extra_args)) {
-        warning("Argument ca was specified in info.rank.plotly but is not an accepted argument.
-                Parameter will be ignored.")}
-      cn <- NULL
-      if (exists("cn", where = extra_args)) {
-        warning("Argument cn was specified in info.rank.plotly but is not an accepted argument.
-                Parameter will be ignored.")}
-      xlab <- "Proportion of total EVPI"
-      if (exists("rel", where = extra_args)) {
-        if (!extra_args$rel) {
-          scores <- unlist(lapply(x, function(x) x$evppi))
-          xlab <- "Absolute value of the EVPPI"
-        }
-      }
-      
-      xlim <- 
-        if (exists("xlim", where = extra_args)) {
-          extra_args$xlim
-        } else {NULL}
-      
-      mai <- 
-        if (exists("mai", where = extra_args)) {
-          extra_args$mai
-        } else {NULL}
-      
-      tit <-
-        if (exists("tit", where = extra_args)) {
-          extra_args$tit
-        } else {
-          paste0("Info-rank plot for willingness to pay = ", wtp)}
-      
-      space <- 
-        if (exists("space", where = extra_args)) {
-          extra_args$space
-        } else {NULL}
-    }
-    
-    make.barplot(
-      scores = scores,
-      chk2 = chk2,
-      tit = tit,
-      xlab = xlab,
-      xlim = xlim,
-      ca,
-      cn,
-      mai = mai,
-      space,
-      howManyPars) 
+    N <- min(he$n_sim,N, na.rm = TRUE)
+    select <- 
+      if (N == he$n_sim) {
+        1:he$n_sim
+      } else {
+        sample(1:he$n_sim, size = N, replace = FALSE)} 
+  }
+  
+  m <- he
+  m$k <- wtp
+  x <- list()
+  
+  for (i in seq_along(chk2)) {
+    x[[i]] <-
+      quiet(
+        evppi(he = m,
+              param_idx = chk2[i],
+              input = input,
+              N = N))
+  }
+  
+  scores <-
+    unlist(lapply(x,
+                  function(x) x$evppi/x$evi[which(he$k == wtp)]))
+  
+  if (base.graphics) {
+    info_rank_base(extra_args,
+                   scores,
+                   chk2,
+                   wtp,
+                   howManyPars)
+  } else {
+    info_rank_plotly(extra_args,
+                     scores,
+                     chk2,
+                     wtp,
+                     howManyPars)
   }
 }
 
