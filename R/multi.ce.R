@@ -49,7 +49,9 @@ multi.ce <- function(he) {
   # grey scale
   color <- colors()[floor(seq(262, 340, length.out = he$n_comparators))]
   
-  p_best_interv <- array(NA, c(length(he$k), he$n_comparators))
+  p_best_interv <- array(NA,
+                         c(length(he$k),
+                           he$n_comparators))
   
   for (i in seq_len(he$n_comparators)) {
     for (k in seq_along(he$k)) {

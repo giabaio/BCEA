@@ -59,6 +59,7 @@ eib.plot.bcea <- function(he,
                      "line_cri_colors")
   
   cri.quantile <- TRUE
+  
   if (length(exArgs) >= 1) {
     if (exists("cri.quantile", where = exArgs))
       cri.quantile <- exArgs$cri.quantile
@@ -105,563 +106,43 @@ eib.plot.bcea <- function(he,
                no = range(c(he$eib), c(cri[, 1:2])))
   
   if (graph_choice == 1) {
-    # base graphics version -----
-    if (!is.null(size)) {
-      if (!is.na(size)) {
-        message("Option size will be ignored using base graphics.")
-        size <- NULL
-      }
-    }
+
+    eib_plot_base(he,
+                  alt.legend,
+                  plot_aes,
+                  plot_annotations,
+                  size,
+                  yl,
+                  alpha,
+                  cri,
+                  plot.cri)
     
-    if (is.numeric(alt.legend) & length(alt.legend) == 2) {
-      temp <- ""
-      if (alt.legend[2] == 0)
-        temp <- paste0(temp, "bottom")
-      else
-        temp <- paste0(temp, "top")
-      
-      if (alt.legend[1] == 1)
-        temp <- paste0(temp, "right")
-      else
-        temp <- paste0(temp, "left")
-      
-      alt.legend <- temp
-      if (length(grep("^(bottom|top)(left|right)$", temp)) == 0)
-        alt.legend <- FALSE
-    }
-    if (is.logical(alt.legend)) {
-      if (!alt.legend)
-        alt.legend <- "topleft"
-      else
-        alt.legend <- "topright"
-    }
-    
-    if (he$n_comparisons == 1) {
-      plot(
-        NULL,
-        ylim = yl,
-        xlim = range(he$k),
-        xlab = switch(
-          as.numeric(plot_annotations$exist$xlab) + 1,
-          "Willingness to pay",
-          plot_annotations$xlab),
-        ylab = switch(
-          as.numeric(plot_annotations$exist$ylab) + 1,
-          "EIB",
-          plot_annotations$ylab),
-        main = switch(
-          as.numeric(plot_annotations$exist$title) + 1, 
-          paste0("Expected Incremental Benefit",
-                 ifelse(
-                   plot.cri,
-                   paste0("\nand ", format((1 - alpha)*100, digits = 4),
-                          "% credible intervals"),
-                   "")),
-          plot_annotations$title))
-      ## x axis
-      abline(h = 0, col = "grey")
-      ## EIB
-      lines(he$k,
-            he$eib,
-            col = plot_aes$line$colors[1],
-            lty = ifelse(is.null(plot_aes$line$types),
-                         yes = 1,
-                         no = plot_aes$line$types[1]))
-      ## CrI
-      if (plot.cri) {
-        lines(he$k, cri$low, col = plot_aes$line$cri_colors[1], lty = 2)
-        lines(he$k, cri$upp, col = plot_aes$line$cri_colors[1], lty = 2)
-      }
-      ### BEP
-      if (length(he$kstar) > 0 & is.null(size)) {
-        abline(v = he$kstar, col = "dark grey", lty = "dotted")
-        text(he$kstar, min(yl), paste("k* = ", he$kstar ,sep = ""))
-      }
-      
-      if (he$change_comp) {
-        legend(
-          alt.legend,
-          paste0(he$interventions[he$ref], " vs ", he$interventions[he$comp]),
-          cex = 0.7, bty = "n", lwd = 1,
-          lty = ifelse(is.null(plot_aes$line$types),
-                       yes = 1,
-                       no = plot_aes$line$types[1]))
-      }
-    } else if (he$n_comparisons > 1 & is.null(comparison)) {
-      lwd <- ifelse(he$n_comparisons > 6, 1.5, 1)
-      plot(
-        NULL,
-        ylim = yl,
-        xlim = range(he$k),
-        xlab = switch(
-          as.numeric(plot_annotations$exist$xlab) + 1,
-          "Willingness to pay",
-          plot_annotations$xlab),
-        ylab = switch(
-          as.numeric(plot_annotations$exist$ylab) + 1,
-          "EIB",
-          plot_annotations$ylab),
-        main = switch(
-          as.numeric(plot_annotations$exist$title) + 1, 
-          paste0("Expected Incremental Benefit",
-                 ifelse(
-                   plot.cri,
-                   paste0("\nand ", format((1 - alpha)*100, digits = 4),
-                          "% credible intervals"), "")),
-          plot_annotations$title))
-      
-      abline(h = 0, col = "grey")
-      
-      if (is.null(plot_aes$line$types))
-        plot_aes$line$types <- 1:he$n_comparisons
-      
-      for (j in seq_len(he$n_comparisons)) {
-        lines(he$k, he$eib[, j],
-              lty = plot_aes$line$types[min(j, length(plot_aes$line$types))], 
-              lwd = ifelse(plot.cri, lwd + 1, lwd), 
-              col = plot_aes$line$colors[min(j, length(plot_aes$line$colors))])
-        if (plot.cri) {
-          lines(he$k,
-                cri$low[cri$comp == j],
-                lwd = lwd, 
-                col = plot_aes$line$cri_colors[min(j, length(plot_aes$line$cri_colors))],
-                lty = plot_aes$line$types[min(j, length(plot_aes$line$types))])
-          lines(he$k,
-                cri$upp[cri$comp == j],
-                lwd = lwd, 
-                col = plot_aes$line$cri_colors[min(j, length(plot_aes$line$cri_colors))],
-                lty = plot_aes$line$types[min(j, length(plot_aes$line$types))])
-        }
-      }
-      if (length(he$kstar) > 0 & is.null(size)) {
-        abline(v = he$kstar, col = "dark grey", lty = "dotted")
-        text(he$kstar, min(yl), paste("k* = ", he$kstar, sep = ""))
-      }
-      text <- paste0(he$interventions[he$ref], " vs ", he$interventions[he$comp])
-      legend(
-        alt.legend,
-        text,
-        cex = 0.7,
-        bty = "n",
-        lty = plot_aes$line$types,
-        lwd = ifelse(plot.cri, lwd + 1, lwd))
-    } else if (he$n_comparisons > 1 &
-               !is.null(comparison)) {
-      # adjusts bcea object for the correct number of dimensions and comparators
-      he$comp <- he$comp[comparison]
-      he$delta_e <- he$delta_e[, comparison]
-      he$delta_c <- he$delta_c[, comparison]
-      he$n_comparators <- length(comparison) + 1
-      he$n_comparisons <- length(comparison)
-      he$interventions <- he$interventions[sort(c(he$ref, he$comp))]
-      he$ICER <- he$ICER[comparison]
-      he$ib <- he$ib[, , comparison]
-      he$eib <- he$eib[, comparison]
-      he$U <- he$U[,,sort(c(he$ref, comparison + 1))]
-      he$ceac <- he$ceac[, comparison]
-      he$ref <- rank(c(he$ref, he$comp))[1]
-      he$comp <- rank(c(he$ref, he$comp))[-1]
-      he$change_comp <- TRUE
-      
-      eib.plot(
-        he,
-        pos = alt.legend,
-        graph = "base",
-        size = size,
-        comparison = NULL,
-        plot.cri = plot.cri,
-        alpha = alpha,
-        cri.quantile = cri.quantile,
-        ...)
-    }
   } else if (graph_choice == 2) {
     
-    if (!(requireNamespace("ggplot2", quietly = TRUE) &
-          requireNamespace("grid", quietly = TRUE))) {
-      message("falling back to base graphics\n")
-      eib.plot(he, pos = alt.legend, graph = "base")
-      return(invisible(NULL))
-    }
+    eib_plot_ggplot(he,
+                    alt.legend,
+                    plot_aes,
+                    data.psa,
+                    plot.cri,
+                    plot_annotations,
+                    alpha,
+                    size,
+                    exArgs,
+                    yl,
+                    cri)
     
-    ### no visible binding note
-    k <- kstar <- low <- upp <- NA_real_
-    
-    if (is.null(size))
-      size <- rel(3.5)
-    
-    opt.theme <- theme()
-    for (obj in exArgs)
-      if (is.theme(obj))
-        opt.theme <- opt.theme + obj
-    
-    if (he$n_comparisons == 1) {
-      
-      data.psa <- data.frame(
-        k = he$k,
-        eib = c(he$eib), 
-        comparison = as.factor(
-          rep(1:he$n_comparison, each = length(he$k)))
-      )
-      
-      if (plot.cri) 
-        data.psa <- cbind(data.psa, cri)
-      
-      if (is.null(plot_aes$line$types))
-        plot_aes$line$types <- 1:he$n_comparisons
-      
-      eib <-
-        ggplot(data.psa, aes(x = .data$k, y = .data$eib)) +
-        theme_bw() +
-        geom_hline(aes(yintercept = 0), colour = "grey")
-      
-      if (!he$change_comp) {
-        eib <-
-          eib +
-          geom_line(
-            linetype = plot_aes$line$types[1],
-            colour = plot_aes$line$colors[1])
-      } else {
-        eib <-
-          eib + 
-          geom_line(linetype = plot_aes$line$types[1],
-                    colour = plot_aes$line$colors[1]) +
-          scale_linetype_manual(
-            "",
-            values = ifelse(is.null(plot_aes$line$types), 1, plot_aes$line$types[1]),
-            labels = with(he,paste0(interventions[ref], " vs ", interventions[comp])))
-      }
-      
-      if (!length(he$kstar) == 0 & !is.na(size)) {
-        label <- paste0("k* = ", format(he$kstar, digits = 6))
-        eib <-
-          eib +
-          geom_vline(
-            aes(xintercept = .data$kstar),
-            data = data.frame("kstar" = he$kstar),
-            colour = "grey50",
-            linetype = 2,
-            size = 0.5) +
-          annotate(
-            "text",
-            label = label,
-            x = he$kstar,
-            y = min(yl),
-            hjust = ifelse((max(he$k) - he$kstar) / max(he$k) > 1 / 6,
-                           yes = -0.1,
-                           no = 1.1),
-            size = size)
-      }
-      if (plot.cri) {
-        eib <- eib +
-          geom_line(aes(y = .data$low),
-                    colour = plot_aes$line$cri_colors[1],
-                    lty = 2) +
-          geom_line(aes(y = .data$upp),
-                    colour = plot_aes$line$cri_colors[1],
-                    lty = 2)
-      }
-    } else if (he$n_comparisons > 1 &
-               is.null(comparison)) {
-      data.psa <-
-        data.frame(
-          k = c(he$k),
-          eib = c(he$eib),
-          comparison = as.factor(
-            rep(1:he$n_comparison, each = length(he$k)))
-        )
-      if (plot.cri)
-        data.psa <- cbind(data.psa, cri)
-      comparisons.label <-
-        paste0(he$interventions[he$ref], " vs ", he$interventions[he$comp])
-      
-      # linetype is the indicator of the comparison.
-      # 1 = solid, 2 = dashed, 3 = dotted, 4 = dotdash, 5 = longdash, 6 = twodash
-      if (is.null(plot_aes$line$types))
-        plot_aes$line$types <- rep(c(1,2,3,4,5,6), ceiling(he$n_comparisons/6))[1:he$n_comparisons]
-      
-      if (length(plot_aes$line$types) < length(comparisons.label))
-        plot_aes$line$types <- rep_len(plot_aes$line$types, length(comparisons.label))
-      
-      if (length(plot_aes$line$colors) < length(comparisons.label))
-        plot_aes$line$colors <- rep_len(plot_aes$line$colors, length(comparisons.label))
-      
-      eib <- 
-        ggplot(
-          data.psa,
-          aes(x = .data$k, y = .data$eib, linetype = .data$comparison, colour = .data$comparison)) + 
-        geom_hline(yintercept = 0, linetype = 1, color = "grey") + 
-        theme_bw() +
-        geom_line(lwd = ifelse(!plot.cri, 0.5, 0.75)) +
-        scale_colour_manual(
-          "",
-          labels = comparisons.label, 
-          values = plot_aes$line$colors) +
-        scale_linetype_manual(
-          "",
-          labels = comparisons.label, 
-          values = plot_aes$line$types)
-      
-      if (!length(he$kstar) == 0 & !is.na(size)) {
-        label <- paste0("k* = ", format(he$kstar, digits = 6))
-        eib <-
-          eib +
-          geom_vline(
-            aes(xintercept = .data$kstar),
-            data = data.frame("kstar" = he$kstar),
-            colour = "grey50",
-            linetype = 2,
-            size = 0.5) +
-          annotate(
-            "text",
-            label = label,
-            x = he$kstar,
-            y = min(yl),
-            hjust = ifelse((max(he$k) - he$kstar) / max(he$k) > 1 / 6, -0.1, 1.1),
-            size = size,
-            vjust = 1)
-      }
-      
-      if (plot.cri) {
-        eib <-
-          eib +
-          geom_line(aes(y = .data$low),
-                    colour = plot_aes$line$cri_colors,
-                    show.legend = FALSE) +
-          geom_line(aes(y = .data$upp),
-                    colour = plot_aes$line$cri_colors,
-                    show.legend = FALSE)
-      }
-    } else if (he$n_comparisons > 1 & !is.null(comparison)) {
-      # adjusts bcea object for the correct number of dimensions and comparators
-      he$comp <- he$comp[comparison]
-      he$delta_e <- he$delta_e[, comparison]
-      he$delta_c <- he$delta_c[, comparison]
-      he$n_comparators <- length(comparison)+1
-      he$n_comparisons <- length(comparison)
-      he$interventions <- he$interventions[sort(c(he$ref, he$comp))]
-      he$ICER <- he$ICER[comparison]
-      he$ib <- he$ib[, , comparison]
-      he$eib <- he$eib[, comparison]
-      he$U <- he$U[, , sort(c(he$ref, comparison + 1))]
-      he$ceac <- he$ceac[, comparison]
-      he$ref <- rank(c(he$ref, he$comp))[1]
-      he$comp <- rank(c(he$ref, he$comp))[-1]
-      he$change_comp <- TRUE
-      
-      return(
-        eib.plot(
-          he,
-          pos = alt.legend,
-          graph = "ggplot2",
-          size = size,
-          comparison = NULL,
-          plot.cri = plot.cri,
-          alpha = alpha,
-          cri.quantile = cri.quantile,
-          ...))
-    }
-    
-    eib <- eib + 
-      ggplot2::labs(
-        x = switch(
-          as.numeric(plot_annotations$exist$xlab) + 1,
-          "Willingness to pay",
-          plot_annotations$xlab),
-        y = switch(
-          as.numeric(plot_annotations$exist$ylab) + 1,
-          "EIB",
-          plot_annotations$ylab),
-        title = switch(
-          as.numeric(plot_annotations$exist$title) + 1, 
-          paste0("Expected Incremental Benefit", ifelse(
-            plot.cri,
-            paste0("\nand ", format((1 - alpha)*100, digits = 4),
-                   "% credible intervals"), "")),
-          plot_annotations$title))
-    
-    jus <- NULL
-    if (length(alt.legend) == 1 && alt.legend)  {
-      alt.legend <- "bottom"
-      eib <- eib + theme(legend.direction = "vertical")
-    } else {
-      if (is.character(alt.legend)) {
-        choices <- c("left", "right", "bottom", "top")
-        alt.legend <- choices[pmatch(alt.legend, choices)]
-        jus <- "center"
-        if (is.na(alt.legend))
-          alt.legend <- FALSE
-      }
-      if (length(alt.legend) > 1)
-        jus <- alt.legend
-      if (length(alt.legend) == 1 & !is.character(alt.legend)) {
-        alt.legend <- c(1, 0)
-        jus <- alt.legend
-      }
-    }
-    eib <-
-      eib + 
-      theme(
-        legend.position = alt.legend,
-        legend.justification = jus,
-        legend.title = element_blank(),
-        legend.background = element_blank(),
-        text = element_text(size = 11),
-        legend.key.size = grid::unit(0.66, "lines"),
-        legend.spacing = grid::unit(-1.25, "line"),
-        panel.grid = element_blank(),
-        legend.key = element_blank(),
-        legend.text.align = 0,
-        plot.title = element_text(
-          lineheight = 1.05,
-          face = "bold",
-          size = 14.3,
-          hjust = 0.5)) + opt.theme
-    
-    return(eib)
   } else if (graph_choice == 3) {
-    # plotly version -----
-    if (!is.null(size) && !is.na(size)) {
-      message("Option size will be ignored using plotly.")
-      size <- NULL
-    }
     
-    if (he$n_comparisons > 1 & !is.null(comparison)) {
-      # adjusts bcea object for the correct number of dimensions and comparators
-      he$comp <- he$comp[comparison]
-      he$delta_e <- he$delta_e[, comparison]
-      he$delta_c <- he$delta_c[, comparison]
-      he$n_comparators <- length(comparison) + 1
-      he$n_comparisons <- length(comparison)
-      he$interventions <- he$interventions[sort(c(he$ref, he$comp))]
-      he$ICER <- he$ICER[comparison]
-      he$ib <- he$ib[, , comparison]
-      he$eib <- he$eib[, comparison]
-      he$U <- he$U[, , sort(c(he$ref, comparison + 1))]
-      he$ceac <- he$ceac[, comparison]
-      he$ref <- rank(c(he$ref, he$comp))[1]
-      he$comp <- rank(c(he$ref, he$comp))[-1]
-      he$change_comp <- TRUE
-      
-      return(
-        eib.plot(
-          he,
-          pos = alt.legend,
-          graph = "plotly",
-          size = size,
-          comparison = NULL,
-          plot.cri = plot.cri,
-          alpha = alpha,
-          cri.quantile = cri.quantile,
-          ...))
-    }
-    
-    if (is.null(plot_aes$line$types))
-      plot_aes$line$types <- rep(c(1:6), ceiling(he$n_comparisons/6))[1:he$n_comparisons]
-    comparisons.label <- with(he,paste0(interventions[ref], " vs ", interventions[comp]))
-    
-    if (length(plot_aes$line$types) < length(comparisons.label))
-      plot_aes$line$types <- rep_len(plot_aes$line$types, length(comparisons.label))
-    
-    if (length(plot_aes$line$colors) < length(comparisons.label))
-      plot_aes$line$colors <- rep_len(plot_aes$line$colors, length(comparisons.label))
-    # opacities
-    plot_aes$line$cri_colors <-
-      vapply(plot_aes$line$cri_colors,
-             function(x) 
-               ifelse(grepl(pattern = "^rgba\\(", x = x), x, plotly::toRGB(x, 0.4)))
-    plot_aes$area$color <- vapply(plot_aes$area$color, function(x)
-      ifelse(grepl(pattern = "^rgba\\(", x = x), x, plotly::toRGB(x, 0.4)))
-    
-    data.psa <-
-      data.frame(
-        k = he$k,
-        eib = c(he$eib),
-        comparison = as.factor(c(
-          vapply(1:he$n_comparisons, function(x) rep(x, length(he$k)))
-        )),
-        label = as.factor(c(
-          vapply(comparisons.label, function(x) rep(x, length(he$k)))
-        )))
-    if (plot.cri)
-      data.psa <- cbind(data.psa, cri)
-    eib <- plotly::plot_ly(data.psa, x = ~k)
-    eib <-
-      plotly::add_trace(
-        eib,
-        y = ~eib,
-        type = "scatter",
-        mode = "lines",
-        fill = ifelse(plot_aes$area$include, "tozeroy", "none"),
-        name = ~label,
-        fillcolor = plot_aes$area$color,
-        color = ~comparison,
-        colors = plot_aes$line$colors,
-        linetype = ~comparison,
-        linetypes = plot_aes$line$types,
-        legendgroup = ~comparison)
-    # NB: decision change points not included - hover functionality is sufficient
-    if (plot.cri) {
-      if (he$n_comparisons == 1) {
-        eib <- plotly::add_ribbons(
-          eib,
-          name = paste0(100 * (1 - alpha), "% CrI"),
-          ymin = ~low,
-          ymax = ~upp,
-          color = NA,
-          fillcolor = ~plot_aes$line$cri_colors[comparison])
-      } else {
-        eib <- plotly::add_ribbons(
-          eib,
-          name = ~label,
-          ymin = ~low,
-          ymax = ~upp,
-          line = list(color = plot_aes$line$cri_colors[1]),
-          # for transparency, use plotly::toRGB("blue", alpha = 0.5)
-          legendgroup = ~comparison,
-          fillcolor = "rgba(1, 1, 1, 0)",
-          linetype = ~comparison,
-          linetypes = plot_aes$line$types,
-          showlegend = FALSE)
-      }
-    }
-    
-    # legend positioning not great - must be customized case by case
-    legend_list <- list(orientation = "h", xanchor = "center", x = 0.5)
-    if (is.character(alt.legend))
-      legend_list = switch(
-        alt.legend,
-        "left" = list(orientation = "v", x = 0, y = 0.5),
-        "right" = list(orientation = "v", x = 0, y = 0.5),
-        "bottom" = list(orienation = "h", x = 0.5, y = 0, xanchor = "center"),
-        "top" = list(orientation = "h", x = 0.5, y = 100, xanchor = "center"))
-    
-    eib <-
-      plotly::layout(
-        eib,
-        title = switch(
-          as.numeric(plot_annotations$exist$title) + 1, 
-          paste0("Expected Incremental Benefit", ifelse(
-            plot.cri,
-            paste0("\nand ", format((1 - alpha)*100, digits = 4), "% credible intervals"),
-            "")),
-          plot_annotations$title),
-        xaxis = list(
-          hoverformat = ".2f",
-          title = switch(
-            as.numeric(plot_annotations$exist$xlab) + 1,
-            "Willingness to pay",
-            plot_annotations$xlab)),
-        yaxis = list(
-          hoverformat = ".2f",
-          title = switch(
-            as.numeric(plot_annotations$exist$xlab) + 1,
-            "EIB",
-            plot_annotations$ylab)),
-        showlegend = TRUE, 
-        legend = legend_list)
-    
-    eib <- plotly::config(eib, displayModeBar = FALSE)
-    return(eib)
+    eib_plot_plotly(he,
+                    alt.legend,
+                    plot_aes,
+                    plot_annotations,
+                    plot.cri,
+                    cri.quantile,
+                    comparison,
+                    alpha,
+                    cri,
+                    size)
   }
 }
 
@@ -753,6 +234,12 @@ eib.plot.bcea <- function(he,
 #' )
 #' eib.plot(m)
 #' eib.plot(m, graph = "ggplot2") + ggplot2::theme_linedraw()
+#' 
+#' data(Smoking)
+#' treats <- c("No intervention", "Self-help",
+#'             "Individual counselling", "Group counselling")
+#' m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+#' eib.plot(m)
 #' 
 eib.plot <- function(he, ...) {
   UseMethod('eib.plot', he)

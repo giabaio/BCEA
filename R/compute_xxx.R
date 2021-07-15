@@ -1,15 +1,20 @@
 # compute all bcea statistics ---------------------------------------------
 
 
-#' Compute kstar
+#' Compute k^*
 #'
 #' Find willingness-to-pay threshold when optimal decision changes.
+#' 
+#' \deqn{k^* := \min\{k : IB < 0 \}}
+#' 
+#' The value of the break-even point corresponds to the ICER and quantifies
+#' the point at which the decision-maker is indifferent between the two options.
 #'  
-#' @param k Willingness-to-pay vector
-#' @param best Best intervention for each `k`
-#' @param ref Reference intervention
+#' @param k Willingness-to-pay grid approximation of the budget willing to invest (vector)
+#' @param best Best intervention for each `k` (int)
+#' @param ref Reference intervention (int)
 #'
-#' @return Array with dimensions
+#' @return integer representing intervention
 #' @seealso \code{\link{ceac.plot}}
 #' 
 #' @export
@@ -20,7 +25,8 @@ compute_kstar <- function(k, best, ref) {
     return(NA)    
   }
   
-  min(k[best == ref])
+  flip <- c(0, diff(best)) != 0 
+  k[flip]
 }
 
 
