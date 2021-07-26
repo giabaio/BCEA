@@ -55,7 +55,8 @@ info.rank.bcea <- function(he,
   
   if (!requireNamespace("plotly", quietly = FALSE)) {
     base.graphics <- TRUE
-    warning("Package plotly not found; falling back to base graphics.")
+    warning("Package plotly not found; falling back to base graphics.",
+            call. = FALSE)
   }
   
   # Prevents BCEA::evppi from throwing messages
