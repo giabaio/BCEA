@@ -15,6 +15,9 @@ eib.plot.bcea <- function(he,
   ##TODO: this is needed because its not defined in bcea()
   he$change_comp <- FALSE
   
+  if (any(comparison == he$ref)) stop("Comparison can't be the reference group.", call. = FALSE)
+  if (any(!comparison %in% he$comp)) stop("Comparison index not in available comparisons.", call. = FALSE)
+  
   alt.legend <- pos
   # choose graphical engine
   if (any(is.null(graph)) || any(is.na(graph))) graph <- "base"
@@ -97,8 +100,9 @@ eib.plot.bcea <- function(he,
     plot.cri <- he$n_comparisons == 1
   
   ## calculate credible intervals if necessary
-  if (plot.cri)
+  if (isTRUE(plot.cri))
     cri <- eib.plot.cri(he, alpha, cri.quantile)
+  else cri <- NULL
   
   ## calculate plot vertical limits
   yl <- ifelse(rep(!isTRUE(plot.cri), 2),
@@ -112,10 +116,12 @@ eib.plot.bcea <- function(he,
                   plot_aes,
                   plot_annotations,
                   size,
+                  comparison,
                   yl,
                   alpha,
                   cri,
-                  plot.cri)
+                  plot.cri,
+                  ...)
     
   } else if (graph_choice == 2) {
     
@@ -129,7 +135,8 @@ eib.plot.bcea <- function(he,
                     size,
                     exArgs,
                     yl,
-                    cri)
+                    cri,
+                    ...)
     
   } else if (graph_choice == 3) {
     
@@ -142,7 +149,8 @@ eib.plot.bcea <- function(he,
                     comparison,
                     alpha,
                     cri,
-                    size)
+                    size,
+                    ...)
   }
 }
 

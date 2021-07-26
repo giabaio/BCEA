@@ -6,10 +6,12 @@ eib_plot_base <- function(he,
                           plot_aes,
                           plot_annotations,
                           size,
+                          comparison,
                           yl,
                           alpha,
                           cri,
-                          plot.cri) {
+                          plot.cri,
+                          ...) {
   
   if (!is.null(size)) {
     if (!is.na(size)) {
@@ -60,7 +62,7 @@ eib_plot_base <- function(he,
         as.numeric(plot_annotations$exist$title) + 1, 
         paste0("Expected Incremental Benefit",
                ifelse(
-                 plot.cri,
+                 isTRUE(plot.cri),
                  paste0("\nand ", format((1 - alpha)*100, digits = 4),
                         "% credible intervals"),
                  "")),
@@ -75,7 +77,7 @@ eib_plot_base <- function(he,
                        yes = 1,
                        no = plot_aes$line$types[1]))
     ## CrI
-    if (plot.cri) {
+    if (isTRUE(plot.cri)) {
       lines(he$k, cri$low, col = plot_aes$line$cri_colors[1], lty = 2)
       lines(he$k, cri$upp, col = plot_aes$line$cri_colors[1], lty = 2)
     }
@@ -127,9 +129,9 @@ eib_plot_base <- function(he,
     for (j in seq_len(he$n_comparisons)) {
       lines(he$k, he$eib[, j],
             lty = plot_aes$line$types[min(j, length(plot_aes$line$types))], 
-            lwd = ifelse(plot.cri, lwd + 1, lwd), 
+            lwd = ifelse(isTRUE(plot.cri), lwd + 1, lwd), 
             col = plot_aes$line$colors[min(j, length(plot_aes$line$colors))])
-      if (plot.cri) {
+      if (isTRUE(plot.cri)) {
         lines(he$k,
               cri$low[cri$comp == j],
               lwd = lwd, 
@@ -156,7 +158,7 @@ eib_plot_base <- function(he,
       cex = 0.7,
       bty = "n",
       lty = plot_aes$line$types,
-      lwd = ifelse(plot.cri, lwd + 1, lwd))
+      lwd = ifelse(isTRUE(plot.cri), lwd + 1, lwd))
   } else if (he$n_comparisons > 1 &
              !is.null(comparison)) {
     # adjusts bcea object for the correct number of dimensions and comparators
@@ -177,13 +179,13 @@ eib_plot_base <- function(he,
     
     eib.plot(
       he,
-      pos = alt.legend,
-      graph = "base",
-      size = size,
       comparison = NULL,
+      pos = alt.legend,
+      size = size,
       plot.cri = plot.cri,
+      graph = "base",
       alpha = alpha,
-      cri.quantile = cri.quantile,
+      # cri.quantile = cri.quantile,
       ...)
   }
   
