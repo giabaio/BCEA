@@ -7,13 +7,9 @@ prep_eib_params <- function(he, ...) {
   
   ##TODO: what is this?...
   # # if existing, read and store graphical options
-  # for (aes_arg in plot_aes_args) {
-  #   if (exists(aes_arg, where = exArgs)) {
-  #     aes_cat <- strsplit(aes_arg, "_")[[1]][1]
-  #     aes_name <- paste0(strsplit(aes_arg, "_")[[1]][-1], collapse = "_")
-  #     plot_aes[[aes_cat]][[aes_name]] <- exArgs[[aes_arg]]
-  #   }
-  # }
+  # aes_cat <- strsplit(aes_arg, "_")[[1]][1]
+  # aes_name <- paste0(strsplit(aes_arg, "_")[[1]][-1], collapse = "_")
+  # plot_aes[[aes_cat]][[aes_name]] <- exArgs[[aes_arg]]
   
   default_params <- 
     list(
@@ -25,9 +21,9 @@ prep_eib_params <- function(he, ...) {
       area = list(include = FALSE,
                   color = "grey"),
       line = list(
-        types = 1,
-        lwd = 1,
-        colors = "black",
+        types = rep_len(1:6, he$n_comparisons),
+        lwd = ifelse(he$n_comparisons > 6, 1.5, 1),
+        colors = 1, #1:he$n_comparisons,
         cri_col = "grey50",
         cri_lty = 2))
   

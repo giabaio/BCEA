@@ -36,18 +36,6 @@ eib_params_base <- function(he, graph_params) {
       line = list(cri_col = graph_params$line$cri_col,
                   cri_lty =  graph_params$line$cri_lty))
   
-  plot_params <- modifyList(default_params, plot_params)
-  
-  ##TODO:
-  # comparison > 1
-  #
-  # plot_params <-
-  #   list(
-  #     lwd = ifelse(he$n_comparisons > 6, 1.5, 1),
-  #     lwd = ifelse(graph_params$plot.cri, graph_params$lwd + 1, graph_params$lwd), 
-  #     lty = graph_params$plot_aes$line$types[min(j, length(graph_params$plot_aes$line$types))], 
-  #     col = graph_params$plot_aes$line$colors[min(j, length(graph_params$plot_aes$line$colors))])
-  
-  plot_params  
+  modifyList(default_params, plot_params)
 }
 

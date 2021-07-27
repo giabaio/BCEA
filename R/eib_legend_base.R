@@ -9,6 +9,6 @@ eib_legend_base <- function(he, graph_params) {
        bty = "n",
        lwd = graph_params$line$lwd,
        col = graph_params$line$colors,
-       lty = graph_params$line$lty)
+       lty = graph_params$line$types)
 }
 

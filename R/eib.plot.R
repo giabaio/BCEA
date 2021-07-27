@@ -18,8 +18,8 @@ eib.plot.bcea <- function(he,
   
   graph_params <- c(prep_eib_params(he, ...),
                     list(pos = pos,
-                    size = size,
-                    plot.cri = plot.cri))
+                         size = size,
+                         plot.cri = plot.cri))
   
   if (is_baseplot(graph)) {
     
@@ -30,16 +30,7 @@ eib.plot.bcea <- function(he,
   } else if (is_ggplot(graph)) {
     
     eib_plot_ggplot(he,
-                    alt.legend,
-                    plot_aes,
-                    data.psa,
-                    plot.cri,
-                    plot_annotations,
-                    alpha,
-                    size,
-                    exArgs,
-                    yl,
-                    cri,
+                    graph_params,
                     ...)
     
   } else if (is_plotly(graph)) {
