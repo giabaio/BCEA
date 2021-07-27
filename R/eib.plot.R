@@ -8,122 +8,26 @@ eib.plot.bcea <- function(he,
                           comparison = NULL,
                           pos = c(1, 0),
                           size = NULL,
-                          plot.cri = NULL,
+                          plot.cri = FALSE,
                           graph = c("base", "ggplot2", "plotly"),
                           ...) {
   
-  ##TODO: this is needed because its not defined in bcea()
-  he$change_comp <- FALSE
+  graph <- match.arg(graph)
   
-  if (any(comparison == he$ref)) stop("Comparison can't be the reference group.", call. = FALSE)
-  if (any(!comparison %in% he$comp)) stop("Comparison index not in available comparisons.", call. = FALSE)
+  he <- setComparisons(he, comparison)
   
-  alt.legend <- pos
-  # choose graphical engine
-  if (any(is.null(graph)) || any(is.na(graph))) graph <- "base"
+  graph_params <- c(prep_eib_params(he, ...),
+                    list(pos = pos,
+                    size = size,
+                    plot.cri = plot.cri))
   
-  graph_choice <- pmatch(graph[1], c("base", "ggplot2", "plotly"), nomatch = 1)
-  
-  if (graph_choice == 2 &&
-      !requireNamespace("ggplot2", quietly = TRUE) &
-      requireNamespace("grid", quietly = TRUE)) {
-    warning("Package ggplot2 and grid not found;
-            eib.plot will be rendered using base graphics.")
-    graph_choice <- 1
-  }
-  if (graph_choice == 3 &&
-      !requireNamespace("plotly", quietly = TRUE)) {
-    warning("Package plotly not found;
-            eib.plot will be rendered using base graphics.")
-    graph_choice <- 1
-  }
-  
-  ## evaluate arguments
-  ## possibility to include different values of confidence as "alpha"
-  exArgs <- list(...)
-  alpha <- 0.05
-  plot_annotations <-
-    list("exist" = list(
-      "title" = FALSE,
-      "xlab" = FALSE,
-      "ylab" = FALSE))
-  plot_aes <-
-    list(
-      "area" = list("include" = FALSE, "color" = "grey"),
-      "line" = list(
-        "colors" = "black",
-        "types" = NULL,
-        "cri_colors" = "grey50"))
-  
-  plot_aes_args <- c("area_include",
-                     "area_color",
-                     "line_colors",
-                     "line_types",
-                     "line_cri_colors")
-  
-  cri.quantile <- TRUE
-  
-  if (length(exArgs) >= 1) {
-    if (exists("cri.quantile", where = exArgs))
-      cri.quantile <- exArgs$cri.quantile
-    if (exists("alpha", where = exArgs)) {
-      alpha <- exArgs$alpha
-      if (alpha < 0 | alpha > 1) {
-        warning("Argument alpha must be between 0 and 1. Reset to default value 0.95.")
-        alpha <- 0.05
-      }
-      if (alpha > 0.80 & cri.quantile) {
-        warning(
-          "It is recommended adopting the normal approximation of the credible interval for high values of alpha.
-            Please set the argument cri.quantile = FALSE to use the normal approximation.")
-      }
-    }
-    # if existing, read and store title, xlab and ylab
-    for (annotation in names(plot_annotations$exist)) {
-      if (exists(annotation, where = exArgs)) {
-        plot_annotations$exist[[annotation]] <- TRUE
-        plot_annotations[[annotation]] <- exArgs[[annotation]]
-      }
-    }
-    # if existing, read and store graphical options
-    for (aes_arg in plot_aes_args) {
-      if (exists(aes_arg, where = exArgs)) {
-        aes_cat <- strsplit(aes_arg, "_")[[1]][1]
-        aes_name <- paste0(strsplit(aes_arg, "_")[[1]][-1], collapse = "_")
-        plot_aes[[aes_cat]][[aes_name]] <- exArgs[[aes_arg]]
-      }
-    }
-  }
-  
-  ## if plot.cri is null, if comp=1 plot them otherwise do not (clutter!)
-  if (is.null(plot.cri) & isTRUE(he$n_comparisons == 1 | is.null(comparison)))
-    plot.cri <- he$n_comparisons == 1
-  
-  ## calculate credible intervals if necessary
-  if (isTRUE(plot.cri))
-    cri <- eib.plot.cri(he, alpha, cri.quantile)
-  else cri <- NULL
-  
-  ## calculate plot vertical limits
-  yl <- ifelse(rep(!isTRUE(plot.cri), 2),
-               yes = range(c(he$eib)),
-               no = range(c(he$eib), c(cri[, 1:2])))
-  
-  if (graph_choice == 1) {
-
+  if (is_baseplot(graph)) {
+    
     eib_plot_base(he,
-                  alt.legend,
-                  plot_aes,
-                  plot_annotations,
-                  size,
-                  comparison,
-                  yl,
-                  alpha,
-                  cri,
-                  plot.cri,
+                  graph_params,
                   ...)
     
-  } else if (graph_choice == 2) {
+  } else if (is_ggplot(graph)) {
     
     eib_plot_ggplot(he,
                     alt.legend,
@@ -138,7 +42,7 @@ eib.plot.bcea <- function(he,
                     cri,
                     ...)
     
-  } else if (graph_choice == 3) {
+  } else if (is_plotly(graph)) {
     
     eib_plot_plotly(he,
                     alt.legend,
