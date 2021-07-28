@@ -61,7 +61,11 @@ he <-
        interventions = treats, 
        Kmax = 50000,
        plot = FALSE)
+```
 
+The default EIB plot gives a single diagonal line using base R.
+
+```{r}
 eib.plot(he)
 ```
 
@@ -71,7 +75,7 @@ $$
 k^* = \min\{ k : \mbox{EIB} > 0 \}
 $$
 
-This will be at the point the curve crosses the x-axis.
+This will be at the point the curve crosses the _x_-axis.
 
 The plot defaults to base R plotting. Type of plot can be set explicitly using the `graph` argument.
 
@@ -86,10 +90,17 @@ Other plotting arguments can be specified such as title, line colours and theme.
 ```{r}
 eib.plot(he,
           graph = "ggplot2",
-          title = "my title",
+          main = "my title",
           line = list(colors = "green"),
           theme = theme_dark())
 ```
+
+Credible interval can also be plotted using the `plot.cri` logical argument.
+
+```{r}
+eib.plot(he, plot.cri = TRUE)
+```
+
 
 ## Multiple interventions
 
@@ -126,21 +137,31 @@ he <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
 eib.plot(he)
 ```
 
+For example, we can change the main title and the EIB line colours to green.
+
 ```{r}
 eib.plot(he,
-          graph = "base",
-          title = "my title",
-          line = list(colors = "green"))
+         graph = "base",
+         main = "my title",
+         line = list(colors = "green"))
 ```
 
 ```{r}
 eib.plot(he,
-          graph = "ggplot2",
-          title = "my title",
-          line = list(colors = "green"))
+         graph = "ggplot2",
+         main = "my title",
+         line = list(colors = "green"))
 ```
 
-Reposition legend.
+Credible interval can also be plotted as before.
+
+```{r}
+eib.plot(he, plot.cri = TRUE)
+```
+
+##### Repositioning the legend.
+
+For base R,
 
 ```{r}
 eib.plot(he, pos = FALSE) # bottom right
@@ -150,32 +171,31 @@ eib.plot(he, pos = c(1, 0))
 eib.plot(he, pos = c(1, 1))
 ```
 
+For `ggplot2`,
+
 ```{r}
+##TODO:
 eib.plot(he, graph = "ggplot2", pos = c(0, 0))
 eib.plot(he, graph = "ggplot2", pos = c(0, 1))
 eib.plot(he, graph = "ggplot2", pos = c(1, 0))
 eib.plot(he, graph = "ggplot2", pos = c(1, 1))
 ```
 
-Define colour palette.
+Define colour palette for different colour for each EIB line.
 
 ```{r}
 mypalette <- RColorBrewer::brewer.pal(3, "Accent")
 
 eib.plot(he,
-          graph = "base",
-          title = "my title",
-          line = list(colors = mypalette),
-          pos = FALSE)
+         graph = "base",
+         line = list(colors = mypalette))
 
 eib.plot(he,
-          graph = "ggplot2",
-          title = "my title",
-          line = list(colors = mypalette),
-          pos = FALSE)
+         graph = "ggplot2",
+         line = list(colors = mypalette))
 ```
 
-### Against a fixed reference intervention
+#### Against a fixed reference intervention
 
 We wish to calculate the same curves as in the multiple comparison case.
 However, now each interventions is compared against a reference e.g. the status-quo.
@@ -195,6 +215,6 @@ This means that the vertical lines occur where the EIB curves cross the x-axis.
 
 ```{r echo=FALSE}
 # create output docs
-# rmarkdown::render(input = "vignettes/ceac.Rmd", output_format = "pdf_document", output_dir = "vignettes")
-# rmarkdown::render(input = "vignettes/ceac.Rmd", output_format = "html_document", output_dir = "vignettes")
+# rmarkdown::render(input = "vignettes/eib.Rmd", output_format = "pdf_document", output_dir = "vignettes")
+# rmarkdown::render(input = "vignettes/eib.Rmd", output_format = "html_document", output_dir = "vignettes")
 ```

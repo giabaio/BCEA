@@ -29,11 +29,6 @@ prep_eib_params <- function(he, ...) {
   
   graph_params <- modifyList(default_params, graph_params)
   
-  graph_params$cri <-
-    compute_eib_cri(he,
-                    graph_params$alpha_cri,
-                    graph_params$cri.quantile)
-  
   graph_params <- validate_eib_params(graph_params)
   
   graph_params

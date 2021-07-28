@@ -8,6 +8,18 @@ eib_plot_ggplot <- function(he,
                             ...) {
   
   ##TODO: use graph_params...
+  alt.legend <- graph_params$alt.legend
+  plot_annotations <- graph_params$plot_annotations
+  plot.cri <- graph_params$plot.cri
+  cri.quantile <- graph_params$cri.quantile
+  comparison <- graph_params$comparison
+  alpha <- graph_params$alpha_cri
+  cri <- graph_params$cri
+  size <- graph_params$size
+  plot_aes <- list(line = graph_params$line)
+  
+  exArgs <- list(...)
+  he$change_comp <- FALSE
   
   if (is.null(size))
     size <- rel(3.5)
@@ -43,12 +55,12 @@ eib_plot_ggplot <- function(he,
         eib +
         geom_line(
           linetype = plot_aes$line$types[1],
-          colour = plot_aes$line$colors[1])
+          colour = 1)
     } else {
       eib <-
         eib + 
         geom_line(linetype = plot_aes$line$types[1],
-                  colour = plot_aes$line$colors[1]) +
+                  colour = 1) +
         scale_linetype_manual(
           "",
           values = ifelse(is.null(plot_aes$line$types), 1, plot_aes$line$types[1]),
@@ -69,7 +81,7 @@ eib_plot_ggplot <- function(he,
           "text",
           label = label,
           x = he$kstar,
-          y = min(yl),
+          y = min(he$eib), #min(yl),
           hjust = ifelse((max(he$k) - he$kstar) / max(he$k) > 1 / 6,
                          yes = -0.1,
                          no = 1.1),
@@ -141,7 +153,7 @@ eib_plot_ggplot <- function(he,
           "text",
           label = label,
           x = he$kstar,
-          y = min(yl),
+          y = min(he$eib), #min(yl),
           hjust = ifelse((max(he$k) - he$kstar) / max(he$k) > 1/6,
                          -0.1, 1.1),
           size = size,
@@ -162,21 +174,13 @@ eib_plot_ggplot <- function(he,
   
   eib <- eib + 
     ggplot2::labs(
-      x = switch(
-        as.numeric(plot_annotations$exist$xlab) + 1,
-        "Willingness to pay",
-        plot_annotations$xlab),
-      y = switch(
-        as.numeric(plot_annotations$exist$ylab) + 1,
-        "EIB",
-        plot_annotations$ylab),
-      title = switch(
-        as.numeric(plot_annotations$exist$title) + 1, 
-        paste0("Expected Incremental Benefit", ifelse(
+      x = graph_params$xlab,
+      y = graph_params$ylab,
+      title = 
+        paste0(graph_params$main, ifelse(
           plot.cri,
           paste0("\nand ", format((1 - alpha)*100, digits = 4),
-                 "% credible intervals"), "")),
-        plot_annotations$title))
+                 "% credible intervals"), "")))
   
   jus <- NULL
   

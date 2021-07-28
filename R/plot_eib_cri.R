@@ -1,20 +1,24 @@
 
 #' credible intervals
 #' 
-plot_eib_cri <- function(he, plot_params) {
+plot_eib_cri <- function(he, params) {
   
-  if (!plot_params$plot.cri) return()
+  if (!params$plot.cri) return()
+  
+  ##TODO: move y rearranging to compute_eib_cri()
+  ##TODO: single do.call() on combined y matrix
+  do.call(matlines,
+          list(x = he$k,
+               y = matrix(params$data$low,
+                          ncol = he$n_comparisons),
+               col = params$col,
+               lty = params$lty))
   
   do.call(matlines,
           list(x = he$k,
-               y = plot_params$cri$low,
-               col = plot_params$line$cri_col,
-               lty = plot_params$line$cri_lty))
-  
-  do.call(matlines,
-          list(x = he$k,
-               y = plot_params$cri$upp,
-               col = plot_params$line$cri_col,
-               lty = plot_params$line$cri_lty))
+               y = matrix(params$data$upp,
+                          ncol = he$n_comparisons),
+               col = params$col,
+               lty = params$lty))
 }
 

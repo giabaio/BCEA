@@ -16,6 +16,9 @@ setComparisons <- function(he, comparison) {
   if (he$ref %in% comparison)
     stop("Can't select Reference group. Change Reference first.",
          call. = FALSE)
+  if (any(!comparison %in% he$comp))
+    stop("Comparison index not in available comparisons.",
+         call. = FALSE)
   
   res <- 
     bcea(eff = he$e,
