@@ -1,5 +1,6 @@
 
 #' Create Labels for Plot
+#' 
 #' @template args-he
 #' @param ... Additional arguments
 #' @export

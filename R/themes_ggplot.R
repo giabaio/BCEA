@@ -32,3 +32,9 @@ theme_ceplane <- function() {
   theme_default()
 }
 
+
+#'
+theme_eib <- function() {
+  theme_default()
+}
+

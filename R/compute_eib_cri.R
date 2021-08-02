@@ -33,14 +33,14 @@ compute_eib_cri <- function(he,
   }
   
   cri <- data.frame(
-    "low" =
+    low =
       c(apply(he$ib, margin, FUN = compute_cri, low = TRUE)),
-    "upp" =
+    upp =
       c(apply(he$ib, margin, FUN = compute_cri, low = FALSE)),
-    "comp" =
+    comp =
       as.factor(
-        rep(1:he$n_comparison, each = length(he$k)))
-  )
+        rep(1:he$n_comparison, each = length(he$k))),
+    k = he$k)
   
   return(cri)
 }

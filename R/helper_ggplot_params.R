@@ -23,7 +23,8 @@ helper_ggplot_params <- function(he,
       list(plot =
              list(labels = line_labels(he),
                   line =
-                    list(types = rep_len(1:6, n_lines))))
+                    list(types = rep_len(1:6, n_lines),
+                         colors = 1)))
     
     graph_params <- modifyList(default_params, graph_params)
     

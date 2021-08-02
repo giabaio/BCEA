@@ -18,6 +18,7 @@ prep_ceplane_params <- function(he, wtp, ...) {
   
   ##TODO: back-compatibility helper..
   
+  ##TODO: use line_labels()?
   intervs_in_title <-
     paste("\n",
           he$interventions[he$ref],

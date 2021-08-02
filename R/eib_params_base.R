@@ -16,13 +16,7 @@ eib_params_base <- function(he,
   list(
     xlab = graph_params$xlab,
     ylab = graph_params$ylab,
-    main = paste0(
-      graph_params$main,
-      ifelse(
-        graph_params$plot.cri,
-        paste0("\nand ", format((1 - graph_params$alpha_cri)*100, digits = 4),
-               "% credible intervals"),
-        "")),
+    main = graph_params$main,
     col = graph_params$line$colors,
     lwd = graph_params$line$lwd,
     lty = graph_params$line$types,

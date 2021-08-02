@@ -2,11 +2,11 @@
 #' eib_plot_base
 #' 
 #' @template args-he
-#' @template args-comparison
 #' 
 eib_plot_base <- function(he,
                           graph_params,
                           ...) {
+  
   cri_params <- eib_params_cri(he, graph_params)
   plot_params <- eib_params_base(he, graph_params, cri_params)
   legend_params <- eib_legend_base(he, graph_params)

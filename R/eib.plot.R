@@ -16,7 +16,7 @@ eib.plot.bcea <- function(he,
   
   he <- setComparisons(he, comparison)
   
-  graph_params <- c(prep_eib_params(he, ...),
+  graph_params <- c(prep_eib_params(he, plot.cri, ...),
                     list(pos = pos,
                          size = size,
                          plot.cri = plot.cri))

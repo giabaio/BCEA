@@ -1,7 +1,7 @@
 
 #' parameters general to all plotting devices
 #' 
-prep_eib_params <- function(he, ...) {
+prep_eib_params <- function(he, plot.cri, ...) {
   
   graph_params <- list(...)
   
@@ -15,7 +15,6 @@ prep_eib_params <- function(he, ...) {
     list(
       xlab = "Willingness to pay",
       ylab = "EIB",
-      main = "Expected Incremental Benefit",
       alpha_cri = 0.05,
       cri.quantile = TRUE,
       area = list(include = FALSE,
@@ -28,6 +27,15 @@ prep_eib_params <- function(he, ...) {
         cri_lty = 2))
   
   graph_params <- modifyList(default_params, graph_params)
+  
+  graph_params$main <-
+    paste0(
+      "Expected Incremental Benefit",
+      ifelse(
+        plot.cri,
+        paste0("\nand ", format((1 - graph_params$alpha_cri)*100, digits = 4),
+               "% credible intervals"),
+        ""))
   
   graph_params <- validate_eib_params(graph_params)
   
