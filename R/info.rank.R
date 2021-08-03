@@ -3,11 +3,12 @@
 #' @title Information-Rank Plot for bcea Class
 #' 
 #' @template args-he
-#' @param parameter A vector of parameters for which the individual EVPPI
+#' @param inp 
+#' parameter: A vector of parameters for which the individual EVPPI
 #' should be calculated. This can be given as a string (or vector of strings)
 #' of names or a numeric vector, corresponding to the column numbers of
 #' important parameters.
-#' @param input A matrix containing the simulations for all the parameters
+#' mat: A matrix containing the simulations for all the parameters
 #' monitored by the call to JAGS or BUGS. The matrix should have column names
 #' matching the names of the parameters and the values in the vector parameter
 #' should match at least one of those values.
@@ -43,130 +44,51 @@
 #' data("Vaccine")
 #' m <- bcea(e,c)
 #' inp <- createInputs(vaccine)
-#' info.rank(m, inp$parameters, inp$mat)
-#' info.rank(m, inp$parameters, inp$mat, graph = "base")
+#' info.rank(m, inp)
+#' info.rank(m, inp, graph = "base")
+#' info.rank(m, inp, graph = "plotly")
 #' 
 info.rank.bcea <- function(he,
-                           parameter,
-                           input,
+                           inp,
                            wtp = he$k[min(which(he$k >= he$ICER))],
                            howManyPars = NA,
                            graph = c("base", "plotly"),
                            rel = TRUE,
                            ...) {
-  
-  base.graphics <- all(pmatch(graph, c("base", "plotly")) != 2)
-  
-  if (!requireNamespace("plotly", quietly = FALSE)) {
-    base.graphics <- TRUE
-    warning("Package plotly not found; falling back to base graphics.",
-            call. = FALSE)
-  }
-  
-  # Prevents BCEA::evppi from throwing messages
-  quiet <- function(x) {
-    sink(tempfile())
-    on.exit(sink())
-    invisible(force(x))
-  }
+
+  graph <- match.arg(graph)
   
   extra_args <- list(...)
   
-  if (is.null(wtp)) wtp <- he$k[min(which(he$k >= he$ICER))]
-  
-  if (class(parameter[1]) == "character") {
-    parameters <- array()
-    for (i in seq_along(parameter)) {
-      parameters[i] <- which(colnames(input) == parameter[i])
-    }
-  } else {
-    parameters <- parameter
-  }
-  parameter <- colnames(input)[parameters]
-  
-  # needs to exclude parameters with weird behaviour (ie all 0s)
-  w <-
-    unlist(lapply(parameter,
-                  function(x) which(colnames(input) == x)))
-  
-  if (length(w) == 1) return()
-  
-  input <- input[, w]
-  chk1 <- which(apply(input, 2, "var") > 0)   # only takes those with var > 0
-  
-  # check those with <5 possible values (would break GAM)
-  tmp <- lapply(1:dim(input)[2], function(x) table(input[, x]))
-  chk2 <- which(unlist(lapply(tmp, function(x) length(x) >= 5)) == TRUE)
-  names(chk2) <- colnames(input[, chk2])
-  
-  # Can do the analysis on a smaller number of PSA runs
-  if (exists("N", where = extra_args)) {
-    N <- extra_args$N
-  } else {
-    N <- he$n_sim
-  }
-  
-  if (any(!is.na(N)) & length(N) > 1) {
-    select <- N
-  } else {
-    N <- min(he$n_sim,N, na.rm = TRUE)
-    
-    select <- 
-      if (N == he$n_sim) {
-        1:he$n_sim
-      } else {
-        sample(1:he$n_sim, size = N, replace = FALSE)} 
-  }
-  
-  m <- he
-  m$k <- wtp
-  x <- list()
-  
-  for (i in seq_along(chk2)) {
-    x[[i]] <-
-      quiet(
-        evppi(he = m,
-              param_idx = chk2[i],
-              input = input,
-              N = N))
-  }
-  
-  scores <- 
-    if (rel) {
-      unlist(lapply(x,
-                    function(x) x$evppi/x$evi[which(he$k == wtp)]))
-    } else {
-      unlist(lapply(x,
-                    function(x) x$evppi))
-    }
-  
+  plot_options <-
+    inforank_options(he,
+                     inp,
+                     wtp,
+                     rel,
+                     extra_args)
   graph_params <-
     c(extra_args,
-      list(chk2 = chk2,
+      list(chk2 = plot_options$chk2,
            howManyPars = howManyPars, 
-           scores = scores))
+           scores = plot_options$scores))
   
-  plot_options <-
-    list(rel = rel,
-         wtp = wtp)
-  
-  if (base.graphics) {
+  if (is_baseplot(graph)) {
     
     info_rank_base(he, graph_params, plot_options)
     
   } else {
     info_rank_plotly(extra_args,
-                     scores,
-                     chk2,
-                     wtp,
-                     howManyPars)
+                     graph_params$scores,
+                     graph_params$chk2,
+                     plot_options$wtp,
+                     graph_params$howManyPars)
   }
 }
 
 
 #' @title Information-Rank Plot
 #' 
-#' @description Produces a plot similar to a Tornado-plot, but based on the analysis of the
+#' @description Produces a plot similar to a tornado plot, but based on the analysis of the
 #' EVPPI. For each parameter and value of the willingness-to-pay threshold, a
 #' barchart is plotted to describe the ratio of EVPPI (specific to that
 #' parameter) to EVPI. This represents the relative `importance' of each
@@ -196,5 +118,13 @@ info.rank.bcea <- function(he,
 #' @export
 info.rank <- function(he, ...) {
   UseMethod('info.rank', he)
+}
+
+
+# prevent BCEA::evppi from throwing messages
+quiet <- function(x) {
+  sink(tempfile())
+  on.exit(sink())
+  invisible(force(x))
 }
 
