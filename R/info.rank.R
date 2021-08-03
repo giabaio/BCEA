@@ -16,7 +16,10 @@
 #' @param howManyPars Optional maximum number of parameters to be included in the bar plot. 
 #' Includes all parameters by default. 
 #' @param graph A string used to select the graphical enging to use for plotting.
-#' Should (partial-)match one of the two options "base" or "plotly". Default value is "base"
+#' @param rel Should (partial-)match one of the two options "base" or "plotly". Default value is "base"
+#' \item \code{rel} = logical argument that specifies whether the ratio of
+#' EVPPI to EVPI (\code{rel = TRUE}, default) or the absolute value of the EVPPI
+#' should be used for the analysis.
 #' @param ... Extra arguments
 #' 
 #' @author Anna Heath, Gianluca Baio, Andrea Berardi
@@ -47,8 +50,9 @@ info.rank.bcea <- function(he,
                            parameter,
                            input,
                            wtp = he$k[min(which(he$k >= he$ICER))],
-                           howManyPars = NULL,
+                           howManyPars = NA,
                            graph = c("base", "plotly"),
+                           rel = TRUE,
                            ...) {
   
   base.graphics <- all(pmatch(graph, c("base", "plotly")) != 2)
@@ -67,6 +71,7 @@ info.rank.bcea <- function(he,
   }
   
   extra_args <- list(...)
+  
   if (is.null(wtp)) wtp <- he$k[min(which(he$k >= he$ICER))]
   
   if (class(parameter[1]) == "character") {
@@ -80,12 +85,15 @@ info.rank.bcea <- function(he,
   parameter <- colnames(input)[parameters]
   
   # needs to exclude parameters with weird behaviour (ie all 0s)
-  w <- unlist(lapply(parameter, function(x) which(colnames(input) == x)))
+  w <-
+    unlist(lapply(parameter,
+                  function(x) which(colnames(input) == x)))
   
   if (length(w) == 1) return()
   
   input <- input[, w]
   chk1 <- which(apply(input, 2, "var") > 0)   # only takes those with var > 0
+  
   # check those with <5 possible values (would break GAM)
   tmp <- lapply(1:dim(input)[2], function(x) table(input[, x]))
   chk2 <- which(unlist(lapply(tmp, function(x) length(x) >= 5)) == TRUE)
@@ -94,12 +102,15 @@ info.rank.bcea <- function(he,
   # Can do the analysis on a smaller number of PSA runs
   if (exists("N", where = extra_args)) {
     N <- extra_args$N
-  } else {N <- he$n_sim}
+  } else {
+    N <- he$n_sim
+  }
   
   if (any(!is.na(N)) & length(N) > 1) {
     select <- N
   } else {
     N <- min(he$n_sim,N, na.rm = TRUE)
+    
     select <- 
       if (N == he$n_sim) {
         1:he$n_sim
@@ -120,16 +131,29 @@ info.rank.bcea <- function(he,
               N = N))
   }
   
-  scores <-
-    unlist(lapply(x,
-                  function(x) x$evppi/x$evi[which(he$k == wtp)]))
+  scores <- 
+    if (rel) {
+      unlist(lapply(x,
+                    function(x) x$evppi/x$evi[which(he$k == wtp)]))
+    } else {
+      unlist(lapply(x,
+                    function(x) x$evppi))
+    }
+  
+  graph_params <-
+    c(extra_args,
+      list(chk2 = chk2,
+           howManyPars = howManyPars, 
+           scores = scores))
+  
+  plot_options <-
+    list(rel = rel,
+         wtp = wtp)
   
   if (base.graphics) {
-    info_rank_base(extra_args,
-                   scores,
-                   chk2,
-                   wtp,
-                   howManyPars)
+    
+    info_rank_base(he, graph_params, plot_options)
+    
   } else {
     info_rank_plotly(extra_args,
                      scores,
@@ -157,9 +181,6 @@ info.rank.bcea <- function(he,
 #'   \item \code{cn} = font size for the parameter names
 #'   vector (default = 0.7 of full size) - base graphics only.
 #'   \item \code{mai} = margins of the graph (default = c(1.36, 1.5, 1,1)) - base graphics only.
-#'   \item \code{rel} = logical argument that specifies whether the ratio of
-#'   EVPPI to EVPI (\code{rel = TRUE}, default) or the absolute value of the EVPPI
-#'   should be used for the analysis.
 #'   }
 #' @return \item{res}{With base graphics: A data.frame containing the ranking of the parameters
 #'   with the value of the selected summary, for the chosen wtp; with plotly: a plotly object, 

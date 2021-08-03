@@ -1,0 +1,36 @@
+---
+title: "Info-rank plot"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ceac}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+  
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+collapse = TRUE,
+comment = "#>",
+fig.width = 6
+)
+```
+
+```{r setup, results='hide', message=FALSE, warning=FALSE, echo=FALSE}
+library(BCEA)
+library(dplyr)
+library(reshape2)
+library(ggplot2)
+library(purrr)
+```
+
+
+##TODO...
+
+<!-- ## Introduction -->
+
+
+<!-- ```{r echo=FALSE} -->
+<!-- # create output docs -->
+<!-- # rmarkdown::render(input = "vignettes/info-rank_plot.Rmd", output_format = "pdf_document", output_dir = "vignettes") -->
+<!-- # rmarkdown::render(input = "vignettes/info-rank_plot.Rmd", output_format = "html_document", output_dir = "vignettes") -->
+<!-- ``` -->

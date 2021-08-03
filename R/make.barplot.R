@@ -1,18 +1,18 @@
 
 #' Make Bar Plot for Different Graphic Devices
 #' 
-#' Base R or plotly.
+#' Base R or plotly versions.
 #'
 #' @param scores Scores
 #' @param chk2 chk2
-#' @param tit tit
+#' @param tit Main title
 #' @param xlab x-axis label
 #' @param xlim x-axis limits
-#' @param ca ca
-#' @param cn cn
+#' @param ca The magnification to be used for axis annotation relative to the current setting of cex.
+#' @param cn Size of axis labels
 #' @param mai Margins
 #' @param space space
-#' @param howManyPars How many parameters 
+#' @param howManyPars Maximum number of parameters 
 #'
 #' @return Bar plot
 #' @seealso \code{\link{info.rank}}
@@ -21,6 +21,7 @@ NULL
 
 
 #' @rdname make.barplot
+#' @importFrom dplyr slice arrange desc
 #' @export
 #' 
 make.barplot_base <- function(scores,
@@ -47,7 +48,7 @@ make.barplot_base <- function(scores,
     if (!is.null(howManyPars) &&
         is.numeric(howManyPars) &&
         howManyPars > 0) {
-      howManyPars = min(howManyPars, nrow(res))
+      howManyPars <- min(howManyPars, nrow(res))
       res <- dplyr::slice(res, 1:howManyPars)
     }
   }
@@ -75,6 +76,9 @@ make.barplot_base <- function(scores,
 
 
 #' @rdname make.barplot
+#' @importFrom dplyr arrange desc slice
+#' @import plotly
+#' 
 #' @export
 #' 
 make.barplot_plotly <- function(scores,
@@ -88,16 +92,18 @@ make.barplot_plotly <- function(scores,
                                 space,
                                 howManyPars) {
   
-  res <- data.frame(
-    parameter = names(chk2),
-    info = scores)
+  res <-
+    data.frame(
+      parameter = names(chk2),
+      info = scores)
   
   if (requireNamespace("dplyr", quietly = FALSE)) {
     res <- dplyr::arrange(res, dplyr::desc(.data$info))
+    
     if (!is.null(howManyPars) &&
         is.numeric(howManyPars) &&
         howManyPars > 0) {
-      howManyPars = min(howManyPars, nrow(res))
+      howManyPars <- min(howManyPars, nrow(res))
       res <- dplyr::slice(res, 1:howManyPars)
     }
   }
@@ -119,8 +125,9 @@ make.barplot_plotly <- function(scores,
       bargap = space,
       title = tit)
   
-  p$rank <- data.frame(parameter = res[order(-res$info), 1],
-                       info = res[order(-res$info), 2])
+  p$rank <-
+    data.frame(parameter = res[order(-res$info), 1],
+               info = res[order(-res$info), 2])
   return(p)
 }
 

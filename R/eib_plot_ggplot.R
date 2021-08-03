@@ -30,7 +30,8 @@ eib_plot_ggplot.bcea <- function(he,
                       each = length(he$k))))
   
   ggplot(data_psa,
-         aes(x = .data$k, y = .data$eib, group = .data$comparison)) + 
+         aes(x = .data$k, y = .data$eib,
+             group = .data$comparison)) + 
     geom_line(aes(colour = .data$comparison,
                   linetype = .data$comparison)) +
     theme_eib() +
