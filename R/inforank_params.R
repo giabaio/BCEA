@@ -1,10 +1,12 @@
 
-#
-inforank_options <- function(he,
-                             inp,
-                             wtp,
-                             rel,
-                             extra_args) {
+#' @importFrom purrr map_int
+#' 
+inforank_params <- function(he,
+                            inp,
+                            wtp,
+                            rel,
+                            howManyPars,
+                            extra_args) {
   
   parameter <- inp$parameters
   input <- inp$mat
@@ -22,10 +24,9 @@ inforank_options <- function(he,
   
   parameter <- colnames(input)[parameters]
   
-  # needs to exclude parameters with weird behaviour (ie all 0s)
+  # exclude parameters with weird behaviour (ie all 0s)
   w <-
-    unlist(lapply(parameter,
-                  function(x) which(colnames(input) == x)))
+    map_int(parameter, function(x) which(colnames(input) == x))
   
   if (length(w) == 1) return()
   
@@ -37,12 +38,7 @@ inforank_options <- function(he,
   chk2 <- which(unlist(lapply(tmp, function(x) length(x) >= 5)) == TRUE)
   names(chk2) <- colnames(input[, chk2])
   
-  # can do the analysis on a smaller number of PSA runs
-  if (exists("N", where = extra_args)) {
-    N <- extra_args$N
-  } else {
-    N <- he$n_sim
-  }
+  N <- he$n_sim
   
   if (any(!is.na(N)) & length(N) > 1) {
     select <- N
@@ -78,10 +74,21 @@ inforank_options <- function(he,
                     function(x) x$evppi))
     }
   
-  list(rel = rel,
-       wtp = wtp,
-       x = x,
-       chk2 = chk2,
-       scores = scores)
+  xlab <- ifelse(rel,
+                 "Proportion of total EVPI",
+                 "Absolute value of the EVPPI")
+  
+  tit <- paste0("Info-rank plot for willingness to pay = ", wtp)
+  
+  xlim <- c(0, range(scores)[2])
+  
+  modifyList(
+    list(scores = scores,
+         chk2 = chk2,
+         tit = tit,
+         xlim = xlim,
+         xlab = xlab,
+         howManyPars = howManyPars),
+    extra_args)
 }
 

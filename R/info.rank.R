@@ -60,28 +60,21 @@ info.rank.bcea <- function(he,
   
   extra_args <- list(...)
   
-  plot_options <-
-    inforank_options(he,
-                     inp,
-                     wtp,
-                     rel,
-                     extra_args)
   graph_params <-
-    c(extra_args,
-      list(chk2 = plot_options$chk2,
-           howManyPars = howManyPars, 
-           scores = plot_options$scores))
+    inforank_params(he,
+                    inp,
+                    wtp,
+                    rel,
+                    howManyPars,
+                    extra_args)
   
   if (is_baseplot(graph)) {
     
-    info_rank_base(he, graph_params, plot_options)
+    info_rank_base(he, graph_params)
     
   } else {
-    info_rank_plotly(extra_args,
-                     graph_params$scores,
-                     graph_params$chk2,
-                     plot_options$wtp,
-                     graph_params$howManyPars)
+    
+    info_rank_plotly(graph_params)
   }
 }
 

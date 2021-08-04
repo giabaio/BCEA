@@ -66,6 +66,7 @@ make.barplot_base <- function(scores,
     main = tit,
     xlim = xlim)
   
+  ##TODO: what are these numbers?
   par(mai = c(1.360000, 1.093333, 1.093333, 0.560000))
   
   invisible(
@@ -86,8 +87,6 @@ make.barplot_plotly <- function(scores,
                                 tit,
                                 xlab,
                                 xlim,
-                                ca,
-                                cn,
                                 mai,
                                 space,
                                 howManyPars) {
@@ -110,7 +109,7 @@ make.barplot_plotly <- function(scores,
   
   p <- 
     plotly::plot_ly(res,
-                    y = ~reorder(.data$parameter,.data$info),
+                    y = ~reorder(.data$parameter, .data$info),
                     x = ~.data$info,
                     orientation = "h",
                     type = "bar",
