@@ -1,58 +1,19 @@
 
-#' @rdname inf_rank
+#' @rdname info.rank
 #' @title Information-Rank Plot for bcea Class
 #' 
-#' @template args-he
-#' @param inp 
-#' parameter: A vector of parameters for which the individual EVPPI
-#' should be calculated. This can be given as a string (or vector of strings)
-#' of names or a numeric vector, corresponding to the column numbers of
-#' important parameters.
-#' mat: A matrix containing the simulations for all the parameters
-#' monitored by the call to JAGS or BUGS. The matrix should have column names
-#' matching the names of the parameters and the values in the vector parameter
-#' should match at least one of those values.
-#' @param wtp A value of the wtp for which the analysis should be performed. If
-#' not specified then the break-even point for the current model will be used.
-#' @param howManyPars Optional maximum number of parameters to be included in the bar plot. 
-#' Includes all parameters by default. 
-#' @param graph A string used to select the graphical enging to use for plotting.
-#' @param rel Should (partial-)match one of the two options "base" or "plotly". Default value is "base"
-#' \item \code{rel} = logical argument that specifies whether the ratio of
-#' EVPPI to EVPI (\code{rel = TRUE}, default) or the absolute value of the EVPPI
-#' should be used for the analysis.
-#' @param ... Extra arguments
-#' 
-#' @author Anna Heath, Gianluca Baio, Andrea Berardi
-#' @seealso \code{\link{bcea}},
-#'          \code{\link{evppi}}
-#' 
-#' @references
-#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics. Statistical Methods in Medical Research
-#' doi:10.1177/0962280211419832.
-#' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
-#' @keywords dplot models
 #' @importFrom rlang .data
 #' @importFrom dplyr slice desc
 #' @importFrom graphics barplot
+#' @import ggplot2
 #' 
 #' @export
-#' 
-#' @examples
-#' data("Vaccine")
-#' m <- bcea(e,c)
-#' inp <- createInputs(vaccine)
-#' info.rank(m, inp)
-#' info.rank(m, inp, graph = "base")
-#' info.rank(m, inp, graph = "plotly")
 #' 
 info.rank.bcea <- function(he,
                            inp,
                            wtp = he$k[min(which(he$k >= he$ICER))],
                            howManyPars = NA,
-                           graph = c("base", "plotly"),
+                           graph = c("base", "plotly", "ggplot2"),
                            rel = TRUE,
                            ...) {
 
@@ -72,6 +33,10 @@ info.rank.bcea <- function(he,
     
     info_rank_base(he, graph_params)
     
+  } else if (is_ggplot(graph)) {
+    
+    info_rank_ggplot(he, graph_params)
+    
   } else {
     
     info_rank_plotly(graph_params)
@@ -88,6 +53,26 @@ info.rank.bcea <- function(he,
 #' parameter in terms of the expected value of information.
 #' 
 #' @template args-he
+#' @param inp Named list from running \code{createInputs()} containing:
+#'   \itemize{
+#'   \item \code{parameter} = A vector of parameters for which the individual EVPPI
+#' should be calculated. This can be given as a string (or vector of strings)
+#' of names or a numeric vector, corresponding to the column numbers of
+#' important parameters.
+#'   \item \code{mat} = A matrix containing the simulations for all the parameters
+#' monitored by the call to JAGS or BUGS. The matrix should have column names
+#' matching the names of the parameters and the values in the vector parameter
+#' should match at least one of those values.
+#' }
+#' @param wtp A value of the wtp for which the analysis should be performed. If
+#' not specified then the break-even point for the current model will be used.
+#' @param howManyPars Optional maximum number of parameters to be included in the bar plot. 
+#' Includes all parameters by default. 
+#' @param graph A string used to select the graphical enging to use for plotting.
+#' @param rel Should (partial-)match one of the two options "base" or "plotly". Default value is "base"
+#' \item \code{rel} = logical argument that specifies whether the ratio of
+#' EVPPI to EVPI (\code{rel = TRUE}, default) or the absolute value of the EVPPI
+#' should be used for the analysis.
 #' @param ... Additional options. These include graphical parameters that the
 #'   user can specify:
 #'   \itemize{
@@ -106,9 +91,30 @@ info.rank.bcea <- function(he,
 #'   specific individual EVPPI is computed and used to measure the impact of
 #'   uncertainty in that parameter over the decision-making process, in terms of
 #'   how large the expected value of gaining more information is.
-#' @name info_rank
+#' 
+#' @author Anna Heath, Gianluca Baio, Andrea Berardi
+#' @seealso \code{\link{bcea}},
+#'          \code{\link{evppi}}
+#' 
+#' @references
+#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
+#' Analysis in Health Economics. Statistical Methods in Medical Research
+#' doi:10.1177/0962280211419832.
+#' 
+#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+#' @keywords dplot models
 #' 
 #' @export
+#' 
+#' @examples
+#' data("Vaccine")
+#' m <- bcea(e,c)
+#' inp <- createInputs(vaccine)
+#' info.rank(m, inp)
+#' info.rank(m, inp, graph = "base")
+#' info.rank(m, inp, graph = "plotly")
+#' info.rank(m, inp, graph = "ggplot2")
+#' 
 info.rank <- function(he, ...) {
   UseMethod('info.rank', he)
 }

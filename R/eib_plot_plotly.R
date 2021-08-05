@@ -1,7 +1,7 @@
 
-#' eib_plot_plotly
+#' EIB plot plotly version
 #' 
-#' @import plotly
+#' @importFrom plotly plot_ly add_trace add_ribbons layout config
 #' 
 eib_plot_plotly <- function(he,
                             alt.legend,

@@ -1,7 +1,7 @@
 
 #' ib_plot_ggplot
 #' 
-#' @import ggplot grid
+#' @import ggplot2 grid
 #' 
 ib_plot_ggplot <- function(he,
                            comparison,
@@ -116,3 +116,4 @@ ib_plot_ggplot <- function(he,
       size = 14.3,
       hjust = 0.5))
 }
+

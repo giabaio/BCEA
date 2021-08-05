@@ -1,7 +1,11 @@
 
 #' Info rank plot base R version
 #' 
+#' @export
+#' 
 info_rank_base <- function(he, params) {
+  
+  res <- params$res
   
   default_params <- 
     list(ca = 0.7,   # cex.axis
@@ -13,6 +17,33 @@ info_rank_base <- function(he, params) {
     modifyList(default_params,
                params)
   
-  do.call(make.barplot_base, plot_params)
+  par_default <- par(no.readonly = TRUE)
+  on.exit(par(par_default))
+  
+  col <- rep(c("blue", "red"), length(plot_params$chk2))
+
+  par(mai = plot_params$mai)
+  
+  do.call(barplot,
+          list(height = res$info,
+               horiz = TRUE,
+               names.arg = res$parameter,
+               cex.names = plot_params$cn,
+               las = 1,
+               col = col,
+               cex.axis = plot_params$ca,
+               xlab = plot_params$xlab,
+               space = plot_params$space,
+               main = plot_params$tit,
+               xlim = plot_params$xlim))
+  
+  decrease_order <- order(res$info, decreasing = TRUE)
+  
+  invisible(
+    list(
+      rank =
+        data.frame(
+          parameter = res$parameter[decrease_order],
+          info = res$info[decrease_order])))
 }
 

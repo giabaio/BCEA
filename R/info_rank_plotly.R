@@ -1,5 +1,8 @@
 
-#' info_rank_plotly
+#'  Info rank plot plotly version
+#' 
+#' @importFrom plotly plot_ly layout
+#' @export
 #' 
 info_rank_plotly <- function(params) {
   
@@ -13,6 +16,8 @@ info_rank_plotly <- function(params) {
                 Parameter will be ignored.")
   }
   
+  res <- params$res
+  
   default_params <- 
     list(mai = c(1.36, 1.5, 1, 1),
          space = 0.5,
@@ -22,6 +27,32 @@ info_rank_plotly <- function(params) {
   plot_params <- 
     modifyList(params, default_params)
   
-  do.call(make.barplot_plotly, plot_params)
+  p <- 
+    plotly::plot_ly(
+      data = res,
+      y = ~reorder(.data$parameter, .data$info),
+      x = ~.data$info,
+      orientation = "h",
+      type = "bar",
+      marker = list(color = "royalblue"))
+  
+  p <- 
+    plotly::layout(
+      p,
+      xaxis = list(hoverformat = ".2f",
+                   title = plot_params$xlab,
+                   range = plot_params$xlim),
+      yaxis = list(hoverformat = ".2f",
+                   title = ""),
+      margin = plot_params$mai,
+      bargap = plot_params$space,
+      title = plot_params$tit)
+  
+  decrease_order <- order(res$info, decreasing = TRUE)
+  
+  p$rank <-
+    data.frame(parameter = res$parameter[decrease_order],
+               info = res$info[decrease_order])
+  return(p)
 }
 

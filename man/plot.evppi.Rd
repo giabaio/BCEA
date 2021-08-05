@@ -36,7 +36,7 @@ plotting. Should (partial-) match the two options \code{"base"} or
 function \code{\link{evppi}}.}
 }
 \value{
-Plot with base R or ggplot 2.
+Plot with base R or ggplot2.
 }
 \description{
 Plot Expected Value of Partial Information With Respect to a

@@ -1,7 +1,7 @@
 
-#' evi_plot_plotly
+#' EVI plot plotly version
 #' 
-#' @import plotly
+#' @importFrom plotly layout config add_trace plot_ly
 #' 
 evi_plot_plotly <- function(data.psa,
                             plot_aes,

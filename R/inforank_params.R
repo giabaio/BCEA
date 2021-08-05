@@ -1,5 +1,8 @@
 
+#' inforank_params
+#' 
 #' @importFrom purrr map_int
+#' @importFrom dplyr slice arrange desc
 #' 
 inforank_params <- function(he,
                             inp,
@@ -82,8 +85,28 @@ inforank_params <- function(he,
   
   xlim <- c(0, range(scores)[2])
   
+  res <-
+    data.frame(
+      parameter = names(chk2),
+      info = scores)
+  
+  res <- dplyr::arrange(res, dplyr::desc(.data$info))
+  
+  change_num_pars <-
+    !is.null(howManyPars) &&
+    is.numeric(howManyPars) &&
+    howManyPars > 0
+  
+  if (change_num_pars) {
+    howManyPars <- min(howManyPars, nrow(res))
+    res <- dplyr::slice(res, 1:howManyPars)
+  }
+  
+  res <- res[order(res$info), ]
+  
   modifyList(
-    list(scores = scores,
+    list(res = res,
+         scores = scores,
          chk2 = chk2,
          tit = tit,
          xlim = xlim,

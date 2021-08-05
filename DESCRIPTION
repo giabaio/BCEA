@@ -25,7 +25,6 @@ Imports:
     knitr,
     ldr,
     MASS,
-    plotly,
     purrr,
     reshape2,
     rlang,
@@ -36,6 +35,7 @@ Depends:
     R (>= 3.5.0)
 Suggests:
     RColorBrewer,
+    plotly,
     grid,
     mgcv,
     R2jags,

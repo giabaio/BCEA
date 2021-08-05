@@ -16,7 +16,6 @@
 #' @seealso \code{\link{bcea}},
 #'          \code{\link{ceac.plot}},
 #'          \code{\link{ceplane.plot}}
-#' @import ggplot2 grid plotly
 #' 
 #' @references
 #' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
@@ -76,6 +75,7 @@ evi.plot.bcea <- function(he,
   
   # evaluate additional arguments
   exArgs <- list(...)
+  
   plot_annotations <- list("exist" = list("title" = FALSE,
                                           "xlab" = FALSE,
                                           "ylab" = FALSE))

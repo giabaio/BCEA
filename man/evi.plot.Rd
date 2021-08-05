@@ -37,6 +37,30 @@ plotting. Should (partial-)match the three options \code{"base"},
 \description{
 Plots the Expected Value of Information (EVI) against the willingness to pay.
 }
+\examples{
+data(Vaccine)
+m <- bcea(
+      e=e,
+      c=c,                  # defines the variables of 
+                            #  effectiveness and cost
+      ref=2,                # selects the 2nd row of (e, c) 
+                            #  as containing the reference intervention
+      interventions=treats, # defines the labels to be associated 
+                            #  with each intervention
+      Kmax=50000,           # maximum value possible for the willingness 
+                            #  to pay threshold; implies that k is chosen 
+                            #  in a grid from the interval (0, Kmax)
+      plot=FALSE            # plots the results
+)
+evi.plot(m)
+
+data(Smoking)
+treats <- c("No intervention", "Self-help",
+            "Individual counselling", "Group counselling")
+m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+evi.plot(m)
+
+}
 \references{
 Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 Analysis in Health Economics.  Statistical Methods in Medical Research

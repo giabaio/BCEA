@@ -19,45 +19,34 @@ make.barplot_base(
   howManyPars
 )
 
-make.barplot_plotly(
-  scores,
-  chk2,
-  tit,
-  xlab,
-  xlim,
-  ca,
-  cn,
-  mai,
-  space,
-  howManyPars
-)
+make.barplot_plotly(scores, chk2, tit, xlab, xlim, mai, space, howManyPars)
 }
 \arguments{
 \item{scores}{Scores}
 
 \item{chk2}{chk2}
 
-\item{tit}{tit}
+\item{tit}{Main title}
 
 \item{xlab}{x-axis label}
 
 \item{xlim}{x-axis limits}
 
-\item{ca}{ca}
+\item{ca}{The magnification to be used for axis annotation relative to the current setting of cex.}
 
-\item{cn}{cn}
+\item{cn}{Size of axis labels}
 
 \item{mai}{Margins}
 
 \item{space}{space}
 
-\item{howManyPars}{How many parameters}
+\item{howManyPars}{Maximum number of parameters}
 }
 \value{
 Bar plot
 }
 \description{
-Base R or plotly.
+Base R or plotly versions.
 }
 \seealso{
 \code{\link{info.rank}}

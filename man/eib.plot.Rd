@@ -10,7 +10,7 @@
   comparison = NULL,
   pos = c(1, 0),
   size = NULL,
-  plot.cri = NULL,
+  plot.cri = FALSE,
   graph = c("base", "ggplot2", "plotly"),
   ...
 )
@@ -100,6 +100,12 @@ m <- bcea(
 )
 eib.plot(m)
 eib.plot(m, graph = "ggplot2") + ggplot2::theme_linedraw()
+
+data(Smoking)
+treats <- c("No intervention", "Self-help",
+            "Individual counselling", "Group counselling")
+m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+eib.plot(m)
 
 }
 \references{
