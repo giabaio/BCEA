@@ -2,10 +2,10 @@
 % Please edit documentation in R/info_rank_plotly.R
 \name{info_rank_plotly}
 \alias{info_rank_plotly}
-\title{info_rank_plotly}
+\title{Info rank plot plotly version}
 \usage{
 info_rank_plotly(params)
 }
 \description{
-info_rank_plotly
+Info rank plot plotly version
 }

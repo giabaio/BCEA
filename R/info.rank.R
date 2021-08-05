@@ -69,8 +69,8 @@ info.rank.bcea <- function(he,
 #' @param howManyPars Optional maximum number of parameters to be included in the bar plot. 
 #' Includes all parameters by default. 
 #' @param graph A string used to select the graphical enging to use for plotting.
-#' @param rel Should (partial-)match one of the two options "base" or "plotly". Default value is "base"
-#' \item \code{rel} = logical argument that specifies whether the ratio of
+#' Should (partial-)match one of the two options "base" or "plotly". Default value is "base"
+#' @param rel Logical argument that specifies whether the ratio of
 #' EVPPI to EVPI (\code{rel = TRUE}, default) or the absolute value of the EVPPI
 #' should be used for the analysis.
 #' @param ... Additional options. These include graphical parameters that the
@@ -82,9 +82,9 @@ info.rank.bcea <- function(he,
 #'   vector (default = 0.7 of full size) - base graphics only.
 #'   \item \code{mai} = margins of the graph (default = c(1.36, 1.5, 1,1)) - base graphics only.
 #'   }
-#' @return \item{res}{With base graphics: A data.frame containing the ranking of the parameters
+#' @return With base graphics: A data.frame containing the ranking of the parameters
 #'   with the value of the selected summary, for the chosen wtp; with plotly: a plotly object, 
-#'   incorporating in the $rank element the data.frame as above.}
+#'   incorporating in the $rank element the data.frame as above.
 #'   The function produces a 'Info-rank' plot. This is an extension of standard 'Tornado
 #'   plots' and presents a ranking of the model parameters in terms of their
 #'   impact on the expected value of information. For each parameter, the

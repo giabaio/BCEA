@@ -2,10 +2,10 @@
 % Please edit documentation in R/evi_plot_plotly.R
 \name{evi_plot_plotly}
 \alias{evi_plot_plotly}
-\title{evi_plot_plotly}
+\title{EVI plot plotly version}
 \usage{
 evi_plot_plotly(data.psa, plot_aes, plot_annotations)
 }
 \description{
-evi_plot_plotly
+EVI plot plotly version
 }

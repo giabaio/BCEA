@@ -44,7 +44,7 @@
 #' 
 #' @export
 #' 
-multi.ce <- function(he) {
+multi.ce.bcea <- function(he) {
   
   # grey scale
   color <- colors()[floor(seq(262, 340, length.out = he$n_comparators))]
@@ -72,3 +72,10 @@ multi.ce <- function(he) {
   
   structure(res, class = c("pairwise", class(he)))
 }
+
+
+#' 
+multi.ce <- function(he) {
+  UseMethod('multi.ce', he)
+}
+

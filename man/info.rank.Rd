@@ -10,7 +10,7 @@
   inp,
   wtp = he$k[min(which(he$k >= he$ICER))],
   howManyPars = NA,
-  graph = c("base", "plotly"),
+  graph = c("base", "plotly", "ggplot2"),
   rel = TRUE,
   ...
 )
@@ -57,9 +57,9 @@ vector (default = 0.7 of full size) - base graphics only.
 }}
 }
 \value{
-\item{res}{With base graphics: A data.frame containing the ranking of the parameters
+With base graphics: A data.frame containing the ranking of the parameters
   with the value of the selected summary, for the chosen wtp; with plotly: a plotly object, 
-  incorporating in the $rank element the data.frame as above.}
+  incorporating in the $rank element the data.frame as above.
   The function produces a 'Info-rank' plot. This is an extension of standard 'Tornado
   plots' and presents a ranking of the model parameters in terms of their
   impact on the expected value of information. For each parameter, the
@@ -81,6 +81,7 @@ inp <- createInputs(vaccine)
 info.rank(m, inp)
 info.rank(m, inp, graph = "base")
 info.rank(m, inp, graph = "plotly")
+info.rank(m, inp, graph = "ggplot2")
 
 }
 \references{

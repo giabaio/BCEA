@@ -2,7 +2,7 @@
 % Please edit documentation in R/eib_plot_plotly.R
 \name{eib_plot_plotly}
 \alias{eib_plot_plotly}
-\title{eib_plot_plotly}
+\title{EIB plot plotly version}
 \usage{
 eib_plot_plotly(
   he,
@@ -18,5 +18,5 @@ eib_plot_plotly(
 )
 }
 \description{
-eib_plot_plotly
+EIB plot plotly version
 }
