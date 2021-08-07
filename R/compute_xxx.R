@@ -310,6 +310,17 @@ compute_ICER <- function(df_ce) {
 }
 
 
+#' Compute Expected Value of Information
+#' 
+#' @param ol Opportunity loss
+#' @return EVI
+#' @export
+#' 
+compute_EVI <- function(ol) {
+  colMeans(ol)
+}
+
+
 #' Comparison Names From
 #' @param df_ce Cost-effectiveness dataframe 
 #'

@@ -13,7 +13,7 @@ info.rank.bcea <- function(he,
                            inp,
                            wtp = he$k[min(which(he$k >= he$ICER))],
                            howManyPars = NA,
-                           graph = c("base", "plotly", "ggplot2"),
+                           graph = c("base", "ggplot2", "plotly"),
                            rel = TRUE,
                            ...) {
 

@@ -69,16 +69,16 @@
 #' #
 #' # Run the cost-effectiveness analysis accounting for risk aversion
 #' \donttest{
-#' cr <- CEriskav(m,     # uses the results of the economic evalaution 
+#' cr <- CEriskav(m,     # uses the results of the economic evaluation 
 #'                       #  (a "bcea" object)
 #'         r=r,          # defines the vector of values for the risk 
 #'                       #  aversion parameter
 #'         comparison=1  # if more than 2 interventions, selects the 
 #'                       #  pairwise comparison 
-#' )
+#'       )
 #' }
 #' #
-#' # Now produce the plots
+#' # produce the plots
 #' \donttest{
 #' plot(cr # uses the results of the risk aversion 
 #'         #  analysis (a "CEriskav" object)

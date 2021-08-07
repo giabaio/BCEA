@@ -10,7 +10,7 @@
   inp,
   wtp = he$k[min(which(he$k >= he$ICER))],
   howManyPars = NA,
-  graph = c("base", "plotly", "ggplot2"),
+  graph = c("base", "ggplot2", "plotly"),
   rel = TRUE,
   ...
 )
@@ -39,10 +39,10 @@ not specified then the break-even point for the current model will be used.}
 \item{howManyPars}{Optional maximum number of parameters to be included in the bar plot. 
 Includes all parameters by default.}
 
-\item{graph}{A string used to select the graphical enging to use for plotting.}
+\item{graph}{A string used to select the graphical enging to use for plotting.
+Should (partial-)match one of the two options "base" or "plotly". Default value is "base"}
 
-\item{rel}{Should (partial-)match one of the two options "base" or "plotly". Default value is "base"
-\item \code{rel} = logical argument that specifies whether the ratio of
+\item{rel}{Logical argument that specifies whether the ratio of
 EVPPI to EVPI (\code{rel = TRUE}, default) or the absolute value of the EVPPI
 should be used for the analysis.}
 
