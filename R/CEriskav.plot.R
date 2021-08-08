@@ -1,4 +1,6 @@
 
+#' @rdname CEriskav.plot
+#' 
 #' Plots EIB for the Risk Aversion Case
 #' 
 #' Summary plot of the health economic analysis when risk aversion is included.
@@ -72,41 +74,39 @@
 #'    CEriskav(m) <- r
 #' }
 #' #
-#' # Now produce the plots
+#' # produce the plots
 #' \donttest{
 #'    CEriskav.plot(m)
 #' )
 #' }
-#' ### Alternative options, using ggplot2
+#' ## Alternative options, using ggplot2
 #' \donttest{
 #'    CEriskav.plot(m,
 #'     graph="ggplot2",
 #'     plot="ask"          # plot option can be specified as
-#'                       #  "dev.new" (default), "x11" or "ask"
+#'                         #  "dev.new" (default), "x11" or "ask"
 #'   )
 #' }
 #' 
 #' @export
 #' 
-CEriskav.plot.CEriskav <- function(x,
+CEriskav.plot.CEriskav <- function(he,
                                    pos = c(0, 1),
                                    graph = c("base", "ggplot2"),
                                    ...) {
   
   graph <- match.arg(graph)
   
-  graph_params <- prep_CEriskav_params(...)
+  ##TODO:
+  # graph_params <- prep_CEriskav_params(...)
   
   if (is_baseplot(graph)) {
     
-    CEriskav_plot_base(he,
-                       pos_legend = pos,
-                       graph_params)
+    CEriskav_plot_base(he, pos)
+    
   } else {
     
-    CEriskav_plot_ggplot(he,
-                         pos_legend = pos,
-                         graph_params, ...)
+    CEriskav_plot_ggplot(he, pos)
   }
 }
 

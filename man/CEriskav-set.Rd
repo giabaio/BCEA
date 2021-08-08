@@ -77,13 +77,11 @@ r <- c(1e-10, 0.005, 0.020, 0.035)
 
 # Run the cost-effectiveness analysis accounting for risk aversion
 \donttest{
-cr <- CEriskav(m,     # uses the results of the economic evaluation 
-                      #  (a "bcea" object) 
-        r=r,          # defines the vector of values for the risk 
-                      #  aversion parameter 
-        comparison=1  # if more than 2 interventions, selects the 
-                      #  pairwise comparison 
-) 
+# uses the results of the economic evaluation 
+# if more than 2 interventions, selects the 
+#  pairwise comparison
+
+CEriskav(m) <- r
 }
 
 }

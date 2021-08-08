@@ -1,7 +1,11 @@
 
+##TODO: how are these different to eib_plot_*, evi_plot_*?
+##      look at plots in book and examples
+##      look at original code
+##      can we just use existing code?
+
 #'
-CEriskav_plot_base <- function() {
-  
+CEriskav_plot_base <- function(x, alt.legend) {
   if (is.numeric(alt.legend) && length(alt.legend) == 2) {
     legend_txt <- ""
     if (alt.legend[2] == 0)
@@ -13,6 +17,7 @@ CEriskav_plot_base <- function() {
     else
       legend_txt <- paste0(legend_txt, "left")
     alt.legend <- legend_txt
+    
     if (length(grep("^(bottom|top)(left|right)$", legend_txt)) == 0)
       alt.legend <- FALSE
   }
@@ -28,36 +33,23 @@ CEriskav_plot_base <- function() {
        ylab = " ",
        main = "EIB as a function of the risk aversion parameter",
        ylim = range(x$eibr))
-  linetype <- seq(1,x$R)
   
+  linetype <- seq(1, x$R)
+  
+  ##TODO: use multiplot() instead?
   for (l in 2:x$R) {
     points(x$k, x$eibr[, l], type = "l", lty = linetype[l])
   }
+  
   text <- paste("r = ", x$r, sep = "") 
-  # If the first value for r is small enough, consider it close to 0 and print the label accordingly
+  
+  # if the first value for r is small enough,
+  # consider close to 0 and print label accordingly
   if (x$r[1] < 1e-8) {
     text[1] <- expression(r%->%0)
   }
   legend(alt.legend, text, lty = seq(1:x$R), cex = 0.9, box.lty = 0)
   abline(h = 0, col = "grey")
-  
-  # Plots the EVPI for the risk aversion case
-  if (is.null(howplot)) {
-    if (!isTRUE(Sys.getenv("RSTUDIO") == 1))
-      dev.new()
-  }
-  else {
-    opt <- c("x11", "ask", "dev.new")
-    howplot <- ifelse(is.na(pmatch(howplot, opt)),
-                      "dev.new",
-                      opt[pmatch(howplot, opt)])
-    if (howplot == "x11")
-      dev.new()
-    if (howplot == "dev.new")
-      dev.new()
-    if (howplot == "ask")
-      devAskNewPage(ask = TRUE)
-  }
   
   plot(x$k,
        x$evir[, 1],
@@ -69,32 +61,35 @@ CEriskav_plot_base <- function() {
   for (l in 2:x$R) {
     points(x$k, x$evir[, l], type = "l", lty = linetype[l])
   }
-  legend(alt.legend, text, lty = seq(1:x$R), cex = 0.9, box.lty = 0)
+  
+  legend(alt.legend,
+         legend = text,
+         lty = seq(1:x$R),
+         cex = 0.9,
+         box.lty = 0)
   abline(h = 0, col = "grey")
-  
-  if (!is.null(howplot))
-    if (howplot == "ask")
-      devAskNewPage(ask = FALSE)
-  
 }
 
 
 
 #'
-CEriskav_plot_ggplot <- function() {
+CEriskav_plot_ggplot <- function(x, alt.legend) {
   
   # no visible bindings note
   k <- r <- NA_real_
   
   linetypes <- rep(c(1,2,3,4,5,6), ceiling(x$R/6))[1:x$R]
+  
   df <- data.frame(cbind(rep(x$k,x$R), c(x$eibr), c(x$evir)),
                    as.factor(sort(rep(1:x$R, length(x$k)))))
-  names(df) <- c("k","eibr","evir","r")
+  names(df) <- c("k", "eibr", "evir", "r")
   
   # labels
-  text <- paste0("r = ",x$r)
-  # if the first value for r is small enough, consider it close to 0 and print the label accordingly
-  if(x$r[1]<1e-8) {
+  text <- paste0("r = ", x$r)
+  
+  # if the first value for r is small enough,
+  # consider close to 0 and print label accordingly
+  if (x$r[1] < 1e-8) {
     text[1] <- expression(r%->%0)
   }
   
@@ -114,7 +109,6 @@ CEriskav_plot_ggplot <- function() {
       panel.grid = element_blank(),
       legend.key = element_blank())
   
-  ### evir ###
   evir <-
     ggplot(df, aes(x = k, y = evir, linetype = r)) + 
     geom_hline(yintercept = 0, linetype = 1, colour = "grey50")+
@@ -130,13 +124,14 @@ CEriskav_plot_ggplot <- function() {
       legend.spacing = unit(-1.25, "line"),
       panel.grid = element_blank(),
       legend.key = element_blank())
+  
   jus <- NULL
+  
   if (isTRUE(alt.legend)) {
     alt.legend <- "bottom"
     eibr <- eibr + theme(legend.direction = "vertical")
     evir <- evir + theme(legend.direction = "vertical")
-  }
-  else {
+  } else {
     if (is.character(alt.legend)) {
       choices <- c("left", "right", "bottom", "top")
       alt.legend <- choices[pmatch(alt.legend,choices)]
@@ -178,33 +173,13 @@ CEriskav_plot_ggplot <- function() {
         face = "bold",
         size = 14.3,
         hjust = 0.5))
+  
   plot(eibr)
-  
-  if (is.null(howplot)) {
-    if (!isTRUE(Sys.getenv("RSTUDIO") == 1))
-      dev.new()
-  }
-  else{
-    opt <- c("x11", "ask", "dev.new")
-    howplot <- ifelse(is.na(pmatch(howplot, opt)),
-                      "dev.new",
-                      opt[pmatch(howplot, opt)])
-    if (howplot == "x11")
-      dev.new()
-    if (howplot == "dev.new")
-      dev.new()
-    if (howplot == "ask")
-      devAskNewPage(ask = TRUE)
-  }
-  
   plot(evir)
   
-  if (!is.null(howplot))
-    if (howplot == "ask")
-      devAskNewPage(ask = FALSE)
-  
-  return(invisible(list("eib" = eibr, "evi" = evir)))
-  
+  return(
+    invisible(list(eib = eibr,
+                   evi = evir)))
 }
 
 

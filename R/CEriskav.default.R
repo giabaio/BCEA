@@ -1,4 +1,6 @@
 
+##TODO: can we reuse compute_*() functions here?
+
 #' @export
 #'
 'CEriskav<-.bcea' <- function(he,
@@ -32,7 +34,8 @@
   
   IBr <- Ur[, , he$ref, , drop = FALSE] - Ur[, , he$comp[comparison], , drop = FALSE]
 
-  eibr <- apply(IBr, c(2,3), mean)
+  eibr <- apply(IBr, c(2,4), mean)
+  
   vir <- array(NA, c(he$n_sim, K, R))
   
   for (i in seq_len(K)) {
@@ -46,12 +49,12 @@
   structure(
     modifyList(
       he,
-      list(U = Ur,
-           Ustar = Urstar,
-           ib = IBr,
-           eib = eibr,
-           vi = vir,
-           evi = evir,
+      list(Ur = Ur,
+           Urstar = Urstar,
+           IBr = IBr,
+           eibr = eibr,
+           vir = vir,
+           evir = evir,
            R = R,
            r = value)),
     class = c("CEriskav", class(he)))
