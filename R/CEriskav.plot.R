@@ -1,12 +1,10 @@
 
-#' @rdname CEriskav.plot
-#' 
-#' Plots EIB for the Risk Aversion Case
+#' Plots EIB and EVPI for the Risk Aversion Case
 #' 
 #' Summary plot of the health economic analysis when risk aversion is included.
 #' 
-#' Plots the EIB and the EVPI when risk aversion is included in the utility
-#' function.
+#' Plots the Expected Incremental Benefit and the Expected Value of Perfect Information
+#' when risk aversion is included in the utility function.
 #' 
 #' @param x An object of the class \code{CEriskav}, containing the results of
 #' the economic analysis performed accounting for a risk aversion parameter
@@ -76,24 +74,22 @@
 #' #
 #' # produce the plots
 #' \donttest{
-#'    CEriskav.plot(m)
+#'    plot(m)
 #' )
 #' }
 #' ## Alternative options, using ggplot2
 #' \donttest{
-#'    CEriskav.plot(m,
-#'     graph="ggplot2",
-#'     plot="ask"          # plot option can be specified as
-#'                         #  "dev.new" (default), "x11" or "ask"
+#'    plot(m,
+#'     graph="ggplot2"
 #'   )
 #' }
 #' 
 #' @export
 #' 
-CEriskav.plot.CEriskav <- function(he,
-                                   pos = c(0, 1),
-                                   graph = c("base", "ggplot2"),
-                                   ...) {
+plot.CEriskav <- function(he,
+                          pos = c(0, 1),
+                          graph = c("base", "ggplot2"),
+                          ...) {
   
   graph <- match.arg(graph)
   
@@ -109,9 +105,4 @@ CEriskav.plot.CEriskav <- function(he,
     CEriskav_plot_ggplot(he, pos)
   }
 }
-
-
-#'
-CEriskav.plot <- function(he, ...)
-  UseMethod("CEriskav.plot", he)
 
