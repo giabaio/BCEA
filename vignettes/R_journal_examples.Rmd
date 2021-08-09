@@ -1,0 +1,81 @@
+---
+title: "R journal examples"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ceac}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+  
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+collapse = TRUE,
+comment = "#>",
+fig.width = 6
+)
+```
+
+```{r setup, results='hide', message=FALSE, warning=FALSE, echo=FALSE}
+library(BCEA)
+library(dplyr)
+library(reshape2)
+library(ggplot2)
+library(purrr)
+```
+
+
+```{r eval = FALSE, echo=FALSE}
+# create output docs
+# rmarkdown::render(input = "vignettes/ceac.Rmd", output_format = "pdf_document", output_dir = "vignettes")
+# rmarkdown::render(input = "vignettes/ceac.Rmd", output_format = "html_document", output_dir = "vignettes")
+```
+
+## Vaccine data
+
+```{r}
+data (Vaccine)
+
+treats <- c("Status quo", "Vaccination")
+bcea_vacc <- bcea(e, c, ref = 2, interventions = treats)
+```
+
+```{r fig.width=10, fig.height=10}
+plot(bcea_vacc)
+```
+
+
+## Smoking example
+
+```{r}
+data(Smoking)
+
+treats <- c("No intervention", "Self-help", "Individual counselling", "Group counselling")
+bcea_smoke <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+```
+
+```{r plot_bcea_smoke, fig.width=10, fig.height=10}
+plot(bcea_smoke)
+```
+
+```{r}
+bcea_smoke2 <- bcea(e, c, ref = 4, wtp = c(20000, 25000, 30000))
+```
+
+```{r fig.width=10, fig.height=10}
+# plot(bcea_smoke2)
+```
+
+```{r fig.width=10, fig.height=10}
+library(ggplot2)
+
+plot(bcea_smoke, graph = "ggplot2", wtp = 250, pos = TRUE, size = rel(2), ICER.size = 2)
+# plot(bcea_smoke2, graph = "ggplot2")
+# when providing wtp to bcea, kstar is NA??...
+```
+
+
+```{r}
+summary(bcea_smoke, wtp = 10000)
+```
+
+

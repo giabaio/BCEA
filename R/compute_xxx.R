@@ -22,7 +22,7 @@
 compute_kstar <- function(k, best, ref) {
   
   if (all(best == ref)) {
-    return(NA)    
+    return(numeric())    
   }
   
   flip <- c(0, diff(best)) != 0 
