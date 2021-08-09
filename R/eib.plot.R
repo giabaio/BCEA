@@ -57,15 +57,7 @@ eib.plot.bcea <- function(he,
 #' 
 #' @template args-he
 #' @template args-comparison
-#' @param pos Parameter to set the position of the legend; for a single
-#' comparison plot, the ICER legend position. Can be given in form of a string
-#' \code{(bottom|top)(right|left)} for base graphics and
-#' \code{bottom|top|left|right} for ggplot2. It can be a two-elements vector,
-#' which specifies the relative position on the x and y axis respectively, or
-#' alternatively it can be in form of a logical variable, with \code{FALSE}
-#' indicating to use the default position and \code{TRUE} to place it on the
-#' bottom of the plot. Default value is \code{c(1,0)}, that is the bottomright
-#' corner inside the plot area.
+#' @template args-pos
 #' @param size Value (in millimetres) of the size of the willingness to pay
 #' label. Used only if \code{graph="ggplot2"}, otherwise it will be ignored
 #' with a message. If set to \code{NA}, the break-even point line(s) and
@@ -76,9 +68,7 @@ eib.plot.bcea <- function(he,
 #' include them for multiple comparisons.  Setting \code{plot.cri=TRUE} or
 #' \code{plot.cri=FALSE} forces the function to add the intervals or not. The
 #' level of the intervals can be also set, see \ldots{} for more details.
-#' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the three options \code{"base"},
-#' \code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
+#' @template args-graph
 #' @param ...  If \code{graph="ggplot2"} and a named theme object is supplied,
 #'   it will be added to the ggplot object. Additional arguments:
 #'  \itemize{
@@ -102,6 +92,7 @@ eib.plot.bcea <- function(he,
 #' (i.e. the point in which the EIB = 0, i.e. when the optimal decision changes
 #' from one intervention to another) is also showed by default. The value `k*` is
 #' the discrete grid approximation of the ICER.
+#' 
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}},
 #'          \code{\link{ib.plot}},

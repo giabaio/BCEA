@@ -25,12 +25,15 @@ together. Any subset of the possible comparisons can be selected (e.g.,
 \item{wtp}{The value of the willingness to pay parameter. It is passed to
 \code{\link{ceplane.plot}}.}
 
-\item{pos}{Parameter to set the position of the legend. Can be given in form
-of a string, a single logical value, or a two-element vector with the
-respective relative positions on the x and y axis. Default as \code{FALSE}
-sets the legend position to the default one for each plot (see the details
-section), while \code{TRUE} puts it on the bottom of each plot.  Changes
-will affect all the individual plots.}
+\item{pos}{Parameter to set the position of the legend (only relevant for
+multiple interventions, ie more than 2 interventions being compared).
+Can be given in form
+of a string \code{(bottom|top)(right|left)} for base graphics and
+\code{bottom|top|left|right} for ggplot2. It can be a two-elements vector,
+which specifies the relative position on the x and y axis respectively, or
+alternatively it can be in form of a logical variable, with \code{FALSE}
+indicating to use the default position and \code{TRUE} to place it on the
+bottom of the plot.}
 
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the two options \code{"base"} or

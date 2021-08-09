@@ -2,25 +2,26 @@
 % Please edit documentation in R/CEriskav.plot.R, R/plot.CEriskav.R
 \name{plot.CEriskav}
 \alias{plot.CEriskav}
-\title{Plots EIB for the Risk Aversion Case}
+\title{Plots EIB and EVPI for the Risk Aversion Case}
 \usage{
-\method{plot}{CEriskav}(x, pos = c(0, 1), graph = c("base", "ggplot2"), ...)
+\method{plot}{CEriskav}(he, pos = c(0, 1), graph = c("base", "ggplot2"), ...)
 
-\method{plot}{CEriskav}(x, pos = c(0, 1), graph = c("base", "ggplot2"), ...)
+\method{plot}{CEriskav}(he, pos = c(0, 1), graph = c("base", "ggplot2"), ...)
 }
 \arguments{
-\item{x}{An object of the class \code{CEriskav}, containing the results of
-the economic analysis performed accounting for a risk aversion parameter
-(obtained as output of the function \code{\link{CEriskav}}).}
+\item{he}{An object of the class \code{CEriskav}, a subclass of \code{bcea},
+containing the results of the economic analysis performed accounting for a
+risk aversion parameter (obtained as output of the function \code{\link{CEriskav}}).}
 
-\item{pos}{Parameter to set the position of the legend. Can be given in form
+\item{pos}{Parameter to set the position of the legend (only relevant for
+multiple interventions, ie more than 2 interventions being compared).
+Can be given in form
 of a string \code{(bottom|top)(right|left)} for base graphics and
 \code{bottom|top|left|right} for ggplot2. It can be a two-elements vector,
 which specifies the relative position on the x and y axis respectively, or
 alternatively it can be in form of a logical variable, with \code{FALSE}
 indicating to use the default position and \code{TRUE} to place it on the
-bottom of the plot. Default value is \code{c(0,1)}, that is in the topleft
-corner inside the plot area.}
+bottom of the plot.}
 
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the two options \code{"base"} or
@@ -50,8 +51,8 @@ Summary plot of the health economic analysis when risk aversion is included.
 Summary plot of the health economic analysis when risk aversion is included.
 }
 \details{
-Plots the EIB and the EVPI when risk aversion is included in the utility
-function.
+Plots the Expected Incremental Benefit and the Expected Value of Perfect Information
+when risk aversion is included in the utility function.
 
 Plots the EIB and the EVPI when risk aversion is included in the utility
 function.
@@ -87,15 +88,13 @@ r <- c(1e-10, 0.005, 0.020, 0.035)
 #
 # produce the plots
 \donttest{
-   CEriskav.plot(m)
+   plot(m)
 )
 }
 ## Alternative options, using ggplot2
 \donttest{
-   CEriskav.plot(m,
-    graph="ggplot2",
-    plot="ask"          # plot option can be specified as
-                        #  "dev.new" (default), "x11" or "ask"
+   plot(m,
+    graph="ggplot2"
   )
 }
 

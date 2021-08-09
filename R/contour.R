@@ -627,14 +627,7 @@ contour.bcea <- function(he,
 #' @param levels Numeric vector of levels at which to draw contour lines. Will
 #' be ignored using \code{graph="ggplot2"}.
 #' @param nlevels Number of levels to be plotted in the contour.
-#' @param pos Parameter to set the position of the legend. Can be given in form
-#' of a string \code{(bottom|top)(right|left)} for base graphics and
-#' \code{bottom}, \code{top}, \code{left} or \code{right} for ggplot2. It can
-#' be a two-elements vector, which specifies the relative position on the x and
-#' y axis respectively, or alternatively it can be in form of a logical
-#' variable, with \code{FALSE} indicating to use the default position and
-#' \code{TRUE} to place the legend on the bottom of the plot. Default value is
-#' \code{c(1,0)}, that is the bottomright corner inside the plot area.
+#' @template args-pos
 #' @param graph A string used to select the graphical engine to use for
 #' plotting. Should (partial-) match the two options \code{"base"} or
 #' \code{"ggplot2"}. Default value is \code{"base"}.
@@ -653,6 +646,7 @@ contour.bcea <- function(he,
 #' costs; superimposes a contour of the distribution and prints the estimated
 #' value of the probability of each quadrant (combination of positive/negative
 #' values for both \eqn{\Delta_e} and \eqn{\Delta_c})
+#' 
 #' @author Gianluca Baio, Andrea Berardi
 #' @references
 #' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity

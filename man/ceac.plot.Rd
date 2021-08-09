@@ -25,14 +25,14 @@ together. Any subset of the possible comparisons can be selected (e.g.,
 \code{comparison=c(1,3)} or \code{comparison=2}).}
 
 \item{pos}{Parameter to set the position of the legend (only relevant for
-multiple interventions, ie more than 2 interventions being compared). Can be
-given in form of a string \code{(bottom|top)(right|left)} for base graphics
-and \code{bottom}, \code{top}, \code{left} or \code{right} for *ggplot2*.
-It can be a two-elements vector, which specifies the relative position on the x
-and y axis respectively, or alternatively in form of a logical
-variable, with \code{FALSE} indicating to use the default position and
-\code{TRUE} to place it on the bottom of the plot. Default value is
-\code{c(1,0)}, that is the bottom right corner inside the plot area.}
+multiple interventions, ie more than 2 interventions being compared).
+Can be given in form
+of a string \code{(bottom|top)(right|left)} for base graphics and
+\code{bottom|top|left|right} for ggplot2. It can be a two-elements vector,
+which specifies the relative position on the x and y axis respectively, or
+alternatively it can be in form of a logical variable, with \code{FALSE}
+indicating to use the default position and \code{TRUE} to place it on the
+bottom of the plot.}
 
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the three options \code{"base"},
