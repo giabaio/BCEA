@@ -83,11 +83,11 @@ ceplane_plot_ggplot.bcea <- function(he,
                  x = graph_params$xlab,
                  y = graph_params$ylab)) +
     do.call(geom_abline, list(slope = wtp,
-                              col = "black")) +
+                              col = graph_params$line$color)) +
     do.call(geom_point, graph_params$icer) +
     do.call(annotate, graph_params$wtp) +
-    do.call(theme, graph_params$legend) +
-    do.call(annotate, graph_params$icer_txt)
+    do.call(annotate, graph_params$icer_txt) +
+    do.call(theme, graph_params$legend)
 }
 
 

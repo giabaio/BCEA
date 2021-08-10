@@ -8,6 +8,7 @@
   
   ##TODO: what do we do with this?
   comparison <- 1
+  value[value == 0] <- 1e-10
   
   ### COMPARISON IS USED TO SELECT THE COMPARISON FOR WHICH THE ANALYSIS IS CARRIED OUT
   # Reference: Baio G, Dawid AP (2011).

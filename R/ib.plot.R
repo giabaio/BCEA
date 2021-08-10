@@ -39,7 +39,7 @@
 ib.plot.bcea <- function(he,
                          comparison = NULL,
                          wtp = 25000,
-                         bw = nbw,
+                         bw = "bcv",  ##TODO: what was nbw? previous was bigger/smoother
                          n = 512,
                          xlim = NULL,
                          graph = c("base", "ggplot2"),

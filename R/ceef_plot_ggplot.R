@@ -4,15 +4,19 @@
 #' @import ggplot2 grid
 #' 
 ceef_plot_ggplot <- function(he,
-                             ceef.points,
-                             scatter.data,
-                             exArgs,
-                             dominance,
-                             relative,
-                             orig.avg,
-                             colour,
-                             flip,
-                             pos, ...) {
+                             frontier_data,
+                             frontier_params,
+                             ...) {
+  
+  scatter.data <- frontier_data$scatter.data
+  ceef.points <- frontier_data$ceef.points 
+  orig.avg <- frontier_data$orig.avg
+  
+  colour <- frontier_params$colour
+  pos <- frontier_params$pos
+  flip <- frontier_params$flip
+  relative  <- frontier_params$relative 
+  dominance <- frontier_params$dominance
   
   if(!(requireNamespace("ggplot2", quietly = TRUE) &&
        requireNamespace("grid", quietly = TRUE))){

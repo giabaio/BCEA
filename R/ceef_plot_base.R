@@ -1,14 +1,18 @@
 
 #' ceef_plot_base
 #' 
-ceef_plot_base <- function(pos,
-                           scatter.data,
-                           flip,
-                           relative,
-                           dominance,
-                           ceef.points,
-                           colour,
-                           orig.avg) {
+ceef_plot_base <- function(frontier_data,
+                           frontier_params) {
+  
+  scatter.data <- frontier_data$scatter.data
+  ceef.points <- frontier_data$ceef.points 
+  orig.avg <- frontier_data$orig.avg
+  
+  colour <- frontier_params$colour
+  pos <- frontier_params$pos
+  flip <- frontier_params$flip
+  relative  <- frontier_params$relative 
+  dominance <- frontier_params$dominance
   
   ### legend positioning
   if (is.numeric(pos) && length(pos) == 2) {
@@ -50,15 +54,17 @@ ceef_plot_base <- function(pos,
   }
   
   ### set up plot window
-  xlab <- ifelse((!flip & !relative),"Effectiveness",
-                 ifelse((!flip & relative),"Differential effectiveness",
-                        ifelse((flip & !relative),"Cost","Differential cost")))
+  xlab <- ifelse((!flip & !relative), "Effectiveness",
+                 ifelse((!flip & relative), "Differential effectiveness",
+                        ifelse((flip & !relative),
+                               "Cost", "Differential cost")))
   ylab <- ifelse((!flip & !relative),"Cost",
                  ifelse((!flip & relative),"Differential cost",
-                        ifelse((flip & !relative),"Effectiveness","Differential effectiveness")))
+                        ifelse((flip & !relative),
+                               "Effectiveness", "Differential effectiveness")))
   plot(NULL,
-       xlim = c(min(range(scatter.data$e)[1],0),max(range(scatter.data$e)[2],0)),
-       ylim =c(min(range(scatter.data$c)[1],0),max(range(scatter.data$c)[2],0)),
+       xlim = c(min(range(scatter.data$e)[1],0), max(range(scatter.data$e)[2],0)),
+       ylim =c(min(range(scatter.data$c)[1],0), max(range(scatter.data$c)[2],0)),
        main = "Cost-effectiveness efficiency frontier",
        xlab = xlab,
        ylab = ylab)
@@ -75,7 +81,7 @@ ceef_plot_base <- function(pos,
         ytop = ifelse(!flip, 1, -1) * 2 * max(abs(range(scatter.data$c)))
       )
     }
-    if (dim(ceef.points)[1]>1)
+    if (dim(ceef.points)[1] > 1)
       for (i in 2:dim(ceef.points)[1]) {
         rect(
           col = "grey85",
