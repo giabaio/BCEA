@@ -1,8 +1,24 @@
 
-#'
+#' @template args-he
+#' 
 prep_frontier_data <- function(he,
+                               threshold,
                                start.origin) {
-  browser()
+  
+  ## if threshold is NULL, then bound to pi/2, which is atan(Inf)
+  ## else if positive, bound to the increase angle given the slope
+  if (is.null(threshold)) {
+    threshold <- pi/2
+  } else {
+    if (threshold <= 0) {
+      warning(
+        "The value of the cost-effectiveness threshold should be positive. The argument will be ignored.",
+        call. = FALSE)
+      threshold <- pi/2
+    } else {
+      threshold <- atan(threshold)
+    }
+  }
   
   # if the effectiveness is negative or
   # !start.origin then rescale
@@ -62,37 +78,57 @@ prep_frontier_data <- function(he,
       y = 0,
       comp = comp)
   
-  
   ##TODO: get some old output and compare/reverse engineer
   ##      what is this doing?
-  repeat {
-    no_data <- prod(dim(data.avg)) == 0
+  # repeat {
+  #   no_data <- prod(dim(data.avg)) == 0
+  #   
+  #   if (no_data) break
+  #   
+  #   slope <- atan(data.avg$c.avg/data.avg$e.avg)
+  #   slope.min <- min(slope, na.rm = TRUE)
+  #   
+  #   if (slope.min > threshold) break
+  #   
+  #   interv_idx <- which(slope == slope.min)
+  #   
+  #   if (length(interv_idx) > 1)
+  #     interv_idx <- interv_idx[which.min(data.avg$e.avg[interv_idx])]
+  #   
+  #   ceef.points <- with(data.avg,
+  #                       rbind(ceef.points, orig.avg[interv_idx, ]))
+  # 
+  #   # move origin to current (e,c)
+  #   data.avg[, c("e.avg", "c.avg")] <-
+  #     data.avg[, c("e.orig", "c.orig")] - 
+  #     matrix(rep(as.numeric(data.avg[interv_idx, c("e.orig", "c.orig")]),
+  #                nrow(data.avg)),
+  #            ncol = 2,
+  #            byrow = TRUE)
+  #   
+  #   data.avg <- subset(data.avg, c.avg*e.avg > 0 & c.avg + e.avg > 0)
+  # }
+  
+  #### OLD CODE
+  repeat{
+    if (prod(dim(data.avg)) == 0) break
     
-    if (no_data) break
+    theta <- with(data.avg,atan(c.avg/e.avg))
+    theta.min <- min(theta, na.rm = TRUE)
     
-    wtp <- atan(data.avg$c.avg/data.avg$e.avg)
-    wtp.min <- min(wtp, na.rm = TRUE)
-    
-    if (wtp.min > threshold) break
-    
-    index <- which(wtp == wtp.min)
+    if (theta.min > threshold) break
+    index <- which(theta == theta.min)
     
     if (length(index) > 1)
-      index <- index[which.min(data.avg$e.avg[index])]
-    
+      index=index[which.min(data.avg$e.avg[index])]
     ceef.points <- with(data.avg,
-                        rbind(ceef.points, orig.avg[index, ]))
-
-    data.avg[, c("e.avg", "c.avg")] <-
-      data.avg[, c("e.orig", "c.orig")] - 
-      matrix(rep(as.numeric(data.avg[index, c("e.orig", "c.orig")]),
-                 nrow(data.avg)),
-             ncol = 2,
-             byrow = TRUE)
-    
-    data.avg <- subset(data.avg, c.avg*e.avg > 0)
-    data.avg <- subset(data.avg, c.avg + e.avg > 0)
+                        rbind(ceef.points, c(e.orig[index], c.orig[index], comp[index])))
+    data.avg[, 1:2] <-
+      data.avg[,3:4]-matrix(rep(as.numeric(data.avg[index, 3:4]), dim(data.avg)[1]), ncol = 2, byrow = TRUE)
+    data.avg <- subset(subset(data.avg,c.avg*e.avg > 0), c.avg+e.avg > 0)
   }
+  
+  ####
   
   ceef.points$comp <- factor(ceef.points$comp)
   
@@ -109,13 +145,13 @@ prep_frontier_data <- function(he,
     ceef.points$slope[1] <- NA
   }
   
-  keep_intervs <- c(he$ref, he$comp) #NG
+  keep_intervs <- sort(c(he$ref, he$comp)) #NG
   ##TODO: why is the old code for fewer columns?
   # points
   scatter.data <- data.frame(
     e = c(he$e[, keep_intervs]), #-ifelse(!e.neg, 0, ec_min[1]),
     c = c(he$c[, keep_intervs]), #-ifelse(!e.neg, 0, ec_min[2]),
-    comp = as.factor(rep(keep_intervs, he$n_sim)))
+    comp = as.factor(rep(keep_intervs, each = he$n_sim)))
   # comp = as.factor(sort(rep(1:he$n_comparators, he$n_sim))))
   
   ## re-adjustment of data sets

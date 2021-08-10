@@ -1,7 +1,8 @@
 
 #' ceef_plot_base
 #' 
-ceef_plot_base <- function(frontier_data,
+ceef_plot_base <- function(he,
+                           frontier_data,
                            frontier_params) {
   
   scatter.data <- frontier_data$scatter.data
@@ -76,9 +77,12 @@ ceef_plot_base <- function(frontier_data,
   abline(h = 0, v = 0, col = "grey")
   
   # plot the scatter
+  # matplot()?
+  # will need to add sim number column to cast
+  
   for (i in 1:he$n_comparators)
     with(scatter.data,
-         points(subset(scatter.data, comp == i)[, -3],
+         points(subset(scatter.data, comp == i)[, c("e", "c")],
                 type = "p",
                 pch = 20,
                 cex = 0.35,
