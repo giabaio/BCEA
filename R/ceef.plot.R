@@ -122,7 +122,7 @@ ceef.plot.bcea <- function(he,
    # he <- setComparisons(he, comparison)
    
    # if incremental analysis (relative to the reference) required
-   # needs to modify the BCEA object
+   # needs to modify the bcea object
    if (relative) {
       temp <- he
       temp$e <- temp$c <- matrix(NA, he$n_sim, he$n_comparators)
@@ -132,17 +132,19 @@ ceef.plot.bcea <- function(he,
       he <- temp
    }
    
-   frontier_data <- prep_frontier_data(he)
+   frontier_data <- prep_frontier_data(he, start.from.origins)
    
    frontier_params <-
-      list(colour <- colours()[floor(seq(262, 340, length.out = he$n_comparators))],  # gray scale
+      list(colour <-
+              colours()[
+                 floor(seq(262, 340, length.out = he$n_comparators))], # grey scale
            pos = pos,
            flip = flip,
            relative = relative,
            dominance = dominance)
            
    if (print.summary)
-      ceef.summary(he, ceef.points, orig.avg,...)
+      ceef.summary(he, frontier_data, ...)
    
    if (is_baseplot(graph)) {
       if (print.plot) {

@@ -1,80 +1,97 @@
 
 #'
-prep_frontier_data <- function(he) {
+prep_frontier_data <- function(he,
+                               start.origin) {
+  browser()
   
-  ### no visible binding note
-  c.avg <- e.avg <- x <- y <- e <- e.orig <- c.orig <- NA_real_
+  # if the effectiveness is negative or
+  # !start.origin then rescale
+  # drop names
+  means_e <- `names<-`(apply(he$e, 2, mean), NULL)
+  means_c <- `names<-`(apply(he$c, 2, mean), NULL)
   
-  ### if the effectiveness is negative or !start.from.origins, rescale
-  ec.min <- with(he,
-                 c(min(apply(e, 2, mean)),
-                   apply(c, 2, mean)[which.min(apply(e, 2, mean))],
-                   which.min(apply(e, 2, mean))))
-  e.neg <- ec.min[1] < 0
-  c.neg <- any(apply(he$c, 2, mean) < 0)
+  ec_min <- c(mean_e = min(means_e),
+              mean_c = means_c[which.min(means_e)],
+              interv = which.min(means_e))
   
-  if (e.neg && !c.neg && start.from.origins) {
+  e.neg <- ec_min["mean_e"] < 0
+  c.neg <- any(means_c < 0)
+  
+  if (e.neg && !c.neg && start.origin) {
     message("Benefits are negative, the frontier will not start from the origins")
-    start.from.origins <- FALSE
+    start.origin <- FALSE
   }
-  if (!e.neg && c.neg && start.from.origins) {
+  if (!e.neg && c.neg && start.origin) {
     message("Costs are negative, the frontier will not start from the origins")
-    start.from.origins <- FALSE
+    start.origin <- FALSE
   }
-  if (e.neg && c.neg && start.from.origins) {
+  if (e.neg && c.neg && start.origin) {
     message("Costs and benefits are negative, the frontier will not start from the origins")
-    start.from.origins <- FALSE
+    start.origin <- FALSE
   }
-  e.neg <- ifelse(start.from.origins, e.neg, TRUE)
   
   # frontier calculation
   data.avg <-
     data.frame(
-      "e.avg" = apply(he$e, 2, mean) - ifelse(!e.neg, 0, ec.min[1]),
-      "c.avg" = apply(he$c, 2, mean) - ifelse(!e.neg, 0, ec.min[2]))
+      "e.avg" = means_e - ifelse(start.origin, 0, ec_min["mean_e"]),
+      "c.avg" = means_c - ifelse(start.origin, 0, ec_min["mean_c"]))
   
-  data.avg <- cbind(data.avg,
-                    data.avg,
+  orig.avg <- cbind(data.avg,
                     as.factor(c(1:dim(data.avg)[1])))
   
-  names(data.avg)[3:5] <- c("e.orig", "c.orig", "comp")
-  orig.avg <- data.avg[, 3:5]
+  names(orig.avg) <- c("e.orig", "c.orig", "comp")
+  
+  data.avg <- cbind(data.avg, orig.avg)
   
   # check for interventions with zero costs and effectiveness
+  ##TODO: should this check if ALL interventions are 0?
+  ce_zeros <-
+    xor(data.avg["e.avg"] == 0,
+        data.avg["c.avg"] == 0)
+
   comp <-
-    ifelse(
-      any(apply(data.avg[, 1:2], 1,
-                function(x) isTRUE(sum(x) == 0 & prod(x) == 0))),
-      which(apply(data.avg[, 1:2], 1, sum) == 0 &
-              apply(data.avg[, 1:2], 1, prod) == 0), 0)
+    ifelse(any(ce_zeros),
+           yes = which(ce_zeros),
+           no = 0)
   
   # contains the points connecting the frontier
-  # always starts from the origins
+  # always starts from the origin
   ceef.points <-
     data.frame(
       x = 0,
       y = 0,
       comp = comp)
   
-  repeat{
-    if (prod(dim(data.avg)) == 0) break
+  
+  ##TODO: get some old output and compare/reverse engineer
+  ##      what is this doing?
+  repeat {
+    no_data <- prod(dim(data.avg)) == 0
     
-    theta <- with(data.avg, atan(c.avg/e.avg))
-    theta.min <- min(theta, na.rm = TRUE)
+    if (no_data) break
     
-    if (theta.min > threshold) break
-    index <- which(theta == theta.min)
+    wtp <- atan(data.avg$c.avg/data.avg$e.avg)
+    wtp.min <- min(wtp, na.rm = TRUE)
+    
+    if (wtp.min > threshold) break
+    
+    index <- which(wtp == wtp.min)
     
     if (length(index) > 1)
       index <- index[which.min(data.avg$e.avg[index])]
     
     ceef.points <- with(data.avg,
-                        rbind(ceef.points, c(e.orig[index], c.orig[index], comp[index])))
-    data.avg[, 1:2] <-
-      data.avg[, 3:4] - matrix(rep(as.numeric(data.avg[index, 3:4]), dim(data.avg)[1]),
-                               ncol = 2,
-                               byrow = TRUE)
-    data.avg <- subset(subset(data.avg, c.avg*e.avg > 0), c.avg + e.avg > 0)
+                        rbind(ceef.points, orig.avg[index, ]))
+
+    data.avg[, c("e.avg", "c.avg")] <-
+      data.avg[, c("e.orig", "c.orig")] - 
+      matrix(rep(as.numeric(data.avg[index, c("e.orig", "c.orig")]),
+                 nrow(data.avg)),
+             ncol = 2,
+             byrow = TRUE)
+    
+    data.avg <- subset(data.avg, c.avg*e.avg > 0)
+    data.avg <- subset(data.avg, c.avg + e.avg > 0)
   }
   
   ceef.points$comp <- factor(ceef.points$comp)
@@ -85,7 +102,7 @@ prep_frontier_data <- function(he) {
   for (i in 2:dim(ceef.points)[1])
     ceef.points$slope[i] <- with(ceef.points, (y[i] - y[i-1])/(x[i] - x[i-1]))
   
-  ## workaround for start.from.origins == FALSE: remove first row if slope is negative
+  ## workaround for start.origin == FALSE: remove first row if slope is negative
   while (dim(ceef.points)[1] > 1 &&
          ceef.points$slope[2] < 0) {
     ceef.points <- ceef.points[-1, ]
@@ -96,17 +113,17 @@ prep_frontier_data <- function(he) {
   ##TODO: why is the old code for fewer columns?
   # points
   scatter.data <- data.frame(
-    e = c(he$e[, keep_intervs]), #-ifelse(!e.neg, 0, ec.min[1]),
-    c = c(he$c[, keep_intervs]), #-ifelse(!e.neg, 0, ec.min[2]),
+    e = c(he$e[, keep_intervs]), #-ifelse(!e.neg, 0, ec_min[1]),
+    c = c(he$c[, keep_intervs]), #-ifelse(!e.neg, 0, ec_min[2]),
     comp = as.factor(rep(keep_intervs, he$n_sim)))
   # comp = as.factor(sort(rep(1:he$n_comparators, he$n_sim))))
   
   ## re-adjustment of data sets
-  ceef.points[, 1] <- ceef.points[, 1] + ifelse(!e.neg, 0, ec.min[1])
-  ceef.points[, 2] <- ceef.points[, 2] + ifelse(!e.neg, 0, ec.min[2])
+  ceef.points[, 1] <- ceef.points[, 1] + ifelse(!e.neg, 0, ec_min[1])
+  ceef.points[, 2] <- ceef.points[, 2] + ifelse(!e.neg, 0, ec_min[2])
   
-  orig.avg[, 1] <- orig.avg[, 1] + ifelse(!e.neg, 0, ec.min[1])
-  orig.avg[, 2] <- orig.avg[, 2] + ifelse(!e.neg, 0, ec.min[2])
+  orig.avg[, 1] <- orig.avg[, 1] + ifelse(!e.neg, 0, ec_min[1])
+  orig.avg[, 2] <- orig.avg[, 2] + ifelse(!e.neg, 0, ec_min[2])
   
   list(scatter.data = scatter.data,
        ceef.points = ceef.points,

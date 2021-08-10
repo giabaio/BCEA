@@ -2,12 +2,14 @@
 #' Summary table function
 #' 
 ceef.summary <- function(he,
-                         ceef.points,
-                         orig.avg,
+                         frontier_data,
                          include.ICER = FALSE,
                          ...) {
   
-  ## Tables adaptation and formatting
+  ceef.points <- frontier_data$ceef.points 
+  orig.avg <- frontier_data$orig.avg
+  
+  ## tables adaptation and formatting
   no.ceef <- which(!1:he$n_comparators %in% ceef.points$comp)
   ## Interventions included
   if (ceef.points$comp[1] == 0)

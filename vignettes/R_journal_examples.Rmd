@@ -100,7 +100,7 @@ other plots
 eib.plot(bcea_smoke)
 contour(bcea_smoke)
 
-# lines and colour wrong...
+##TODO: lines and colour wrong message...
 ceac.plot(bcea_smoke)
 
 ib.plot(bcea_smoke)
