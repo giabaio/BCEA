@@ -1,7 +1,8 @@
 
 #' ceef_plot_base
 #' 
-ceef_plot_base <- function(frontier_data,
+ceef_plot_base <- function(he,
+                           frontier_data,
                            frontier_params) {
   
   scatter.data <- frontier_data$scatter.data
@@ -16,7 +17,7 @@ ceef_plot_base <- function(frontier_data,
   
   pos <- where_legend(he, pos)
   
-  if (flip){
+  if (flip) {
     temp <- scatter.data$e
     scatter.data$e <- scatter.data$c
     scatter.data$c <- temp
@@ -32,7 +33,7 @@ ceef_plot_base <- function(frontier_data,
     rm(temp)
   }
   
-  ### set up plot window
+  # set up plot window
   xlab <- ifelse((!flip & !relative), "Effectiveness",
                  ifelse((!flip & relative), "Differential effectiveness",
                         ifelse((flip & !relative),
@@ -76,25 +77,30 @@ ceef_plot_base <- function(frontier_data,
   abline(h = 0, v = 0, col = "grey")
   
   # plot the scatter
+  # matplot()?
+  # will need to add sim number column to cast
+  # do this in prep_frontier_data()
+  
   for (i in 1:he$n_comparators)
     with(scatter.data,
-         points(subset(scatter.data, comp == i)[, -3],
+         points(subset(scatter.data, comp == i)[, c("e", "c")],
                 type = "p",
                 pch = 20,
                 cex = 0.35,
                 col = colour[i]))
   
-  # plot the frontier
-  points(ceef.points[, 1:2], type = "l", lwd = 2)
+  # add frontier
+  points(ceef.points[, c("x", "y")], type = "l", lwd = 2)
   
   # add circles
-  points(orig.avg[, -3], pch = 21, cex = 2, bg = "white", col = "black")
+  points(orig.avg[, c("e.orig", "c.orig")],
+         pch = 21, cex = 2, bg = "white", col = "black")
   
   # add text; grey if not on the frontier
   for (i in seq_len(he$n_comparators)) {
-    text(orig.avg[i, -3],
+    text(orig.avg[i, c("e.orig", "c.orig")],
          labels = orig.avg[i, 3],
-         col = ifelse(i %in% ceef.points$comp,"black","grey60"),
+         col = ifelse(i %in% ceef.points$comp, "black", "grey60"),
          cex = 0.75)
   }
   

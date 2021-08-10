@@ -103,23 +103,24 @@ ceef.plot.bcea <- function(he,
    
    extra_args <- list(...)
    
-   ## if threshold is NULL, then bound to pi/2, which is atan(Inf)
-   ## else if positive, bound to the increase angle given the slope
-   if (is.null(threshold)) {
-      threshold <- pi/2
-   } else {
-      if (threshold <= 0) {
-         warning(
-            "The value of the cost-effectiveness threshold should be positive. The argument will be ignored.",
-            call. = FALSE)
-         threshold <- pi/2
-      } else {
-         threshold <- atan(threshold)
-      }
+   ##TODO: this function uses comparators not comparisons
+   ##      thing is he$e,c have all interventions because can modify
+   ##      
+   ### selects the comparators. No need for recursion
+   if (!is.null(comparators)) {
+      stopifnot(all(comparators %in% 1:he$n_comparators))
+      # adjusts bcea object for the correct number of dimensions and comparators
+      he$comp <- he$comp[comparators]
+      he$n_comparators <- length(comparators)
+      he$n_omparisons <- length(comparators) - 1
+      he$interventions <- he$interventions[comparators]
+      he$ref <- rank(c(he$ref, he$comp))[1]
+      he$comp <- rank(c(he$ref, he$comp))[-1]
+      he$change_comp <- TRUE
+      ### bceanew
+      he$e <- he$e[, comparators]
+      he$c <- he$c[, comparators]
    }
-   
-   ##TODO: this function uses comparators not comparisons...
-   # he <- setComparisons(he, comparison)
    
    # if incremental analysis (relative to the reference) required
    # needs to modify the bcea object
@@ -132,10 +133,13 @@ ceef.plot.bcea <- function(he,
       he <- temp
    }
    
-   frontier_data <- prep_frontier_data(he, start.from.origins)
+   frontier_data <-
+      prep_frontier_data(he,
+                         threshold,
+                         start.from.origins)
    
    frontier_params <-
-      list(colour <-
+      list(colour =
               colours()[
                  floor(seq(262, 340, length.out = he$n_comparators))], # grey scale
            pos = pos,
@@ -148,7 +152,8 @@ ceef.plot.bcea <- function(he,
    
    if (is_baseplot(graph)) {
       if (print.plot) {
-         ceef_plot_base(frontier_data,
+         ceef_plot_base(he,
+                        frontier_data,
                         frontier_params)
       }
    } else if (is_ggplot(graph)) {
@@ -158,7 +163,7 @@ ceef.plot.bcea <- function(he,
                           frontier_params,
                           ...)
       }
-   } else {
+   } else if (is_plotly(graph)) {
       ##TODO: plotly version
    }
 }
