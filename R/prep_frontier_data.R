@@ -76,7 +76,7 @@ prep_frontier_data <- function(he,
     data.frame(
       x = 0,
       y = 0,
-      comp = comp)
+      comp = 0)
   
   ##TODO: new code
   # repeat {

@@ -3,11 +3,14 @@
 #' 
 ceef.summary <- function(he,
                          frontier_data,
+                         frontier_params,
                          include.ICER = FALSE,
                          ...) {
   
   ceef.points <- frontier_data$ceef.points 
   orig.avg <- frontier_data$orig.avg
+  
+  flip <- frontier_params$flip
   
   ## tables adaptation and formatting
   no.ceef <- which(!1:he$n_comparators %in% ceef.points$comp)

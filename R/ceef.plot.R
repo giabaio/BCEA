@@ -148,7 +148,10 @@ ceef.plot.bcea <- function(he,
            dominance = dominance)
            
    if (print.summary)
-      ceef.summary(he, frontier_data, ...)
+      ceef.summary(he,
+                   frontier_data,
+                   frontier_params,
+                   ...)
    
    if (is_baseplot(graph)) {
       if (print.plot) {
