@@ -1,6 +1,7 @@
 
 #' @rdname evi.plot
 #' 
+#' @template args-he
 #' @param graph A string used to select the graphical engine to use for
 #' plotting. Should (partial-)match the three options \code{"base"},
 #' \code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
@@ -53,28 +54,9 @@ evi.plot.bcea <- function(he,
                           graph = c("base", "ggplot2", "plotly"),
                           ...) {
   
-  if (any(is.null(graph)) || any(is.na(graph))) 
-    graph <- "base"
+  graph <- match.arg(graph)
   
-  graph_choice <- pmatch(graph[1], c("base", "ggplot2", "plotly"), nomatch = 1)
-  
-  if (graph_choice == 2 &&
-      !requireNamespace("ggplot2", quietly = TRUE) &
-      requireNamespace("grid", quietly = TRUE)) {
-    warning("Package ggplot2 and grid not found; eib.plot will be rendered using base graphics.",
-            call. = FALSE)
-    graph_choice <- 1
-  }
-  
-  if (graph_choice == 3 &&
-      !requireNamespace("plotly", quietly = TRUE)) {
-    warning("Package plotly not found; eib.plot will be rendered using base graphics.",
-            call. = FALSE)
-    graph_choice <- 1
-  }
-  
-  # evaluate additional arguments
-  exArgs <- list(...)
+  extra_args <- list(...)
   
   plot_annotations <- list("exist" = list("title" = FALSE,
                                           "xlab" = FALSE,
@@ -86,20 +68,20 @@ evi.plot.bcea <- function(he,
   plot_aes_args = c("area_include", "area_color", "line_colors", "line_types")
   cri.quantile <- TRUE
   
-  if (length(exArgs) >= 1) {
+  if (length(extra_args) >= 1) {
     # if existing, read and store title, xlab and ylab
     for (annotation in names(plot_annotations$exist)) {
-      if (exists(annotation, where = exArgs)) {
+      if (exists(annotation, where = extra_args)) {
         plot_annotations$exist[[annotation]] <- TRUE
-        plot_annotations[[annotation]] <- exArgs[[annotation]]
+        plot_annotations[[annotation]] <- extra_args[[annotation]]
       }
     }
     # if existing, read and store graphical options
     for (aes_arg in plot_aes_args) {
-      if (exists(aes_arg, where = exArgs)) {
+      if (exists(aes_arg, where = extra_args)) {
         aes_cat <- strsplit(aes_arg, "_")[[1]][1]
         aes_name <- paste0(strsplit(aes_arg, "_")[[1]][-1], collapse = "_")
-        plot_aes[[aes_cat]][[aes_name]] <- exArgs[[aes_arg]]
+        plot_aes[[aes_cat]][[aes_name]] <- extra_args[[aes_arg]]
       }
     }
   }
@@ -113,23 +95,25 @@ evi.plot.bcea <- function(he,
   if (!plot_annotations$exist$ylab)
     plot_annotations$ylab <- "EVPI"
   
-  data.psa <- with(he, data.frame("k" = c(k), "evi" = c(evi)))
+  data.psa <-
+    with(he, data.frame("k" = c(k),
+                        "evi" = c(evi)))
   
-  if (graph_choice == 1) {
+  if (is_baseplot(graph)) {
     
     evi_plot_base(he,
                   data.psa,
                   plot_aes,
                   plot_annotations)
     
-  } else if (graph_choice == 2) {
+  } else if (is_ggplot(graph)) {
     
     evi_plot_ggplot(he,
                     data.psa,
                     plot_aes,
                     plot_annotations)
     
-  } else if (graph_choice == 3) {
+  } else if (is_plotly(graph)) {
     
     evi_plot_plotly(data.psa,
                     plot_aes,

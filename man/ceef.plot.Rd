@@ -15,7 +15,8 @@
   dominance = TRUE,
   relative = FALSE,
   print.summary = TRUE,
-  graph_type = c("base", "ggplot2"),
+  graph = c("base", "ggplot2"),
+  print.plot = TRUE,
   ...
 )
 
@@ -29,14 +30,15 @@ modelling and the economic evaluation.}
 frontier analysis. It must have a length > 1. Default as \code{NULL} includes
 all the available comparators.}
 
-\item{pos}{Parameter to set the position of the legend. Can be given in form
+\item{pos}{Parameter to set the position of the legend (only relevant for
+multiple interventions, ie more than 2 interventions being compared).
+Can be given in form
 of a string \code{(bottom|top)(right|left)} for base graphics and
-\code{bottom}, \code{top}, \code{left} or \code{right} for ggplot2. It can
-be a two-elements vector, which specifies the relative position on the x and
-y axis respectively, or alternatively it can be in form of a logical
-variable, with \code{FALSE} indicating to use the default position and
-\code{TRUE} to place it on the bottom of the plot. Default value is
-\code{c(1,1)}, that is the topright corner inside the plot area.}
+\code{bottom|top|left|right} for ggplot2. It can be a two-elements vector,
+which specifies the relative position on the x and y axis respectively, or
+alternatively it can be in form of a logical variable, with \code{FALSE}
+indicating to use the default position and \code{TRUE} to place it on the
+bottom of the plot.}
 
 \item{start.from.origins}{Logical. Should the frontier start from the
 origins of the axes? The argument is reset to \code{FALSE} if the average
@@ -61,9 +63,11 @@ comparator?}
 \item{print.summary}{Logical. Should the efficiency frontier summary be
 printed along with the graph?  See Details for additional information.}
 
-\item{graph_type}{A string used to select the graphical engine to use for
+\item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the two options \code{"base"} or
 \code{"ggplot2"}. Default value is \code{"base"}.}
+
+\item{print.plot}{Logical. Should the efficiency frontier be plotted?}
 
 \item{...}{If \code{graph_type="ggplot2"} and a named theme object is supplied,
 it will be added to the ggplot object. Ignored if \code{graph_type="base"}.
@@ -116,7 +120,7 @@ data(Smoking)
 m <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
 
 ## produce plot
-ceef.plot(m, graph_type = "base")
+ceef.plot(m, graph = "base")
 
 \donttest{
 ## tweak the options
@@ -126,7 +130,7 @@ ceef.plot(m,
           dominance = FALSE,
           start.from.origins = FALSE,
           print.summary = FALSE,
-          graph_type = "base")
+          graph = "base")
           
 ## or use ggplot2 instead
 if(require(ggplot2)){
@@ -135,7 +139,7 @@ ceef.plot(m,
           start.from.origins = FALSE,
           pos = TRUE,
           print.summary = FALSE,
-          graph_type = "ggplot2")
+          graph = "ggplot2")
  }
 }
 

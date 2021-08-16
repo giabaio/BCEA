@@ -14,12 +14,7 @@
 #' @template args-comparison
 #' @param wtp The value of the willingness to pay parameter. It is passed to
 #' \code{\link{ceplane.plot}}.
-#' @param pos Parameter to set the position of the legend. Can be given in form
-#' of a string, a single logical value, or a two-element vector with the
-#' respective relative positions on the x and y axis. Default as \code{FALSE}
-#' sets the legend position to the default one for each plot (see the details
-#' section), while \code{TRUE} puts it on the bottom of each plot.  Changes
-#' will affect all the individual plots.
+#' @template args-pos
 #' @param graph A string used to select the graphical engine to use for
 #' plotting. Should (partial-)match the two options \code{"base"} or
 #' \code{"ggplot2"}. Default value is \code{"base"}.
@@ -155,7 +150,11 @@ plot.bcea <- function(x,
         names(default_params)[names(default_params) %in% names(extra_args)]
       
       extra_params <- extra_args[keep_param]
-      global_params <- modifyList(default_params, extra_params, keep.null = TRUE)
+
+      global_params <-
+        modifyList(default_params,
+                   extra_params,
+                   keep.null = TRUE)
       
       theme_add <- purrr::keep(extra_args, is.theme)
       

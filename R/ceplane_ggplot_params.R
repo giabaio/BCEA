@@ -25,7 +25,7 @@ ceplane_ggplot_params <- function(he,
   
   default_params <-
     list(
-      size = rel(3.5),         # relative size to what??...
+      size = rel(3.5),
       wtp = list(
         geom = "text",
         x = graph_params$xlim[1],

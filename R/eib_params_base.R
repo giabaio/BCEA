@@ -10,7 +10,8 @@ eib_params_base <- function(he,
       range(c(he$eib))
     } else {
       range(c(he$eib),
-            cri_params$data)
+            cri_params$data$low,
+            cri_params$data$upp)
     }
   
   list(

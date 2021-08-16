@@ -45,7 +45,7 @@ $$
 \frac{1}{S} \sum_s^S IB(\theta_s)
 $$
 
-where $\theta_s$ is the realised configuration of the parameters $\theta$ in correspondence of the s-th simulation.
+where $\theta_s$ is the realised configuration of the parameters $\theta$ in correspondence of the $s$-th simulation.
 
 
 #### R code
@@ -89,10 +89,10 @@ Other plotting arguments can be specified such as title, line colours and theme.
 
 ```{r}
 eib.plot(he,
-          graph = "ggplot2",
-          main = "my title",
-          line = list(colors = "green"),
-          theme = theme_dark())
+         graph = "ggplot2",
+         main = "my title",
+         line = list(colors = "green"),
+         theme = theme_dark())
 ```
 
 Credible interval can also be plotted using the `plot.cri` logical argument.

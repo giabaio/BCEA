@@ -22,7 +22,7 @@
 compute_kstar <- function(k, best, ref) {
   
   if (all(best == ref)) {
-    return(NA)    
+    return(numeric())    
   }
   
   flip <- c(0, diff(best)) != 0 
@@ -307,6 +307,17 @@ compute_ICER <- function(df_ce) {
     select(.data$ICER) %>%  # required to match current format 
     unlist() %>% 
     setNames(comp_names)
+}
+
+
+#' Compute Expected Value of Information
+#' 
+#' @param ol Opportunity loss
+#' @return EVI
+#' @export
+#' 
+compute_EVI <- function(ol) {
+  colMeans(ol)
 }
 
 

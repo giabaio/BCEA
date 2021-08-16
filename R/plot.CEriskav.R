@@ -6,17 +6,10 @@
 #' Plots the EIB and the EVPI when risk aversion is included in the utility
 #' function.
 #' 
-#' @param x An object of the class \code{CEriskav}, containing the results of
-#' the economic analysis performed accounting for a risk aversion parameter
-#' (obtained as output of the function \code{\link{CEriskav}}).
-#' @param pos Parameter to set the position of the legend. Can be given in form
-#' of a string \code{(bottom|top)(right|left)} for base graphics and
-#' \code{bottom|top|left|right} for ggplot2. It can be a two-elements vector,
-#' which specifies the relative position on the x and y axis respectively, or
-#' alternatively it can be in form of a logical variable, with \code{FALSE}
-#' indicating to use the default position and \code{TRUE} to place it on the
-#' bottom of the plot. Default value is \code{c(0,1)}, that is in the topleft
-#' corner inside the plot area.
+#' @param he An object of the class \code{CEriskav}, a subclass of \code{bcea},
+#' containing the results of the economic analysis performed accounting for a
+#' risk aversion parameter (obtained as output of the function \code{\link{CEriskav}}).
+#' @template args-pos
 #' @param graph A string used to select the graphical engine to use for
 #' plotting. Should (partial-)match the two options \code{"base"} or
 #' \code{"ggplot2"}. Default value is \code{"base"}.
@@ -69,16 +62,16 @@
 #' #
 #' # Run the cost-effectiveness analysis accounting for risk aversion
 #' \donttest{
-#' cr <- CEriskav(m,     # uses the results of the economic evalaution 
+#' cr <- CEriskav(m,     # uses the results of the economic evaluation 
 #'                       #  (a "bcea" object)
 #'         r=r,          # defines the vector of values for the risk 
 #'                       #  aversion parameter
 #'         comparison=1  # if more than 2 interventions, selects the 
 #'                       #  pairwise comparison 
-#' )
+#'       )
 #' }
 #' #
-#' # Now produce the plots
+#' # produce the plots
 #' \donttest{
 #' plot(cr # uses the results of the risk aversion 
 #'         #  analysis (a "CEriskav" object)
@@ -95,7 +88,7 @@
 #' 
 #' @export
 #' 
-plot.CEriskav <- function(x,
+plot.CEriskav <- function(he,
                           pos = c(0, 1),
                           graph = c("base", "ggplot2"),
                           ...) {
@@ -132,23 +125,23 @@ plot.CEriskav <- function(x,
       else "topleft"
     }
     
-    plot(x = x$k, y = x$eibr[, 1],
+    plot(x = he$k, y = he$eibr[, 1],
          type = "l",
          xlab = "Willingness to pay",
          ylab = " ",
          main = "EIB as a function of the risk aversion parameter",
-         ylim = range(x$eibr))
-    linetype <- seq(1,x$R)
+         ylim = range(he$eibr))
+    linetype <- seq(1,he$R)
     
-    for (l in 2:x$R) {
-      points(x$k, x$eibr[, l], type = "l", lty = linetype[l])
+    for (l in 2:he$R) {
+      points(he$k, he$eibr[, l], type = "l", lty = linetype[l])
     }
-    text <- paste("r = ", x$r, sep = "") 
+    text <- paste("r = ", he$r, sep = "") 
     # If the first value for r is small enough, consider it close to 0 and print the label accordingly
-    if (x$r[1] < 1e-8) {
+    if (he$r[1] < 1e-8) {
       text[1] <- expression(r%->%0)
     }
-    legend(alt.legend, text, lty = seq(1:x$R), cex = 0.9, box.lty = 0)
+    legend(alt.legend, text, lty = seq(1:he$R), cex = 0.9, box.lty = 0)
     abline(h = 0, col = "grey")
     
     # Plots the EVPI for the risk aversion case
@@ -169,25 +162,25 @@ plot.CEriskav <- function(x,
         devAskNewPage(ask = TRUE)
     }
     
-    plot(x$k,
-         x$evir[, 1],
+    plot(he$k,
+         he$evir[, 1],
          type = "l",
-         ylim = range(x$evir),
+         ylim = range(he$evir),
          xlab = "Willingness to pay",
          ylab = " ",
          main = "EVPI as a function of the risk aversion parameter")
-    for (l in 2:x$R) {
-      points(x$k, x$evir[, l], type = "l", lty = linetype[l])
+    for (l in 2:he$R) {
+      points(he$k, he$evir[, l], type = "l", lty = linetype[l])
     }
-    legend(alt.legend, text, lty = seq(1:x$R), cex = 0.9, box.lty = 0)
+    legend(alt.legend, text, lty = seq(1:he$R), cex = 0.9, box.lty = 0)
     abline(h = 0, col = "grey")
     
     if (!is.null(howplot))
       if (howplot == "ask")
         devAskNewPage(ask = FALSE)
     
-  } # base.graphics
-  else {
+  } else {
+    # base.graphics
     if (!isTRUE(requireNamespace("ggplot2", quietly = TRUE) &&
                 requireNamespace("grid", quietly = TRUE))) {
       message("falling back to base graphics\n")
@@ -197,15 +190,15 @@ plot.CEriskav <- function(x,
     # no visible bindings note
     k <- r <- NA_real_
     
-    linetypes <- rep(c(1,2,3,4,5,6), ceiling(x$R/6))[1:x$R]
-    df <- data.frame(cbind(rep(x$k,x$R), c(x$eibr), c(x$evir)),
-                     as.factor(sort(rep(1:x$R, length(x$k)))))
+    linetypes <- rep(c(1,2,3,4,5,6), ceiling(he$R/6))[1:he$R]
+    df <- data.frame(cbind(rep(he$k,he$R), c(he$eibr), c(he$evir)),
+                     as.factor(sort(rep(1:he$R, length(he$k)))))
     names(df) <- c("k","eibr","evir","r")
     
     # labels
-    text <- paste0("r = ",x$r)
+    text <- paste0("r = ", he$r)
     # if the first value for r is small enough, consider it close to 0 and print the label accordingly
-    if(x$r[1]<1e-8) {
+    if (he$r[1] < 1e-8) {
       text[1] <- expression(r%->%0)
     }
     
@@ -246,8 +239,7 @@ plot.CEriskav <- function(x,
       alt.legend <- "bottom"
       eibr <- eibr + theme(legend.direction = "vertical")
       evir <- evir + theme(legend.direction = "vertical")
-    }
-    else {
+    } else {
       if (is.character(alt.legend)) {
         choices <- c("left", "right", "bottom", "top")
         alt.legend <- choices[pmatch(alt.legend,choices)]
@@ -294,8 +286,7 @@ plot.CEriskav <- function(x,
     if (is.null(howplot)) {
       if (!isTRUE(Sys.getenv("RSTUDIO") == 1))
         dev.new()
-    }
-    else{
+    } else {
       opt <- c("x11", "ask", "dev.new")
       howplot <- ifelse(is.na(pmatch(howplot, opt)),
                         "dev.new",
@@ -316,6 +307,5 @@ plot.CEriskav <- function(x,
     
     return(invisible(list("eib" = eibr, "evi" = evir)))
   }
-  
 }
 

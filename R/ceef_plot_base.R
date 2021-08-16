@@ -1,39 +1,23 @@
 
 #' ceef_plot_base
 #' 
-ceef_plot_base <- function(pos,
-                           scatter.data,
-                           flip,
-                           relative,
-                           dominance,
-                           ceef.points,
-                           colour,
-                           orig.avg) {
+ceef_plot_base <- function(he,
+                           frontier_data,
+                           frontier_params) {
   
-  ### legend positioning
-  if (is.numeric(pos) && length(pos) == 2) {
-    temp <- ""
-    if (pos[2] == 0)
-      temp <- paste0(temp,"bottom")
-    else
-      temp <- paste0(temp,"top")
-    if (pos[1] == 0)
-      temp <- paste0(temp,"left")
-    else
-      temp <- paste0(temp,"right")
-    pos <- temp
-    if (length(grep("^(bottom|top)(left|right)$",temp)) == 0)
-      pos <- FALSE
-  }
+  scatter.data <- frontier_data$scatter.data
+  ceef.points <- frontier_data$ceef.points 
+  orig.avg <- frontier_data$orig.avg
   
-  if (is.logical(pos)) {
-    if (!pos)
-      pos <- "topright"
-    else
-      pos <- "topleft"
-  }
+  colour <- frontier_params$colour
+  pos <- frontier_params$pos
+  flip <- frontier_params$flip
+  relative  <- frontier_params$relative 
+  dominance <- frontier_params$dominance
   
-  if (flip){
+  pos <- where_legend(he, pos)
+  
+  if (flip) {
     temp <- scatter.data$e
     scatter.data$e <- scatter.data$c
     scatter.data$c <- temp
@@ -49,22 +33,24 @@ ceef_plot_base <- function(pos,
     rm(temp)
   }
   
-  ### set up plot window
-  xlab <- ifelse((!flip & !relative),"Effectiveness",
-                 ifelse((!flip & relative),"Differential effectiveness",
-                        ifelse((flip & !relative),"Cost","Differential cost")))
+  # set up plot window
+  xlab <- ifelse((!flip & !relative), "Effectiveness",
+                 ifelse((!flip & relative), "Differential effectiveness",
+                        ifelse((flip & !relative),
+                               "Cost", "Differential cost")))
   ylab <- ifelse((!flip & !relative),"Cost",
                  ifelse((!flip & relative),"Differential cost",
-                        ifelse((flip & !relative),"Effectiveness","Differential effectiveness")))
+                        ifelse((flip & !relative),
+                               "Effectiveness", "Differential effectiveness")))
   plot(NULL,
-       xlim = c(min(range(scatter.data$e)[1],0),max(range(scatter.data$e)[2],0)),
-       ylim =c(min(range(scatter.data$c)[1],0),max(range(scatter.data$c)[2],0)),
+       xlim = c(min(range(scatter.data$e)[1],0), max(range(scatter.data$e)[2],0)),
+       ylim = c(min(range(scatter.data$c)[1],0), max(range(scatter.data$c)[2],0)),
        main = "Cost-effectiveness efficiency frontier",
        xlab = xlab,
        ylab = ylab)
   
   if (dominance) {
-    ### add dominance regions
+    # add dominance regions
     for (i in 1:dim(ceef.points)[1]) {
       rect(
         col = "grey95",
@@ -75,7 +61,7 @@ ceef_plot_base <- function(pos,
         ytop = ifelse(!flip, 1, -1) * 2 * max(abs(range(scatter.data$c)))
       )
     }
-    if (dim(ceef.points)[1]>1)
+    if (dim(ceef.points)[1] > 1)
       for (i in 2:dim(ceef.points)[1]) {
         rect(
           col = "grey85",
@@ -90,31 +76,39 @@ ceef_plot_base <- function(pos,
   
   abline(h = 0, v = 0, col = "grey")
   
-  ### plot the scatter
+  # plot the scatter
+  # matplot()?
+  # will need to add sim number column to cast
+  # do this in prep_frontier_data()
+  
   for (i in 1:he$n_comparators)
     with(scatter.data,
-         points(subset(scatter.data, comp == i)[, -3],
+         points(subset(scatter.data, comp == i)[, c("e", "c")],
                 type = "p",
                 pch = 20,
                 cex = 0.35,
                 col = colour[i]))
   
-  ### plot the frontier
-  points(ceef.points[,1:2], type = "l", lwd = 2)
-  ### add circles
-  points(orig.avg[, -3], pch = 21, cex = 2, bg = "white", col = "black")
-  ### add text; grey if not on the frontier
+  # add frontier
+  points(ceef.points[, c("x", "y")], type = "l", lwd = 2)
+  
+  # add circles
+  points(orig.avg[, c("e.orig", "c.orig")],
+         pch = 21, cex = 2, bg = "white", col = "black")
+  
+  # add text; grey if not on the frontier
   for (i in seq_len(he$n_comparators)) {
-    text(orig.avg[i, -3],
+    text(orig.avg[i, c("e.orig", "c.orig")],
          labels = orig.avg[i, 3],
-         col = ifelse(i %in% ceef.points$comp,"black","grey60"),
+         col = ifelse(i %in% ceef.points$comp, "black", "grey60"),
          cex = 0.75)
   }
-  ### legend text
+  
+  # legend text
   text <- paste(1:he$n_comparators, ":", he$interventions)
   legend(pos, text, col = colour, cex = 0.7, bty = "n", lty = 1)
   
-  ### needed for dominance areas overwriting the outer box
+  # needed for dominance areas overwriting the outer box
   box()
 }
 

@@ -40,7 +40,7 @@ new_bcea <- function(df_ce, k) {
   
   ol <- compute_ol(Ustar, U, best)
   
-  evi <- colMeans(ol)
+  evi <- compute_EVI(ol)
   
   interv_names <- levels(df_ce$interv_names)
   

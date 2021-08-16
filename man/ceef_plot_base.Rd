@@ -4,16 +4,7 @@
 \alias{ceef_plot_base}
 \title{ceef_plot_base}
 \usage{
-ceef_plot_base(
-  pos,
-  scatter.data,
-  flip,
-  relative,
-  dominance,
-  ceef.points,
-  colour,
-  orig.avg
-)
+ceef_plot_base(he, frontier_data, frontier_params)
 }
 \description{
 ceef_plot_base

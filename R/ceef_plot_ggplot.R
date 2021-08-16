@@ -4,18 +4,22 @@
 #' @import ggplot2 grid
 #' 
 ceef_plot_ggplot <- function(he,
-                             ceef.points,
-                             scatter.data,
-                             exArgs,
-                             dominance,
-                             relative,
-                             orig.avg,
-                             colour,
-                             flip,
-                             pos, ...) {
+                             frontier_data,
+                             frontier_params,
+                             ...) {
   
-  if(!(requireNamespace("ggplot2", quietly = TRUE) &&
-       requireNamespace("grid", quietly = TRUE))){
+  scatter.data <- frontier_data$scatter.data
+  ceef.points <- frontier_data$ceef.points 
+  orig.avg <- frontier_data$orig.avg
+  
+  colour <- frontier_params$colour
+  pos <- frontier_params$pos
+  flip <- frontier_params$flip
+  relative  <- frontier_params$relative 
+  dominance <- frontier_params$dominance
+  
+  if (!(requireNamespace("ggplot2", quietly = TRUE) &&
+        requireNamespace("grid", quietly = TRUE))) {
     message("Falling back to base graphics\n")
     
     ceef.plot(
@@ -29,15 +33,15 @@ ceef_plot_ggplot <- function(he,
   }
   
   opt.theme <- theme()
-  exArgs <- list(...)
+  extra_args <- list(...)
   
-  if (length(exArgs) >= 1) {
-    for (obj in exArgs)
+  if (length(extra_args) >= 1) {
+    for (obj in extra_args)
       if (is.theme(obj))
         opt.theme <- opt.theme + obj
   }
   
-  ceplane <- ggplot(ceef.points, aes(x=x,y=y))
+  ceplane <- ggplot(ceef.points, aes(x = x, y = y))
   
   if (dominance) {
     ### add dominance regions
@@ -58,8 +62,7 @@ ceef_plot_ggplot <- function(he,
                colour = "grey") +
     ### add scatter points
     geom_point(data = scatter.data,
-               aes(x = e, y = c, colour = comp),
-               size = 1)
+               aes(x = e, y = c, colour = comp), size = 1)
   ### add frontier
   if (dim(ceef.points)[1] > 1)
     ceplane <- ceplane + geom_path()
@@ -85,8 +88,8 @@ ceef_plot_ggplot <- function(he,
       labels = paste0(1:he$n_comparators, ": ", he$interventions),
       values = colour,
       na.value = "black") +
-    labs(title = "Cost-effectiveness efficiency frontier", x =
-                    xlab, y = ylab) +
+    labs(title = "Cost-effectiveness efficiency frontier",
+         x = xlab, y = ylab) +
     theme_bw()
   
   ### add text into circles
@@ -100,9 +103,10 @@ ceef_plot_ggplot <- function(he,
   }
   
   jus <- NULL
+  
   if (isTRUE(pos)) {
     pos <- "bottom"
-    ceplane <- ceplane + theme(legend.direction="vertical")
+    ceplane <- ceplane + theme(legend.direction = "vertical")
   } else {
     if (is.character(pos)) {
       choices <- c("left", "right", "bottom", "top")
