@@ -28,15 +28,17 @@ test_that("Smoking example in BCEA book", {
 
 test_that("simple data", {
   
+  # empty return
   expect_equal(compute_kstar(k = 1, best = c(1), ref = 2), numeric(0))
+  
+  # only ref as optimal
+  expect_equal(compute_kstar(k = 1, best = c(1), ref = 1), numeric(0))
+  expect_equal(compute_kstar(k = c(0,1,2,3), best = c(4,4,4,4), ref = 4), numeric(0))
   
   expect_equal(compute_kstar(k = 0:1, best = c(1,2), ref = 2), 1)
   expect_equal(compute_kstar(k = 0:2, best = c(1,1,2), ref = 2), 2)
   expect_equal(compute_kstar(k = c(0,1,2,3), best = c(1,1,2,3), ref = 2), c(2,3))
   
-  # only ref as optimal
-  expect_equal(compute_kstar(k = 1, best = c(1), ref = 1), NA)
-  expect_equal(compute_kstar(k = c(0,1,2,3), best = c(4,4,4,4), ref = 4), NA)
   
   # opposite way round (from status-quo to alternative)
   expect_equal(compute_kstar(k = c(0,1,2,3), best = c(4,4,4,1), ref = 4), 3)

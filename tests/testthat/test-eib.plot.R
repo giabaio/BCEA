@@ -4,11 +4,11 @@
 # library(BCEA)
 
 
-data("Smoking")
+load("smoking_ce.RData")
 
-he <- bcea(e, c, ref = 4, Kmax = 500)
+test_that("errors for comparison groups base R", {
 
-test_that("comparison groups base R", {
+he <- bcea(eff, cost, ref = 4, Kmax = 500)
   
   expect_silent(eib.plot(he, comparison = 2))
   expect_silent(eib.plot(he, comparison = c(2,3)))

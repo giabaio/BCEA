@@ -14,7 +14,6 @@ validate_bcea <- function(eff,
                           ref,
                           interventions) {
   
-  
   if (!is.matrix(cost) | !is.matrix(eff))
     stop("eff and cost must be matrices.", call. = FALSE)
   

@@ -35,4 +35,3 @@ eib_params_ggplot <- function(he,
   modifyList(default_params,
              graph_params)
 }
-

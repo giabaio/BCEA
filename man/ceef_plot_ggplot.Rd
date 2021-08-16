@@ -4,19 +4,7 @@
 \alias{ceef_plot_ggplot}
 \title{ceef_plot_ggplot}
 \usage{
-ceef_plot_ggplot(
-  he,
-  ceef.points,
-  scatter.data,
-  exArgs,
-  dominance,
-  relative,
-  orig.avg,
-  colour,
-  flip,
-  pos,
-  ...
-)
+ceef_plot_ggplot(he, frontier_data, frontier_params, ...)
 }
 \description{
 ceef_plot_ggplot

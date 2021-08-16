@@ -9,7 +9,7 @@
   he,
   comparison = NULL,
   wtp = 25000,
-  bw = nbw,
+  bw = "bcv",
   n = 512,
   xlim = NULL,
   graph = c("base", "ggplot2"),

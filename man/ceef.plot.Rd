@@ -15,7 +15,8 @@
   dominance = TRUE,
   relative = FALSE,
   print.summary = TRUE,
-  graph_type = c("base", "ggplot2"),
+  graph = c("base", "ggplot2"),
+  print.plot = TRUE,
   ...
 )
 
@@ -62,9 +63,11 @@ comparator?}
 \item{print.summary}{Logical. Should the efficiency frontier summary be
 printed along with the graph?  See Details for additional information.}
 
-\item{graph_type}{A string used to select the graphical engine to use for
+\item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the two options \code{"base"} or
 \code{"ggplot2"}. Default value is \code{"base"}.}
+
+\item{print.plot}{Logical. Should the efficiency frontier be plotted?}
 
 \item{...}{If \code{graph_type="ggplot2"} and a named theme object is supplied,
 it will be added to the ggplot object. Ignored if \code{graph_type="base"}.
@@ -117,7 +120,7 @@ data(Smoking)
 m <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
 
 ## produce plot
-ceef.plot(m, graph_type = "base")
+ceef.plot(m, graph = "base")
 
 \donttest{
 ## tweak the options
@@ -127,7 +130,7 @@ ceef.plot(m,
           dominance = FALSE,
           start.from.origins = FALSE,
           print.summary = FALSE,
-          graph_type = "base")
+          graph = "base")
           
 ## or use ggplot2 instead
 if(require(ggplot2)){
@@ -136,7 +139,7 @@ ceef.plot(m,
           start.from.origins = FALSE,
           pos = TRUE,
           print.summary = FALSE,
-          graph_type = "ggplot2")
+          graph = "ggplot2")
  }
 }
 

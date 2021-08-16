@@ -61,10 +61,11 @@ ceef.summary <- function(he,
       }
       noceef.points[, 3] <- ICERs
       colnames(noceef.points) <-
-        c("Effectiveness", "Costs", paste0("ICER ",he$interventions[he$ref]," vs."), "Dominance type")
+        c("Effectiveness", "Costs", paste0("ICER ", he$interventions[he$ref]," vs."), "Dominance type")
     }
     
-    how.dominated <- rep("Extended dominance",length(no.ceef))
+    how.dominated <- rep("Extended dominance", length(no.ceef))
+    
     for (i in seq_along(no.ceef))
       for (j in 1:dim(ceef.points)[1]) {
         ## if the product of the deltas is negative it is dominated
@@ -78,6 +79,7 @@ ceef.summary <- function(he,
       }
     noceef.points[, ifelse(!include.ICER, 3, 4)] <- how.dominated
     rownames(noceef.points) <- he$interventions[no.ceef]
+    
     if (flip) colnames(noceef.points)[1:2] <- colnames(noceef.points)[2:1]
   }
   

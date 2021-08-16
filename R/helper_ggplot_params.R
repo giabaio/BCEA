@@ -13,7 +13,8 @@ helper_ggplot_params <- function(he,
       list(plot =
              list(labels = NULL,
                   line =
-                    list(types = 1)))
+                    list(types = 1,
+                         colors = 1)))
     graph_params <-
       modifyList(default_params, graph_params)
   }
