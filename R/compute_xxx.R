@@ -125,7 +125,7 @@ compute_Ustar <- function(U) {
 #' @export
 #' 
 compute_vi <- function(Ustar, U) {
-
+  
   if (any(dim(U)[1] != dim(Ustar)[1],
           dim(U)[2] != dim(Ustar)[2])) {
     stop("dimensions of inputs don't correspond", call. = FALSE)
@@ -332,5 +332,37 @@ comp_names_from_ <- function(df_ce) {
     arrange(.data$ints) %>% 
     select(.data$interv_names) %>% 
     unlist()
+}
+
+
+#' Cost-Effectiveness Acceptability Frontier
+#' @param p_best_interv
+#' 
+compute_ceaf <- function(p_best_interv) {
+  apply(p_best_interv, 1, max)
+}
+
+
+#' Probability Best Intervention
+#' @template args-he
+#' 
+compute_p_best_interv <- function(he) {
+  
+  p_best_interv <- array(NA,
+                         c(length(he$k),
+                           he$n_comparators))
+  
+  for (i in seq_len(he$n_comparators)) {
+    for (k in seq_along(he$k)) {
+      
+      is_interv_best <- he$U[, k, ] <= he$U[, k, i]
+      
+      rank <- apply(!is_interv_best, 1, sum)
+      
+      p_best_interv[k, i] <- mean(rank == 0)
+    }
+  }
+  
+  p_best_interv
 }
 
