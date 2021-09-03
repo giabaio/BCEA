@@ -6,7 +6,6 @@
  [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/BCEA)](https://cran.r-project.org/package=BCEA) [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/BCEA)](https://cran.r-project.org/package=BCEA)
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/grand-total/BCEA?color=orange)](	)
 [![CodeFactor](https://www.codefactor.io/repository/github/n8thangreen/bcea/badge)](https://www.codefactor.io/repository/github/n8thangreen/bcea)
-[![R build status](https://github.com/n8thangreen/BCEA/workflows/R-CMD-check/badge.svg)](https://github.com/n8thangreen/BCEA/actions)
 <!-- badges: end -->
 
 ## Contents
