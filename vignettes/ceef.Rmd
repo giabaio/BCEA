@@ -1,0 +1,97 @@
+---
+title: "Cost-effectiveness efficiency frontier"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ceac}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+  
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+collapse = TRUE,
+comment = "#>",
+fig.width = 6
+)
+```
+
+```{r setup, results='hide', message=FALSE, warning=FALSE, echo=FALSE}
+library(BCEA)
+library(dplyr)
+library(reshape2)
+library(ggplot2)
+library(purrr)
+```
+
+## Introduction
+
+
+## R code
+
+To create the plots in BCEA we first call the `bcea()` function.
+
+```{r}
+data(Smoking)
+
+treats <- c("No intervention", "Self-help", "Individual counselling", "Group counselling")
+bcea_smoke <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+```
+
+* base R
+
+```{r}
+# all interventions
+ceef.plot(bcea_smoke)
+
+# subset
+setComparisons(bcea_smoke) <- c(1,3)
+ceef.plot(bcea_smoke)
+
+# check numbering and legend
+setComparisons(bcea_smoke) <- c(3,1)
+ceef.plot(bcea_smoke)
+
+setComparisons(bcea_smoke) <- c(3,2)
+ceef.plot(bcea_smoke)
+
+setComparisons(bcea_smoke) <- 1
+ceef.plot(bcea_smoke)
+
+# add interventions back in
+setComparisons(bcea_smoke) <- c(1,3)
+ceef.plot(bcea_smoke)
+```
+
+* ggplot
+
+```{r}
+bcea_smoke <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+
+# all interventions
+ceef.plot(bcea_smoke, graph = "ggplot")
+
+# subset
+setComparisons(bcea_smoke) <- c(1,3)
+ceef.plot(bcea_smoke, graph = "ggplot")
+
+# check numbering and legend
+setComparisons(bcea_smoke) <- c(3,1)
+ceef.plot(bcea_smoke, graph = "ggplot")
+
+setComparisons(bcea_smoke) <- c(3,2)
+ceef.plot(bcea_smoke, graph = "ggplot")
+
+setComparisons(bcea_smoke) <- 1
+ceef.plot(bcea_smoke, graph = "ggplot")
+
+# add interventions back in
+setComparisons(bcea_smoke) <- c(1,3)
+ceef.plot(bcea_smoke, graph = "ggplot")
+```
+
+
+```{r echo=FALSE}
+# create output docs
+# rmarkdown::render(input = "vignettes/ceac.Rmd", output_format = "pdf_document", output_dir = "vignettes")
+# rmarkdown::render(input = "vignettes/ceac.Rmd", output_format = "html_document", output_dir = "vignettes")
+```

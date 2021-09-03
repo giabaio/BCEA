@@ -71,6 +71,8 @@ ceef_plot_ggplot <- function(he,
   xlab = ifelse(!relative, "Effectiveness", "Effectiveness differential")
   ylab = ifelse(!relative, "Cost", "Cost differential")
   
+  comparators <- sort(c(he$comp, he$ref))
+  
   ceplane <- ceplane +
     geom_point(
       data = orig.avg,
@@ -85,7 +87,7 @@ ceef_plot_ggplot <- function(he,
     ### set graphical parameters
     scale_colour_manual(
       "",
-      labels = paste0(1:he$n_comparators, ": ", he$interventions),
+      labels = paste(comparators, ":", he$interventions[comparators]),
       values = colour,
       na.value = "black") +
     labs(title = "Cost-effectiveness efficiency frontier",

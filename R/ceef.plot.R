@@ -106,20 +106,12 @@ ceef.plot.bcea <- function(he,
    ##TODO: this function uses comparators not comparisons
    ##      thing is he$e,c have all interventions because can modify
    ##      
-   ### selects the comparators. No need for recursion
    if (!is.null(comparators)) {
-      stopifnot(all(comparators %in% 1:he$n_comparators))
-      # adjusts bcea object for the correct number of dimensions and comparators
-      he$comp <- he$comp[comparators]
+      he$ref <- rank(unique(he$ref, comparators))[1]
+      he$comp <- rank(unique(he$ref, comparators))[-1]
       he$n_comparators <- length(comparators)
-      he$n_omparisons <- length(comparators) - 1
+      he$n_comparisons <- length(comparators) - 1
       he$interventions <- he$interventions[comparators]
-      he$ref <- rank(c(he$ref, he$comp))[1]
-      he$comp <- rank(c(he$ref, he$comp))[-1]
-      he$change_comp <- TRUE
-      ### bceanew
-      he$e <- he$e[, comparators]
-      he$c <- he$c[, comparators]
    }
    
    # if incremental analysis (relative to the reference) required
@@ -132,7 +124,7 @@ ceef.plot.bcea <- function(he,
       temp$c[, -he$ref] <- -he$delta.c
       he <- temp
    }
-   
+  
    frontier_data <-
       prep_frontier_data(he,
                          threshold,

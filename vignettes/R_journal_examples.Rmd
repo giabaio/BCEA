@@ -105,7 +105,6 @@ ceac.plot(bcea_smoke)
 
 ib.plot(bcea_smoke)
 
-#fix:
 ceef.plot(bcea_smoke)
 ```
 

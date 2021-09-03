@@ -15,7 +15,7 @@ ceef_plot_base <- function(he,
   relative  <- frontier_params$relative 
   dominance <- frontier_params$dominance
   
-  pos <- where_legend(he, pos)
+  pos <- where_legend_always(he, pos)
   
   if (flip) {
     temp <- scatter.data$e
@@ -81,13 +81,16 @@ ceef_plot_base <- function(he,
   # will need to add sim number column to cast
   # do this in prep_frontier_data()
   
-  for (i in 1:he$n_comparators)
+  comparators <- unique(scatter.data$comp)
+
+  for (i in seq_len(he$n_comparators)) {
     with(scatter.data,
-         points(subset(scatter.data, comp == i)[, c("e", "c")],
+         points(subset(scatter.data, comp == comparators[i])[, c("e", "c")],
                 type = "p",
                 pch = 20,
                 cex = 0.35,
                 col = colour[i]))
+  }
   
   # add frontier
   points(ceef.points[, c("x", "y")], type = "l", lwd = 2)
@@ -96,6 +99,7 @@ ceef_plot_base <- function(he,
   points(orig.avg[, c("e.orig", "c.orig")],
          pch = 21, cex = 2, bg = "white", col = "black")
   
+  ### legend
   # add text; grey if not on the frontier
   for (i in seq_len(he$n_comparators)) {
     text(orig.avg[i, c("e.orig", "c.orig")],
@@ -104,11 +108,11 @@ ceef_plot_base <- function(he,
          cex = 0.75)
   }
   
-  # legend text
-  text <- paste(1:he$n_comparators, ":", he$interventions)
+  comparators <- sort(c(he$comp, he$ref))
+  text <- paste(comparators, ":", he$interventions[comparators])
   legend(pos, text, col = colour, cex = 0.7, bty = "n", lty = 1)
   
-  # needed for dominance areas overwriting the outer box
+  # because dominance areas overwrite outer box
   box()
 }
 

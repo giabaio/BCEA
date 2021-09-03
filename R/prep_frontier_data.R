@@ -20,6 +20,10 @@ prep_frontier_data <- function(he,
     }
   }
   
+  ## quick fix:
+  he$e <- he$e[, c(he$comp, he$ref)]
+  he$c <- he$c[, c(he$comp, he$ref)]
+  
   # if the effectiveness is negative or
   # !start.origin then rescale
   # drop names
@@ -53,7 +57,7 @@ prep_frontier_data <- function(he,
       "c.avg" = means_c - ifelse(start.origin, 0, ec_min["mean_c"]))
   
   orig.avg <- cbind(data.avg,
-                    as.factor(c(1:dim(data.avg)[1])))
+                    as.factor(c(he$comp, he$ref)))
   
   names(orig.avg) <- c("e.orig", "c.orig", "comp")
   
@@ -119,12 +123,18 @@ prep_frontier_data <- function(he,
     index <- which(theta == theta.min)
     
     if (length(index) > 1)
-      index=index[which.min(data.avg$e.avg[index])]
+      index <- index[which.min(data.avg$e.avg[index])]
+    
     ceef.points <- with(data.avg,
-                        rbind(ceef.points, c(e.orig[index], c.orig[index], comp[index])))
+                        rbind(ceef.points,
+                              c(e.orig[index], c.orig[index], comp[index])))
+    
+    rep_dataavg <- rep(as.numeric(data.avg[index, 3:4]), dim(data.avg)[1])
+    
     data.avg[, 1:2] <-
-      data.avg[,3:4]-matrix(rep(as.numeric(data.avg[index, 3:4]), dim(data.avg)[1]), ncol = 2, byrow = TRUE)
-    data.avg <- subset(subset(data.avg,c.avg*e.avg > 0), c.avg+e.avg > 0)
+      data.avg[, 3:4] - matrix(rep_dataavg, ncol = 2, byrow = TRUE)
+    
+    data.avg <- subset(subset(data.avg, c.avg*e.avg > 0), c.avg + e.avg > 0)
   }
   
   ####
@@ -148,7 +158,7 @@ prep_frontier_data <- function(he,
   scatter.data <- data.frame(
     e = c(he$e), #-ifelse(!e.neg, 0, ec_min[1]),
     c = c(he$c), #-ifelse(!e.neg, 0, ec_min[2]),
-    comp = as.factor(sort(rep(1:he$n_comparators, he$n_sim))))
+    comp = as.factor(rep(c(he$comp, he$ref), each = he$n_sim)))
   
   ## re-adjustment of data sets
   ceef.points[, 1] <- ceef.points[, 1] + ifelse(!e.neg, 0, ec_min[1])
