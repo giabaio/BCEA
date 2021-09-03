@@ -1,6 +1,4 @@
 
-##TODO: can we reuse compute_*() functions here?
-
 #' @export
 #'
 'CEriskav<-.bcea' <- function(he,

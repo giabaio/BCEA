@@ -12,16 +12,9 @@
     value <- rep(1, he$n_comparators)/he$n_comparators
   }
   
-  qU <- array(NA,
-              c(he$n_sim,length(he$k), he$n_comparators))
-  
-  for (j in seq_len(he$n_comparators)) {
-    qU[, , j] <- value[j]*he$U[, , j]
-  }
-  
-  Ubar <- apply(qU, c(1, 2), sum)
+  Ubar <- compute_Ubar(he, value)
   OL.star <- he$Ustar - Ubar
-  evi.star <- apply(OL.star, 2, mean)
+  evi.star <- compute_EVI(OL.star)
   
   structure(
     modifyList(
@@ -40,6 +33,6 @@
 #' 
 'mixedAn<-.default' <- function(he,
                                 value) {
-  stop("No method available", call. = TRUE)
+  stop("No method available", call. = FALSE)
 }
 

@@ -68,6 +68,14 @@ where_legend <- function(he,
       he$n_comparisons == 1)
     return(NA)
   
+  where_legend_always(he, pos_legend)  
+}
+
+
+#'
+where_legend_always <- function(he,
+                                pos_legend) {
+  
   if (is.numeric(pos_legend) && length(pos_legend) == 2) {
     
     ns <- ifelse(pos_legend[2] == 1, "top", "bottom")
@@ -88,4 +96,6 @@ where_legend <- function(he,
   message("Legend position not recognised.")
   return(NA)
 }
+
+
 

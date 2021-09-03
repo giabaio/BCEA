@@ -16,7 +16,9 @@ setComparisons <- function(he, comparison) {
   if (he$ref %in% comparison)
     stop("Can't select Reference group. Change Reference first.",
          call. = FALSE)
-  if (any(!comparison %in% he$comp))
+  
+  n_interv <- ncol(he$e)
+  if (any(!comparison %in% 1:n_interv))
     stop("Comparison index not in available comparisons.",
          call. = FALSE)
   

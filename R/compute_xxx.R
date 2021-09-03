@@ -199,7 +199,7 @@ rowMax <- function(dat) do.call(pmax, as.data.frame(dat))
 
 #' Compute U Statistic
 #'
-#' Sample of net monetary benefit for each
+#' Sample of net (monetary) benefit for each
 #' willingness-to-pay threshold and intervention.
 #'
 #' @param df_ce Cost-effectiveness dataframe
@@ -335,7 +335,7 @@ comp_names_from_ <- function(df_ce) {
 }
 
 
-#' Cost-Effectiveness Acceptability Frontier
+#' Compute Cost-Effectiveness Acceptability Frontier
 #' @param p_best_interv
 #' 
 compute_ceaf <- function(p_best_interv) {
@@ -343,7 +343,7 @@ compute_ceaf <- function(p_best_interv) {
 }
 
 
-#' Probability Best Intervention
+#' Compute Probability Best Intervention
 #' @template args-he
 #' 
 compute_p_best_interv <- function(he) {
@@ -365,4 +365,23 @@ compute_p_best_interv <- function(he) {
   
   p_best_interv
 }
+
+
+#' Compute NB for mixture of interventions
+#' 
+#' @template args-he
+#' @param value
+#' 
+compute_Ubar <- function(he, value) {
+  
+  qU <- array(NA,
+              c(he$n_sim,length(he$k), he$n_comparators))
+  
+  for (j in seq_len(he$n_comparators)) {
+    qU[, , j] <- value[j]*he$U[, , j]
+  }
+  
+  apply(qU, c(1, 2), sum)
+}
+
 
