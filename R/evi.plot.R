@@ -20,7 +20,7 @@
 #' 
 #' @references
 #' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics.  Statistical Methods in Medical Research
+#' Analysis in Health Economics. Statistical Methods in Medical Research
 #' doi:10.1177/0962280211419832.
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
@@ -58,13 +58,16 @@ evi.plot.bcea <- function(he,
   
   extra_args <- list(...)
   
-  plot_annotations <- list("exist" = list("title" = FALSE,
-                                          "xlab" = FALSE,
-                                          "ylab" = FALSE))
+  plot_annotations <-
+    list("exist" = list("title" = FALSE,
+                        "xlab" = FALSE,
+                        "ylab" = FALSE))
+  
   plot_aes <- list("area" = list("include" = TRUE,
                                  "color" = "grey50"),
                    "line" = list("colors" = "black",
                                  "types" = NULL))
+  
   plot_aes_args = c("area_include", "area_color", "line_colors", "line_types")
   cri.quantile <- TRUE
   
@@ -95,9 +98,8 @@ evi.plot.bcea <- function(he,
   if (!plot_annotations$exist$ylab)
     plot_annotations$ylab <- "EVPI"
   
-  data.psa <-
-    with(he, data.frame("k" = c(k),
-                        "evi" = c(evi)))
+  data.psa <- data.frame(k = c(he$k),
+                         evi = c(he$evi))
   
   if (is_baseplot(graph)) {
     

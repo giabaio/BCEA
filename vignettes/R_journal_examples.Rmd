@@ -33,7 +33,7 @@ library(purrr)
 ## Vaccine data
 
 ```{r}
-data (Vaccine)
+data(Vaccine)
 
 treats <- c("Status quo", "Vaccination")
 bcea_vacc <- bcea(e, c, ref = 2, interventions = treats)
@@ -100,7 +100,6 @@ other plots
 eib.plot(bcea_smoke)
 contour(bcea_smoke)
 
-##TODO: lines and colour wrong message...
 ceac.plot(bcea_smoke)
 
 ib.plot(bcea_smoke)

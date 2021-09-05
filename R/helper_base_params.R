@@ -29,8 +29,8 @@ helper_base_params <- function(he,
     types <- graph_params$plot$line$types
     cols <- graph_params$plot$line$colors
     
-    is_enough_types <- length(types) >= n_lines
-    is_enough_colours <- length(cols) >= n_lines
+    is_enough_types <- length(types) >= n_lines || length(types) == 1
+    is_enough_colours <- length(cols) >= n_lines || length(cols) == 1
     
     if (!is_enough_types) {
       graph_params$plot$line$types <- rep_len(types, n_lines)

@@ -7,7 +7,7 @@ evi_plot_base <- function(he,
                           plot_annotations) {
   
   plot(
-    data.psa$k, data.psa$evi,
+    x = data.psa$k, y = data.psa$evi,
     type = "l",
     xlab = plot_annotations$xlab,
     ylab = plot_annotations$ylab,
@@ -15,30 +15,39 @@ evi_plot_base <- function(he,
     col = plot_aes$line$colors,
     lty = ifelse(is.null(plot_aes$line$types), 1, plot_aes$line$type))
   
+  lty <- 2
+  pts_col <- "dark grey"
+  
   if (length(he$kstar) == 1) {
     points(
-      rep(he$kstar, 3), c(-10000, he$evi[he$k == he$kstar] / 2, he$evi[he$k == he$kstar]),
+      x = rep(he$kstar, 3),
+      y = c(-10000, he$evi[he$k == he$kstar] / 2, he$evi[he$k == he$kstar]),
       type = "l",
-      lty = 2,
-      col = "dark grey")
-    points(c(-10000, he$kstar / 2, he$kstar), rep(he$evi[he$k == he$kstar], 3),
+      lty = pts_lty,
+      col = pts_col)
+    
+    points(x = c(-10000, he$kstar / 2, he$kstar),
+           y = rep(he$evi[he$k == he$kstar], 3),
            type = "l",
-           lty = 2,
-           col = "dark grey")
+           lty = pts_lty,
+           col = pts_col)
   }
   
   if (length(he$kstar) > 1) {
     for (i in seq_along(he$kstar)) {
       points(
-        rep(he$kstar[i], 3), c(-10000, he$evi[he$k == he$kstar[i]] / 2, he$evi[he$k == he$kstar[i]]),
+        x = rep(he$kstar[i], 3),
+        y = c(-10000, he$evi[he$k == he$kstar[i]] / 2, he$evi[he$k == he$kstar[i]]),
         type = "l",
-        lty = 2,
-        col = "dark grey")
+        lty = pts_lty,
+        col = pts_col)
+    
       points(
-        c(-10000, he$kstar[i] / 2, he$kstar[i]), rep(he$evi[he$k == he$kstar[i]], 3),
+        x = c(-10000, he$kstar[i] / 2, he$kstar[i]),
+        y = rep(he$evi[he$k == he$kstar[i]], 3),
         type = "l",
-        lty = 2,
-        col = "dark grey")
+        lty = pts_lty,
+        col = pts_col)
     }
   }
 }
