@@ -7,69 +7,48 @@
 
 #' CEriskav base R version
 #' 
-CEriskav_plot_base <- function(x, alt.legend) {
+CEriskav_plot_base <- function(he, pos_legend) {
   
-  ##TODO: use where_legend()
-  if (is.numeric(alt.legend) && length(alt.legend) == 2) {
-    legend_txt <- ""
-    if (alt.legend[2] == 0)
-      legend_txt <- paste0(legend_txt, "bottom")
-    else
-      legend_txt <- paste0(legend_txt, "top")
-    if (alt.legend[1] == 1)
-      legend_txt <- paste0(legend_txt, "right")
-    else
-      legend_txt <- paste0(legend_txt, "left")
-    alt.legend <- legend_txt
+  pos_legend <- where_legend(he, pos_legend)
     
-    if (length(grep("^(bottom|top)(left|right)$", legend_txt)) == 0)
-      alt.legend <- FALSE
-  }
+  matplot(x = he$k,
+          y = he$eibr[, 1, ],
+          type = "l",
+          col = 1,
+          lty = 1:he$R,
+          xlab = "Willingness to pay",
+          ylab = " ",
+          main = "EIB as a function of the risk aversion parameter",
+          ylim = range(he$eibr))
   
-  if (is.logical(alt.legend)) {
-    alt.legend <- 
-      if (!alt.legend) "topright"
-    else "topleft"
-  }
-  
-  plot(x = x$k, y = x$eibr[, 1, 1],
-       type = "l",
-       xlab = "Willingness to pay",
-       ylab = " ",
-       main = "EIB as a function of the risk aversion parameter",
-       ylim = range(x$eibr))
-  
-  linetype <- seq(1, x$R)
-  
-  ##TODO: use multiplot() instead?
-  for (l in 2:x$R) {
-    points(x$k, x$eibr[, 1, l], type = "l", lty = linetype[l])
-  }
-  
-  text <- paste("r = ", x$r, sep = "") 
+  text <- paste("r = ", he$r, sep = "") 
   
   # if the first value for r is small enough,
   # consider close to 0 and print label accordingly
-  if (x$r[1] < 1e-8) {
+  if (he$r[1] < 1e-8) {
     text[1] <- expression(r%->%0)
   }
-  legend(alt.legend, text, lty = seq(1:x$R), cex = 0.9, box.lty = 0)
+  
+  legend(pos_legend,
+         legend = text,
+         lty = 1:he$R,
+         cex = 0.9,
+         box.lty = 0)
   abline(h = 0, col = "grey")
   
-  plot(x$k,
-       x$evir[, 1],
-       type = "l",
-       ylim = range(x$evir),
-       xlab = "Willingness to pay",
-       ylab = " ",
-       main = "EVPI as a function of the risk aversion parameter")
-  for (l in 2:x$R) {
-    points(x$k, x$evir[, l], type = "l", lty = linetype[l])
-  }
+  matplot(x = he$k,
+          y = he$evir,
+          type = "l",
+          col = 1,
+          lty = 1:he$R,
+          ylim = range(he$evir),
+          xlab = "Willingness to pay",
+          ylab = " ",
+          main = "EVPI as a function of the risk aversion parameter")
   
-  legend(alt.legend,
+  legend(pos_legend,
          legend = text,
-         lty = seq(1:x$R),
+         lty = 1:he$R,
          cex = 0.9,
          box.lty = 0)
   abline(h = 0, col = "grey")
@@ -78,27 +57,31 @@ CEriskav_plot_base <- function(x, alt.legend) {
 
 #' CEriskav ggplot2 version
 #' 
-CEriskav_plot_ggplot <- function(x, alt.legend) {
+CEriskav_plot_ggplot <- function(he, pos_legend) {
   
   # no visible bindings note
   k <- r <- NA_real_
   
-  linetypes <- rep(c(1,2,3,4,5,6), ceiling(x$R/6))[1:x$R]
+  linetypes <- rep(c(1,2,3,4,5,6), ceiling(he$R/6))[1:he$R]
   
-  df <- data.frame(cbind(rep(x$k,x$R), c(x$eibr), c(x$evir)),
-                   as.factor(sort(rep(1:x$R, length(x$k)))))
+  df <- data.frame(cbind(rep(he$k, he$R), 
+                         c(he$eibr), c(he$evir)),
+                   as.factor(sort(rep(1:he$R, length(he$k)))))
   names(df) <- c("k", "eibr", "evir", "r")
   
   # labels
-  text <- paste0("r = ", x$r)
+  text <- paste0("r = ", he$r)
   
   # if the first value for r is small enough,
   # consider close to 0 and print label accordingly
-  if (x$r[1] < 1e-8) {
+  if (he$r[1] < 1e-8) {
     text[1] <- expression(r%->%0)
   }
   
-  eib_dat <- melt(x$eibr[,1,], value.name = "eibr") %>% 
+  eib_dat <-
+    melt(he$eibr[, 1,],
+         value.name = "eibr",
+         variable.name = "k") %>% 
     mutate(Var2 = as.factor(Var2))
   
   eibr <-
@@ -135,30 +118,31 @@ CEriskav_plot_ggplot <- function(x, alt.legend) {
   
   jus <- NULL
   
-  if (isTRUE(alt.legend)) {
-    alt.legend <- "bottom"
+  ##TODO: use where_legend()?
+  if (isTRUE(pos_legend)) {
+    pos_legend <- "bottom"
     eibr <- eibr + theme(legend.direction = "vertical")
     evir <- evir + theme(legend.direction = "vertical")
   } else {
-    if (is.character(alt.legend)) {
+    if (is.character(pos_legend)) {
       choices <- c("left", "right", "bottom", "top")
-      alt.legend <- choices[pmatch(alt.legend,choices)]
+      pos_legend <- choices[pmatch(pos_legend,choices)]
       jus <- "center"
-      if (is.na(alt.legend))
-        alt.legend <- FALSE
+      if (is.na(pos_legend))
+        pos_legend <- FALSE
     }
-    if (length(alt.legend) > 1)
-      jus <- alt.legend
-    if (length(alt.legend) == 1 && !is.character(alt.legend)) {
-      alt.legend <- c(0,1)
-      jus <- alt.legend
+    if (length(pos_legend) > 1)
+      jus <- pos_legend
+    if (length(pos_legend) == 1 && !is.character(pos_legend)) {
+      pos_legend <- c(0,1)
+      jus <- pos_legend
     }
   }
   
   eibr <-
     eibr + 
     theme(
-      legend.position = alt.legend,
+      legend.position = pos_legend,
       legend.justification = jus,
       legend.title = element_blank(),
       legend.background = element_blank(),
@@ -171,7 +155,7 @@ CEriskav_plot_ggplot <- function(x, alt.legend) {
   
   evir <- evir + 
     ggplot2::theme(
-      legend.position = alt.legend,
+      legend.position = pos_legend,
       legend.justification = jus,
       legend.title = element_blank(),
       legend.background = element_blank(),
@@ -189,5 +173,4 @@ CEriskav_plot_ggplot <- function(x, alt.legend) {
     invisible(list(eib = eibr,
                    evi = evir)))
 }
-
 
