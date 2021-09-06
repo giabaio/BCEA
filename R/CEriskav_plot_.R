@@ -9,7 +9,7 @@
 #' 
 CEriskav_plot_base <- function(x, alt.legend) {
   
-  browser()
+  ##TODO: use where_legend()
   if (is.numeric(alt.legend) && length(alt.legend) == 2) {
     legend_txt <- ""
     if (alt.legend[2] == 0)
@@ -25,13 +25,14 @@ CEriskav_plot_base <- function(x, alt.legend) {
     if (length(grep("^(bottom|top)(left|right)$", legend_txt)) == 0)
       alt.legend <- FALSE
   }
+  
   if (is.logical(alt.legend)) {
     alt.legend <- 
       if (!alt.legend) "topright"
     else "topleft"
   }
   
-  plot(x = x$k, y = x$eibr[, 1],
+  plot(x = x$k, y = x$eibr[, 1, 1],
        type = "l",
        xlab = "Willingness to pay",
        ylab = " ",
@@ -42,7 +43,7 @@ CEriskav_plot_base <- function(x, alt.legend) {
   
   ##TODO: use multiplot() instead?
   for (l in 2:x$R) {
-    points(x$k, x$eibr[, l], type = "l", lty = linetype[l])
+    points(x$k, x$eibr[, 1, l], type = "l", lty = linetype[l])
   }
   
   text <- paste("r = ", x$r, sep = "") 
@@ -97,10 +98,13 @@ CEriskav_plot_ggplot <- function(x, alt.legend) {
     text[1] <- expression(r%->%0)
   }
   
+  eib_dat <- melt(x$eibr[,1,], value.name = "eibr") %>% 
+    mutate(Var2 = as.factor(Var2))
+  
   eibr <-
-    ggplot(df, aes(x = k, y = eibr, linetype = r)) +
+    ggplot(eib_dat, aes(x = Var1, y = eibr, linetype = Var2)) +
+    geom_line() +
     geom_hline(yintercept = 0, linetype = 1, colour = "grey50") +
-    geom_line()+
     scale_linetype_manual("", labels = text, values = linetypes) + 
     theme_bw() +
     labs(title = "EIB as a function of the risk aversion parameter",
