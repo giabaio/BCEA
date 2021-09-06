@@ -45,7 +45,7 @@ CEriskav_plot_base <- function(he, pos_legend) {
           ylim = range(he$evir),
           xlab = "Willingness to pay",
           ylab = " ",
-          main = "EVPI as a function of the risk aversion parameter")
+          main = "EVI as a function of the risk aversion parameter")
   
   legend(pos_legend,
          legend = text,
@@ -108,7 +108,7 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
     geom_line() + 
     scale_linetype_manual("", labels = text, values = linetypes) + 
     theme_bw() +
-    labs(title = "EVPI as a function of the risk aversion parameter",
+    labs(title = "EVI as a function of the risk aversion parameter",
          x = "Willingness to pay",
          y = "EVPI") +
     theme(

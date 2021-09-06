@@ -77,7 +77,7 @@ plot(bcea_smoke, graph = "ggplot")
 
 bcea_smoke0 <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
 eib.plot(bcea_smoke0, comparison = 1)
-#TODO: wheres the equivalent evpi plot?
+evi.plot(bcea_smoke0)
 ```
 
 Check that unusual or meaningless values for `r` are handled gracefully.
