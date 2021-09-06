@@ -9,10 +9,11 @@
 #' 
 CEriskav_plot_base <- function(he, pos_legend) {
   
+  default_comp <- 1
   pos_legend <- where_legend(he, pos_legend)
     
   matplot(x = he$k,
-          y = he$eibr[, 1, ],
+          y = he$eibr[, default_comp, ],
           type = "l",
           col = 1,
           lty = 1:he$R,
@@ -58,16 +59,9 @@ CEriskav_plot_base <- function(he, pos_legend) {
 #' CEriskav ggplot2 version
 #' 
 CEriskav_plot_ggplot <- function(he, pos_legend) {
-  
-  # no visible bindings note
-  k <- r <- NA_real_
-  
+
+  default_comp <- 1
   linetypes <- rep(c(1,2,3,4,5,6), ceiling(he$R/6))[1:he$R]
-  
-  df <- data.frame(cbind(rep(he$k, he$R), 
-                         c(he$eibr), c(he$evir)),
-                   as.factor(sort(rep(1:he$R, length(he$k)))))
-  names(df) <- c("k", "eibr", "evir", "r")
   
   # labels
   text <- paste0("r = ", he$r)
@@ -79,12 +73,13 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
   }
   
   eib_dat <-
-    melt(he$eibr[, 1,],
-         value.name = "eibr",
-         variable.name = "k") %>% 
-    mutate(r = as.factor(Var2))
+    melt(he$eibr[, default_comp,],
+         value.name = "eibr") %>% 
+    rename(r = Var2,
+           k = Var1) %>% 
+    mutate(r = as.factor(r))
   
-  eibr <-
+  eibr_plot <-
     ggplot(eib_dat, aes(x = k, y = eibr, linetype = r)) +
     geom_line() +
     geom_hline(yintercept = 0, linetype = 1, colour = "grey50") +
@@ -100,8 +95,15 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
       panel.grid = element_blank(),
       legend.key = element_blank())
   
-  evir <-
-    ggplot(df, aes(x = k, y = evir, linetype = r)) + 
+  evi_dat <-
+    melt(he$evir,
+         value.name = "evir") %>% 
+    rename(r = Var2,
+           k = Var1) %>% 
+    mutate(r = as.factor(r))
+  
+  evir_plot <-
+    ggplot(evi_dat, aes(x = k, y = evir, linetype = r)) + 
     geom_hline(yintercept = 0, linetype = 1, colour = "grey50")+
     geom_line() + 
     scale_linetype_manual("", labels = text, values = linetypes) + 
@@ -121,8 +123,8 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
   ##TODO: use where_legend()?
   if (isTRUE(pos_legend)) {
     pos_legend <- "bottom"
-    eibr <- eibr + theme(legend.direction = "vertical")
-    evir <- evir + theme(legend.direction = "vertical")
+    eibr_plot <- eibr_plot + theme(legend.direction = "vertical")
+    evir_plot <- evir_plot + theme(legend.direction = "vertical")
   } else {
     if (is.character(pos_legend)) {
       choices <- c("left", "right", "bottom", "top")
@@ -139,8 +141,8 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
     }
   }
   
-  eibr <-
-    eibr + 
+  eibr_plot <-
+    eibr_plot + 
     theme(
       legend.position = pos_legend,
       legend.justification = jus,
@@ -153,7 +155,8 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
         size = 14.3,
         hjust = 0.5))
   
-  evir <- evir + 
+  evir_plot <-
+    evir_plot + 
     ggplot2::theme(
       legend.position = pos_legend,
       legend.justification = jus,
@@ -166,11 +169,10 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
         size = 14.3,
         hjust = 0.5))
   
-  plot(eibr)
-  plot(evir)
+  plot(eibr_plot)
+  plot(evir_plot)
   
-  return(
-    invisible(list(eib = eibr,
-                   evi = evir)))
+  invisible(list(eib = eibr_plot,
+                 evi = evir_plot))
 }
 

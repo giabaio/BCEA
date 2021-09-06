@@ -139,6 +139,7 @@ r <- c(0, 0.005, 0.020, 0.035)
 CEriskav(bcea_smoke) <- r
 
 plot(bcea_smoke)
+plot(bcea_smoke, graph = "ggplot")
 ```
 
 
