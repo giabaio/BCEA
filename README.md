@@ -50,7 +50,7 @@ install.packages("devtools")
 devtools:install_github("giabaio/BCEA", ref="dev")
 ```
 
-![](https://github.com/n8thangreen/BCEA/edit/dev/BCEA-cheatsheet.pdf)
+![](https://github.com/n8thangreen/BCEA/dev/BCEA-cheatsheet.pdf)
 
 ## Further details
 The `pkgdown` site is [here](https://n8thangreen.github.io/BCEA/).
