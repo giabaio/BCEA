@@ -82,10 +82,10 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
     melt(he$eibr[, 1,],
          value.name = "eibr",
          variable.name = "k") %>% 
-    mutate(Var2 = as.factor(Var2))
+    mutate(r = as.factor(Var2))
   
   eibr <-
-    ggplot(eib_dat, aes(x = Var1, y = eibr, linetype = Var2)) +
+    ggplot(eib_dat, aes(x = k, y = eibr, linetype = r)) +
     geom_line() +
     geom_hline(yintercept = 0, linetype = 1, colour = "grey50") +
     scale_linetype_manual("", labels = text, values = linetypes) + 
