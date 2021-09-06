@@ -4,8 +4,12 @@
 ##      look at original code
 ##      can we just use existing code?
 
-#'
+
+#' CEriskav base R version
+#' 
 CEriskav_plot_base <- function(x, alt.legend) {
+  
+  browser()
   if (is.numeric(alt.legend) && length(alt.legend) == 2) {
     legend_txt <- ""
     if (alt.legend[2] == 0)
@@ -71,8 +75,8 @@ CEriskav_plot_base <- function(x, alt.legend) {
 }
 
 
-
-#'
+#' CEriskav ggplot2 version
+#' 
 CEriskav_plot_ggplot <- function(x, alt.legend) {
   
   # no visible bindings note

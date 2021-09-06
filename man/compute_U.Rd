@@ -15,6 +15,6 @@ compute_U(df_ce, k)
 Array with dimensions (sim x k x ints)
 }
 \description{
-Sample of net monetary benefit for each
+Sample of net (monetary) benefit for each
 willingness-to-pay threshold and intervention.
 }

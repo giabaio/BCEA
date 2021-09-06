@@ -46,6 +46,9 @@ m <- bcea(e=e,c=c,          # defines the variables of
 
 mce <- multi.ce(m)          # uses the results of the economic analysis
 
+ceac.plot(mce)
+ceaf.plot(mce)
+
 }
 \seealso{
 \code{\link{bcea}},

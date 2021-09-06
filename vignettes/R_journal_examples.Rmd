@@ -130,7 +130,7 @@ risk aversion
 r <- c(0, 0.005, 0.020, 0.035)
 CEriskav(bcea_smoke) <- r
 
-#fix:
+##error: need finite 'ylim' values...
 plot(bcea_smoke)
 ```
 

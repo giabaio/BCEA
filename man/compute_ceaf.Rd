@@ -2,7 +2,7 @@
 % Please edit documentation in R/compute_xxx.R
 \name{compute_ceaf}
 \alias{compute_ceaf}
-\title{Cost-Effectiveness Acceptability Frontier}
+\title{Compute Cost-Effectiveness Acceptability Frontier}
 \usage{
 compute_ceaf(p_best_interv)
 }
@@ -10,5 +10,5 @@ compute_ceaf(p_best_interv)
 \item{p_best_interv}{}
 }
 \description{
-Cost-Effectiveness Acceptability Frontier
+Compute Cost-Effectiveness Acceptability Frontier
 }

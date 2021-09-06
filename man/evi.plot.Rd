@@ -63,7 +63,7 @@ evi.plot(m)
 }
 \references{
 Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
+Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 
 Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.

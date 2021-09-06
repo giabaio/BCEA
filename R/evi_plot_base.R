@@ -15,7 +15,7 @@ evi_plot_base <- function(he,
     col = plot_aes$line$colors,
     lty = ifelse(is.null(plot_aes$line$types), 1, plot_aes$line$type))
   
-  lty <- 2
+  pts_lty <- 2
   pts_col <- "dark grey"
   
   if (length(he$kstar) == 1) {

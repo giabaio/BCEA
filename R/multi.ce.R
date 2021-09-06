@@ -60,6 +60,7 @@ multi.ce.bcea <- function(he) {
 }
 
 
+#' @export
 #' 
 multi.ce <- function(he) {
   UseMethod('multi.ce', he)
