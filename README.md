@@ -49,8 +49,7 @@ Under Linux or MacOS, it is sufficient to install the package via `devtools`:
 install.packages("devtools")
 devtools:install_github("giabaio/BCEA", ref="dev")
 ```
-
-![](https://github.com/n8thangreen/BCEA/dev/BCEA-cheatsheet.pdf)
+![](https://github.com/n8thangreen/BCEA/blob/dev/BCEA-cheatsheet.pdf?raw=true)
 
 ## Further details
 The `pkgdown` site is [here](https://n8thangreen.github.io/BCEA/).
