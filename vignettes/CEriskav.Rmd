@@ -3,8 +3,10 @@ title: "Risk aversion analysis"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{ceac}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
   
 ```{r, include = FALSE}
@@ -42,19 +44,20 @@ CEriskav(bcea_smoke) <- r
 plot(bcea_smoke)
 plot(bcea_smoke, graph = "ggplot")
 ```
+
 Notice that the first value is asymptotically zero but the function handles that for us.
 Previously, you had to use something like 1e-10 which was a bit awkward.
 
 Now we modify the comparison group so that it doesn't contain 2 ("self-help") anymore.
+We still keep the same first comparison though "no intervention".
 
 ```{r}
 setComparisons(bcea_smoke) <- c(1,3)
 ```
 
-If we rerun the analysis we should see that this intervention is dropped.
+If we rerun the analysis we should see that the output is exactly the same.
 
 ```{r}
-r <- c(0, 0.005, 0.020, 0.035)
 CEriskav(bcea_smoke) <- r
 
 plot(bcea_smoke)
@@ -69,17 +72,28 @@ r <- 0
 CEriskav(bcea_smoke) <- r
 
 plot(bcea_smoke)
+
 plot(bcea_smoke, graph = "ggplot")
+
+bcea_smoke0 <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+eib.plot(bcea_smoke0, comparison = 1)
+#TODO: wheres the equivalent evpi plot?
 ```
 
-Check that values no allowed for `r` are handled gracefully
-_write unit tests for these..._
+Check that unusual or meaningless values for `r` are handled gracefully.
+At present the are just calculated and plotting exactly the same way.
+_should we limit values?_
+
 ```{r}
+# negative
 r <- -0.005
 CEriskav(bcea_smoke) <- r
+plot(bcea_smoke)
 
+# large
 r <- 2
 CEriskav(bcea_smoke) <- r
+plot(bcea_smoke)
 ```
 
 If we select a new set of comparison interventions what will happen?
@@ -108,3 +122,4 @@ It seems neater to separate the definition of the analysis with the plotting so 
 rmarkdown::render(input = "vignettes/ceac.Rmd", output_format = "pdf_document", output_dir = "vignettes")
 rmarkdown::render(input = "vignettes/ceac.Rmd", output_format = "html_document", output_dir = "vignettes")
 ```
+
