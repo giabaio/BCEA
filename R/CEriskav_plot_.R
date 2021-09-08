@@ -11,7 +11,7 @@ CEriskav_plot_base <- function(he, pos_legend) {
   
   default_comp <- 1
   pos_legend <- where_legend(he, pos_legend)
-    
+  
   matplot(x = he$k,
           y = he$eibr[, default_comp, ],
           type = "l",
@@ -59,7 +59,7 @@ CEriskav_plot_base <- function(he, pos_legend) {
 #' CEriskav ggplot2 version
 #' 
 CEriskav_plot_ggplot <- function(he, pos_legend) {
-
+  
   default_comp <- 1
   linetypes <- rep(c(1,2,3,4,5,6), ceiling(he$R/6))[1:he$R]
   
@@ -71,6 +71,9 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
   if (he$r[1] < 1e-8) {
     text[1] <- expression(r%->%0)
   }
+
+  ##TODO: what happens with num_lines() for 1 comparison?
+  legend_params <- make_legend_ggplot(he, pos_legend) 
   
   eib_dat <-
     melt(he$eibr[, default_comp, , drop = FALSE],
@@ -93,7 +96,18 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
       legend.key.size = unit(0.66, "line"),
       legend.spacing = unit(-1.25, "line"),
       panel.grid = element_blank(),
-      legend.key = element_blank())
+      legend.key = element_blank(),
+      legend.position = legend_params$legend.position,
+      legend.justification = legend_params$legend.justification,
+      legend.direction = legend_params$legend_direction,
+      legend.title = element_blank(),
+      legend.background = element_blank(),
+      legend.text.align = 0,
+      plot.title = element_text(
+        lineheight = 1.05,
+        face = "bold",
+        size = 14.3,
+        hjust = 0.5))
   
   evi_dat <-
     melt(he$evir,
@@ -110,56 +124,16 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
     theme_bw() +
     labs(title = "EVI as a function of the risk aversion parameter",
          x = "Willingness to pay",
-         y = "EVPI") +
+         y = "EVI") +
     theme(
       text = element_text(size = 11),
       legend.key.size = unit(0.66, "line"),
       legend.spacing = unit(-1.25, "line"),
       panel.grid = element_blank(),
-      legend.key = element_blank())
-  
-  jus <- NULL
-  
-  ##TODO: use where_legend()?
-  if (isTRUE(pos_legend)) {
-    pos_legend <- "bottom"
-    eibr_plot <- eibr_plot + theme(legend.direction = "vertical")
-    evir_plot <- evir_plot + theme(legend.direction = "vertical")
-  } else {
-    if (is.character(pos_legend)) {
-      choices <- c("left", "right", "bottom", "top")
-      pos_legend <- choices[pmatch(pos_legend,choices)]
-      jus <- "center"
-      if (is.na(pos_legend))
-        pos_legend <- FALSE
-    }
-    if (length(pos_legend) > 1)
-      jus <- pos_legend
-    if (length(pos_legend) == 1 && !is.character(pos_legend)) {
-      pos_legend <- c(0,1)
-      jus <- pos_legend
-    }
-  }
-  
-  eibr_plot <-
-    eibr_plot + 
-    theme(
-      legend.position = pos_legend,
-      legend.justification = jus,
-      legend.title = element_blank(),
-      legend.background = element_blank(),
-      legend.text.align = 0,
-      plot.title = element_text(
-        lineheight = 1.05,
-        face = "bold",
-        size = 14.3,
-        hjust = 0.5))
-  
-  evir_plot <-
-    evir_plot + 
-    ggplot2::theme(
-      legend.position = pos_legend,
-      legend.justification = jus,
+      legend.key = element_blank(),
+      legend.position = legend_params$legend.position,
+      legend.justification = legend_params$legend.justification,
+      legend.direction = legend_params$legend.direction,
       legend.title = element_blank(),
       legend.background = element_blank(),
       legend.text.align = 0,

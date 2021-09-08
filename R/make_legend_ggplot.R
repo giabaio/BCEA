@@ -13,7 +13,7 @@
 make_legend_ggplot <- function(dat, legend_pos) {
   
   legend_just <- NULL  # sets the corner that the legend_pos position refers to
-  legend_dir <- "vertical"
+  legend_dir <- NULL
   
   n_lines <- num_lines(dat)
   
@@ -27,7 +27,7 @@ make_legend_ggplot <- function(dat, legend_pos) {
     
   } else if (is.logical(legend_pos)) {
     
-    if (legend_pos) {
+    if (isTRUE(legend_pos)) {
       legend_pos <- "bottom"
       legend_dir <- "vertical"
     } else {
