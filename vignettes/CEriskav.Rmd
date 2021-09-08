@@ -116,6 +116,34 @@ plot(bcea_smoke, graph = "ggplot")
 The previous version of `CEriskav()` had a `comparison` argument where you could specify the single intervention to plot and if this wasn't set then it defaulted to the first.
 It seems neater to separate the definition of the analysis with the plotting so now if you did want to specify a different comparison intervention when using `CEriskav()` then you would have to use `setComparison()` first and then call the plotting function.
 
+Check legend position argument:
+
+```{r}
+# base R
+plot(bcea_smoke, pos = c(1,0))
+plot(bcea_smoke, pos = c(1,1))
+
+plot(bcea_smoke, pos = TRUE)
+plot(bcea_smoke, pos = FALSE)
+
+plot(bcea_smoke, pos = "topleft")
+plot(bcea_smoke, pos = "topright")
+plot(bcea_smoke, pos = "bottomleft")
+plot(bcea_smoke, pos = "bottomright")
+
+# ggplot2
+plot(bcea_smoke, graph = "ggplot", pos = c(1,0))
+plot(bcea_smoke, graph = "ggplot", pos = c(1,1))
+
+plot(bcea_smoke, graph = "ggplot", pos = TRUE)
+plot(bcea_smoke, graph = "ggplot", pos = FALSE)
+
+plot(bcea_smoke, graph = "ggplot", pos = "top")
+plot(bcea_smoke, graph = "ggplot", pos = "bottom")
+plot(bcea_smoke, graph = "ggplot", pos = "left")
+plot(bcea_smoke, graph = "ggplot", pos = "right")
+```
+
 
 ```{r eval=FALSE, echo=FALSE}
 # create output docs

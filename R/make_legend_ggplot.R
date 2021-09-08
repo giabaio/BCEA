@@ -29,7 +29,6 @@ make_legend_ggplot <- function(dat, legend_pos) {
     
     if (isTRUE(legend_pos)) {
       legend_pos <- "bottom"
-      legend_dir <- "vertical"
     } else {
       legend_pos <- c(1, 0)
       legend_just <- legend_pos 

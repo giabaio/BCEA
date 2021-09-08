@@ -78,8 +78,8 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
   eib_dat <-
     melt(he$eibr[, default_comp, , drop = FALSE],
          value.name = "eibr") %>% 
-    rename(r = Var2,
-           k = Var1) %>% 
+    rename(k = Var1,
+           r = Var3) %>% 
     mutate(r = as.factor(r))
   
   eibr_plot <-
