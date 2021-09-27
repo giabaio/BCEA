@@ -89,9 +89,37 @@ setComparisons(bcea_smoke) <- c(1,3)
 ceef.plot(bcea_smoke, graph = "ggplot")
 ```
 
+Check legend position argument:
 
-```{r echo=FALSE}
+```{r}
+# base R
+ceef.plot(bcea_smoke, pos = c(1,0))
+ceef.plot(bcea_smoke, pos = c(1,1))
+
+ceef.plot(bcea_smoke, pos = TRUE)
+ceef.plot(bcea_smoke, pos = FALSE)
+
+ceef.plot(bcea_smoke, pos = "topleft")
+ceef.plot(bcea_smoke, pos = "topright")
+ceef.plot(bcea_smoke, pos = "bottomleft")
+ceef.plot(bcea_smoke, pos = "bottomright")
+
+# ggplot2
+ceef.plot(bcea_smoke, graph = "ggplot", pos = c(1,0))
+ceef.plot(bcea_smoke, graph = "ggplot", pos = c(1,1))
+
+ceef.plot(bcea_smoke, graph = "ggplot", pos = TRUE)
+ceef.plot(bcea_smoke, graph = "ggplot", pos = FALSE)
+
+ceef.plot(bcea_smoke, graph = "ggplot", pos = "top")
+ceef.plot(bcea_smoke, graph = "ggplot", pos = "bottom")
+ceef.plot(bcea_smoke, graph = "ggplot", pos = "left")
+ceef.plot(bcea_smoke, graph = "ggplot", pos = "right")
+```
+
+
+```{r eval=FALSE, echo=FALSE}
 # create output docs
-# rmarkdown::render(input = "vignettes/ceac.Rmd", output_format = "pdf_document", output_dir = "vignettes")
-# rmarkdown::render(input = "vignettes/ceac.Rmd", output_format = "html_document", output_dir = "vignettes")
+rmarkdown::render(input = "vignettes/ceac.Rmd", output_format = "pdf_document", output_dir = "vignettes")
+rmarkdown::render(input = "vignettes/ceac.Rmd", output_format = "html_document", output_dir = "vignettes")
 ```

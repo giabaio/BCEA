@@ -3,8 +3,10 @@ title: "R journal examples"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{ceac}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
   
 ```{r, include = FALSE}
@@ -81,6 +83,9 @@ grid of plots
 library(ggplot2)
 
 plot(bcea_smoke)
+
+
+##TODO: error??
 plot(bcea_smoke, graph = "ggplot2", wtp = 250, pos = TRUE, size = rel(2), ICER.size = 2)
 ```
 
@@ -91,6 +96,8 @@ cost-effectiveness plane
 ceplane.plot(bcea_smoke, comparison = 2, wtp = 250)
 
 setComparisons(bcea_smoke) <- c(1,3)
+
+##TODO: error. is it to do wtih ggplot?
 ceplane.plot(bcea_smoke, wtp = 250, graph = "ggplot2")
 ```
 
@@ -132,6 +139,7 @@ r <- c(0, 0.005, 0.020, 0.035)
 CEriskav(bcea_smoke) <- r
 
 plot(bcea_smoke)
+plot(bcea_smoke, graph = "ggplot")
 ```
 
 

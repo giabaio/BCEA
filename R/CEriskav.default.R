@@ -7,8 +7,6 @@
 'CEriskav<-.bcea' <- function(he,
                               value) {
   
-  ##TODO: what do we do with this?
-  comparison <- 1
   value[value == 0] <- 1e-10
   
   ### COMPARISON IS USED TO SELECT THE COMPARISON FOR WHICH THE ANALYSIS IS CARRIED OUT
@@ -36,7 +34,6 @@
   
   IBr <- array(NA, c(he$n_sim, K, he$n_comparisons, R))
   
-  ##TODO: why was this only against one comparison?
   for (i in seq_len(he$n_comparisons)) {
     IBr[,, i,] <- Ur[, , he$ref, , drop = FALSE] - Ur[, , he$comp[i], , drop = FALSE]
   }
