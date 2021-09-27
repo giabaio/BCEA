@@ -66,3 +66,29 @@ bcea.default <- function(eff,
   
   return(he)
 }
+
+
+
+#
+bcea.rjags <- function(eff, ...) {
+  
+  data <- MCMCvis::MCMCchains(eff, params = c("cost","eff"))
+  bcea.default(data$eff, data$cost, ...)
+}
+
+#
+bcea.rstan <- function(eff, ...) {
+  
+  data <- rstan::extract(eff, c("cost", "eff"))
+  bcea.default(data$eff, data$cost, ...)
+}
+
+#
+bcea.bugs <- function(eff, ...) {
+  
+  data <-
+    MCMCvis::MCMCchains(
+      coda::as.mcmc.list(eff), params = c("cost","eff"))
+  bcea.default(data$eff, data$cost, ...)
+}
+

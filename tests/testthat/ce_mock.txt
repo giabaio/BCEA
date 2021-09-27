@@ -1,0 +1,7 @@
+model {
+     c ~ dunif(0, 1)
+     e ~ dunif(0, 1)
+     
+     x ~ dnorm(c, 1)
+     y ~ dnorm(e, 1)
+    }
