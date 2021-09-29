@@ -1,18 +1,20 @@
 data {
-        real x;
-        real y;
+        real x[2];
+        real y[2];
     }
     
     parameters {
-        real cost;
-        real eff;
+        real cost[2];
+        real eff[2];
     }
     
     model {
-     cost ~ uniform(0, 1);
-     eff ~ uniform(0, 1);
+    for (i in 1:2) {
+     cost[i] ~ uniform(0, 1);
+     eff[i] ~ uniform(0, 1);
      
-     x ~ normal(cost, 1);
-     y ~ normal(eff, 1);
+     x[i] ~ normal(cost[i], 1);
+     y[i] ~ normal(eff[i], 1);
     }
+  }
     

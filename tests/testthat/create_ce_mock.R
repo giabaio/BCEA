@@ -1,4 +1,9 @@
 
+# create jags, BUGS and Stan mocked
+# cost and eff posterior samples
+# to test bcea() methods
+
+
 library(R2jags)
 library(R2WinBUGS)
 library(dplyr)
@@ -13,55 +18,62 @@ library(MCMCvis)
 
 ## ... a work-around
 cat("model {
-     cost ~ dunif(0, 1)
-     eff ~ dunif(0, 1)
+    for (i in 1:2) {
+    
+     cost[i] ~ dunif(0, 1)
+     eff[i] ~ dunif(0, 1)
      
-     x ~ dnorm(cost, 1)
-     y ~ dnorm(eff, 1)
+     x[i] ~ dnorm(cost[i], 1)
+     y[i] ~ dnorm(eff[i], 1)
+    }
     }", file = "ce_mock.txt")
 
 writeLines(
     "data {
-        real x;
-        real y;
+        real x[2];
+        real y[2];
     }
     
     parameters {
-        real cost;
-        real eff;
+        real cost[2];
+        real eff[2];
     }
     
     model {
-     cost ~ uniform(0, 1);
-     eff ~ uniform(0, 1);
+    for (i in 1:2) {
+     cost[i] ~ uniform(0, 1);
+     eff[i] ~ uniform(0, 1);
      
-     x ~ normal(cost, 1);
-     y ~ normal(eff, 1);
+     x[i] ~ normal(cost[i], 1);
+     y[i] ~ normal(eff[i], 1);
     }
+  }
     ", con = "ce_mock.stan")
 
 model.params <- c("cost", "eff")
+model.data <- list(x = c(1,1), y = c(1,1))
 
-jagsfit <- jags(data = list(x = 1, y = 1),
+jagsfit <- jags(data = model.data,
                 parameters.to.save = model.params,
                 n.iter = 10,
+                n.chains = 1,
                 model.file = "ce_mock.txt")
 
-bugsfit <- openbugs(data = list(x = 1, y = 1),
+bugsfit <- openbugs(data = model.data,
                     parameters.to.save = model.params,
                     n.iter = 10,
                     n.chains = 1,
                     inits = list(list(cost = 0, eff = 0)),
                     model.file = "ce_mock.txt")
 
-stanfit <- stan(data = list(x = 1, y = 1),
-                pars = stan.params,
+stanfit <- stan(data = model.data,
+                pars = model.params,
+                chains = 1,
                 iter = 10,
                 init = 0,
                 file = "ce_mock.stan")
 
-# as.mcmc(jagsfit) %>% 
-# as.matrix()
-# 
-# attach.jags(jagsfit)
+save(jagsfit, file = "data/jagsfit.RData")
+save(bugsfit, file = "data/bugsfit.RData")
+save(stanfit, file = "data/stanfit.RData")
 

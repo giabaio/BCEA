@@ -1,12 +1,8 @@
 ---
 title: "R journal examples"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{ceac}
-  %\VignetteEncoding{UTF-8}
-  %\VignetteEngine{knitr::rmarkdown}
-editor_options: 
-  chunk_output_type: console
+output:
+  pdf_document: 
+    keep_tex: true
 ---
   
 ```{r, include = FALSE}
@@ -28,47 +24,12 @@ library(purrr)
 
 ```{r eval = FALSE, echo=FALSE}
 # create output docs
-# rmarkdown::render(input = "vignettes/ceac.Rmd", output_format = "pdf_document", output_dir = "vignettes")
+rmarkdown::render(input = "vignettes/R_journal_examples.Rmd", output_format = "latex_document", output_dir = "vignettes")
 # rmarkdown::render(input = "vignettes/ceac.Rmd", output_format = "html_document", output_dir = "vignettes")
 ```
 
-## Vaccine data
 
-```{r}
-data(Vaccine)
-
-treats <- c("Status quo", "Vaccination")
-bcea_vacc <- bcea(e, c, ref = 2, interventions = treats)
-```
-
-grid of plots
-
-```{r fig.width=10, fig.height=10}
-plot(bcea_vacc)
-```
-
-summary output
-
-```{r}
-summary(bcea_vacc, wtp = 10000)
-sim_table(bcea_vacc, wtp = 25000)
-```
-
-value of information
-
-```{r}
-evi.plot(bcea_vacc)
-
-inp <- createInputs(vaccine)
-EVPPI <- evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
-```
-
-```{r}
-info.rank(bcea_vacc, inp)
-```
-
-
-## Smoking example
+## Smoking cessation example
 
 ```{r}
 data(Smoking)
@@ -84,8 +45,6 @@ library(ggplot2)
 
 plot(bcea_smoke)
 
-
-##TODO: error??
 plot(bcea_smoke, graph = "ggplot2", wtp = 250, pos = TRUE, size = rel(2), ICER.size = 2)
 ```
 
@@ -97,7 +56,6 @@ ceplane.plot(bcea_smoke, comparison = 2, wtp = 250)
 
 setComparisons(bcea_smoke) <- c(1,3)
 
-##TODO: error. is it to do wtih ggplot?
 ceplane.plot(bcea_smoke, wtp = 250, graph = "ggplot2")
 ```
 
@@ -139,7 +97,46 @@ r <- c(0, 0.005, 0.020, 0.035)
 CEriskav(bcea_smoke) <- r
 
 plot(bcea_smoke)
-plot(bcea_smoke, graph = "ggplot")
+```
+
+
+## Influenza vaccine data
+
+```{r}
+data(Vaccine)
+
+treats <- c("Status quo", "Vaccination")
+bcea_vacc <- bcea(e, c, ref = 2, interventions = treats)
+```
+
+grid of plots
+
+```{r fig.width=10, fig.height=10}
+plot(bcea_vacc)
+```
+
+summary output
+
+```{r}
+summary(bcea_vacc, wtp = 10000)
+head(sim_table(bcea_vacc, wtp = 25000)$Table)
+```
+
+value of information
+
+```{r}
+evi.plot(bcea_vacc)
+
+inp <- createInputs(vaccine, print_is_linear_comb = FALSE)
+```
+
+```{r}
+info.rank(bcea_vacc, inp)
+```
+
+```{r}
+EVPPI <- evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
+ plot(EVPPI)
 ```
 
 
