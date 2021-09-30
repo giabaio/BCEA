@@ -3,6 +3,10 @@ title: "R journal examples"
 output:
   pdf_document: 
     keep_tex: true
+vignette: >
+  %\VignetteIndexEntry{R journal examples}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
   
 ```{r, include = FALSE}

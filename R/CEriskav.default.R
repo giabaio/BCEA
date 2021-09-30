@@ -1,8 +1,9 @@
 
-#' @export
+#' @rdname CEriskav_assign
 #' 
 #' Default vector of risk aversion parameters:
 #' 1e-11, 2.5e-6, 5e-6
+#' @export
 #' 
 'CEriskav<-.bcea' <- function(he,
                               value) {
@@ -65,6 +66,8 @@
 }
 
 
+#' @rdname CEriskav_assign
+#' 
 #' @export
 #'
 'CEriskav<-.default' <- function(he, ...) {

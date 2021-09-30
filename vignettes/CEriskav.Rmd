@@ -2,7 +2,7 @@
 title: "Risk aversion analysis"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{ceac}
+  %\VignetteIndexEntry{Risk aversion analysis}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 

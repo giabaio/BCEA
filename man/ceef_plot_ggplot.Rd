@@ -2,10 +2,10 @@
 % Please edit documentation in R/ceef_plot_ggplot.R
 \name{ceef_plot_ggplot}
 \alias{ceef_plot_ggplot}
-\title{ceef_plot_ggplot}
+\title{CEEF plot ggplot2 version}
 \usage{
 ceef_plot_ggplot(he, frontier_data, frontier_params, ...)
 }
 \description{
-ceef_plot_ggplot
+CEEF plot ggplot2 version
 }

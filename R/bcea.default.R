@@ -95,11 +95,8 @@ bcea.rstan <- function(eff, ...) {
 #' 
 bcea.bugs <- function(eff, ...) {
   
-  data <- coda::as.mcmc.list(eff)
-  cost <-
-    MCMCvis::MCMCchains(data, params = "cost")
-  eff <- 
-    MCMCvis::MCMCchains(data, params = "eff")
+  cost <- eff$sims.list$cost
+  eff <- eff$sims.list$eff
   bcea.default(eff, cost, ...)
 }
 
