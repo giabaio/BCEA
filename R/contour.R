@@ -78,8 +78,8 @@ contour.bcea <- function(he,
 }
 
 
-#' @rdname contour
-#' Contour Plots for the Cost-Effectiveness Plane
+#' @name contour
+#' @title Contour Plots for the Cost-Effectiveness Plane
 #'
 #' Contour method for objects in the class \code{bcea}.
 #' Produces a scatterplot of the cost-effectiveness plane, with a contour-plot

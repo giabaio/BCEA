@@ -1,6 +1,7 @@
 # num_lines ---------------------------------------------------------------
 
 
+#' @title Get number of lines
 #' @name num_lines
 #' 
 num_lines <- function(dat) {

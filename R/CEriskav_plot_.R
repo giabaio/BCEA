@@ -5,7 +5,18 @@
 ##      can we just use existing code?
 
 
-#' CEriskav base R version
+#' @name CEriskav_plot_graph
+#' @title Cost-effectiveness Plot Including a Parameter of Risk Aversion
+#'
+#' Choice of base R, ggplot2.
+#' 
+#' @template args-he
+#' @param pos_legend Legend position
+NULL
+
+
+#' @rdname CEriskav_plot_graph
+#' @title CEriskav base R version
 #' 
 CEriskav_plot_base <- function(he, pos_legend) {
   
@@ -56,7 +67,8 @@ CEriskav_plot_base <- function(he, pos_legend) {
 }
 
 
-#' CEriskav ggplot2 version
+#' @rdname CEriskav_plot_graph
+#' @title CEriskav ggplot2 version
 #' 
 CEriskav_plot_ggplot <- function(he, pos_legend) {
   
@@ -78,12 +90,12 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
   eib_dat <-
     melt(he$eibr[, default_comp, , drop = FALSE],
          value.name = "eibr") %>% 
-    rename(k = Var1,
-           r = Var3) %>% 
-    mutate(r = as.factor(r))
+    rename(k = .data$Var1,
+           r = .data$Var3) %>% 
+    mutate(r = as.factor(.data$r))
   
   eibr_plot <-
-    ggplot(eib_dat, aes(x = k, y = eibr, linetype = r)) +
+    ggplot(eib_dat, aes(x = .data$k, y = .data$eibr, linetype = .data$r)) +
     geom_line() +
     geom_hline(yintercept = 0, linetype = 1, colour = "grey50") +
     scale_linetype_manual("", labels = text, values = linetypes) + 
@@ -112,15 +124,15 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
   evi_dat <-
     melt(he$evir,
          value.name = "evir") %>% 
-    rename(r = Var2,
-           k = Var1) %>% 
-    mutate(r = as.factor(r))
+    rename(r = .data$Var2,
+           k = .data$Var1) %>% 
+    mutate(r = as.factor(.data$r))
   
   evir_plot <-
-    ggplot(evi_dat, aes(x = k, y = evir, linetype = r)) + 
+    ggplot(evi_dat, aes(x = .data$k, y = .data$evir, linetype = .data$r)) + 
     geom_hline(yintercept = 0, linetype = 1, colour = "grey50")+
     geom_line() + 
-    scale_linetype_manual("", labels = text, values = linetypes) + 
+    scale_linetype_manual("", labels = text, values =linetypes) + 
     theme_bw() +
     labs(title = "EVI as a function of the risk aversion parameter",
          x = "Willingness to pay",

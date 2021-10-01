@@ -1,5 +1,4 @@
 
-#' @rdname eib.plot
 #' @importFrom graphics lines abline text legend
 #' @import ggplot2
 #' @export

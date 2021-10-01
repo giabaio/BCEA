@@ -1,5 +1,18 @@
 
-#' CEEF plot ggplot2 version
+#' @name ceef_plot_graph
+#' @title Cost-effectiveness efficiency frontier plot
+#'
+#' Choice of base R, ggplot2.
+#' 
+#' @template args-he
+#' @param frontier_data Frontier data
+#' @param frontier_params Frontier parameters
+#' @param ... Additional arguments
+NULL
+
+
+#' @rdname ceef_plot_graph
+#' @title CEEF plot ggplot2 version
 #' 
 #' @import ggplot2
 #' @importFrom grid unit
@@ -39,13 +52,13 @@ ceef_plot_ggplot <- function(he,
   
   opt_theme <- purrr::keep(extra_args, is.theme)
   
-  ceplane <- ggplot(ceef.points, aes(x = x, y = y))
+  ceplane <- ggplot(ceef.points, aes(x = .data$x, y = .data$y))
   
   if (add_dominance_region) {
     ceplane <-
       ceplane +
       geom_rect(data = ceef.points,
-                aes(xmax = x, ymin = y),
+                aes(xmax = .data$x, ymin = .data$y),
                 ymax = 2*max(abs(range(scatter.data$c))),
                 xmin = -2*max(abs(range(scatter.data$e))),
                 alpha = 0.35,
@@ -57,7 +70,7 @@ ceef_plot_ggplot <- function(he,
     geom_vline(xintercept = 0,
                colour = "grey") +
     geom_point(data = scatter.data,
-               aes(x = e, y = c, colour = comp),
+               aes(x = .data$e, y = .data$c, colour = .data$comp),
                size = 1)
   
   if (add_frontier)
@@ -72,12 +85,12 @@ ceef_plot_ggplot <- function(he,
   ceplane <- ceplane +
     geom_point(
       data = orig.avg,
-      aes(x = e.orig, y = c.orig),
+      aes(x = .data$e.orig, y = .data$c.orig),
       size = 5.5,
       colour = "black") +
     geom_point(
       data = orig.avg,
-      aes(x = e.orig, y = c.orig),
+      aes(x = .data$e.orig, y = .data$c.orig),
       size = 4.5,
       colour = "white") +
     scale_colour_manual(
@@ -89,12 +102,12 @@ ceef_plot_ggplot <- function(he,
          x = xlab, y = ylab) +
     theme_bw()
   
-  ### add text into circles
-  for (i in 1:he$n_comparators) {
+  ## add text into circles
+  for (i in seq_len(he$n_comparators)) {
     ceplane <- ceplane + 
       geom_text(
         data = orig.avg[i, ],
-        aes(x = e.orig, y = c.orig, label = comp),
+        aes(x = .data$e.orig, y = .data$c.orig, label = comp),
         size = 3.5,
         colour = ifelse(i %in% ceef.points$comp, "black", "grey60"))
   }

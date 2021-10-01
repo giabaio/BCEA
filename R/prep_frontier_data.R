@@ -1,5 +1,10 @@
 
+#' Prepare frontier data
+#' 
 #' @template args-he
+#' @param threshold Cost-effectiveness threshold i.e angle of line. Must be >=0 or NULL.
+#' @param start.origin Where should the frontier start from?
+#' @return List with scatter.data, ceef.points, orig.avg
 #' 
 prep_frontier_data <- function(he,
                                threshold,

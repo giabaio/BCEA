@@ -69,13 +69,10 @@
 #' # produce the plots
 #' \donttest{
 #'    plot(m)
-#' )
 #' }
 #' ## Alternative options, using ggplot2
 #' \donttest{
-#'    plot(m,
-#'     graph="ggplot2"
-#'   )
+#'    plot(m, graph = "ggplot2")
 #' }
 #' 
 #' @export

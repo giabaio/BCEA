@@ -25,12 +25,22 @@ bcea_plot <- function(he, graph) {
   ...
 }
 
+#'
+make_plot_params <- function(he, ...) {
+  UseMethod('make_plot_params', he)
+}
+
 make_plot_params.ceac <- function(he) {
   ...
 }
 
 make_plot_data.ceac <- function(he) {
   ...
+}
+
+#'
+plot_base <- function(he, ...) {
+  UseMethod('plot_base', he)
 }
 
 plot_base.ceac <- function(he) {
@@ -40,4 +50,18 @@ plot_base.ceac <- function(he) {
 plot_base.ceplane <- function(he) {
   ...
 }
+
+#'
+plot_ggplot <- function(he, ...) {
+  UseMethod('plot_base', he)
+}
+
+plot_ggplot.ceac <- function(he) {
+  ...
+}
+
+plot_ggplot.ceplane <- function(he) {
+  ...
+}
+
 

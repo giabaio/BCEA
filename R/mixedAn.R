@@ -1,5 +1,5 @@
 
-#' Cost-Effectiveness Analysis When Multiple (Possibly Non-Cost-Effective)
+#' @title: Cost-Effectiveness Analysis When Multiple (Possibly Non-Cost-Effective)
 #' Interventions are Present on the Market
 #' 
 #' Runs the cost-effectiveness analysis, but accounts for the fact that more

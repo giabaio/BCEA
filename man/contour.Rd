@@ -3,11 +3,15 @@
 \name{contour.bcea}
 \alias{contour.bcea}
 \alias{contour}
-\title{Contour Plots for the Cost-Effectiveness Plane}
+\title{Contour Plots for the Cost-Effectiveness Plane
+
+Contour method for objects in the class \code{bcea}.
+Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
+of the bivariate density of the differentials of cost (y-axis) and
+effectiveness (x-axis).}
 \usage{
 \method{contour}{bcea}(
   he,
-  comparison = 1,
   scale = 0.5,
   nlevels = 4,
   levels = NULL,
@@ -23,12 +27,6 @@ contour(he, ...)
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
-
-\item{comparison}{In case of more than 2 interventions being analysed,
-selects which plot should be made. By default the first comparison among
-the possible ones will be plotted. If \code{graph="ggplot2"} any subset of
-the possible comparisons can be selected, and \code{comparison=NULL} will
-yield a plot of all the possible comparisons together.}
 
 \item{scale}{Scales the plot as a function of the observed standard
 deviation.}
@@ -72,6 +70,8 @@ value of the probability of each quadrant (combination of positive/negative
 values for both \eqn{\Delta_e} and \eqn{\Delta_c})
 }
 \description{
+Contour Plots for the Cost-Effectiveness Plane
+
 Contour method for objects in the class \code{bcea}.
 Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
 of the bivariate density of the differentials of cost (y-axis) and

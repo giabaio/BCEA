@@ -1,6 +1,14 @@
 
 #' Summary table function
 #' 
+#' @template args-he
+#' @param frontier_data Frontier data
+#' @param frontier_params Frontier parameters
+#' @param include.ICER Should we include the ICER? default: FALSE
+#' @param ... Additional arguments
+#' 
+#' @return 
+#' 
 ceef.summary <- function(he,
                          frontier_data,
                          frontier_params,
@@ -24,7 +32,7 @@ ceef.summary <- function(he,
   if (!include.ICER) {
     ceef.points[, 5] <- atan(ceef.points[, 4]^(1*ifelse(!flip, 1, -1)))
     ceef.points <- ceef.points[, -3]
-    colnames(ceef.points) <- c("Effectiveness","Costs","Increase slope","Increase angle")
+    colnames(ceef.points) <- c("Effectiveness", "Costs", "Increase slope", "Increase angle")
   } else {
     ICERs <- numeric(dim(ceef.points)[1])
     index <- as.numeric(levels(ceef.points$comp)[ceef.points$comp])
@@ -32,7 +40,7 @@ ceef.summary <- function(he,
       if (ceef.points$comp[i] == he$ref)
         ICERs[i] <- NA_real_
       else
-        ICERs[i] <- he$ICER[index[i]+ifelse(index[i]<he$ref, 0, -1)]
+        ICERs[i] <- he$ICER[index[i] + ifelse(index[i]<he$ref, 0, -1)]
     }
     ceef.points[, 3] <- ICERs
     ceef.points[, 5] <- atan(ceef.points[, 4]^(1*ifelse(!flip, 1, -1)))
@@ -70,7 +78,7 @@ ceef.summary <- function(he,
       for (j in 1:dim(ceef.points)[1]) {
         ## if the product of the deltas is negative it is dominated
         ## cannot be dominant since not on the frontier 
-        if((noceef.points[i, 1] - ceef.points[j, 1])*(noceef.points[i, 2] - ceef.points[j, 2]) < 0) {
+        if ((noceef.points[i, 1] - ceef.points[j, 1])*(noceef.points[i, 2] - ceef.points[j, 2]) < 0) {
           how.dominated[i] <- "Absolute dominance"
           ## alternative:
           # how.dominated[i] <- paste0("Dominated by ",rownames(ceef.points)[j])
@@ -83,7 +91,7 @@ ceef.summary <- function(he,
     if (flip) colnames(noceef.points)[1:2] <- colnames(noceef.points)[2:1]
   }
   
-  ### Print the summary table
+  ## Print the summary table
   cat("\nCost-effectiveness efficiency frontier summary \n\n")
   cat("Interventions on the efficiency frontier:\n")
   print(ceef.points, quote = FALSE, digits = 5, justify = "center")
