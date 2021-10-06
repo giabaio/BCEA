@@ -89,7 +89,7 @@ ceef_plot_ggplot <- function(he,
          x = xlab, y = ylab) +
     theme_bw()
   
-  ### add text into circles
+  ## add text into circles
   for (i in 1:he$n_comparators) {
     ceplane <- ceplane + 
       geom_text(
@@ -99,14 +99,12 @@ ceef_plot_ggplot <- function(he,
         colour = ifelse(i %in% ceef.points$comp, "black", "grey60"))
   }
   
-  ##TODO: test...
   legend_params <- make_legend_ggplot(he, pos)
   
-  ##TODO: include legend direction?
   ceplane <- ceplane + 
     theme(
       legend.position = legend_params$legend.position,
-      legend.justification = legend_params$legend.postion,
+      legend.justification = legend_params$legend.justification,
       legend.title = element_blank(),
       legend.background = element_blank(),
       text = element_text(size = 11),

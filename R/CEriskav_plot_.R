@@ -1,10 +1,4 @@
 
-##TODO: how are these different to eib_plot_*, evi_plot_*?
-##      look at plots in book and examples
-##      look at original code
-##      can we just use existing code?
-
-
 #' CEriskav base R version
 #' 
 CEriskav_plot_base <- function(he, pos_legend) {
@@ -71,8 +65,7 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
   if (he$r[1] < 1e-8) {
     text[1] <- expression(r%->%0)
   }
-
-  ##TODO: what happens with num_lines() for 1 comparison?
+  
   legend_params <- make_legend_ggplot(he, pos_legend) 
   
   eib_dat <-
@@ -112,8 +105,8 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
   evi_dat <-
     melt(he$evir,
          value.name = "evir") %>% 
-    rename(r = Var2,
-           k = Var1) %>% 
+    rename(k = Var1,
+           r = Var2) %>% 
     mutate(r = as.factor(r))
   
   evir_plot <-
