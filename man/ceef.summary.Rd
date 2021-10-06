@@ -6,6 +6,21 @@
 \usage{
 ceef.summary(he, frontier_data, frontier_params, include.ICER = FALSE, ...)
 }
+\arguments{
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
+
+\item{frontier_data}{Frontier data}
+
+\item{frontier_params}{Frontier parameters}
+
+\item{include.ICER}{Should we include the ICER? default: FALSE}
+
+\item{...}{Additional arguments}
+}
+\value{
+
+}
 \description{
 Summary table function
 }

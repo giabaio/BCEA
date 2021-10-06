@@ -1,6 +1,4 @@
 
-#' @rdname mixedAn
-#' 
 #' @export
 #'
 'mixedAn<-.bcea' <- function(he,
@@ -28,7 +26,6 @@
 }
 
 
-#' @rdname mixedAn
 #' @export
 #' 
 'mixedAn<-.default' <- function(he,

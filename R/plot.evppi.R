@@ -90,6 +90,8 @@ plot.evppi <- function (evppi_obj,
 
 
 #' @name evppi_plot_graph
+#' @title Plot Expected Value of Partial Information With Respect to a
+#' Set of Parameters
 #' 
 #' @param evppi_obj Result of call to \code{createInputs()}
 #' @param pos_legend Legend position

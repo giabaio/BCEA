@@ -20,6 +20,7 @@ Imports:
     crayon,
     dplyr,
     ggplot2,
+    plotly,
     graphics,
     INLA,
     knitr,
@@ -30,19 +31,22 @@ Imports:
     rlang,
     rmarkdown,
     withr,
-    gridExtra
+    gridExtra,
+    rstan,
+    MCMCvis,
+    coda
 Depends:
     R (>= 3.5.0)
 Suggests:
     RColorBrewer,
-    plotly,
     grid,
     mgcv,
     R2jags,
     R2OpenBUGS,
     splancs,
     testthat (>= 2.1.0),
-    vdiffr
+    vdiffr,
+    markdown,
 Additional_repositories: https://inla.r-inla-download.org/R/stable/
 Description: Produces an economic evaluation of a sample of suitable variables of
              cost and effectiveness / utility for two or more interventions,

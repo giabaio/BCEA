@@ -1,7 +1,9 @@
 
-#' eib_plot_base
+#' EIB plot base R version
 #' 
 #' @template args-he
+#' @param graph_params List of graph parameters
+#' @param ...
 #' 
 eib_plot_base <- function(he,
                           graph_params,

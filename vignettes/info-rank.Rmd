@@ -2,7 +2,7 @@
 title: "Info-rank plot"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{ceac}
+  %\VignetteIndexEntry{Info-rank plot}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

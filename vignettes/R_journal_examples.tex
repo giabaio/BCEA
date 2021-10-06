@@ -109,28 +109,8 @@
 \begin{document}
 \maketitle
 
-\hypertarget{vaccine-data}{%
-\subsection{Vaccine data}\label{vaccine-data}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{data}\NormalTok{ (Vaccine)}
-
-\NormalTok{treats }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Status quo"}\NormalTok{, }\StringTok{"Vaccination"}\NormalTok{)}
-\NormalTok{bcea\_vacc }\OtherTok{\textless{}{-}} \FunctionTok{bcea}\NormalTok{(e, c, }\AttributeTok{ref =} \DecValTok{2}\NormalTok{, }\AttributeTok{interventions =}\NormalTok{ treats)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{plot}\NormalTok{(bcea\_vacc)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{C:/Users/Nathan/Documents/R/BCEA/vignettes/R_journal_examples_files/figure-latex/unnamed-chunk-4-1.pdf}
-
-\hypertarget{smoking-example}{%
-\subsection{Smoking example}\label{smoking-example}}
+\hypertarget{smoking-cessation-example}{%
+\subsection{Smoking cessation example}\label{smoking-cessation-example}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -141,80 +121,254 @@
 \end{Highlighting}
 \end{Shaded}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{plot}\NormalTok{(bcea\_smoke)}
-\CommentTok{\#\textgreater{} Wrong number of colours provided. Falling back to default}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{C:/Users/Nathan/Documents/R/BCEA/vignettes/R_journal_examples_files/figure-latex/plot_bcea_smoke-1.pdf}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{bcea\_smoke2 }\OtherTok{\textless{}{-}} \FunctionTok{bcea}\NormalTok{(e, c, }\AttributeTok{ref =} \DecValTok{4}\NormalTok{, }\AttributeTok{wtp =} \FunctionTok{c}\NormalTok{(}\DecValTok{20000}\NormalTok{, }\DecValTok{25000}\NormalTok{, }\DecValTok{30000}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# plot(bcea\_smoke2)}
-\end{Highlighting}
-\end{Shaded}
+grid of plots
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(ggplot2)}
 
+\FunctionTok{plot}\NormalTok{(bcea\_smoke)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{C:/Users/Nathan/Documents/R/BCEA/vignettes/R_journal_examples_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
 \FunctionTok{plot}\NormalTok{(bcea\_smoke, }\AttributeTok{graph =} \StringTok{"ggplot2"}\NormalTok{, }\AttributeTok{wtp =} \DecValTok{250}\NormalTok{, }\AttributeTok{pos =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{size =} \FunctionTok{rel}\NormalTok{(}\DecValTok{2}\NormalTok{), }\AttributeTok{ICER.size =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{C:/Users/Nathan/Documents/R/BCEA/vignettes/R_journal_examples_files/figure-latex/unnamed-chunk-4-2.pdf}
+
+individual plots cost-effectiveness plane
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ceplane.plot}\NormalTok{(bcea\_smoke, }\AttributeTok{comparison =} \DecValTok{2}\NormalTok{, }\AttributeTok{wtp =} \DecValTok{250}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{C:/Users/Nathan/Documents/R/BCEA/vignettes/R_journal_examples_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\FunctionTok{setComparisons}\NormalTok{(bcea\_smoke) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+
+\FunctionTok{ceplane.plot}\NormalTok{(bcea\_smoke, }\AttributeTok{wtp =} \DecValTok{250}\NormalTok{, }\AttributeTok{graph =} \StringTok{"ggplot2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{C:/Users/Nathan/Documents/R/BCEA/vignettes/R_journal_examples_files/figure-latex/unnamed-chunk-5-2.pdf}
+
+other plots
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{eib.plot}\NormalTok{(bcea\_smoke)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{C:/Users/Nathan/Documents/R/BCEA/vignettes/R_journal_examples_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\FunctionTok{contour}\NormalTok{(bcea\_smoke)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{C:/Users/Nathan/Documents/R/BCEA/vignettes/R_journal_examples_files/figure-latex/unnamed-chunk-6-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\FunctionTok{ceac.plot}\NormalTok{(bcea\_smoke)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{C:/Users/Nathan/Documents/R/BCEA/vignettes/R_journal_examples_files/figure-latex/unnamed-chunk-6-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\FunctionTok{ib.plot}\NormalTok{(bcea\_smoke)}
+\CommentTok{\#\textgreater{} NB: k (wtp) is defined in the interval [0 {-} 500]}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{C:/Users/Nathan/Documents/R/BCEA/vignettes/R_journal_examples_files/figure-latex/unnamed-chunk-6-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\FunctionTok{ceef.plot}\NormalTok{(bcea\_smoke)}
+\CommentTok{\#\textgreater{} }
+\CommentTok{\#\textgreater{} Cost{-}effectiveness efficiency frontier summary }
+\CommentTok{\#\textgreater{} }
+\CommentTok{\#\textgreater{} Interventions on the efficiency frontier:}
+\CommentTok{\#\textgreater{}                        Effectiveness   Costs Increase slope Increase angle}
+\CommentTok{\#\textgreater{} No intervention              0.41051   0.000           0.00         0.0000}
+\CommentTok{\#\textgreater{} Self{-}help                    0.89536  94.919         195.77         1.5657}
+\CommentTok{\#\textgreater{} Individual counselling       1.13303 143.301         203.57         1.5659}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{C:/Users/Nathan/Documents/R/BCEA/vignettes/R_journal_examples_files/figure-latex/unnamed-chunk-6-5.pdf}
+
+multiple simultaneous comparisons
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bcea\_smoke }\OtherTok{\textless{}{-}} \FunctionTok{multi.ce}\NormalTok{(bcea\_smoke)}
+
+\FunctionTok{ceac.plot}\NormalTok{(bcea\_smoke, }\AttributeTok{pos =} \StringTok{"topright"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{C:/Users/Nathan/Documents/R/BCEA/vignettes/R_journal_examples_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ceaf.plot}\NormalTok{(bcea\_smoke)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{C:/Users/Nathan/Documents/R/BCEA/vignettes/R_journal_examples_files/figure-latex/unnamed-chunk-7-2.pdf}
+
+mixed strategy
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mixedAn}\NormalTok{(bcea\_smoke) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.4}\NormalTok{, }\FloatTok{0.3}\NormalTok{, }\FloatTok{0.2}\NormalTok{, }\FloatTok{0.1}\NormalTok{)}
+\FunctionTok{summary}\NormalTok{(bcea\_smoke, }\AttributeTok{wtp =} \DecValTok{250}\NormalTok{)}
+\CommentTok{\#\textgreater{} }
+\CommentTok{\#\textgreater{} Analysis of mixed strategy for willingness to pay parameter k = 250}
+\CommentTok{\#\textgreater{} }
+\CommentTok{\#\textgreater{} Reference intervention: Group counselling (10.00\% market share)}
+\CommentTok{\#\textgreater{} Comparator intervention(s): No intervention (40.00\% market share)}
+\CommentTok{\#\textgreater{}                           : Individual counselling (20.00\% market share)}
+\CommentTok{\#\textgreater{} }
+\CommentTok{\#\textgreater{} Loss in the expected value of information = 34.43}
+\FunctionTok{evi.plot}\NormalTok{(bcea\_smoke, }\AttributeTok{graph =} \StringTok{"ggplot"}\NormalTok{, }\AttributeTok{pos =} \StringTok{"b"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{C:/Users/Nathan/Documents/R/BCEA/vignettes/R_journal_examples_files/figure-latex/unnamed-chunk-8-1.pdf}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# plot(bcea\_smoke2, graph = "ggplot2")}
-\CommentTok{\# when providing wtp to bcea, kstar is NA??...}
-\end{Highlighting}
-\end{Shaded}
+risk aversion
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{summary}\NormalTok{(bcea\_smoke, }\AttributeTok{wtp =} \DecValTok{10000}\NormalTok{)}
-\CommentTok{\#\textgreater{} NB: k (wtp) is defined in the interval [0 {-} 500]}
-\CommentTok{\#\textgreater{} }
+\NormalTok{r }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{0.005}\NormalTok{, }\FloatTok{0.020}\NormalTok{, }\FloatTok{0.035}\NormalTok{)}
+\FunctionTok{CEriskav}\NormalTok{(bcea\_smoke) }\OtherTok{\textless{}{-}}\NormalTok{ r}
+
+\FunctionTok{plot}\NormalTok{(bcea\_smoke)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{C:/Users/Nathan/Documents/R/BCEA/vignettes/R_journal_examples_files/figure-latex/unnamed-chunk-9-1.pdf}
+\includegraphics{C:/Users/Nathan/Documents/R/BCEA/vignettes/R_journal_examples_files/figure-latex/unnamed-chunk-9-2.pdf}
+
+\hypertarget{influenza-vaccine-data}{%
+\subsection{Influenza vaccine data}\label{influenza-vaccine-data}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{data}\NormalTok{(Vaccine)}
+
+\NormalTok{treats }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Status quo"}\NormalTok{, }\StringTok{"Vaccination"}\NormalTok{)}
+\NormalTok{bcea\_vacc }\OtherTok{\textless{}{-}} \FunctionTok{bcea}\NormalTok{(e, c, }\AttributeTok{ref =} \DecValTok{2}\NormalTok{, }\AttributeTok{interventions =}\NormalTok{ treats)}
+\end{Highlighting}
+\end{Shaded}
+
+grid of plots
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(bcea\_vacc)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{C:/Users/Nathan/Documents/R/BCEA/vignettes/R_journal_examples_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+summary output
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(bcea\_vacc, }\AttributeTok{wtp =} \DecValTok{10000}\NormalTok{)}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Cost{-}effectiveness analysis summary }
 \CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{} Reference intervention:  Group counselling}
-\CommentTok{\#\textgreater{} Comparator intervention(s): No intervention}
-\CommentTok{\#\textgreater{}                           : Self{-}help}
-\CommentTok{\#\textgreater{}                           : Individual counselling}
+\CommentTok{\#\textgreater{} Reference intervention:  Vaccination}
+\CommentTok{\#\textgreater{} Comparator intervention: Status quo}
 \CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{} Optimal decision: choose No intervention for k \textless{} 159}
-\CommentTok{\#\textgreater{}                          Self{-}help for 159 \textless{}= k \textless{} 225}
-\CommentTok{\#\textgreater{}                          Group counselling for k \textgreater{}= 225}
+\CommentTok{\#\textgreater{} Optimal decision: choose Status quo for k \textless{} 20100 and Vaccination for k \textgreater{}= 20100}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{} Analysis for willingness to pay parameter k = 500}
+\CommentTok{\#\textgreater{} Analysis for willingness to pay parameter k = 10000}
 \CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{}                        Expected utility}
-\CommentTok{\#\textgreater{} No intervention                  205.25}
-\CommentTok{\#\textgreater{} Self{-}help                        303.64}
-\CommentTok{\#\textgreater{} Individual counselling           352.76}
-\CommentTok{\#\textgreater{} Group counselling                423.21}
+\CommentTok{\#\textgreater{}             Expected utility}
+\CommentTok{\#\textgreater{} Status quo           {-}36.054}
+\CommentTok{\#\textgreater{} Vaccination          {-}34.826}
 \CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{}                                                 EIB  CEAC   ICER}
-\CommentTok{\#\textgreater{} Group counselling vs No intervention        217.959 0.906 198.33}
-\CommentTok{\#\textgreater{} Group counselling vs Self{-}help              119.573 0.746 224.67}
-\CommentTok{\#\textgreater{} Group counselling vs Individual counselling  70.449 0.614 203.57}
+\CommentTok{\#\textgreater{}                              EIB  CEAC  ICER}
+\CommentTok{\#\textgreater{} Vaccination vs Status quo 1.2284 0.529 20098}
 \CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{} Optimal intervention (max expected utility) for k = 500: Group counselling}
+\CommentTok{\#\textgreater{} Optimal intervention (max expected utility) for k = 10000: Status quo}
 \CommentTok{\#\textgreater{}            }
-\CommentTok{\#\textgreater{} EVPI 156.49}
+\CommentTok{\#\textgreater{} EVPI 3.0287}
+\FunctionTok{head}\NormalTok{(}\FunctionTok{sim\_table}\NormalTok{(bcea\_vacc, }\AttributeTok{wtp =} \DecValTok{25000}\NormalTok{)}\SpecialCharTok{$}\NormalTok{Table)}
+\CommentTok{\#\textgreater{}          U1        U2        U*      IB2\_1       OL         VI}
+\CommentTok{\#\textgreater{} 1 {-}36.57582 {-}38.71760 {-}36.57582 {-}2.1417866 2.141787  {-}1.135907}
+\CommentTok{\#\textgreater{} 2 {-}27.92514 {-}27.67448 {-}27.67448  0.2506573 0.000000   7.765431}
+\CommentTok{\#\textgreater{} 3 {-}28.03024 {-}33.37394 {-}28.03024 {-}5.3436963 5.343696   7.409665}
+\CommentTok{\#\textgreater{} 4 {-}53.28408 {-}47.13734 {-}47.13734  6.1467384 0.000000 {-}11.697432}
+\CommentTok{\#\textgreater{} 5 {-}43.58389 {-}40.40469 {-}40.40469  3.1791976 0.000000  {-}4.964782}
+\CommentTok{\#\textgreater{} 6 {-}42.37456 {-}33.08547 {-}33.08547  9.2890987 0.000000   2.354444}
 \end{Highlighting}
 \end{Shaded}
 
+value of information
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{evi.plot}\NormalTok{(bcea\_vacc)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{C:/Users/Nathan/Documents/R/BCEA/vignettes/R_journal_examples_files/figure-latex/unnamed-chunk-13-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{inp }\OtherTok{\textless{}{-}} \FunctionTok{createInputs}\NormalTok{(vaccine, }\AttributeTok{print\_is\_linear\_comb =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{info.rank}\NormalTok{(bcea\_vacc, inp)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{C:/Users/Nathan/Documents/R/BCEA/vignettes/R_journal_examples_files/figure-latex/unnamed-chunk-14-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{EVPPI }\OtherTok{\textless{}{-}} \FunctionTok{evppi}\NormalTok{(bcea\_vacc, }\FunctionTok{c}\NormalTok{(}\StringTok{"beta.1."}\NormalTok{, }\StringTok{"beta.2."}\NormalTok{), inp}\SpecialCharTok{$}\NormalTok{mat)}
+\CommentTok{\#\textgreater{} [1] "method: GAM" "method: GAM"}
+\CommentTok{\#\textgreater{} }
+\CommentTok{\#\textgreater{} Calculating fitted values for the GAM regression }
+\CommentTok{\#\textgreater{} }
+\CommentTok{\#\textgreater{} Calculating fitted values for the GAM regression }
+\CommentTok{\#\textgreater{} Calculating EVPPI}
+ \FunctionTok{plot}\NormalTok{(EVPPI)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{C:/Users/Nathan/Documents/R/BCEA/vignettes/R_journal_examples_files/figure-latex/unnamed-chunk-15-1.pdf}
 
 \end{document}

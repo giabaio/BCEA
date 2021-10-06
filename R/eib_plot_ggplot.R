@@ -2,7 +2,8 @@
 #' EIB plot ggplot2 version
 #' 
 #' @template args-he
-#' 
+#' @param graph_params List of graph parameters
+#' @param ... Additional arguments
 #' @return ggplot2 object
 #' 
 #' @import ggplot2
@@ -63,7 +64,7 @@ eib_plot_ggplot.bcea <- function(he,
 }
 
 
-#' @rdname eib_plot_graph
+#' eib_plot_ggplot
 #'
 #' @keywords hplot
 #'

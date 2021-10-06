@@ -1,5 +1,6 @@
 
-#' ceef_plot_base
+#' @rdname ceef_plot_graph
+#' @title CEEF plot base R version
 #' 
 ceef_plot_base <- function(he,
                            frontier_data,

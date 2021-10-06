@@ -2,7 +2,7 @@
 title: "Cost-effectiveness efficiency frontier"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{ceac}
+  %\VignetteIndexEntry{Cost-effectiveness efficiency frontier}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

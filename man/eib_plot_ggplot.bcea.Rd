@@ -9,6 +9,10 @@
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
+
+\item{graph_params}{List of graph parameters}
+
+\item{...}{Additional arguments}
 }
 \value{
 ggplot2 object

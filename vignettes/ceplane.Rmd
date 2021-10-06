@@ -2,7 +2,7 @@
 title: "Cost-effectiveness plane"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{ceac}
+  %\VignetteIndexEntry{Cost-effectiveness plane}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
