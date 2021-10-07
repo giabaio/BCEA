@@ -71,8 +71,8 @@
 #' evi.plot(m, graph="base")
 #'
 #' # Or with ggplot2
-#' if(require(ggplot2)){
-#' evi.plot(m, graph="ggplot2")
+#' if (require(ggplot2)) {
+#'    evi.plot(m, graph="ggplot2")
 #' }
 #' 
 #' @export
@@ -83,7 +83,7 @@ evi.plot.mixedAn <- function(he,
                              graph = c("base", "ggplot2"),
                              ...) {
   
-  alt.legend <- pos
+  alt_legend <- pos
   base.graphics <- all(pmatch(graph, c("base", "ggplot2")) != 2)
   
   if (is.null(y.limits)){
@@ -92,24 +92,24 @@ evi.plot.mixedAn <- function(he,
   
   if (base.graphics) {
     
-    if (is.numeric(alt.legend) &&
-        length(alt.legend) == 2) {
+    if (is.numeric(alt_legend) &&
+        length(alt_legend) == 2) {
       temp <- ""
-      if (alt.legend[2] == 0)
+      if (alt_legend[2] == 0)
         temp <- paste0(temp,"bottom")
       else
         temp <- paste0(temp,"top")
-      if (alt.legend[1] == 1)
+      if (alt_legend[1] == 1)
         temp <- paste0(temp, "right")
       else
         temp <- paste0(temp, "left")
-      alt.legend <- temp
+      alt_legend <- temp
       if (length(grep("^(bottom|top)(left|right)$", temp)) == 0)
-        alt.legend <- FALSE
+        alt_legend <- FALSE
     }
-    if (is.logical(alt.legend)) {
-      alt.legend <- 
-        if (!alt.legend)
+    if (is.logical(alt_legend)) {
+      alt_legend <- 
+        if (!alt_legend)
           "topright"
       else
         "topleft"
@@ -140,7 +140,7 @@ evi.plot.mixedAn <- function(he,
         sep = ""))
     cols <- c("black", "red", rep("white", length(he$interventions)))
     legend(
-      alt.legend,
+      alt_legend,
       txt,
       col = cols,
       cex = 0.6,
@@ -199,29 +199,29 @@ evi.plot.mixedAn <- function(he,
       
       jus <- NULL
       
-      if (isTRUE(alt.legend)) {
-        alt.legend <- "bottom"
+      if (isTRUE(alt_legend)) {
+        alt_legend <- "bottom"
         evi <- evi + theme(legend.direction = "vertical")
       } else {
-        if (is.character(alt.legend)) {
+        if (is.character(alt_legend)) {
           choices <- c("left", "right", "bottom", "top")
-          alt.legend <- choices[pmatch(alt.legend,choices)]
+          alt_legend <- choices[pmatch(alt_legend,choices)]
           jus <- "center"
-          if (is.na(alt.legend))
-            alt.legend <- FALSE
+          if (is.na(alt_legend))
+            alt_legend <- FALSE
         }
-        if (length(alt.legend) > 1)
-          jus <- alt.legend
-        if (length(alt.legend) == 1 &&
-            !is.character(alt.legend)) {
-          alt.legend <- c(0,1)
-          jus <- alt.legend
+        if (length(alt_legend) > 1)
+          jus <- alt_legend
+        if (length(alt_legend) == 1 &&
+            !is.character(alt_legend)) {
+          alt_legend <- c(0,1)
+          jus <- alt_legend
         }
       }
       
       evi <- evi + 
         theme(
-          legend.position = alt.legend,
+          legend.position = alt_legend,
           legend.justification = jus,
           legend.title = element_blank(),
           legend.background = element_blank(),

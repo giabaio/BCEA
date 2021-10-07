@@ -69,8 +69,8 @@ compute_CEAC <- function(ib) {
 #'  
 compute_EIB <- function(ib) {
   
-  eib <- apply(ib, 3, function(x) apply(x, 1, mean))
-  # eib <- apply(ib, 3, function(x) rowMeans(x))  ##TODO: test
+  apply(ib, 3, function(x) apply(x, 1, mean))
+  # apply(ib, 3, function(x) rowMeans(x))  ##TODO: test
 }
 
 

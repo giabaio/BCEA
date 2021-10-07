@@ -101,7 +101,7 @@ ceef.plot.bcea <- function(he,
    
    graph <- match.arg(graph)
    
-   extra_args <- list(...)
+   # extra_args <- list(...)
    
    ##TODO: this function uses comparators not comparisons
    ##      thing is he$e,c have all interventions because can modify

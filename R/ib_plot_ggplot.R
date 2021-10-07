@@ -73,7 +73,7 @@ ib_plot_ggplot <- function(he,
     xlim <- range(df$x)
   }
   ib <-
-    ggplot(df, aes(x, y)) +
+    ggplot(df, aes(.data$x, .data$y)) +
     theme_bw() +
     geom_vline(xintercept = 0,
                colour = "grey50",

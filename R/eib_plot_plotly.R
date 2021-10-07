@@ -4,15 +4,17 @@
 #' @importFrom plotly plot_ly add_trace add_ribbons layout config
 #' 
 eib_plot_plotly <- function(he,
-                            alt.legend,
-                            plot_aes,
-                            plot_annotations,
-                            plot.cri,
-                            cri.quantile,
-                            comparison,
-                            alpha,
-                            cri,
-                            size = NULL) {
+                            graph_params, ...) {
+  
+  alt.legend <- graph_params$alt.legend
+  plot_aes <- graph_params$plot_aes
+  plot_annotations <- graph_params$plot_annotations
+  plot.cri <- graph_params$plot.cri
+  cri.quantile <- graph_params$cri.quantile
+  comparison <- graph_params$comparison
+  alpha <- graph_params$alpha_cri
+  cri <- graph_params$cri
+  size <- graph_params$size
   
   if (!is.null(size) && !is.na(size)) {
     message("Option size will be ignored using plotly.")

@@ -75,13 +75,10 @@ r <- c(1e-10, 0.005, 0.020, 0.035)
 # produce the plots
 \donttest{
    plot(m)
-)
 }
 ## Alternative options, using ggplot2
 \donttest{
-   plot(m,
-    graph="ggplot2"
-  )
+   plot(m, graph = "ggplot2")
 }
 
 }

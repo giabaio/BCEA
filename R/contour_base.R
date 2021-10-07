@@ -1,6 +1,7 @@
 
 #'
-contour_base <- function(he, params, scale, nlevels, levels, xlim, ylim, extra_args, comparison = 1) {
+contour_base <- function(he, params, scale, nlevels, levels,
+                         xlim, ylim, extra_args, comparison = 1) {
   
   xlab <- params$xlab
   ylab <- params$ylab
@@ -24,15 +25,14 @@ contour_base <- function(he, params, scale, nlevels, levels, xlim, ylim, extra_a
     m.e <- range(he$delta_e)[1]
     M.e <- range(he$delta_e)[2]
     
-    ##TODO: this isnt how to use ifelse(); refactor
-    
+    ##TODO: this isn't how to use ifelse(); refactor
     # Changes the range so that the plot always shows the x and y axes
-    ch1 <- ifelse(m.e > 0,
-                  m.e <- -m.e,
-                  m.e <- m.e)
-    ch2 <- ifelse(M.e < 0, M.e <- -M.e, M.e <- M.e)
-    ch3 <- ifelse(m.c > 0, m.c <- -m.c, m.c <- m.c)
-    ch4 <- ifelse(M.c < 0, M.c <- -M.c, M.c <- M.c)
+    # ch1 <- ifelse(m.e > 0,
+    #               m.e <- -m.e,
+    #               m.e <- m.e)
+    # ch2 <- ifelse(M.e < 0, M.e <- -M.e, M.e <- M.e)
+    # ch3 <- ifelse(m.c > 0, m.c <- -m.c, m.c <- m.c)
+    # ch4 <- ifelse(M.c < 0, M.c <- -M.c, M.c <- M.c)
     
     # If the user has specified the range of the graph, use those values
     if (!is.null(xlim)) {
@@ -167,11 +167,12 @@ contour_base <- function(he, params, scale, nlevels, levels, xlim, ylim, extra_a
     m.e <- range(he$delta_e[, comparison])[1]
     M.e <- range(he$delta_e[, comparison])[2]
     
+    ##TODO:
     # Changes the range so that the plot always shows the x and y axes
-    ch1 <- ifelse(m.e > 0, m.e <- -m.e, m.e <- m.e)
-    ch2 <- ifelse(M.e < 0, M.e <- -M.e, M.e <- M.e)
-    ch3 <- ifelse(m.c > 0, m.c <- -m.c, m.c <- m.c)
-    ch4 <- ifelse(M.c < 0, M.c <- -M.c, M.c <- M.c)
+    # ch1 <- ifelse(m.e > 0, m.e <- -m.e, m.e <- m.e)
+    # ch2 <- ifelse(M.e < 0, M.e <- -M.e, M.e <- M.e)
+    # ch3 <- ifelse(m.c > 0, m.c <- -m.c, m.c <- m.c)
+    # ch4 <- ifelse(M.c < 0, M.c <- -M.c, M.c <- M.c)
      
     # If the user has specified the range of the graph, use those values
     if (!is.null(xlim)) {

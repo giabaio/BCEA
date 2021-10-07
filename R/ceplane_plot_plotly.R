@@ -59,7 +59,7 @@ ceplane_plot_plotly.bcea <- function(he,
         id.vars = "sim"),
       by = c("sim", "comparison"))
   
-  ICER_size <- ifelse(he$n_comparisons == 1, 8, 0)
+  graph_params$ICER_size <- ifelse(he$n_comparisons == 1, 8, 0)
   
   if (length(graph_params$point$colors) != length(comp_label))
     graph_params$point$colors <- rep_len(graph_params$point$colors, length(comp_label))

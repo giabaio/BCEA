@@ -73,7 +73,7 @@ prep_frontier_data <- function(he,
   ce_zeros <-
     xor(data.avg["e.avg"] == 0,
         data.avg["c.avg"] == 0)
-
+  
   comp <-
     ifelse(any(ce_zeros),
            yes = which(ce_zeros),
@@ -121,7 +121,7 @@ prep_frontier_data <- function(he,
   repeat{
     if (prod(dim(data.avg)) == 0) break
     
-    theta <- with(data.avg,atan(c.avg/e.avg))
+    theta <- atan(data.avg$c.avg/data.avg$e.avg)
     theta.min <- min(theta, na.rm = TRUE)
     
     if (theta.min > threshold) break
@@ -130,27 +130,31 @@ prep_frontier_data <- function(he,
     if (length(index) > 1)
       index <- index[which.min(data.avg$e.avg[index])]
     
-    ceef.points <- with(data.avg,
-                        rbind(ceef.points,
-                              c(e.orig[index], c.orig[index], comp[index])))
+    ceef_orig_idx <- c(data.avg$e.orig[index],
+                       data.avg$c.orig[index],
+                       data.avg$comp[index])
+    
+    ceef.points <- rbind(ceef.points, ceef_orig_idx)
     
     rep_dataavg <- rep(as.numeric(data.avg[index, 3:4]), dim(data.avg)[1])
     
     data.avg[, 1:2] <-
       data.avg[, 3:4] - matrix(rep_dataavg, ncol = 2, byrow = TRUE)
     
-    data.avg <- subset(subset(data.avg, c.avg*e.avg > 0), c.avg + e.avg > 0)
+    pos_prod <- dplr::filter(data.avg, .data$c.avg*.data$e.avg > 0)
+    data.avg <- dplr::filter(pos_prod, .data$c.avg + .data$e.avg > 0)
   }
   
   ####
   
   ceef.points$comp <- factor(ceef.points$comp)
-  
   ceef.points$slope <- NA
   
   ## calculate slopes
-  for (i in 2:dim(ceef.points)[1])
-    ceef.points$slope[i] <- with(ceef.points, (y[i] - y[i-1])/(x[i] - x[i-1]))
+  for (i in 2:dim(ceef.points)[1]) {
+    ceef.points$slope[i] <-
+      (ceef.points$y[i] - ceef.points$y[i-1])/(ceef.points$x[i] - ceef.points$x[i-1])
+  }
   
   ## workaround for start.origin == FALSE: remove first row if slope is negative
   while (dim(ceef.points)[1] > 1 &&

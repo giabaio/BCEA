@@ -21,7 +21,7 @@ evi_plot_ggplot <- function(he,
   k <- NA_real_
   
   evi <-
-    ggplot(data.psa, aes(k, evi)) +
+    ggplot(data.psa, aes(.data$k, .data$evi)) +
     geom_line(
       colour = plot_aes$line$colors,
       lty = ifelse(is.null(plot_aes$line$types), 1, plot_aes$line$type)) +

@@ -35,15 +35,7 @@ eib.plot.bcea <- function(he,
   } else if (is_plotly(graph)) {
     
     eib_plot_plotly(he,
-                    alt.legend,
-                    plot_aes,
-                    plot_annotations,
-                    plot.cri,
-                    cri.quantile,
-                    comparison,
-                    alpha,
-                    cri,
-                    size,
+                    graph_params,
                     ...)
   }
 }

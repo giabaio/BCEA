@@ -51,11 +51,12 @@ contour2.bcea <- function(he,
     m.e <- range(he$delta_e)[1]
     M.e <- range(he$delta_e)[2]
     
+    ##TODO:
     # Changes the range so that the plot always shows the x and y axes
-    ch1 <- ifelse(m.e > 0, m.e <- -m.e, m.e <- m.e)
-    ch2 <- ifelse(M.e < 0, M.e <- -M.e, M.e <- M.e)
-    ch3 <- ifelse(m.c > 0, m.c <- -m.c, m.c <- m.c)
-    ch4 <- ifelse(M.c < 0, M.c <- -M.c, M.c <- M.c)
+    # ch1 <- ifelse(m.e > 0, m.e <- -m.e, m.e <- m.e)
+    # ch2 <- ifelse(M.e < 0, M.e <- -M.e, M.e <- M.e)
+    # ch3 <- ifelse(m.c > 0, m.c <- -m.c, m.c <- m.c)
+    # ch4 <- ifelse(M.c < 0, M.c <- -M.c, M.c <- M.c)
     
     par(new = TRUE)
     graphics::contour(

@@ -33,21 +33,7 @@ ceef_plot_ggplot <- function(he,
   
   add_dominance_region <- frontier_params$dominance
   add_frontier <- dim(ceef.points)[1] > 1
-  
-  if (!(requireNamespace("ggplot2", quietly = TRUE) &&
-        requireNamespace("grid", quietly = TRUE))) {
-    message("Falling back to base graphics\n")
-    
-    ceef.plot(
-      he,
-      flip = flip,
-      comparators = comparators,
-      pos = pos,
-      start.from.origins = start.from.origins,
-      graph = "base")
-    return(invisible(NULL))
-  }
-  
+
   extra_args <- list(...)
   
   opt_theme <- purrr::keep(extra_args, is.theme)
@@ -107,7 +93,7 @@ ceef_plot_ggplot <- function(he,
     ceplane <- ceplane + 
       geom_text(
         data = orig.avg[i, ],
-        aes(x = .data$e.orig, y = .data$c.orig, label = comp),
+        aes(x = .data$e.orig, y = .data$c.orig, label = .data$comp),
         size = 3.5,
         colour = ifelse(i %in% ceef.points$comp, "black", "grey60"))
   }

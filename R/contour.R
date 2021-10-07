@@ -1,5 +1,4 @@
 
-#' @rdname contour
 #' @importFrom stats sd
 #' @importFrom graphics par
 #' 
@@ -14,7 +13,7 @@ contour.bcea <- function(he,
                          ylim = NULL,
                          graph = c("base", "ggplot2"),
                          ...) {
-
+  
   # comparison selects which plot should be made
   # by default it is the first possible
   
@@ -23,62 +22,50 @@ contour.bcea <- function(he,
   
   params <- list()
   
-  if (!exists("xlab", where = extra_args)) {
-    params$xlab <- "Effectiveness differential"
-  } else {
-    params$xlab <- extra_args$xlab
-  }
+  params$xlab <- 
+    if (!exists("xlab", where = extra_args)) {
+      "Effectiveness differential"
+    } else {
+      extra_args$xlab
+    }
   
-  if (!exists("ylab", where = extra_args)) {
-    params$ylab <- "Cost differential"
-  } else {
-    params$ylab <- extra_args$ylab
-  }
+  params$ylab <- 
+    if (!exists("ylab", where = extra_args)) {
+      "Cost differential"
+    } else {
+      extra_args$ylab
+    }
   
-  if (!exists("title", where = extra_args)) {
-    params$title <-
+  params$title <- 
+    if (!exists("title", where = extra_args)) {
       paste(
         "Cost effectiveness plane contour plot\n",
         he$interventions[he$ref],
         " vs ",
         he$interventions[he$comp],
         sep = "")
-  } else {
-    params$title <- extra_args$title
-  }
+    } else {
+      extra_args$title
+    }
   
   params$alt.legend <- pos
   
   graph <- match.arg(graph)
   
   if (is_baseplot(graph)) {
+    
     contour_base(he, params, scale, nlevels, levels, xlim, ylim, extra_args)
-  }
-  else{
-    if (!requireNamespace("ggplot2", quietly = TRUE) &
-        requireNamespace("grid", quietly = TRUE)) {
-      message("Falling back to base graphics\n")
-      contour(
-        he,
-        comparison = comparison,
-        scale = scale,
-        nlevels = nlevels,
-        pos = alt.legend,
-        levels = levels,
-        graph = "base",
-        ...)
-      return(invisible(NULL))
-    }
+    
+  } else if (is_ggplot(graph)) {
     
     if (!is.null(levels))
       message("Option level will be ignored using ggplot2 graphics")
     
-   contour_ggplot(he, params, scale, nlevels, levels, xlim, ylim, extra_args)
+    contour_ggplot(he, params, scale, nlevels, levels, xlim, ylim, extra_args)
   }
 }
 
 
-#' @name contour
 #' @title Contour Plots for the Cost-Effectiveness Plane
 #'
 #' Contour method for objects in the class \code{bcea}.

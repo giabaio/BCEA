@@ -14,8 +14,8 @@ evppi_plot_ggplot.evppi <- function(evppi_obj,
     bind_rows() %>% 
     ##TODO: for >1 evppi
     melt(id.vars = "k") %>% 
-    mutate(variable = as.character(variable),
-           variable = ifelse(variable == "evppi",
+    mutate(variable = as.character(.data$variable),
+           variable = ifelse(.data$variable == "evppi",
                              paste("EVPPI for",
                                    evppi_obj$parameters),
                              "EVPI"))
@@ -26,7 +26,8 @@ evppi_plot_ggplot.evppi <- function(evppi_obj,
   legend_params <- make_legend_ggplot(evppi_obj, pos_legend)
   
   ggplot(plot_dat,
-         aes(x = k, y = value, group = variable, size = variable, colour = variable)) +
+         aes(x = .data$k, y = .data$value,
+             group = .data$variable, size = .data$variable, colour = .data$variable)) +
     geom_line() +
     theme_default() +
     theme_add +

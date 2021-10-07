@@ -19,7 +19,7 @@ bcea(
 \method{bcea}{default}(
   eff,
   cost,
-  ref = 1,
+  ref = NULL,
   interventions = NULL,
   .comparison = NULL,
   Kmax = 50000,

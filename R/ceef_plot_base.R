@@ -83,14 +83,17 @@ ceef_plot_base <- function(he,
   # do this in prep_frontier_data()
   
   comparators <- unique(scatter.data$comp)
-
+  
   for (i in seq_len(he$n_comparators)) {
-    with(scatter.data,
-         points(subset(scatter.data, comp == comparators[i])[, c("e", "c")],
-                type = "p",
-                pch = 20,
-                cex = 0.35,
-                col = colour[i]))
+    sub_scatter <-
+      dplyr::filter(scatter.data,
+                    .data$comp == comparators[i])
+    
+    points(sub_scatter[, c("e", "c")],
+           type = "p",
+           pch = 20,
+           cex = 0.35,
+           col = colour[i])
   }
   
   # add frontier

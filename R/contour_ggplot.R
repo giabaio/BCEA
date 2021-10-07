@@ -1,6 +1,9 @@
 
-#'
-contour_ggplot <- function(he, params, scale, nlevels, levels, xlim, ylim, extra_args, comparison = 1) {
+#' @importFrom grid unit
+#' @import ggplot2
+#' 
+contour_ggplot <- function(he, params, scale, nlevels, levels,
+                           xlim, ylim, extra_args, comparison = 1) {
   
   xlab <- params$xlab
   ylab <- params$ylab
@@ -20,8 +23,7 @@ contour_ggplot <- function(he, params, scale, nlevels, levels, xlim, ylim, extra
                      c = unlist(he$delta_c))
     
     # for scale_x_continuous(oob=)
-    do.nothing <- function(x, limits)
-      return(x)
+    do.nothing <- function(x, limits) x
     
     # plot limits
     range.e <- range(kd$e)
@@ -47,13 +49,12 @@ contour_ggplot <- function(he, params, scale, nlevels, levels, xlim, ylim, extra
       paste0("Pr(Delta[e]>0, Delta[c]<=0)==",
              format(p.se, digits = 4, nsmall = 3))
     
-    # labels dataframe
-    labels.df <- data.frame(
-      he = c(range.e[2], range.e[1], range.e[1], range.e[2]),
-      y = c(rep(range.c[2], 2), rep(range.c[1], 2)),
-      label = c(p.ne, p.nw, p.sw, p.se),
-      hjust = as.factor(c(1, 0, 0, 1))
-    )
+    labels.df <-
+      data.frame(
+        he = c(range.e[2], range.e[1], range.e[1], range.e[2]),
+        y = c(rep(range.c[2], 2), rep(range.c[1], 2)),
+        label = c(p.ne, p.nw, p.sw, p.se),
+        hjust = as.factor(c(1, 0, 0, 1)))
     
     # actual plot
     points.colour <- "grey"
@@ -101,8 +102,8 @@ contour_ggplot <- function(he, params, scale, nlevels, levels, xlim, ylim, extra
         aes(
           x = .data$he,
           y = .data$y,
-          hjust = hjust,
-          label = label),
+          hjust = .data$hjust,
+          label = .data$label),
         parse = TRUE,
         size = rel(3.5))
   }
@@ -123,8 +124,6 @@ contour_ggplot <- function(he, params, scale, nlevels, levels, xlim, ylim, extra
     comparisons.label <-
       paste0(he$interventions[he$ref], " vs ", he$interventions[he$comp])
     
-    do.nothing <- function(x, limits) x
-    
     # plot limits
     range.e <- range(kd$delta_e)
     range.c <- range(kd$delta_c)
@@ -133,7 +132,8 @@ contour_ggplot <- function(he, params, scale, nlevels, levels, xlim, ylim, extra
     
     ceplane <-
       ggplot(kd,
-             aes(x = .data$delta_e, y = .data$delta_c, col = .data$comparison)) +
+             aes(x = .data$delta_e, y = .data$delta_c,
+                 col = .data$comparison)) +
       geom_hline(yintercept = 0, colour = "grey") +
       geom_vline(xintercept = 0, colour = "grey") +
       theme_bw() +
@@ -152,7 +152,8 @@ contour_ggplot <- function(he, params, scale, nlevels, levels, xlim, ylim, extra
             as.matrix(he$delta_e)[, i],
             as.matrix(he$delta_c)[, i],
             n = 300,
-            h = c(sd(as.matrix(he$delta_e)[, i]) / scale, sd(as.matrix(he$delta_c)[, i]) / scale))
+            h = c(sd(as.matrix(he$delta_e)[, i]) / scale,
+                  sd(as.matrix(he$delta_c)[, i]) / scale))
         temp <-
           data.frame(expand.grid(e = temp$x,
                                  c = temp$y),
@@ -169,8 +170,7 @@ contour_ggplot <- function(he, params, scale, nlevels, levels, xlim, ylim, extra
                      bins = nlevels) +
         guides(colour = guide_legend(override.aes =
                                        list(linetype = 0)))
-    }
-    else {
+    } else {
       ceplane <-
         ceplane +
         stat_density2d() +
@@ -206,30 +206,9 @@ contour_ggplot <- function(he, params, scale, nlevels, levels, xlim, ylim, extra
       )
     )
   }
-  
-  if (!exists("title", where = extra_args)) {
-    labs.title <- "Cost-Effectiveness Plane"
-    labs.title <-
-      paste0(labs.title,
-             ifelse(
-               he$n_comparisons == 1,
-               paste0("\n", he$interventions[he$ref], " vs ", he$interventions[-he$ref]),
-               paste0(ifelse(
-                 isTRUE(he$mod),
-                 paste0(
-                   "\n",
-                   he$interventions[he$ref],
-                   " vs ",
-                   paste0(he$interventions[he$comp], collapse = ", ")
-                 ),
-                 ""))
-             ))
-  } else {
-    labs.title <- extra_args$title
-  }
-  
+
   ceplane <-
-    ceplane + labs(title = labs.title, x = xlab, y = ylab)
+    ceplane + labs(title = title, x = xlab, y = ylab)
   
   jus <- NULL
   
