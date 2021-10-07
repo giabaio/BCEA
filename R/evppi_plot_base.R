@@ -1,6 +1,9 @@
 
 #' @rdname evppi_plot_graph
 #'
+#' @param evppi_obj Object of class evppi
+#' @param pos_legend Position of legend 
+#' @param col Colour
 #' @param annot Annotate EVPPI curve with parameter names
 #'
 #' @export

@@ -19,13 +19,15 @@ evppi_plot_base(evppi_obj, ...)
 evppi_plot_ggplot(evppi_obj, ...)
 }
 \arguments{
-\item{evppi_obj}{Result of call to \code{createInputs()}}
+\item{evppi_obj}{Object of class evppi}
 
 \item{pos_legend}{Legend position}
 
 \item{col}{Line colours; vector}
 
 \item{annot}{Annotate EVPPI curve with parameter names}
+
+\item{x}{Result of call to \code{createInputs()}}
 }
 \description{
 Plot Expected Value of Partial Information With Respect to a

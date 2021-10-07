@@ -1,5 +1,10 @@
 
-#' parameters specific to base R plot
+#' EIB parameters specific to base R plot
+#' 
+#' @template args-he
+#' @param graph_params Type of plot device
+#' @param cri_params Credible interval parameters
+#' @return list
 #' 
 eib_params_base <- function(he,
                             graph_params,

@@ -1,5 +1,10 @@
 
-#' evi_plot_ggplot
+#' EVI plot ggplot version
+#' 
+#' @template args-he
+#' @param data.psa Data
+#' @param plot_aes Aesthetic parameters
+#' @param plot_annotations Plot parameters
 #' 
 #' @import ggplot2 grid
 #' 

@@ -1,16 +1,21 @@
 
 #' EVI plot plotly version
 #' 
+#' @param data.psa Data
+#' @param plot_aes Aesthetic parameters
+#' @param plot_annotations Plot parameters
+#' 
 #' @importFrom plotly layout config add_trace plot_ly
 #' 
 evi_plot_plotly <- function(data.psa,
                             plot_aes,
                             plot_annotations) {
   
-  plot_aes$area$color = sapply(plot_aes$area$color, function(x)
-    ifelse(grepl(pattern = "^rgba\\(", x = x), x, plotly::toRGB(x, 0.4)))
+  plot_aes$area$color <- 
+    sapply(plot_aes$area$color,
+           function(x)
+             ifelse(grepl(pattern = "^rgba\\(", x = x), x, plotly::toRGB(x, 0.4)))
   
-  # legend
   legend_list = list(orientation = "h",
                      xanchor = "center",
                      x = 0.5)

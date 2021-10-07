@@ -302,16 +302,11 @@ plot.mesh <- function(mesh, data, plot) {
       name <- paste0(getwd(), "/mesh.", ext)
       txt <- paste0(ext, "('", name, "')")
       eval(parse(text = txt))
-      plot(mesh)
-      points(data,
-             col = "blue",
-             pch = 19,
-             cex = 0.8)
-      dev.off()
       txt <- paste0("Graph saved as: ", name)
       cat(txt)
-      cat("\n")
+      on.exit(dev.off())
     }
+
     cat("\n")
     plot(mesh)
     points(data,

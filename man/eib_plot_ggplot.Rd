@@ -2,11 +2,22 @@
 % Please edit documentation in R/eib_plot_ggplot.R
 \name{eib_plot_ggplot}
 \alias{eib_plot_ggplot}
-\title{eib_plot_ggplot}
+\title{EIB plot ggplot2 version}
 \usage{
 eib_plot_ggplot(he, graph_params, ...)
 }
+\arguments{
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
+
+\item{graph_params}{List of graph parameters}
+
+\item{...}{Additional arguments}
+}
+\value{
+ggplot2 object
+}
 \description{
-eib_plot_ggplot
+EIB plot ggplot2 version
 }
 \keyword{hplot}

@@ -4,10 +4,10 @@
 \alias{plot.CEriskav}
 \title{Plots EIB and EVPI for the Risk Aversion Case}
 \usage{
-\method{plot}{CEriskav}(he, pos = c(0, 1), graph = c("base", "ggplot2"), ...)
+\method{plot}{CEriskav}(x, pos = c(0, 1), graph = c("base", "ggplot2"), ...)
 }
 \arguments{
-\item{he}{An object of the class \code{CEriskav}, a subclass of \code{bcea},
+\item{x}{An object of the class \code{CEriskav}, a subclass of \code{bcea},
 containing the results of the economic analysis performed accounting for a
 risk aversion parameter (obtained as output of the function \code{\link{CEriskav}}).}
 
@@ -75,13 +75,10 @@ r <- c(1e-10, 0.005, 0.020, 0.035)
 # produce the plots
 \donttest{
    plot(m)
-)
 }
 ## Alternative options, using ggplot2
 \donttest{
-   plot(m,
-    graph="ggplot2"
-  )
+   plot(m, graph = "ggplot2")
 }
 
 }

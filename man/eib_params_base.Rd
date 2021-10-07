@@ -2,10 +2,21 @@
 % Please edit documentation in R/eib_params_base.R
 \name{eib_params_base}
 \alias{eib_params_base}
-\title{parameters specific to base R plot}
+\title{EIB parameters specific to base R plot}
 \usage{
 eib_params_base(he, graph_params, cri_params)
 }
+\arguments{
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
+
+\item{graph_params}{Type of plot device}
+
+\item{cri_params}{Credible interval parameters}
+}
+\value{
+list
+}
 \description{
-parameters specific to base R plot
+EIB parameters specific to base R plot
 }

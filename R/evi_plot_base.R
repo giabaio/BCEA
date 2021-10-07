@@ -1,5 +1,10 @@
 
-#' evi_plot_base
+#' EVI base R version
+#' 
+#' @template args-he
+#' @param data.psa Data
+#' @param plot_aes Aesthetic parameters
+#' @param plot_annotations Plot parameters
 #' 
 evi_plot_base <- function(he,
                           data.psa,
