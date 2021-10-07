@@ -8,18 +8,6 @@ evi_plot_ggplot <- function(he,
                             plot_aes,
                             plot_annotations) {
   
-  if (!(requireNamespace("ggplot2", quietly = TRUE) &
-        requireNamespace("grid", quietly = TRUE))) {
-    message("falling back to base graphics\n")
-    
-    evi.plot(he, graph = "base", ...)
-    
-    return(invisible(NULL))
-  }
-  
-  # no visible binding note
-  k <- NA_real_
-  
   evi <-
     ggplot(data.psa, aes(k, evi)) +
     geom_line(
@@ -35,7 +23,7 @@ evi_plot_ggplot <- function(he,
     evi.at.kstar <- numeric(kstars)
     
     for (i in seq_len(kstars)) {
-      evi.at.kstar[i] <- with(he, evi[which.min(abs(k - kstar[i]))])
+      evi.at.kstar[i] <- he$evi[which.min(abs(he$k - he$kstar[i]))]
     }
     
     for (i in seq_len(kstars)) {

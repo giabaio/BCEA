@@ -14,8 +14,7 @@
 #'
 new_bcea <- function(df_ce, k) {
   
-  K <- length(k)
-  n_sim <- length(unique(df_ce$sim))
+  # K <- length(k)
   ref <- unique(df_ce$ref)
   comp <- (1:max(df_ce$ints))[-ref]
   df_ce_comp <- df_ce %>% filter(.data$ints != ref)

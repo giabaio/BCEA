@@ -34,7 +34,9 @@ inforank_params <- function(he,
   if (length(w) == 1) return()
   
   input <- input[, w]
-  chk1 <- which(apply(input, 2, "var") > 0)   # only takes those with var > 0
+  
+  ##TODO: what does this do?
+  # chk1 <- which(apply(input, 2, "var") > 0)   # only takes those with var > 0
   
   # check those with < 5 possible values (would break GAM)
   tmp <- lapply(1:dim(input)[2], function(x) table(input[, x]))
@@ -43,16 +45,17 @@ inforank_params <- function(he,
   
   N <- he$n_sim
   
+  ##TODO: what does select do?
   if (any(!is.na(N)) & length(N) > 1) {
-    select <- N
+    # select <- N
   } else {
     N <- min(he$n_sim,N, na.rm = TRUE)
     
-    select <- 
-      if (N == he$n_sim) {
-        1:he$n_sim
-      } else {
-        sample(1:he$n_sim, size = N, replace = FALSE)} 
+    # select <- 
+    #   if (N == he$n_sim) {
+    #     1:he$n_sim
+    #   } else {
+    #     sample(1:he$n_sim, size = N, replace = FALSE)} 
   }
   
   m <- he

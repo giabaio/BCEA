@@ -12,7 +12,7 @@ eib_plot_plotly <- function(he,
                             comparison,
                             alpha,
                             cri,
-                            size = NULL) {
+                            size = NULL, ...) {
   
   if (!is.null(size) && !is.na(size)) {
     message("Option size will be ignored using plotly.")
