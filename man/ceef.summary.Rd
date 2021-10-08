@@ -2,7 +2,7 @@
 % Please edit documentation in R/ceef.summary.R
 \name{ceef.summary}
 \alias{ceef.summary}
-\title{Summary table function}
+\title{Summary table for CEEF}
 \usage{
 ceef.summary(he, frontier_data, frontier_params, include.ICER = FALSE, ...)
 }
@@ -19,8 +19,8 @@ modelling and the economic evaluation.}
 \item{...}{Additional arguments}
 }
 \value{
-
+Summary printed to console
 }
 \description{
-Summary table function
+Summary table for CEEF
 }

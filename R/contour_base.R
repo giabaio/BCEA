@@ -1,5 +1,26 @@
 
+#' Contour Cost-Effectiveness Plane
 #'
+#' Choice of base R, ggplot2
+#' @name contour_graph
+#' 
+NULL
+
+
+#' Contour plot base R version
+#' @rdname contour_graph
+#' 
+#' @template args-he
+#' @param params Plot parameters
+#' @param scale Scale
+#' @param nlevels Number of levels
+#' @param levels levels
+#' @param xlim x-axis limits
+#' @param ylim y-axis limits
+#' @param extra_args additional arguments
+#' @param comparison Comparison interventions; default 1
+#' @export
+#' 
 contour_base <- function(he, params, scale, nlevels, levels,
                          xlim, ylim, extra_args, comparison = 1) {
   

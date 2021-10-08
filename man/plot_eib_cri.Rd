@@ -2,10 +2,16 @@
 % Please edit documentation in R/plot_eib_cri.R
 \name{plot_eib_cri}
 \alias{plot_eib_cri}
-\title{credible intervals}
+\title{Plot credible intervals}
 \usage{
 plot_eib_cri(he, params)
 }
+\arguments{
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
+
+\item{params}{Graph parameters}
+}
 \description{
-credible intervals
+Plot credible intervals
 }

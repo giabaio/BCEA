@@ -88,14 +88,3 @@ plot.evppi <- function (x,
   # }
 }
 
-
-#' @name evppi_plot_graph
-#' @title Plot Expected Value of Partial Information With Respect to a
-#' Set of Parameters
-#' 
-#' @param x Result of call to \code{createInputs()}
-#' @param pos_legend Legend position
-#' @param col Line colours; vector
-#' 
-NULL
-

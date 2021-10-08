@@ -1,14 +1,19 @@
 
 #' EIB plot ggplot2 version
+#' @rdname eib_plot_graph
+#' 
+#' @template args-he
+#' @param graph_params Graph parameters
+#' @param ... Additional parameters
 #' 
 #' @import ggplot2
 #' @importFrom grid unit
 #' @importFrom purrr keep
 #' @export
 #' 
-eib_plot_ggplot.bcea <- function(he,
-                                 graph_params,
-                                 ...) {
+eib_plot_ggplot <- function(he,
+                            graph_params,
+                            ...) {
   extra_params <- list(...)
   
   ##TODO: can we move this up a level?
@@ -58,20 +63,4 @@ eib_plot_ggplot.bcea <- function(he,
       labels = graph_params$plot$labels,
       values = graph_params$plot$line$colors)
 }
-
-
-#' @rdname eib_plot_graph
-#' EIB plot ggplot2 version
-#'  
-#' @template args-he
-#' @param graph_params List of graph parameters
-#' @param ... Additional arguments
-#' @return ggplot2 object
-#' @keywords hplot
-#' @export
-#'
-eib_plot_ggplot <- function(he,
-                            graph_params, ...)
-  UseMethod("eib_plot_ggplot", he)
-
 

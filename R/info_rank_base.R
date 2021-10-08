@@ -1,6 +1,17 @@
 
-#' Info rank plot base R version
+#' Info Rank Plot By Graph Device
+#'
+#' Choice of base R, ggplot2 and plotly.
+#' @name info_rank_graph
 #' 
+NULL
+
+
+#' Info rank plot base R version
+#' @rdname info_rank_graph
+#' 
+#' @template args-he
+#' @param params Graph parameters
 #' @export
 #' 
 info_rank_base <- function(he, params) {

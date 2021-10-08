@@ -166,7 +166,7 @@ contour2.bcea <- function(he,
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}},
 #'          \code{\link{ceplane.plot}},
-#'          \code{\link{contour.bcea}}
+#'          \code{\link{contour}}
 #' @references
 #' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 #' Analysis in Health Economics. Statistical Methods in Medical Research

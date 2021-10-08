@@ -5,6 +5,7 @@
 #' @param graph A string used to select the graphical engine to use for
 #' plotting. Should (partial-)match the three options \code{"base"},
 #' \code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
+#' @param ... Additional parameters
 #' 
 #' @return \item{eib}{ If \code{graph="ggplot2"} a ggplot object, or if \code{graph="plotly"} 
 #'   a plotly object containing the requested plot. Nothing is returned when \code{graph="base"}, 

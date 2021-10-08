@@ -3,6 +3,9 @@
 \name{bcea}
 \alias{bcea}
 \alias{bcea.default}
+\alias{bcea.rjags}
+\alias{bcea.rstan}
+\alias{bcea.bugs}
 \title{Create Bayesian Cost-Effectiveness Analysis Object}
 \usage{
 bcea(
@@ -26,6 +29,12 @@ bcea(
   wtp = NULL,
   plot = FALSE
 )
+
+\method{bcea}{rjags}(eff, ...)
+
+\method{bcea}{rstan}(eff, ...)
+
+\method{bcea}{bugs}(eff, ...)
 }
 \arguments{
 \item{eff}{An object containing \code{nsim} simulations for the variable of
@@ -66,6 +75,8 @@ computations (e.g. for the EVPPI).}
 
 \item{plot}{A logical value indicating whether the function should produce
 the summary plot or not.}
+
+\item{...}{Additional arguments}
 }
 \value{
 An object of the class "bcea" containing the following elements

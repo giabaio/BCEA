@@ -1,6 +1,6 @@
 
-#' @rdname evi_plot_graph
 #' EVI plot ggplot version
+#' @rdname evi_plot_graph
 #' 
 #' @template args-he
 #' @param data.psa Data

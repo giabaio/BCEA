@@ -6,6 +6,11 @@
 \usage{
 geom_cri(plot.cri = TRUE, params = NA)
 }
+\arguments{
+\item{plot.cri}{Should we plot CrI? Logical}
+
+\item{params}{Plot parameters including data}
+}
 \description{
 Credible interval ggplot geom
 }

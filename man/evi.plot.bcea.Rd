@@ -13,6 +13,8 @@ modelling and the economic evaluation.}
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the three options \code{"base"},
 \code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.}
+
+\item{...}{Additional parameters}
 }
 \value{
 \item{eib}{ If \code{graph="ggplot2"} a ggplot object, or if \code{graph="plotly"} 

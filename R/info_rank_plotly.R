@@ -1,6 +1,8 @@
 
-#'  Info rank plot plotly version
+#' Info rank plot plotly version
+#' @rdname info_rank_graph
 #' 
+#' @param params Graph Parameters including data
 #' @importFrom plotly plot_ly layout
 #' @export
 #' 

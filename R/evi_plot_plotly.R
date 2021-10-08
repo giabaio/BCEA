@@ -1,6 +1,6 @@
 
-#' @rdname evi_plot_graph
 #' EVI plot plotly version
+#' @rdname evi_plot_graph
 #' 
 #' @param data.psa Data
 #' @param plot_aes Aesthetic parameters

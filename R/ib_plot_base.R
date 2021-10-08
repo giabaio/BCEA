@@ -1,12 +1,15 @@
 
-#' Incremental benefit plot base R version
+#' IB plot base R version
+#' @rdname ib_plot_graph
 #' 
 #' @template args-he
 #' @param comparison Comparison interventions
 #' @param wtp Willingness to pay
 #' @param bw Band width
 #' @param n Number
-#' @param xlim x-axis limit
+#' @param xlim x-axis limits
+#' @importFrom stats density
+#' @export
 #' 
 ib_plot_base <- function(he,
                          comparison,

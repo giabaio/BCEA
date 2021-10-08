@@ -18,6 +18,9 @@ num_lines(dat)
 
 \method{num_lines}{default}(dat)
 }
+\arguments{
+\item{dat}{Data}
+}
 \description{
 Get number of lines
 }

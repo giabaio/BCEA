@@ -1,12 +1,11 @@
 
-#' validate_bcea
+#' Validate bcea
 #'
-#' @param eff 
-#' @param cost 
-#' @param ref 
-#' @param interventions 
+#' @param eff Effectiveness matrix
+#' @param cost Cost matrix
+#' @param ref Reference intervention
+#' @param interventions All interventions 
 #'
-#' @return
 #' @export
 #'
 validate_bcea <- function(eff,

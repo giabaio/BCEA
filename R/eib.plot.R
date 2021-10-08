@@ -77,7 +77,23 @@ eib.plot.bcea <- function(he,
 #' 
 #' @description Produces a plot of the Expected Incremental Benefit (EIB) as a function of
 #' the willingness to pay.
-#'   
+#' 
+#' @template args-he
+#' @param ...  If \code{graph="ggplot2"} and a named theme object is supplied,
+#'   it will be added to the ggplot object. Additional arguments:
+#'  \itemize{
+#'   \item \code{alpha} can be used to set the CrI level when \code{plot.cri=TRUE},
+#'   with a default value of \code{alpha=0.05}.
+#'   \item \code{cri.quantile} controls the the method of calculation of the credible
+#'   intervals. The default value \code{cri.quantile=TRUE} defines the CrI as the
+#'   interval between the \code{alpha/2}-th and \code{1-alpha/2}-th quantiles of
+#'   the IB distribution. Setting \code{cri.quantile=FALSE} will use a normal
+#'   approximation on the IB distribution to calculate the intervals.
+#'   \item \code{line_colors}: specifies the line colour(s) - all graph types.
+#'   \item \code{line_types}: specifies the line type(s) as lty numeric values - all graph types.
+#'   \item \code{area_include}: include area under the EIB curve - plotly only.
+#'   \item \code{area_color}: specifies the AUC curve - plotly only.}
+#'    
 #' @return \item{eib}{ If \code{graph="ggplot2"} a ggplot object, or if \code{graph="plotly"} 
 #' a plotly object containing the requested plot. Nothing is returned when \code{graph="base"}, 
 #' the default.} The function produces a plot of the

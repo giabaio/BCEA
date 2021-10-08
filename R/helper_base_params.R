@@ -1,4 +1,5 @@
 
+#' @importFrom grDevices colors
 #' @keywords dplot
 helper_base_params <- function(he,
                                graph_params) {
@@ -6,10 +7,10 @@ helper_base_params <- function(he,
   n_lines <- num_lines(he)
   
   if (n_lines == 1) {
-    default_params <- list(plot =
-                             list(lwd = 1,
-                                  line =
-                                    list(types = 1)))
+    default_params <-
+      list(plot =
+             list(lwd = 1,
+                  line = list(types = 1)))
     
     graph_params <- modifyList(default_params, graph_params)
   }

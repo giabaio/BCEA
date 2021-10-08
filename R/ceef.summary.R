@@ -1,5 +1,5 @@
 
-#' Summary table function
+#' Summary table for CEEF
 #' 
 #' @template args-he
 #' @param frontier_data Frontier data
@@ -7,7 +7,7 @@
 #' @param include.ICER Should we include the ICER? default: FALSE
 #' @param ... Additional arguments
 #' 
-#' @return 
+#' @return Summary printed to console
 #' 
 ceef.summary <- function(he,
                          frontier_data,

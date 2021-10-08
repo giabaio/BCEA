@@ -89,8 +89,6 @@ evppi.bcea <- function(he,
     }
   }
 
-  # int.ord ----
-
   if (!exists("int.ord", where = extra_args)) {
     extra_args$int.ord <-
       list(rep(1, he$n_comparators - 1),
@@ -106,7 +104,7 @@ evppi.bcea <- function(he,
       )
   }
 
-  if (!inherits(extra_args$int.ord, "list")) {
+  if (!inherits(extra_args$method, "list")) {
     if (extra_args$method == "sal" || extra_args$method == "sad") {
       method <- "Sadatsafavi et al"
       n.blocks <- NULL
@@ -357,6 +355,7 @@ evppi.bcea <- function(he,
           sort.order <- order(inputs[, params[j]])
           sort.U <- array(NA, dim(he$U))
           evpi <- evppi.temp <- numeric()
+          
           for (i in seq_along(he$k)) {
             evpi[i] <- he$evi[i]
             sort.U[, i, ] <- he$U[sort.order, i, ]

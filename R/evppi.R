@@ -156,7 +156,7 @@
 #' # Bayesian model and economic problem
 #'
 #' # Load the processed results of the MCMC simulation model
-#' data(Vaccine)
+#' data(Vaccine, package = "BCEA")
 #' treats <- c("Status quo", "Vaccination")
 #' 
 #' # Run the health economic evaluation using BCEA

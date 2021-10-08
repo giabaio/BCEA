@@ -15,37 +15,7 @@ contour(he, ...)
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
-\item{...}{Additional arguments to 'plot.window', 'title', 'Axis' and
-'box', typically graphical parameters such as 'cex.axis'. Will be ignored if
-\code{graph="ggplot2"}.}
-
-\item{scale}{Scales the plot as a function of the observed standard
-deviation.}
-
-\item{levels}{Numeric vector of levels at which to draw contour lines. Will
-be ignored using \code{graph="ggplot2"}.}
-
-\item{nlevels}{Number of levels to be plotted in the contour.}
-
-\item{pos}{Parameter to set the position of the legend (only relevant for
-multiple interventions, ie more than 2 interventions being compared).
-Can be given in form
-of a string \code{(bottom|top)(right|left)} for base graphics and
-\code{bottom|top|left|right} for ggplot2. It can be a two-elements vector,
-which specifies the relative position on the x and y axis respectively, or
-alternatively it can be in form of a logical variable, with \code{FALSE}
-indicating to use the default position and \code{TRUE} to place it on the
-bottom of the plot.}
-
-\item{graph}{A string used to select the graphical engine to use for
-plotting. Should (partial-) match the two options \code{"base"} or
-\code{"ggplot2"}. Default value is \code{"base"}.}
-
-\item{xlim}{The range of the plot along the x-axis. If NULL (default) it is
-determined by the range of the simulated values for \code{delta_e}}
-
-\item{ylim}{The range of the plot along the y-axis. If NULL (default) it is
-determined by the range of the simulated values for \code{delta_c}}
+\item{...}{Additional arguments}
 }
 \value{
 \item{ceplane}{ A ggplot object containing the plot. Returned only

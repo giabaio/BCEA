@@ -336,7 +336,8 @@ comp_names_from_ <- function(df_ce) {
 
 
 #' Compute Cost-Effectiveness Acceptability Frontier
-#' @param p_best_interv
+#' 
+#' @param p_best_interv Probability of being best intervention
 #' 
 compute_ceaf <- function(p_best_interv) {
   apply(p_best_interv, 1, max)
@@ -370,7 +371,7 @@ compute_p_best_interv <- function(he) {
 #' Compute NB for mixture of interventions
 #' 
 #' @template args-he
-#' @param value
+#' @param value Mixture weights
 #' 
 compute_Ubar <- function(he, value) {
   

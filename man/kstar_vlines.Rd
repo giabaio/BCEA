@@ -2,10 +2,16 @@
 % Please edit documentation in R/kstar_vlines.R
 \name{kstar_vlines}
 \alias{kstar_vlines}
-\title{BEP}
+\title{Prepare K-star vertical lines}
 \usage{
 kstar_vlines(he, plot_params)
 }
+\arguments{
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
+
+\item{plot_params}{Plots parameters}
+}
 \description{
-BEP
+Prepare K-star vertical lines
 }

@@ -1,6 +1,12 @@
 
-#' parameters general to all plotting devices
+#' Prepare EIB plot parameters
 #' 
+#' Parameters general to all plotting devices
+#' 
+#' @template args-he
+#' @param plot.cri Make title? Logical
+#' @param ... Additional parameters
+#'  
 prep_eib_params <- function(he, plot.cri, ...) {
   
   graph_params <- list(...)
@@ -43,7 +49,10 @@ prep_eib_params <- function(he, plot.cri, ...) {
 }
 
 
-#'
+#' Validate EIB parameters
+#' 
+#' @param params Graph parameters
+#' 
 validate_eib_params <- function(params) {
   
   if (params$alpha_cri < 0 | params$alpha_cri > 1) {

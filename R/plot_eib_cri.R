@@ -1,5 +1,9 @@
 
-#' credible intervals
+#' Plot credible intervals
+#' 
+#' @template args-he
+#' @param params Graph parameters
+#' @importFrom graphics matlines
 #' 
 plot_eib_cri <- function(he, params) {
   

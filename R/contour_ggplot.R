@@ -1,6 +1,20 @@
 
+#' Contour plot ggplot2 version
+#' @rdname contour_graph
+#' 
+#' @template args-he
+#' @param params Plot parameters
+#' @param scale Scale
+#' @param nlevels Number of levels
+#' @param levels levels
+#' @param xlim x-axis limits
+#' @param ylim y-axis limits
+#' @param extra_args additional arguments
+#' @param comparison Comparison interventions; default 1
+#' 
 #' @importFrom grid unit
 #' @import ggplot2
+#' @export
 #' 
 contour_ggplot <- function(he, params, scale, nlevels, levels,
                            xlim, ylim, extra_args, comparison = 1) {
@@ -56,10 +70,11 @@ contour_ggplot <- function(he, params, scale, nlevels, levels,
         label = c(p.ne, p.nw, p.sw, p.se),
         hjust = as.factor(c(1, 0, 0, 1)))
     
-    # actual plot
-    points.colour <- "grey"
-    if (nlevels == 1)
-      points.colour <- "black"
+    points.colour <- 
+      if (nlevels == 1) {
+        "black"
+      } else {
+        "grey"}
     
     ceplane <-
       ggplot(kd, aes(.data$e, .data$c)) +
@@ -67,18 +82,16 @@ contour_ggplot <- function(he, params, scale, nlevels, levels,
       geom_vline(aes(xintercept = 0), colour = "grey") +
       theme_bw() +
       geom_point(size = 1, color = points.colour) +
-      scale_x_continuous(limits =
-                           range.e, oob = do.nothing) +
+      scale_x_continuous(limits = range.e, oob = do.nothing) +
       scale_y_continuous(limits = range.c, oob = do.nothing)
     
-    if (!is.null(scale) & requireNamespace("MASS", quietly = TRUE)) {
+    if (!is.null(scale) && requireNamespace("MASS", quietly = TRUE)) {
       density <-
         MASS::kde2d(as.matrix(he$delta_e),
                     as.matrix(he$delta_c),
                     n = 300,
                     h = c(sd(as.matrix(he$delta_e)) / scale,
-                          sd(as.matrix(he$delta_c)) / scale)
-        )
+                          sd(as.matrix(he$delta_c)) / scale))
       
       density <-
         data.frame(expand.grid(e = density$x,
@@ -91,8 +104,7 @@ contour_ggplot <- function(he, params, scale, nlevels, levels,
           data = density,
           colour = "black",
           bins = nlevels)
-    }
-    else {
+    } else {
       ceplane <- ceplane + stat_density2d(color = "black")
     }
     
@@ -144,7 +156,7 @@ contour_ggplot <- function(he, params, scale, nlevels, levels,
       scale_x_continuous(limits = range.e, oob = do.nothing) +
       scale_y_continuous(limits = range.c, oob = do.nothing)
     
-    if (!is.null(scale) & requireNamespace("MASS", quietly = TRUE)) {
+    if (!is.null(scale) && requireNamespace("MASS", quietly = TRUE)) {
       densitydf <- data.frame()
       for (i in seq_len(he$n.comparison)) {
         temp <-
@@ -202,11 +214,10 @@ contour_ggplot <- function(he, params, scale, nlevels, levels,
         pos = alt.legend,
         nlevels = nlevels,
         graph = "ggplot2",
-        comparison = NULL
-      )
+        comparison = NULL)
     )
   }
-
+  
   ceplane <-
     ceplane + labs(title = title, x = xlab, y = ylab)
   
@@ -221,8 +232,7 @@ contour_ggplot <- function(he, params, scale, nlevels, levels,
       choices <- c("left", "right", "bottom", "top")
       alt.legend <- choices[pmatch(alt.legend, choices)]
       jus <- "center"
-      if (is.na(alt.legend))
-        alt.legend <- FALSE
+      if (is.na(alt.legend)) alt.legend <- FALSE
     }
     if (length(alt.legend) > 1)
       jus <- alt.legend
@@ -232,8 +242,7 @@ contour_ggplot <- function(he, params, scale, nlevels, levels,
     }
   }
   
-  ceplane <-
-    ceplane +
+  ceplane +
     theme(
       legend.position = alt.legend,
       legend.justification = jus,
@@ -249,7 +258,6 @@ contour_ggplot <- function(he, params, scale, nlevels, levels,
         lineheight = 1.05,
         face = "bold",
         size = 14.3,
-        hjust = 0.5)
-    )
-  return(ceplane)
+        hjust = 0.5))
 }
+

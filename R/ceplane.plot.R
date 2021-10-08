@@ -1,6 +1,7 @@
 
-#' @rdname ceplane.plot
+#' CE plane plot
 #' 
+#' @template args-he
 #' @param comparison Selects the comparator, in case of more than two
 #'   interventions being analysed. Default as \code{NULL} plots all the
 #'   comparisons together. Any subset of the possible comparisons can be selected
@@ -135,9 +136,9 @@ ceplane.plot.bcea <- function(he,
 #' the selected willingness to pay threshold.
 #' 
 #' @template args-he
+#' @param ... Additional arguments
 #' 
 #' @export
-#' @name ceplane.plot
 #' @aliases ceplane.plot
 #' 
 ceplane.plot <- function(he, ...) {

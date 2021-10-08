@@ -1,14 +1,21 @@
 
+#' EVPPI plot ggplot2 version
 #' @rdname evppi_plot_graph
+#' 
+#' @param evppi_obj Object of class evppi
+#' @param pos_legend Position of legend 
+#' @param col Colour
+#' @param ... Additional arguments
+#' 
 #' @importFrom purrr pluck keep
 #' @import dplyr ggplot2
 #' 
 #' @export
 #'
-evppi_plot_ggplot.evppi <- function(evppi_obj,
-                                    pos_legend = c(0, 0.8),
-                                    col = c(1,1),
-                                    ...) {
+evppi_plot_ggplot <- function(evppi_obj,
+                              pos_legend = c(0, 0.8),
+                              col = c(1,1),
+                              ...) {
   
   extra_args <- list(...)
   
@@ -40,13 +47,5 @@ evppi_plot_ggplot.evppi <- function(evppi_obj,
     ggtitle("Expected Value of Perfect Partial Information") +
     xlab("Willingness to pay") +
     ylab("")
-}
-
-
-#' @rdname evppi_plot_graph
-#' @export
-#' 
-evppi_plot_ggplot <- function(evppi_obj, ...) {
-  UseMethod('evppi_plot_ggplot', evppi_obj)
 }
 

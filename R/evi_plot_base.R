@@ -7,8 +7,8 @@
 NULL
 
 
-#' @rdname evi_plot_graph
 #' EVI plot base R version
+#' @rdname evi_plot_graph
 #' 
 #' @template args-he
 #' @param data.psa Data

@@ -45,19 +45,17 @@ m <- bcea(e=e,c=c,          # defines the variables of
                             #  in a grid from the interval (0,Kmax)
 )
 
-ma <- mixedAn(m,        # uses the results of the mixed strategy 
+mixedAn(m) <- NULL      # uses the results of the mixed strategy 
                         #  analysis (a "mixedAn" object)
-       mkt.shares=NULL  # the vector of market shares can be defined 
+                        # the vector of market shares can be defined 
                         #  externally. If NULL, then each of the T 
                         #  interventions will have 1/T market share
-)
 
 # Prints a summary of the results
-summary(ma,       # uses the results of the mixed strategy analysis 
-                  #  (a "mixedAn" object)
-     wtp=25000    # selects the relevant willingness to pay 
-                  #  (default: 25,000) 
-)
+summary(m,         # uses the results of the mixed strategy analysis 
+        wtp=25000) #  (a "mixedAn" object)
+                   # selects the relevant willingness to pay 
+                   #  (default: 25,000)
 
 }
 \references{

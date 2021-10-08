@@ -1,6 +1,10 @@
 
 #' Info rank plot ggplot2 version
+#' @rdname info_rank_graph
 #' 
+#' @template args-he
+#' @param params Graph parameters
+#' @importFrom stats reorder
 #' @export
 #' 
 info_rank_ggplot <- function(he, params) {

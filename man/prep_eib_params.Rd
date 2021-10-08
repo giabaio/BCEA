@@ -2,10 +2,18 @@
 % Please edit documentation in R/prep_eib_params.R
 \name{prep_eib_params}
 \alias{prep_eib_params}
-\title{parameters general to all plotting devices}
+\title{Prepare EIB plot parameters}
 \usage{
 prep_eib_params(he, plot.cri, ...)
 }
+\arguments{
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
+
+\item{plot.cri}{Make title? Logical}
+
+\item{...}{Additional parameters}
+}
 \description{
-parameters general to all plotting devices
+Parameters general to all plotting devices
 }

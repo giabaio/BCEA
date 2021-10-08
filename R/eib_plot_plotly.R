@@ -1,6 +1,10 @@
 
-#' @rdname eib_plot_graph
 #' EIB plot plotly version
+#' @rdname eib_plot_graph
+#' 
+#' @template args-he
+#' @param graph_params Graph parameters
+#' @param ... Additional parameters
 #' 
 #' @importFrom plotly plot_ly add_trace add_ribbons layout config
 #' @export

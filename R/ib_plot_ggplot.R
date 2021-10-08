@@ -1,7 +1,25 @@
 
-#' ib_plot_ggplot
+#' Incremental Benefit Plot By Graph Device
+#'
+#' Choice of base R, ggplot2
+#' @name ib_plot_graph
+#' 
+NULL
+
+
+#' IB plot ggplot2 version
+#' @rdname ib_plot_graph
+#' 
+#' @template args-he
+#' @param comparison Comparison intervention
+#' @param wtp Willingness to pay
+#' @param bw band width
+#' @param n Number
+#' @param xlim x-axis limits
 #' 
 #' @import ggplot2 grid
+#' @importFrom dplyr filter
+#' @export
 #' 
 ib_plot_ggplot <- function(he,
                            comparison,
@@ -9,24 +27,6 @@ ib_plot_ggplot <- function(he,
                            bw,
                            n,
                            xlim) {
-                             
-  if (!(requireNamespace("ggplot2", quietly = TRUE) &&
-        requireNamespace("grid", quietly = TRUE))) {
-    message("falling back to base graphics\n")
-    
-    ib.plot(
-      he,
-      comparison = comparison,
-      wtp = wtp,
-      bw = bw,
-      n = n,
-      xlim = xlim,
-      graph = "base")
-    return(invisible(NULL))
-  }
-  
-  ### no visible binding note
-  x <- y <- NA_real_
   
   if (is.null(comparison)) {
     comparison <- 1
@@ -34,20 +34,23 @@ ib_plot_ggplot <- function(he,
   
   if (max(he$k) < wtp) {
     wtp <- max(he$k)
-    message(paste0("NB: k (wtp) is defined in the interval [", min(he$k)," - ", wtp,"]\n"))
+    message(
+      paste0("NB: k (wtp) is defined in the interval [",
+             min(he$k), " - ", wtp, "]\n"))
   }
   
-  if (!is.element(wtp,he$k)) {
+  if (!is.element(wtp, he$k)) {
     if (!is.na(he$step)) {
       # The user has selected a non-acceptable value for wtp,
       # but has not specified wtp in the call to bcea
-      stop(paste("The willingness to pay parameter is defined in the interval [0-", he$Kmax,
-                 "], with increments of ",he$step,"\n", sep = ""),
-           call. = FALSE)
+      stop(
+        paste("The willingness to pay parameter is defined in the interval [0-", he$Kmax,
+              "], with increments of ", he$step,"\n", sep = ""),
+        call. = FALSE)
     } else {
       # The user has actually specified wtp as input in the call to bcea
       tmp <- paste(he$k, collapse = " ")
-      stop(paste0("The willingness to pay parameter is defined as:\n  [",tmp,
+      stop(paste0("The willingness to pay parameter is defined as:\n  [", tmp,
                   "]\n  Please select a suitable value", collapse = " "),
            call. = FALSE)
     }
@@ -86,8 +89,8 @@ ib_plot_ggplot <- function(he,
                colour = "grey50",
                size = 0.5) +
     geom_ribbon(
-      data = subset(df, x > 0),
-      aes(ymax = y),
+      data = dplyr::filter(df, .data$x > 0),
+      aes(ymax = .data$y),
       ymin = 0,
       fill = "grey50",
       alpha = 0.2) +
@@ -105,8 +108,7 @@ ib_plot_ggplot <- function(he,
   
   labs.title <- paste0("Incremental Benefit Distribution\n",
                        he$interventions[he$ref]," vs ",
-                       he$interventions[he$comp[comparison]],"")
-  
+                       he$interventions[he$comp[comparison]], "")
   ib +
     theme(
       text = element_text(size = 11),

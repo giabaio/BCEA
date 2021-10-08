@@ -3,6 +3,7 @@
 
 #' @title Get number of lines
 #' @name num_lines
+#' @param dat Data
 #' 
 num_lines <- function(dat) {
   UseMethod('num_lines', dat)

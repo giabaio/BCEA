@@ -168,6 +168,10 @@ test_that("ib", {
 })
 
 
+library(rstan)
+library(R2WinBUGS)
+library(R2jags)
+
 test_that("jags, bugs, stan methods", {
 
   ##TODO: missing cost error

@@ -1,6 +1,14 @@
 
+#' Plot Expected Value of Partial Information With Respect to a
+#' Set of Parameters
+#' @name evppi_plot_graph
+#' 
+NULL
+
+
+#' EVPPI plot base R version
 #' @rdname evppi_plot_graph
-#'
+#' 
 #' @param evppi_obj Object of class evppi
 #' @param pos_legend Position of legend 
 #' @param col Colour
@@ -8,10 +16,10 @@
 #'
 #' @export
 #'
-evppi_plot_base.evppi <- function(evppi_obj,
-                                  pos_legend,
-                                  col = NULL,
-                                  annot = FALSE) {
+evppi_plot_base <- function(evppi_obj,
+                            pos_legend,
+                            col = NULL,
+                            annot = FALSE) {
   
   legend_params <-
     evppi_legend_base(evppi_obj, pos_legend, col)
@@ -53,13 +61,4 @@ evppi_plot_base.evppi <- function(evppi_obj,
   
   return(invisible(NULL))
 }
-
-
-#' @rdname evppi_plot_graph
-#' @export
-#' 
-evppi_plot_base <- function(evppi_obj, ...) {
-  UseMethod('evppi_plot_base', evppi_obj)
-}
-
 

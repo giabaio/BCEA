@@ -1,4 +1,23 @@
 
+#' Contour CE plane
+#' 
+#' @template args-he
+#' @param scale Scales the plot as a function of the observed standard deviation.
+#' @param levels Numeric vector of levels at which to draw contour lines.
+#'               Will be ignored using \code{graph="ggplot2"}.
+#' @param nlevels Number of levels to be plotted in the contour.
+#' @template args-pos
+#' @param graph A string used to select the graphical engine to use for
+#'              plotting. Should (partial-) match the two options \code{"base"} or
+#'              \code{"ggplot2"}. Default value is \code{"base"}.
+#' @param xlim The range of the plot along the x-axis. If NULL (default) it is
+#'             determined by the range of the simulated values for \code{delta_e}
+#' @param ylim The range of the plot along the y-axis. If NULL (default) it is
+#'             determined by the range of the simulated values for \code{delta_c}
+#' @param ...  Additional arguments to 'plot.window', 'title', 'Axis' and
+#'             'box', typically graphical parameters such as 'cex.axis'.
+#'             Will be ignored if \code{graph="ggplot2"}.
+#' 
 #' @importFrom stats sd
 #' @importFrom graphics par
 #' 
@@ -74,22 +93,7 @@ contour.bcea <- function(he,
 #' effectiveness (x-axis).
 #'
 #' @template args-he
-#' @param scale Scales the plot as a function of the observed standard
-#' deviation.
-#' @param levels Numeric vector of levels at which to draw contour lines. Will
-#' be ignored using \code{graph="ggplot2"}.
-#' @param nlevels Number of levels to be plotted in the contour.
-#' @template args-pos
-#' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-) match the two options \code{"base"} or
-#' \code{"ggplot2"}. Default value is \code{"base"}.
-#' @param xlim The range of the plot along the x-axis. If NULL (default) it is
-#' determined by the range of the simulated values for \code{delta_e}
-#' @param ylim The range of the plot along the y-axis. If NULL (default) it is
-#' determined by the range of the simulated values for \code{delta_c}
-#' @param ...  Additional arguments to 'plot.window', 'title', 'Axis' and
-#' 'box', typically graphical parameters such as 'cex.axis'. Will be ignored if
-#' \code{graph="ggplot2"}.
+#' @param ... Additional arguments
 #' 
 #' @return \item{ceplane}{ A ggplot object containing the plot. Returned only
 #' if \code{graph="ggplot2"}. } Plots the cost-effectiveness plane with a

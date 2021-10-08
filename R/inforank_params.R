@@ -1,5 +1,12 @@
 
-#' inforank_params
+#' Prepare Info Rank plot parameters
+#' 
+#' @template args-he
+#' @param inp Inputs
+#' @param wtp Willingness to pay
+#' @param rel Relative size
+#' @param howManyPars How mnay parameters to use?
+#' @param extra_args Additional arguments
 #' 
 #' @importFrom purrr map_int
 #' @importFrom dplyr slice arrange desc

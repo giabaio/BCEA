@@ -1,5 +1,9 @@
 
-#' BEP
+#' Prepare K-star vertical lines
+#' 
+#' @template args-he
+#' @param plot_params Plots parameters
+#' 
 kstar_vlines <- function(he, plot_params) {
   
   if (length(he$kstar) > 0) {

@@ -1,5 +1,6 @@
 
-#'
+#' @importFrom grDevices colors
+#' 
 evppi_legend_cols <- function(evppi_obj, col = NULL) {
   
   n_cols <- length(evppi_obj$parameters) + 1

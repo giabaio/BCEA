@@ -10,7 +10,7 @@ compute_Ubar(he, value)
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
-\item{value}{}
+\item{value}{Mixture weights}
 }
 \description{
 Compute NB for mixture of interventions

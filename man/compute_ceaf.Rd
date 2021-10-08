@@ -7,7 +7,7 @@
 compute_ceaf(p_best_interv)
 }
 \arguments{
-\item{p_best_interv}{}
+\item{p_best_interv}{Probability of being best intervention}
 }
 \description{
 Compute Cost-Effectiveness Acceptability Frontier

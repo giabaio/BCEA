@@ -1,6 +1,9 @@
 
 #' Credible interval ggplot geom
 #' 
+#' @param plot.cri Should we plot CrI? Logical
+#' @param params Plot parameters including data
+#' 
 geom_cri <- function(plot.cri = TRUE,
                      params = NA) {
   if (plot.cri) {
