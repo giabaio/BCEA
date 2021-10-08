@@ -5,16 +5,10 @@
 \title{Plot Expected Value of Partial Information With Respect to a
 Set of Parameters}
 \usage{
-\method{plot}{evppi}(
-  evppi_obj,
-  pos = c(0, 0.8),
-  graph = c("base", "ggplot2"),
-  col = c(1, 1),
-  ...
-)
+\method{plot}{evppi}(x, pos = c(0, 0.8), graph = c("base", "ggplot2"), col = c(1, 1), ...)
 }
 \arguments{
-\item{evppi_obj}{An object in the class \code{evppi},
+\item{x}{An object in the class \code{evppi},
 obtained by the call to the function \code{\link{evppi}}.}
 
 \item{pos}{Parameter to set the position of the legend (only relevant for

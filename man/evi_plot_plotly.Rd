@@ -6,6 +6,13 @@
 \usage{
 evi_plot_plotly(data.psa, plot_aes, plot_annotations)
 }
+\arguments{
+\item{data.psa}{Data}
+
+\item{plot_aes}{Aesthetic parameters}
+
+\item{plot_annotations}{Plot parameters}
+}
 \description{
 EVI plot plotly version
 }

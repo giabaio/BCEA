@@ -3,7 +3,7 @@
 #' @title Cost-effectiveness efficiency frontier plot
 #'
 #' Choice of base R, ggplot2.
-#' 
+#'
 #' @template args-he
 #' @param frontier_data Frontier data
 #' @param frontier_params Frontier parameters
@@ -13,33 +13,33 @@ NULL
 
 #' @rdname ceef_plot_graph
 #' @title CEEF plot ggplot2 version
-#' 
+#'
 #' @import ggplot2
 #' @importFrom grid unit
-#' 
+#'
 ceef_plot_ggplot <- function(he,
                              frontier_data,
                              frontier_params,
                              ...) {
-  
+
   scatter.data <- frontier_data$scatter.data
-  ceef.points <- frontier_data$ceef.points 
+  ceef.points <- frontier_data$ceef.points
   orig.avg <- frontier_data$orig.avg
-  
+
   colour <- frontier_params$colour
   pos <- frontier_params$pos
   flip <- frontier_params$flip
   relative  <- frontier_params$relative
-  
+
   add_dominance_region <- frontier_params$dominance
   add_frontier <- dim(ceef.points)[1] > 1
 
   extra_args <- list(...)
-  
+
   opt_theme <- purrr::keep(extra_args, is.theme)
-  
+
   ceplane <- ggplot(ceef.points, aes(x = .data$x, y = .data$y))
-  
+
   if (add_dominance_region) {
     ceplane <-
       ceplane +
@@ -50,7 +50,7 @@ ceef_plot_ggplot <- function(he,
                 alpha = 0.35,
                 fill = "grey75")
   }
-  
+
   ceplane <- ceplane +
     geom_hline(yintercept = 0, colour = "grey") +
     geom_vline(xintercept = 0,
@@ -58,15 +58,15 @@ ceef_plot_ggplot <- function(he,
     geom_point(data = scatter.data,
                aes(x = .data$e, y = .data$c, colour = .data$comp),
                size = 1)
-  
+
   if (add_frontier)
     ceplane <- ceplane + geom_path()
-  
+
   xlab <- ifelse(!relative, "Effectiveness", "Effectiveness differential")
   ylab <- ifelse(!relative, "Cost", "Cost differential")
-  
+
   comparators <- sort(c(he$comp, he$ref))
-  
+
   ### add circles
   ceplane <- ceplane +
     geom_point(
@@ -87,25 +87,23 @@ ceef_plot_ggplot <- function(he,
     labs(title = "Cost-effectiveness efficiency frontier",
          x = xlab, y = ylab) +
     theme_bw()
-  
+
   ## add text into circles
   for (i in seq_len(he$n_comparators)) {
-    ceplane <- ceplane + 
+    ceplane <- ceplane +
       geom_text(
         data = orig.avg[i, ],
         aes(x = .data$e.orig, y = .data$c.orig, label = .data$comp),
         size = 3.5,
         colour = ifelse(i %in% ceef.points$comp, "black", "grey60"))
   }
-  
-  ##TODO: test...
+
   legend_params <- make_legend_ggplot(he, pos)
-  
-  ##TODO: include legend direction?
-  ceplane <- ceplane + 
+
+  ceplane <- ceplane +
     theme(
       legend.position = legend_params$legend.position,
-      legend.justification = legend_params$legend.postion,
+      legend.justification = legend_params$legend.justification,
       legend.title = element_blank(),
       legend.background = element_blank(),
       text = element_text(size = 11),
@@ -120,9 +118,8 @@ ceef_plot_ggplot <- function(he,
         lineheight = 1.05,
         size = 14.3)) +
     opt_theme
-  
+
   if (flip) ceplane <- ceplane + coord_flip()
-  
+
   ceplane
 }
-

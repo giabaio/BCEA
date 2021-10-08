@@ -2,10 +2,20 @@
 % Please edit documentation in R/evi_plot_base.R
 \name{evi_plot_base}
 \alias{evi_plot_base}
-\title{evi_plot_base}
+\title{EVI base R version}
 \usage{
 evi_plot_base(he, data.psa, plot_aes, plot_annotations)
 }
+\arguments{
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
+
+\item{data.psa}{Data}
+
+\item{plot_aes}{Aesthetic parameters}
+
+\item{plot_annotations}{Plot parameters}
+}
 \description{
-evi_plot_base
+EVI base R version
 }

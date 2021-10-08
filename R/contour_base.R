@@ -184,8 +184,6 @@ contour_base <- function(he, params, scale, nlevels, levels,
       M.c <- ylim[2]
     }
     
-    browser()
-    
     plot(
       as.matrix(he$delta_e[, comparison]),
       as.matrix(he$delta_c[, comparison]),

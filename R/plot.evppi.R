@@ -2,7 +2,7 @@
 #' Plot Expected Value of Partial Information With Respect to a
 #' Set of Parameters
 #' 
-#' @param evppi_obj An object in the class \code{evppi},
+#' @param x An object in the class \code{evppi},
 #' obtained by the call to the function \code{\link{evppi}}.
 #' @template args-pos
 #' @param graph A string used to select the graphical engine to use for
@@ -56,7 +56,7 @@
 #' # The vector 'col' must have the number of elements for an EVPI
 #' # colour and each of the EVPPI parameters. Forced to black
 #' 
-plot.evppi <- function (evppi_obj,
+plot.evppi <- function (x,
                         pos = c(0, 0.8),
                         graph = c("base", "ggplot2"),
                         col = c(1,1),
@@ -66,14 +66,14 @@ plot.evppi <- function (evppi_obj,
   
   if (is_baseplot(graph)) {
     
-    evppi_plot_base(evppi_obj,
+    evppi_plot_base(x,
                     pos_legend = pos,
                     col = col,
                     ...)
     
   } else if (is_ggplot(graph)) {
     
-    evppi_plot_ggplot(evppi_obj,
+    evppi_plot_ggplot(x,
                       pos_legend = pos,
                       col = col,
                       ...)
@@ -82,7 +82,7 @@ plot.evppi <- function (evppi_obj,
   ##TODO
   # } else if (is_plotly(graph)) {
   #   
-  #   evppi_plot_plotly(evppi_obj,
+  #   evppi_plot_plotly(x,
   #                     pos_legend = pos,
   #                     graph_params)
   # }
@@ -93,7 +93,7 @@ plot.evppi <- function (evppi_obj,
 #' @title Plot Expected Value of Partial Information With Respect to a
 #' Set of Parameters
 #' 
-#' @param evppi_obj Result of call to \code{createInputs()}
+#' @param x Result of call to \code{createInputs()}
 #' @param pos_legend Legend position
 #' @param col Line colours; vector
 #' 

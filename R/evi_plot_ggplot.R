@@ -1,5 +1,10 @@
 
-#' evi_plot_ggplot
+#' EVI plot ggplot version
+#' 
+#' @template args-he
+#' @param data.psa Data
+#' @param plot_aes Aesthetic parameters
+#' @param plot_annotations Plot parameters
 #' 
 #' @import ggplot2 grid
 #' 
@@ -7,18 +12,6 @@ evi_plot_ggplot <- function(he,
                             data.psa,
                             plot_aes,
                             plot_annotations) {
-  
-  if (!(requireNamespace("ggplot2", quietly = TRUE) &
-        requireNamespace("grid", quietly = TRUE))) {
-    message("falling back to base graphics\n")
-    
-    evi.plot(he, graph = "base", ...)
-    
-    return(invisible(NULL))
-  }
-  
-  # no visible binding note
-  k <- NA_real_
   
   evi <-
     ggplot(data.psa, aes(.data$k, .data$evi)) +
@@ -35,7 +28,7 @@ evi_plot_ggplot <- function(he,
     evi.at.kstar <- numeric(kstars)
     
     for (i in seq_len(kstars)) {
-      evi.at.kstar[i] <- with(he, evi[which.min(abs(k - kstar[i]))])
+      evi.at.kstar[i] <- he$evi[which.min(abs(he$k - he$kstar[i]))]
     }
     
     for (i in seq_len(kstars)) {

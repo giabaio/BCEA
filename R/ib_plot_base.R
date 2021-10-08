@@ -1,7 +1,12 @@
 
-#' ib_plot_base
+#' Incremental benefit plot base R version
 #' 
 #' @template args-he
+#' @param comparison Comparison interventions
+#' @param wtp Willingness to pay
+#' @param bw Band width
+#' @param n Number
+#' @param xlim x-axis limit
 #' 
 ib_plot_base <- function(he,
                          comparison,
@@ -73,9 +78,10 @@ ib_plot_base <- function(he,
   ypt <- 0.95*max(d$y)
   xpt <- d$x[max(which(d$y >= ypt))]
   
-  text(xpt,ypt,parse(text = paste("p(IB(",expression(bold(theta)),")>0,k==",
-                                  format(wtp,digits = 8, nsmall = 2),")",
-                                  sep = "")),
+  text(xpt, ypt,
+       parse(text = paste("p(IB(",expression(bold(theta)),")>0,k==",
+                          format(wtp, digits = 8, nsmall = 2), ")",
+                          sep = "")),
        cex = 0.85, pos = 4)
   
   xplus <- d$x[d$x >= 0]

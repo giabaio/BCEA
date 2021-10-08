@@ -34,6 +34,7 @@ evppi_legend_text <- function(evppi_obj) {
       (("Strong & Oakley (univariate)" %in% evppi_obj$method) || 
        ("Sadatsafavi et al" %in% evppi_obj$method))) {
     
+    ##TODO: what is i??
     text(x = par("usr")[2],
          y = evppi_obj$evppi[[i]][length(evppi_obj$k)],
          labels = paste0("(", i, ")"), cex = 0.7, pos = 2)

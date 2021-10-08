@@ -6,7 +6,7 @@
 #' Plots the Expected Incremental Benefit and the Expected Value of Perfect Information
 #' when risk aversion is included in the utility function.
 #' 
-#' @param he An object of the class \code{CEriskav}, a subclass of \code{bcea},
+#' @param x An object of the class \code{CEriskav}, a subclass of \code{bcea},
 #' containing the results of the economic analysis performed accounting for a
 #' risk aversion parameter (obtained as output of the function \code{\link{CEriskav}}).
 #' @template args-pos
@@ -77,7 +77,7 @@
 #' 
 #' @export
 #' 
-plot.CEriskav <- function(he,
+plot.CEriskav <- function(x,
                           pos = c(0, 1),
                           graph = c("base", "ggplot2"),
                           ...) {
@@ -89,11 +89,11 @@ plot.CEriskav <- function(he,
   
   if (is_baseplot(graph)) {
     
-    CEriskav_plot_base(he, pos)
+    CEriskav_plot_base(x, pos)
     
   } else {
     
-    CEriskav_plot_ggplot(he, pos)
+    CEriskav_plot_ggplot(x, pos)
   }
 }
 

@@ -2,14 +2,24 @@
 % Please edit documentation in R/ib_plot_base.R
 \name{ib_plot_base}
 \alias{ib_plot_base}
-\title{ib_plot_base}
+\title{Incremental benefit plot base R version}
 \usage{
 ib_plot_base(he, comparison, wtp, bw, n, xlim)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
+
+\item{comparison}{Comparison interventions}
+
+\item{wtp}{Willingness to pay}
+
+\item{bw}{Band width}
+
+\item{n}{Number}
+
+\item{xlim}{x-axis limit}
 }
 \description{
-ib_plot_base
+Incremental benefit plot base R version
 }

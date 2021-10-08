@@ -37,15 +37,17 @@ fit.gam <- function(parameter,
                     x,
                     form) {
   tic <- proc.time()
-  N <- nrow(inputs)
-  p <- length(parameter)
   model <- mgcv::gam(update(formula(x ~ .),
                             formula(paste(".~", form))),
                      data = data.frame(inputs))
   hat <- model$fitted
+  
+  ##TODO: should this be used instead of hat?
+  # N <- nrow(inputs)
+  # p <- length(parameter)
+  # fitted <- matrix(hat, nrow = N, ncol = p)
+  
   formula <- form
-  fitted <- matrix(hat, nrow = N, ncol = p)
-  fit <- model
   toc <- proc.time() - tic
   time <- toc[3]
   names(time) <- "Time to fit GAM regression (seconds)"
@@ -161,6 +163,7 @@ fit.gp <- function(parameter,
       input.matrix = input.matrix,
       parameter = parameter,
       n.sim = n.sim)
+  
   delta.hat <- hyperparams[1:p]
   nu.hat <- hyperparams[p + 1]
   A <- exp(-(as.matrix(dist(t(t(input.matrix)/delta.hat),
@@ -178,7 +181,10 @@ fit.gp <- function(parameter,
   Hbetahat <- H %*% betahat
   resid <- x - Hbetahat
   fitted <- Hbetahat + A %*% (Astarinv %*% resid)
-  AAstarinvH <- A %*% t(tHAstarinv)
+  
+  ##TODO: should this be used somewhere?
+  # AAstarinvH <- A %*% t(tHAstarinv)
+  
   sigmasqhat <-
     as.numeric(t(resid) %*% Astarinv %*% resid)/(N - q - 2)
   
@@ -296,16 +302,11 @@ plot.mesh <- function(mesh, data, plot) {
       name <- paste0(getwd(), "/mesh.", ext)
       txt <- paste0(ext, "('", name, "')")
       eval(parse(text = txt))
-      plot(mesh)
-      points(data,
-             col = "blue",
-             pch = 19,
-             cex = 0.8)
-      dev.off()
       txt <- paste0("Graph saved as: ", name)
       cat(txt)
-      cat("\n")
+      on.exit(dev.off())
     }
+
     cat("\n")
     plot(mesh)
     points(data,

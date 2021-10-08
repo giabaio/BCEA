@@ -2,10 +2,20 @@
 % Please edit documentation in R/evi_plot_ggplot.R
 \name{evi_plot_ggplot}
 \alias{evi_plot_ggplot}
-\title{evi_plot_ggplot}
+\title{EVI plot ggplot version}
 \usage{
 evi_plot_ggplot(he, data.psa, plot_aes, plot_annotations)
 }
+\arguments{
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
+
+\item{data.psa}{Data}
+
+\item{plot_aes}{Aesthetic parameters}
+
+\item{plot_annotations}{Plot parameters}
+}
 \description{
-evi_plot_ggplot
+EVI plot ggplot version
 }

@@ -14,7 +14,8 @@ eib_plot_plotly(
   comparison,
   alpha,
   cri,
-  size = NULL
+  size = NULL,
+  ...
 )
 }
 \description{
