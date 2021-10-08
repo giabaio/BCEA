@@ -56,13 +56,17 @@ ib_plot_ggplot <- function(he,
   w <- which(he$k == wtp)
   
   if (he$n_comparisons == 1) {
-    nbw <- sd(he$ib[w, , 1])/1.5
+    
+    ##TODO: where should this be used?
+    # nbw <- sd(he$ib[w, , 1])/1.5
+    
     density <- density(he$ib[w, ,1], bw = bw, n = n)
     df <- data.frame(x = density$x,
                      y = density$y)
   }
   if (he$n_comparisons > 1) {
-    nbw <- sd(he$ib[w, , comparison])/1.5
+    
+    # nbw <- sd(he$ib[w, , comparison])/1.5
     
     density <- density(he$ib[w, , comparison], bw = bw, n = n)
     

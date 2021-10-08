@@ -4,19 +4,7 @@
 \alias{eib_plot_plotly}
 \title{EIB plot plotly version}
 \usage{
-eib_plot_plotly(
-  he,
-  alt.legend,
-  plot_aes,
-  plot_annotations,
-  plot.cri,
-  cri.quantile,
-  comparison,
-  alpha,
-  cri,
-  size = NULL,
-  ...
-)
+eib_plot_plotly(he, graph_params, ...)
 }
 \description{
 EIB plot plotly version

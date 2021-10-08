@@ -1,4 +1,5 @@
 
+#' @rdname evi_plot_graph
 #' EVI plot plotly version
 #' 
 #' @param data.psa Data
@@ -6,6 +7,7 @@
 #' @param plot_annotations Plot parameters
 #' 
 #' @importFrom plotly layout config add_trace plot_ly
+#' @export
 #' 
 evi_plot_plotly <- function(data.psa,
                             plot_aes,

@@ -434,7 +434,7 @@ evppi.bcea <- function(he,
           }
         }
         if (method == "GP") {
-          mesh <- robust <- NULL
+          mesh <- NULL
           if (!suppress.messages) {
             cat("\n")
             cat("Calculating fitted values for the GP regression \n")

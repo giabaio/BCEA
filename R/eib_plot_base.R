@@ -1,9 +1,19 @@
 
+#' Expected Incremental Benefit Plot By Graph Device
+#'
+#' Choice of base R, ggplot2 or plotly.
+#' @name eib_plot_graph
+#' 
+NULL
+
+
+#' @rdname eib_plot_graph
 #' EIB plot base R version
 #' 
 #' @template args-he
 #' @param graph_params List of graph parameters
 #' @param ...
+#' @export
 #' 
 eib_plot_base <- function(he,
                           graph_params,

@@ -64,3 +64,10 @@ plot_ggplot.ceplane <- function(he) {
 }
 
 
+#'
+make_plot_data <- function(he, ...) {
+  UseMethod('make_plot_data', he)
+}
+
+
+

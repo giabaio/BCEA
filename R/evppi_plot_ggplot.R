@@ -1,5 +1,8 @@
 
 #' @rdname evppi_plot_graph
+#' @importFrom purrr pluck keep
+#' @import dplyr ggplot2
+#' 
 #' @export
 #'
 evppi_plot_ggplot.evppi <- function(evppi_obj,
@@ -21,7 +24,7 @@ evppi_plot_ggplot.evppi <- function(evppi_obj,
                              "EVPI"))
   
   theme_add <- purrr::keep(extra_args, is.theme)
-  size <- pluck(extra_args, "size", .default = c(1, 0.5))
+  size <- purrr::pluck(extra_args, "size", .default = c(1, 0.5))
   
   legend_params <- make_legend_ggplot(evppi_obj, pos_legend)
   

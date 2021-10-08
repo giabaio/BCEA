@@ -73,8 +73,8 @@ evi.plot(m)
 evi.plot(m, graph="base")
 
 # Or with ggplot2
-if(require(ggplot2)){
-evi.plot(m, graph="ggplot2")
+if (require(ggplot2)) {
+   evi.plot(m, graph="ggplot2")
 }
 
 }

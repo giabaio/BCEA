@@ -1,4 +1,6 @@
 
+#' Expected Value of Information (EVI) Plot
+#' 
 #' @template args-he
 #' @param graph A string used to select the graphical engine to use for
 #' plotting. Should (partial-)match the three options \code{"base"},
@@ -66,8 +68,10 @@ evi.plot.bcea <- function(he,
                    "line" = list("colors" = "black",
                                  "types" = NULL))
   
-  plot_aes_args = c("area_include", "area_color", "line_colors", "line_types")
-  cri.quantile <- TRUE
+  plot_aes_args <- c("area_include", "area_color", "line_colors", "line_types")
+  
+  ##TODO: should we be using this?
+  plot_aes$cri.quantile <- TRUE
   
   if (length(extra_args) >= 1) {
     # if existing, read and store title, xlab and ylab

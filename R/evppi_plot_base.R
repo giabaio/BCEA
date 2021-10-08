@@ -9,7 +9,7 @@
 #' @export
 #'
 evppi_plot_base.evppi <- function(evppi_obj,
-                                  pos_legend = pos,
+                                  pos_legend,
                                   col = NULL,
                                   annot = FALSE) {
   

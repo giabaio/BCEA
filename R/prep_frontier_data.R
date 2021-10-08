@@ -5,10 +5,11 @@
 #' @param threshold Cost-effectiveness threshold i.e angle of line. Must be >=0 or NULL.
 #' @param start.origin Where should the frontier start from?
 #' @return List with scatter.data, ceef.points, orig.avg
+#' @seealso ceef.plot
 #' 
 prep_frontier_data <- function(he,
-                               threshold,
-                               start.origin) {
+                               threshold = NULL,
+                               start.origin = TRUE) {
   
   ## if threshold is NULL, then bound to pi/2, which is atan(Inf)
   ## else if positive, bound to the increase angle given the slope
@@ -68,16 +69,17 @@ prep_frontier_data <- function(he,
   
   data.avg <- cbind(data.avg, orig.avg)
   
-  # check for interventions with zero costs and effectiveness
+  ##TODO: where should this be used?  
   ##TODO: should this check if ALL interventions are 0?
-  ce_zeros <-
-    xor(data.avg["e.avg"] == 0,
-        data.avg["c.avg"] == 0)
-  
-  comp <-
-    ifelse(any(ce_zeros),
-           yes = which(ce_zeros),
-           no = 0)
+  # check for interventions with zero costs and effectiveness
+  # ce_zeros <-
+  #   xor(data.avg["e.avg"] == 0,
+  #       data.avg["c.avg"] == 0)
+  # 
+  # comp <-
+  #   ifelse(any(ce_zeros),
+  #          yes = which(ce_zeros),
+  #          no = 0)
   
   # contains the points connecting the frontier
   # always starts from the origin
@@ -141,8 +143,8 @@ prep_frontier_data <- function(he,
     data.avg[, 1:2] <-
       data.avg[, 3:4] - matrix(rep_dataavg, ncol = 2, byrow = TRUE)
     
-    pos_prod <- dplr::filter(data.avg, .data$c.avg*.data$e.avg > 0)
-    data.avg <- dplr::filter(pos_prod, .data$c.avg + .data$e.avg > 0)
+    pos_prod <- dplyr::filter(data.avg, .data$c.avg*.data$e.avg > 0)
+    data.avg <- dplyr::filter(pos_prod, .data$c.avg + .data$e.avg > 0)
   }
   
   ####

@@ -90,7 +90,9 @@ plot.bcea <- function(x,
                       graph = c("base", "ggplot2"),
                       ...) {
   
-  named_args <- c(as.list(environment()), list(...))
+  ##TODO: where should this be used?
+  # named_args <- c(as.list(environment()), list(...))
+  
   graph <- match.arg(graph)
   use_base_graphics <- pmatch(graph, c("base", "ggplot2")) != 2
   extra_args <- list(...)

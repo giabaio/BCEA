@@ -40,7 +40,9 @@ ib_plot_base <- function(he,
   
   if (he$n_comparisons == 1) {
     
-    nbw <- sd(he$ib[w, , 1])/1.5
+    ##TODO: where should this be used?
+    # nbw <- sd(he$ib[w, , 1])/1.5
+    
     d <- density(he$ib[w, , 1], bw = bw, n = n)
     txt <- paste("Incremental Benefit distribution\n",
                  he$interventions[he$ref],
@@ -51,7 +53,9 @@ ib_plot_base <- function(he,
     if (is.null(comparison)) {
       comparison <- 1
     }
-    nbw <- sd(he$ib[w, , comparison])/1.5
+    
+    # nbw <- sd(he$ib[w, , comparison])/1.5
+    
     d <- density(he$ib[w, , comparison], bw = bw, n = n)
     txt <- paste("Incremental Benefit distribution\n",
                  he$interventions[he$ref],

@@ -1,4 +1,6 @@
 
+#' @title Expected Incremental Benefit (EIB) Plot
+#' 
 #' @importFrom graphics lines abline text legend
 #' @import ggplot2
 #' 
@@ -71,9 +73,9 @@ eib.plot.bcea <- function(he,
 }
 
 
-#' Expected Incremental Benefit (EIB) Plot
+#' @title Expected Incremental Benefit (EIB) Plot
 #' 
-#' Produces a plot of the Expected Incremental Benefit (EIB) as a function of
+#' @description Produces a plot of the Expected Incremental Benefit (EIB) as a function of
 #' the willingness to pay.
 #'   
 #' @return \item{eib}{ If \code{graph="ggplot2"} a ggplot object, or if \code{graph="plotly"} 

@@ -10,7 +10,7 @@
 \title{Plot Expected Value of Partial Information With Respect to a
 Set of Parameters}
 \usage{
-\method{evppi_plot_base}{evppi}(evppi_obj, pos_legend = pos, col = NULL, annot = FALSE)
+\method{evppi_plot_base}{evppi}(evppi_obj, pos_legend, col = NULL, annot = FALSE)
 
 evppi_plot_base(evppi_obj, ...)
 

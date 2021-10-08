@@ -241,7 +241,10 @@ make.proj <- function(parameter,
   
   deg <- which(AIC.deg == min(AIC.deg, na.rm = TRUE))
   d <- min(dim(inputs[, parameter])[2], deg)
-  by <- ldr::bf(scale.x, case = "poly", deg)
+  
+  ##TODO: where shoudl this be used?
+  # by <- ldr::bf(scale.x, case = "poly", deg)
+  
   comp.d <-
     ldr::ldr(
       scale(inputs[, parameter]),

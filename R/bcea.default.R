@@ -73,8 +73,9 @@ bcea.default <- function(eff,
 }
 
 
+#' @rdname bcea
 #' @importFrom MCMCvis MCMCchains
-#' 
+#' @export
 bcea.rjags <- function(eff, ...) {
   
   cost <-
@@ -85,8 +86,9 @@ bcea.rjags <- function(eff, ...) {
 }
 
 
+#' @rdname bcea
 #' @importFrom rstan extract
-#' 
+#' @export
 bcea.rstan <- function(eff, ...) {
   
   cost <- rstan::extract(eff, "cost")
@@ -95,9 +97,8 @@ bcea.rstan <- function(eff, ...) {
 }
 
 
-#' @importFrom MCMCvis MCMCchains
-#' @importFrom coda as.mcmc.list
-#' 
+#' @rdname bcea
+#' @export
 bcea.bugs <- function(eff, ...) {
   
   cost <- eff$sims.list$cost

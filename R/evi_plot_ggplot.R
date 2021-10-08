@@ -1,4 +1,5 @@
 
+#' @rdname evi_plot_graph
 #' EVI plot ggplot version
 #' 
 #' @template args-he
@@ -7,6 +8,7 @@
 #' @param plot_annotations Plot parameters
 #' 
 #' @import ggplot2 grid
+#' @export
 #' 
 evi_plot_ggplot <- function(he,
                             data.psa,

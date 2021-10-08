@@ -1,10 +1,20 @@
 
-#' EVI base R version
+#' Expected Value of Information Plot By Graph Device
+#'
+#' Choice of base R, ggplot2 or plotly.
+#' @name evi_plot_graph
+#' 
+NULL
+
+
+#' @rdname evi_plot_graph
+#' EVI plot base R version
 #' 
 #' @template args-he
 #' @param data.psa Data
 #' @param plot_aes Aesthetic parameters
 #' @param plot_annotations Plot parameters
+#' @export
 #' 
 evi_plot_base <- function(he,
                           data.psa,

@@ -1,7 +1,9 @@
 
+#' @rdname eib_plot_graph
 #' EIB plot plotly version
 #' 
 #' @importFrom plotly plot_ly add_trace add_ribbons layout config
+#' @export
 #' 
 eib_plot_plotly <- function(he,
                             graph_params, ...) {
@@ -51,15 +53,19 @@ eib_plot_plotly <- function(he,
         ...))
   }
   
+  n_comp <- length(comparisons.label)
+  
   if (is.null(plot_aes$line$types))
     plot_aes$line$types <- rep(c(1:6), ceiling(he$n_comparisons/6))[1:he$n_comparisons]
-  comparisons.label <- with(he,paste0(interventions[ref], " vs ", interventions[comp]))
   
-  if (length(plot_aes$line$types) < length(comparisons.label))
-    plot_aes$line$types <- rep_len(plot_aes$line$types, length(comparisons.label))
+  comparisons.label <-
+    paste0(he$interventions[he$ref], " vs ", he$interventions[he$comp])
   
-  if (length(plot_aes$line$colors) < length(comparisons.label))
-    plot_aes$line$colors <- rep_len(plot_aes$line$colors, length(comparisons.label))
+  if (length(plot_aes$line$types) < n_comp)
+    plot_aes$line$types <- rep_len(plot_aes$line$types, n_comp)
+  
+  if (length(plot_aes$line$colors) < n_comp)
+    plot_aes$line$colors <- rep_len(plot_aes$line$colors, n_comp)
   
   # opacities
   plot_aes$line$cri_colors <-

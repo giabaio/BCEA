@@ -151,17 +151,17 @@ evi.plot.mixedAn <- function(he,
     if (!isTRUE(requireNamespace("ggplot2", quietly = TRUE) &&
                 requireNamespace("grid", quietly = TRUE))) {
       message("Falling back to base graphics\n")
-      plot.mixedAn(he,
-                   y.limits = y.limits,
-                   pos = pos,
-                   graph = "base")
+      
+      evi.plot.mixedAn(he,
+                       y.limits = y.limits,
+                       pos = pos,
+                       graph = "base")
+      
       return(invisible(NULL))
     } 
     
     if (isTRUE(requireNamespace("ggplot2", quietly = TRUE) &&
                requireNamespace("grid", quietly = TRUE))) {
-      ### no visible binding note
-      k <- evi.star <- NA_real_
       
       # legend
       txt <-

@@ -4,7 +4,7 @@
 \alias{prep_frontier_data}
 \title{Prepare frontier data}
 \usage{
-prep_frontier_data(he, threshold, start.origin)
+prep_frontier_data(he, threshold = NULL, start.origin = TRUE)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
@@ -19,4 +19,7 @@ List with scatter.data, ceef.points, orig.avg
 }
 \description{
 Prepare frontier data
+}
+\seealso{
+ceef.plot
 }

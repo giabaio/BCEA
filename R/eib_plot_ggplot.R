@@ -1,7 +1,10 @@
 
+#' EIB plot ggplot2 version
+#' 
 #' @import ggplot2
 #' @importFrom grid unit
 #' @importFrom purrr keep
+#' @export
 #' 
 eib_plot_ggplot.bcea <- function(he,
                                  graph_params,
@@ -57,6 +60,7 @@ eib_plot_ggplot.bcea <- function(he,
 }
 
 
+#' @rdname eib_plot_graph
 #' EIB plot ggplot2 version
 #'  
 #' @template args-he
@@ -64,6 +68,7 @@ eib_plot_ggplot.bcea <- function(he,
 #' @param ... Additional arguments
 #' @return ggplot2 object
 #' @keywords hplot
+#' @export
 #'
 eib_plot_ggplot <- function(he,
                             graph_params, ...)
