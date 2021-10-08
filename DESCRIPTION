@@ -20,18 +20,21 @@ Imports:
     crayon,
     dplyr,
     ggplot2,
+    plotly,
     graphics,
     INLA,
     knitr,
     ldr,
     MASS,
-    plotly,
     purrr,
     reshape2,
     rlang,
     rmarkdown,
     withr,
-    gridExtra
+    gridExtra,
+    rstan,
+    MCMCvis,
+    coda
 Depends:
     R (>= 3.5.0)
 Suggests:
@@ -42,8 +45,10 @@ Suggests:
     R2OpenBUGS,
     splancs,
     testthat (>= 2.1.0),
-    vdiffr
+    vdiffr,
+    markdown,
 Additional_repositories: https://inla.r-inla-download.org/R/stable/
+Remotes: cran/ldr
 Description: Produces an economic evaluation of a sample of suitable variables of
              cost and effectiveness / utility for two or more interventions,
              e.g. from a Bayesian model in the form of MCMC simulations.

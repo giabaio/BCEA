@@ -9,7 +9,7 @@
   he,
   comparison = NULL,
   wtp = 25000,
-  bw = nbw,
+  bw = "bcv",
   n = 512,
   xlim = NULL,
   graph = c("base", "ggplot2"),
@@ -24,7 +24,8 @@ modelling and the economic evaluation.}
 
 \item{comparison}{In the case of multiple interventions, specifies the one
 to be used in comparison with the reference. Default value of \code{NULL}
-forces R to consider the first non-reference intervention as the comparator.}
+forces R to consider the first non-reference intervention as the comparator.
+Controls which comparator is used when more than 2 interventions are present}
 
 \item{wtp}{The value of the willingness to pay threshold. Default value at
 \code{25000}.}

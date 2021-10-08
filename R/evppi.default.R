@@ -3,15 +3,13 @@
 #'
 #' @export
 #'
-#' @examples
-#' 
 evppi.bcea <- function(he,
                        param_idx,
                        input,
                        N = NULL,
                        plot = FALSE,
                        residuals = TRUE, ...) {
-  
+
   if (is.null(colnames(input))) {
     colnames(input) <- paste0("theta", 1:dim(input)[2])
   }
@@ -27,31 +25,31 @@ evppi.bcea <- function(he,
   if (is.null(N)) {
     N <- he$n_sim
   }
-  
+
   robust <- NULL
   extra_args <- list(...)
-  
+
   if (!exists("suppress.messages", where = extra_args)) {
     suppress.messages <- FALSE
   } else {
     suppress.messages <- extra_args$suppress.messages
   }
-  
+
   if (!exists("select", where = extra_args) & N == he$n_sim) {
     extra_args$select <- 1:he$n_sim
   }
-  
+
   if (!exists("select", where = extra_args) & N < he$n_sim) {
     extra_args$select <- sample(1:he$n_sim, size = N, replace = FALSE)
   }
-  
+
   inputs <- data.frame(input)[extra_args$select, ]
-  
+
   # Sets default for method of calculation
   # If number of params <=4, then use GAM, if not defaults to INLA/SPDE
-  
+
   if (!exists("method", where = extra_args)) {
-    
+
     extra_args$method <-
       if (length(param_idx) <= 4) {
         list(rep("GAM", he$n_comparators - 1),
@@ -60,13 +58,13 @@ evppi.bcea <- function(he,
         list(rep("INLA", he$n_comparators - 1),
              rep("INLA", he$n_comparators - 1))
       }
-    
+
     print(paste("method:", extra_args$method))
-    
+
   }
-  
+
   if (!inherits(extra_args$method, "list")) {
-    
+
     if (extra_args$method != "sad" & extra_args$method != "so") {
       if (length(extra_args$method) > 1) {
         extra_args$method <- list(extra_args$method,
@@ -78,47 +76,45 @@ evppi.bcea <- function(he,
       }
     }
   }
-  
+
   if (inherits(extra_args$method, "list")) {
-    
+
     len_methods <-
       length(extra_args$method[[1]]) +
       length(extra_args$method[[2]])
-    
+
     if (len_methods != 2*(he$n_comparators - 1)) {
       stop(paste("The argument 'method' must be a list of length 2 with",
                  he$n_comparators - 1, "elements each."), call. = FALSE)
     }
   }
-  
-  # int.ord ----
-  
+
   if (!exists("int.ord", where = extra_args)) {
     extra_args$int.ord <-
       list(rep(1, he$n_comparators - 1),
            rep(1, he$n_comparators - 1))
   }
-  
+
   if (!inherits(extra_args$int.ord, "list")) {
-    
+
     extra_args$int.ord <-
       list(
         rep(extra_args$int.ord[1], he$n_comparators - 1),
         rep(extra_args$int.ord[2], he$n_comparators - 1)
       )
   }
-  
-  if (!inherits(extra_args$int.ord, "list")) {
+
+  if (!inherits(extra_args$method, "list")) {
     if (extra_args$method == "sal" || extra_args$method == "sad") {
       method <- "Sadatsafavi et al"
       n.blocks <- NULL
-      
-      n_seps <- 
+
+      n_seps <-
         if (!exists("n_seps", where = extra_args)) {
           1
         } else {
           extra_args$n_seps}
-      
+
       if (length(params) == 1) {
         d <- he$n_comparators
         n <- he$n_sim
@@ -130,14 +126,14 @@ evppi.bcea <- function(he,
         nSegs[1, 2] <- n_seps
         nSegs[2, 1] <- n_seps
         res <- segPoints <- numeric()
-        
+
         for (k in seq_along(he$k)) {
           nbs <- he$U[, k, ]
           nbs <- nbs[o, ]
           for (i in seq_len(d - 1)) {
             for (j in (i + 1):d) {
               cm <- cumsum(nbs[, i] - nbs[, j])/n
-              
+
               if (nSegs[i, j] == 1) {
                 l <- which.min(cm)
                 u <- which.max(cm)
@@ -152,7 +148,7 @@ evppi.bcea <- function(he,
                   segPoints <- c(segPoints, segPoint)
                 }
               }
-              
+
               if (nSegs[i, j] == 2) {
                 distMaxMin <- 0
                 distMinMax <- 0
@@ -184,7 +180,7 @@ evppi.bcea <- function(he,
                 }
                 siMaxMin <- cm[segMaxMinL] + distMaxMin + (cm[n] - cm[segMaxMinR])
                 siMinMax <- -cm[segMaxMinL] + distMinMax - (cm[n] - cm[segMinMaxR])
-                
+
                 if (siMaxMin > siMinMax) {
                   segPoint <- c(segMaxMinL, segMaxMinR)
                 }
@@ -314,7 +310,7 @@ evppi.bcea <- function(he,
         }
         names(res) <- params
       }
-      
+
       res <- list(evppi = res,
                   index = params,
                   params = params,
@@ -359,6 +355,7 @@ evppi.bcea <- function(he,
           sort.order <- order(inputs[, params[j]])
           sort.U <- array(NA, dim(he$U))
           evpi <- evppi.temp <- numeric()
+          
           for (i in seq_along(he$k)) {
             evpi[i] <- he$evi[i]
             sort.U[, i, ] <- he$U[sort.order, i, ]
@@ -372,7 +369,7 @@ evppi.bcea <- function(he,
         }
         names(res) <- params
       }
-      
+
       res <-
         list(evppi = res,
              index = params,
@@ -382,23 +379,23 @@ evppi.bcea <- function(he,
              method = method)
     }
   }
-  
+
   if (inherits(extra_args$method, "list")) {
     time <- list()
     time[[1]] <- list()
     time[[2]] <- list()
-    
+
     fit.full <- vector("list")
     fit.full[[1]] <- matrix(
       data = 0,
       nrow = length(extra_args$select),
       ncol = he$n_comparators)
-    
+
     fit.full[[2]] <-
       matrix(data = 0,
              nrow = length(extra_args$select),
              ncol = he$n_comparators)
-    
+
     for (k in 1:2) {
       for (l in seq_len(he$n_comparisons)) {
         x <-
@@ -406,14 +403,14 @@ evppi.bcea <- function(he,
                  seq_rows = extra_args$select,
                  k = k,
                  l = l)
-        
+
         method <- toupper(extra_args$method[[k]][l])
-        
+
         if (method == "GAM" || method == "G") {
           method <- "GAM"
           mesh <- robust <- NULL
           if (!requireNamespace("mgcv", quietly = TRUE)) {
-            stop("You need to install the package 'mgcv'. Please run in your R terminal:\n 
+            stop("You need to install the package 'mgcv'. Please run in your R terminal:\n
                  install.packages('mgcv')", call. = FALSE)
           }
           if (requireNamespace("mgcv", quietly = TRUE)) {
@@ -421,7 +418,7 @@ evppi.bcea <- function(he,
               cat("\n")
               cat("Calculating fitted values for the GAM regression \n")
             }
-            
+
             inp <- names(inputs)[param_idx]
             if (exists("formula", where = extra_args)) {
               form <- extra_args$formula
@@ -436,7 +433,7 @@ evppi.bcea <- function(he,
           }
         }
         if (method == "GP") {
-          mesh <- robust <- NULL
+          mesh <- NULL
           if (!suppress.messages) {
             cat("\n")
             cat("Calculating fitted values for the GP regression \n")
@@ -466,7 +463,7 @@ evppi.bcea <- function(he,
                  install.packages('ldr')", call. = FALSE)
           }
           if (requireNamespace("ldr", quietly = TRUE)) {
-            
+
             if (requireNamespace("INLA", quietly = TRUE)) {
               if (!is.element("INLA", (.packages()))) {
                 attachNamespace("INLA")
@@ -568,7 +565,7 @@ evppi.bcea <- function(he,
           }
         }
         fit.full[[k]][,l] <- fit$fitted
-        
+
         # calculate time taken
         if (method == "INLA") {
           time. <- c(projections$time, mesh$time, fit$time)
@@ -581,24 +578,24 @@ evppi.bcea <- function(he,
       }
     }
     if (!suppress.messages) {cat("Calculating EVPPI \n")}
-    
+
     comp <- compute.evppi(he = he, fit.full = fit.full)
-    
+
     name <- prepare.output(parameters = params, inputs = inputs)
-    
+
     time[[3]] <- comp$time
     names(time) <- c("Fitting for Effects",
                      "Fitting for Costs",
                      "Calculating EVPPI")
     names(extra_args$method) <- c("Methods for Effects", "Methods for Costs")
-    
+
     if (residuals) {
       res <- list(
         evppi = comp$EVPPI,
         index = params,
         k = he$k,
         evi = he$evi,
-        params = name,
+        parameters = name,
         time = time,
         method = extra_args$method,
         fitted.costs = fit.full[[2]],
@@ -610,18 +607,19 @@ evppi.bcea <- function(he,
         index = params,
         k = he$k,
         evi = he$evi,
-        params = name,
+        parameters = name,
         time = time,
         method = extra_args$method)
     }
   }
-  
+
   structure(res, class = "evppi")
 }
 
+
 #' @rdname evppi
 #' @export
-#' 
+#'
 evppi.default <- function(he, ...) {
   stop("No method available", call. = FALSE)
 }

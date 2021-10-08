@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Information-Rank Plot — info.rank • BCEA</title>
+<title>Information-Rank Plot for bcea Class — info.rank.bcea • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -45,9 +45,11 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
-<meta property="og:title" content="Information-Rank Plot — info.rank" />
-<meta property="og:description" content="Produces a plot similar to a Tornado-plot, but based on the analysis of the
+<meta property="og:title" content="Information-Rank Plot for bcea Class — info.rank.bcea" />
+<meta property="og:description" content="Produces a plot similar to a tornado plot, but based on the analysis of the
 EVPPI. For each parameter and value of the willingness-to-pay threshold, a
 barchart is plotted to describe the ratio of EVPPI (specific to that
 parameter) to EVPI. This represents the relative `importance' of each
@@ -84,7 +86,7 @@ parameter in terms of the expected value of information." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BCEA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
       </span>
     </div>
 
@@ -92,7 +94,7 @@ parameter in terms of the expected value of information." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -122,7 +124,7 @@ parameter in terms of the expected value of information." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/giabaio/BCEA/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -139,20 +141,31 @@ parameter in terms of the expected value of information." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Information-Rank Plot</h1>
+    <h1>Information-Rank Plot for bcea Class</h1>
     <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/info.rank.R'><code>R/info.rank.R</code></a></small>
     <div class="hidden name"><code>info.rank.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Produces a plot similar to a Tornado-plot, but based on the analysis of the
+    <p>Produces a plot similar to a tornado plot, but based on the analysis of the
 EVPPI. For each parameter and value of the willingness-to-pay threshold, a
 barchart is plotted to describe the ratio of EVPPI (specific to that
 parameter) to EVPI. This represents the relative `importance' of each
 parameter in terms of the expected value of information.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>info.rank</span><span class='op'>(</span><span class='va'>he</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='co'># S3 method for bcea</span>
+<span class='fu'>info.rank</span><span class='op'>(</span>
+  <span class='va'>he</span>,
+  <span class='va'>inp</span>,
+  wtp <span class='op'>=</span> <span class='va'>he</span><span class='op'>$</span><span class='va'>k</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>he</span><span class='op'>$</span><span class='va'>k</span> <span class='op'>&gt;=</span> <span class='va'>he</span><span class='op'>$</span><span class='va'>ICER</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>,
+  howManyPars <span class='op'>=</span> <span class='cn'>NA</span>,
+  graph <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>, <span class='st'>"plotly"</span><span class='op'>)</span>,
+  rel <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
+
+<span class='fu'>info.rank</span><span class='op'>(</span><span class='va'>he</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -163,6 +176,40 @@ parameter in terms of the expected value of information.</p>
 modelling and the economic evaluation.</p></td>
     </tr>
     <tr>
+      <th>inp</th>
+      <td><p>Named list from running <code><a href='createInputs.default.html'>createInputs()</a></code> containing:</p><ul>
+<li><p><code>parameter</code> = A vector of parameters for which the individual EVPPI
+should be calculated. This can be given as a string (or vector of strings)
+of names or a numeric vector, corresponding to the column numbers of
+important parameters.</p></li>
+<li><p><code>mat</code> = A matrix containing the simulations for all the parameters
+monitored by the call to JAGS or BUGS. The matrix should have column names
+matching the names of the parameters and the values in the vector parameter
+should match at least one of those values.</p></li>
+</ul></td>
+    </tr>
+    <tr>
+      <th>wtp</th>
+      <td><p>A value of the wtp for which the analysis should be performed. If
+not specified then the break-even point for the current model will be used.</p></td>
+    </tr>
+    <tr>
+      <th>howManyPars</th>
+      <td><p>Optional maximum number of parameters to be included in the bar plot. 
+Includes all parameters by default.</p></td>
+    </tr>
+    <tr>
+      <th>graph</th>
+      <td><p>A string used to select the graphical enging to use for plotting.
+Should (partial-)match one of the two options "base" or "plotly". Default value is "base"</p></td>
+    </tr>
+    <tr>
+      <th>rel</th>
+      <td><p>Logical argument that specifies whether the ratio of
+EVPPI to EVPI (<code>rel = TRUE</code>, default) or the absolute value of the EVPPI
+should be used for the analysis.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Additional options. These include graphical parameters that the
 user can specify:</p><ul>
@@ -171,17 +218,99 @@ label (default = 0.7 of full size).</p></li>
 <li><p><code>cn</code> = font size for the parameter names
 vector (default = 0.7 of full size) - base graphics only.</p></li>
 <li><p><code>mai</code> = margins of the graph (default = c(1.36, 1.5, 1,1)) - base graphics only.</p></li>
-<li><p><code>rel</code> = logical argument that specifies whether the ratio of
-EVPPI to EVPI (<code>rel=TRUE</code>, default) or the absolute value of the EVPPI
-should be used for the analysis.</p></li>
 </ul></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Bar plot</p>
+    <p>With base graphics: A data.frame containing the ranking of the parameters
+  with the value of the selected summary, for the chosen wtp; with plotly: a plotly object, 
+  incorporating in the $rank element the data.frame as above.
+  The function produces a 'Info-rank' plot. This is an extension of standard 'Tornado
+  plots' and presents a ranking of the model parameters in terms of their
+  impact on the expected value of information. For each parameter, the
+  specific individual EVPPI is computed and used to measure the impact of
+  uncertainty in that parameter over the decision-making process, in terms of
+  how large the expected value of gaining more information is.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
+    <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
+Analysis in Health Economics. Statistical Methods in Medical Research
+doi:10.1177/0962280211419832.</p>
+<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>,
+         <code><a href='evppi.html'>evppi</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Anna Heath, Gianluca Baio, Andrea Berardi</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='st'>"Vaccine"</span><span class='op'>)</span>
+<span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span><span class='va'>e</span>,<span class='va'>c</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>No reference selected. Defaulting to first intervention.</span></div><div class='input'><span class='va'>inp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='createInputs.default.html'>createInputs</a></span><span class='op'>(</span><span class='va'>vaccine</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] "14 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [2] "15 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [3] "16 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [4] "17 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [5] "18 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [6] "19 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [7] "20 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [8] "21 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [9] "22 \nLinear dependence: removing column pi[2,2]"
+#&gt; [10] "29 \nLinear dependence: removing column pi[2,2]"
+#&gt; [11] "44 \nLinear dependence: removing column pi[2,2]"
+#&gt; [12] "45 \nLinear dependence: removing column pi[2,2]"
+#&gt; [13] "46 \nLinear dependence: removing column pi[2,2]"
+#&gt; [14] "47 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [1] "14 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [2] "15 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [3] "16 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [4] "17 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [5] "18 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [6] "19 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [7] "20 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [8] "21 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [9] "22 \nLinear dependence: removing column pi[2,1]"
+#&gt; [10] "29 \nLinear dependence: removing column pi[2,1]"
+#&gt; [11] "44 \nLinear dependence: removing column pi[2,1]"
+#&gt; [12] "45 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [1] "14 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [2] "15 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [3] "16 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [4] "17 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [5] "18 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [6] "19 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [7] "20 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [8] "21 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [9] "22 \nLinear dependence: removing column pi[1,1]"
+#&gt; [10] "29 \nLinear dependence: removing column pi[1,1]"
+#&gt; [11] "44 \nLinear dependence: removing column pi[1,1]"
+#&gt; [1] "14 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [2] "15 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [3] "16 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [4] "17 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [5] "18 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [6] "19 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [7] "20 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [8] "21 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [9] "22 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [1] "14 \nLinear dependence: removing column Repeat.GP[2,1]"
+#&gt; [2] "15 \nLinear dependence: removing column Repeat.GP[2,1]"
+#&gt; [3] "17 \nLinear dependence: removing column Repeat.GP[2,1]"
+#&gt; [4] "18 \nLinear dependence: removing column Repeat.GP[2,1]"
+#&gt; [5] "20 \nLinear dependence: removing column Repeat.GP[2,1]"
+#&gt; [6] "21 \nLinear dependence: removing column Repeat.GP[2,1]"
+#&gt; [1] "14 \nLinear dependence: removing column Repeat.GP[1,1]"
+#&gt; [2] "17 \nLinear dependence: removing column Repeat.GP[1,1]"
+#&gt; [3] "20 \nLinear dependence: removing column Repeat.GP[1,1]"</div><div class='input'><span class='fu'>info.rank</span><span class='op'>(</span><span class='va'>m</span>, <span class='va'>inp</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>info.rank</span><span class='op'>(</span><span class='va'>m</span>, <span class='va'>inp</span>, graph <span class='op'>=</span> <span class='st'>"base"</span><span class='op'>)</span>
+</div><div class='img'><img src='info.rank-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>info.rank</span><span class='op'>(</span><span class='va'>m</span>, <span class='va'>inp</span>, graph <span class='op'>=</span> <span class='st'>"plotly"</span><span class='op'>)</span>
+<span class='fu'>info.rank</span><span class='op'>(</span><span class='va'>m</span>, <span class='va'>inp</span>, graph <span class='op'>=</span> <span class='st'>"ggplot2"</span><span class='op'>)</span>
+</div><div class='img'><img src='info.rank-2.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

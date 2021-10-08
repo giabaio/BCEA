@@ -45,6 +45,8 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
 <meta property="og:title" content="Function reference" />
 <meta property="og:image" content="/logo.png" />
@@ -79,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BCEA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
       </span>
     </div>
 
@@ -87,7 +89,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -117,7 +119,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/giabaio/BCEA/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -172,7 +174,7 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="multi.ce.html">multi.ce()</a></code> </p>
+          <p><code><a href="multi.ce.html">multi.ce(<i>&lt;bcea&gt;</i>)</a></code> </p>
         </td>
         <td><p>Cost-effectiveness Analysis With Multiple Comparison</p></td>
       </tr><tr>
@@ -184,15 +186,19 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="setReferenceGroup-set.html">`setReferenceGroup&lt;-`()</a></code> </p>
+          <p><code><a href="setReferenceGroup_assign.html">`setReferenceGroup&lt;-`()</a></code> </p>
         </td>
-        <td><p>Set Reference Group</p></td>
+        <td><p>Set Reference Group
+
+Alternative way to define (e,c) reference group.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="setKmax-set.html">`setKmax&lt;-`()</a></code> </p>
+          <p><code><a href="setKmax_assign.html">`setKmax&lt;-`()</a></code> </p>
         </td>
-        <td><p>Set Maximum Willingness to Pay</p></td>
+        <td><p>Set Maximum Willingness to Pay
+
+Alternative way to define `K` statistic.</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -233,9 +239,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="ceplane.plot.html">ceplane.plot()</a></code> </p>
+          <p><code><a href="ceplane.plot.bcea.html">ceplane.plot(<i>&lt;bcea&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Cost-effectiveness Plane Plot</p></td>
+        <td><p>CE plane plot</p></td>
       </tr><tr>
         
         <td>
@@ -245,9 +251,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="contour.html">contour()</a></code> </p>
+          <p><code><a href="contour.bcea.html">contour(<i>&lt;bcea&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Contour Plots for the Cost-Effectiveness Plane</p></td>
+        <td><p>Contour CE plane</p></td>
       </tr><tr>
         
         <td>
@@ -257,13 +263,13 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="eib.plot.html">eib.plot()</a></code> </p>
+          <p><code><a href="eib.plot.bcea.html">eib.plot(<i>&lt;bcea&gt;</i>)</a></code> </p>
         </td>
         <td><p>Expected Incremental Benefit (EIB) Plot</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="evi.plot.html">evi.plot()</a></code> </p>
+          <p><code><a href="evi.plot.bcea.html">evi.plot(<i>&lt;bcea&gt;</i>)</a></code> </p>
         </td>
         <td><p>Expected Value of Information (EVI) Plot</p></td>
       </tr><tr>
@@ -275,6 +281,12 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="info.rank.html">info.rank()</a></code> </p>
+        </td>
+        <td><p>Information-Rank Plot for bcea Class</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="plot.bcea.html">plot(<i>&lt;bcea&gt;</i>)</a></code> </p>
         </td>
         <td><p>Summary Plot of the Health Economic Analysis</p></td>
@@ -283,7 +295,7 @@
         <td>
           <p><code><a href="plot.CEriskav.html">plot(<i>&lt;CEriskav&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Plots EIB for the Risk Aversion Case</p></td>
+        <td><p>Plots EIB and EVPI for the Risk Aversion Case</p></td>
       </tr><tr>
         
         <td>
@@ -291,12 +303,6 @@
         </td>
         <td><p>Plot Expected Value of Partial Information With Respect to a
 Set of Parameters</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.mixedAn.html">plot(<i>&lt;mixedAn&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summary Plot of the Health Economic Analysis For Mixed Analysis</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -339,7 +345,7 @@ Set of Parameters</p></td>
         <td>
           <p><code><a href="compute_kstar.html">compute_kstar()</a></code> </p>
         </td>
-        <td><p>Compute kstar</p></td>
+        <td><p>Compute k^*</p></td>
       </tr><tr>
         
         <td>
@@ -417,15 +423,9 @@ Set of Parameters</p></td>
       <tr>
         
         <td>
-          <p><code><a href="CEriskav.html">CEriskav()</a></code> </p>
+          <p><code><a href="CEriskav_assign.html">`CEriskav&lt;-`()</a></code> </p>
         </td>
         <td><p>Cost-effectiveness Analysis Including a Parameter of Risk Aversion</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="createInputs.html">create_inputs_evpi()</a></code> <code><a href="createInputs.html">createInputs()</a></code> </p>
-        </td>
-        <td><p>Create Inputs for EVPI Calculation</p></td>
       </tr><tr>
         
         <td>
@@ -442,10 +442,13 @@ Parameters</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="mixedAn.html">mixedAn()</a></code> </p>
+          <p><code><a href="mixedAn-set.html">`mixedAn&lt;-`()</a></code> </p>
         </td>
-        <td><p>Cost-Effectiveness Analysis When Multiple (Possibly Non-Cost-Effective)
-Interventions are Present on the Market</p></td>
+        <td><p>: Cost-Effectiveness Analysis When Multiple (Possibly Non-Cost-Effective)
+Interventions are Present on the Market
+
+Runs the cost-effectiveness analysis, but accounts for the fact that more
+than one intervention is present on the market.</p></td>
       </tr><tr>
         
         <td>

@@ -45,9 +45,11 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
 <meta property="og:title" content="Expected Value of Information (EVI) Plot — evi.plot.bcea" />
-<meta property="og:description" content="Plots the Expected Value of Information (EVI) against the willingness to pay" />
+<meta property="og:description" content="Expected Value of Information (EVI) Plot" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -80,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BCEA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
       </span>
     </div>
 
@@ -88,7 +90,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -118,7 +120,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/giabaio/BCEA/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -141,11 +143,11 @@
     </div>
 
     <div class="ref-description">
-    <p>Plots the Expected Value of Information (EVI) against the willingness to pay</p>
+    <p>Expected Value of Information (EVI) Plot</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for bcea</span>
-<span class='fu'>evi.plot</span>(<span class='no'>he</span>, <span class='kw'>graph</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>, <span class='st'>"plotly"</span>), <span class='no'>...</span>)</pre>
+<span class='fu'><a href='evi.plot.html'>evi.plot</a></span><span class='op'>(</span><span class='va'>he</span>, graph <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>, <span class='st'>"plotly"</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -163,12 +165,7 @@ plotting. Should (partial-)match the three options <code>"base"</code>,
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional graphical arguments:</p><ul>
-<li><p><code>line_colors</code> to specify the EVPI line colour - all graph types.</p></li>
-<li><p><code>line_types</code> to specify the line type (lty) - all graph types.</p></li>
-<li><p><code>area_include</code> to specify whether to include the area under the EVPI curve - plotly only.</p></li>
-<li><p><code>area_color</code> to specify the area under the colour curve - plotly only.</p></li>
-</ul></td>
+      <td><p>Additional parameters</p></td>
     </tr>
     </table>
 
@@ -187,15 +184,42 @@ plotting. Should (partial-)match the three options <code>"base"</code>,
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
+Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.</p>
-<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London</p>
+<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>, <code><a href='ceac.plot.html'>ceac.plot</a></code>,
-<code>ceplane.plot</code></p></div>
+    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>,
+         <code><a href='ceac.plot.bcea.html'>ceac.plot</a></code>,
+         <code><a href='ceplane.plot.html'>ceplane.plot</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
+    <p>Gianluca Baio, Andrea Berardi</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Vaccine</span><span class='op'>)</span>
+<span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span>
+      e<span class='op'>=</span><span class='va'>e</span>,
+      c<span class='op'>=</span><span class='va'>c</span>,                  <span class='co'># defines the variables of </span>
+                            <span class='co'>#  effectiveness and cost</span>
+      ref<span class='op'>=</span><span class='fl'>2</span>,                <span class='co'># selects the 2nd row of (e, c) </span>
+                            <span class='co'>#  as containing the reference intervention</span>
+      interventions<span class='op'>=</span><span class='va'>treats</span>, <span class='co'># defines the labels to be associated </span>
+                            <span class='co'>#  with each intervention</span>
+      Kmax<span class='op'>=</span><span class='fl'>50000</span>,           <span class='co'># maximum value possible for the willingness </span>
+                            <span class='co'>#  to pay threshold; implies that k is chosen </span>
+                            <span class='co'>#  in a grid from the interval (0, Kmax)</span>
+      plot<span class='op'>=</span><span class='cn'>FALSE</span>            <span class='co'># plots the results</span>
+<span class='op'>)</span>
+<span class='fu'><a href='evi.plot.html'>evi.plot</a></span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
+</div><div class='img'><img src='evi.plot.bcea-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Smoking</span><span class='op'>)</span>
+<span class='va'>treats</span> <span class='op'>&lt;-</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"No intervention"</span>, <span class='st'>"Self-help"</span>,
+            <span class='st'>"Individual counselling"</span>, <span class='st'>"Group counselling"</span><span class='op'>)</span>
+<span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>c</span>, ref <span class='op'>=</span> <span class='fl'>4</span>, interventions <span class='op'>=</span> <span class='va'>treats</span>, Kmax <span class='op'>=</span> <span class='fl'>500</span><span class='op'>)</span>
+<span class='fu'><a href='evi.plot.html'>evi.plot</a></span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
+</div><div class='img'><img src='evi.plot.bcea-2.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -211,7 +235,7 @@ London</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

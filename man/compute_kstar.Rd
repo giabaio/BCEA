@@ -2,22 +2,28 @@
 % Please edit documentation in R/compute_xxx.R
 \name{compute_kstar}
 \alias{compute_kstar}
-\title{Compute kstar}
+\title{Compute k^*}
 \usage{
 compute_kstar(k, best, ref)
 }
 \arguments{
-\item{k}{Willingness-to-pay vector}
+\item{k}{Willingness-to-pay grid approximation of the budget willing to invest (vector)}
 
-\item{best}{Best intervention for each `k`}
+\item{best}{Best intervention for each `k` (int)}
 
-\item{ref}{Reference intervention}
+\item{ref}{Reference intervention (int)}
 }
 \value{
-Array with dimensions
+integer representing intervention
 }
 \description{
 Find willingness-to-pay threshold when optimal decision changes.
+}
+\details{
+\deqn{k^* := \min\{k : IB < 0 \}}
+
+The value of the break-even point corresponds to the ICER and quantifies
+the point at which the decision-maker is indifferent between the two options.
 }
 \seealso{
 \code{\link{ceac.plot}}

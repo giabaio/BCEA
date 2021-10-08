@@ -44,33 +44,38 @@
 struct.psa <- function(models,
                        effect,
                        cost,
-                       ref = 1,
+                       ref = NULL,
                        interventions = NULL,
                        Kmax = 50000,
                        plot = FALSE) {
   
-  n.models <- length(models)
+  if (is.null(ref)) {
+    ref <- 1
+    message("No reference selected. Defaulting to first intervention.")  
+  }
   
-  if (n.models == 1) {
-    stop("NB: Needs at least two models to run structural PSA",
+  n_models <- length(models)
+  
+  if (n_models == 1) {
+    stop("Need at least two models to run structural PSA",
          call. = FALSE)
   }
   d <- w <- numeric()
   mdl <- list()
   
-  for (i in seq_len(n.models)) {
+  for (i in seq_len(n_models)) {
     # 1. checks whether each model has been run using JAGS or BUGS    
-    if (class(models[[i]]) == "rjags") {
+    if (inherits(models[[i]], "rjags")) {
       if (!(requireNamespace("R2jags", quietly = TRUE))) {
         stop ("You need to install the package 'R2jags'.
              Please run in your R terminal:\n install.packages('R2jags')",
               call. = FALSE)
       }
       if (requireNamespace("R2jags", quietly = TRUE)) {
-        mdl[[i]] <- models[[i]]$BUGSoutput  # if model is run using R2jags/rjags        
+        mdl[[i]] <- models[[i]]$BUGSoutput  # model is run using R2jags/rjags        
       }
     }
-    if (class(models[[i]]) == "bugs") {		# if model is run using R2WinBUGS/R2OpenBUGS
+    if (inherits(models[[i]], "bugs")) {		# model is run using R2WinBUGS/R2OpenBUGS
       if (!(requireNamespace("R2OpenBUGS", quietly = TRUE))) {
         stop ("You need to install the package 'R2OpenBUGS'.
              Please run in your R terminal:\n install.packages('R2OpenBUGS')",
@@ -84,8 +89,8 @@ struct.psa <- function(models,
     # 2. saves the DIC in the vector d
     d[i] <- mdl[[i]]$DIC
   }
-  dmin <- min(d)					# computes the minimum value to re-scale the DICs
-  w <- exp(-0.5*(d - dmin))/sum(exp(-0.5*(d - dmin))) 	# Computes the model weights (cfr BMHE)
+  dmin <- min(d)					# minimum value to re-scale the DICs
+  w <- exp(-0.5*(d - dmin))/sum(exp(-0.5*(d - dmin))) 	# model weights (cfr BMHE)
   
   # Now weights the simulations for the variables of effectiveness and costs in each model
   # using the respective weights, to produce the economic analysis for the average model
@@ -95,7 +100,7 @@ struct.psa <- function(models,
   e <- w[1]*effect[[1]]
   c <- w[1]*cost[[1]]
   
-  for (i in 2:n.models) {
+  for (i in 2:n_models) {
     e <- e + w[i]*effect[[i]]
     c <- c + w[i]*cost[[i]]
   }

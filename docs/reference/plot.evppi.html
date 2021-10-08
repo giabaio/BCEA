@@ -46,6 +46,8 @@ Set of Parameters — plot.evppi • BCEA</title>
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
 <meta property="og:title" content="Plot Expected Value of Partial Information With Respect to a
 Set of Parameters — plot.evppi" />
@@ -83,7 +85,7 @@ Set of Parameters" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BCEA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
       </span>
     </div>
 
@@ -91,7 +93,7 @@ Set of Parameters" />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -121,7 +123,7 @@ Set of Parameters" />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/giabaio/BCEA/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -150,36 +152,37 @@ Set of Parameters</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for evppi</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span>, pos <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0.8</span><span class='op'>)</span>, graph <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"base"</span>, <span class='st'>"ggplot2"</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span>, pos <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0.8</span><span class='op'>)</span>, graph <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"base"</span>, <span class='st'>"ggplot2"</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>1</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object in the class <code>evppi</code>, obtained by the call to the
-function <code><a href='evppi.html'>evppi</a></code>.</p></td>
+      <td><p>An object in the class <code>evppi</code>,
+obtained by the call to the function <code><a href='evppi.html'>evppi</a></code>.</p></td>
     </tr>
     <tr>
       <th>pos</th>
-      <td><p>Parameter to set the position of the legend. Can be given in form
+      <td><p>Parameter to set the position of the legend (only relevant for
+multiple interventions, ie more than 2 interventions being compared).
+Can be given in form
 of a string <code>(bottom|top)(right|left)</code> for base graphics and
 <code>bottom|top|left|right</code> for ggplot2. It can be a two-elements vector,
 which specifies the relative position on the x and y axis respectively, or
 alternatively it can be in form of a logical variable, with <code>FALSE</code>
 indicating to use the default position and <code>TRUE</code> to place it on the
-bottom of the plot. Default value is <code><a href='Smoking.html'>c(0,1)</a></code>, that is in the topleft
-corner inside the plot area.</p></td>
+bottom of the plot.</p></td>
     </tr>
     <tr>
       <th>graph</th>
       <td><p>A string used to select the graphical engine to use for
-plotting. Should (partial-)match the two options <code>"base"</code> or
+plotting. Should (partial-) match the two options <code>"base"</code> or
 <code>"ggplot2"</code>. Default value is <code>"base"</code>.</p></td>
     </tr>
     <tr>
       <th>col</th>
-      <td><p>Sets the color for the lines depicted in the graph.</p></td>
+      <td><p>Sets the colour for the lines depicted in the graph.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -190,7 +193,7 @@ plotting. Should (partial-)match the two options <code>"base"</code> or
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Plot with base R or ggplot 2.</p>
+    <p>Plot with base R or ggplot2.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
@@ -201,6 +204,105 @@ plotting. Should (partial-)match the two options <code>"base"</code> or
 
     <p>Gianluca Baio, Andrea Berardi</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Vaccine</span><span class='op'>)</span>
+<span class='va'>treats</span> <span class='op'>&lt;-</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"Status quo"</span>, <span class='st'>"Vaccination"</span><span class='op'>)</span>
+ 
+<span class='co'># Run the health economic evaluation using BCEA</span>
+<span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span><span class='va'>e.pts</span>, <span class='va'>c.pts</span>, ref <span class='op'>=</span> <span class='fl'>2</span>, interventions <span class='op'>=</span> <span class='va'>treats</span><span class='op'>)</span>
+
+<span class='co'># Compute the EVPPI for a bunch of parameters</span>
+<span class='va'>inp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='createInputs.default.html'>createInputs</a></span><span class='op'>(</span><span class='va'>vaccine</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] "14 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [2] "15 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [3] "16 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [4] "17 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [5] "18 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [6] "19 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [7] "20 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [8] "21 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [9] "22 \nLinear dependence: removing column pi[2,2]"
+#&gt; [10] "29 \nLinear dependence: removing column pi[2,2]"
+#&gt; [11] "44 \nLinear dependence: removing column pi[2,2]"
+#&gt; [12] "45 \nLinear dependence: removing column pi[2,2]"
+#&gt; [13] "46 \nLinear dependence: removing column pi[2,2]"
+#&gt; [14] "47 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [1] "14 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [2] "15 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [3] "16 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [4] "17 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [5] "18 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [6] "19 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [7] "20 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [8] "21 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [9] "22 \nLinear dependence: removing column pi[2,1]"
+#&gt; [10] "29 \nLinear dependence: removing column pi[2,1]"
+#&gt; [11] "44 \nLinear dependence: removing column pi[2,1]"
+#&gt; [12] "45 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [1] "14 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [2] "15 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [3] "16 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [4] "17 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [5] "18 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [6] "19 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [7] "20 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [8] "21 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [9] "22 \nLinear dependence: removing column pi[1,1]"
+#&gt; [10] "29 \nLinear dependence: removing column pi[1,1]"
+#&gt; [11] "44 \nLinear dependence: removing column pi[1,1]"
+#&gt; [1] "14 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [2] "15 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [3] "16 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [4] "17 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [5] "18 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [6] "19 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [7] "20 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [8] "21 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [9] "22 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [1] "14 \nLinear dependence: removing column Repeat.GP[2,1]"
+#&gt; [2] "15 \nLinear dependence: removing column Repeat.GP[2,1]"
+#&gt; [3] "17 \nLinear dependence: removing column Repeat.GP[2,1]"
+#&gt; [4] "18 \nLinear dependence: removing column Repeat.GP[2,1]"
+#&gt; [5] "20 \nLinear dependence: removing column Repeat.GP[2,1]"
+#&gt; [6] "21 \nLinear dependence: removing column Repeat.GP[2,1]"
+#&gt; [1] "14 \nLinear dependence: removing column Repeat.GP[1,1]"
+#&gt; [2] "17 \nLinear dependence: removing column Repeat.GP[1,1]"
+#&gt; [3] "20 \nLinear dependence: removing column Repeat.GP[1,1]"</div><div class='input'>
+<span class='co'># Compute the EVPPI using INLA/SPDE</span>
+<span class='va'>x0</span> <span class='op'>&lt;-</span> <span class='fu'><a href='evppi.html'>evppi</a></span><span class='op'>(</span><span class='va'>m</span>, <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"beta.1."</span> , <span class='st'>"beta.2."</span><span class='op'>)</span>, input <span class='op'>=</span> <span class='va'>inp</span><span class='op'>$</span><span class='va'>mat</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "method: GAM" "method: GAM"
+#&gt; 
+#&gt; Calculating fitted values for the GAM regression 
+#&gt; 
+#&gt; Calculating fitted values for the GAM regression 
+#&gt; Calculating EVPPI </div><div class='input'><span class='va'>x1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='evppi.html'>evppi</a></span><span class='op'>(</span><span class='va'>m</span>, <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='fl'>32</span>,<span class='fl'>48</span>,<span class='fl'>49</span><span class='op'>)</span>, input <span class='op'>=</span> <span class='va'>inp</span><span class='op'>$</span><span class='va'>mat</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "method: GAM" "method: GAM"
+#&gt; 
+#&gt; Calculating fitted values for the GAM regression 
+#&gt; 
+#&gt; Calculating fitted values for the GAM regression 
+#&gt; Calculating EVPPI </div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x0</span>, pos <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='plot.evppi-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x1</span>, pos <span class='op'>=</span> <span class='st'>"topright"</span><span class='op'>)</span>
+</div><div class='img'><img src='plot.evppi-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x0</span>, col <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"black"</span>, <span class='st'>"red"</span><span class='op'>)</span>, pos <span class='op'>=</span> <span class='st'>"topright"</span><span class='op'>)</span>
+</div><div class='img'><img src='plot.evppi-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x0</span>, col <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>3</span><span class='op'>)</span>, pos <span class='op'>=</span> <span class='st'>"bottomright"</span><span class='op'>)</span>
+</div><div class='img'><img src='plot.evppi-4.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x0</span>, pos <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>1</span><span class='op'>)</span>, graph <span class='op'>=</span> <span class='st'>"ggplot2"</span><span class='op'>)</span>
+</div><div class='img'><img src='plot.evppi-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x1</span>, pos <span class='op'>=</span> <span class='st'>"top"</span>, graph <span class='op'>=</span> <span class='st'>"ggplot2"</span><span class='op'>)</span>
+</div><div class='img'><img src='plot.evppi-6.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x0</span>, col <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"black"</span>, <span class='st'>"red"</span><span class='op'>)</span>, pos <span class='op'>=</span> <span class='st'>"right"</span>, graph <span class='op'>=</span> <span class='st'>"ggplot2"</span><span class='op'>)</span>
+</div><div class='img'><img src='plot.evppi-7.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x0</span>, col <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>3</span><span class='op'>)</span>, size <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>2</span><span class='op'>)</span>, pos <span class='op'>=</span> <span class='st'>"bottom"</span>, graph <span class='op'>=</span> <span class='st'>"ggplot2"</span><span class='op'>)</span>
+</div><div class='img'><img src='plot.evppi-8.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x0</span>, graph <span class='op'>=</span> <span class='st'>"ggplot2"</span>, theme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_linedraw</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='plot.evppi-9.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span>
+ <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x0</span>, col <span class='op'>=</span> <span class='fl'>3</span>, pos <span class='op'>=</span> <span class='st'>"topright"</span><span class='op'>)</span>
+<span class='co'># The vector 'col' must have the number of elements for an EVPI</span>
+<span class='co'># colour and each of the EVPPI parameters. Forced to black</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

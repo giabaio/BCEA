@@ -45,6 +45,8 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
 <meta property="og:title" content="Create Bayesian Cost-Effectiveness Analysis Object — bcea" />
 <meta property="og:description" content="Cost-effectiveness analysis based on the results of a simulation model for a
@@ -83,7 +85,7 @@ an object of the class &quot;bcea&quot;." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BCEA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
       </span>
     </div>
 
@@ -91,7 +93,7 @@ an object of the class &quot;bcea&quot;." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -121,7 +123,7 @@ an object of the class &quot;bcea&quot;." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/giabaio/BCEA/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -165,13 +167,22 @@ an object of the class "bcea".</p>
 <span class='fu'>bcea</span><span class='op'>(</span>
   <span class='va'>eff</span>,
   <span class='va'>cost</span>,
-  ref <span class='op'>=</span> <span class='fl'>1</span>,
+  ref <span class='op'>=</span> <span class='cn'>NULL</span>,
   interventions <span class='op'>=</span> <span class='cn'>NULL</span>,
   .comparison <span class='op'>=</span> <span class='cn'>NULL</span>,
   Kmax <span class='op'>=</span> <span class='fl'>50000</span>,
   wtp <span class='op'>=</span> <span class='cn'>NULL</span>,
   plot <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span>
+
+<span class='co'># S3 method for rjags</span>
+<span class='fu'>bcea</span><span class='op'>(</span><span class='va'>eff</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for rstan</span>
+<span class='fu'>bcea</span><span class='op'>(</span><span class='va'>eff</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for bugs</span>
+<span class='fu'>bcea</span><span class='op'>(</span><span class='va'>eff</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -192,10 +203,10 @@ This are partially matched with `c' from previous version of `BCEA` for back-com
     </tr>
     <tr>
       <th>ref</th>
-      <td><p>Defines which intervention (columns of <code>e</code> or <code>c</code>) is
+      <td><p>Defines which intervention (columns of <code>eff</code> or <code>cost</code>) is
 considered to be the reference strategy. The default value <code>ref = 1</code>
-means that the intervention associated with the first column of <code>e</code> or
-<code>c</code> is the reference and the one(s) associated with the other column(s)
+means that the intervention associated with the first column of <code>eff</code> or
+<code>cost</code> is the reference and the one(s) associated with the other column(s)
 is(are) the comparators.</p></td>
     </tr>
     <tr>
@@ -231,6 +242,10 @@ computations (e.g. for the EVPPI).</p></td>
       <td><p>A logical value indicating whether the function should produce
 the summary plot or not.</p></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -253,7 +268,7 @@ as a function of the willingness to pay</p></dd>
 willingness to pay</p></dd>
 <dt>eib</dt><dd><p>The value for the Expected Incremental Benefit, as a function of
 the willingness to pay</p></dd>
-<dt>kstar</dt><dd><p>The grid approximation of the break even point(s)</p></dd>
+<dt>kstar</dt><dd><p>The grid approximation of the break-even point(s)</p></dd>
 <dt>best</dt><dd><p>A vector containing the numeric label of the intervention that
 is the most cost-effective for each value of the willingness to pay in the
 selected grid approximation</p></dd>
@@ -276,10 +291,10 @@ a function of the willingness to pay</p></dd>
 reference in the analysis</p></dd>
 <dt>comp</dt><dd><p>The numeric index(es) associated with the intervention(s) used
 as comparator(s) in the analysis</p></dd>
-<dt>step</dt><dd><p>The step used to form the grid approximation to the willingness
+<dt>step</dt><dd><p>The step size used to form the grid approximation to the willingness
 to pay</p></dd>
-<dt>e</dt><dd><p>The <code>e</code> matrix used to generate the object (see Arguments)</p></dd>
-<dt>c</dt><dd><p>The <code>c</code> matrix used to generate the object (see Arguments)</p></dd>
+<dt>e</dt><dd><p>The <code>eff</code> matrix used to generate the object (see Arguments)</p></dd>
+<dt>c</dt><dd><p>The <code>cost</code> matrix used to generate the object (see Arguments)</p></dd>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -289,7 +304,7 @@ doi:10.1177/0962280211419832.</p>
 <p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>Gianluca Baio, Andrea Berardi</p>
+    <p>Gianluca Baio, Andrea Berardi, Nathan Green</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># See Baio G., Dawid A.P. (2011) for a detailed description of the </span>
@@ -343,7 +358,7 @@ doi:10.1177/0962280211419832.</p>
 <span class='co'># \donttest{</span>
 
 <span class='co'># Plots the cost-effectiveness plane using base graphics</span>
-<span class='fu'><a href='ceplane.plot.bcea.html'>ceplane.plot</a></span><span class='op'>(</span>
+<span class='fu'><a href='ceplane.plot.html'>ceplane.plot</a></span><span class='op'>(</span>
       <span class='va'>m</span>,             <span class='co'># plots the Cost-Effectiveness plane</span>
       comparison<span class='op'>=</span><span class='fl'>1</span>,  <span class='co'># if more than 2 interventions, selects the</span>
                      <span class='co'>#  pairwise comparison </span>
@@ -354,7 +369,7 @@ doi:10.1177/0962280211419832.</p>
 </div><div class='img'><img src='bcea-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the cost-effectiveness plane using ggplot2</span>
 <span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"ggplot2"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'><a href='ceplane.plot.bcea.html'>ceplane.plot</a></span><span class='op'>(</span>
+<span class='fu'><a href='ceplane.plot.html'>ceplane.plot</a></span><span class='op'>(</span>
       <span class='va'>m</span>,             <span class='co'># plots the Cost-Effectiveness plane</span>
       comparison<span class='op'>=</span><span class='fl'>1</span>,  <span class='co'># if more than 2 interventions, selects the</span>
                      <span class='co'>#  pairwise comparison </span>
@@ -364,7 +379,7 @@ doi:10.1177/0962280211419832.</p>
 <span class='op'>)</span>
 
 <span class='co'># Some more options</span>
-<span class='fu'><a href='ceplane.plot.bcea.html'>ceplane.plot</a></span><span class='op'>(</span>
+<span class='fu'><a href='ceplane.plot.html'>ceplane.plot</a></span><span class='op'>(</span>
       <span class='va'>m</span>,
       graph<span class='op'>=</span><span class='st'>"ggplot2"</span>,
       pos<span class='op'>=</span><span class='st'>"top"</span>,
@@ -374,10 +389,10 @@ doi:10.1177/0962280211419832.</p>
       opt.theme<span class='op'>=</span><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>text<span class='op'>=</span><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size<span class='op'>=</span><span class='fl'>8</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>)</span>
 <span class='op'>}</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Duplicated aesthetics after name standardisation: colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: geom, border, include, line_colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: label.pos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Duplicated aesthetics after name standardisation: colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: geom, border, include, line_colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: label.pos</span></div><div class='img'><img src='bcea-3.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='img'><img src='bcea-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the contour and scatterplot of the bivariate </span>
 <span class='co'># distribution of (Delta_e,Delta_c)</span>
-<span class='fu'><a href='contour.bcea.html'>contour</a></span><span class='op'>(</span>
+<span class='fu'><a href='contour.html'>contour</a></span><span class='op'>(</span>
       <span class='va'>m</span>,            <span class='co'># uses the results of the economic evaluation </span>
                     <span class='co'>#  (a "bcea" object)</span>
       comparison<span class='op'>=</span><span class='fl'>1</span>, <span class='co'># if more than 2 interventions, selects the </span>
@@ -415,9 +430,9 @@ doi:10.1177/0962280211419832.</p>
       label.pos<span class='op'>=</span><span class='cn'>FALSE</span> <span class='co'># alternative position for the wtp label</span>
 <span class='op'>)</span>
 <span class='op'>}</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Duplicated aesthetics after name standardisation: colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: geom, border, include, line_colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: label.pos</span></div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='img'><img src='bcea-6.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='img'><img src='bcea-6.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the Expected Incremental Benefit for the "bcea" object m</span>
-<span class='fu'><a href='eib.plot.bcea.html'>eib.plot</a></span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
+<span class='fu'><a href='eib.plot.html'>eib.plot</a></span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
 </div><div class='img'><img src='bcea-7.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the distribution of the Incremental Benefit</span>
 <span class='fu'><a href='ib.plot.bcea.html'>ib.plot</a></span><span class='op'>(</span>
@@ -435,7 +450,7 @@ doi:10.1177/0962280211419832.</p>
 <span class='fu'><a href='ceac.plot.bcea.html'>ceac.plot</a></span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
 </div><div class='img'><img src='bcea-9.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the Expected Value of Information for the "bcea" object m</span>
-<span class='fu'><a href='evi.plot.bcea.html'>evi.plot</a></span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
+<span class='fu'><a href='evi.plot.html'>evi.plot</a></span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
 </div><div class='img'><img src='bcea-10.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 </div></pre>

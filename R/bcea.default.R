@@ -7,27 +7,19 @@
 #'
 bcea.default <- function(eff,
                          cost,
-                         ref = 1,
+                         ref = NULL,
                          interventions = NULL,
                          .comparison = NULL,
                          Kmax = 50000,
                          wtp = NULL,
                          plot = FALSE) {
   
-  if (!is.matrix(cost) | !is.matrix(eff))
-    stop("eff and cost must be matrices.", call. = FALSE)
+  if (is.null(ref)) {
+    ref <- 1
+    message("No reference selected. Defaulting to first intervention.")  
+  }
   
-  if (ncol(cost) == 1 | ncol(eff) == 1)
-    stop("Require at least 2 comparators.", call. = FALSE)
-  
-  if (!is.null(interventions) & length(interventions) != ncol(eff))
-    stop("interventions names wrong length.", call. = FALSE)
-  
-  if (any(dim(eff) != dim(cost)))
-    stop("eff and cost are not the same dimensions.", call. = FALSE)
-  
-  if (!is.numeric(ref) | ref < 1 | ref > ncol(eff))
-    stop("reference is not in available interventions.", call. = FALSE)
+  validate_bcea(eff, cost, ref, interventions)
   
   n_sim <- dim(eff)[1]
   n_intervs <- dim(eff)[2]
@@ -64,7 +56,7 @@ bcea.default <- function(eff,
           suffixes = c("0", "1"),
           all.x = FALSE) %>% 
     mutate(delta_e = .data$eff0 - .data$eff1,
-           delta_c = .data$cost0 - .data$cost1)   ##TODO: is this the wrong way around?...
+           delta_c = .data$cost0 - .data$cost1)
   
   df_ce$interv_names <- factor(interv_names[df_ce$ints],
                                levels = interv_names)
@@ -79,3 +71,41 @@ bcea.default <- function(eff,
   
   return(he)
 }
+
+
+#' @rdname bcea
+#' @param ... Additional arguments
+#' @importFrom MCMCvis MCMCchains
+#' @export
+bcea.rjags <- function(eff, ...) {
+  
+  cost <-
+    MCMCvis::MCMCchains(eff, params = "cost")
+  eff <- 
+    MCMCvis::MCMCchains(eff, params = "eff")
+  bcea.default(eff, cost, ...)
+}
+
+
+#' @rdname bcea
+#' @param ... Additional arguments
+#' @importFrom rstan extract
+#' @export
+bcea.rstan <- function(eff, ...) {
+  
+  cost <- rstan::extract(eff, "cost")
+  eff <- rstan::extract(eff, "eff")
+  bcea.default(as.matrix(eff[[1]]), as.matrix(cost[[1]]), ...)
+}
+
+
+#' @rdname bcea
+#' @param ... Additional arguments
+#' @export
+bcea.bugs <- function(eff, ...) {
+  
+  cost <- eff$sims.list$cost
+  eff <- eff$sims.list$eff
+  bcea.default(eff, cost, ...)
+}
+

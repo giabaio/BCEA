@@ -168,9 +168,22 @@ test_that("ib", {
 })
 
 
-######################
+library(rstan)
+library(R2WinBUGS)
+library(R2jags)
 
-# n_comparisons > 1, realistic data
-res <- 
-  bcea(e = cbind(eff, eff[, 2]),
-       c = cbind(cost, cost[, 2]))
+test_that("jags, bugs, stan methods", {
+
+  ##TODO: missing cost error
+  # bcea(jagsfit)
+  
+  # mocked inputs
+  load("data/bugsfit.RData")
+  load("data/jagsfit.RData")
+  load("data/stanfit.RData")
+  
+  expect_s3_class(bcea.rjags(jagsfit), class = "bcea")
+  expect_s3_class(bcea.bugs(bugsfit), class = "bcea")
+  expect_s3_class(bcea.rstan(stanfit), class = "bcea")
+})
+

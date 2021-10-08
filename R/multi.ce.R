@@ -1,13 +1,14 @@
 
-#' Cost-effectiveness Analysis With Multiple Comparison
+#' @name multi.ce
+#' @title Cost-effectiveness Analysis With Multiple Comparison
 #' 
-#' Computes and plots the probability that each of the `n_int` interventions
+#' @description Computes and plots the probability that each of the \code{n_int} interventions
 #' being analysed is the most cost-effective and the cost-effectiveness
 #' acceptability frontier.
 #' 
 #' @template args-he
 #' 
-#' @return Original bcea object (list) of class "pairwise" with additional:
+#' @return Original \code{bcea} object (list) of class "pairwise" with additional:
 #'    \item{p_best_interv}{A matrix including the probability that each
 #'    intervention is the most cost-effective for all values of the willingness to
 #'    pay parameter}
@@ -17,7 +18,6 @@
 #' @seealso \code{\link{bcea}},
 #'          \code{\link{ceaf.plot}}
 #' @keywords "Health economic evaluation" "Multiple comparison"
-#' @importFrom grDevices colors
 #' 
 #' @examples
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
@@ -40,29 +40,17 @@
 #'       plot=FALSE            # inhibits graphical output
 #' )
 #' 
-#' mce <- multi.ce(m)          # uses the results of the economic analysis 
+#' mce <- multi.ce(m)          # uses the results of the economic analysis
+#' 
+#' ceac.plot(mce)
+#' ceaf.plot(mce)
 #' 
 #' @export
 #' 
-multi.ce <- function(he) {
+multi.ce.bcea <- function(he) {
   
-  # grey scale
-  color <- colors()[floor(seq(262, 340, length.out = he$n_comparators))]
-  
-  p_best_interv <- array(NA, c(length(he$k), he$n_comparators))
-  
-  for (i in seq_len(he$n_comparators)) {
-    for (k in seq_along(he$k)) {
-      
-      is_interv_best <- he$U[, k, ] <= he$U[, k, i]
-      
-      rank <- apply(!is_interv_best, 1, sum)
-      
-      p_best_interv[k, i] <- mean(rank == 0)
-    }
-  }
-  
-  ceaf <- apply(p_best_interv, 1, max)
+  p_best_interv <- compute_p_best_interv(he)
+  ceaf <- compute_ceaf(p_best_interv)
   
   res <- c(he,
            list(p_best_interv = p_best_interv,
@@ -70,3 +58,12 @@ multi.ce <- function(he) {
   
   structure(res, class = c("pairwise", class(he)))
 }
+
+
+#' @export
+#' 
+multi.ce <- function(he) {
+  UseMethod('multi.ce', he)
+}
+
+

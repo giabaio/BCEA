@@ -17,7 +17,7 @@ prepare_ceac_params_multi <- function(he,
   } else {
     if (is.character(alt.legend)) {
       choices <- c("left", "right", "bottom", "top")
-      alt.legend <- choices[pmatch(alt.legend,choices)]
+      alt.legend <- choices[pmatch(alt.legend, choices)]
       jus <- "center"
       
       if (is.na(alt.legend))
@@ -27,10 +27,14 @@ prepare_ceac_params_multi <- function(he,
     if (length(alt.legend) > 1)
       jus <- alt.legend
     
-    if (length(alt.legend) == 1 & !is.character(alt.legend)) {
+    if (length(alt.legend) == 1 && !is.character(alt.legend)) {
       alt.legend <- c(1, 0.5)
       jus <- alt.legend
     }
   }
   
+  list(jus = jus,
+       alt.legend = alt.legend,
+       label = label,
+       lty = lty)
 }

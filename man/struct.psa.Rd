@@ -8,7 +8,7 @@ struct.psa(
   models,
   effect,
   cost,
-  ref = 1,
+  ref = NULL,
   interventions = NULL,
   Kmax = 50000,
   plot = FALSE

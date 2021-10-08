@@ -1,0 +1,161 @@
+##TODO: how are these different to eib_plot_*, evi_plot_*?
+##      look at plots in book and examples
+##      look at original code
+##      can we just use existing code?
+
+
+#' @name CEriskav_plot_graph
+#' @title Cost-effectiveness Plot Including a Parameter of Risk Aversion
+#'
+#' Choice of base R, ggplot2.
+#'
+#' @template args-he
+#' @param pos_legend Legend position
+NULL
+
+
+#' @rdname CEriskav_plot_graph
+#' @title CEriskav base R version
+#'
+CEriskav_plot_base <- function(he, pos_legend) {
+
+  default_comp <- 1
+  pos_legend <- where_legend(he, pos_legend)
+
+  matplot(x = he$k,
+          y = he$eibr[, default_comp, ],
+          type = "l",
+          col = 1,
+          lty = 1:he$R,
+          xlab = "Willingness to pay",
+          ylab = " ",
+          main = "EIB as a function of the risk aversion parameter",
+          ylim = range(he$eibr))
+
+  text <- paste("r = ", he$r, sep = "")
+
+  # if the first value for r is small enough,
+  # consider close to 0 and print label accordingly
+  if (he$r[1] < 1e-8) {
+    text[1] <- expression(r%->%0)
+  }
+
+  legend(pos_legend,
+         legend = text,
+         lty = 1:he$R,
+         cex = 0.9,
+         box.lty = 0)
+  abline(h = 0, col = "grey")
+
+  matplot(x = he$k,
+          y = he$evir,
+          type = "l",
+          col = 1,
+          lty = 1:he$R,
+          ylim = range(he$evir),
+          xlab = "Willingness to pay",
+          ylab = " ",
+          main = "EVI as a function of the risk aversion parameter")
+
+  legend(pos_legend,
+         legend = text,
+         lty = 1:he$R,
+         cex = 0.9,
+         box.lty = 0)
+  abline(h = 0, col = "grey")
+}
+
+
+#' @rdname CEriskav_plot_graph
+#' @title CEriskav ggplot2 version
+#'
+CEriskav_plot_ggplot <- function(he, pos_legend) {
+
+  default_comp <- 1
+  linetypes <- rep(c(1,2,3,4,5,6), ceiling(he$R/6))[1:he$R]
+
+  # labels
+  text <- paste0("r = ", he$r)
+
+  # if the first value for r is small enough,
+  # consider close to 0 and print label accordingly
+  if (he$r[1] < 1e-8) {
+    text[1] <- expression(r%->%0)
+  }
+
+  legend_params <- make_legend_ggplot(he, pos_legend)
+
+  eib_dat <-
+    melt(he$eibr[, default_comp, , drop = FALSE],
+         value.name = "eibr") %>%
+    rename(k = .data$Var1,
+           r = .data$Var3) %>%
+    mutate(r = as.factor(.data$r))
+
+  eibr_plot <-
+    ggplot(eib_dat, aes(x = .data$k, y = .data$eibr, linetype = .data$r)) +
+    geom_line() +
+    geom_hline(yintercept = 0, linetype = 1, colour = "grey50") +
+    scale_linetype_manual("", labels = text, values = linetypes) +
+    theme_bw() +
+    labs(title = "EIB as a function of the risk aversion parameter",
+         x = "Willingness to pay",
+         y = "EIB") +
+    theme(
+      text = element_text(size = 11),
+      legend.key.size = unit(0.66, "line"),
+      legend.spacing = unit(-1.25, "line"),
+      panel.grid = element_blank(),
+      legend.key = element_blank(),
+      legend.position = legend_params$legend.position,
+      legend.justification = legend_params$legend.justification,
+      legend.direction = legend_params$legend_direction,
+      legend.title = element_blank(),
+      legend.background = element_blank(),
+      legend.text.align = 0,
+      plot.title = element_text(
+        lineheight = 1.05,
+        face = "bold",
+        size = 14.3,
+        hjust = 0.5))
+
+  evi_dat <-
+    melt(he$evir,
+         value.name = "evir") %>%
+    rename(r = .data$Var2,
+           k = .data$Var1) %>%
+    mutate(r = as.factor(.data$r))
+
+  evir_plot <-
+    ggplot(evi_dat, aes(x = .data$k, y = .data$evir, linetype = .data$r)) +
+    geom_hline(yintercept = 0, linetype = 1, colour = "grey50")+
+    geom_line() +
+    scale_linetype_manual("", labels = text, values =linetypes) +
+    theme_bw() +
+    labs(title = "EVI as a function of the risk aversion parameter",
+         x = "Willingness to pay",
+         y = "EVI") +
+    theme(
+      text = element_text(size = 11),
+      legend.key.size = unit(0.66, "line"),
+      legend.spacing = unit(-1.25, "line"),
+      panel.grid = element_blank(),
+      legend.key = element_blank(),
+      legend.position = legend_params$legend.position,
+      legend.justification = legend_params$legend.justification,
+      legend.direction = legend_params$legend.direction,
+      legend.title = element_blank(),
+      legend.background = element_blank(),
+      legend.text.align = 0,
+      plot.title = element_text(
+        lineheight = 1.05,
+        face = "bold",
+        size = 14.3,
+        hjust = 0.5))
+
+  plot(eibr_plot)
+  plot(evir_plot)
+
+  invisible(list(eib = eibr_plot,
+                 evi = evir_plot))
+}

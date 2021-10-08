@@ -1,15 +1,20 @@
 # compute all bcea statistics ---------------------------------------------
 
 
-#' Compute kstar
+#' Compute k^*
 #'
 #' Find willingness-to-pay threshold when optimal decision changes.
+#' 
+#' \deqn{k^* := \min\{k : IB < 0 \}}
+#' 
+#' The value of the break-even point corresponds to the ICER and quantifies
+#' the point at which the decision-maker is indifferent between the two options.
 #'  
-#' @param k Willingness-to-pay vector
-#' @param best Best intervention for each `k`
-#' @param ref Reference intervention
+#' @param k Willingness-to-pay grid approximation of the budget willing to invest (vector)
+#' @param best Best intervention for each `k` (int)
+#' @param ref Reference intervention (int)
 #'
-#' @return Array with dimensions
+#' @return integer representing intervention
 #' @seealso \code{\link{ceac.plot}}
 #' 
 #' @export
@@ -17,10 +22,11 @@
 compute_kstar <- function(k, best, ref) {
   
   if (all(best == ref)) {
-    return(NA)    
+    return(numeric())    
   }
   
-  min(k[best == ref])
+  flip <- c(0, diff(best)) != 0 
+  k[flip]
 }
 
 
@@ -63,8 +69,8 @@ compute_CEAC <- function(ib) {
 #'  
 compute_EIB <- function(ib) {
   
-  eib <- apply(ib, 3, function(x) apply(x, 1, mean))
-  # eib <- apply(ib, 3, function(x) rowMeans(x))  ##TODO: test
+  apply(ib, 3, function(x) apply(x, 1, mean))
+  # apply(ib, 3, function(x) rowMeans(x))  ##TODO: test
 }
 
 
@@ -119,7 +125,7 @@ compute_Ustar <- function(U) {
 #' @export
 #' 
 compute_vi <- function(Ustar, U) {
-
+  
   if (any(dim(U)[1] != dim(Ustar)[1],
           dim(U)[2] != dim(Ustar)[2])) {
     stop("dimensions of inputs don't correspond", call. = FALSE)
@@ -193,7 +199,7 @@ rowMax <- function(dat) do.call(pmax, as.data.frame(dat))
 
 #' Compute U Statistic
 #'
-#' Sample of net monetary benefit for each
+#' Sample of net (monetary) benefit for each
 #' willingness-to-pay threshold and intervention.
 #'
 #' @param df_ce Cost-effectiveness dataframe
@@ -304,6 +310,17 @@ compute_ICER <- function(df_ce) {
 }
 
 
+#' Compute Expected Value of Information
+#' 
+#' @param ol Opportunity loss
+#' @return EVI
+#' @export
+#' 
+compute_EVI <- function(ol) {
+  colMeans(ol)
+}
+
+
 #' Comparison Names From
 #' @param df_ce Cost-effectiveness dataframe 
 #'
@@ -316,4 +333,56 @@ comp_names_from_ <- function(df_ce) {
     select(.data$interv_names) %>% 
     unlist()
 }
+
+
+#' Compute Cost-Effectiveness Acceptability Frontier
+#' 
+#' @param p_best_interv Probability of being best intervention
+#' 
+compute_ceaf <- function(p_best_interv) {
+  apply(p_best_interv, 1, max)
+}
+
+
+#' Compute Probability Best Intervention
+#' @template args-he
+#' 
+compute_p_best_interv <- function(he) {
+  
+  p_best_interv <- array(NA,
+                         c(length(he$k),
+                           he$n_comparators))
+  
+  for (i in seq_len(he$n_comparators)) {
+    for (k in seq_along(he$k)) {
+      
+      is_interv_best <- he$U[, k, ] <= he$U[, k, i]
+      
+      rank <- apply(!is_interv_best, 1, sum)
+      
+      p_best_interv[k, i] <- mean(rank == 0)
+    }
+  }
+  
+  p_best_interv
+}
+
+
+#' Compute NB for mixture of interventions
+#' 
+#' @template args-he
+#' @param value Mixture weights
+#' 
+compute_Ubar <- function(he, value) {
+  
+  qU <- array(NA,
+              c(he$n_sim,length(he$k), he$n_comparators))
+  
+  for (j in seq_len(he$n_comparators)) {
+    qU[, , j] <- value[j]*he$U[, , j]
+  }
+  
+  apply(qU, c(1, 2), sum)
+}
+
 

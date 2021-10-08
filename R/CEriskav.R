@@ -1,19 +1,16 @@
 
-#' Cost-effectiveness Analysis Including a Parameter of Risk Aversion
+#' @name CEriskav_assign
+#' @title Cost-effectiveness Analysis Including a Parameter of Risk Aversion
 #' 
-#' Extends the standard cost-effectiveness analysis to modify the utility
-#' function so that risk aversion of the decision maker is explicitly accounted
-#' for. 
+#' @description Extends the standard cost-effectiveness analysis to modify the utility
+#' function so that risk aversion of the decision maker is explicitly accounted for. 
 #' 
 #' @aliases CEriskav CEriskav.default
 #' 
 #' @template args-he
-#' @param r A vector of values for the risk aversion parameter. If \code{NULL},
+#' @param value A vector of values for the risk aversion parameter. If \code{NULL},
 #' default values are assigned by R. The first (smallest) value (\code{r} -> 0)
 #' produces the standard analysis with no risk aversion.
-#' @param comparison In case of more than 2 interventions being analysed,
-#' selects which plot should be made.  By default the first possible choice is
-#' selected as the comparator.
 #' @return An object of the class \code{CEriskav} containing the following
 #' elements:
 #' \item{Ur}{An array containing the simulated values for all the
@@ -75,16 +72,15 @@
 #'
 #' # Run the cost-effectiveness analysis accounting for risk aversion
 #' \donttest{
-#' cr <- CEriskav(m,     # uses the results of the economic evalaution 
-#'                       #  (a "bcea" object) 
-#'         r=r,          # defines the vector of values for the risk 
-#'                       #  aversion parameter 
-#'         comparison=1  # if more than 2 interventions, selects the 
-#'                       #  pairwise comparison 
-#' ) 
+#' # uses the results of the economic evaluation 
+#' # if more than 2 interventions, selects the 
+#' #  pairwise comparison
+#' 
+#' CEriskav(m) <- r
 #' }
 #' 
 #' @export
-CEriskav <- function(he, r = NULL, comparison = 1)
-  UseMethod("CEriskav", he)
+#' 
+'CEriskav<-' <- function(he, value)
+  UseMethod("CEriskav<-", he)
 

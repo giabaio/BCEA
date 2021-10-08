@@ -1,26 +1,20 @@
 
-#' Summary Plot of the Health Economic Analysis For Mixed Analysis
+#' EVI Plot of the Health Economic Analysis For Mixed Analysis
 #' 
 #' Compares the optimal scenario to the mixed case in terms of the EVPI.
 #'  
-#' @param x An object of class \code{mixedAn}, given as output of the call to
-#' the function \code{\link{mixedAn}}.
+#' @param he An object of class \code{mixedAn}, a subclass of \code{bcea},
+#' given as output of the call to the function \code{\link{mixedAn}}.
 #' @param y.limits Range of the y-axis for the graph. The default value is
 #' \code{NULL}, in which case the maximum range between the optimal and the
 #' mixed analysis scenarios is considered.
-#' @param pos Parameter to set the position of the legend. Can be given in form
-#' of a string \code{(bottom|top)(right|left)} for base graphics and
-#' \code{bottom|top|left|right} for ggplot2. It can be a two-elements vector,
-#' which specifies the relative position on the x and y axis respectively, or
-#' alternatively it can be in form of a logical variable, with \code{FALSE}
-#' indicating to use the default position and \code{TRUE} to place it on the
-#' bottom of the plot. Default value is \code{c(0,1)}, that is in the topleft
-#' corner inside the plot area.
+#' @template args-pos
 #' @param graph A string used to select the graphical engine to use for
 #' plotting. Should (partial-)match the two options \code{"base"} or
 #' \code{"ggplot2"}. Default value is \code{"base"}.
 #' @param ...  Arguments to be passed to methods, such as graphical parameters
 #' (see \code{\link{par}}).
+#' 
 #' @return \item{evi}{ A ggplot object containing the plot. Returned only if
 #' \code{graph="ggplot2"}. } The function produces a graph showing the
 #' difference between the ''optimal'' version of the EVPI (when only the most
@@ -31,7 +25,7 @@
 #' @seealso \code{\link{bcea}},
 #'          \code{\link{mixedAn}}
 #' @import ggplot2
-#' @importFrom  grid unit
+#' @importFrom grid unit
 #'          
 #' @references
 #' Baio, G. and Russo, P. (2009). A decision-theoretic framework for
@@ -66,156 +60,168 @@
 #'       plot=FALSE            # inhibits graphical output
 #' )
 #'
-#' ma <- mixedAn(m,        # uses the results of the mixed strategy 
+#' mixedAn(m) <- NULL      # uses the results of the mixed strategy 
 #'                         #  analysis (a "mixedAn" object)
-#'        mkt.shares=NULL  # the vector of market shares can be defined 
+#'                         # the vector of market shares can be defined 
 #'                         #  externally. If NULL, then each of the T 
 #'                         #  interventions will have 1/T market share
-#' )
-#'
-#' # Can also plot the summary graph
-#' plot(ma,graph="base")
+#'                         # produces the plots
+#' evi.plot(m)
+#' 
+#' evi.plot(m, graph="base")
 #'
 #' # Or with ggplot2
-#' if(require(ggplot2)){
-#' plot(ma,graph="ggplot2")
+#' if (require(ggplot2)) {
+#'    evi.plot(m, graph="ggplot2")
 #' }
 #' 
 #' @export
 #' 
-plot.mixedAn <- function(x,
-                         y.limits = NULL,
-                         pos = c(0, 1),
-                         graph = c("base", "ggplot2"),
-                         ...) {
+evi.plot.mixedAn <- function(he,
+                             y.limits = NULL,
+                             pos = c(0, 1),
+                             graph = c("base", "ggplot2"),
+                             ...) {
   
-  alt.legend <- pos
+  alt_legend <- pos
   base.graphics <- all(pmatch(graph, c("base", "ggplot2")) != 2)
   
   if (is.null(y.limits)){
-    y.limits <- range(x$evi,x$evi.star)
+    y.limits <- range(he$evi, he$evi.star)
   }
   
   if (base.graphics) {
     
-    if (is.numeric(alt.legend) && length(alt.legend) == 2){
+    if (is.numeric(alt_legend) &&
+        length(alt_legend) == 2) {
       temp <- ""
-      if (alt.legend[2] == 0)
+      if (alt_legend[2] == 0)
         temp <- paste0(temp,"bottom")
       else
         temp <- paste0(temp,"top")
-      if (alt.legend[1] == 1)
+      if (alt_legend[1] == 1)
         temp <- paste0(temp, "right")
       else
         temp <- paste0(temp, "left")
-      alt.legend <- temp
+      alt_legend <- temp
       if (length(grep("^(bottom|top)(left|right)$", temp)) == 0)
-        alt.legend <- FALSE
+        alt_legend <- FALSE
     }
-    if (is.logical(alt.legend)) {
-      alt.legend <- 
-        if (!alt.legend)
+    if (is.logical(alt_legend)) {
+      alt_legend <- 
+        if (!alt_legend)
           "topright"
       else
         "topleft"
     }
     
-    plot(x$k,
-         x$evi,
+    plot(he$k,
+         he$evi,
          type = "l",
          xlab = "Willingness to pay",
          ylab = "EVPI",
          main = "Expected Value of Information",
          ylim = y.limits)
-    polygon(c(x$k, rev(x$k)),
-            c(x$evi.star, rev(x$evi)),
+    polygon(c(he$k, rev(he$k)),
+            c(he$evi.star, rev(he$evi)),
             density = 20,
             col = "grey")
-    points(x$k, x$evi.star, type = "l", col = "red")
-    points(x$k, x$evi, type = "l", col = "black")
+    points(he$k, he$evi.star, type = "l", col = "red")
+    points(he$k, he$evi, type = "l", col = "black")
     txt <- c(
       "Optimal strategy",
       "Mixed strategy:",
       paste(
         "   ",
-        x$interventions,
+        he$interventions,
         "=",
-        format(100 * x$mkt.shares, digits = 3, nsmall = 2),
+        format(100 * he$mkt.shares, digits = 3, nsmall = 2),
         "%",
         sep = ""))
-    cols <- c("black", "red", rep("white", length(x$interventions)))
+    cols <- c("black", "red", rep("white", length(he$interventions)))
     legend(
-      alt.legend,
+      alt_legend,
       txt,
       col = cols,
-      cex = .6,
+      cex = 0.6,
       bty = "n",
       lty = 1)
-  } # base.graphics
-  else {
-    if (!isTRUE(requireNamespace("ggplot2", quietly=TRUE) &&
+  } else {
+    # base.graphics
+    if (!isTRUE(requireNamespace("ggplot2", quietly = TRUE) &&
                 requireNamespace("grid", quietly = TRUE))) {
       message("Falling back to base graphics\n")
-      plot.mixedAn(x,
-                   y.limits = y.limits,
-                   pos = pos,
-                   graph = "base")
+      
+      evi.plot.mixedAn(he,
+                       y.limits = y.limits,
+                       pos = pos,
+                       graph = "base")
+      
       return(invisible(NULL))
     } 
     
     if (isTRUE(requireNamespace("ggplot2", quietly = TRUE) &&
                requireNamespace("grid", quietly = TRUE))) {
-      ### no visible binding note
-      k <- evi.star <- NA_real_
       
       # legend
       txt <-
         c("Optimal strategy",
           paste0("Mixed strategy:",
-                 paste0("\n   ",x$interventions,"=",
-                        format(100*x$mkt.shares,digits=3,nsmall=2),"%", collapse = "")))
+                 paste0("\n   ",he$interventions,"=",
+                        format(100*he$mkt.shares, digits = 3, nsmall = 2), "%", collapse = "")))
       colours <- c("black","red")
       
-      df <- data.frame("k" = x$k, "evi" = x$evi, "evi.star" = x$evi.star)
+      df <- data.frame("k" = he$k,
+                       "evi" = he$evi,
+                       "evi.star" = he$evi.star)
+      
       evi <- ggplot(df, aes(x = .data$k)) +
         theme_bw() +
-        geom_ribbon(aes(x = .data$k, ymin = .data$evi, ymax = .data$evi.star), colour = "lightgrey", alpha = 0.2) +
-        geom_line(aes(x = .data$k, y = .data$evi, colour = as.factor(1))) +
-        geom_line(aes(x = .data$k, y = .data$evi.star, colour = as.factor(2))) +
+        geom_ribbon(aes(x = .data$k, ymin = .data$evi, ymax = .data$evi.star),
+                    colour = "lightgrey",
+                    alpha = 0.2) +
+        geom_line(aes(x = .data$k, y = .data$evi,
+                      colour = as.factor(1))) +
+        geom_line(aes(x = .data$k, y = .data$evi.star,
+                      colour = as.factor(2))) +
         coord_cartesian(ylim = y.limits, xlim = c(0, max(df$k))) +
         scale_colour_manual("", labels = txt, values = colours) +
-        labs(title = "Expected Value of Information", x = "Willingness to pay", y = "EVPI") +
+        labs(title = "Expected Value of Information",
+             x = "Willingness to pay",
+             y = "EVPI") +
         theme(
           text = element_text(size = 11),
-          legend.key.size = unit(.66, "lines"),
+          legend.key.size = unit(0.66, "lines"),
           legend.spacing = unit(-1.25, "line"),
           panel.grid = element_blank(),
           legend.key = element_blank(),
           plot.title = element_text(face = "bold", hjust = 0.5))
+      
       jus <- NULL
-      if (isTRUE(alt.legend)) {
-        alt.legend <- "bottom"
+      
+      if (isTRUE(alt_legend)) {
+        alt_legend <- "bottom"
         evi <- evi + theme(legend.direction = "vertical")
-      }
-      else {
-        if (is.character(alt.legend)) {
+      } else {
+        if (is.character(alt_legend)) {
           choices <- c("left", "right", "bottom", "top")
-          alt.legend <- choices[pmatch(alt.legend,choices)]
+          alt_legend <- choices[pmatch(alt_legend,choices)]
           jus <- "center"
-          if(is.na(alt.legend))
-            alt.legend <- FALSE
+          if (is.na(alt_legend))
+            alt_legend <- FALSE
         }
-        if (length(alt.legend) > 1)
-          jus <- alt.legend
-        if (length(alt.legend) == 1 && !is.character(alt.legend)) {
-          alt.legend <- c(0,1)
-          jus <- alt.legend
+        if (length(alt_legend) > 1)
+          jus <- alt_legend
+        if (length(alt_legend) == 1 &&
+            !is.character(alt_legend)) {
+          alt_legend <- c(0,1)
+          jus <- alt_legend
         }
       }
       
       evi <- evi + 
         theme(
-          legend.position = alt.legend,
+          legend.position = alt_legend,
           legend.justification = jus,
           legend.title = element_blank(),
           legend.background = element_blank(),

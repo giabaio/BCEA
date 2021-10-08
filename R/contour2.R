@@ -1,7 +1,7 @@
 
 #' @rdname contour2
 #' @importFrom stats sd
-#' @importFrom graphics par
+#' @importFrom graphics par contour
 #' 
 #' @export
 #' 
@@ -36,7 +36,9 @@ contour2.bcea <- function(he,
     
     # plot contours ----
     
-    offset <- 1.0
+    ##TODO: where is this used?
+    # offset <- 1.0
+    
     nlevels <- 4
     scale <- 0.5
     
@@ -46,16 +48,17 @@ contour2.bcea <- function(he,
                            h = c(sd(as.matrix(he$delta_e)) / scale,
                                  sd(as.matrix(he$delta_c)) / scale))
     
-    m.c <- range(he$delta_c)[1]
-    M.c <- range(he$delta_c)[2]
-    m.e <- range(he$delta_e)[1]
-    M.e <- range(he$delta_e)[2]
+    ##TODO: should we use these?
+    # m.c <- range(he$delta_c)[1]
+    # M.c <- range(he$delta_c)[2]
+    # m.e <- range(he$delta_e)[1]
+    # M.e <- range(he$delta_e)[2]
     
     # Changes the range so that the plot always shows the x and y axes
-    ch1 <- ifelse(m.e > 0, m.e <- -m.e, m.e <- m.e)
-    ch2 <- ifelse(M.e < 0, M.e <- -M.e, M.e <- M.e)
-    ch3 <- ifelse(m.c > 0, m.c <- -m.c, m.c <- m.c)
-    ch4 <- ifelse(M.c < 0, M.c <- -M.c, M.c <- M.c)
+    # ch1 <- ifelse(m.e > 0, m.e <- -m.e, m.e <- m.e)
+    # ch2 <- ifelse(M.e < 0, M.e <- -M.e, M.e <- M.e)
+    # ch3 <- ifelse(m.c > 0, m.c <- -m.c, m.c <- m.c)
+    # ch4 <- ifelse(M.c < 0, M.c <- -M.c, M.c <- M.c)
     
     par(new = TRUE)
     graphics::contour(
@@ -85,9 +88,6 @@ contour2.bcea <- function(he,
     
     scale <- 0.5
     nlevels <- 5
-    
-    ### no visible binding note
-    z <- e <- NA_real_
     
     densitydf <- data.frame()
     
@@ -166,7 +166,7 @@ contour2.bcea <- function(he,
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}},
 #'          \code{\link{ceplane.plot}},
-#'          \code{\link{contour.bcea}}
+#'          \code{\link{contour}}
 #' @references
 #' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 #' Analysis in Health Economics. Statistical Methods in Medical Research

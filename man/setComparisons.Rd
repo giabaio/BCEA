@@ -4,7 +4,8 @@
 \alias{setComparisons}
 \title{Set Comparisons Group
 
-One of the alternative way to set (e,c) comparison group.}
+One of the alternative way to set (e,c) comparison group.
+Simply recompute all comparisons and drop unwanted.}
 \usage{
 setComparisons(he, comparison)
 }
@@ -21,6 +22,7 @@ together. Any subset of the possible comparisons can be selected (e.g.,
 Set Comparisons Group
 
 One of the alternative way to set (e,c) comparison group.
+Simply recompute all comparisons and drop unwanted.
 }
 \seealso{
 \code{\link{setComparisons<-}}

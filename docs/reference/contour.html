@@ -6,7 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Contour Plots for the Cost-Effectiveness Plane — contour.bcea • BCEA</title>
+<title>Contour Plots for the Cost-Effectiveness Plane
+
+Contour method for objects in the class bcea.
+Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
+of the bivariate density of the differentials of cost (y-axis) and
+effectiveness (x-axis). — contour • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -45,9 +50,17 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
-<meta property="og:title" content="Contour Plots for the Cost-Effectiveness Plane — contour.bcea" />
-<meta property="og:description" content="Contour method for objects in the class bcea.
+<meta property="og:title" content="Contour Plots for the Cost-Effectiveness Plane
+
+Contour method for objects in the class bcea.
+Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
+of the bivariate density of the differentials of cost (y-axis) and
+effectiveness (x-axis). — contour" />
+<meta property="og:description" content="Contour Plots for the Cost-Effectiveness Plane
+Contour method for objects in the class bcea.
 Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
 of the bivariate density of the differentials of cost (y-axis) and
 effectiveness (x-axis)." />
@@ -83,7 +96,7 @@ effectiveness (x-axis)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BCEA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
       </span>
     </div>
 
@@ -91,7 +104,7 @@ effectiveness (x-axis)." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -121,7 +134,7 @@ effectiveness (x-axis)." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/giabaio/BCEA/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -138,33 +151,25 @@ effectiveness (x-axis)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Contour Plots for the Cost-Effectiveness Plane</h1>
+    <h1>Contour Plots for the Cost-Effectiveness Plane
+
+Contour method for objects in the class <code>bcea</code>.
+Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
+of the bivariate density of the differentials of cost (y-axis) and
+effectiveness (x-axis).</h1>
     <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/contour.R'><code>R/contour.R</code></a></small>
     <div class="hidden name"><code>contour.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Contour method for objects in the class <code>bcea</code>.
+    <p>Contour Plots for the Cost-Effectiveness Plane</p>
+<p>Contour method for objects in the class <code>bcea</code>.
 Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
 of the bivariate density of the differentials of cost (y-axis) and
 effectiveness (x-axis).</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for bcea</span>
-<span class='fu'>contour</span><span class='op'>(</span>
-  <span class='va'>he</span>,
-  comparison <span class='op'>=</span> <span class='fl'>1</span>,
-  scale <span class='op'>=</span> <span class='fl'>0.5</span>,
-  nlevels <span class='op'>=</span> <span class='fl'>4</span>,
-  levels <span class='op'>=</span> <span class='cn'>NULL</span>,
-  pos <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>0</span><span class='op'>)</span>,
-  xlim <span class='op'>=</span> <span class='cn'>NULL</span>,
-  ylim <span class='op'>=</span> <span class='cn'>NULL</span>,
-  graph <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"base"</span>, <span class='st'>"ggplot2"</span><span class='op'>)</span>,
-  <span class='va'>...</span>
-<span class='op'>)</span>
-
-<span class='fu'>contour</span><span class='op'>(</span><span class='va'>he</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>contour</span><span class='op'>(</span><span class='va'>he</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -175,59 +180,8 @@ effectiveness (x-axis).</p>
 modelling and the economic evaluation.</p></td>
     </tr>
     <tr>
-      <th>comparison</th>
-      <td><p>In case of more than 2 interventions being analysed,
-selects which plot should be made. By default the first comparison among
-the possible ones will be plotted. If <code>graph="ggplot2"</code> any subset of
-the possible comparisons can be selected, and <code>comparison=NULL</code> will
-yield a plot of all the possible comparisons together.</p></td>
-    </tr>
-    <tr>
-      <th>scale</th>
-      <td><p>Scales the plot as a function of the observed standard
-deviation.</p></td>
-    </tr>
-    <tr>
-      <th>nlevels</th>
-      <td><p>Number of levels to be plotted in the contour.</p></td>
-    </tr>
-    <tr>
-      <th>levels</th>
-      <td><p>Numeric vector of levels at which to draw contour lines. Will
-be ignored using <code>graph="ggplot2"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>pos</th>
-      <td><p>Parameter to set the position of the legend. Can be given in form
-of a string <code>(bottom|top)(right|left)</code> for base graphics and
-<code>bottom</code>, <code>top</code>, <code>left</code> or <code>right</code> for ggplot2. It can
-be a two-elements vector, which specifies the relative position on the x and
-y axis respectively, or alternatively it can be in form of a logical
-variable, with <code>FALSE</code> indicating to use the default position and
-<code>TRUE</code> to place the legend on the bottom of the plot. Default value is
-<code><a href='Smoking.html'>c(1,0)</a></code>, that is the bottomright corner inside the plot area.</p></td>
-    </tr>
-    <tr>
-      <th>xlim</th>
-      <td><p>The range of the plot along the x-axis. If NULL (default) it is
-determined by the range of the simulated values for <code>delta_e</code></p></td>
-    </tr>
-    <tr>
-      <th>ylim</th>
-      <td><p>The range of the plot along the y-axis. If NULL (default) it is
-determined by the range of the simulated values for <code>delta_c</code></p></td>
-    </tr>
-    <tr>
-      <th>graph</th>
-      <td><p>A string used to select the graphical engine to use for
-plotting. Should (partial-) match the two options <code>"base"</code> or
-<code>"ggplot2"</code>. Default value is <code>"base"</code>.</p></td>
-    </tr>
-    <tr>
       <th>...</th>
-      <td><p>Additional arguments to 'plot.window', 'title', 'Axis' and
-'box', typically graphical parameters such as 'cex.axis'. Will be ignored if
-<code>graph="ggplot2"</code>.</p></td>
+      <td><p>Additional arguments</p></td>
     </tr>
     </table>
 
@@ -252,7 +206,7 @@ doi:10.1177/0962280211419832.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>,
-         <code><a href='ceplane.plot.bcea.html'>ceplane.plot</a></code>,
+         <code><a href='ceplane.plot.html'>ceplane.plot</a></code>,
          <code><a href='contour2.bcea.html'>contour2</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
@@ -276,8 +230,8 @@ doi:10.1177/0962280211419832.</p>
 <span class='op'>)</span>
 </div><div class='img'><img src='contour-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='fu'>contour</span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: coercing argument of type 'double' to logical</span></div><div class='img'><img src='contour-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>contour</span><span class='op'>(</span><span class='va'>m</span>, graph <span class='op'>=</span> <span class='st'>"ggplot2"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: coercing argument of type 'double' to logical</span></div><div class='img'><img src='contour-3.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='img'><img src='contour-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>contour</span><span class='op'>(</span><span class='va'>m</span>, graph <span class='op'>=</span> <span class='st'>"ggplot2"</span><span class='op'>)</span>
+</div><div class='img'><img src='contour-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the contour and scatterplot of the bivariate </span>
 <span class='co'># distribution of (Delta_e, Delta_c)</span>
 <span class='fu'>contour</span><span class='op'>(</span><span class='va'>m</span>,          <span class='co'># uses the results of the economic evaluation </span>

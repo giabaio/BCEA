@@ -19,10 +19,10 @@ setup_params <- function(graph_params) {
 #' 
 polygon_params <- function(graph_params, wtp) {
   
-  x_min <- graph_params$xlim[1]
   x_max <- graph_params$xlim[2]
   y_min <- graph_params$ylim[1]
-  y_max <- graph_params$ylim[2]
+  # x_min <- graph_params$xlim[1]
+  # y_max <- graph_params$ylim[2]
   
   polygon_x <- c(y_min/wtp, x_max, x_max)
   polygon_y <- c(y_min, x_max*wtp, y_min)
