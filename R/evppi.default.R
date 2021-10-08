@@ -453,9 +453,10 @@ evppi.bcea <- function(he,
         }
         if (method == "INLA") {
           if (!requireNamespace("INLA", quietly = TRUE)) {
-            stop("You need to install the packages 'INLA' and 'splancs'. Please run in your R terminal:\n
-                 install.packages('INLA', repos='http://www.math.ntnu.no/inla/R/stable')\n
-                 and\n install.packages('splancs')", call. = FALSE)
+            stop("You need to install the packages 'INLA'. Please run in your R terminal:\n 
+                 install.packages('INLA',repos=c(getOption('repos'),INLA='https://inla.r-inla-download.org/R/stable'), dep=TRUE)\n
+                 If you are under MS Windows, you may need to install the most recent version\n
+                 of 'Rtools' - see https://cran.r-project.org/bin/windows/Rtools/")
           }
           if (!requireNamespace("ldr", quietly = TRUE)) {
             stop("You need to install the package 'ldr'. Please run in your R terminal:\n
