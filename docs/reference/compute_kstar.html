@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute kstar — compute_kstar • BCEA</title>
+<title>Compute k^* — compute_kstar • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -45,8 +45,10 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
-<meta property="og:title" content="Compute kstar — compute_kstar" />
+<meta property="og:title" content="Compute k^* — compute_kstar" />
 <meta property="og:description" content="Find willingness-to-pay threshold when optimal decision changes." />
 <meta property="og:image" content="/logo.png" />
 
@@ -80,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BCEA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
       </span>
     </div>
 
@@ -88,7 +90,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -118,7 +120,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/giabaio/BCEA/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -135,7 +137,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute kstar</h1>
+    <h1>Compute k^*</h1>
     <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/compute_xxx.R'><code>R/compute_xxx.R</code></a></small>
     <div class="hidden name"><code>compute_kstar.Rd</code></div>
     </div>
@@ -151,21 +153,26 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>k</th>
-      <td><p>Willingness-to-pay vector</p></td>
+      <td><p>Willingness-to-pay grid approximation of the budget willing to invest (vector)</p></td>
     </tr>
     <tr>
       <th>best</th>
-      <td><p>Best intervention for each `k`</p></td>
+      <td><p>Best intervention for each `k` (int)</p></td>
     </tr>
     <tr>
       <th>ref</th>
-      <td><p>Reference intervention</p></td>
+      <td><p>Reference intervention (int)</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Array with dimensions</p>
+    <p>integer representing intervention</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>$$k^* := \min\{k : IB &lt; 0 \}$$</p>
+<p>The value of the break-even point corresponds to the ICER and quantifies
+the point at which the decision-maker is indifferent between the two options.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='ceac.plot.bcea.html'>ceac.plot</a></code></p></div>

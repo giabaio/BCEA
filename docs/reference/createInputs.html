@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create Inputs for EVPI Calculation — create_inputs_evpi • BCEA</title>
+<title>Create Inputs for EVPI Calculation — createInputs.default • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -45,16 +45,18 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
-<meta property="og:title" content="Create Inputs for EVPI Calculation — create_inputs_evpi" />
+<meta property="og:title" content="Create Inputs for EVPI Calculation — createInputs.default" />
 <meta property="og:description" content="Creates an object containing the matrix with the parameters simulated using
 the MCMC procedure (using JAGS, BUGS or Stan) and a vector of parameters
 (strings) that can be used to perform the expected value of partial
-information analysis. In the process, CreateInputs also checks for
+information analysis. In the process, createInputs also checks for
 linear dependency among columns of the PSA samples or columns having
 constant values and removes them to only leave the fundamental parameters
 (to run VoI analysis). This also deals with simulations stored in a
-.csv or .txt file (eg as obtained using bootstrapping from a
+.csv or .txt file (e.g. as obtained using bootstrapping from a
 non-Bayesian model)." />
 <meta property="og:image" content="/logo.png" />
 
@@ -88,7 +90,7 @@ non-Bayesian model)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BCEA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
       </span>
     </div>
 
@@ -96,7 +98,7 @@ non-Bayesian model)." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -126,7 +128,7 @@ non-Bayesian model)." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/giabaio/BCEA/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -152,15 +154,16 @@ non-Bayesian model)." />
     <p>Creates an object containing the matrix with the parameters simulated using
 the MCMC procedure (using JAGS, BUGS or Stan) and a vector of parameters
 (strings) that can be used to perform the expected value of partial
-information analysis. In the process, <code>CreateInputs</code> also checks for
+information analysis. In the process, <code>createInputs</code> also checks for
 linear dependency among columns of the PSA samples or columns having
 constant values and removes them to only leave the fundamental parameters
 (to run VoI analysis). This also deals with simulations stored in a
-<code>.csv</code> or <code>.txt</code> file (eg as obtained using bootstrapping from a
+<code>.csv</code> or <code>.txt</code> file (e.g. as obtained using bootstrapping from a
 non-Bayesian model).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_inputs_evpi</span><span class='op'>(</span><span class='va'>inputs</span>, print_is_linear_comb <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+    <pre class="usage"><span class='co'># S3 method for default</span>
+<span class='fu'>createInputs</span><span class='op'>(</span><span class='va'>inputs</span>, print_is_linear_comb <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
 <span class='fu'>createInputs</span><span class='op'>(</span><span class='va'>inputs</span>, print_is_linear_comb <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
@@ -176,14 +179,8 @@ non-Bayesian model).</p>
 <span class='co'># S3 method for data.frame</span>
 <span class='fu'>createInputs</span><span class='op'>(</span><span class='va'>inputs</span>, print_is_linear_comb <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-<span class='co'># S3 method for matrix</span>
-<span class='fu'>createInputs</span><span class='op'>(</span><span class='va'>inputs</span>, print_is_linear_comb <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-
 <span class='co'># S3 method for numeric</span>
-<span class='fu'>createInputs</span><span class='op'>(</span><span class='va'>inputs</span>, print_is_linear_comb <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-
-<span class='co'># S3 method for default</span>
-<span class='fu'>createInputs</span><span class='op'>(</span><span class='va'>inputs</span>, <span class='va'>print_is_linear_comb</span><span class='op'>)</span></pre>
+<span class='fu'>createInputs</span><span class='op'>(</span><span class='va'>inputs</span>, print_is_linear_comb <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -191,12 +188,12 @@ non-Bayesian model).</p>
     <tr>
       <th>inputs</th>
       <td><p>A <code>rjags</code>, <code>bugs</code> or <code>stanfit</code> object, containing
-the results of a call to either JAGS, (under <code>R2jags</code>), BUGS
-(under <code>R2WinBUGS</code> or <code>R2OpenBUGS</code>), or Stan (under <code>rstan</code>).</p></td>
+the results of a call to either JAGS, (using <code>R2jags</code>), BUGS
+(using <code>R2WinBUGS</code> or <code>R2OpenBUGS</code>), or Stan (using <code>rstan</code>).</p></td>
     </tr>
     <tr>
       <th>print_is_linear_comb</th>
-      <td><p>A TRUE/FALSE indicator. If set to <code>TRUE</code> (default)
+      <td><p>Logical indicator. If set to <code>TRUE</code> (default)
 then prints the output of the procedure trying to assess whether there are
 some parameters that are a linear combination of others (in which case
 they are removed).</p></td>
@@ -207,9 +204,9 @@ they are removed).</p></td>
 
     
 
-<dt>mat</dt><dd><p>A data.frame containing all the simulations
+<dt>mat</dt><dd><p>Data.frame containing all the simulations
         for all the monitored parameters</p></dd>
-        <dt>parameters</dt><dd><p>A character vectors listing the names
+        <dt>parameters</dt><dd><p>Character vectors of the names
         of all the monitored parameters</p></dd>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -218,7 +215,7 @@ they are removed).</p></td>
          <code><a href='evppi.html'>evppi</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>Gianluca Baio and Mark Strong</p>
+    <p>Gianluca Baio, Anna Heath and Mark Strong</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

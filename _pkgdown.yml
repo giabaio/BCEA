@@ -66,9 +66,18 @@ articles:
 - title: Basics
   navbar: ~
   contents:
-  # - plot_bcea
   - ceac
 - title: Advanced
   contents:
   - Set_bcea_parameters
-
+  - bcea
+  - ceef
+  - ceplane
+  - CEriskav
+  - eib
+  - evi
+  - info-rank
+  - paired_vs_multiple_comps
+  - plot_bcea
+  - R_journal_examples
+  

@@ -45,6 +45,8 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
 <meta property="og:title" content="Changelog" />
 <meta property="og:image" content="/logo.png" />
@@ -79,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BCEA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
       </span>
     </div>
 
@@ -87,7 +89,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -117,7 +119,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/giabaio/BCEA/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -145,16 +147,15 @@
 <li>Major refactoring of code base to improve robustness and extensibility.
 <ul>
 <li>
-<code><a href="../reference/bcea.html">bcea()</a></code> is now a helper function which calls the constructor <code><a href="../reference/new_bcea.html">new_bcea()</a></code>
-</li>
+<code><a href="../reference/bcea.html">bcea()</a></code> is now a helper function which calls the constructor <code><a href="../reference/new_bcea.html">new_bcea()</a></code>, separating concerns.</li>
 <li>
 <code><a href="../reference/new_bcea.html">new_bcea()</a></code> composed of smaller HEE statistics functions e.g. <code><a href="../reference/compute_CEAC.html">compute_CEAC()</a></code>, <code><a href="../reference/compute_EIB.html">compute_EIB()</a></code>,…. This allows us to call and test them individually. It also allows more flexibility in changing or adding functionality to <code><a href="../reference/new_bcea.html">new_bcea()</a></code>.</li>
 <li>Main plotting functions <code>ceac_plot()</code> and <code>ceplane_plot()</code> have been rewritten. These functions now simply dispatch to the base R, ggplot2 or plotly versions. Internally, these functions, e.g.<code><a href="../reference/ceplane_plot_base.bcea.html">ceplane_plot_ggplot()</a></code>, are also split into parameter setting and plotting components. This modulisation allows us to add new layers to plots or modify existing parameter sets and defaults. It also means we can reuse some functionality across plots such as axes and legend setting.</li>
-<li>Plots and tables using S3 methods for bcea type object.</li>
+<li>Plots and tables using S3 methods for <code>bcea</code> type object.</li>
 <li>New vignettes about CEAC plotting and comparison intervention setting.</li>
-<li>Tables updated. Duplication in <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> ands <code>sim.table()</code> removed.</li>
+<li>Tables updated. Duplication in <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> and <code>sim.table.bcea()</code> removed.</li>
 <li>
-<code>CreateInputs()</code> used for EVPI calculation now dispatches S3 methods by rjags, BUGS, Stan and other R data types.</li>
+<code>CreateInputs()</code> used for EVPI calculation now dispatches S3 methods by JAGS, BUGS, Stan and other R data types.</li>
 </ul>
 </li>
 <li>Extend ways to set comparison interventions. Subsets of comparison can still be set in a call to a plotting function as before. Now subsets can be set in both the original <code><a href="../reference/bcea.html">bcea()</a></code> construction or separately using a setter functions <code>setComparison()</code>.</li>
@@ -163,12 +164,16 @@
 <code>ceac_plot()</code> changes
 <ul>
 <li>Deprecated <code>mce.plot()</code>. Now dispatched on <code><a href="../reference/ceac.plot.bcea.html">ceac.plot()</a></code> for both <code><a href="../reference/multi.ce.html">multi.ce()</a></code> and <code><a href="../reference/bcea.html">bcea()</a></code> outputs.</li>
-<li>For a multiple comparison the plot for pairwise comparison over all interventions is returned by default. The alternative version of each comparision against the reference group is still available.</li>
+<li>For a multiple comparison the plot for pairwise comparison over all interventions is returned by default. The alternative version of each comparison against the reference group is still available.</li>
 </ul>
 </li>
 <li>Additional documentation and examples.</li>
-<li>Testing suite written. This is not comprehensive as of yet.</li>
-<li>Added a <code>NEWS.md</code> file to track changes to the package. Details about previous releases, such as dates, versions, fixes and enhancements obtained from CRAN and code comments.</li>
+<li>
+<code><a href="../reference/make.report.html">make.report()</a></code> rewritten to have separate section files.</li>
+<li>Testing suite started. This is not comprehensive as of yet.</li>
+<li>Added a <code>NEWS.md</code> file to track changes to the package. Details about previous releases, such as dates, versions, fixes and enhancements obtained from CRAN and code comments so a little patchy.</li>
+<li>
+<code>pkgdown</code> GitHub site made.</li>
 </ul>
 </div>
     <div id="bcea-23-11" class="section level1">

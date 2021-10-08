@@ -46,6 +46,8 @@ Parameters — evppi • BCEA</title>
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
 <meta property="og:title" content="Expected Value of Perfect Partial Information (EVPPI) for Selected
 Parameters — evppi" />
@@ -84,7 +86,7 @@ parameter EVPPI and the SPDE-INLA method for larger parameter subsets." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BCEA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
       </span>
     </div>
 
@@ -92,7 +94,7 @@ parameter EVPPI and the SPDE-INLA method for larger parameter subsets." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -122,7 +124,7 @@ parameter EVPPI and the SPDE-INLA method for larger parameter subsets." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/giabaio/BCEA/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -152,6 +154,9 @@ parameter EVPPI and the SPDE-INLA method for larger parameter subsets.</p>
     </div>
 
     <pre class="usage"><span class='fu'>evppi</span><span class='op'>(</span><span class='va'>he</span>, <span class='va'>param_idx</span>, <span class='va'>input</span>, N <span class='op'>=</span> <span class='cn'>NULL</span>, plot <span class='op'>=</span> <span class='cn'>FALSE</span>, residuals <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for bcea</span>
+<span class='fu'>evppi</span><span class='op'>(</span><span class='va'>he</span>, <span class='va'>param_idx</span>, <span class='va'>input</span>, N <span class='op'>=</span> <span class='cn'>NULL</span>, plot <span class='op'>=</span> <span class='cn'>FALSE</span>, residuals <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for default</span>
 <span class='fu'>evppi</span><span class='op'>(</span><span class='va'>he</span>, <span class='va'>...</span><span class='op'>)</span></pre>
@@ -215,8 +220,7 @@ number of "blocks" (e.g. <code>n.blocks=20</code>).</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
-
+    <p>Object of class `evppi`:</p>
 <dt>evppi</dt><dd><p>The computed values of evppi for all values of the
  parameter of willingness to pay.</p></dd>
 <dt>index</dt><dd><p>A numerical vector with the index associated with the
@@ -239,6 +243,17 @@ parameters for which the EVPPI was calculated, used for plotting the EVPPI.</p><
 regression developed by Strong et al. (2014). The multi-parameter EVPPI is
 calculated using the SPDE-INLA regression method for Gaussian Process
 regression developed by Heath et al. (2015).</p>
+<p>This function has been completely changed and restructured to make it possible
+to change regression method.
+The method argument can now be given as a list. The first element element in the
+list is a vector giving the regression method for the effects. The second gives
+the regression method for the costs. The `method' argument can also be given as
+before which then uses the same regression method for all curves.
+All other `extra_args` can be given as before. `int.ord` can be updated using the
+list formulation above to give the interactions for each different curve.
+The formula argument for GAM can only be given once, either `te()` or `s() + s()`
+as this is for computational reasons rather than to aid fit.
+You can still plot the INLA mesh elements but not output the meshes.</p>
     <h2 class="hasAnchor" id="gam-regression"><a class="anchor" href="#gam-regression"></a>GAM regression</h2>
 
     
@@ -324,27 +339,87 @@ http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full</p>
 <span class='co'># Bayesian model and economic problem</span>
 
 <span class='co'># Load the processed results of the MCMC simulation model</span>
-<span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Vaccine</span><span class='op'>)</span>
+<span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Vaccine</span>, package <span class='op'>=</span> <span class='st'>"BCEA"</span><span class='op'>)</span>
+<span class='va'>treats</span> <span class='op'>&lt;-</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"Status quo"</span>, <span class='st'>"Vaccination"</span><span class='op'>)</span>
 
 <span class='co'># Run the health economic evaluation using BCEA</span>
-<span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>c</span>, ref <span class='op'>=</span> <span class='fl'>2</span>, interventions <span class='op'>=</span> <span class='va'>treats</span><span class='op'>)</span>
+<span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span><span class='va'>e.pts</span>, <span class='va'>c.pts</span>, ref <span class='op'>=</span> <span class='fl'>2</span>, interventions <span class='op'>=</span> <span class='va'>treats</span><span class='op'>)</span>
 
 <span class='co'># Compute the EVPPI for a bunch of parameters</span>
-<span class='va'>inp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='create_inputs_evpi.html'>createInputs</a></span><span class='op'>(</span><span class='va'>vaccine</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1] 14 15 16 17 18 19 20 21 22 29 44 45 46 47
-#&gt; [1] "Linear dependence: removing column pi[2,2]"
-#&gt;  [1] 14 15 16 17 18 19 20 21 22 29 44 45
-#&gt; [1] "Linear dependence: removing column pi[2,1]"
-#&gt;  [1] 14 15 16 17 18 19 20 21 22 29 44
-#&gt; [1] "Linear dependence: removing column pi[1,1]"
-#&gt; [1] 14 15 16 17 18 19 20 21 22
-#&gt; [1] "Linear dependence: removing column Repeat.GP[2,2]"
-#&gt; [1] 14 15 17 18 20 21
-#&gt; [1] "Linear dependence: removing column Repeat.GP[2,1]"
-#&gt; [1] 14 17 20
-#&gt; [1] "Linear dependence: removing column Repeat.GP[1,1]"</div><div class='input'>
+<span class='va'>inp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='createInputs.default.html'>createInputs</a></span><span class='op'>(</span><span class='va'>vaccine</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] "14 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [2] "15 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [3] "16 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [4] "17 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [5] "18 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [6] "19 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [7] "20 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [8] "21 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [9] "22 \nLinear dependence: removing column pi[2,2]"
+#&gt; [10] "29 \nLinear dependence: removing column pi[2,2]"
+#&gt; [11] "44 \nLinear dependence: removing column pi[2,2]"
+#&gt; [12] "45 \nLinear dependence: removing column pi[2,2]"
+#&gt; [13] "46 \nLinear dependence: removing column pi[2,2]"
+#&gt; [14] "47 \nLinear dependence: removing column pi[2,2]"
+#&gt;  [1] "14 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [2] "15 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [3] "16 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [4] "17 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [5] "18 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [6] "19 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [7] "20 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [8] "21 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [9] "22 \nLinear dependence: removing column pi[2,1]"
+#&gt; [10] "29 \nLinear dependence: removing column pi[2,1]"
+#&gt; [11] "44 \nLinear dependence: removing column pi[2,1]"
+#&gt; [12] "45 \nLinear dependence: removing column pi[2,1]"
+#&gt;  [1] "14 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [2] "15 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [3] "16 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [4] "17 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [5] "18 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [6] "19 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [7] "20 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [8] "21 \nLinear dependence: removing column pi[1,1]"
+#&gt;  [9] "22 \nLinear dependence: removing column pi[1,1]"
+#&gt; [10] "29 \nLinear dependence: removing column pi[1,1]"
+#&gt; [11] "44 \nLinear dependence: removing column pi[1,1]"
+#&gt; [1] "14 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [2] "15 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [3] "16 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [4] "17 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [5] "18 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [6] "19 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [7] "20 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [8] "21 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [9] "22 \nLinear dependence: removing column Repeat.GP[2,2]"
+#&gt; [1] "14 \nLinear dependence: removing column Repeat.GP[2,1]"
+#&gt; [2] "15 \nLinear dependence: removing column Repeat.GP[2,1]"
+#&gt; [3] "17 \nLinear dependence: removing column Repeat.GP[2,1]"
+#&gt; [4] "18 \nLinear dependence: removing column Repeat.GP[2,1]"
+#&gt; [5] "20 \nLinear dependence: removing column Repeat.GP[2,1]"
+#&gt; [6] "21 \nLinear dependence: removing column Repeat.GP[2,1]"
+#&gt; [1] "14 \nLinear dependence: removing column Repeat.GP[1,1]"
+#&gt; [2] "17 \nLinear dependence: removing column Repeat.GP[1,1]"
+#&gt; [3] "20 \nLinear dependence: removing column Repeat.GP[1,1]"</div><div class='input'>
+<span class='va'>EVPPI</span> <span class='op'>&lt;-</span> <span class='fu'>evppi</span><span class='op'>(</span><span class='va'>m</span>, <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"beta.1."</span> , <span class='st'>"beta.2."</span><span class='op'>)</span>, <span class='va'>inp</span><span class='op'>$</span><span class='va'>mat</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "method: GAM" "method: GAM"
+#&gt; 
+#&gt; Calculating fitted values for the GAM regression 
+#&gt; 
+#&gt; Calculating fitted values for the GAM regression 
+#&gt; Calculating EVPPI </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>EVPPI</span><span class='op'>)</span>
+</div><div class='img'><img src='evppi-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># deprecated (single parameter) methods</span>
+<span class='va'>EVPPI.so</span> <span class='op'>&lt;-</span> <span class='fu'>evppi</span><span class='op'>(</span><span class='va'>m</span>, <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"beta.1."</span>, <span class='st'>"beta.2."</span><span class='op'>)</span>, <span class='va'>inp</span><span class='op'>$</span><span class='va'>mat</span>, method <span class='op'>=</span> <span class='st'>"so"</span>, n.blocks <span class='op'>=</span> <span class='fl'>50</span><span class='op'>)</span>
+<span class='va'>EVPPI.sad</span> <span class='op'>&lt;-</span> <span class='fu'>evppi</span><span class='op'>(</span><span class='va'>m</span>, <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"beta.1."</span>, <span class='st'>"beta.2."</span><span class='op'>)</span>, <span class='va'>inp</span><span class='op'>$</span><span class='va'>mat</span>, method <span class='op'>=</span> <span class='st'>"sad"</span>, n.seps <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+
+<span class='co'>##TODO:</span>
+<span class='co'>#plot(EVPPI.so)</span>
+<span class='co'>#plot(EVPPI.sad)</span>
+
 <span class='co'># Compute the EVPPI using INLA/SPDE</span>
-<span class='va'>x0</span> <span class='op'>&lt;-</span> <span class='fu'>evppi</span><span class='op'>(</span>he <span class='op'>=</span> <span class='va'>m</span>, param_idx <span class='op'>=</span> <span class='fl'>39</span><span class='op'>:</span><span class='fl'>40</span>, input <span class='op'>=</span> <span class='va'>inp</span><span class='op'>$</span><span class='va'>mat</span><span class='op'>)</span>
+<span class='va'>x0</span> <span class='op'>&lt;-</span> <span class='fu'>evppi</span><span class='op'>(</span>he <span class='op'>=</span> <span class='va'>m</span>, <span class='fl'>39</span><span class='op'>:</span><span class='fl'>40</span>, input <span class='op'>=</span> <span class='va'>inp</span><span class='op'>$</span><span class='va'>mat</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "method: GAM" "method: GAM"
 #&gt; 
 #&gt; Calculating fitted values for the GAM regression 
@@ -352,14 +427,14 @@ http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full</p>
 #&gt; Calculating fitted values for the GAM regression 
 #&gt; Calculating EVPPI </div><div class='input'>
 <span class='co'># using GAM regression</span>
-<span class='va'>x1</span> <span class='op'>&lt;-</span> <span class='fu'>evppi</span><span class='op'>(</span>he <span class='op'>=</span> <span class='va'>m</span>, param_idx <span class='op'>=</span> <span class='fl'>39</span><span class='op'>:</span><span class='fl'>40</span>, input <span class='op'>=</span> <span class='va'>inp</span><span class='op'>$</span><span class='va'>mat</span>, method <span class='op'>=</span> <span class='st'>"GAM"</span><span class='op'>)</span>
+<span class='va'>x1</span> <span class='op'>&lt;-</span> <span class='fu'>evppi</span><span class='op'>(</span>he <span class='op'>=</span> <span class='va'>m</span>, <span class='fl'>39</span><span class='op'>:</span><span class='fl'>40</span>, input <span class='op'>=</span> <span class='va'>inp</span><span class='op'>$</span><span class='va'>mat</span>, method <span class='op'>=</span> <span class='st'>"GAM"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; 
 #&gt; Calculating fitted values for the GAM regression 
 #&gt; 
 #&gt; Calculating fitted values for the GAM regression 
 #&gt; Calculating EVPPI </div><div class='input'>
 <span class='co'># using GP regression</span>
-<span class='va'>x2</span> <span class='op'>&lt;-</span> <span class='fu'>evppi</span><span class='op'>(</span>he <span class='op'>=</span> <span class='va'>m</span>, param_idx <span class='op'>=</span> <span class='fl'>39</span><span class='op'>:</span><span class='fl'>40</span>, input <span class='op'>=</span> <span class='va'>inp</span><span class='op'>$</span><span class='va'>mat</span>, method <span class='op'>=</span> <span class='st'>"GP"</span><span class='op'>)</span>
+<span class='va'>x2</span> <span class='op'>&lt;-</span> <span class='fu'>evppi</span><span class='op'>(</span>he <span class='op'>=</span> <span class='va'>m</span>, <span class='fl'>39</span><span class='op'>:</span><span class='fl'>40</span>, input <span class='op'>=</span> <span class='va'>inp</span><span class='op'>$</span><span class='va'>mat</span>, method <span class='op'>=</span> <span class='st'>"GP"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; 
 #&gt; Calculating fitted values for the GP regression 
 #&gt; 
@@ -367,14 +442,36 @@ http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full</p>
 #&gt; Calculating EVPPI </div><div class='input'>
 <span class='co'># plot results</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x0</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>ggplot2 method not yet implemented for this function: falling back to base graphics</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>x0</span><span class='op'>$</span><span class='va'>k</span>, <span class='va'>x0</span><span class='op'>$</span><span class='va'>evppi</span>, type <span class='op'>=</span> <span class='st'>"l"</span>, lwd <span class='op'>=</span> <span class='fl'>2</span>, lty <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>x1</span><span class='op'>$</span><span class='va'>k</span>, <span class='va'>x1</span><span class='op'>$</span><span class='va'>evppi</span>, type <span class='op'>=</span> <span class='st'>"l"</span>, col <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>x2</span><span class='op'>$</span><span class='va'>k</span>, <span class='va'>x2</span><span class='op'>$</span><span class='va'>evppi</span>, type <span class='op'>=</span> <span class='st'>"l"</span>, col <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span>
-</div><div class='img'><img src='evppi-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x0</span><span class='op'>$</span><span class='va'>k</span>, <span class='va'>x0</span><span class='op'>$</span><span class='va'>evppi</span>, type <span class='op'>=</span> <span class='st'>"l"</span>, lwd <span class='op'>=</span> <span class='fl'>2</span>, lty <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>x0</span><span class='op'>$</span><span class='va'>k</span>, <span class='va'>x0</span><span class='op'>$</span><span class='va'>evppi</span>, type <span class='op'>=</span> <span class='st'>"l"</span>, lwd <span class='op'>=</span> <span class='fl'>2</span>, lty <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>x1</span><span class='op'>$</span><span class='va'>k</span>, <span class='va'>x1</span><span class='op'>$</span><span class='va'>evppi</span>, type <span class='op'>=</span> <span class='st'>"l"</span>, col <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>
 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>x2</span><span class='op'>$</span><span class='va'>k</span>, <span class='va'>x2</span><span class='op'>$</span><span class='va'>evppi</span>, type <span class='op'>=</span> <span class='st'>"l"</span>, col <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span>
 </div><div class='img'><img src='evppi-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x0</span><span class='op'>$</span><span class='va'>k</span>, <span class='va'>x0</span><span class='op'>$</span><span class='va'>evppi</span>, type <span class='op'>=</span> <span class='st'>"l"</span>, lwd <span class='op'>=</span> <span class='fl'>2</span>, lty <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>x1</span><span class='op'>$</span><span class='va'>k</span>, <span class='va'>x1</span><span class='op'>$</span><span class='va'>evppi</span>, type <span class='op'>=</span> <span class='st'>"l"</span>, col <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>x2</span><span class='op'>$</span><span class='va'>k</span>, <span class='va'>x2</span><span class='op'>$</span><span class='va'>evppi</span>, type <span class='op'>=</span> <span class='st'>"l"</span>, col <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span>
+</div><div class='img'><img src='evppi-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Smoking</span><span class='op'>)</span>
+<span class='va'>treats</span> <span class='op'>&lt;-</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"No intervention"</span>, <span class='st'>"Self-help"</span>,
+<span class='st'>"Individual counselling"</span>, <span class='st'>"Group counselling"</span><span class='op'>)</span>
+<span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>c</span>, ref <span class='op'>=</span> <span class='fl'>4</span>, interventions <span class='op'>=</span> <span class='va'>treats</span>, Kmax <span class='op'>=</span> <span class='fl'>500</span><span class='op'>)</span>
+<span class='va'>inp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='createInputs.default.html'>createInputs</a></span><span class='op'>(</span><span class='va'>smoking_output</span><span class='op'>)</span>
+<span class='va'>EVPPI</span> <span class='op'>&lt;-</span> <span class='fu'>evppi</span><span class='op'>(</span><span class='va'>m</span>, <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>3</span><span class='op'>)</span>, <span class='va'>inp</span><span class='op'>$</span><span class='va'>mat</span>, h.value <span class='op'>=</span> <span class='fl'>0.0000005</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "method: c(\"GAM\", \"GAM\", \"GAM\")"
+#&gt; [2] "method: c(\"GAM\", \"GAM\", \"GAM\")"
+#&gt; 
+#&gt; Calculating fitted values for the GAM regression 
+#&gt; 
+#&gt; Calculating fitted values for the GAM regression 
+#&gt; 
+#&gt; Calculating fitted values for the GAM regression 
+#&gt; 
+#&gt; Calculating fitted values for the GAM regression 
+#&gt; 
+#&gt; Calculating fitted values for the GAM regression 
+#&gt; 
+#&gt; Calculating fitted values for the GAM regression 
+#&gt; Calculating EVPPI </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>EVPPI</span><span class='op'>)</span>
+</div><div class='img'><img src='evppi-4.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

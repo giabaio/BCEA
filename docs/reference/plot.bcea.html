@@ -45,6 +45,8 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
 <meta property="og:title" content="Summary Plot of the Health Economic Analysis — plot.bcea" />
 <meta property="og:description" content="Plots in a single graph the Cost-Effectiveness plane, the Expected
@@ -81,7 +83,7 @@ Incremental Benefit, the CEAC and the EVPI." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BCEA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
       </span>
     </div>
 
@@ -89,7 +91,7 @@ Incremental Benefit, the CEAC and the EVPI." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -119,7 +121,7 @@ Incremental Benefit, the CEAC and the EVPI." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/giabaio/BCEA/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -174,16 +176,19 @@ together. Any subset of the possible comparisons can be selected (e.g.,
     <tr>
       <th>wtp</th>
       <td><p>The value of the willingness to pay parameter. It is passed to
-<code><a href='ceplane.plot.bcea.html'>ceplane.plot</a></code>.</p></td>
+<code><a href='ceplane.plot.html'>ceplane.plot</a></code>.</p></td>
     </tr>
     <tr>
       <th>pos</th>
-      <td><p>Parameter to set the position of the legend. Can be given in form
-of a string, a single logical value, or a two-element vector with the
-respective relative positions on the x and y axis. Default as <code>FALSE</code>
-sets the legend position to the default one for each plot (see the details
-section), while <code>TRUE</code> puts it on the bottom of each plot.  Changes
-will affect all the individual plots.</p></td>
+      <td><p>Parameter to set the position of the legend (only relevant for
+multiple interventions, ie more than 2 interventions being compared).
+Can be given in form
+of a string <code>(bottom|top)(right|left)</code> for base graphics and
+<code>bottom|top|left|right</code> for ggplot2. It can be a two-elements vector,
+which specifies the relative position on the x and y axis respectively, or
+alternatively it can be in form of a logical variable, with <code>FALSE</code>
+indicating to use the default position and <code>TRUE</code> to place it on the
+bottom of the plot.</p></td>
     </tr>
     <tr>
       <th>graph</th>
@@ -193,8 +198,8 @@ plotting. Should (partial-)match the two options <code>"base"</code> or
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments to be passed to the methods <code><a href='ceplane.plot.bcea.html'>ceplane.plot</a></code>
-and <code><a href='eib.plot.bcea.html'>eib.plot</a></code>. Please see the manual pages for the individual
+      <td><p>Arguments to be passed to the methods <code><a href='ceplane.plot.html'>ceplane.plot</a></code>
+and <code><a href='eib.plot.html'>eib.plot</a></code>. Please see the manual pages for the individual
 functions.  Arguments like <code>size</code>, <code>ICER.size</code> and <code>plot.cri</code>
 can be supplied to the functions in this way. In addition if
 <code>graph="ggplot2"</code> and the arguments are named theme objects they will
@@ -208,7 +213,7 @@ be added to each plot.</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The default position of the legend for the cost-effectiveness plane
-(produced by <code><a href='ceplane.plot.bcea.html'>ceplane.plot</a></code>) is set to <code><a href='Smoking.html'>c(1, 1.025)</a></code>
+(produced by <code><a href='ceplane.plot.html'>ceplane.plot</a></code>) is set to <code><a href='Smoking.html'>c(1, 1.025)</a></code>
 overriding its default for <code>pos=FALSE</code>, since multiple ggplot2 plots
 are rendered in a slightly different way than single plots.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -220,10 +225,10 @@ doi:10.1177/0962280211419832.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>,
-         <code><a href='ceplane.plot.bcea.html'>ceplane.plot</a></code>,
-         <code><a href='eib.plot.bcea.html'>eib.plot</a></code>,
+         <code><a href='ceplane.plot.html'>ceplane.plot</a></code>,
+         <code><a href='eib.plot.html'>eib.plot</a></code>,
          <code><a href='ceac.plot.bcea.html'>ceac.plot</a></code>,
-         <code><a href='evi.plot.bcea.html'>evi.plot</a></code></p></div>
+         <code><a href='evi.plot.html'>evi.plot</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Gianluca Baio, Andrea Berardi</p>
@@ -253,7 +258,7 @@ doi:10.1177/0962280211419832.</p>
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>he</span>, graph <span class='op'>=</span> <span class='st'>"base"</span><span class='op'>)</span>
 </div><div class='img'><img src='plot.bcea-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Plots the same summary plots using ggplot2</span>
-<span class='kw'>if</span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+<span class='kw'>if</span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>he</span>, graph <span class='op'>=</span> <span class='st'>"ggplot2"</span><span class='op'>)</span>
 
 <span class='co'>##### Example of a customized plot.bcea with ggplot2</span>
@@ -264,7 +269,7 @@ doi:10.1177/0962280211419832.</p>
   size <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>rel</a></span><span class='op'>(</span><span class='fl'>2.5</span><span class='op'>)</span>                                         <span class='co'># modifies the size of k = labels</span>
   <span class='op'>)</span>                                                       <span class='co'># in ceplane.plot and eib.plot</span>
 <span class='op'>}</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Duplicated aesthetics after name standardisation: colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: geom, border, include, line_colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: label.pos</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Duplicated aesthetics after name standardisation: colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: geom, border, include, line_colour</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Ignoring unknown parameters: label.pos</span></div><div class='img'><img src='plot.bcea-2.png' alt='' width='700' height='433' /></div><div class='img'><img src='plot.bcea-3.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='img'><img src='plot.bcea-2.png' alt='' width='700' height='433' /></div><div class='img'><img src='plot.bcea-3.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

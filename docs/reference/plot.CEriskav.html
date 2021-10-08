@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plots EIB for the Risk Aversion Case — plot.CEriskav • BCEA</title>
+<title>Plots EIB and EVPI for the Risk Aversion Case — plot.CEriskav • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -45,8 +45,10 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
-<meta property="og:title" content="Plots EIB for the Risk Aversion Case — plot.CEriskav" />
+<meta property="og:title" content="Plots EIB and EVPI for the Risk Aversion Case — plot.CEriskav" />
 <meta property="og:description" content="Summary plot of the health economic analysis when risk aversion is included." />
 <meta property="og:image" content="/logo.png" />
 
@@ -80,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BCEA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
       </span>
     </div>
 
@@ -88,7 +90,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -118,7 +120,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/giabaio/BCEA/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -135,7 +137,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plots EIB for the Risk Aversion Case</h1>
+    <h1>Plots EIB and EVPI for the Risk Aversion Case</h1>
     <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/plot.CEriskav.R'><code>R/plot.CEriskav.R</code></a></small>
     <div class="hidden name"><code>plot.CEriskav.Rd</code></div>
     </div>
@@ -152,20 +154,21 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object of the class <code>CEriskav</code>, containing the results of
-the economic analysis performed accounting for a risk aversion parameter
-(obtained as output of the function <code><a href='CEriskav.html'>CEriskav</a></code>).</p></td>
+      <td><p>An object of the class <code>CEriskav</code>, a subclass of <code>bcea</code>,
+containing the results of the economic analysis performed accounting for a
+risk aversion parameter (obtained as output of the function <code><a href='CEriskav_assign.html'>CEriskav</a></code>).</p></td>
     </tr>
     <tr>
       <th>pos</th>
-      <td><p>Parameter to set the position of the legend. Can be given in form
+      <td><p>Parameter to set the position of the legend (only relevant for
+multiple interventions, ie more than 2 interventions being compared).
+Can be given in form
 of a string <code>(bottom|top)(right|left)</code> for base graphics and
 <code>bottom|top|left|right</code> for ggplot2. It can be a two-elements vector,
 which specifies the relative position on the x and y axis respectively, or
 alternatively it can be in form of a logical variable, with <code>FALSE</code>
 indicating to use the default position and <code>TRUE</code> to place it on the
-bottom of the plot. Default value is <code><a href='Smoking.html'>c(0,1)</a></code>, that is in the topleft
-corner inside the plot area.</p></td>
+bottom of the plot.</p></td>
     </tr>
     <tr>
       <th>graph</th>
@@ -193,8 +196,8 @@ parameter, r. The second one is a similar plot for the EVPI.
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Plots the EIB and the EVPI when risk aversion is included in the utility
-function.</p>
+    <p>Plots the Expected Incremental Benefit and the Expected Value of Perfect Information
+when risk aversion is included in the utility function.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
@@ -203,7 +206,7 @@ doi:10.1177/0962280211419832.</p>
 <p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>, <code><a href='CEriskav.html'>CEriskav</a></code></p></div>
+    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>, <code><a href='CEriskav_assign.html'>CEriskav</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Gianluca Baio, Andrea Berardi</p>
@@ -230,32 +233,20 @@ doi:10.1177/0962280211419832.</p>
 <span class='op'>)</span>
 <span class='co'>#</span>
 <span class='co'># Define the vector of values for the risk aversion parameter, r, eg:</span>
-<span class='va'>r</span> <span class='op'>&lt;-</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='fl'>0.000000000001</span>,<span class='fl'>0.005</span>,<span class='fl'>0.020</span>,<span class='fl'>0.035</span><span class='op'>)</span> 
+<span class='va'>r</span> <span class='op'>&lt;-</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='fl'>1e-10</span>, <span class='fl'>0.005</span>, <span class='fl'>0.020</span>, <span class='fl'>0.035</span><span class='op'>)</span> 
 <span class='co'>#</span>
 <span class='co'># Run the cost-effectiveness analysis accounting for risk aversion</span>
 <span class='co'># \donttest{</span>
-<span class='va'>cr</span> <span class='op'>&lt;-</span> <span class='fu'><a href='CEriskav.html'>CEriskav</a></span><span class='op'>(</span><span class='va'>m</span>,     <span class='co'># uses the results of the economic evalaution </span>
-                      <span class='co'>#  (a "bcea" object)</span>
-        r<span class='op'>=</span><span class='va'>r</span>,          <span class='co'># defines the vector of values for the risk </span>
-                      <span class='co'>#  aversion parameter</span>
-        comparison<span class='op'>=</span><span class='fl'>1</span>  <span class='co'># if more than 2 interventions, selects the </span>
-                      <span class='co'>#  pairwise comparison </span>
-<span class='op'>)</span>
+   <span class='fu'><a href='CEriskav_assign.html'>CEriskav</a></span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>r</span>
 <span class='co'># }</span>
 <span class='co'>#</span>
-<span class='co'># Now produce the plots</span>
+<span class='co'># produce the plots</span>
 <span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>cr</span> <span class='co'># uses the results of the risk aversion </span>
-        <span class='co'>#  analysis (a "CEriskav" object)</span>
-<span class='op'>)</span>
+   <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
 </div><div class='img'><img src='plot.CEriskav-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='plot.CEriskav-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-<span class='co'>### Alternative options, using ggplot2</span>
+<span class='co'>## Alternative options, using ggplot2</span>
 <span class='co'># \donttest{</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>cr</span>,
-  graph<span class='op'>=</span><span class='st'>"ggplot2"</span>,
-  plot<span class='op'>=</span><span class='st'>"ask"</span>          <span class='co'># plot option can be specified as</span>
-                      <span class='co'>#  "dev.new" (default), "x11" or "ask"</span>
-  <span class='op'>)</span>
+   <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>m</span>, graph <span class='op'>=</span> <span class='st'>"ggplot2"</span><span class='op'>)</span>
 </div><div class='img'><img src='plot.CEriskav-3.png' alt='' width='700' height='433' /></div><div class='img'><img src='plot.CEriskav-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
 </div></pre>

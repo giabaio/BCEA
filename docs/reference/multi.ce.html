@@ -45,9 +45,11 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
 <meta property="og:title" content="Cost-effectiveness Analysis With Multiple Comparison — multi.ce" />
-<meta property="og:description" content="Computes and plots the probability that each of the `n_int` interventions
+<meta property="og:description" content="Computes and plots the probability that each of the n_int interventions
 being analysed is the most cost-effective and the cost-effectiveness
 acceptability frontier." />
 <meta property="og:image" content="/logo.png" />
@@ -82,7 +84,7 @@ acceptability frontier." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BCEA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
       </span>
     </div>
 
@@ -90,7 +92,7 @@ acceptability frontier." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -120,7 +122,7 @@ acceptability frontier." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/giabaio/BCEA/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -143,12 +145,13 @@ acceptability frontier." />
     </div>
 
     <div class="ref-description">
-    <p>Computes and plots the probability that each of the `n_int` interventions
+    <p>Computes and plots the probability that each of the <code>n_int</code> interventions
 being analysed is the most cost-effective and the cost-effectiveness
 acceptability frontier.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>multi.ce</span><span class='op'>(</span><span class='va'>he</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='co'># S3 method for bcea</span>
+<span class='fu'>multi.ce</span><span class='op'>(</span><span class='va'>he</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -162,7 +165,7 @@ modelling and the economic evaluation.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Original bcea object (list) of class "pairwise" with additional:</p>
+    <p>Original <code>bcea</code> object (list) of class "pairwise" with additional:</p>
 <dt>p_best_interv</dt><dd><p>A matrix including the probability that each
    intervention is the most cost-effective for all values of the willingness to
    pay parameter</p></dd>
@@ -197,8 +200,11 @@ modelling and the economic evaluation.</p></td>
       plot<span class='op'>=</span><span class='cn'>FALSE</span>            <span class='co'># inhibits graphical output</span>
 <span class='op'>)</span>
 
-<span class='va'>mce</span> <span class='op'>&lt;-</span> <span class='fu'>multi.ce</span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>          <span class='co'># uses the results of the economic analysis </span>
+<span class='va'>mce</span> <span class='op'>&lt;-</span> <span class='fu'>multi.ce</span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>          <span class='co'># uses the results of the economic analysis</span>
 
+<span class='fu'><a href='ceac.plot.bcea.html'>ceac.plot</a></span><span class='op'>(</span><span class='va'>mce</span><span class='op'>)</span>
+</div><div class='img'><img src='multi.ce-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='ceaf.plot.pairwise.html'>ceaf.plot</a></span><span class='op'>(</span><span class='va'>mce</span><span class='op'>)</span>
+</div><div class='img'><img src='multi.ce-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

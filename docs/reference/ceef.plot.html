@@ -45,6 +45,8 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
 <meta property="og:title" content="Cost-Effectiveness Efficiency Frontier (CEAF) Plot — ceef.plot.bcea" />
 <meta property="og:description" content="Back compatibility with BCEA previous versions:
@@ -85,7 +87,7 @@ class of the object remains unaltered." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BCEA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
       </span>
     </div>
 
@@ -93,7 +95,7 @@ class of the object remains unaltered." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -123,7 +125,7 @@ class of the object remains unaltered." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/giabaio/BCEA/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -165,7 +167,8 @@ class of the object remains unaltered.</p>
   dominance <span class='op'>=</span> <span class='cn'>TRUE</span>,
   relative <span class='op'>=</span> <span class='cn'>FALSE</span>,
   print.summary <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  graph_type <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"base"</span>, <span class='st'>"ggplot2"</span><span class='op'>)</span>,
+  graph <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"base"</span>, <span class='st'>"ggplot2"</span><span class='op'>)</span>,
+  print.plot <span class='op'>=</span> <span class='cn'>TRUE</span>,
   <span class='va'>...</span>
 <span class='op'>)</span>
 
@@ -187,14 +190,15 @@ all the available comparators.</p></td>
     </tr>
     <tr>
       <th>pos</th>
-      <td><p>Parameter to set the position of the legend. Can be given in form
+      <td><p>Parameter to set the position of the legend (only relevant for
+multiple interventions, ie more than 2 interventions being compared).
+Can be given in form
 of a string <code>(bottom|top)(right|left)</code> for base graphics and
-<code>bottom</code>, <code>top</code>, <code>left</code> or <code>right</code> for ggplot2. It can
-be a two-elements vector, which specifies the relative position on the x and
-y axis respectively, or alternatively it can be in form of a logical
-variable, with <code>FALSE</code> indicating to use the default position and
-<code>TRUE</code> to place it on the bottom of the plot. Default value is
-<code><a href='Smoking.html'>c(1,1)</a></code>, that is the topright corner inside the plot area.</p></td>
+<code>bottom|top|left|right</code> for ggplot2. It can be a two-elements vector,
+which specifies the relative position on the x and y axis respectively, or
+alternatively it can be in form of a logical variable, with <code>FALSE</code>
+indicating to use the default position and <code>TRUE</code> to place it on the
+bottom of the plot.</p></td>
     </tr>
     <tr>
       <th>start.from.origins</th>
@@ -232,10 +236,14 @@ comparator?</p></td>
 printed along with the graph?  See Details for additional information.</p></td>
     </tr>
     <tr>
-      <th>graph_type</th>
+      <th>graph</th>
       <td><p>A string used to select the graphical engine to use for
 plotting. Should (partial-)match the two options <code>"base"</code> or
 <code>"ggplot2"</code>. Default value is <code>"base"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>print.plot</th>
+      <td><p>Logical. Should the efficiency frontier be plotted?</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -298,7 +306,7 @@ to Cost, Version 1.0. IQWIG, November 2009.</p>
 <span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>c</span>, ref <span class='op'>=</span> <span class='fl'>4</span>, Kmax <span class='op'>=</span> <span class='fl'>500</span>, interventions <span class='op'>=</span> <span class='va'>treats</span><span class='op'>)</span>
 
 <span class='co'>## produce plot</span>
-<span class='fu'>ceef.plot</span><span class='op'>(</span><span class='va'>m</span>, graph_type <span class='op'>=</span> <span class='st'>"base"</span><span class='op'>)</span>
+<span class='fu'>ceef.plot</span><span class='op'>(</span><span class='va'>m</span>, graph <span class='op'>=</span> <span class='st'>"base"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; 
 #&gt; Cost-effectiveness efficiency frontier summary 
 #&gt; 
@@ -319,16 +327,16 @@ to Cost, Version 1.0. IQWIG, November 2009.</p>
           dominance <span class='op'>=</span> <span class='cn'>FALSE</span>,
           start.from.origins <span class='op'>=</span> <span class='cn'>FALSE</span>,
           print.summary <span class='op'>=</span> <span class='cn'>FALSE</span>,
-          graph_type <span class='op'>=</span> <span class='st'>"base"</span><span class='op'>)</span>
+          graph <span class='op'>=</span> <span class='st'>"base"</span><span class='op'>)</span>
 </div><div class='img'><img src='ceef.plot-2.png' alt='' width='700' height='433' /></div><div class='input'>          
 <span class='co'>## or use ggplot2 instead</span>
-<span class='kw'>if</span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+<span class='kw'>if</span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
 <span class='fu'>ceef.plot</span><span class='op'>(</span><span class='va'>m</span>,
           dominance <span class='op'>=</span> <span class='cn'>TRUE</span>,
           start.from.origins <span class='op'>=</span> <span class='cn'>FALSE</span>,
           pos <span class='op'>=</span> <span class='cn'>TRUE</span>,
           print.summary <span class='op'>=</span> <span class='cn'>FALSE</span>,
-          graph_type <span class='op'>=</span> <span class='st'>"ggplot2"</span><span class='op'>)</span>
+          graph <span class='op'>=</span> <span class='st'>"ggplot2"</span><span class='op'>)</span>
  <span class='op'>}</span>
 </div><div class='output co'>#&gt; <span class='message'>Loading required package: ggplot2</span></div><div class='img'><img src='ceef.plot-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 
