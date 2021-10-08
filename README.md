@@ -47,7 +47,7 @@ Under Linux or MacOS, it is sufficient to install the package via `remotes`:
 
 ```r
 install.packages("remotes")
-remotes:install_github("giabaio/BCEA", ref="dev")
+remotes::install_github("giabaio/BCEA", ref="dev")
 ```
 
 ![](https://github.com/n8thangreen/BCEA/blob/dev/inst/BCEA-cheatsheet.pdf?raw=true)
