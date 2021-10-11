@@ -1,5 +1,9 @@
 news:
   cran_dates: false
+  
+template:
+  bootstrap: 4
+  bootswatch: flatly
 
 reference:
 - title: Main

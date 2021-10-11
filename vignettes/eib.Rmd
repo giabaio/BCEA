@@ -105,11 +105,11 @@ eib.plot(he, plot.cri = TRUE)
 ## Multiple interventions
 
 This situation is when there are more than two interventions to consider.
-Incremental values can be obtained either always against a fixed reference intervention, such as status-quo, or for all pair-wise comparisons.
+Incremental values can be obtained either always against a fixed reference intervention, such as status quo, or for all comparisons simultaneously.
 
-### Pair-wise comparisons
+The curves are for pair-wise comparisons against a status-quo and the vertical lines and k* annotation is for simultaneous comparisons.
 
-Without loss of generality, if we assume status-quo intervention $i=0$, then we wish to calculate
+Without loss of generality, if we assume status quo intervention $i=0$, then we wish to calculate
 
 $$
 \frac{1}{S} \sum_s^S IB(\theta^{i0}_s) \;\; \mbox{for each} \; i
@@ -193,24 +193,6 @@ eib.plot(he,
 eib.plot(he,
          graph = "ggplot2",
          line = list(colors = mypalette))
-```
-
-#### Against a fixed reference intervention
-
-We wish to calculate the same curves as in the multiple comparison case.
-However, now each interventions is compared against a reference e.g. the status-quo.
-So the break-even points represent the willingness to pay where there is no preference between the reference and each of the other interventions.
-
-$$
-k^*_i = \min\{ k : \mbox{EIB}(\theta^{i0}) > 0 \}
-$$
-
-This means that the vertical lines occur where the EIB curves cross the x-axis.
-
-
-#### R code
-
-```{r}
 ```
 
 ```{r echo=FALSE}

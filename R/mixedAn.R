@@ -1,8 +1,8 @@
 
-#' @title: Cost-Effectiveness Analysis When Multiple (Possibly Non-Cost-Effective)
+#' @title Cost-Effectiveness Analysis When Multiple (Possibly Non-Cost-Effective)
 #' Interventions are Present on the Market
 #' 
-#' Runs the cost-effectiveness analysis, but accounts for the fact that more
+#' @description Runs the cost-effectiveness analysis, but accounts for the fact that more
 #' than one intervention is present on the market.
 #' 
 #' @aliases mixedAn mixedAn.default

@@ -12,7 +12,6 @@
 #' @param ...  Arguments to be passed to methods, such as graphical parameters
 #' (see \code{\link{par}}).
 #' @return Plot with base R or ggplot2.
-#' @import grid ggplot2
 #' 
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}}, \code{\link{evppi}}
@@ -24,9 +23,9 @@
 #' @export
 #' @examples
 #' 
-#' data(Vaccine)
+#' data(Vaccine, package = "BCEA")
 #' treats <- c("Status quo", "Vaccination")
-#'  
+#'
 #' # Run the health economic evaluation using BCEA
 #' m <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
 #'
@@ -59,7 +58,7 @@
 plot.evppi <- function (x,
                         pos = c(0, 0.8),
                         graph = c("base", "ggplot2"),
-                        col = c(1,1),
+                        col = c(1, 1),
                         ...) {
   
   graph <- match.arg(graph)
@@ -77,14 +76,13 @@ plot.evppi <- function (x,
                       pos_legend = pos,
                       col = col,
                       ...)
-  }
+  
+  } else if (is_plotly(graph)) {
   
   ##TODO
-  # } else if (is_plotly(graph)) {
-  #   
-  #   evppi_plot_plotly(x,
-  #                     pos_legend = pos,
-  #                     graph_params)
-  # }
+  #  evppi_plot_plotly(x,
+  #                    pos_legend = pos,
+  #                    graph_params)
+  }
 }
 

@@ -23,16 +23,16 @@ library(ggplot2)
 library(purrr)
 ```
 
-##TODO: why are the k* different for each eplot?
+__TODO: why are the k* different for each eib plot?__
 
 ## Introduction
 
-The intention of this vignette is to show how to .
+The intention of this vignette is to show how to plot the CEAC and EIB plots depending on whether we consider all interventions simultaneously or pair-wise against a reference.
 
 ## Multiple interventions
 
 This situation is when there are more than two interventions to consider.
-Incremental values can be obtained either always against a fixed reference intervention, such as status-quo, or for all pair-wise comparisons.
+Incremental values can be obtained either always against a fixed reference intervention, such as status-quo, or for all comparisons simultaneously.
 We will call these a paired comparison or a multiple comparison.
 
 ### Against a fixed reference intervention
@@ -59,7 +59,7 @@ eib.plot(he, plot.cri = FALSE)
 
 #### R code
 
-In BCEA we first we must determine all combinations of paired interventions using the `multi.ce()` function.
+In _BCEA_ we first we must determine all combinations of paired interventions using the `multi.ce()` function.
 
 ```{r}
 he.multi <- multi.ce(he)

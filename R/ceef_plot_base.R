@@ -77,6 +77,7 @@ ceef_plot_base <- function(he,
   
   abline(h = 0, v = 0, col = "grey")
   
+  ##TODO:
   # plot the scatter
   # matplot()?
   # will need to add sim number column to cast
@@ -96,6 +97,7 @@ ceef_plot_base <- function(he,
            col = colour[i])
   }
   
+  ##TODO: why are these two separate arrays?
   # add frontier
   points(ceef.points[, c("x", "y")], type = "l", lwd = 2)
   

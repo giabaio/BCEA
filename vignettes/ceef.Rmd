@@ -25,6 +25,18 @@ library(purrr)
 
 ## Introduction
 
+The line connecting successive points on a cost-effectiveness plane which each
+represent the effect and cost associated with different treatment alternatives.
+The gradient of a line segment represents the ICER of the treatment comparison
+between the two alternatives represented by that segment.
+The cost-effectiveness frontier consists of the set of points corresponding to
+treatment alternatives that are considered to be cost-effective at different values
+of the cost-effectiveness threshold. The steeper the gradient between successive
+points on the frontier, the higher is the ICER between these treatment alternatives
+and the more expensive alternative would be considered cost-effective only when a
+high value of the cost-effectiveness threshold is assumed.
+Points not lying on the cost-effectiveness frontier represent treatment alternatives
+that are not considered cost-effective at any value of the cost-effectiveness threshold.
 
 ## R code
 
@@ -117,9 +129,78 @@ ceef.plot(bcea_smoke, graph = "ggplot", pos = "left")
 ceef.plot(bcea_smoke, graph = "ggplot", pos = "right")
 ```
 
+### Flipping plot
+
+```{r}
+ceef.plot(bcea_smoke,
+          flip = TRUE,
+          dominance = FALSE,
+          start.from.origins = FALSE,
+          print.summary = FALSE,
+          graph = "base")
+
+ceef.plot(bcea_smoke,
+          dominance = TRUE,
+          start.from.origins = FALSE,
+          pos = TRUE,
+          print.summary = FALSE,
+          graph = "ggplot2")
+```
+
+
+### Start from origin or smallest (e,c).
+
+```{r}
+ceef.plot(bcea_smoke,
+          flip = TRUE,
+          dominance = TRUE,
+          start.from.origins = TRUE,
+          print.summary = FALSE,
+          graph = "base")
+
+ceef.plot(bcea_smoke,
+          dominance = TRUE,
+          start.from.origins = TRUE,
+          pos = TRUE,
+          print.summary = FALSE,
+          graph = "ggplot2")
+```
+
+### Negative cost or effectiveness
+
+```{r}
+data("Smoking")
+
+c[, 4] <- -c[, 4]
+bcea_smoke <- bcea(e, c, ref = 3, interventions = treats, Kmax = 500)
+
+# all interventions
+ceef.plot(bcea_smoke, graph = "ggplot")
+ceef.plot(bcea_smoke, graph = "base")
+
+ceef.plot(bcea_smoke, start.from.origins = TRUE, graph = "ggplot")
+ceef.plot(bcea_smoke, start.from.origins = TRUE, graph = "base")
+
+setComparisons(bcea_smoke) <- c(1,2)
+ceef.plot(bcea_smoke, graph = "ggplot")
+ceef.plot(bcea_smoke, graph = "base")
+
+e[, 3] <- -e[, 3]
+bcea_smoke <- bcea(e, c, ref = 3, interventions = treats, Kmax = 500)
+ceef.plot(bcea_smoke, graph = "ggplot")
+ceef.plot(bcea_smoke, graph = "base")
+
+
+data("Smoking")
+e[, 3] <- -e[, 3]
+bcea_smoke <- bcea(e, c, ref = 3, interventions = treats, Kmax = 500)
+ceef.plot(bcea_smoke, graph = "ggplot")
+ceef.plot(bcea_smoke, graph = "base")
+```
+
 
 ```{r eval=FALSE, echo=FALSE}
 # create output docs
-rmarkdown::render(input = "vignettes/ceac.Rmd", output_format = "pdf_document", output_dir = "vignettes")
-rmarkdown::render(input = "vignettes/ceac.Rmd", output_format = "html_document", output_dir = "vignettes")
+rmarkdown::render(input = "vignettes/ceef.Rmd", output_format = "pdf_document", output_dir = "vignettes")
+rmarkdown::render(input = "vignettes/ceef.Rmd", output_format = "html_document", output_dir = "vignettes")
 ```

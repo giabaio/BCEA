@@ -59,8 +59,8 @@ prep_frontier_data <- function(he,
   # frontier calculation
   data.avg <-
     data.frame(
-      "e.avg" = means_e - ifelse(start.origin, 0, ec_min["mean_e"]),
-      "c.avg" = means_c - ifelse(start.origin, 0, ec_min["mean_c"]))
+      "e.avg" = means_e - ifelse(start.origin, ec_min["mean_e"], 0),
+      "c.avg" = means_c - ifelse(start.origin, ec_min["mean_c"], 0))
   
   orig.avg <- cbind(data.avg,
                     as.factor(c(he$comp, he$ref)))
@@ -120,7 +120,7 @@ prep_frontier_data <- function(he,
   # }
   
   #### OLD CODE
-  repeat{
+  repeat {
     if (prod(dim(data.avg)) == 0) break
     
     theta <- atan(data.avg$c.avg/data.avg$e.avg)
@@ -147,7 +147,7 @@ prep_frontier_data <- function(he,
     data.avg <- dplyr::filter(pos_prod, .data$c.avg + .data$e.avg > 0)
   }
   
-  ####
+  ##############
   
   ceef.points$comp <- factor(ceef.points$comp)
   ceef.points$slope <- NA
@@ -155,7 +155,7 @@ prep_frontier_data <- function(he,
   ## calculate slopes
   for (i in 2:dim(ceef.points)[1]) {
     ceef.points$slope[i] <-
-      (ceef.points$y[i] - ceef.points$y[i-1])/(ceef.points$x[i] - ceef.points$x[i-1])
+      (ceef.points$y[i] - ceef.points$y[i - 1])/(ceef.points$x[i] - ceef.points$x[i - 1])
   }
   
   ## workaround for start.origin == FALSE: remove first row if slope is negative
@@ -167,16 +167,16 @@ prep_frontier_data <- function(he,
   
   # points
   scatter.data <- data.frame(
-    e = c(he$e), #-ifelse(!e.neg, 0, ec_min[1]),
-    c = c(he$c), #-ifelse(!e.neg, 0, ec_min[2]),
+    e = c(he$e) - ifelse(!start.origin, 0, ec_min["mean_e"]),
+    c = c(he$c) - ifelse(!start.origin, 0, ec_min["mean_c"]),
     comp = as.factor(rep(c(he$comp, he$ref), each = he$n_sim)))
   
   ## re-adjustment of data sets
-  ceef.points[, 1] <- ceef.points[, 1] + ifelse(!e.neg, 0, ec_min[1])
-  ceef.points[, 2] <- ceef.points[, 2] + ifelse(!e.neg, 0, ec_min[2])
+  ceef.points[, "x"] <- ceef.points[, "x"] #+ ifelse(!e.neg, 0, ec_min["mean_e"])
+  ceef.points[, "y"] <- ceef.points[, "y"] #+ ifelse(!e.neg, 0, ec_min["mean_c"])
   
-  orig.avg[, 1] <- orig.avg[, 1] + ifelse(!e.neg, 0, ec_min[1])
-  orig.avg[, 2] <- orig.avg[, 2] + ifelse(!e.neg, 0, ec_min[2])
+  orig.avg[, "e.orig"] <- orig.avg[, "e.orig"] #+ ifelse(!e.neg, 0, ec_min["mean_e"])
+  orig.avg[, "c.orig"] <- orig.avg[, "c.orig"] #+ ifelse(!e.neg, 0, ec_min["mean_c"])
   
   list(scatter.data = scatter.data,
        ceef.points = ceef.points,

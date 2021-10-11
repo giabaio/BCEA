@@ -57,7 +57,7 @@
 #' @examples
 #' 
 #' ## create the bcea object m for the smoking cessation example
-#' data(Smoking)
+#' data(Smoking, package = "BCEA")
 #' m <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
 #' 
 #' ## produce plot
@@ -129,7 +129,6 @@ ceef.plot.bcea <- function(he,
       prep_frontier_data(he,
                          threshold,
                          start.from.origins)
-   
    frontier_params <-
       list(colour =
               colours()[
@@ -159,12 +158,29 @@ ceef.plot.bcea <- function(he,
                           ...)
       }
    } else if (is_plotly(graph)) {
-      ##TODO: plotly version
+      ##TODO:
+      # ceef_plot_plotly(he,
+      #                  frontier_data,
+      #                  frontier_params,
+      #                  ...)
    }
 }
 
 
 #' Cost-Effectiveness Efficiency Frontier (CEAF) Plot
+#' 
+#' The line connecting successive points on a cost-effectiveness plane which each
+#' represent the effect and cost associated with different treatment alternatives.
+#' The gradient of a line segment represents the ICER of the treatment comparison
+#' between the two alternatives represented by that segment.
+#' The cost-effectiveness frontier consists of the set of points corresponding to
+#' treatment alternatives that are considered to be cost-effective at different values
+#' of the cost-effectiveness threshold. The steeper the gradient between successive
+#' points on the frontier, the higher is the ICER between these treatment alternatives
+#' and the more expensive alternative would be considered cost-effective only when a
+#' high value of the cost-effectiveness threshold is assumed.
+#' Points not lying on the cost-effectiveness frontier represent treatment alternatives
+#' that are not considered cost-effective at any value of the cost-effectiveness threshold.
 #' 
 #' Back compatibility with BCEA previous versions:
 #' The \code{bcea} objects did not include the generating \code{e} and \code{c}

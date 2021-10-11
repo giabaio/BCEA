@@ -12,6 +12,8 @@
 eib_plot_plotly <- function(he,
                             graph_params, ...) {
   
+  cri_params <- eib_params_cri(he, graph_params)
+  
   alt.legend <- graph_params$alt.legend
   plot_aes <- graph_params$plot_aes
   plot_annotations <- graph_params$plot_annotations
@@ -21,6 +23,12 @@ eib_plot_plotly <- function(he,
   alpha <- graph_params$alpha_cri
   cri <- graph_params$cri
   size <- graph_params$size
+  main <- graph_params$main
+  xlab <- graph_params$xlab
+  ylab <- graph_params$ylab
+  low <- cri_params$data$low
+  upp <- cri_params$data$upp
+  
   
   if (!is.null(size) && !is.na(size)) {
     message("Option size will be ignored using plotly.")
@@ -57,7 +65,7 @@ eib_plot_plotly <- function(he,
         ...))
   }
   
-  n_comp <- length(comparisons.label)
+  n_comp <- length(comparison)
   
   if (is.null(plot_aes$line$types))
     plot_aes$line$types <- rep(c(1:6), ceiling(he$n_comparisons/6))[1:he$n_comparisons]
@@ -95,6 +103,7 @@ eib_plot_plotly <- function(he,
   
   if (plot.cri)
     data.psa <- cbind(data.psa, cri)
+  
   eib <- plotly::plot_ly(data.psa, x = ~k)
   eib <-
     plotly::add_trace(
@@ -110,7 +119,9 @@ eib_plot_plotly <- function(he,
       linetype = ~comparison,
       linetypes = plot_aes$line$types,
       legendgroup = ~comparison)
-  # NB: decision change points not included - hover functionality is sufficient
+  
+  # decision change points not included
+  # hover functionality is sufficient
   if (plot.cri) {
     if (he$n_comparisons == 1) {
       eib <- plotly::add_ribbons(
@@ -136,7 +147,8 @@ eib_plot_plotly <- function(he,
     }
   }
   
-  # legend positioning not great - must be customized case by case
+  # legend positioning not great
+  # must be customized case by case
   legend_list <- list(orientation = "h", xanchor = "center", x = 0.5)
   
   if (is.character(alt.legend))
@@ -147,28 +159,22 @@ eib_plot_plotly <- function(he,
       "bottom" = list(orienation = "h", x = 0.5, y = 0, xanchor = "center"),
       "top" = list(orientation = "h", x = 0.5, y = 100, xanchor = "center"))
   
+  xaxis <- 
+    list(
+      hoverformat = ".2f",
+      title = xlab)
+  
+  yaxis <- 
+    list(
+      hoverformat = ".2f",
+      title = ylab)
+  
   eib <-
     plotly::layout(
       eib,
-      title = switch(
-        as.numeric(plot_annotations$exist$title) + 1, 
-        paste0("Expected Incremental Benefit", ifelse(
-          plot.cri,
-          paste0("\nand ", format((1 - alpha)*100, digits = 4), "% credible intervals"),
-          "")),
-        plot_annotations$title),
-      xaxis = list(
-        hoverformat = ".2f",
-        title = switch(
-          as.numeric(plot_annotations$exist$xlab) + 1,
-          "Willingness to pay",
-          plot_annotations$xlab)),
-      yaxis = list(
-        hoverformat = ".2f",
-        title = switch(
-          as.numeric(plot_annotations$exist$xlab) + 1,
-          "EIB",
-          plot_annotations$ylab)),
+      title = main,
+      xaxis = xaxis,
+      yaxis = yaxis,
       showlegend = TRUE, 
       legend = legend_list)
   
