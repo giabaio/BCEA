@@ -34,22 +34,23 @@ This is the **development** version of BCEA (currently 2.4). It contains a major
 The development version can be installed using this GitHub repository. On Windows machines, you need to install a few dependencies, including [Rtools](https://cran.r-project.org/bin/windows/Rtools/) first, e.g. by running
 
 ```r
-pkgs <- c("MASS", "Rtools", "devtools")
+pkgs <- c("MASS", "Rtools", "remotes")
 repos <- c("https://cran.rstudio.com", "https://inla.r-inla-download.org/R/stable") 
-install.packages(pkgs,repos=repos, dependencies = "Depends")
+install.packages(pkgs, repos=repos, dependencies = "Depends")
 ```
-before installing the package using `devtools`:
+before installing the package using `remotes`:
 
 ```r
-devtools::install_github("giabaio/BCEA", ref="dev")
+remotes::install_github("giabaio/BCEA", ref="dev")
 ```
-Under Linux or MacOS, it is sufficient to install the package via `devtools`:
+Under Linux or MacOS, it is sufficient to install the package via `remotes`:
 
 ```r
-install.packages("devtools")
-devtools:install_github("giabaio/BCEA", ref="dev")
+install.packages("remotes")
+remotes::install_github("giabaio/BCEA", ref="dev")
 ```
-![](https://github.com/n8thangreen/BCEA/blob/dev/BCEA-cheatsheet.pdf?raw=true)
+
+![](https://github.com/n8thangreen/BCEA/blob/dev/inst/BCEA-cheatsheet.pdf?raw=true)
 ![](BCEA-cheatsheet.pdf)
 
 ## Further details
