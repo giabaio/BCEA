@@ -1,5 +1,7 @@
 
-#' Select Best Option For Each Value Of Willingness To Pay
+#' Optimal intervention
+#' 
+#' Select the best option for each value of willingness to pay.
 #'
 #' @param eib Expected incremental benefit 
 #' @param ref Reference group number
@@ -38,3 +40,4 @@ best_interv_given_k <- function(eib,
   
   best
 }
+

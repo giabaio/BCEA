@@ -5,9 +5,7 @@
 \alias{setComparisons<-}
 \alias{setComparisons<-.bcea}
 \alias{setComparisons<-.default}
-\title{Set Comparison Group
-
-One of the alternative way to set (e,c) comparison group.}
+\title{Set Comparison Group}
 \usage{
 setComparisons(he) <- value
 
@@ -25,8 +23,6 @@ modelling and the economic evaluation.}
 bcea-type object
 }
 \description{
-Set Comparison Group
-
 One of the alternative way to set (e,c) comparison group.
 }
 \seealso{

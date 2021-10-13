@@ -6,75 +6,74 @@ template:
   bootswatch: flatly
 
 reference:
-- title: Main
-- contents:
-  - '`BCEA-package`'
-  - '`bcea`'
-  - '`bcea.default`'
-  - '`BCEAweb`'
-  - '`multi.ce`'
-  - '`new_bcea`'
-  - '`setReferenceGroup<-`'
-  - '`setKmax<-`'
-- title: Plotting
-- contents:
-  - '`ceac.plot.bcea`'
-  - '`ceac_plot_graph`'
-  - '`ceaf.plot`'
-  - '`ceef.plot.bcea`'
-  - '`ceplane.plot.bcea`'
-  - '`ceplane_plot_graph`'
-  - '`contour.bcea`'
-  - '`contour2.bcea`'
-  - '`eib.plot.bcea`'
-  - '`evi.plot.bcea`'
-  - '`ib.plot.bcea`'
-  - '`info.rank.bcea`'
-  - '`plot.bcea`'
-  - '`plot.CEriskav`'
-  - '`plot.evppi`'
-  - '`plot.mixedAn`'
-- title: Statistics
-- contents:
-  - '`best_interv_given_k`'
-  - '`compute_CEAC`'
-  - '`compute_EIB`'
-  - '`compute_IB`'
-  - '`compute_kstar`'
-  - '`compute_ol`'
-  - '`compute_U`'
-  - '`compute_Ustar`'
-  - '`compute_vi`'
-- title: Outputs
-- contents:
-  - '`make.report`'
-  - '`sim_table.bcea`'
-  - '`summary.bcea`'
-  - '`summary.mixedAn`'
-- title: Miscellaneous
-- contents:
-  - '`CEriskav`'
-  - '`create_inputs_evpi`'
-  - '`diag.evppi`'
-  - '`evppi`'
-  - '`mixedAn`'
-  - '`select_plot_type`'
-  - '`struct.psa`'
-- title: Data
-- contents:
-  - '`Smoking`'
-  - '`Vaccine`'
+- title: "Main"
+  contents:
+  - BCEA-package
+  - bcea
+  - new_bcea
+- title: "Setters"
+  desc: "Functions for modifying a `bcea()` analysis."
+  contents:
+  - setComparisons_assign
+  - setKmax_assign
+  - setReferenceGroup_assign
+  - mixedAn<-
+  - CEriskav
+  - multi.ce
+- title: "Plotting"
+  desc: "Functions for plotting a wide variety of cost-effectiveness plots in base R, ggplot2 and plotly."
+  contents:
+  - ceac.plot
+  - ceac_plot_graph
+  - ceaf.plot
+  - ceef.plot
+  - ceef_plot_graph
+  - ceplane.plot
+  - ceplane_plot_graph
+  - contour
+  - contour_graph
+  - contour2
+  - eib.plot
+  - eib_plot_graph
+  - evppi_plot_graph
+  - evi.plot
+  - evi_plot_graph
+  - ib.plot
+  - info.rank
+  - info_rank_graph
+  - starts_with("plot.")
+- title: "Statistics"
+  desc: "Lower level functions for computing a range of cost-effectiveness statistics."
+  contents:
+  - best_interv_given_k
+  - starts_with("compute_")
+- title: "Outputs"
+  desc: "Functions for reporting the results of the cost-effectiveness analysis."
+  contents:
+  - make.report
+  - sim_table
+  - starts_with("summary")
+- title: "Miscellaneous"
+  desc: "Helper functions and other intermediate computations."
+  contents:
+  - evppi
+  - select_plot_type
+  - struct.psa
+- title: "Data"
+  contents:
+  - Smoking
+  - Vaccine
 
 
 articles:
 - title: Basics
   navbar: ~
   contents:
+  - bcea
   - ceac
 - title: Advanced
   contents:
   - Set_bcea_parameters
-  - bcea
   - ceef
   - ceplane
   - CEriskav
@@ -82,6 +81,4 @@ articles:
   - evi
   - info-rank
   - paired_vs_multiple_comps
-  - plot_bcea
-  - R_journal_examples
   

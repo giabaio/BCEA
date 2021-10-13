@@ -128,6 +128,8 @@ IB(\theta) = k \Delta_e - \Delta_c
 <p>To calculate these in BCEA we use the <code><a href="../reference/bcea.html">bcea()</a></code> function.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/Smoking.html">data</a></span><span class="op">(</span><span class="va">Vaccine</span><span class="op">)</span>
+<span class="co">#&gt; Warning: namespace 'rjags' is not available and has been replaced</span>
+<span class="co">#&gt; by .GlobalEnv when processing object 'vaccine'</span>
 
 <span class="va">he</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span>,                  
@@ -170,11 +172,9 @@ k^* = \min\{ k : \mbox{EIB} &gt; 0 \}
 <div id="multiple-interventions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#multiple-interventions" class="anchor"></a>Multiple interventions</h2>
-<p>This situation is when there are more than two interventions to consider. Incremental values can be obtained either always against a fixed reference intervention, such as status-quo, or for all pair-wise comparisons.</p>
-<div id="pair-wise-comparisons" class="section level3">
-<h3 class="hasAnchor">
-<a href="#pair-wise-comparisons" class="anchor"></a>Pair-wise comparisons</h3>
-<p>Without loss of generality, if we assume status-quo intervention <span class="math inline">\(i=0\)</span>, then we wish to calculate</p>
+<p>This situation is when there are more than two interventions to consider. Incremental values can be obtained either always against a fixed reference intervention, such as status quo, or for all comparisons simultaneously.</p>
+<p>The curves are for pair-wise comparisons against a status-quo and the vertical lines and k* annotation is for simultaneous comparisons.</p>
+<p>Without loss of generality, if we assume status quo intervention <span class="math inline">\(i=0\)</span>, then we wish to calculate</p>
 <p><span class="math display">\[
 \frac{1}{S} \sum_s^S IB(\theta^{i0}_s) \;\; \mbox{for each} \; i
 \]</span></p>
@@ -189,6 +189,8 @@ k^*_i = \min\{ k : \mbox{EIB}(\theta^i) &gt; \mbox{EIB}(\theta^j) \}
 <p>This is the default plot for <code><a href="../reference/eib.plot.html">eib.plot()</a></code> so we simply follow the same steps as above with the new data set.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/Smoking.html">data</a></span><span class="op">(</span><span class="va">Smoking</span><span class="op">)</span>
+<span class="co">#&gt; Warning: namespace 'rjags' is not available and has been replaced</span>
+<span class="co">#&gt; by .GlobalEnv when processing object 'smoking_output'</span>
 
 <span class="va">treats</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="st">"No intervention"</span>, <span class="st">"Self-help"</span>,
             <span class="st">"Individual counselling"</span>, <span class="st">"Group counselling"</span><span class="op">)</span>
@@ -260,20 +262,6 @@ k^*_i = \min\{ k : \mbox{EIB}(\theta^i) &gt; \mbox{EIB}(\theta^j) \}
          graph <span class="op">=</span> <span class="st">"ggplot2"</span>,
          line <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>colors <span class="op">=</span> <span class="va">mypalette</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="eib_files/figure-html/unnamed-chunk-13-2.png" width="576"></p>
-</div>
-</div>
-<div id="against-a-fixed-reference-intervention" class="section level4">
-<h4 class="hasAnchor">
-<a href="#against-a-fixed-reference-intervention" class="anchor"></a>Against a fixed reference intervention</h4>
-<p>We wish to calculate the same curves as in the multiple comparison case. However, now each interventions is compared against a reference e.g. the status-quo. So the break-even points represent the willingness to pay where there is no preference between the reference and each of the other interventions.</p>
-<p><span class="math display">\[
-k^*_i = \min\{ k : \mbox{EIB}(\theta^{i0}) &gt; 0 \}
-\]</span></p>
-<p>This means that the vertical lines occur where the EIB curves cross the x-axis.</p>
-</div>
-<div id="r-code-2" class="section level4">
-<h4 class="hasAnchor">
-<a href="#r-code-2" class="anchor"></a>R code</h4>
 </div>
 </div>
 </div>

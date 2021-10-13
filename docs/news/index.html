@@ -104,6 +104,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/bcea.html">Get started</a>
+    </li>
+    <li>
       <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
     </li>
     <li class="divider"></li>
@@ -149,17 +152,19 @@
 <li>
 <code><a href="../reference/bcea.html">bcea()</a></code> is now a helper function which calls the constructor <code><a href="../reference/new_bcea.html">new_bcea()</a></code>, separating concerns.</li>
 <li>
-<code><a href="../reference/new_bcea.html">new_bcea()</a></code> composed of smaller HEE statistics functions e.g. <code><a href="../reference/compute_CEAC.html">compute_CEAC()</a></code>, <code><a href="../reference/compute_EIB.html">compute_EIB()</a></code>,…. This allows us to call and test them individually. It also allows more flexibility in changing or adding functionality to <code><a href="../reference/new_bcea.html">new_bcea()</a></code>.</li>
-<li>Main plotting functions <code>ceac_plot()</code> and <code>ceplane_plot()</code> have been rewritten. These functions now simply dispatch to the base R, ggplot2 or plotly versions. Internally, these functions, e.g.<code><a href="../reference/ceplane_plot_base.bcea.html">ceplane_plot_ggplot()</a></code>, are also split into parameter setting and plotting components. This modulisation allows us to add new layers to plots or modify existing parameter sets and defaults. It also means we can reuse some functionality across plots such as axes and legend setting.</li>
+<code><a href="../reference/new_bcea.html">new_bcea()</a></code> composed of smaller HEE statistics functions with names starting with <code>compute_</code> e.g. <code><a href="../reference/compute_CEAC.html">compute_CEAC()</a></code>, <code><a href="../reference/compute_EIB.html">compute_EIB()</a></code>,…. This allows us to call and test them individually. It also allows more flexibility in changing or adding functionality to <code><a href="../reference/new_bcea.html">new_bcea()</a></code>.</li>
+<li>Plotting functions have been rewritten. These functions now simply dispatch to the base R, ggplot2 or plotly versions (think strategy pattern). Internally, these functions, e.g.<code><a href="../reference/ceplane_plot_graph.html">ceplane_plot_ggplot()</a></code>, are also split into parameter and data setting and plotting components. This modulisation allows us to add new layers to plots or modify existing parameter sets and defaults. We could also return the data without the plotting step as in e.g. <code><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">ggplot2::autoplot()</a></code>. It also means we can reuse some functionality across plots such as axes and legend setting e.g. <code>BCEA:::where_legend()</code>.</li>
 <li>Plots and tables using S3 methods for <code>bcea</code> type object.</li>
-<li>New vignettes about CEAC plotting and comparison intervention setting.</li>
-<li>Tables updated. Duplication in <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> and <code>sim.table.bcea()</code> removed.</li>
+<li>New vignettes about plotting and comparison intervention setting.</li>
+<li>Tables updated. Duplication in <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> and <code><a href="../reference/sim_table.html">sim_table()</a></code> removed.</li>
 <li>
-<code>CreateInputs()</code> used for EVPI calculation now dispatches S3 methods by JAGS, BUGS, Stan and other R data types.</li>
+<code><a href="../reference/createInputs.default.html">createInputs()</a></code> used for EVPI calculation now dispatches S3 methods by JAGS, BUGS, Stan and other R data types.</li>
 </ul>
 </li>
-<li>Extend ways to set comparison interventions. Subsets of comparison can still be set in a call to a plotting function as before. Now subsets can be set in both the original <code><a href="../reference/bcea.html">bcea()</a></code> construction or separately using a setter functions <code>setComparison()</code>.</li>
+<li>Extend ways to set comparison interventions. Subsets of comparison can still be set in a call to a plotting function as before. Now subsets can be set in both the original <code><a href="../reference/bcea.html">bcea()</a></code> construction or separately using a setter functions <code><a href="../reference/setComparisons.html">setComparisons()</a></code>.</li>
 <li>Similarly, maximum willingness to pay and the reference group can be set with <code>setKmax()</code> and <code>setReferenceGroup()</code>, respectively.</li>
+<li>
+<code><a href="../reference/multi.ce.html">multi.ce()</a></code> and <code>CEriskAv()</code> also now work similarly. They operate by modifying the <code>bcea</code> object, rather than creating new one (think decorator pattern).</li>
 <li>
 <code>ceac_plot()</code> changes
 <ul>
@@ -167,13 +172,14 @@
 <li>For a multiple comparison the plot for pairwise comparison over all interventions is returned by default. The alternative version of each comparison against the reference group is still available.</li>
 </ul>
 </li>
-<li>Additional documentation and examples.</li>
+<li>Additional help documentation and examples.</li>
 <li>
 <code><a href="../reference/make.report.html">make.report()</a></code> rewritten to have separate section files.</li>
 <li>Testing suite started. This is not comprehensive as of yet.</li>
 <li>Added a <code>NEWS.md</code> file to track changes to the package. Details about previous releases, such as dates, versions, fixes and enhancements obtained from CRAN and code comments so a little patchy.</li>
 <li>
 <code>pkgdown</code> GitHub site made.</li>
+<li>Cheatsheet written and published on RStudio site.</li>
 </ul>
 </div>
     <div id="bcea-23-11" class="section level1">

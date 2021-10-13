@@ -1,6 +1,7 @@
 
-#' Plot credible intervals
+#' Plot Credible Intervals
 #' 
+#' Bayesian posterior credible intervals against willingness to pay.
 #' @template args-he
 #' @param params Graph parameters
 #' @importFrom graphics matlines

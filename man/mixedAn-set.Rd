@@ -4,11 +4,8 @@
 \alias{mixedAn<-}
 \alias{mixedAn}
 \alias{mixedAn.default}
-\title{: Cost-Effectiveness Analysis When Multiple (Possibly Non-Cost-Effective)
-Interventions are Present on the Market
-
-Runs the cost-effectiveness analysis, but accounts for the fact that more
-than one intervention is present on the market.}
+\title{Cost-Effectiveness Analysis When Multiple (Possibly Non-Cost-Effective)
+Interventions are Present on the Market}
 \usage{
 mixedAn(he) <- value
 }
@@ -36,9 +33,6 @@ Creates an object in the class \code{mixedAn}, a subclass of \code{bcea}
   intervention}
 }
 \description{
-: Cost-Effectiveness Analysis When Multiple (Possibly Non-Cost-Effective)
-Interventions are Present on the Market
-
 Runs the cost-effectiveness analysis, but accounts for the fact that more
 than one intervention is present on the market.
 }

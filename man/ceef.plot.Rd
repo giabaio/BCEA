@@ -88,14 +88,27 @@ Interventions in the areas between the dominance region and the frontier are
 in a situation of extended dominance.
 }
 \description{
+The line connecting successive points on a cost-effectiveness plane which each
+represent the effect and cost associated with different treatment alternatives.
+The gradient of a line segment represents the ICER of the treatment comparison
+between the two alternatives represented by that segment.
+The cost-effectiveness frontier consists of the set of points corresponding to
+treatment alternatives that are considered to be cost-effective at different values
+of the cost-effectiveness threshold. The steeper the gradient between successive
+points on the frontier, the higher is the ICER between these treatment alternatives
+and the more expensive alternative would be considered cost-effective only when a
+high value of the cost-effectiveness threshold is assumed.
+Points not lying on the cost-effectiveness frontier represent treatment alternatives
+that are not considered cost-effective at any value of the cost-effectiveness threshold.
+}
+\details{
 Back compatibility with BCEA previous versions:
 The \code{bcea} objects did not include the generating \code{e} and \code{c}
 matrices in BCEA versions <2.1-0. This function is not compatible with
 objects created with previous versions. The matrices can be appended to
 \code{bcea} objects obtained using previous versions, making sure that the
 class of the object remains unaltered.
-}
-\details{
+
 The argument \code{print.summary} allows for printing a brief summary of the
 efficiency frontier, with default to \code{TRUE}. Two tables are plotted,
 one for the interventions included in the frontier and one for the dominated
@@ -116,7 +129,7 @@ intervention (indexed by \code{ref} in the \code{\link{bcea}} function).
 \examples{
 
 ## create the bcea object m for the smoking cessation example
-data(Smoking)
+data(Smoking, package = "BCEA")
 m <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
 
 ## produce plot

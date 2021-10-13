@@ -136,7 +136,9 @@
 <a href="#changing-reference-group" class="anchor"></a>Changing Reference Group</h3>
 <p>Load cost-effectiveness data.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/Smoking.html">data</a></span><span class="op">(</span><span class="va">Vaccine</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/Smoking.html">data</a></span><span class="op">(</span><span class="va">Vaccine</span><span class="op">)</span>
+<span class="co">#&gt; Warning: namespace 'rjags' is not available and has been replaced</span>
+<span class="co">#&gt; by .GlobalEnv when processing object 'vaccine'</span></code></pre></div>
 <p>We first create <code>bcea</code> object using the constructor function for 2 different reference groups.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">he_ref1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span>,
@@ -270,7 +272,9 @@
 <a href="#change-comparison-groups" class="anchor"></a>Change Comparison Groups</h3>
 <p>Lets load some data with more than two groups.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/Smoking.html">data</a></span><span class="op">(</span><span class="va">Smoking</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/Smoking.html">data</a></span><span class="op">(</span><span class="va">Smoking</span><span class="op">)</span>
+<span class="co">#&gt; Warning: namespace 'rjags' is not available and has been replaced</span>
+<span class="co">#&gt; by .GlobalEnv when processing object 'smoking_output'</span></code></pre></div>
 <p>Defaults is all other groups which in this case is 2, 3 and 4.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">he_comp234</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span>,

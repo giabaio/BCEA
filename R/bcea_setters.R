@@ -2,7 +2,7 @@
 #' @name setReferenceGroup_assign
 #' @title Set Reference Group
 #'
-#' Alternative way to define (e,c) reference group.
+#' @description Alternative way to define (e,c) reference group.
 #' 
 #' @template args-he
 #' @param value Reference group number
@@ -39,7 +39,7 @@
 #' @name setKmax_assign
 #' @title Set Maximum Willingness to Pay
 #'
-#' Alternative way to define `K` statistic.
+#' @description Alternative way to define `K` statistic.
 #' 
 #' @template args-he
 #' @param value Maximum willingness to pay

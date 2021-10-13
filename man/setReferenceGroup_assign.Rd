@@ -5,9 +5,7 @@
 \alias{setReferenceGroup<-}
 \alias{setReferenceGroup<-.bcea}
 \alias{setReferenceGroup<-.default}
-\title{Set Reference Group
-
-Alternative way to define (e,c) reference group.}
+\title{Set Reference Group}
 \usage{
 setReferenceGroup(he) <- value
 
@@ -25,7 +23,5 @@ modelling and the economic evaluation.}
 bcea-type object
 }
 \description{
-Set Reference Group
-
 Alternative way to define (e,c) reference group.
 }

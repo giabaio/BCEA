@@ -1,12 +1,14 @@
 
-#' Plot Expected Value of Partial Information With Respect to a
+#' @title Plot Expected Value of Partial Information With Respect to a
 #' Set of Parameters
+#' 
+#' @description  Base R and ggplot2 versions.
+#' 
 #' @name evppi_plot_graph
 #' 
 NULL
 
 
-#' EVPPI plot base R version
 #' @rdname evppi_plot_graph
 #' 
 #' @param evppi_obj Object of class evppi

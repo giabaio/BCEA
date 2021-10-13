@@ -2,7 +2,7 @@
 #' @name setComparisons
 #' @title Set Comparisons Group
 #' 
-#' One of the alternative way to set (e,c) comparison group.
+#' @description One of the alternative way to set (e,c) comparison group.
 #' Simply recompute all comparisons and drop unwanted.
 #' 
 #' @template args-he
@@ -55,7 +55,7 @@ setComparisons <- function(he, comparison) {
 #' @name setComparisons_assign
 #' @title Set Comparison Group
 #'
-#' One of the alternative way to set (e,c) comparison group.
+#' @description One of the alternative way to set (e,c) comparison group.
 #' 
 #' @template args-he
 #' @param value Comparison 

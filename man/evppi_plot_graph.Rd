@@ -23,10 +23,5 @@ evppi_plot_ggplot(evppi_obj, pos_legend = c(0, 0.8), col = c(1, 1), ...)
 \item{...}{Additional arguments}
 }
 \description{
-Plot Expected Value of Partial Information With Respect to a
-Set of Parameters
-
-EVPPI plot base R version
-
-EVPPI plot ggplot2 version
+Base R and ggplot2 versions.
 }

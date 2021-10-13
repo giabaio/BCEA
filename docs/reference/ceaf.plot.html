@@ -200,7 +200,8 @@ doi:10.1177/0962280211419832.</p>
 
 <span class='co'># Load the processed results of the MCMC simulation model</span>
 <span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Vaccine</span><span class='op'>)</span>
-
+</div><div class='output co'>#&gt; <span class='warning'>Warning: namespace 'rjags' is not available and has been replaced</span>
+#&gt; <span class='warning'>by .GlobalEnv when processing object 'vaccine'</span></div><div class='input'>
 <span class='co'># Runs the health economic evaluation using BCEA</span>
 <span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span>
       e<span class='op'>=</span><span class='va'>e</span>,
@@ -231,7 +232,8 @@ doi:10.1177/0962280211419832.</p>
 <span class='co'># \donttest{</span>
 <span class='co'># Use the smoking cessation dataset</span>
 <span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Smoking</span><span class='op'>)</span>
-<span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>c</span>, ref <span class='op'>=</span> <span class='fl'>4</span>, intervention <span class='op'>=</span> <span class='va'>treats</span>, Kmax <span class='op'>=</span> <span class='fl'>500</span>, plot <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: namespace 'rjags' is not available and has been replaced</span>
+#&gt; <span class='warning'>by .GlobalEnv when processing object 'smoking_output'</span></div><div class='input'><span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>c</span>, ref <span class='op'>=</span> <span class='fl'>4</span>, intervention <span class='op'>=</span> <span class='va'>treats</span>, Kmax <span class='op'>=</span> <span class='fl'>500</span>, plot <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 <span class='va'>mce</span> <span class='op'>&lt;-</span> <span class='fu'><a href='multi.ce.html'>multi.ce</a></span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
 <span class='fu'>ceaf.plot</span><span class='op'>(</span><span class='va'>mce</span><span class='op'>)</span>
 </div><div class='img'><img src='ceaf.plot-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>

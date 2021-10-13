@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cost-Effectiveness Plane Plot By Graph Device — ceplane_plot_base.bcea • BCEA</title>
+<title>Cost-Effectiveness Plane Plot By Graph Device — ceplane_plot_graph • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,7 +48,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Cost-Effectiveness Plane Plot By Graph Device — ceplane_plot_base.bcea" />
+<meta property="og:title" content="Cost-Effectiveness Plane Plot By Graph Device — ceplane_plot_graph" />
 <meta property="og:description" content="Choice of base R, ggplot2 or plotly." />
 <meta property="og:image" content="/logo.png" />
 
@@ -138,7 +138,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Cost-Effectiveness Plane Plot By Graph Device</h1>
-    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/ceplane_plot_base.R'><code>R/ceplane_plot_base.R</code></a>, <a href='https://github.com/giabaio/BCEA/blob/master/R/ceplane_plot_ggplot.R'><code>R/ceplane_plot_ggplot.R</code></a>, <a href='https://github.com/giabaio/BCEA/blob/master/R/ceplane_plot_graph.R'><code>R/ceplane_plot_graph.R</code></a>, and 1 more</small>
+    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/ceplane_plot_graph.R'><code>R/ceplane_plot_graph.R</code></a></small>
     <div class="hidden name"><code>ceplane_plot_graph.Rd</code></div>
     </div>
 
@@ -194,36 +194,10 @@ modelling and the economic evaluation.</p></td>
 <p>For plotly returns a plot in the Viewer</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
+    <pre class="examples"><div class='input'><span class='co'># single comparator</span>
 <span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Vaccine</span><span class='op'>)</span>
-<span class='va'>he</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>c</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>No reference selected. Defaulting to first intervention.</span></div><div class='input'>
-<span class='fu'><a href='ceplane.plot.html'>ceplane.plot</a></span><span class='op'>(</span><span class='va'>he</span>, graph <span class='op'>=</span> <span class='st'>"ggplot2"</span><span class='op'>)</span>
-</div><div class='img'><img src='ceplane_plot_graph-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Smoking</span><span class='op'>)</span>
-<span class='va'>he</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>c</span>, ref <span class='op'>=</span> <span class='fl'>4</span>, Kmax <span class='op'>=</span> <span class='fl'>500</span>, interventions <span class='op'>=</span> <span class='va'>treats</span><span class='op'>)</span>
-
-<span class='fu'><a href='ceplane.plot.html'>ceplane.plot</a></span><span class='op'>(</span><span class='va'>he</span>, graph <span class='op'>=</span> <span class='st'>"ggplot2"</span><span class='op'>)</span>
-</div><div class='img'><img src='ceplane_plot_graph-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='ceplane.plot.html'>ceplane.plot</a></span><span class='op'>(</span><span class='va'>he</span>,
-             wtp <span class='op'>=</span> <span class='fl'>200</span>,
-             pos <span class='op'>=</span> <span class='st'>"right"</span>,
-             ICER_size <span class='op'>=</span> <span class='fl'>2</span>,
-             graph <span class='op'>=</span> <span class='st'>"ggplot2"</span><span class='op'>)</span>
-</div><div class='img'><img src='ceplane_plot_graph-3.png' alt='' width='700' height='433' /></div><div class='input'>   
-<span class='fu'><a href='ceplane.plot.html'>ceplane.plot</a></span><span class='op'>(</span><span class='va'>he</span>,
-             wtp <span class='op'>=</span> <span class='fl'>200</span>,
-             pos <span class='op'>=</span> <span class='cn'>TRUE</span>,
-             graph <span class='op'>=</span> <span class='st'>"ggplot2"</span><span class='op'>)</span>
-</div><div class='img'><img src='ceplane_plot_graph-4.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='ceplane.plot.html'>ceplane.plot</a></span><span class='op'>(</span><span class='va'>he</span>,
-             graph <span class='op'>=</span> <span class='st'>"ggplot2"</span>,
-             wtp<span class='op'>=</span><span class='fl'>200</span>,
-             theme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_linedraw</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='ceplane_plot_graph-5.png' alt='' width='700' height='433' /></div><div class='input'>             
-<span class='co'># single comparator</span>
-<span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Vaccine</span><span class='op'>)</span>
-
+</div><div class='output co'>#&gt; <span class='warning'>Warning: namespace 'rjags' is not available and has been replaced</span>
+#&gt; <span class='warning'>by .GlobalEnv when processing object 'vaccine'</span></div><div class='input'>
 <span class='va'>he</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span><span class='va'>e</span>,<span class='va'>c</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>No reference selected. Defaulting to first intervention.</span></div><div class='input'>
 <span class='co'># need to provide all the defaults because thats what</span>
@@ -242,13 +216,14 @@ modelling and the economic evaluation.</p></td>
 <span class='va'>he</span><span class='op'>$</span><span class='va'>delta_c</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='va'>he</span><span class='op'>$</span><span class='va'>delta_c</span><span class='op'>)</span>
 
 <span class='fu'>ceplane_plot_base</span><span class='op'>(</span><span class='va'>he</span>, graph_params <span class='op'>=</span> <span class='va'>graph_params</span><span class='op'>)</span>
-</div><div class='img'><img src='ceplane_plot_graph-6.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='img'><img src='ceplane_plot_graph-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>## single non-default comparator</span>
 
 
 <span class='co'>## multiple comparators</span>
 <span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Smoking</span><span class='op'>)</span>
-
+</div><div class='output co'>#&gt; <span class='warning'>Warning: namespace 'rjags' is not available and has been replaced</span>
+#&gt; <span class='warning'>by .GlobalEnv when processing object 'smoking_output'</span></div><div class='input'>
 <span class='va'>graph_params</span> <span class='op'>&lt;-</span>  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>xlab <span class='op'>=</span> <span class='st'>"x-axis label"</span>,
                       ylab <span class='op'>=</span> <span class='st'>"y-axis label"</span>,
                       title <span class='op'>=</span> <span class='st'>"my title"</span>,
@@ -263,7 +238,36 @@ modelling and the economic evaluation.</p></td>
                   wtp <span class='op'>=</span> <span class='fl'>200</span>,
                   pos_legend <span class='op'>=</span> <span class='cn'>FALSE</span>,
                   graph_params <span class='op'>=</span> <span class='va'>graph_params</span><span class='op'>)</span>
-</div><div class='img'><img src='ceplane_plot_graph-7.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='img'><img src='ceplane_plot_graph-2.png' alt='' width='700' height='433' /></div><div class='input'>
+
+<span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Vaccine</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: namespace 'rjags' is not available and has been replaced</span>
+#&gt; <span class='warning'>by .GlobalEnv when processing object 'vaccine'</span></div><div class='input'><span class='va'>he</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>c</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>No reference selected. Defaulting to first intervention.</span></div><div class='input'>
+<span class='fu'><a href='ceplane.plot.html'>ceplane.plot</a></span><span class='op'>(</span><span class='va'>he</span>, graph <span class='op'>=</span> <span class='st'>"ggplot2"</span><span class='op'>)</span>
+</div><div class='img'><img src='ceplane_plot_graph-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Smoking</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: namespace 'rjags' is not available and has been replaced</span>
+#&gt; <span class='warning'>by .GlobalEnv when processing object 'smoking_output'</span></div><div class='input'><span class='va'>he</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>c</span>, ref <span class='op'>=</span> <span class='fl'>4</span>, Kmax <span class='op'>=</span> <span class='fl'>500</span>, interventions <span class='op'>=</span> <span class='va'>treats</span><span class='op'>)</span>
+
+<span class='fu'><a href='ceplane.plot.html'>ceplane.plot</a></span><span class='op'>(</span><span class='va'>he</span>, graph <span class='op'>=</span> <span class='st'>"ggplot2"</span><span class='op'>)</span>
+</div><div class='img'><img src='ceplane_plot_graph-4.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='ceplane.plot.html'>ceplane.plot</a></span><span class='op'>(</span><span class='va'>he</span>,
+             wtp <span class='op'>=</span> <span class='fl'>200</span>,
+             pos <span class='op'>=</span> <span class='st'>"right"</span>,
+             ICER_size <span class='op'>=</span> <span class='fl'>2</span>,
+             graph <span class='op'>=</span> <span class='st'>"ggplot2"</span><span class='op'>)</span>
+</div><div class='img'><img src='ceplane_plot_graph-5.png' alt='' width='700' height='433' /></div><div class='input'>   
+<span class='fu'><a href='ceplane.plot.html'>ceplane.plot</a></span><span class='op'>(</span><span class='va'>he</span>,
+             wtp <span class='op'>=</span> <span class='fl'>200</span>,
+             pos <span class='op'>=</span> <span class='cn'>TRUE</span>,
+             graph <span class='op'>=</span> <span class='st'>"ggplot2"</span><span class='op'>)</span>
+</div><div class='img'><img src='ceplane_plot_graph-6.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='ceplane.plot.html'>ceplane.plot</a></span><span class='op'>(</span><span class='va'>he</span>,
+             graph <span class='op'>=</span> <span class='st'>"ggplot2"</span>,
+             wtp<span class='op'>=</span><span class='fl'>200</span>,
+             theme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_linedraw</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='ceplane_plot_graph-7.png' alt='' width='700' height='433' /></div><div class='input'>             
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

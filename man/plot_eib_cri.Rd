@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_eib_cri.R
 \name{plot_eib_cri}
 \alias{plot_eib_cri}
-\title{Plot credible intervals}
+\title{Plot Credible Intervals}
 \usage{
 plot_eib_cri(he, params)
 }
@@ -13,5 +13,5 @@ modelling and the economic evaluation.}
 \item{params}{Graph parameters}
 }
 \description{
-Plot credible intervals
+Bayesian posterior credible intervals against willingness to pay.
 }

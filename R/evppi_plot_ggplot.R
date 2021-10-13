@@ -1,5 +1,4 @@
 
-#' EVPPI plot ggplot2 version
 #' @rdname evppi_plot_graph
 #' 
 #' @param evppi_obj Object of class evppi

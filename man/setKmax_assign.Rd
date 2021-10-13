@@ -5,9 +5,7 @@
 \alias{setKmax<-}
 \alias{setKmax<-.bcea}
 \alias{setKmax<-.default}
-\title{Set Maximum Willingness to Pay
-
-Alternative way to define `K` statistic.}
+\title{Set Maximum Willingness to Pay}
 \usage{
 setKmax(he) <- value
 
@@ -25,7 +23,5 @@ modelling and the economic evaluation.}
 bcea-type object
 }
 \description{
-Set Maximum Willingness to Pay
-
 Alternative way to define `K` statistic.
 }

@@ -39,9 +39,9 @@ Set of Parameters
 }
 \examples{
 
-data(Vaccine)
+data(Vaccine, package = "BCEA")
 treats <- c("Status quo", "Vaccination")
- 
+
 # Run the health economic evaluation using BCEA
 m <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
 

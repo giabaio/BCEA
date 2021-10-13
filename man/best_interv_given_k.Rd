@@ -2,7 +2,7 @@
 % Please edit documentation in R/best_interv_given_k.R
 \name{best_interv_given_k}
 \alias{best_interv_given_k}
-\title{Select Best Option For Each Value Of Willingness To Pay}
+\title{Optimal intervention}
 \usage{
 best_interv_given_k(eib, ref, comp)
 }
@@ -17,5 +17,5 @@ best_interv_given_k(eib, ref, comp)
 Group index
 }
 \description{
-Select Best Option For Each Value Of Willingness To Pay
+Select the best option for each value of willingness to pay.
 }

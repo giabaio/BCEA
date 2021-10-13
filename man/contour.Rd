@@ -2,12 +2,7 @@
 % Please edit documentation in R/contour.R
 \name{contour}
 \alias{contour}
-\title{Contour Plots for the Cost-Effectiveness Plane
-
-Contour method for objects in the class \code{bcea}.
-Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
-of the bivariate density of the differentials of cost (y-axis) and
-effectiveness (x-axis).}
+\title{Contour Plots for the Cost-Effectiveness Plane}
 \usage{
 contour(he, ...)
 }
@@ -27,8 +22,6 @@ value of the probability of each quadrant (combination of positive/negative
 values for both \eqn{\Delta_e} and \eqn{\Delta_c})
 }
 \description{
-Contour Plots for the Cost-Effectiveness Plane
-
 Contour method for objects in the class \code{bcea}.
 Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
 of the bivariate density of the differentials of cost (y-axis) and
