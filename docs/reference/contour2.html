@@ -108,7 +108,10 @@ selected value of the willingness-to-pay threshold)." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
+      <a href="../articles/bcea.html">Get started</a>
+    </li>
+    <li>
+      <a href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
     </li>
     <li class="divider"></li>
     <li>
@@ -204,7 +207,7 @@ plotting. Should (partial-)match the two options <code>"base"</code> or
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments to be passed to <code><a href='ceplane.plot.html'>ceplane.plot</a></code>. See the
+      <td><p>Arguments to be passed to <code><a href='ceplane.plot.bcea.html'>ceplane.plot</a></code>. See the
 relative manual page for more details.</p></td>
     </tr>
     </table>
@@ -229,8 +232,8 @@ doi:10.1177/0962280211419832.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>,
-         <code><a href='ceplane.plot.html'>ceplane.plot</a></code>,
-         <code><a href='contour.html'>contour</a></code></p></div>
+         <code><a href='ceplane.plot.bcea.html'>ceplane.plot</a></code>,
+         <code><a href='contour.bcea.html'>contour</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Gianluca Baio, Andrea Berardi</p>
@@ -238,8 +241,7 @@ doi:10.1177/0962280211419832.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## create the bcea object m for the smoking cessation example</span>
 <span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Smoking</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: namespace 'rjags' is not available and has been replaced</span>
-#&gt; <span class='warning'>by .GlobalEnv when processing object 'smoking_output'</span></div><div class='input'><span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>c</span>, ref <span class='op'>=</span> <span class='fl'>4</span>, interventions <span class='op'>=</span> <span class='va'>treats</span>, Kmax <span class='op'>=</span> <span class='fl'>500</span><span class='op'>)</span>
+<span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>c</span>, ref <span class='op'>=</span> <span class='fl'>4</span>, interventions <span class='op'>=</span> <span class='va'>treats</span>, Kmax <span class='op'>=</span> <span class='fl'>500</span><span class='op'>)</span>
 
 <span class='co'>## produce the plot</span>
 <span class='fu'>contour2</span><span class='op'>(</span><span class='va'>m</span>,

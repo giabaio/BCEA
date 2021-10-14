@@ -115,8 +115,6 @@ Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 \seealso{
 \code{\link{bcea}},
          \code{\link{plot.bcea}}
-
-\code{\link{ceac.plot.bcea}}
 }
 \author{
 Gianluca Baio, Andrea Berardi

@@ -9,7 +9,6 @@
 #' @param n Number
 #' @param xlim x-axis limits
 #' @importFrom stats density
-#' @export
 #' 
 ib_plot_base <- function(he,
                          comparison,

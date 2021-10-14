@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Contour Plots for the Cost-Effectiveness Plane — contour • BCEA</title>
+<title>Contour Plots for the Cost-Effectiveness Plane — contour.bcea • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,7 +48,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Contour Plots for the Cost-Effectiveness Plane — contour" />
+<meta property="og:title" content="Contour Plots for the Cost-Effectiveness Plane — contour.bcea" />
 <meta property="og:description" content="Contour method for objects in the class bcea.
 Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
 of the bivariate density of the differentials of cost (y-axis) and
@@ -111,7 +111,7 @@ effectiveness (x-axis)." />
       <a href="../articles/bcea.html">Get started</a>
     </li>
     <li>
-      <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
+      <a href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
     </li>
     <li class="divider"></li>
     <li>
@@ -155,7 +155,20 @@ of the bivariate density of the differentials of cost (y-axis) and
 effectiveness (x-axis).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>contour</span><span class='op'>(</span><span class='va'>he</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='co'># S3 method for bcea</span>
+<span class='fu'>contour</span><span class='op'>(</span>
+  <span class='va'>he</span>,
+  scale <span class='op'>=</span> <span class='fl'>0.5</span>,
+  nlevels <span class='op'>=</span> <span class='fl'>4</span>,
+  levels <span class='op'>=</span> <span class='cn'>NULL</span>,
+  pos <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>0</span><span class='op'>)</span>,
+  xlim <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ylim <span class='op'>=</span> <span class='cn'>NULL</span>,
+  graph <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"base"</span>, <span class='st'>"ggplot2"</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
+
+<span class='fu'>contour</span><span class='op'>(</span><span class='va'>he</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -164,6 +177,47 @@ effectiveness (x-axis).</p>
       <th>he</th>
       <td><p>A <code>bcea</code> object containing the results of the Bayesian
 modelling and the economic evaluation.</p></td>
+    </tr>
+    <tr>
+      <th>scale</th>
+      <td><p>Scales the plot as a function of the observed standard deviation.</p></td>
+    </tr>
+    <tr>
+      <th>nlevels</th>
+      <td><p>Number of levels to be plotted in the contour.</p></td>
+    </tr>
+    <tr>
+      <th>levels</th>
+      <td><p>Numeric vector of levels at which to draw contour lines.
+Will be ignored using <code>graph="ggplot2"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>pos</th>
+      <td><p>Parameter to set the position of the legend (only relevant for
+multiple interventions, ie more than 2 interventions being compared).
+Can be given in form
+of a string <code>(bottom|top)(right|left)</code> for base graphics and
+<code>bottom|top|left|right</code> for ggplot2. It can be a two-elements vector,
+which specifies the relative position on the x and y axis respectively, or
+alternatively it can be in form of a logical variable, with <code>FALSE</code>
+indicating to use the default position and <code>TRUE</code> to place it on the
+bottom of the plot.</p></td>
+    </tr>
+    <tr>
+      <th>xlim</th>
+      <td><p>The range of the plot along the x-axis. If NULL (default) it is
+determined by the range of the simulated values for <code>delta_e</code></p></td>
+    </tr>
+    <tr>
+      <th>ylim</th>
+      <td><p>The range of the plot along the y-axis. If NULL (default) it is
+determined by the range of the simulated values for <code>delta_c</code></p></td>
+    </tr>
+    <tr>
+      <th>graph</th>
+      <td><p>A string used to select the graphical engine to use for
+plotting. Should (partial-) match the two options <code>"base"</code> or
+<code>"ggplot2"</code>. Default value is <code>"base"</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -192,7 +246,7 @@ doi:10.1177/0962280211419832.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>,
-         <code><a href='ceplane.plot.html'>ceplane.plot</a></code>,
+         <code><a href='ceplane.plot.bcea.html'>ceplane.plot</a></code>,
          <code><a href='contour2.bcea.html'>contour2</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
@@ -200,8 +254,7 @@ doi:10.1177/0962280211419832.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Vaccine</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: namespace ‘rjags’ is not available and has been replaced</span>
-#&gt; <span class='warning'>by .GlobalEnv when processing object ‘vaccine’</span></div><div class='input'>
+
 <span class='co'># Runs the health economic evaluation using BCEA</span>
 <span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span>e<span class='op'>=</span><span class='va'>e</span>,
           c<span class='op'>=</span><span class='va'>c</span>,              <span class='co'># defines the variables of </span>

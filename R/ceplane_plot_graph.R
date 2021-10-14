@@ -61,7 +61,6 @@ NULL
 #' 
 #' @return For base R returns a plot
 #' @keywords hplot
-#' @export
 #' 
 ceplane_plot_base.bcea <- function(he,
                                    wtp = 25000,
@@ -85,7 +84,6 @@ ceplane_plot_base.bcea <- function(he,
 
 
 #' @rdname ceplane_plot_graph
-#' @export
 #' 
 ceplane_plot_base <- function(he, ...) {
   UseMethod('ceplane_plot_base', he)
@@ -102,7 +100,6 @@ ceplane_plot_base <- function(he, ...) {
 #' @importFrom purrr keep
 #' 
 #' @keywords hplot
-#' @export
 #' 
 #' @examples
 #' 
@@ -186,7 +183,6 @@ ceplane_plot_ggplot.bcea <- function(he,
 
 
 #' @rdname ceplane_plot_graph
-#' @export
 #' 
 ceplane_plot_ggplot <- function(he, ...) {
   UseMethod('ceplane_plot_ggplot', he)
@@ -226,7 +222,6 @@ tabulate_means <- function(he,
 #'  
 #' @return For plotly returns a plot in the Viewer
 #' @importFrom plotly toRGB plot_ly add_trace layout config
-#' @export
 #' 
 ceplane_plot_plotly.bcea <- function(he,
                                      wtp = 25000,
@@ -423,7 +418,6 @@ ceplane_plot_plotly.bcea <- function(he,
 #' @rdname ceplane_plot_graph
 #' @template args-he
 #' @param ... Additional arguments
-#' @export
 #' 
 ceplane_plot_plotly <- function(he, ...) {
   UseMethod('ceplane_plot_plotly', he)

@@ -14,7 +14,6 @@
 #' 
 #' @importFrom grid unit
 #' @import ggplot2
-#' @export
 #' 
 contour_ggplot <- function(he, params, scale, nlevels, levels,
                            xlim, ylim, extra_args, comparison = 1) {

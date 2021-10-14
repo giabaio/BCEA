@@ -9,8 +9,6 @@
 #' @importFrom purrr pluck keep
 #' @import dplyr ggplot2
 #' 
-#' @export
-#'
 evppi_plot_ggplot <- function(evppi_obj,
                               pos_legend = c(0, 0.8),
                               col = c(1,1),

@@ -119,9 +119,9 @@ ceac.plot.bcea <- function(he,
 #'   \item \code{line_colors}: specifies the line colour(s) - all graph types.
 #'   \item \code{line_types}: specifies the line type(s) as lty numeric values - all graph types.
 #'   \item \code{area_include}: logical, include area under the CEAC curves - plotly only.
-#'   \item \code{area_color}: specifies the AUC colour - plotly only.} 
+#'   \item \code{area_color}: specifies the AUC colour - plotly only.}
+#' @aliases ceac.plot
 #' @export
-#' @seealso \code{\link{ceac.plot.bcea}}
 #' 
 ceac.plot <- function(he, ...) {
   UseMethod('ceac.plot', he)

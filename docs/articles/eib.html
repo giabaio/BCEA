@@ -62,7 +62,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
+      <a href="../articles/bcea.html">Get started</a>
+    </li>
+    <li>
+      <a href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
     </li>
     <li class="divider">
     <li>
@@ -128,8 +131,6 @@ IB(\theta) = k \Delta_e - \Delta_c
 <p>To calculate these in BCEA we use the <code><a href="../reference/bcea.html">bcea()</a></code> function.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/Smoking.html">data</a></span><span class="op">(</span><span class="va">Vaccine</span><span class="op">)</span>
-<span class="co">#&gt; Warning: namespace 'rjags' is not available and has been replaced</span>
-<span class="co">#&gt; by .GlobalEnv when processing object 'vaccine'</span>
 
 <span class="va">he</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span>,                  
@@ -139,7 +140,7 @@ IB(\theta) = k \Delta_e - \Delta_c
        plot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>The default EIB plot gives a single diagonal line using base R.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span><span class="op">)</span></code></pre></div>
 <p><img src="eib_files/figure-html/unnamed-chunk-3-1.png" width="576"></p>
 <p>The vertical line represents the break-even value corresponding to <span class="math inline">\(k^*\)</span> indicating that above that threshold the alternative treatment is more cost-effective than the status-quo.</p>
 <p><span class="math display">\[
@@ -148,16 +149,16 @@ k^* = \min\{ k : \mbox{EIB} &gt; 0 \}
 <p>This will be at the point the curve crosses the <em>x</em>-axis.</p>
 <p>The plot defaults to base R plotting. Type of plot can be set explicitly using the <code>graph</code> argument.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span></code></pre></div>
 <p><img src="eib_files/figure-html/unnamed-chunk-4-1.png" width="576"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></code></pre></div>
 <p><img src="eib_files/figure-html/unnamed-chunk-4-2.png" width="576"></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># ceac.plot(he, graph = "plotly")</span></code></pre></div>
 <p>Other plotting arguments can be specified such as title, line colours and theme.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>,
+<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>,
          graph <span class="op">=</span> <span class="st">"ggplot2"</span>,
          main <span class="op">=</span> <span class="st">"my title"</span>,
          line <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>colors <span class="op">=</span> <span class="st">"green"</span><span class="op">)</span>,
@@ -165,7 +166,7 @@ k^* = \min\{ k : \mbox{EIB} &gt; 0 \}
 <p><img src="eib_files/figure-html/unnamed-chunk-5-1.png" width="576"></p>
 <p>Credible interval can also be plotted using the <code>plot.cri</code> logical argument.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, plot.cri <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, plot.cri <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p><img src="eib_files/figure-html/unnamed-chunk-6-1.png" width="576"></p>
 </div>
 </div>
@@ -186,79 +187,77 @@ k^*_i = \min\{ k : \mbox{EIB}(\theta^i) &gt; \mbox{EIB}(\theta^j) \}
 <div id="r-code-1" class="section level4">
 <h4 class="hasAnchor">
 <a href="#r-code-1" class="anchor"></a>R code</h4>
-<p>This is the default plot for <code><a href="../reference/eib.plot.html">eib.plot()</a></code> so we simply follow the same steps as above with the new data set.</p>
+<p>This is the default plot for <code><a href="../reference/eib.plot.bcea.html">eib.plot()</a></code> so we simply follow the same steps as above with the new data set.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/Smoking.html">data</a></span><span class="op">(</span><span class="va">Smoking</span><span class="op">)</span>
-<span class="co">#&gt; Warning: namespace 'rjags' is not available and has been replaced</span>
-<span class="co">#&gt; by .GlobalEnv when processing object 'smoking_output'</span>
 
 <span class="va">treats</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="st">"No intervention"</span>, <span class="st">"Self-help"</span>,
             <span class="st">"Individual counselling"</span>, <span class="st">"Group counselling"</span><span class="op">)</span>
 <span class="va">he</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span>, ref <span class="op">=</span> <span class="fl">4</span>, interventions <span class="op">=</span> <span class="va">treats</span>, Kmax <span class="op">=</span> <span class="fl">500</span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span><span class="op">)</span></code></pre></div>
 <p><img src="eib_files/figure-html/unnamed-chunk-7-1.png" width="576"></p>
 <p>For example, we can change the main title and the EIB line colours to green.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>,
+<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>,
          graph <span class="op">=</span> <span class="st">"base"</span>,
          main <span class="op">=</span> <span class="st">"my title"</span>,
          line <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>colors <span class="op">=</span> <span class="st">"green"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="eib_files/figure-html/unnamed-chunk-8-1.png" width="576"></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>,
+<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>,
          graph <span class="op">=</span> <span class="st">"ggplot2"</span>,
          main <span class="op">=</span> <span class="st">"my title"</span>,
          line <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>colors <span class="op">=</span> <span class="st">"green"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="eib_files/figure-html/unnamed-chunk-9-1.png" width="576"></p>
 <p>Credible interval can also be plotted as before.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, plot.cri <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, plot.cri <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p><img src="eib_files/figure-html/unnamed-chunk-10-1.png" width="576"></p>
 <div id="repositioning-the-legend-" class="section level5">
 <h5 class="hasAnchor">
 <a href="#repositioning-the-legend-" class="anchor"></a>Repositioning the legend.</h5>
 <p>For base R,</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, pos <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># bottom right</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, pos <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co"># bottom right</span></code></pre></div>
 <p><img src="eib_files/figure-html/unnamed-chunk-11-1.png" width="576"></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, pos <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, pos <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="eib_files/figure-html/unnamed-chunk-11-2.png" width="576"></p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, pos <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, pos <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="eib_files/figure-html/unnamed-chunk-11-3.png" width="576"></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, pos <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, pos <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="eib_files/figure-html/unnamed-chunk-11-4.png" width="576"></p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, pos <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, pos <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="eib_files/figure-html/unnamed-chunk-11-5.png" width="576"></p>
 <p>For <code>ggplot2</code>,</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">##TODO:</span>
-<span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span>, pos <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span>, pos <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="eib_files/figure-html/unnamed-chunk-12-1.png" width="576"></p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span>, pos <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span>, pos <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="eib_files/figure-html/unnamed-chunk-12-2.png" width="576"></p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span>, pos <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span>, pos <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="eib_files/figure-html/unnamed-chunk-12-3.png" width="576"></p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span>, pos <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span>, pos <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="eib_files/figure-html/unnamed-chunk-12-4.png" width="576"></p>
 <p>Define colour palette for different colour for each EIB line.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mypalette</span> <span class="op">&lt;-</span> <span class="fu">RColorBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span><span class="fl">3</span>, <span class="st">"Accent"</span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>,
+<span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>,
          graph <span class="op">=</span> <span class="st">"base"</span>,
          line <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>colors <span class="op">=</span> <span class="va">mypalette</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="eib_files/figure-html/unnamed-chunk-13-1.png" width="576"></p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-<span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>,
+<span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>,
          graph <span class="op">=</span> <span class="st">"ggplot2"</span>,
          line <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>colors <span class="op">=</span> <span class="va">mypalette</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="eib_files/figure-html/unnamed-chunk-13-2.png" width="576"></p>

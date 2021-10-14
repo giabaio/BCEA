@@ -41,8 +41,6 @@ Suggests:
     RColorBrewer,
     grid,
     mgcv,
-    R2jags,
-    R2OpenBUGS,
     splancs,
     testthat (>= 2.1.0),
     vdiffr,

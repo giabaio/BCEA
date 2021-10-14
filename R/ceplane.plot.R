@@ -1,5 +1,5 @@
 
-#' CE plane plot
+#' @rdname ceplane.plot
 #' 
 #' @template args-he
 #' @param comparison Selects the comparator, in case of more than two

@@ -282,51 +282,58 @@ make.proj <- function(parameter,
 }
 
 
-#' Plot Mesh
+#' Mesh Plot
+#' 
+#' Option of interactively saving the plot.
 #' 
 #' @param mesh Mesh
 #' @param data Data
-#' @param plot Plot; logical
+#' @param plot Create plot? logical
 #'
 #' @importFrom utils select.list
 #' @importFrom grDevices dev.off
+#' @seealso \code{\link{evppi}}
 #' 
 plot.mesh <- function(mesh, data, plot) {
-  if (plot) {
-    cat("\n")
-    choice <- select.list(c("yes", "no"),
-                          title = "Would you like to save the graph?",
-                          graphics = FALSE)
-    if (choice == "yes") {
-      exts <- c("jpeg", "pdf", "bmp", "png", "tiff")
-      ext <- select.list(exts,
-                         title = "Please select file extension",
-                         graphics = FALSE)
-      name <- paste0(getwd(), "/mesh.", ext)
-      txt <- paste0(ext, "('", name, "')")
-      eval(parse(text = txt))
-      txt <- paste0("Graph saved as: ", name)
-      cat(txt)
-      on.exit(dev.off())
-    }
-
-    cat("\n")
-    plot(mesh)
-    points(data,
-           col = "blue",
-           pch = 19,
-           cex = 0.8)
+  
+  if (!plot) return()
+  
+  cat("\n")
+  choice <- select.list(c("yes", "no"),
+                        title = "Would you like to save the graph?",
+                        graphics = FALSE)
+  if (choice == "yes") {
+    exts <- c("jpeg", "pdf", "bmp", "png", "tiff")
+    ext <- select.list(exts,
+                       title = "Please select file extension",
+                       graphics = FALSE)
+    name <- paste0(getwd(), "/mesh.", ext)
+    txt <- paste0(ext, "('", name, "')")
+    eval(parse(text = txt))
+    txt <- paste0("Graph saved as: ", name)
+    cat(txt)
+    on.exit(dev.off())
   }
+  
+  cat("\n")
+  plot(mesh)
+  points(data,
+         col = "blue",
+         pch = 19,
+         cex = 0.8)
 }
 
 #' Make Mesh
 #' 
+#' Fit using INLA methods.
+#' 
 #' @param data Data
 #' @param convex.inner convex.inner 
 #' @param convex.outer convex.outer 
-#' @param cutoff Cut-off 
+#' @param cutoff Cut-off value
 #' @param max.edge Maximum edge 
-#'
+#' @return list
+#' 
 #' @importFrom INLA inla.nonconvex.hull inla.mesh.2d
 #' 
 make.mesh <- function(data,
@@ -348,6 +355,7 @@ make.mesh <- function(data,
   toc <- proc.time() - tic
   time <- toc[3]
   names(time) <- "Time to fit determine the mesh (seconds)"
+  
   list(mesh = mesh,
        pts = data,
        time = time)

@@ -14,7 +14,6 @@ NULL
 #' @param data.psa Data
 #' @param plot_aes Aesthetic parameters
 #' @param plot_annotations Plot parameters
-#' @export
 #' 
 evi_plot_base <- function(he,
                           data.psa,
@@ -78,7 +77,6 @@ evi_plot_base <- function(he,
 #' @param plot_annotations Plot parameters
 #' 
 #' @import ggplot2 grid
-#' @export
 #' 
 evi_plot_ggplot <- function(he,
                             data.psa,
@@ -147,7 +145,6 @@ evi_plot_ggplot <- function(he,
 #' @param plot_annotations Plot parameters
 #' 
 #' @importFrom plotly layout config add_trace plot_ly
-#' @export
 #' 
 evi_plot_plotly <- function(data.psa,
                             plot_aes,

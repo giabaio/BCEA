@@ -12,7 +12,6 @@ NULL
 #' 
 #' @template args-he
 #' @param params Graph parameters
-#' @export
 #' 
 info_rank_base <- function(he, params) {
   
@@ -66,7 +65,6 @@ info_rank_base <- function(he, params) {
 #' @template args-he
 #' @param params Graph parameters
 #' @importFrom stats reorder
-#' @export
 #' 
 info_rank_ggplot <- function(he, params) {
   

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cost-effectiveness Plane Plot — ceplane.plot • BCEA</title>
+<title>Cost-effectiveness Plane Plot — ceplane.plot.bcea • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,7 +48,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Cost-effectiveness Plane Plot — ceplane.plot" />
+<meta property="og:title" content="Cost-effectiveness Plane Plot — ceplane.plot.bcea" />
 <meta property="og:description" content="Produces a scatter plot of the cost-effectiveness plane,
 together with the sustainability area, as a function of
 the selected willingness to pay threshold." />
@@ -110,7 +110,7 @@ the selected willingness to pay threshold." />
       <a href="../articles/bcea.html">Get started</a>
     </li>
     <li>
-      <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
+      <a href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
     </li>
     <li class="divider"></li>
     <li>
@@ -153,7 +153,17 @@ together with the sustainability area, as a function of
 the selected willingness to pay threshold.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ceplane.plot</span><span class='op'>(</span><span class='va'>he</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='co'># S3 method for bcea</span>
+<span class='fu'>ceplane.plot</span><span class='op'>(</span>
+  <span class='va'>he</span>,
+  comparison <span class='op'>=</span> <span class='cn'>NULL</span>,
+  wtp <span class='op'>=</span> <span class='fl'>25000</span>,
+  pos <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span>,
+  graph <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>, <span class='st'>"plotly"</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
+
+<span class='fu'>ceplane.plot</span><span class='op'>(</span><span class='va'>he</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -164,12 +174,94 @@ the selected willingness to pay threshold.</p>
 modelling and the economic evaluation.</p></td>
     </tr>
     <tr>
+      <th>comparison</th>
+      <td><p>Selects the comparator, in case of more than two
+interventions being analysed. Default as <code>NULL</code> plots all the
+comparisons together. Any subset of the possible comparisons can be selected
+(e.g., <code>comparison = c(1,3)</code> or <code>comparison = 2</code>).</p></td>
+    </tr>
+    <tr>
+      <th>wtp</th>
+      <td><p>The value of the willingness to pay parameter. Not used if
+<code>graph = "base"</code> for multiple comparisons.</p></td>
+    </tr>
+    <tr>
+      <th>pos</th>
+      <td><p>Parameter to set the position of the legend; for a single
+comparison plot, the ICER legend position. Can be given in form of a string
+<code>(bottom|top)(right|left)</code> for base graphics and
+<code>bottom|top|left|right</code> for ggplot2. It can be a two-elements vector,
+which specifies the relative position on the x and y axis respectively, or
+alternatively it can be in form of a logical variable, with <code>FALSE</code>
+indicating to use the default position and <code>TRUE</code> to place it on the
+bottom of the plot. Default value is <code><a href='Smoking.html'>c(1,1)</a></code>, that is the topright
+corner inside the plot area.</p></td>
+    </tr>
+    <tr>
+      <th>graph</th>
+      <td><p>A string used to select the graphical engine to use for
+plotting. Should (partial-) match the two options <code>"base"</code> or
+<code>"ggplot2"</code>. Default value is <code>"base"</code>.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Additional arguments</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>If <code>graph = "ggplot2"</code> a ggplot object, or if <code>graph = "plotly"</code> 
+  a plotly object containing the requested plot. Nothing is returned when
+  <code>graph = "base"</code>, the default.</p>   
+<p>Grey dots show the simulated values for the joint
+  distribution of the effectiveness and cost differentials. The larger red
+  dot shows the ICER and the grey area identifies the sustainability area,
+  i.e. the part of the plan for which the simulated values are below the
+  willingness to pay threshold. The proportion of points in the sustainability
+  area effectively represents the CEAC for a given value of the willingness to
+  pay. If the comparators are more than 2 and no pairwise comparison is
+  specified, all scatterplots are graphed using different colours.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>In the plotly version, point_colors, ICER_colors and area_color can also
+be specified as rgba colours using either the <code><a href='https://rdrr.io/pkg/plotly/man/toRGB.html'>toRGB</a></code>
+function or a rgba colour string, e.g. <code>'rgba(1, 1, 1, 1)'</code>.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in Health Economics.
+Statistical Methods in Medical Research. doi:10.1177/0962280211419832.</p>
+<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>,
+         <code><a href='ceplane_plot_graph.html'>ceplane_plot_graph</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Gianluca Baio, Andrea Berardi</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'>## create the bcea object for the smoking cessation example</span>
+<span class='fu'><a href='Smoking.html'>data</a></span><span class='op'>(</span><span class='va'>Smoking</span><span class='op'>)</span>
+
+<span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='bcea.html'>bcea</a></span><span class='op'>(</span><span class='va'>e</span>, <span class='va'>c</span>, ref <span class='op'>=</span> <span class='fl'>4</span>, Kmax <span class='op'>=</span> <span class='fl'>500</span>, interventions <span class='op'>=</span> <span class='va'>treats</span><span class='op'>)</span>
+
+<span class='co'>## produce the base plot</span>
+<span class='fu'>ceplane.plot</span><span class='op'>(</span><span class='va'>m</span>, wtp <span class='op'>=</span> <span class='fl'>200</span>, graph <span class='op'>=</span> <span class='st'>"base"</span><span class='op'>)</span>
+</div><div class='img'><img src='ceplane.plot-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'>## select only one comparator</span>
+<span class='fu'>ceplane.plot</span><span class='op'>(</span><span class='va'>m</span>, wtp <span class='op'>=</span> <span class='fl'>200</span>, graph <span class='op'>=</span> <span class='st'>"base"</span>, comparison <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
+</div><div class='img'><img src='ceplane.plot-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'>## use ggplot2</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"ggplot2"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+   <span class='fu'>ceplane.plot</span><span class='op'>(</span><span class='va'>m</span>, wtp <span class='op'>=</span> <span class='fl'>200</span>, pos <span class='op'>=</span> <span class='st'>"right"</span>, ICER_size <span class='op'>=</span> <span class='fl'>2</span>, graph <span class='op'>=</span> <span class='st'>"ggplot2"</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='img'><img src='ceplane.plot-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'>## plotly</span>
+<span class='fu'>ceplane.plot</span><span class='op'>(</span><span class='va'>m</span>, wtp <span class='op'>=</span> <span class='fl'>200</span>, graph <span class='op'>=</span> <span class='st'>"plotly"</span><span class='op'>)</span>
+<span class='fu'>ceplane.plot</span><span class='op'>(</span><span class='va'>m</span>, wtp <span class='op'>=</span> <span class='fl'>200</span>, comparison <span class='op'>=</span> <span class='fl'>1</span>, graph <span class='op'>=</span> <span class='st'>"plotly"</span><span class='op'>)</span>
+ 
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

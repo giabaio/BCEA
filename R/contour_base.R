@@ -19,7 +19,6 @@ NULL
 #' @param ylim y-axis limits
 #' @param extra_args additional arguments
 #' @param comparison Comparison interventions; default 1
-#' @export
 #' 
 contour_base <- function(he, params, scale, nlevels, levels,
                          xlim, ylim, extra_args, comparison = 1) {

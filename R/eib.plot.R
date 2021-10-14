@@ -1,5 +1,5 @@
 
-#' @title Expected Incremental Benefit (EIB) Plot
+#' @rdname eib.plot
 #' 
 #' @importFrom graphics lines abline text legend
 #' @import ggplot2

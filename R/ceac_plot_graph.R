@@ -14,8 +14,6 @@ NULL
 #' @rdname ceac_plot_graph
 #' @keywords hplot
 #' 
-#' @export
-#' 
 ceac_plot_base <- function(he,
                            pos_legend,
                            graph_params,
@@ -25,8 +23,6 @@ ceac_plot_base <- function(he,
 
 #' @rdname ceac_plot_graph
 #' @keywords hplot
-#' 
-#' @export
 #' 
 ceac_plot_base.pairwise <- function(he,
                                     pos_legend,
@@ -40,8 +36,6 @@ ceac_plot_base.pairwise <- function(he,
 
 #' @rdname ceac_plot_graph
 #' @keywords hplot
-#' 
-#' @export
 #'
 ceac_plot_base.bcea <- function(he,
                                 pos_legend,
@@ -62,8 +56,6 @@ ceac_plot_base.bcea <- function(he,
 #' @param ceac `ceac` index in `he`
 #' @keywords hplot
 #' @importFrom graphics matplot legend
-#' 
-#' @export
 #' 
 ceac_matplot <- function(he,
                          pos_legend,
@@ -95,8 +87,6 @@ ceac_plot_ggplot <- function(he,
 #' @rdname ceac_plot_graph
 #' @keywords hplot
 #' 
-#' @export
-#' 
 ceac_plot_ggplot.pairwise <- function(he,
                                       pos_legend,
                                       graph_params, ...) {
@@ -108,8 +98,6 @@ ceac_plot_ggplot.pairwise <- function(he,
 
 #' @rdname ceac_plot_graph
 #' @keywords hplot
-#' 
-#' @export
 #' 
 ceac_plot_ggplot.bcea <- function(he,
                                   pos_legend,
@@ -123,8 +111,6 @@ ceac_plot_ggplot.bcea <- function(he,
 #' @rdname ceac_plot_graph
 #' @param ceac ceac index in he
 #' @keywords hplot
-#' 
-#' @export
 #' 
 ceac_ggplot <- function(he,
                         pos_legend,
@@ -167,7 +153,6 @@ ceac_ggplot <- function(he,
 #' @rdname ceac_plot_graph
 #' 
 #' @importFrom plotly add_trace plot_ly toRGB layout config
-#' @export
 #' 
 ceac_plot_plotly <- function(he,
                              pos_legend = "left",

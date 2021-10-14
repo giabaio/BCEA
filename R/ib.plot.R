@@ -24,7 +24,6 @@
 #' comparator).
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}},
-#'          \code{\link{ib.plot}},
 #'          \code{\link{ceplane.plot}}
 #' 
 #' @references

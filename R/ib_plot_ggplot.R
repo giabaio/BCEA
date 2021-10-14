@@ -19,7 +19,6 @@ NULL
 #' 
 #' @import ggplot2 grid
 #' @importFrom dplyr filter
-#' @export
 #' 
 ib_plot_ggplot <- function(he,
                            comparison,

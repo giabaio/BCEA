@@ -62,7 +62,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
+      <a href="../articles/bcea.html">Get started</a>
+    </li>
+    <li>
+      <a href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
     </li>
     <li class="divider">
     <li>
@@ -123,15 +126,13 @@
 <p>This is the default plot for <code><a href="../reference/ceac.plot.bcea.html">ceac.plot()</a></code> so we simply follow the same steps as above with the new data set.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/Smoking.html">data</a></span><span class="op">(</span><span class="st">"Smoking"</span><span class="op">)</span>
-<span class="co">#&gt; Warning: namespace 'rjags' is not available and has been replaced</span>
-<span class="co">#&gt; by .GlobalEnv when processing object 'smoking_output'</span>
 <span class="va">he</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span>, ref <span class="op">=</span> <span class="fl">4</span>, Kmax <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="../reference/ceac.plot.bcea.html">ceac.plot</a></span><span class="op">(</span><span class="va">he</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fl">0.5</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">160</span>, <span class="fl">225</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
-<span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, plot.cri <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, plot.cri <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p><img src="paired_vs_multiple_comps_files/figure-html/unnamed-chunk-3-1.png" width="576"></p>
 </div>
 </div>
@@ -149,7 +150,7 @@
 <span class="fu"><a href="../reference/ceac.plot.bcea.html">ceac.plot</a></span><span class="op">(</span><span class="va">he.multi</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fl">0.5</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">160</span>, <span class="fl">225</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
-<span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, plot.cri <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, plot.cri <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p><img src="paired_vs_multiple_comps_files/figure-html/unnamed-chunk-5-1.png" width="576"></p>
 </div>
 </div>

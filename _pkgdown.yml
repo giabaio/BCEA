@@ -24,24 +24,18 @@ reference:
   desc: "Functions for plotting a wide variety of cost-effectiveness plots in base R, ggplot2 and plotly."
   contents:
   - ceac.plot
-  - ceac_plot_graph
   - ceaf.plot
   - ceef.plot
-  - ceef_plot_graph
   - ceplane.plot
-  - ceplane_plot_graph
   - contour
-  - contour_graph
   - contour2
   - eib.plot
-  - eib_plot_graph
-  - evppi_plot_graph
   - evi.plot
-  - evi_plot_graph
   - ib.plot
   - info.rank
-  - info_rank_graph
-  - starts_with("plot.")
+  - plot.bcea
+  - plot.CEriskav
+  - plot.evppi
 - title: "Statistics"
   desc: "Lower level functions for computing a range of cost-effectiveness statistics."
   contents:
@@ -70,15 +64,13 @@ articles:
   navbar: ~
   contents:
   - bcea
-  - ceac
+  - Set_bcea_parameters
 - title: Advanced
   contents:
-  - Set_bcea_parameters
+  - ceac
   - ceef
-  - ceplane
   - CEriskav
   - eib
-  - evi
   - info-rank
   - paired_vs_multiple_comps
   

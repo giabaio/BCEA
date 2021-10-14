@@ -13,7 +13,6 @@ NULL
 #' @template args-he
 #' @param graph_params List of graph parameters
 #' @param ... Additional arguments
-#' @export
 #' 
 eib_plot_base <- function(he,
                           graph_params,
@@ -44,7 +43,6 @@ eib_plot_base <- function(he,
 #' @import ggplot2
 #' @importFrom grid unit
 #' @importFrom purrr keep
-#' @export
 #' 
 eib_plot_ggplot <- function(he,
                             graph_params,
@@ -109,7 +107,6 @@ eib_plot_ggplot <- function(he,
 #' @param ... Additional parameters
 #' 
 #' @importFrom plotly plot_ly add_trace add_ribbons layout config
-#' @export
 #' 
 eib_plot_plotly <- function(he,
                             graph_params, ...) {

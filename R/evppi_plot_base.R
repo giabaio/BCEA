@@ -16,8 +16,6 @@ NULL
 #' @param col Colour
 #' @param annot Annotate EVPPI curve with parameter names
 #'
-#' @export
-#'
 evppi_plot_base <- function(evppi_obj,
                             pos_legend,
                             col = NULL,

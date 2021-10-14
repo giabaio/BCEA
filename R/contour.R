@@ -1,5 +1,5 @@
 
-#' Contour CE plane
+#' @rdname contour
 #' 
 #' @template args-he
 #' @param scale Scales the plot as a function of the observed standard deviation.

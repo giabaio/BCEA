@@ -13,10 +13,13 @@ make.mesh(data, convex.inner, convex.outer, cutoff, max.edge)
 
 \item{convex.outer}{convex.outer}
 
-\item{cutoff}{Cut-off}
+\item{cutoff}{Cut-off value}
 
 \item{max.edge}{Maximum edge}
 }
+\value{
+list
+}
 \description{
-Make Mesh
+Fit using INLA methods.
 }
