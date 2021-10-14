@@ -45,6 +45,9 @@ Suggests:
     testthat (>= 2.1.0),
     vdiffr,
     markdown,
+    R2jags,
+    R2OpenBUGS,
+    R2WinBUGS 
 Additional_repositories: https://inla.r-inla-download.org/R/stable/
 Remotes: cran/ldr
 Description: Produces an economic evaluation of a sample of suitable variables of
@@ -57,7 +60,6 @@ URL: http://www.statistica.it/gianluca/BCEA,
      http://www.statistica.it/gianluca,
      https://github.com/giabaio/BCEA    
 NeedsCompilation: no
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Encoding: UTF-8
 VignetteBuilder: knitr
-

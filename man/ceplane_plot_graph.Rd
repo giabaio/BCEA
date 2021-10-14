@@ -46,10 +46,12 @@ Choice of base R, ggplot2 or plotly.
 }
 \examples{
 # single comparator
-data(Vaccine)
+data(Vaccine, package = "BCEA")
 
-he <- bcea(e,c)
+he <- bcea(e, c)
+ceplane.plot(he, graph = "base")
 
+\dontrun{
 # need to provide all the defaults because thats what
 # ceplane.plot() does
 
@@ -65,13 +67,13 @@ graph_params <-  list(xlab = "x-axis label",
 he$delta_e <- as.matrix(he$delta_e)
 he$delta_c <- as.matrix(he$delta_c)
 
-ceplane_plot_base(he, graph_params = graph_params)
+BCEA::ceplane_plot_base(he, graph_params = graph_params)
 
 ## single non-default comparator
 
 
 ## multiple comparators
-data(Smoking)
+data(Smoking, package = "BCEA")
 
 graph_params <-  list(xlab = "x-axis label",
                       ylab = "y-axis label",
@@ -83,10 +85,12 @@ graph_params <-  list(xlab = "x-axis label",
                       area = list(color = "lightgrey"))
                                    
 he <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
-ceplane_plot_base(he,
-                  wtp = 200,
-                  pos_legend = FALSE,
-                  graph_params = graph_params)
+
+BCEA::ceplane_plot_base(he,
+                       wtp = 200,
+                       pos_legend = FALSE,
+                       graph_params = graph_params)
+}
 
 
 data(Vaccine)

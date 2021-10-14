@@ -4,12 +4,12 @@
 evppi_legend_cols <- function(evppi_obj, col = NULL) {
   
   n_cols <- length(evppi_obj$parameters) + 1
-
+  
   if (is.null(col)) {
     cols <- colors()
     gr <- floor(seq(from = 261, to = 336, length.out = n_cols))
     return(cols[gr])
-  
+    
   } else {
     if (length(col) != n_cols) {
       message(
@@ -35,12 +35,13 @@ evppi_legend_text <- function(evppi_obj) {
       (("Strong & Oakley (univariate)" %in% evppi_obj$method) || 
        ("Sadatsafavi et al" %in% evppi_obj$method))) {
     
-    ##TODO: what is i??
-    text(x = par("usr")[2],
-         y = evppi_obj$evppi[[i]][length(evppi_obj$k)],
-         labels = paste0("(", i, ")"), cex = 0.7, pos = 2)
-    
-    ##TODO: this is broken...
+    # label lines
+    for (i in seq_along(evppi_obj$index)) {
+      text(x = par("usr")[2],
+           y = evppi_obj$evppi[[i]][length(evppi_obj$k)],
+           labels = paste0("(", i, ")"), cex = 0.7, pos = 2)
+    }    
+
     cmd <-
       paste0("(",
              paste(1:length(evppi_obj$index)),
