@@ -1,0 +1,11 @@
+
+## Cost-effectiveness acceptability curve
+
+The _Cost-Effectiveness Acceptability Curve_ (CEAC) estimates the probability of cost-effectiveness, for different willingness to pay thresholds. The CEAC is used to evaluate the uncertainty associated with the decision-making process, since it quantifies the degree to which a treatment is preferred. This is measured in terms of the difference in utilities, normally the incremental benefit. Effectively, the CEAC represents the proportion of simulations in which $t=1$ is associated with a higher utility than $t=0$.
+
+The following graph shows the cost-effectiveness acceptability curve (CEAC). The CEAC represents the proportion of 'potential futures' in which the reference intervention is estimated to be more cost-effective than the comparator. Thus, it can be interpreted as the 'probability of cost-effectiveness'. 
+
+
+```{r, echo=echo, fig.width=4.6, fig.height=4.6, fig.align=align, warning=FALSE, message=FALSE, comment=NA}
+ceac.plot(m)
+```

@@ -1,0 +1,21 @@
+
+## Expected Incremental Benefit
+
+The following graph shows the _Expected Incremental Benefit_ (EIB), as a function of a grid of values for the willingness to pay $k$ (in this case in the interval `r min(m$k)` - `r max(m$k)`). 
+
+The EIB can be directly linked with the decision rule applied to the ICER. If a willingness to pay value $k^*$ exists in correspondence of which $\mbox{EIB}=0$ this value of $k$ is called the _break-even point_. It corresponds to the maximum uncertainty associated with the decision between the two comparators, with equal expected utilities for the two interventions. In other terms, for two willingness to pay values, one greater and one less than $k^*$, there will be two different optimal decisions. The graph also reports the 95% credible limits around the EIB. 
+
+
+```{r, echo=echo, fig.width=4.6, fig.height=4.6, fig.align=align, warning=FALSE, message=FALSE, comment=NA}
+n.ints <- m$n_comparators
+
+if (n.ints == 2) {
+  graph <- "base"
+  pos <- c(1, 1)
+} else {
+  graph <- "ggplot2"
+  pos <- TRUE
+}
+
+eib.plot(m, graph = graph, pos = pos)
+```

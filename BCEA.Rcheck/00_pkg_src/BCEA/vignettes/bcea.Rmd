@@ -1,0 +1,62 @@
+---
+title: "Get started"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Get started}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette will demonstrate a simple cost-effectiveness analysis using __BCEA__ using the smoking cessation data set contained in the package.
+
+```{r setup}
+library(BCEA)
+```
+
+Load the data.
+
+```{r}
+data(Smoking, package = "BCEA")
+```
+
+This study has four interventions.
+
+```{r}
+treats <- c("No intervention", "Self-help", "Individual counselling", "Group counselling")
+```
+
+Setting the reference group (`ref`) to _Group counselling_ and the maximum willingness to pay (`Kmax`) as 500
+```{r}
+bcea_smoke <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+```
+
+We can easily create a grid of the most common plots
+
+```{r fig.width=10, fig.height=10}
+library(ggplot2)
+
+plot(bcea_smoke)
+```
+
+Individual plots can be plotting using their own functions.
+
+```{r}
+ceplane.plot(bcea_smoke, comparison = 2, wtp = 250)
+
+eib.plot(bcea_smoke)
+
+contour(bcea_smoke)
+
+ceac.plot(bcea_smoke)
+
+ib.plot(bcea_smoke)
+```
+
+

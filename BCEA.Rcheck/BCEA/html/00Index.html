@@ -1,0 +1,542 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>R: Bayesian Cost Effectiveness Analysis</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container">
+<h1> Bayesian Cost Effectiveness Analysis
+<img class="toplogo" src="../../../doc/html/Rlogo.svg" alt="[R logo]" />
+</h1>
+<hr/>
+<div style="text-align: center;">
+<a href="../../../doc/html/packages.html"><img class="arrow" src="../../../doc/html/left.jpg" alt="[Up]" /></a>
+<a href="../../../doc/html/index.html"><img class="arrow" src="../../../doc/html/up.jpg" alt="[Top]" /></a>
+</div><h2>Documentation for package &lsquo;BCEA&rsquo; version 2.4.1</h2>
+
+<ul><li><a href="../DESCRIPTION">DESCRIPTION file</a>.</li>
+<li><a href="../doc/index.html">User guides, package vignettes and other documentation.</a></li>
+</ul>
+
+<h2>Help Pages</h2>
+
+
+<p style="text-align: center;">
+<a href="# "> </a>
+<a href="#B">B</a>
+<a href="#C">C</a>
+<a href="#D">D</a>
+<a href="#E">E</a>
+<a href="#F">F</a>
+<a href="#G">G</a>
+<a href="#I">I</a>
+<a href="#K">K</a>
+<a href="#L">L</a>
+<a href="#M">M</a>
+<a href="#N">N</a>
+<a href="#O">O</a>
+<a href="#P">P</a>
+<a href="#Q">Q</a>
+<a href="#S">S</a>
+<a href="#T">T</a>
+<a href="#V">V</a>
+</p>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="BCEA-package.html">BCEA-package</a></td>
+<td>BCEA: A package for Bayesian Cost-Effectiveness Analysis</td></tr>
+</table>
+
+<h2><a name="B">-- B --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="BCEA-package.html">BCEA</a></td>
+<td>BCEA: A package for Bayesian Cost-Effectiveness Analysis</td></tr>
+<tr><td style="width: 25%;"><a href="bcea.html">bcea</a></td>
+<td>Create Bayesian Cost-Effectiveness Analysis Object</td></tr>
+<tr><td style="width: 25%;"><a href="bcea.html">bcea.bugs</a></td>
+<td>Create Bayesian Cost-Effectiveness Analysis Object</td></tr>
+<tr><td style="width: 25%;"><a href="bcea.html">bcea.default</a></td>
+<td>Create Bayesian Cost-Effectiveness Analysis Object</td></tr>
+<tr><td style="width: 25%;"><a href="bcea.html">bcea.rjags</a></td>
+<td>Create Bayesian Cost-Effectiveness Analysis Object</td></tr>
+<tr><td style="width: 25%;"><a href="bcea.html">bcea.rstan</a></td>
+<td>Create Bayesian Cost-Effectiveness Analysis Object</td></tr>
+<tr><td style="width: 25%;"><a href="best_interv_given_k.html">best_interv_given_k</a></td>
+<td>Optimal intervention</td></tr>
+</table>
+
+<h2><a name="C">-- C --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="Smoking.html">c</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of smoking cessation interventions</td></tr>
+<tr><td style="width: 25%;"><a href="Vaccine.html">c.pts</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of influenza vaccination</td></tr>
+<tr><td style="width: 25%;"><a href="ceac.plot.html">ceac.plot</a></td>
+<td>Cost-Effectiveness Acceptability Curve (CEAC) Plot</td></tr>
+<tr><td style="width: 25%;"><a href="ceac.plot.html">ceac.plot.bcea</a></td>
+<td>Cost-Effectiveness Acceptability Curve (CEAC) Plot</td></tr>
+<tr><td style="width: 25%;"><a href="ceac_plot_graph.html">ceac_ggplot</a></td>
+<td>Cost-Effectiveness Acceptability Curve (CEAC) Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="ceac_matplot.html">ceac_matplot</a></td>
+<td>CEAC Matrix Plot</td></tr>
+<tr><td style="width: 25%;"><a href="ceac_plot_graph.html">ceac_plot_base</a></td>
+<td>Cost-Effectiveness Acceptability Curve (CEAC) Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="ceac_plot_graph.html">ceac_plot_base.bcea</a></td>
+<td>Cost-Effectiveness Acceptability Curve (CEAC) Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="ceac_plot_graph.html">ceac_plot_base.pairwise</a></td>
+<td>Cost-Effectiveness Acceptability Curve (CEAC) Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="ceac_plot_graph.html">ceac_plot_ggplot</a></td>
+<td>Cost-Effectiveness Acceptability Curve (CEAC) Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="ceac_plot_graph.html">ceac_plot_ggplot.bcea</a></td>
+<td>Cost-Effectiveness Acceptability Curve (CEAC) Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="ceac_plot_graph.html">ceac_plot_ggplot.pairwise</a></td>
+<td>Cost-Effectiveness Acceptability Curve (CEAC) Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="ceac_plot_graph.html">ceac_plot_graph</a></td>
+<td>Cost-Effectiveness Acceptability Curve (CEAC) Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="ceac_plot_graph.html">ceac_plot_plotly</a></td>
+<td>Cost-Effectiveness Acceptability Curve (CEAC) Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="ceaf.plot.html">ceaf.plot</a></td>
+<td>Cost-Effectiveness Acceptability Frontier (CEAF) plot</td></tr>
+<tr><td style="width: 25%;"><a href="ceaf.plot.html">ceaf.plot.pairwise</a></td>
+<td>Cost-Effectiveness Acceptability Frontier (CEAF) plot</td></tr>
+<tr><td style="width: 25%;"><a href="ceef.plot.html">ceef.plot</a></td>
+<td>Cost-Effectiveness Efficiency Frontier (CEAF) Plot</td></tr>
+<tr><td style="width: 25%;"><a href="ceef.plot.html">ceef.plot.bcea</a></td>
+<td>Cost-Effectiveness Efficiency Frontier (CEAF) Plot</td></tr>
+<tr><td style="width: 25%;"><a href="ceef.summary.html">ceef.summary</a></td>
+<td>Summary table for CEEF</td></tr>
+<tr><td style="width: 25%;"><a href="ceef_plot_graph.html">ceef_plot_base</a></td>
+<td>Cost-effectiveness Efficiency Frontier Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="ceef_plot_graph.html">ceef_plot_ggplot</a></td>
+<td>Cost-effectiveness Efficiency Frontier Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="ceef_plot_graph.html">ceef_plot_graph</a></td>
+<td>Cost-effectiveness Efficiency Frontier Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="ceplane.plot.html">ceplane.plot</a></td>
+<td>Cost-effectiveness Plane Plot</td></tr>
+<tr><td style="width: 25%;"><a href="ceplane.plot.html">ceplane.plot.bcea</a></td>
+<td>Cost-effectiveness Plane Plot</td></tr>
+<tr><td style="width: 25%;"><a href="ceplane_geom_params.html">ceplane_geom_params</a></td>
+<td>Extract Separate Parameter Sets</td></tr>
+<tr><td style="width: 25%;"><a href="ceplane_ggplot_params.html">ceplane_ggplot_params</a></td>
+<td>CE-plane ggplot Parameters</td></tr>
+<tr><td style="width: 25%;"><a href="ceplane_plot_graph.html">ceplane_plot_base</a></td>
+<td>Cost-Effectiveness Plane Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="ceplane_plot_graph.html">ceplane_plot_base.bcea</a></td>
+<td>Cost-Effectiveness Plane Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="ceplane_plot_graph.html">ceplane_plot_ggplot</a></td>
+<td>Cost-Effectiveness Plane Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="ceplane_plot_graph.html">ceplane_plot_ggplot.bcea</a></td>
+<td>Cost-Effectiveness Plane Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="ceplane_plot_graph.html">ceplane_plot_graph</a></td>
+<td>Cost-Effectiveness Plane Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="ceplane_plot_graph.html">ceplane_plot_plotly</a></td>
+<td>Cost-Effectiveness Plane Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="ceplane_plot_graph.html">ceplane_plot_plotly.bcea</a></td>
+<td>Cost-Effectiveness Plane Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="CEriskav_assign.html">CEriskav</a></td>
+<td>Cost-effectiveness Analysis Including a Parameter of Risk Aversion</td></tr>
+<tr><td style="width: 25%;"><a href="CEriskav_assign.html">CEriskav.default</a></td>
+<td>Cost-effectiveness Analysis Including a Parameter of Risk Aversion</td></tr>
+<tr><td style="width: 25%;"><a href="CEriskav_assign.html">CEriskav&lt;-</a></td>
+<td>Cost-effectiveness Analysis Including a Parameter of Risk Aversion</td></tr>
+<tr><td style="width: 25%;"><a href="CEriskav_assign.html">CEriskav&lt;-.bcea</a></td>
+<td>Cost-effectiveness Analysis Including a Parameter of Risk Aversion</td></tr>
+<tr><td style="width: 25%;"><a href="CEriskav_assign.html">CEriskav&lt;-.default</a></td>
+<td>Cost-effectiveness Analysis Including a Parameter of Risk Aversion</td></tr>
+<tr><td style="width: 25%;"><a href="CEriskav_assign.html">CEriskav_assign</a></td>
+<td>Cost-effectiveness Analysis Including a Parameter of Risk Aversion</td></tr>
+<tr><td style="width: 25%;"><a href="CEriskav_plot_graph.html">CEriskav_plot_base</a></td>
+<td>Cost-effectiveness Plot Including a Parameter of Risk Aversion Choice of base R, ggplot2.</td></tr>
+<tr><td style="width: 25%;"><a href="CEriskav_plot_graph.html">CEriskav_plot_ggplot</a></td>
+<td>Cost-effectiveness Plot Including a Parameter of Risk Aversion Choice of base R, ggplot2.</td></tr>
+<tr><td style="width: 25%;"><a href="CEriskav_plot_graph.html">CEriskav_plot_graph</a></td>
+<td>Cost-effectiveness Plot Including a Parameter of Risk Aversion Choice of base R, ggplot2.</td></tr>
+<tr><td style="width: 25%;"><a href="compute.evppi.html">compute.evppi</a></td>
+<td>Compute EVPPI</td></tr>
+<tr><td style="width: 25%;"><a href="compute_CEAC.html">compute_CEAC</a></td>
+<td>Compute Cost-Effectiveness Acceptability Curve</td></tr>
+<tr><td style="width: 25%;"><a href="compute_ceaf.html">compute_ceaf</a></td>
+<td>Compute Cost-Effectiveness Acceptability Frontier</td></tr>
+<tr><td style="width: 25%;"><a href="compute_EIB.html">compute_EIB</a></td>
+<td>Compute Expected Incremental Benefit</td></tr>
+<tr><td style="width: 25%;"><a href="compute_eib_cri.html">compute_eib_cri</a></td>
+<td>Calculate Credible Intervals</td></tr>
+<tr><td style="width: 25%;"><a href="compute_EVI.html">compute_EVI</a></td>
+<td>Compute Expected Value of Information</td></tr>
+<tr><td style="width: 25%;"><a href="compute_IB.html">compute_IB</a></td>
+<td>Compute Incremental Benefit</td></tr>
+<tr><td style="width: 25%;"><a href="compute_ICER.html">compute_ICER</a></td>
+<td>Compute Incremental Cost-Effectiveness Ratio</td></tr>
+<tr><td style="width: 25%;"><a href="compute_kstar.html">compute_kstar</a></td>
+<td>Compute k^*</td></tr>
+<tr><td style="width: 25%;"><a href="compute_ol.html">compute_ol</a></td>
+<td>Compute Opportunity Loss</td></tr>
+<tr><td style="width: 25%;"><a href="compute_p_best_interv.html">compute_p_best_interv</a></td>
+<td>Compute Probability Best Intervention</td></tr>
+<tr><td style="width: 25%;"><a href="compute_U.html">compute_U</a></td>
+<td>Compute U Statistic</td></tr>
+<tr><td style="width: 25%;"><a href="compute_Ubar.html">compute_Ubar</a></td>
+<td>Compute NB for mixture of interventions</td></tr>
+<tr><td style="width: 25%;"><a href="compute_Ustar.html">compute_Ustar</a></td>
+<td>Compute Ustar Statistic</td></tr>
+<tr><td style="width: 25%;"><a href="compute_vi.html">compute_vi</a></td>
+<td>Compute Value of Information</td></tr>
+<tr><td style="width: 25%;"><a href="comp_names_from_.html">comp_names_from_</a></td>
+<td>Comparison Names From</td></tr>
+<tr><td style="width: 25%;"><a href="contour.html">contour</a></td>
+<td>Contour Plots for the Cost-Effectiveness Plane</td></tr>
+<tr><td style="width: 25%;"><a href="contour.html">contour.bcea</a></td>
+<td>Contour Plots for the Cost-Effectiveness Plane</td></tr>
+<tr><td style="width: 25%;"><a href="contour2.html">contour2</a></td>
+<td>Specialised CE-plane Contour Plot</td></tr>
+<tr><td style="width: 25%;"><a href="contour2.html">contour2.bcea</a></td>
+<td>Specialised CE-plane Contour Plot</td></tr>
+<tr><td style="width: 25%;"><a href="contour_graph.html">contour_base</a></td>
+<td>Contour Cost-Effectiveness Plane</td></tr>
+<tr><td style="width: 25%;"><a href="contour_graph.html">contour_ggplot</a></td>
+<td>Contour Cost-Effectiveness Plane</td></tr>
+<tr><td style="width: 25%;"><a href="contour_graph.html">contour_graph</a></td>
+<td>Contour Cost-Effectiveness Plane</td></tr>
+<tr><td style="width: 25%;"><a href="convert_pts_to_mm.html">convert_pts_to_mm</a></td>
+<td>Use from Base R to ggplot</td></tr>
+<tr><td style="width: 25%;"><a href="Vaccine.html">cost.GP</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of influenza vaccination</td></tr>
+<tr><td style="width: 25%;"><a href="Vaccine.html">cost.hosp</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of influenza vaccination</td></tr>
+<tr><td style="width: 25%;"><a href="Vaccine.html">cost.otc</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of influenza vaccination</td></tr>
+<tr><td style="width: 25%;"><a href="Vaccine.html">cost.time.off</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of influenza vaccination</td></tr>
+<tr><td style="width: 25%;"><a href="Vaccine.html">cost.time.vac</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of influenza vaccination</td></tr>
+<tr><td style="width: 25%;"><a href="Vaccine.html">cost.travel</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of influenza vaccination</td></tr>
+<tr><td style="width: 25%;"><a href="Vaccine.html">cost.trt1</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of influenza vaccination</td></tr>
+<tr><td style="width: 25%;"><a href="Vaccine.html">cost.trt2</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of influenza vaccination</td></tr>
+<tr><td style="width: 25%;"><a href="Vaccine.html">cost.vac</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of influenza vaccination</td></tr>
+<tr><td style="width: 25%;"><a href="createInputs.html">createInputs</a></td>
+<td>Create Inputs for EVPI Calculation</td></tr>
+<tr><td style="width: 25%;"><a href="createInputs.html">createInputs.bugs</a></td>
+<td>Create Inputs for EVPI Calculation</td></tr>
+<tr><td style="width: 25%;"><a href="createInputs.html">createInputs.data.frame</a></td>
+<td>Create Inputs for EVPI Calculation</td></tr>
+<tr><td style="width: 25%;"><a href="createInputs.html">createInputs.default</a></td>
+<td>Create Inputs for EVPI Calculation</td></tr>
+<tr><td style="width: 25%;"><a href="createInputs.html">createInputs.numeric</a></td>
+<td>Create Inputs for EVPI Calculation</td></tr>
+<tr><td style="width: 25%;"><a href="createInputs.html">createInputs.rjags</a></td>
+<td>Create Inputs for EVPI Calculation</td></tr>
+<tr><td style="width: 25%;"><a href="createInputs.html">createInputs.stanfit</a></td>
+<td>Create Inputs for EVPI Calculation</td></tr>
+</table>
+
+<h2><a name="D">-- D --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="Smoking.html">data</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of smoking cessation interventions</td></tr>
+<tr><td style="width: 25%;"><a href="diag.evppi.html">diag.evppi</a></td>
+<td>Diagnostic Plots For The Results Of The EVPPI</td></tr>
+</table>
+
+<h2><a name="E">-- E --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="Smoking.html">e</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of smoking cessation interventions</td></tr>
+<tr><td style="width: 25%;"><a href="Vaccine.html">e.pts</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of influenza vaccination</td></tr>
+<tr><td style="width: 25%;"><a href="eib.plot.html">eib.plot</a></td>
+<td>Expected Incremental Benefit (EIB) Plot</td></tr>
+<tr><td style="width: 25%;"><a href="eib.plot.html">eib.plot.bcea</a></td>
+<td>Expected Incremental Benefit (EIB) Plot</td></tr>
+<tr><td style="width: 25%;"><a href="eib_params_base.html">eib_params_base</a></td>
+<td>EIB parameters specific to base R plot</td></tr>
+<tr><td style="width: 25%;"><a href="eib_plot_graph.html">eib_plot_base</a></td>
+<td>Expected Incremental Benefit Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="eib_plot_graph.html">eib_plot_ggplot</a></td>
+<td>Expected Incremental Benefit Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="eib_plot_graph.html">eib_plot_graph</a></td>
+<td>Expected Incremental Benefit Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="eib_plot_graph.html">eib_plot_plotly</a></td>
+<td>Expected Incremental Benefit Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="evi.plot.html">evi.plot</a></td>
+<td>Expected Value of Information (EVI) Plot</td></tr>
+<tr><td style="width: 25%;"><a href="evi.plot.html">evi.plot.bcea</a></td>
+<td>Expected Value of Information (EVI) Plot</td></tr>
+<tr><td style="width: 25%;"><a href="evi.plot.mixedAn.html">evi.plot.mixedAn</a></td>
+<td>EVI Plot of the Health Economic Analysis For Mixed Analysis</td></tr>
+<tr><td style="width: 25%;"><a href="evi_plot_graph.html">evi_plot_base</a></td>
+<td>Expected Value of Information Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="evi_plot_graph.html">evi_plot_ggplot</a></td>
+<td>Expected Value of Information Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="evi_plot_graph.html">evi_plot_graph</a></td>
+<td>Expected Value of Information Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="evi_plot_graph.html">evi_plot_plotly</a></td>
+<td>Expected Value of Information Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="evppi.html">evppi</a></td>
+<td>Expected Value of Perfect Partial Information (EVPPI) for Selected Parameters</td></tr>
+<tr><td style="width: 25%;"><a href="evppi.html">evppi.bcea</a></td>
+<td>Expected Value of Perfect Partial Information (EVPPI) for Selected Parameters</td></tr>
+<tr><td style="width: 25%;"><a href="evppi.html">evppi.default</a></td>
+<td>Expected Value of Perfect Partial Information (EVPPI) for Selected Parameters</td></tr>
+<tr><td style="width: 25%;"><a href="evppi_plot_graph.html">evppi_plot_base</a></td>
+<td>Plot Expected Value of Partial Information With Respect to a Set of Parameters</td></tr>
+<tr><td style="width: 25%;"><a href="evppi_plot_graph.html">evppi_plot_ggplot</a></td>
+<td>Plot Expected Value of Partial Information With Respect to a Set of Parameters</td></tr>
+<tr><td style="width: 25%;"><a href="evppi_plot_graph.html">evppi_plot_graph</a></td>
+<td>Plot Expected Value of Partial Information With Respect to a Set of Parameters</td></tr>
+</table>
+
+<h2><a name="F">-- F --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="fit.gam.html">fit.gam</a></td>
+<td>Gaussian Additive Model Fitting</td></tr>
+<tr><td style="width: 25%;"><a href="fit.gp.html">fit.gp</a></td>
+<td>Fit Gaussian Process</td></tr>
+<tr><td style="width: 25%;"><a href="fit.inla.html">fit.inla</a></td>
+<td>Fit INLA</td></tr>
+</table>
+
+<h2><a name="G">-- G --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="geom_cri.html">geom_cri</a></td>
+<td>Credible interval ggplot geom</td></tr>
+</table>
+
+<h2><a name="I">-- I --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="ib.plot.html">ib.plot</a></td>
+<td>Incremental Benefit (IB) Distribution Plot</td></tr>
+<tr><td style="width: 25%;"><a href="ib.plot.html">ib.plot.bcea</a></td>
+<td>Incremental Benefit (IB) Distribution Plot</td></tr>
+<tr><td style="width: 25%;"><a href="ib_plot_graph.html">ib_plot_base</a></td>
+<td>IB plot base R version</td></tr>
+<tr><td style="width: 25%;"><a href="ib_plot_graph.html">ib_plot_ggplot</a></td>
+<td>IB plot base R version</td></tr>
+<tr><td style="width: 25%;"><a href="ib_plot_graph.html">ib_plot_graph</a></td>
+<td>IB plot base R version</td></tr>
+<tr><td style="width: 25%;"><a href="info.rank.html">info.rank</a></td>
+<td>Information-Rank Plot for bcea Class</td></tr>
+<tr><td style="width: 25%;"><a href="info.rank.html">info.rank.bcea</a></td>
+<td>Information-Rank Plot for bcea Class</td></tr>
+<tr><td style="width: 25%;"><a href="inforank_params.html">inforank_params</a></td>
+<td>Prepare Info Rank plot parameters</td></tr>
+<tr><td style="width: 25%;"><a href="info_rank_graph.html">info_rank_base</a></td>
+<td>Info Rank Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="info_rank_graph.html">info_rank_ggplot</a></td>
+<td>Info Rank Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="info_rank_graph.html">info_rank_graph</a></td>
+<td>Info Rank Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="info_rank_graph.html">info_rank_plotly</a></td>
+<td>Info Rank Plot By Graph Device</td></tr>
+<tr><td style="width: 25%;"><a href="is.bcea.html">is.bcea</a></td>
+<td>Check bcea Class</td></tr>
+</table>
+
+<h2><a name="K">-- K --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="kstar_vlines.html">kstar_vlines</a></td>
+<td>Prepare K-star vertical lines</td></tr>
+</table>
+
+<h2><a name="L">-- L --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="Smoking.html">life.years</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of smoking cessation interventions</td></tr>
+<tr><td style="width: 25%;"><a href="line_labels.html">line_labels</a></td>
+<td>Create Labels for Plot</td></tr>
+<tr><td style="width: 25%;"><a href="line_labels.html">line_labels.default</a></td>
+<td>Create Labels for Plot</td></tr>
+<tr><td style="width: 25%;"><a href="line_labels.html">line_labels.pairwise</a></td>
+<td>Create Labels for Plot</td></tr>
+<tr><td style="width: 25%;"><a href="loo_rank.html">loo_rank</a></td>
+<td>Leave-one-out ranking</td></tr>
+</table>
+
+<h2><a name="M">-- M --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="make.mesh.html">make.mesh</a></td>
+<td>Make Mesh</td></tr>
+<tr><td style="width: 25%;"><a href="make.proj.html">make.proj</a></td>
+<td>INLA Fitting</td></tr>
+<tr><td style="width: 25%;"><a href="make.report.html">make.report</a></td>
+<td>Make Report</td></tr>
+<tr><td style="width: 25%;"><a href="make_legend_plotly.html">make_legend_plotly</a></td>
+<td>Legend Positioning</td></tr>
+<tr><td style="width: 25%;"><a href="mixedAn-set.html">mixedAn</a></td>
+<td>Cost-Effectiveness Analysis When Multiple (Possibly Non-Cost-Effective) Interventions are Present on the Market</td></tr>
+<tr><td style="width: 25%;"><a href="mixedAn-set.html">mixedAn.default</a></td>
+<td>Cost-Effectiveness Analysis When Multiple (Possibly Non-Cost-Effective) Interventions are Present on the Market</td></tr>
+<tr><td style="width: 25%;"><a href="mixedAn-set.html">mixedAn&lt;-</a></td>
+<td>Cost-Effectiveness Analysis When Multiple (Possibly Non-Cost-Effective) Interventions are Present on the Market</td></tr>
+<tr><td style="width: 25%;"><a href="multi.ce.html">multi.ce</a></td>
+<td>Cost-effectiveness Analysis With Multiple Comparison</td></tr>
+<tr><td style="width: 25%;"><a href="multi.ce.html">multi.ce.bcea</a></td>
+<td>Cost-effectiveness Analysis With Multiple Comparison</td></tr>
+<tr><td style="width: 25%;"><a href="multiplot.html">multiplot</a></td>
+<td>Plot Multiple bcea Graphs</td></tr>
+</table>
+
+<h2><a name="N">-- N --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="Vaccine.html">N</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of influenza vaccination</td></tr>
+<tr><td style="width: 25%;"><a href="Vaccine.html">N.outcomes</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of influenza vaccination</td></tr>
+<tr><td style="width: 25%;"><a href="Vaccine.html">N.resources</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of influenza vaccination</td></tr>
+<tr><td style="width: 25%;"><a href="new_bcea.html">new_bcea</a></td>
+<td>Constructor for bcea</td></tr>
+<tr><td style="width: 25%;"><a href="num_lines.html">num_lines</a></td>
+<td>Get number of lines</td></tr>
+<tr><td style="width: 25%;"><a href="num_lines.html">num_lines.bcea</a></td>
+<td>Get number of lines</td></tr>
+<tr><td style="width: 25%;"><a href="num_lines.html">num_lines.default</a></td>
+<td>Get number of lines</td></tr>
+<tr><td style="width: 25%;"><a href="num_lines.html">num_lines.evppi</a></td>
+<td>Get number of lines</td></tr>
+<tr><td style="width: 25%;"><a href="num_lines.html">num_lines.pairwise</a></td>
+<td>Get number of lines</td></tr>
+</table>
+
+<h2><a name="O">-- O --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="openPDF.html">openPDF</a></td>
+<td>Automatically open pdf output using default pdf viewer</td></tr>
+</table>
+
+<h2><a name="P">-- P --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="Smoking.html">pi</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of smoking cessation interventions</td></tr>
+<tr><td style="width: 25%;"><a href="plot.bcea.html">plot.bcea</a></td>
+<td>Summary Plot of the Health Economic Analysis</td></tr>
+<tr><td style="width: 25%;"><a href="plot.CEriskav.html">plot.CEriskav</a></td>
+<td>Plots EIB and EVPI for the Risk Aversion Case</td></tr>
+<tr><td style="width: 25%;"><a href="plot.evppi.html">plot.evppi</a></td>
+<td>Plot Expected Value of Partial Information With Respect to a Set of Parameters</td></tr>
+<tr><td style="width: 25%;"><a href="plot.mesh.html">plot.mesh</a></td>
+<td>Mesh Plot</td></tr>
+<tr><td style="width: 25%;"><a href="plot_eib_cri.html">plot_eib_cri</a></td>
+<td>Plot Credible Intervals</td></tr>
+<tr><td style="width: 25%;"><a href="post.density.html">post.density</a></td>
+<td>Gaussian Process Fitting</td></tr>
+<tr><td style="width: 25%;"><a href="prep.x.html">prep.x</a></td>
+<td>Prepare Delta arrays</td></tr>
+<tr><td style="width: 25%;"><a href="prepare.output.html">prepare.output</a></td>
+<td>Prepare output</td></tr>
+<tr><td style="width: 25%;"><a href="prep_ceplane_params.html">prep_ceplane_params</a></td>
+<td>Prepare CE-plane Parameters</td></tr>
+<tr><td style="width: 25%;"><a href="prep_eib_params.html">prep_eib_params</a></td>
+<td>Prepare EIB plot parameters</td></tr>
+<tr><td style="width: 25%;"><a href="prep_frontier_data.html">prep_frontier_data</a></td>
+<td>Prepare frontier data</td></tr>
+<tr><td style="width: 25%;"><a href="print.bcea.html">print.bcea</a></td>
+<td>bcea Print Method</td></tr>
+</table>
+
+<h2><a name="Q">-- Q --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="Vaccine.html">QALYs.adv</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of influenza vaccination</td></tr>
+<tr><td style="width: 25%;"><a href="Vaccine.html">QALYs.death</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of influenza vaccination</td></tr>
+<tr><td style="width: 25%;"><a href="Vaccine.html">QALYs.hosp</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of influenza vaccination</td></tr>
+<tr><td style="width: 25%;"><a href="Vaccine.html">QALYs.inf</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of influenza vaccination</td></tr>
+<tr><td style="width: 25%;"><a href="Vaccine.html">QALYs.pne</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of influenza vaccination</td></tr>
+<tr><td style="width: 25%;"><a href="quiet.html">quiet</a></td>
+<td>Allow disabling of the cat messages</td></tr>
+</table>
+
+<h2><a name="S">-- S --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="select_plot_type.html">select_plot_type</a></td>
+<td>Choose Graphical Engine</td></tr>
+<tr><td style="width: 25%;"><a href="setComparisons.html">setComparisons</a></td>
+<td>Set Comparisons Group</td></tr>
+<tr><td style="width: 25%;"><a href="setComparisons_assign.html">setComparisons&lt;-</a></td>
+<td>Set Comparison Group</td></tr>
+<tr><td style="width: 25%;"><a href="setComparisons_assign.html">setComparisons&lt;-.bcea</a></td>
+<td>Set Comparison Group</td></tr>
+<tr><td style="width: 25%;"><a href="setComparisons_assign.html">setComparisons&lt;-.default</a></td>
+<td>Set Comparison Group</td></tr>
+<tr><td style="width: 25%;"><a href="setComparisons_assign.html">setComparisons_assign</a></td>
+<td>Set Comparison Group</td></tr>
+<tr><td style="width: 25%;"><a href="setKmax_assign.html">setKmax&lt;-</a></td>
+<td>Set Maximum Willingness to Pay</td></tr>
+<tr><td style="width: 25%;"><a href="setKmax_assign.html">setKmax&lt;-.bcea</a></td>
+<td>Set Maximum Willingness to Pay</td></tr>
+<tr><td style="width: 25%;"><a href="setKmax_assign.html">setKmax&lt;-.default</a></td>
+<td>Set Maximum Willingness to Pay</td></tr>
+<tr><td style="width: 25%;"><a href="setKmax_assign.html">setKmax_assign</a></td>
+<td>Set Maximum Willingness to Pay</td></tr>
+<tr><td style="width: 25%;"><a href="setReferenceGroup_assign.html">setReferenceGroup&lt;-</a></td>
+<td>Set Reference Group</td></tr>
+<tr><td style="width: 25%;"><a href="setReferenceGroup_assign.html">setReferenceGroup&lt;-.bcea</a></td>
+<td>Set Reference Group</td></tr>
+<tr><td style="width: 25%;"><a href="setReferenceGroup_assign.html">setReferenceGroup&lt;-.default</a></td>
+<td>Set Reference Group</td></tr>
+<tr><td style="width: 25%;"><a href="setReferenceGroup_assign.html">setReferenceGroup_assign</a></td>
+<td>Set Reference Group</td></tr>
+<tr><td style="width: 25%;"><a href="sim_table.html">sim_table</a></td>
+<td>Table of Simulation Statistics for the Health Economic Model</td></tr>
+<tr><td style="width: 25%;"><a href="sim_table.html">sim_table.bcea</a></td>
+<td>Table of Simulation Statistics for the Health Economic Model</td></tr>
+<tr><td style="width: 25%;"><a href="Smoking.html">Smoking</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of smoking cessation interventions</td></tr>
+<tr><td style="width: 25%;"><a href="Smoking.html">smoking</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of smoking cessation interventions</td></tr>
+<tr><td style="width: 25%;"><a href="Smoking.html">smoking_output</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of smoking cessation interventions</td></tr>
+<tr><td style="width: 25%;"><a href="struct.psa.html">struct.psa</a></td>
+<td>Structural Probability Sensitivity Analysis</td></tr>
+<tr><td style="width: 25%;"><a href="summary.bcea.html">summary.bcea</a></td>
+<td>Summary Method for Objects of Class 'bcea'</td></tr>
+<tr><td style="width: 25%;"><a href="summary.mixedAn.html">summary.mixedAn</a></td>
+<td>Summary Methods For Objects in the Class 'mixedAn' (Mixed Analysis)</td></tr>
+</table>
+
+<h2><a name="T">-- T --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="tabulate_means.html">tabulate_means</a></td>
+<td>Calculate Dataset For ICERs From bcea Object</td></tr>
+<tr><td style="width: 25%;"><a href="Smoking.html">treats</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of smoking cessation interventions</td></tr>
+</table>
+
+<h2><a name="V">-- V --</a></h2>
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="Vaccine.html">Vaccine</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of influenza vaccination</td></tr>
+<tr><td style="width: 25%;"><a href="Vaccine.html">vaccine</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of influenza vaccination</td></tr>
+<tr><td style="width: 25%;"><a href="Vaccine.html">vaccine_mat</a></td>
+<td>Data set for the Bayesian model for the cost-effectiveness of influenza vaccination</td></tr>
+<tr><td style="width: 25%;"><a href="validate_bcea.html">validate_bcea</a></td>
+<td>Validate bcea</td></tr>
+<tr><td style="width: 25%;"><a href="validate_eib_params.html">validate_eib_params</a></td>
+<td>Validate EIB parameters</td></tr>
+</table>
+</div></body></html>

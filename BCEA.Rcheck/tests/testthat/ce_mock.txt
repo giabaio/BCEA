@@ -1,0 +1,10 @@
+model {
+    for (i in 1:2) {
+    
+     cost[i] ~ dunif(0, 1)
+     eff[i] ~ dunif(0, 1)
+     
+     x[i] ~ dnorm(cost[i], 1)
+     y[i] ~ dnorm(eff[i], 1)
+    }
+    }
