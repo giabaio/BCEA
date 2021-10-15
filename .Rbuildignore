@@ -11,3 +11,4 @@
 ^\.httr-oauth$
 ^CONDUCT\.md$
 ^man-roxygen$
+^cran-comments\.md$

@@ -10,10 +10,13 @@ prep_eib_params(he, plot.cri, ...)
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
-\item{plot.cri}{Make title? Logical}
+\item{plot.cri}{Make title including credible interval? Logical}
 
 \item{...}{Additional parameters}
 }
+\value{
+List of graph parameters
+}
 \description{
-Parameters general to all plotting devices
+Parameters general to all plotting devices.
 }
