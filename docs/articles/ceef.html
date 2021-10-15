@@ -62,7 +62,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
+      <a href="../articles/bcea.html">Get started</a>
+    </li>
+    <li>
+      <a href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
     </li>
     <li class="divider">
     <li>
@@ -107,6 +110,7 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
+<p>The line connecting successive points on a cost-effectiveness plane which each represent the effect and cost associated with different treatment alternatives. The gradient of a line segment represents the ICER of the treatment comparison between the two alternatives represented by that segment. The cost-effectiveness frontier consists of the set of points corresponding to treatment alternatives that are considered to be cost-effective at different values of the cost-effectiveness threshold. The steeper the gradient between successive points on the frontier, the higher is the ICER between these treatment alternatives and the more expensive alternative would be considered cost-effective only when a high value of the cost-effectiveness threshold is assumed. Points not lying on the cost-effectiveness frontier represent treatment alternatives that are not considered cost-effective at any value of the cost-effectiveness threshold.</p>
 </div>
 <div id="r-code" class="section level2">
 <h2 class="hasAnchor">
@@ -128,13 +132,13 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                   Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention         0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help               0.69875  45.733         158.66         1.5645</span>
-<span class="co">#&gt; Group counselling       1.13303 143.301         224.67         1.5663</span>
+<span class="co">#&gt; Self-help               0.28824  45.733         158.66         1.5645</span>
+<span class="co">#&gt; Group counselling       0.72252 143.301         224.67         1.5663</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions not on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness  Costs     Dominance type</span>
-<span class="co">#&gt; Individual counselling       0.89536 94.919 Extended dominance</span></code></pre></div>
+<span class="co">#&gt; No intervention              0.00000  0.000 Extended dominance</span>
+<span class="co">#&gt; Individual counselling       0.48486 94.919 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-3-1.png" width="576"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
@@ -146,9 +150,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help                    0.89536  94.919         195.77         1.5657</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         203.57         1.5659</span></code></pre></div>
+<span class="co">#&gt; Self-help                    0.48486  94.919         195.77         1.5657</span>
+<span class="co">#&gt; Individual counselling       0.72252 143.301         203.57         1.5659</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No intervention             0     0 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-3-2.png" width="576"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
@@ -160,9 +167,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help                    0.89536  94.919         195.77         1.5657</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         203.57         1.5659</span></code></pre></div>
+<span class="co">#&gt; Self-help                    0.48486  94.919         195.77         1.5657</span>
+<span class="co">#&gt; Individual counselling       0.72252 143.301         203.57         1.5659</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness  Costs     Dominance type</span>
+<span class="co">#&gt; No intervention       0.48486 94.919 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-3-3.png" width="576"></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
@@ -172,13 +182,13 @@
 <span class="co">#&gt; Cost-effectiveness efficiency frontier summary </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
-<span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.69875  45.733          65.45         1.5555</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         224.67         1.5663</span>
+<span class="co">#&gt;                        Effectiveness  Costs Increase slope Increase angle</span>
+<span class="co">#&gt; Individual counselling       0.43428 97.568         224.67         1.5663</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions not on the efficiency frontier:</span>
-<span class="co">#&gt;           Effectiveness  Costs     Dominance type</span>
-<span class="co">#&gt; Self-help       0.69875 45.733 Extended dominance</span></code></pre></div>
+<span class="co">#&gt;                 Effectiveness  Costs     Dominance type</span>
+<span class="co">#&gt; No intervention       0.19662 49.186 Extended dominance</span>
+<span class="co">#&gt; Self-help             0.00000  0.000 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-3-4.png" width="576"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
@@ -188,9 +198,12 @@
 <span class="co">#&gt; Cost-effectiveness efficiency frontier summary </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
-<span class="co">#&gt;                 Effectiveness Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention       0.41051   0.0           0.00         0.0000</span>
-<span class="co">#&gt; Self-help             1.13303 143.3         198.33         1.5658</span></code></pre></div>
+<span class="co">#&gt;           Effectiveness Costs Increase slope Increase angle</span>
+<span class="co">#&gt; Self-help       0.72252 143.3         198.33         1.5658</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No intervention             0     0 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-3-5.png" width="576"></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
@@ -202,9 +215,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help                    0.89536  94.919         195.77         1.5657</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         203.57         1.5659</span></code></pre></div>
+<span class="co">#&gt; Self-help                    0.48486  94.919         195.77         1.5657</span>
+<span class="co">#&gt; Individual counselling       0.72252 143.301         203.57         1.5659</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No intervention             0     0 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-3-6.png" width="576"></p>
 <ul>
 <li>ggplot</li>
@@ -219,13 +235,13 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                   Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention         0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help               0.69875  45.733         158.66         1.5645</span>
-<span class="co">#&gt; Group counselling       1.13303 143.301         224.67         1.5663</span>
+<span class="co">#&gt; Self-help               0.28824  45.733         158.66         1.5645</span>
+<span class="co">#&gt; Group counselling       0.72252 143.301         224.67         1.5663</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions not on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness  Costs     Dominance type</span>
-<span class="co">#&gt; Individual counselling       0.89536 94.919 Extended dominance</span></code></pre></div>
+<span class="co">#&gt; No intervention              0.00000  0.000 Extended dominance</span>
+<span class="co">#&gt; Individual counselling       0.48486 94.919 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-4-1.png" width="576"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
@@ -237,9 +253,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help                    0.89536  94.919         195.77         1.5657</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         203.57         1.5659</span></code></pre></div>
+<span class="co">#&gt; Self-help                    0.48486  94.919         195.77         1.5657</span>
+<span class="co">#&gt; Individual counselling       0.72252 143.301         203.57         1.5659</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No intervention             0     0 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-4-2.png" width="576"></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
@@ -251,9 +270,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help                    0.89536  94.919         195.77         1.5657</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         203.57         1.5659</span></code></pre></div>
+<span class="co">#&gt; Self-help                    0.48486  94.919         195.77         1.5657</span>
+<span class="co">#&gt; Individual counselling       0.72252 143.301         203.57         1.5659</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness  Costs     Dominance type</span>
+<span class="co">#&gt; No intervention       0.48486 94.919 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-4-3.png" width="576"></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
@@ -263,13 +285,13 @@
 <span class="co">#&gt; Cost-effectiveness efficiency frontier summary </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
-<span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.69875  45.733          65.45         1.5555</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         224.67         1.5663</span>
+<span class="co">#&gt;                        Effectiveness  Costs Increase slope Increase angle</span>
+<span class="co">#&gt; Individual counselling       0.43428 97.568         224.67         1.5663</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions not on the efficiency frontier:</span>
-<span class="co">#&gt;           Effectiveness  Costs     Dominance type</span>
-<span class="co">#&gt; Self-help       0.69875 45.733 Extended dominance</span></code></pre></div>
+<span class="co">#&gt;                 Effectiveness  Costs     Dominance type</span>
+<span class="co">#&gt; No intervention       0.19662 49.186 Extended dominance</span>
+<span class="co">#&gt; Self-help             0.00000  0.000 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-4-4.png" width="576"></p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
@@ -279,9 +301,12 @@
 <span class="co">#&gt; Cost-effectiveness efficiency frontier summary </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
-<span class="co">#&gt;                 Effectiveness Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention       0.41051   0.0           0.00         0.0000</span>
-<span class="co">#&gt; Self-help             1.13303 143.3         198.33         1.5658</span></code></pre></div>
+<span class="co">#&gt;           Effectiveness Costs Increase slope Increase angle</span>
+<span class="co">#&gt; Self-help       0.72252 143.3         198.33         1.5658</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No intervention             0     0 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-4-5.png" width="576"></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
@@ -293,9 +318,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help                    0.89536  94.919         195.77         1.5657</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         203.57         1.5659</span></code></pre></div>
+<span class="co">#&gt; Self-help                    0.48486  94.919         195.77         1.5657</span>
+<span class="co">#&gt; Individual counselling       0.72252 143.301         203.57         1.5659</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No intervention             0     0 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-4-6.png" width="576"></p>
 <p>Check legend position argument:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
@@ -306,9 +334,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help                    0.89536  94.919         195.77         1.5657</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         203.57         1.5659</span></code></pre></div>
+<span class="co">#&gt; Self-help                    0.48486  94.919         195.77         1.5657</span>
+<span class="co">#&gt; Individual counselling       0.72252 143.301         203.57         1.5659</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No intervention             0     0 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-5-1.png" width="576"></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, pos <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
@@ -317,9 +348,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help                    0.89536  94.919         195.77         1.5657</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         203.57         1.5659</span></code></pre></div>
+<span class="co">#&gt; Self-help                    0.48486  94.919         195.77         1.5657</span>
+<span class="co">#&gt; Individual counselling       0.72252 143.301         203.57         1.5659</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No intervention             0     0 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-5-2.png" width="576"></p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
@@ -329,9 +363,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help                    0.89536  94.919         195.77         1.5657</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         203.57         1.5659</span></code></pre></div>
+<span class="co">#&gt; Self-help                    0.48486  94.919         195.77         1.5657</span>
+<span class="co">#&gt; Individual counselling       0.72252 143.301         203.57         1.5659</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No intervention             0     0 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-5-3.png" width="576"></p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, pos <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
@@ -340,9 +377,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help                    0.89536  94.919         195.77         1.5657</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         203.57         1.5659</span></code></pre></div>
+<span class="co">#&gt; Self-help                    0.48486  94.919         195.77         1.5657</span>
+<span class="co">#&gt; Individual counselling       0.72252 143.301         203.57         1.5659</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No intervention             0     0 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-5-4.png" width="576"></p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
@@ -352,9 +392,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help                    0.89536  94.919         195.77         1.5657</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         203.57         1.5659</span></code></pre></div>
+<span class="co">#&gt; Self-help                    0.48486  94.919         195.77         1.5657</span>
+<span class="co">#&gt; Individual counselling       0.72252 143.301         203.57         1.5659</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No intervention             0     0 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-5-5.png" width="576"></p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, pos <span class="op">=</span> <span class="st">"topright"</span><span class="op">)</span>
@@ -363,9 +406,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help                    0.89536  94.919         195.77         1.5657</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         203.57         1.5659</span></code></pre></div>
+<span class="co">#&gt; Self-help                    0.48486  94.919         195.77         1.5657</span>
+<span class="co">#&gt; Individual counselling       0.72252 143.301         203.57         1.5659</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No intervention             0     0 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-5-6.png" width="576"></p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, pos <span class="op">=</span> <span class="st">"bottomleft"</span><span class="op">)</span>
@@ -374,9 +420,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help                    0.89536  94.919         195.77         1.5657</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         203.57         1.5659</span></code></pre></div>
+<span class="co">#&gt; Self-help                    0.48486  94.919         195.77         1.5657</span>
+<span class="co">#&gt; Individual counselling       0.72252 143.301         203.57         1.5659</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No intervention             0     0 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-5-7.png" width="576"></p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, pos <span class="op">=</span> <span class="st">"bottomright"</span><span class="op">)</span>
@@ -385,9 +434,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help                    0.89536  94.919         195.77         1.5657</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         203.57         1.5659</span></code></pre></div>
+<span class="co">#&gt; Self-help                    0.48486  94.919         195.77         1.5657</span>
+<span class="co">#&gt; Individual counselling       0.72252 143.301         203.57         1.5659</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No intervention             0     0 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-5-8.png" width="576"></p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
@@ -398,9 +450,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help                    0.89536  94.919         195.77         1.5657</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         203.57         1.5659</span></code></pre></div>
+<span class="co">#&gt; Self-help                    0.48486  94.919         195.77         1.5657</span>
+<span class="co">#&gt; Individual counselling       0.72252 143.301         203.57         1.5659</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No intervention             0     0 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-5-9.png" width="576"></p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
@@ -409,9 +464,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help                    0.89536  94.919         195.77         1.5657</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         203.57         1.5659</span></code></pre></div>
+<span class="co">#&gt; Self-help                    0.48486  94.919         195.77         1.5657</span>
+<span class="co">#&gt; Individual counselling       0.72252 143.301         203.57         1.5659</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No intervention             0     0 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-5-10.png" width="576"></p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
@@ -421,9 +479,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help                    0.89536  94.919         195.77         1.5657</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         203.57         1.5659</span></code></pre></div>
+<span class="co">#&gt; Self-help                    0.48486  94.919         195.77         1.5657</span>
+<span class="co">#&gt; Individual counselling       0.72252 143.301         203.57         1.5659</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No intervention             0     0 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-5-11.png" width="576"></p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
@@ -432,9 +493,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help                    0.89536  94.919         195.77         1.5657</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         203.57         1.5659</span></code></pre></div>
+<span class="co">#&gt; Self-help                    0.48486  94.919         195.77         1.5657</span>
+<span class="co">#&gt; Individual counselling       0.72252 143.301         203.57         1.5659</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No intervention             0     0 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-5-12.png" width="576"></p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
@@ -444,9 +508,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help                    0.89536  94.919         195.77         1.5657</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         203.57         1.5659</span></code></pre></div>
+<span class="co">#&gt; Self-help                    0.48486  94.919         195.77         1.5657</span>
+<span class="co">#&gt; Individual counselling       0.72252 143.301         203.57         1.5659</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No intervention             0     0 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-5-13.png" width="576"></p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span>
@@ -455,9 +522,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help                    0.89536  94.919         195.77         1.5657</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         203.57         1.5659</span></code></pre></div>
+<span class="co">#&gt; Self-help                    0.48486  94.919         195.77         1.5657</span>
+<span class="co">#&gt; Individual counselling       0.72252 143.301         203.57         1.5659</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No intervention             0     0 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-5-14.png" width="576"></p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span>
@@ -466,9 +536,12 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help                    0.89536  94.919         195.77         1.5657</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         203.57         1.5659</span></code></pre></div>
+<span class="co">#&gt; Self-help                    0.48486  94.919         195.77         1.5657</span>
+<span class="co">#&gt; Individual counselling       0.72252 143.301         203.57         1.5659</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No intervention             0     0 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-5-15.png" width="576"></p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span>
@@ -477,10 +550,232 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Interventions on the efficiency frontier:</span>
 <span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
-<span class="co">#&gt; No intervention              0.41051   0.000           0.00         0.0000</span>
-<span class="co">#&gt; Self-help                    0.89536  94.919         195.77         1.5657</span>
-<span class="co">#&gt; Individual counselling       1.13303 143.301         203.57         1.5659</span></code></pre></div>
+<span class="co">#&gt; Self-help                    0.48486  94.919         195.77         1.5657</span>
+<span class="co">#&gt; Individual counselling       0.72252 143.301         203.57         1.5659</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                 Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No intervention             0     0 Extended dominance</span></code></pre></div>
 <p><img src="ceef_files/figure-html/unnamed-chunk-5-16.png" width="576"></p>
+<div id="flipping-plot" class="section level3">
+<h3 class="hasAnchor">
+<a href="#flipping-plot" class="anchor"></a>Flipping plot</h3>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>,
+          flip <span class="op">=</span> <span class="cn">TRUE</span>,
+          dominance <span class="op">=</span> <span class="cn">FALSE</span>,
+          start.from.origins <span class="op">=</span> <span class="cn">FALSE</span>,
+          print.summary <span class="op">=</span> <span class="cn">FALSE</span>,
+          graph <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span></code></pre></div>
+<p><img src="ceef_files/figure-html/unnamed-chunk-6-1.png" width="576"></p>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>,
+          dominance <span class="op">=</span> <span class="cn">TRUE</span>,
+          start.from.origins <span class="op">=</span> <span class="cn">FALSE</span>,
+          pos <span class="op">=</span> <span class="cn">TRUE</span>,
+          print.summary <span class="op">=</span> <span class="cn">FALSE</span>,
+          graph <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></code></pre></div>
+<p><img src="ceef_files/figure-html/unnamed-chunk-6-2.png" width="576"></p>
+</div>
+<div id="start-from-origin-or-smallest-ec-" class="section level3">
+<h3 class="hasAnchor">
+<a href="#start-from-origin-or-smallest-ec-" class="anchor"></a>Start from origin or smallest (e,c).</h3>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>,
+          flip <span class="op">=</span> <span class="cn">TRUE</span>,
+          dominance <span class="op">=</span> <span class="cn">TRUE</span>,
+          start.from.origins <span class="op">=</span> <span class="cn">TRUE</span>,
+          print.summary <span class="op">=</span> <span class="cn">FALSE</span>,
+          graph <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span></code></pre></div>
+<p><img src="ceef_files/figure-html/unnamed-chunk-7-1.png" width="576"></p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>,
+          dominance <span class="op">=</span> <span class="cn">TRUE</span>,
+          start.from.origins <span class="op">=</span> <span class="cn">TRUE</span>,
+          pos <span class="op">=</span> <span class="cn">TRUE</span>,
+          print.summary <span class="op">=</span> <span class="cn">FALSE</span>,
+          graph <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></code></pre></div>
+<p><img src="ceef_files/figure-html/unnamed-chunk-7-2.png" width="576"></p>
+</div>
+<div id="negative-cost-or-effectiveness" class="section level3">
+<h3 class="hasAnchor">
+<a href="#negative-cost-or-effectiveness" class="anchor"></a>Negative cost or effectiveness</h3>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/Smoking.html">data</a></span><span class="op">(</span><span class="st">"Smoking"</span><span class="op">)</span>
+
+<span class="va">c</span><span class="op">[</span>, <span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="va">c</span><span class="op">[</span>, <span class="fl">4</span><span class="op">]</span>
+<span class="va">bcea_smoke</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span>, ref <span class="op">=</span> <span class="fl">3</span>, interventions <span class="op">=</span> <span class="va">treats</span>, Kmax <span class="op">=</span> <span class="fl">500</span><span class="op">)</span>
+
+<span class="co"># all interventions</span>
+<span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span>
+<span class="co">#&gt; Costs are negative, the frontier will not start from the origins</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Cost-effectiveness efficiency frontier summary </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions on the efficiency frontier:</span>
+<span class="co">#&gt;                   Effectiveness  Costs Increase slope Increase angle</span>
+<span class="co">#&gt; Group counselling         1.133 -143.3             NA             NA</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                        Effectiveness    Costs     Dominance type</span>
+<span class="co">#&gt; No treatment                 0.41051    0.000 Absolute dominance</span>
+<span class="co">#&gt; Self-help                    0.69875   45.733 Absolute dominance</span>
+<span class="co">#&gt; Individual counselling       1.13303 -143.301 Extended dominance</span></code></pre></div>
+<p><img src="ceef_files/figure-html/unnamed-chunk-8-1.png" width="576"></p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span>
+<span class="co">#&gt; Costs are negative, the frontier will not start from the origins</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Cost-effectiveness efficiency frontier summary </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions on the efficiency frontier:</span>
+<span class="co">#&gt;                   Effectiveness  Costs Increase slope Increase angle</span>
+<span class="co">#&gt; Group counselling         1.133 -143.3             NA             NA</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                        Effectiveness    Costs     Dominance type</span>
+<span class="co">#&gt; No treatment                 0.41051    0.000 Absolute dominance</span>
+<span class="co">#&gt; Self-help                    0.69875   45.733 Absolute dominance</span>
+<span class="co">#&gt; Individual counselling       1.13303 -143.301 Extended dominance</span></code></pre></div>
+<p><img src="ceef_files/figure-html/unnamed-chunk-8-2.png" width="576"></p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, start.from.origins <span class="op">=</span> <span class="cn">TRUE</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span>
+<span class="co">#&gt; Costs are negative, the frontier will not start from the origins</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Cost-effectiveness efficiency frontier summary </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions on the efficiency frontier:</span>
+<span class="co">#&gt;                   Effectiveness  Costs Increase slope Increase angle</span>
+<span class="co">#&gt; Group counselling         1.133 -143.3             NA             NA</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                        Effectiveness    Costs     Dominance type</span>
+<span class="co">#&gt; No treatment                 0.41051    0.000 Absolute dominance</span>
+<span class="co">#&gt; Self-help                    0.69875   45.733 Absolute dominance</span>
+<span class="co">#&gt; Individual counselling       1.13303 -143.301 Extended dominance</span></code></pre></div>
+<p><img src="ceef_files/figure-html/unnamed-chunk-8-3.png" width="576"></p>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, start.from.origins <span class="op">=</span> <span class="cn">TRUE</span>, graph <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span>
+<span class="co">#&gt; Costs are negative, the frontier will not start from the origins</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Cost-effectiveness efficiency frontier summary </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions on the efficiency frontier:</span>
+<span class="co">#&gt;                   Effectiveness  Costs Increase slope Increase angle</span>
+<span class="co">#&gt; Group counselling         1.133 -143.3             NA             NA</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                        Effectiveness    Costs     Dominance type</span>
+<span class="co">#&gt; No treatment                 0.41051    0.000 Absolute dominance</span>
+<span class="co">#&gt; Self-help                    0.69875   45.733 Absolute dominance</span>
+<span class="co">#&gt; Individual counselling       1.13303 -143.301 Extended dominance</span></code></pre></div>
+<p><img src="ceef_files/figure-html/unnamed-chunk-8-4.png" width="576"></p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="fu"><a href="../reference/setComparisons.html">setComparisons</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>
+<span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Cost-effectiveness efficiency frontier summary </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions on the efficiency frontier:</span>
+<span class="co">#&gt;                        Effectiveness  Costs Increase slope Increase angle</span>
+<span class="co">#&gt; Self-help                    0.28824 45.733         158.66         1.5645</span>
+<span class="co">#&gt; Individual counselling       0.48486 94.919         250.16         1.5668</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;              Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No treatment             0     0 Extended dominance</span></code></pre></div>
+<p><img src="ceef_files/figure-html/unnamed-chunk-8-5.png" width="576"></p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Cost-effectiveness efficiency frontier summary </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions on the efficiency frontier:</span>
+<span class="co">#&gt;                        Effectiveness  Costs Increase slope Increase angle</span>
+<span class="co">#&gt; Self-help                    0.28824 45.733         158.66         1.5645</span>
+<span class="co">#&gt; Individual counselling       0.48486 94.919         250.16         1.5668</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;              Effectiveness Costs     Dominance type</span>
+<span class="co">#&gt; No treatment             0     0 Extended dominance</span></code></pre></div>
+<p><img src="ceef_files/figure-html/unnamed-chunk-8-6.png" width="576"></p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">e</span><span class="op">[</span>, <span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="va">e</span><span class="op">[</span>, <span class="fl">3</span><span class="op">]</span>
+<span class="va">bcea_smoke</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span>, ref <span class="op">=</span> <span class="fl">3</span>, interventions <span class="op">=</span> <span class="va">treats</span>, Kmax <span class="op">=</span> <span class="fl">500</span><span class="op">)</span>
+<span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span>
+<span class="co">#&gt; Costs and benefits are negative, the frontier will not start from the origins</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Cost-effectiveness efficiency frontier summary </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions on the efficiency frontier:</span>
+<span class="co">#&gt;                   Effectiveness  Costs Increase slope Increase angle</span>
+<span class="co">#&gt; Group counselling         1.133 -143.3             NA             NA</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                        Effectiveness    Costs     Dominance type</span>
+<span class="co">#&gt; No treatment                 0.41051    0.000 Absolute dominance</span>
+<span class="co">#&gt; Self-help                    0.69875   45.733 Absolute dominance</span>
+<span class="co">#&gt; Individual counselling       1.13303 -143.301 Extended dominance</span></code></pre></div>
+<p><img src="ceef_files/figure-html/unnamed-chunk-8-7.png" width="576"></p>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span>
+<span class="co">#&gt; Costs and benefits are negative, the frontier will not start from the origins</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Cost-effectiveness efficiency frontier summary </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions on the efficiency frontier:</span>
+<span class="co">#&gt;                   Effectiveness  Costs Increase slope Increase angle</span>
+<span class="co">#&gt; Group counselling         1.133 -143.3             NA             NA</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;                        Effectiveness    Costs     Dominance type</span>
+<span class="co">#&gt; No treatment                 0.41051    0.000 Absolute dominance</span>
+<span class="co">#&gt; Self-help                    0.69875   45.733 Absolute dominance</span>
+<span class="co">#&gt; Individual counselling       1.13303 -143.301 Extended dominance</span></code></pre></div>
+<p><img src="ceef_files/figure-html/unnamed-chunk-8-8.png" width="576"></p>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+
+<span class="fu"><a href="../reference/Smoking.html">data</a></span><span class="op">(</span><span class="st">"Smoking"</span><span class="op">)</span>
+<span class="va">e</span><span class="op">[</span>, <span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="va">e</span><span class="op">[</span>, <span class="fl">3</span><span class="op">]</span>
+<span class="va">bcea_smoke</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span>, ref <span class="op">=</span> <span class="fl">3</span>, interventions <span class="op">=</span> <span class="va">treats</span>, Kmax <span class="op">=</span> <span class="fl">500</span><span class="op">)</span>
+<span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span>
+<span class="co">#&gt; Benefits are negative, the frontier will not start from the origins</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Cost-effectiveness efficiency frontier summary </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions on the efficiency frontier:</span>
+<span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
+<span class="co">#&gt; Individual counselling      -0.89536  94.919             NA             NA</span>
+<span class="co">#&gt; Group counselling            1.13303 143.301         23.852         1.5289</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;              Effectiveness  Costs     Dominance type</span>
+<span class="co">#&gt; No treatment       0.41051  0.000 Absolute dominance</span>
+<span class="co">#&gt; Self-help          0.69875 45.733 Absolute dominance</span></code></pre></div>
+<p><img src="ceef_files/figure-html/unnamed-chunk-8-9.png" width="576"></p>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/ceef.plot.bcea.html">ceef.plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span>
+<span class="co">#&gt; Benefits are negative, the frontier will not start from the origins</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Cost-effectiveness efficiency frontier summary </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions on the efficiency frontier:</span>
+<span class="co">#&gt;                        Effectiveness   Costs Increase slope Increase angle</span>
+<span class="co">#&gt; Individual counselling      -0.89536  94.919             NA             NA</span>
+<span class="co">#&gt; Group counselling            1.13303 143.301         23.852         1.5289</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Interventions not on the efficiency frontier:</span>
+<span class="co">#&gt;              Effectiveness  Costs     Dominance type</span>
+<span class="co">#&gt; No treatment       0.41051  0.000 Absolute dominance</span>
+<span class="co">#&gt; Self-help          0.69875 45.733 Absolute dominance</span></code></pre></div>
+<p><img src="ceef_files/figure-html/unnamed-chunk-8-10.png" width="576"></p>
+</div>
 </div>
   </div>
 

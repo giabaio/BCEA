@@ -105,7 +105,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
+      <a href="../articles/bcea.html">Get started</a>
+    </li>
+    <li>
+      <a href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
     </li>
     <li class="divider"></li>
     <li>
@@ -147,7 +150,7 @@
     </div>
 
     <pre class="usage"><span class='co'># S3 method for mixedAn</span>
-<span class='fu'><a href='evi.plot.html'>evi.plot</a></span><span class='op'>(</span><span class='va'>he</span>, y.limits <span class='op'>=</span> <span class='cn'>NULL</span>, pos <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span>, graph <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"base"</span>, <span class='st'>"ggplot2"</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+<span class='fu'><a href='evi.plot.bcea.html'>evi.plot</a></span><span class='op'>(</span><span class='va'>he</span>, y.limits <span class='op'>=</span> <span class='cn'>NULL</span>, pos <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span>, graph <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"base"</span>, <span class='st'>"ggplot2"</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -242,13 +245,13 @@ doi:10.1177/0962280211419832.</p>
                         <span class='co'>#  externally. If NULL, then each of the T </span>
                         <span class='co'>#  interventions will have 1/T market share</span>
                         <span class='co'># produces the plots</span>
-<span class='fu'><a href='evi.plot.html'>evi.plot</a></span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
+<span class='fu'><a href='evi.plot.bcea.html'>evi.plot</a></span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
 </div><div class='img'><img src='evi.plot.mixedAn-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='evi.plot.html'>evi.plot</a></span><span class='op'>(</span><span class='va'>m</span>, graph<span class='op'>=</span><span class='st'>"base"</span><span class='op'>)</span>
+<span class='fu'><a href='evi.plot.bcea.html'>evi.plot</a></span><span class='op'>(</span><span class='va'>m</span>, graph<span class='op'>=</span><span class='st'>"base"</span><span class='op'>)</span>
 </div><div class='img'><img src='evi.plot.mixedAn-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Or with ggplot2</span>
 <span class='kw'>if</span> <span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-   <span class='fu'><a href='evi.plot.html'>evi.plot</a></span><span class='op'>(</span><span class='va'>m</span>, graph<span class='op'>=</span><span class='st'>"ggplot2"</span><span class='op'>)</span>
+   <span class='fu'><a href='evi.plot.bcea.html'>evi.plot</a></span><span class='op'>(</span><span class='va'>m</span>, graph<span class='op'>=</span><span class='st'>"ggplot2"</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div><div class='img'><img src='evi.plot.mixedAn-3.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>

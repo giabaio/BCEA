@@ -62,7 +62,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
+      <a href="../articles/bcea.html">Get started</a>
+    </li>
+    <li>
+      <a href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
     </li>
     <li class="divider">
     <li>
@@ -104,16 +107,16 @@
 
     
     
-<p>##TODO: why are the k* different for each eplot?</p>
+<p><strong>TODO: why are the k* different for each eib plot?</strong></p>
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p>The intention of this vignette is to show how to .</p>
+<p>The intention of this vignette is to show how to plot the CEAC and EIB plots depending on whether we consider all interventions simultaneously or pair-wise against a reference.</p>
 </div>
 <div id="multiple-interventions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#multiple-interventions" class="anchor"></a>Multiple interventions</h2>
-<p>This situation is when there are more than two interventions to consider. Incremental values can be obtained either always against a fixed reference intervention, such as status-quo, or for all pair-wise comparisons. We will call these a paired comparison or a multiple comparison.</p>
+<p>This situation is when there are more than two interventions to consider. Incremental values can be obtained either always against a fixed reference intervention, such as status-quo, or for all comparisons simultaneously. We will call these a paired comparison or a multiple comparison.</p>
 <div id="against-a-fixed-reference-intervention" class="section level3">
 <h3 class="hasAnchor">
 <a href="#against-a-fixed-reference-intervention" class="anchor"></a>Against a fixed reference intervention</h3>
@@ -129,7 +132,7 @@
 <span class="fu"><a href="../reference/ceac.plot.bcea.html">ceac.plot</a></span><span class="op">(</span><span class="va">he</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fl">0.5</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">160</span>, <span class="fl">225</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
-<span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, plot.cri <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, plot.cri <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p><img src="paired_vs_multiple_comps_files/figure-html/unnamed-chunk-3-1.png" width="576"></p>
 </div>
 </div>
@@ -139,7 +142,7 @@
 <div id="r-code-1" class="section level4">
 <h4 class="hasAnchor">
 <a href="#r-code-1" class="anchor"></a>R code</h4>
-<p>In BCEA we first we must determine all combinations of paired interventions using the <code><a href="../reference/multi.ce.html">multi.ce()</a></code> function.</p>
+<p>In <em>BCEA</em> we first we must determine all combinations of paired interventions using the <code><a href="../reference/multi.ce.html">multi.ce()</a></code> function.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">he.multi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/multi.ce.html">multi.ce</a></span><span class="op">(</span><span class="va">he</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -147,7 +150,7 @@
 <span class="fu"><a href="../reference/ceac.plot.bcea.html">ceac.plot</a></span><span class="op">(</span><span class="va">he.multi</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fl">0.5</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">160</span>, <span class="fl">225</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
-<span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, plot.cri <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="../reference/eib.plot.bcea.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, plot.cri <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p><img src="paired_vs_multiple_comps_files/figure-html/unnamed-chunk-5-1.png" width="576"></p>
 </div>
 </div>
