@@ -11,3 +11,5 @@
 ^\.httr-oauth$
 ^CONDUCT\.md$
 ^man-roxygen$
+^.git
+^.gitignore
