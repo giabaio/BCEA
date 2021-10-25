@@ -8,6 +8,7 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^vignettes$
 ^\.httr-oauth$
 ^CONDUCT\.md$
 ^man-roxygen$

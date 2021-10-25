@@ -105,16 +105,23 @@ post.density <- function(hyperparams,
   prior <- prod(dnorm(log(delta), 0, sqrt(1e+05))) *
     dinvgamma(nu, a.nu, b.nu)
   l <- -sum(log(diag(chol_Astar))) - 1/2 * log(det(tHAstarinvH)) -
-    (N - q + 2 * a.sigma)/2 * log(residSS/2 + b.sigma) +
-    log(prior)
+    (N - q + 2 * a.sigma)/2 * log(residSS/2 + b.sigma) + log(prior)
   names(l) <- NULL
+  
   return(l)
 }
 
 
+#' Estimate hyperparameters
+#' 
+#' @param x x
+#' @param input.matrix Input matrix
+#' @param parameter Parameters
+#' @param n.sim Number of simulations 
+#' 
 #' @importFrom stats optim
 #' @seealso \code{\link{evppi}}
-#' 
+#'  
 estimate.hyperparams <- function(x,
                                  input.matrix,
                                  parameter,
@@ -124,17 +131,21 @@ estimate.hyperparams <- function(x,
   repeat {
     log.hyperparams <-
       optim(initial.values,
-            fn = post.density,parameter=parameter, x = x[1:n.sim],
+            fn = post.density,
+            parameter = parameter,
+            x = x[1:n.sim],
             input.matrix = input.matrix[1:n.sim, ],
             method = "Nelder-Mead",
             control = list(fnscale = -1,
                            maxit = 10000, trace = 0))$par
+    
     if (sum(abs(initial.values - log.hyperparams)) < 0.01) {
       hyperparams <- exp(log.hyperparams)
       break
     }
     initial.values <- log.hyperparams
   }
+  
   hyperparams
 }
 
@@ -142,9 +153,9 @@ estimate.hyperparams <- function(x,
 #' 
 #' @param parameter Parameters
 #' @param inputs Inputs
-#' @param x x
+#' @param x Response variable
 #' @param n.sim Number of simulations 
-#'
+#' @return list
 #' @importFrom stats dist
 #' @seealso \code{\link{evppi}}
 #' 
@@ -214,9 +225,10 @@ fit.gp <- function(parameter,
 #'
 #' @param parameter Parameter
 #' @param inputs Inputs
-#' @param x x
+#' @param x Response variable
 #' @param k k
 #' @param l l
+#' @return list
 #' @seealso \code{\link{evppi}}
 #'
 make.proj <- function(parameter,
@@ -227,33 +239,39 @@ make.proj <- function(parameter,
   tic <- proc.time()
   scale <- 8 / (range(x)[2] - range(x)[1])
   scale.x <- scale * x - mean(scale * x)
-  bx <- ldr::bf(scale.x, case = "poly", 2)
+  
+  # generate basic function
+  bx <- bf(scale.x, case = "poly", 2)
+  
+  # principle fitted components
   fit1 <-
-    ldr::pfc(scale(inputs[, parameter]), scale.x, bx, structure = "iso")
+    pfc(scale(inputs[, parameter]), scale.x, bx, structure = "iso")
   fit2 <-
-    ldr::pfc(scale(inputs[, parameter]), scale.x, bx, structure = "aniso")
+    pfc(scale(inputs[, parameter]), scale.x, bx, structure = "aniso")
   fit3 <-
-    ldr::pfc(scale(inputs[, parameter]), scale.x, bx, structure = "unstr")
+    pfc(scale(inputs[, parameter]), scale.x, bx, structure = "unstr")
+  
   struc <-
     c("iso", "aniso", "unstr")[
       which(c(fit1$aic, fit2$aic, fit3$aic) == min(fit1$aic, fit2$aic, fit3$aic))]
   AIC.deg <- array()
   
   for (i in 2:7) {
-    bx <- ldr::bf(scale.x, case = "poly", i)
+    bx <- bf(scale.x, case = "poly", i)
     fit <-
-      ldr::pfc(scale(inputs[, parameter]), scale.x, bx, structure = struc)
+      pfc(scale(inputs[, parameter]), scale.x, bx, structure = struc)
     AIC.deg[i] <- fit$aic
   }
   
   deg <- which(AIC.deg == min(AIC.deg, na.rm = TRUE))
   d <- min(dim(inputs[, parameter])[2], deg)
   
-  ##TODO: where shoudl this be used?
-  # by <- ldr::bf(scale.x, case = "poly", deg)
+  ##TODO: where should this be used?
+  # by <- bf(scale.x, case = "poly", deg)
   
+  # likelihood-based dimension reduction
   comp.d <-
-    ldr::ldr(
+    ldr(
       scale(inputs[, parameter]),
       scale.x,
       bx,
@@ -261,20 +279,23 @@ make.proj <- function(parameter,
       model = "pfc",
       numdir = d,
       numdir.test = TRUE)
+  
   dim.d <- which(comp.d$aic == min(comp.d$aic)) - 1
+  
   comp <-
-    ldr::ldr(
+    ldr(
       scale(inputs[, parameter]),
       scale.x,
       bx,
       structure = struc,
       model = "pfc",
       numdir = 2)
+  
   toc <- proc.time() - tic
   time <- toc[3]
   
-  if(dim.d > 2){
-    cur <- c("effects","costs")
+  if (dim.d > 2){
+    cur <- c("effects", "costs")
     warning(
       paste(
         "The dimension of the sufficient reduction for the incremental",
@@ -283,6 +304,7 @@ make.proj <- function(parameter,
         Full residual checking using diag.evppi is required."))
   }
   names(time) <- "Time to fit find projections (seconds)"
+  
   list(data = comp$R,
        time = time,
        dim = dim.d)
@@ -373,7 +395,7 @@ make.mesh <- function(data,
 #' 
 #' @param parameter Parameters
 #' @param inputs Inputs
-#' @param x x
+#' @param x Response variable
 #' @param mesh Mesh 
 #' @param data.scale data.scale 
 #' @param int.ord int.ord 
@@ -383,7 +405,7 @@ make.mesh <- function(data,
 #' @param max.edge Maximum edge 
 #' @param h.value h.value 
 #' @param family family 
-#'
+#' @return list
 #' @importFrom stats as.formula
 #' @seealso \code{\link{evppi}}
 #' 
@@ -424,6 +446,7 @@ fit.inla <- function(parameter,
     )
   data <- INLA::inla.stack.data(stk.real)
   ctr.pred <- INLA::inla.stack.A(stk.real)
+  
   inp <- names(stk.real$effects$data)[parameter + 4]
   form <- paste(inp, "+", sep = "", collapse = "")
   formula <- paste("y~0+(",
@@ -452,25 +475,25 @@ fit.inla <- function(parameter,
     )
   })
   fitted <-
-    (Result$summary.linear.predictor[1:length(x), "mean"] + mean(scale * x)) /
-    scale
+    (Result$summary.linear.predictor[1:length(x), "mean"] + mean(scale * x)) / scale
   fit <- Result
   toc <- proc.time() - tic
   time <- toc[3]
-  names(time) = "Time to fit INLA/SPDE (seconds)"
+  names(time) <- "Time to fit INLA/SPDE (seconds)"
+  
   list(
     fitted = fitted,
     model = fit,
     time = time,
     formula = formula,
-    mesh = list(mesh = mesh, pts = data.scale)
-  )
+    mesh = list(mesh = mesh, pts = data.scale))
 }
 
 
 #' Compute EVPPI
 #' @template args-he
 #' @param fit.full fit.full
+#' @return list
 #' @seealso \code{\link{evppi}}
 #'
 compute.evppi <- function(he, fit.full) {
@@ -484,6 +507,7 @@ compute.evppi <- function(he, fit.full) {
   toc <- proc.time() - tic
   time <- toc[3]
   names(time) <- "Time to compute the EVPPI (in seconds)"
+  
   list(EVPPI = EVPPI,
        time = time)
 }
@@ -492,17 +516,20 @@ compute.evppi <- function(he, fit.full) {
 #' Prepare output
 #' @param parameters Parameters
 #' @param inputs Inputs
+#' @return name
 #' @seealso \code{\link{evppi}}
 #'
 prepare.output <- function(parameters,
                            inputs) {
   
   if (length(parameters) == 1) {
-    if (is.numeric(parameters)) {
-      name <- colnames(inputs)[parameters]
-    } else {
-      name <- parameters
-    }
+    
+    name <- 
+      if (is.numeric(parameters)) {
+        colnames(inputs)[parameters]
+      } else {
+        parameters}
+    
   } else {
     if (is.numeric(parameters)) {
       n_params <- length(parameters)
@@ -525,6 +552,7 @@ prepare.output <- function(parameters,
                     collapse = " ")
     }
   }
+  
   name
 }
 

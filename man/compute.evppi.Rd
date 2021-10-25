@@ -12,6 +12,9 @@ modelling and the economic evaluation.}
 
 \item{fit.full}{fit.full}
 }
+\value{
+list
+}
 \description{
 Compute EVPPI
 }

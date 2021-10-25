@@ -6,7 +6,7 @@ library(dplyr)
 library(reshape2)
 
 
-load("ce.RData")
+load(test_path("ce.RData"))
 
 test_that("simple data input parameters", {
   

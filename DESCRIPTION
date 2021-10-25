@@ -6,7 +6,7 @@ Date: 2021-10-14
 Authors@R: c(
     person("Gianluca", "Baio",
             email = "gianluca@stats.ucl.ac.uk",
-            role = c("aut")),
+            role = c("aut", "cre")),
     person("Andrea", "Berardi",
             email = "a.berardi@ucl.ac.uk",
             role = c("aut")),
@@ -15,10 +15,11 @@ Authors@R: c(
             role = c("aut")),
     person("Nathan", "Green",
             email = "n.green@ucl.ac.uk",
-            role = c("aut", "cre")))
+            role = c("aut")))
 Imports:
     dplyr,
     ggplot2,
+    GrassmannOptim,
     gridExtra,
     graphics,
     MASS,
@@ -32,8 +33,8 @@ Suggests:
     grid,
     INLA,
     knitr,
-    ldr,
     markdown,
+    Matrix,
     MCMCvis,
     mgcv,
     plotly,
@@ -60,4 +61,3 @@ URL: http://www.statistica.it/gianluca/software/bcea/,
 NeedsCompilation: no
 RoxygenNote: 7.1.2
 Encoding: UTF-8
-VignetteBuilder: knitr
