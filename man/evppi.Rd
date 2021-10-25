@@ -164,6 +164,7 @@ m <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
 # Compute the EVPPI for a bunch of parameters
 inp <- createInputs(vaccine)
 
+##TODO: error
 EVPPI <- evppi(m, c("beta.1." , "beta.2."), inp$mat)
 plot(EVPPI)
 
@@ -171,9 +172,8 @@ plot(EVPPI)
 EVPPI.so <- evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "so", n.blocks = 50)
 EVPPI.sad <- evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps = 1)
 
-##TODO:
-#plot(EVPPI.so)
-#plot(EVPPI.sad)
+plot(EVPPI.so)
+plot(EVPPI.sad)
 
 # Compute the EVPPI using INLA/SPDE
 x_inla <- evppi(he = m, 39:40, input = inp$mat)

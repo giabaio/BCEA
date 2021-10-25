@@ -67,7 +67,7 @@ stanfit <- stan(data = model.data,
                 init = 0,
                 file = "ce_mock.stan")
 
-save(jagsfit, file = "data/jagsfit.RData")
-save(bugsfit, file = "data/bugsfit.RData")
-save(stanfit, file = "data/stanfit.RData")
+save(jagsfit, file = test_path("data", "jagsfit.RData"))
+save(bugsfit, file = test_path("data", "bugsfit.RData"))
+save(stanfit, file = test_path("data", "stanfit.RData"))
 

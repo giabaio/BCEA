@@ -7,7 +7,7 @@ library(reshape2)
 
 ##TODO:...
 
-load("ce_smoking.RData")
+load(test_path("ce_smoking.RData"))
 
 treats <- c("No intervention", "Self-help", "Individual counselling", "Group counselling")
 bcea_smoke <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)

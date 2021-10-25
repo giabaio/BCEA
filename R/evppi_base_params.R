@@ -37,16 +37,18 @@ evppi_legend_text <- function(evppi_obj) {
     
     # label lines
     for (i in seq_along(evppi_obj$index)) {
-      text(x = par("usr")[2],
-           y = evppi_obj$evppi[[i]][length(evppi_obj$k)],
-           labels = paste0("(", i, ")"), cex = 0.7, pos = 2)
+      
+      ##TODO:
+      # text(x = par("usr")[2],
+      #      y = evppi_obj$evppi[[i]][length(evppi_obj$k)],
+      #      labels = paste0("(", i, ")"), cex = 0.7, pos = 2)
     }    
 
     cmd <-
       paste0("(",
              paste(1:length(evppi_obj$index)),
              ") EVPPI for ",
-             evppi_obj$params)
+             evppi_obj$parameters)
   }
   
   c("EVPI", cmd)

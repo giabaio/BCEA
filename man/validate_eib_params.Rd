@@ -9,6 +9,12 @@ validate_eib_params(params)
 \arguments{
 \item{params}{Graph parameters}
 }
+\value{
+List of graph parameters
+}
 \description{
 Validate EIB parameters
+}
+\seealso{
+\code{\link{prep_eib_params}}
 }

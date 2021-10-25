@@ -8,7 +8,7 @@ citEntry(
   author = "Baio, G and Berardi, A and Heath, A",
   month = "Jul",
   address = "New York, NY",
-  url = "http://www.springer.com/us/book/9783319557168",
+  url = "https://www.springer.com/us/book/9783319557168",
   doi = "10.1007/978-3-319-55718-2",
   isbn = "978-3-319-55718-2",
   
@@ -17,6 +17,6 @@ citEntry(
         "Bayesian Cost Effectiveness Analysis with the R package BCEA.",
         "Springer, New York, NY.",
         "doi: 10.1007/978-3-319-55718-2,",
-        "URL: http://www.springer.com/us/book/9783319557168/."
+        "URL: https://www.springer.com/us/book/9783319557168/."
   )
 )

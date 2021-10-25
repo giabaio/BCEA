@@ -19,6 +19,7 @@ Authors@R: c(
 Imports:
     dplyr,
     ggplot2,
+    GrassmannOptim,
     gridExtra,
     graphics,
     MASS,
@@ -32,8 +33,8 @@ Suggests:
     grid,
     INLA,
     knitr,
-    ldr,
     markdown,
+    Matrix,
     MCMCvis,
     mgcv,
     plotly,
@@ -54,10 +55,9 @@ Description: Produces an economic evaluation of a sample of suitable variables o
              This package computes the most cost-effective alternative and
              produces graphical summaries and probabilistic sensitivity analysis.
 License: GPL-3
-URL: http://www.statistica.it/gianluca/BCEA,
-     http://www.statistica.it/gianluca,
+URL: http://www.statistica.it/gianluca/software/bcea/,
+     http://www.statistica.it/gianluca/,
      https://github.com/giabaio/BCEA    
 NeedsCompilation: no
 RoxygenNote: 7.1.2
 Encoding: UTF-8
-VignetteBuilder: knitr

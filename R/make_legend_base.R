@@ -6,6 +6,7 @@ evppi_legend_base <- function(evppi_obj,
                               col = NULL) {
   
   legend_here <- where_legend(evppi_obj, pos_legend)
+  
   text <- evppi_legend_text(evppi_obj)
   cols <- evppi_legend_cols(evppi_obj, col)
   
