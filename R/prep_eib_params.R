@@ -1,11 +1,12 @@
 
 #' Prepare EIB plot parameters
 #' 
-#' Parameters general to all plotting devices
+#' Parameters general to all plotting devices.
 #' 
 #' @template args-he
-#' @param plot.cri Make title? Logical
+#' @param plot.cri Make title including credible interval? Logical
 #' @param ... Additional parameters
+#' @return List of graph parameters
 #'  
 prep_eib_params <- function(he, plot.cri, ...) {
   
@@ -52,18 +53,22 @@ prep_eib_params <- function(he, plot.cri, ...) {
 #' Validate EIB parameters
 #' 
 #' @param params Graph parameters
+#' @seealso \code{\link{prep_eib_params}}
+#' @return List of graph parameters
 #' 
 validate_eib_params <- function(params) {
   
-  if (params$alpha_cri < 0 | params$alpha_cri > 1) {
-    warning("Argument alpha must be between 0 and 1. Reset to default value 0.95.")
+  if (params$alpha_cri < 0 || params$alpha_cri > 1) {
+    warning("Argument alpha must be between 0 and 1. Reset to default value 0.95.",
+            call. = FALSE)
     params$alpha_cri <- 0.05
   }
   
-  if (params$alpha_cri > 0.80 & params$cri.quantile) {
+  if (params$alpha_cri > 0.8 && params$cri.quantile) {
     warning(
       "It is recommended adopting the normal approximation of the credible interval for high values of alpha.
-       Please set the argument cri.quantile = FALSE to use the normal approximation.")
+       Please set the argument cri.quantile = FALSE to use the normal approximation.",
+      call. = FALSE)
   }
   
   params

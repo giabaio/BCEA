@@ -24,7 +24,7 @@ fit.inla(
 
 \item{inputs}{Inputs}
 
-\item{x}{x}
+\item{x}{Response variable}
 
 \item{mesh}{Mesh}
 
@@ -43,6 +43,9 @@ fit.inla(
 \item{h.value}{h.value}
 
 \item{family}{family}
+}
+\value{
+list
 }
 \description{
 Fit INLA

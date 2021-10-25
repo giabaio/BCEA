@@ -112,6 +112,13 @@ post.density <- function(hyperparams,
 }
 
 
+#' Estimate hyperparameters
+#' 
+#' @param x x
+#' @param input.matrix Input matrix
+#' @param parameter Parameters
+#' @param n.sim Number of simulations 
+#' 
 #' @importFrom stats optim
 #' @seealso \code{\link{evppi}}
 #' 
@@ -124,7 +131,9 @@ estimate.hyperparams <- function(x,
   repeat {
     log.hyperparams <-
       optim(initial.values,
-            fn = post.density,parameter=parameter, x = x[1:n.sim],
+            fn = post.density,
+            parameter = parameter,
+            x = x[1:n.sim],
             input.matrix = input.matrix[1:n.sim, ],
             method = "Nelder-Mead",
             control = list(fnscale = -1,

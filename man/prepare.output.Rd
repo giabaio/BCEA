@@ -11,6 +11,9 @@ prepare.output(parameters, inputs)
 
 \item{inputs}{Inputs}
 }
+\value{
+name
+}
 \description{
 Prepare output
 }

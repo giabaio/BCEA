@@ -2,7 +2,7 @@
 library(dplyr)
 
 # data(Vaccine)
-load("ce.RData")
+load(test_path("ce.RData"))
 
 test_that("setKmax", {
   
