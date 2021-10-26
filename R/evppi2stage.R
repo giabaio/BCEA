@@ -33,7 +33,7 @@
 #' #'             assumes no options and the existence of two vectors e,c in which suitable
 #' #'             values for the measures of effectiveness and costs are stored
 #' #'             
-#' #' @importFrom R2OpenBUGS attach.bugs detach.bugs
+#' #' @importFrom R2WinBUGS attach.bugs detach.bugs
 #' #' @importFrom R2jags jags
 #' #' @return List
 #' #'

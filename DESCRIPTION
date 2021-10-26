@@ -42,7 +42,6 @@ Suggests:
     rstan,
     RColorBrewer,
     R2jags,
-    R2OpenBUGS,
     R2WinBUGS, 
     splancs,
     testthat (>= 2.1.0),

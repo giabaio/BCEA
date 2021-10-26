@@ -1,4 +1,4 @@
-# BCEA <img src="man/figures/logo.png" align="right" />
+# BCEA --- development version <img src="man/figures/logo.png" align="right" />
 
 <!-- badges: start -->
 
@@ -24,9 +24,11 @@ Given the results of a Bayesian model (possibly based on MCMC) in the form of si
 
 Main features of `BCEA` include:
 
-* Cost-effectiveness analysis plots, such as CE planes and CEAC
 * Summary statistics and tables
+* Cost-effectiveness analysis plots, such as CE planes and CEAC
 * EVPPI calculations and plots
+
+This is the **development** version of BCEA (currently 2.4). It contains a major refactoring of the code to streamline the functions.
 
 ## Installation
 The development version can be installed using this GitHub repository. On Windows machines, you need to install a few dependencies, including [Rtools](https://cran.r-project.org/bin/windows/Rtools/) first, e.g. by running

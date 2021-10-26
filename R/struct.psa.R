@@ -4,7 +4,7 @@
 #' Computes the weights to be associated with a set of competing models in
 #' order to perform structural PSA.
 #' 
-#' The model is a list containing the output from either R2jags or R2OpenBUGS /
+#' The model is a list containing the output from either R2jags or
 #' R2WinBUGS for all the models that need to be combined in the model average
 #' effect is a list containing the measure of effectiveness computed from the 
 #' various models (one matrix with n_sim x n_ints simulations for each model)
@@ -12,8 +12,7 @@
 #' models (one matrix with n_sim x n_ints simulations for each model).
 #' 
 #' @param models A list containing the output from either R2jags or
-#' R2OpenBUGS/R2WinBUGS for all the models that need to be combined in the
-#' model average
+#' R2WinBUGS for all the models that need to be combined in the model average
 #' @param effect A list containing the measure of effectiveness computed from
 #' the various models (one matrix with n.sim x n.ints simulations for each
 #' model)
@@ -75,13 +74,13 @@ struct.psa <- function(models,
         mdl[[i]] <- models[[i]]$BUGSoutput  # model is run using R2jags/rjags        
       }
     }
-    if (inherits(models[[i]], "bugs")) {		# model is run using R2WinBUGS/R2OpenBUGS
-      if (!(requireNamespace("R2OpenBUGS", quietly = TRUE))) {
-        stop ("You need to install the package 'R2OpenBUGS'.
-             Please run in your R terminal:\n install.packages('R2OpenBUGS')",
+    if (inherits(models[[i]], "bugs")) {		# model is run using R2WinBUGS
+      if (!(requireNamespace("R2WinBUGS", quietly = TRUE))) {
+        stop ("You need to install the package 'R2WinBUGS'.
+             Please run in your R terminal:\n install.packages('R2WinBUGS')",
               call. = FALSE)
       }
-      if (requireNamespace("R2OpenBUGS", quietly = TRUE)) {
+      if (requireNamespace("R2WinBUGS", quietly = TRUE)) {
         mdl[[i]] <- models[[i]]
       }
     }
@@ -92,7 +91,7 @@ struct.psa <- function(models,
   dmin <- min(d)					# minimum value to re-scale the DICs
   w <- exp(-0.5*(d - dmin))/sum(exp(-0.5*(d - dmin))) 	# model weights (cfr BMHE)
   
-  # Now weights the simulations for the variables of effectiveness and costs in each model
+  # weights the simulations for the variables of effectiveness and costs in each model
   # using the respective weights, to produce the economic analysis for the average model
   e <- c <- matrix(NA,
                    nrow = dim(effect[[1]])[1],
