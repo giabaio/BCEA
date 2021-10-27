@@ -111,9 +111,12 @@ info.rank.bcea <- function(he,
 #' m <- bcea(e,c)
 #' inp <- createInputs(vaccine)
 #' info.rank(m, inp)
+#' 
+#' \dontrun{
 #' info.rank(m, inp, graph = "base")
 #' info.rank(m, inp, graph = "plotly")
 #' info.rank(m, inp, graph = "ggplot2")
+#' }
 #' 
 info.rank <- function(he, ...) {
   UseMethod('info.rank', he)

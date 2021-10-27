@@ -164,8 +164,9 @@ m <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
 # Compute the EVPPI for a bunch of parameters
 inp <- createInputs(vaccine)
 
-##TODO: error
 EVPPI <- evppi(m, c("beta.1." , "beta.2."), inp$mat)
+
+\dontrun{
 plot(EVPPI)
 
 # deprecated (single parameter) methods
@@ -174,7 +175,7 @@ EVPPI.sad <- evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps =
 
 plot(EVPPI.so)
 plot(EVPPI.sad)
-
+ 
 # Compute the EVPPI using INLA/SPDE
 x_inla <- evppi(he = m, 39:40, input = inp$mat)
 
@@ -201,6 +202,7 @@ m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
 inp <- createInputs(smoking_output)
 EVPPI <- evppi(m, c(2,3), inp$mat, h.value = 0.0000005)
 plot(EVPPI)
+}
 
 }
 \references{
