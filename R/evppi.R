@@ -165,8 +165,9 @@
 #' # Compute the EVPPI for a bunch of parameters
 #' inp <- createInputs(vaccine)
 #' 
-#' ##TODO: error
 #' EVPPI <- evppi(m, c("beta.1." , "beta.2."), inp$mat)
+#' 
+#' \dontrun{
 #' plot(EVPPI)
 #' 
 #' # deprecated (single parameter) methods
@@ -175,7 +176,7 @@
 #' 
 #' plot(EVPPI.so)
 #' plot(EVPPI.sad)
-#' 
+#'  
 #' # Compute the EVPPI using INLA/SPDE
 #' x_inla <- evppi(he = m, 39:40, input = inp$mat)
 #' 
@@ -202,6 +203,7 @@
 #' inp <- createInputs(smoking_output)
 #' EVPPI <- evppi(m, c(2,3), inp$mat, h.value = 0.0000005)
 #' plot(EVPPI)
+#' }
 #' 
 evppi <- function(he,
                   param_idx,

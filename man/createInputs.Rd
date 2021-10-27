@@ -27,7 +27,7 @@ createInputs(inputs, print_is_linear_comb = TRUE)
 \arguments{
 \item{inputs}{A \code{rjags}, \code{bugs} or \code{stanfit} object, containing
 the results of a call to either JAGS, (using \code{R2jags}), BUGS
-(using \code{R2WinBUGS} or \code{R2OpenBUGS}), or Stan (using \code{rstan}).}
+(using \code{R2WinBUGS}, or Stan (using \code{rstan}).}
 
 \item{print_is_linear_comb}{Logical indicator. If set to \code{TRUE} (default)
 then prints the output of the procedure trying to assess whether there are
@@ -58,6 +58,4 @@ non-Bayesian model).
 \author{
 Gianluca Baio, Anna Heath and Mark Strong
 }
-\keyword{R2OpenBUGS}
-\keyword{R2WinBUGS}
 \keyword{R2jags}

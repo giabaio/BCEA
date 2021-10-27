@@ -16,8 +16,7 @@ struct.psa(
 }
 \arguments{
 \item{models}{A list containing the output from either R2jags or
-R2OpenBUGS/R2WinBUGS for all the models that need to be combined in the
-model average}
+R2WinBUGS for all the models that need to be combined in the model average}
 
 \item{effect}{A list containing the measure of effectiveness computed from
 the various models (one matrix with n.sim x n.ints simulations for each
@@ -51,7 +50,7 @@ Computes the weights to be associated with a set of competing models in
 order to perform structural PSA.
 }
 \details{
-The model is a list containing the output from either R2jags or R2OpenBUGS /
+The model is a list containing the output from either R2jags or
 R2WinBUGS for all the models that need to be combined in the model average
 effect is a list containing the measure of effectiveness computed from the 
 various models (one matrix with n_sim x n_ints simulations for each model)

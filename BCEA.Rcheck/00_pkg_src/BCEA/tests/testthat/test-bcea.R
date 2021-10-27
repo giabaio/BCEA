@@ -8,7 +8,7 @@ library(dplyr)
 library(reshape2)
 
 
-load("ce.RData")
+load(test_path("ce.RData"))
 
 
 test_that("input errors", {
@@ -169,7 +169,6 @@ test_that("ib", {
 
 
 library(rstan)
-library(R2WinBUGS)
 library(R2jags)
 
 test_that("jags, bugs, stan methods", {
@@ -178,9 +177,9 @@ test_that("jags, bugs, stan methods", {
   # bcea(jagsfit)
   
   # mocked inputs
-  load("data/bugsfit.RData")
-  load("data/jagsfit.RData")
-  load("data/stanfit.RData")
+  load(test_path("data", "bugsfit.RData"))
+  load(test_path("data", "jagsfit.RData"))
+  load(test_path("data", "stanfit.RData"))
   
   expect_s3_class(bcea.rjags(jagsfit), class = "bcea")
   expect_s3_class(bcea.bugs(bugsfit), class = "bcea")
