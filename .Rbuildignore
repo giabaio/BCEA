@@ -13,4 +13,4 @@
 ^CONDUCT\.md$
 ^man-roxygen$
 ^cran-comments\.md$
-^README-dev\.md$
+^README_dev\.md$
