@@ -168,9 +168,6 @@ test_that("ib", {
 })
 
 
-library(rstan)
-library(R2jags)
-
 test_that("jags, bugs, stan methods", {
 
   ##TODO: remove missing cost error
