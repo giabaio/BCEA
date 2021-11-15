@@ -44,10 +44,10 @@ jobs:
           writeLines('options(repos = c(INLA = "https://inla.r-inla-download.org/R/stable/", getOption(\"repos\")))', file("~/.Rprofile", "ab"))
         shell: Rscript {0}
 
-      - name: Install JAGS
-        run: |
-          sudo apt-get update -y
-          sudo apt-get install -y jags
+#      - name: Install JAGS
+#       run: |
+#          sudo apt-get update -y
+#          sudo apt-get install -y jags
           
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
