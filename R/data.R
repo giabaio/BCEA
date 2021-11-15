@@ -51,13 +51,6 @@
 #'    smoking-cessation interventions. American Journal of Health-System Pharmacy
 #'    1996;53:45-52}
 #' @keywords datasets
-#' @examples
-#' 
-#' data(Smoking)
-#' 
-#' \donttest{
-#' m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
-#' }
 NULL
 
 
@@ -131,13 +124,6 @@ NULL
 #' Nicholson K. The cost-effectiveness of influenza vaccination of healthy
 #' adults 50-64 years of age. Vaccine. 2006;24:1035-1043.
 #' @keywords datasets
-#' @examples
-#' 
-#' data(Vaccine)
-#' 
-#' \donttest{
-#' m <- bcea(e, c, ref = 1, interventions = treats)
-#' }
 NULL
 
  
