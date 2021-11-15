@@ -62,14 +62,6 @@ This data set contains the results of the Bayesian analysis used to model
 the clinical output and the costs associated with the health economic
 evaluation of four different smoking cessation interventions.
 }
-\examples{
-
-data(Smoking)
-
-\donttest{
-m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
-}
-}
 \references{
 Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
 }

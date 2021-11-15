@@ -154,6 +154,7 @@ use GAM if the number of parameters is <5 and INLA otherwise.
 # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 # Bayesian model and economic problem
 
+\dontrun{
 # Load the processed results of the MCMC simulation model
 data(Vaccine, package = "BCEA")
 treats <- c("Status quo", "Vaccination")
@@ -166,7 +167,6 @@ inp <- createInputs(vaccine)
 
 EVPPI <- evppi(m, c("beta.1." , "beta.2."), inp$mat)
 
-\dontrun{
 plot(EVPPI)
 
 # deprecated (single parameter) methods

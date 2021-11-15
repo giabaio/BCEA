@@ -88,14 +88,6 @@ adults 50-64 years of age. Vaccine. 2006;24:1035-1043.
 This data set contains the results of the Bayesian analysis used to model
 the clinical output and the costs associated with an influenza vaccination.
 }
-\examples{
-
-data(Vaccine)
-
-\donttest{
-m <- bcea(e, c, ref = 1, interventions = treats)
-}
-}
 \references{
 Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
 Analysis in Health Economics. Statistical Methods in Medical Research
