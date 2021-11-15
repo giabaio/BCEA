@@ -25,6 +25,7 @@ Imports:
     MASS,
     purrr,
     reshape2,
+    rjags,
     rlang
 Depends:
     R (>= 3.5.0)
@@ -38,7 +39,6 @@ Suggests:
     MCMCvis,
     mgcv,
     plotly,
-    rjags,
     rmarkdown,
     rstan,
     RColorBrewer,

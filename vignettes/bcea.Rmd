@@ -23,7 +23,7 @@ library(BCEA)
 Load the data.
 
 ```{r}
-data(Smoking, package = "BCEA")
+data(Smoking)
 ```
 
 This study has four interventions.
