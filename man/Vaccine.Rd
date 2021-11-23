@@ -73,8 +73,6 @@ vaccination. The variables are as follows:
   \item{list("QALYs.pne")}{a vector from the posterior distribution of the
   QALYs associated with pneumonia}
   \item{list("treats")}{a vector of labels associated with the two treatments}
-  \item{list("vaccine")}{a \code{rjags} object containing the simulations for
-  the parameters used in the original model}
   \item{list("vaccine_mat")}{a matrix containing the simulations for the
   parameters used in the original model}
   }
