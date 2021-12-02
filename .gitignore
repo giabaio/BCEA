@@ -2,6 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+BCEA.Rcheck/
 *.Rproj
 inst/doc
 renv/

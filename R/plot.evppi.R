@@ -23,6 +23,7 @@
 #' @export
 #' @examples
 #' 
+#' \dontrun{
 #' data(Vaccine, package = "BCEA")
 #' treats <- c("Status quo", "Vaccination")
 #'
@@ -37,7 +38,6 @@
 #' 
 #' plot(x0, pos = c(0,1))
 #' 
-#' \dontrun{
 #' x1 <- evppi(m, c(32,48,49), input = inp$mat)
 #' plot(x1, pos = "topright")
 #' 

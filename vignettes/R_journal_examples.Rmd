@@ -36,7 +36,7 @@ rmarkdown::render(input = "vignettes/R_journal_examples.Rmd", output_format = "l
 ## Smoking cessation example
 
 ```{r}
-data(Smoking, package = "BCEA")
+data(Smoking)
 
 treats <- c("No intervention", "Self-help", "Individual counselling", "Group counselling")
 bcea_smoke <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)

@@ -29,9 +29,6 @@
 #'  the intervention ID number, \code{r_i}: the number of patients who quit
 #'  smoking, \code{n_i}: the total number of patients for the row-specific arm
 #'  and \code{b_i}: the reference intervention for each study}
-#' \item{list("smoking_output")}{a \code{rjags} object obtained by running the
-#'  network meta-analysis model based on the data contained in the
-#'  \code{smoking} object}
 #' \item{list("smoking_mat")}{a matrix obtained by running the network
 #'  meta-analysis model based on the data contained in the \code{smoking} object}
 #' \item{list("treats")}{a vector of labels associated with the four strategies}
@@ -51,13 +48,6 @@
 #'    smoking-cessation interventions. American Journal of Health-System Pharmacy
 #'    1996;53:45-52}
 #' @keywords datasets
-#' @examples
-#' 
-#' data(Smoking)
-#' 
-#' \donttest{
-#' m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
-#' }
 NULL
 
 
@@ -119,8 +109,6 @@ NULL
 #'   \item{list("QALYs.pne")}{a vector from the posterior distribution of the
 #'   QALYs associated with pneumonia}
 #'   \item{list("treats")}{a vector of labels associated with the two treatments}
-#'   \item{list("vaccine")}{a \code{rjags} object containing the simulations for
-#'   the parameters used in the original model}
 #'   \item{list("vaccine_mat")}{a matrix containing the simulations for the
 #'   parameters used in the original model}
 #'   }
@@ -131,13 +119,6 @@ NULL
 #' Nicholson K. The cost-effectiveness of influenza vaccination of healthy
 #' adults 50-64 years of age. Vaccine. 2006;24:1035-1043.
 #' @keywords datasets
-#' @examples
-#' 
-#' data(Vaccine)
-#' 
-#' \donttest{
-#' m <- bcea(e, c, ref = 1, interventions = treats)
-#' }
 NULL
 
  

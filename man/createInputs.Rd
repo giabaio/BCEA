@@ -58,4 +58,3 @@ non-Bayesian model).
 \author{
 Gianluca Baio, Anna Heath and Mark Strong
 }
-\keyword{R2jags}

@@ -73,7 +73,7 @@ BCEA::ceplane_plot_base(he, graph_params = graph_params)
 
 
 ## multiple comparators
-data(Smoking, package = "BCEA")
+data(Smoking)
 
 graph_params <-  list(xlab = "x-axis label",
                       ylab = "y-axis label",

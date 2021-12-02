@@ -1,4 +1,4 @@
-# BCEA 2.3-2
+# BCEA 2.4.1
 Oct 2021
 
 ## Major refactoring
@@ -14,7 +14,6 @@ Code base improved robustness and extensibility.
 * `ceac_plot()` changes
   * Deprecated `mce.plot()`. Now dispatched on `ceac.plot()` for both `multi.ce()` and `bcea()` outputs.
   * For a multiple comparison the plot for pairwise comparison over all interventions is returned by default. The alternative version of each comparison against the reference group is still available.* Plots and tables using S3 methods for `bcea` type object.
-* New vignettes about plotting and comparison intervention setting.
 * Tables updated. Duplication in `summary()` and `sim_table()` removed.
 * `createInputs()` used for EVPI calculation now dispatches S3 methods by JAGS, BUGS, Stan and other R data types.
 * `make.report()` rewritten to have separate section files.
@@ -30,6 +29,7 @@ Now subsets can be set in both the original `bcea()` construction or separately 
 ## Miscellaneous
 
 * Additional help documentation and examples.
+* New vignettes about plotting and comparison intervention setting.
 * Testing suite started. This is not comprehensive as of yet.
 * Added a `NEWS.md` file to track changes to the package. Details about previous releases, such as dates, versions, fixes and enhancements obtained from CRAN and code comments so a little patchy.
 * `pkgdown` GitHub site made.

@@ -9,7 +9,6 @@
 #' @author Gianluca Baio, Anna Heath and Mark Strong
 #' @seealso \code{\link{bcea}},
 #'          \code{\link{evppi}}
-#' @keywords R2jags
 #' @export
 #'
 createInputs.default <- function(inputs,
