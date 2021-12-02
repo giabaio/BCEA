@@ -53,8 +53,8 @@ Description: Produces an economic evaluation of a sample of suitable variables o
              This package computes the most cost-effective alternative and
              produces graphical summaries and probabilistic sensitivity analysis.
 License: GPL-3
-URL: http://www.statistica.it/gianluca/software/bcea/,
-     http://www.statistica.it/gianluca/,
+URL: https://gianluca.statistica.it/software/bcea/,
+     https://gianluca.statistica.it/,
      https://github.com/giabaio/BCEA    
 NeedsCompilation: no
 RoxygenNote: 7.1.2
