@@ -41,7 +41,7 @@
 #'    \item Taylor, D.H. Jr, et al. (2002). Benefits of smoking
 #'    cessation on longevity. American Journal of Public Health 2002;92(6)
 #'    \item ASH: Action on Smoking and Health (2013). ASH fact sheet on smoking
-#'    statistics, \cr \code{http://ash.org.uk/files/documents/ASH_106.pdf}
+#'    statistics, \cr \code{https://ash.org.uk/files/documents/ASH_106.pdf}
 #'    \item Flack, S., et al. (2007). Cost-effectiveness of interventions for smoking
 #'    cessation. York Health Economics Consortium, January 2007
 #'    \item McGhan, W.F.D., and Smith, M. (1996). Pharmacoeconomic analysis of

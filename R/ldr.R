@@ -8,7 +8,7 @@
 # Maintainer: Kofi Placid Adragni <kofi@umbc.edu>
 # Description: Functions, methods, and data sets for fitting likelihood-based dimension reduction in regression,
 # using principal fitted components (pfc), likelihood acquired directions (lad), covariance reducing models (core).
-# URL: http://www.jstatsoft.org/v61/i03/
+# URL: https://www.jstatsoft.org/v61/i03/
 #   License: GPL (>= 2)
 # Packaged: 2021-10-08 16:32:42 UTC; Nathan
 # Repository: https://github.com/cran/ldr

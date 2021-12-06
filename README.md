@@ -49,7 +49,7 @@ remotes::install_github("giabaio/BCEA", ref="dev")
 
 ## Further details
 The `pkgdown` site is [here](https://n8thangreen.github.io/BCEA/).
-More details on `BCEA` are available in our book [_Bayesian Cost-Effectiveness Analysis with the R Package BCEA_](http://www.statistica.it/gianluca/book/bcea/) (published in the UseR! Springer series). Also, details about the package, including some references and links to a pdf presentation and some posts on my own blog) are given [here](http://www.statistica.it/gianluca/software/bcea/).
+More details on `BCEA` are available in our book [_Bayesian Cost-Effectiveness Analysis with the R Package BCEA_](https://gianluca.statistica.it/book/bcea/) (published in the UseR! Springer series). Also, details about the package, including some references and links to a pdf presentation and some posts on my own blog) are given [here](https://gianluca.statistica.it/software/bcea/).
 
 ## Licence
 GPL-3 © [G Baio](https://github.com/giabaio/).

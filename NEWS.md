@@ -13,7 +13,8 @@ Code base improved robustness and extensibility.
   It also means we can reuse some functionality across plots such as axes and legend setting e.g. `BCEA:::where_legend()`.
 * `ceac_plot()` changes
   * Deprecated `mce.plot()`. Now dispatched on `ceac.plot()` for both `multi.ce()` and `bcea()` outputs.
-  * For a multiple comparison the plot for pairwise comparison over all interventions is returned by default. The alternative version of each comparison against the reference group is still available.* Plots and tables using S3 methods for `bcea` type object.
+  * For a multiple comparison the plot for pairwise comparison over all interventions is returned by default. The alternative version of each comparison against the reference group is still available.
+  * Plots and tables using S3 methods for `bcea` type object.
 * Tables updated. Duplication in `summary()` and `sim_table()` removed.
 * `createInputs()` used for EVPI calculation now dispatches S3 methods by JAGS, BUGS, Stan and other R data types.
 * `make.report()` rewritten to have separate section files.
