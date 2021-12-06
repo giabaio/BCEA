@@ -168,6 +168,8 @@ test_that("ib", {
 })
 
 
+# library(rstan)
+
 test_that("jags, bugs, stan methods", {
 
   ##TODO: remove missing cost error
@@ -176,10 +178,10 @@ test_that("jags, bugs, stan methods", {
   # mocked inputs
   load(test_path("data", "bugsfit.RData"))
   load(test_path("data", "jagsfit.RData"))
-  load(test_path("data", "stanfit.RData"))
+  # load(test_path("data", "stanfit.RData"))
   
   expect_s3_class(bcea.rjags(jagsfit), class = "bcea")
   expect_s3_class(bcea.bugs(bugsfit), class = "bcea")
-  expect_s3_class(bcea.rstan(stanfit), class = "bcea")
+  # expect_s3_class(bcea.rstan(stanfit), class = "bcea")
 })
 
