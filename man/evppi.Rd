@@ -154,6 +154,7 @@ use GAM if the number of parameters is <5 and INLA otherwise.
 # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 # Bayesian model and economic problem
 
+\dontrun{
 # Load the processed results of the MCMC simulation model
 data(Vaccine, package = "BCEA")
 treats <- c("Status quo", "Vaccination")
@@ -164,8 +165,8 @@ m <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
 # Compute the EVPPI for a bunch of parameters
 inp <- createInputs(vaccine)
 
-##TODO: error
 EVPPI <- evppi(m, c("beta.1." , "beta.2."), inp$mat)
+
 plot(EVPPI)
 
 # deprecated (single parameter) methods
@@ -174,7 +175,7 @@ EVPPI.sad <- evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps =
 
 plot(EVPPI.so)
 plot(EVPPI.sad)
-
+ 
 # Compute the EVPPI using INLA/SPDE
 x_inla <- evppi(he = m, 39:40, input = inp$mat)
 
@@ -201,6 +202,7 @@ m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
 inp <- createInputs(smoking_output)
 EVPPI <- evppi(m, c(2,3), inp$mat, h.value = 0.0000005)
 plot(EVPPI)
+}
 
 }
 \references{
@@ -221,7 +223,7 @@ with the R package BCEA. New York, NY: Springer. doi:10.1007/978-3-319-55718-2.
 Heath A., Manolopoulou I., Baio G. (2016). Estimating the Expected Value of
 Partial Perfect Information in Health Economic Evaluations using Integrated
 Nested Laplace Approximation. Statistics in Medicine.
-http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full
+https://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full
 }
 \seealso{
 \code{\link{bcea}},

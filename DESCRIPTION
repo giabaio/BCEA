@@ -2,7 +2,7 @@ Package: BCEA
 Type: Package
 Title: Bayesian Cost Effectiveness Analysis
 Version: 2.4.1
-Date: 2021-10-14
+Date: 2021-11-23
 Authors@R: c(
     person("Gianluca", "Baio",
             email = "gianluca@stats.ucl.ac.uk",
@@ -38,12 +38,10 @@ Suggests:
     MCMCvis,
     mgcv,
     plotly,
+    rjags,
     rmarkdown,
     rstan,
     RColorBrewer,
-    R2jags,
-    R2OpenBUGS,
-    R2WinBUGS, 
     splancs,
     testthat (>= 2.1.0),
     vdiffr,
@@ -55,8 +53,8 @@ Description: Produces an economic evaluation of a sample of suitable variables o
              This package computes the most cost-effective alternative and
              produces graphical summaries and probabilistic sensitivity analysis.
 License: GPL-3
-URL: http://www.statistica.it/gianluca/software/bcea/,
-     http://www.statistica.it/gianluca/,
+URL: https://gianluca.statistica.it/software/bcea/,
+     https://gianluca.statistica.it/,
      https://github.com/giabaio/BCEA    
 NeedsCompilation: no
 RoxygenNote: 7.1.2

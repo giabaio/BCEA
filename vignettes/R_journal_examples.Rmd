@@ -36,7 +36,7 @@ rmarkdown::render(input = "vignettes/R_journal_examples.Rmd", output_format = "l
 ## Smoking cessation example
 
 ```{r}
-data(Smoking, package = "BCEA")
+data(Smoking)
 
 treats <- c("No intervention", "Self-help", "Individual counselling", "Group counselling")
 bcea_smoke <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
@@ -130,15 +130,14 @@ value of information
 
 ```{r}
 evi.plot(bcea_vacc)
-
-inp <- createInputs(vaccine, print_is_linear_comb = FALSE)
 ```
 
-```{r}
+```{r eval=FALSE}
+inp <- createInputs(vaccine, print_is_linear_comb = FALSE)
 info.rank(bcea_vacc, inp)
 ```
 
-```{r}
+```{r eval=FALSE}
 EVPPI <- evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
 plot(EVPPI)
 ```

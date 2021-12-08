@@ -75,13 +75,16 @@ parameter) to EVPI. This represents the relative `importance' of each
 parameter in terms of the expected value of information.
 }
 \examples{
+\dontrun{
 data("Vaccine")
 m <- bcea(e,c)
 inp <- createInputs(vaccine)
 info.rank(m, inp)
+
 info.rank(m, inp, graph = "base")
 info.rank(m, inp, graph = "plotly")
 info.rank(m, inp, graph = "ggplot2")
+}
 
 }
 \references{

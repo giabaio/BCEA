@@ -1,6 +1,0 @@
-Hmm ... looks like a package
-Warning in system(paste(shQuote(texi2dvi), if (quiet) "--quiet" else "",  :
-  running command '"C:\PROGRA~1\MIKTEX~1.9\miktex\bin\x64\texify.exe"  --pdf "Rd2.tex" --max-iterations=20 -I "C:/PROGRA~1/R/R-41~1.1/share/texmf/tex/latex" -I "C:/PROGRA~1/R/R-41~1.1/share/texmf/bibtex/bst"' had status 1
-Saving output to 'BCEA-manual.pdf' ...
-Done
-You may want to clean up by 'rm -Rf C:/Users/Nathan/AppData/Local/Temp/RtmpOQRYve/Rd2pdf21403dc17629'

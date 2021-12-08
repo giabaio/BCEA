@@ -38,7 +38,7 @@
 #' 
 #' 
 #' ## multiple comparators
-#' data(Smoking, package = "BCEA")
+#' data(Smoking)
 #' 
 #' graph_params <-  list(xlab = "x-axis label",
 #'                       ylab = "y-axis label",

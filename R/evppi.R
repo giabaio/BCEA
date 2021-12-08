@@ -145,7 +145,7 @@
 #' Heath A., Manolopoulou I., Baio G. (2016). Estimating the Expected Value of
 #' Partial Perfect Information in Health Economic Evaluations using Integrated
 #' Nested Laplace Approximation. Statistics in Medicine.
-#' http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full
+#' https://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full
 #' 
 #' @concept "Health economic evaluation" "Expected value of partial information"
 #' 
@@ -155,6 +155,7 @@
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 #' # Bayesian model and economic problem
 #'
+#' \dontrun{
 #' # Load the processed results of the MCMC simulation model
 #' data(Vaccine, package = "BCEA")
 #' treats <- c("Status quo", "Vaccination")
@@ -165,8 +166,8 @@
 #' # Compute the EVPPI for a bunch of parameters
 #' inp <- createInputs(vaccine)
 #' 
-#' ##TODO: error
 #' EVPPI <- evppi(m, c("beta.1." , "beta.2."), inp$mat)
+#' 
 #' plot(EVPPI)
 #' 
 #' # deprecated (single parameter) methods
@@ -175,7 +176,7 @@
 #' 
 #' plot(EVPPI.so)
 #' plot(EVPPI.sad)
-#' 
+#'  
 #' # Compute the EVPPI using INLA/SPDE
 #' x_inla <- evppi(he = m, 39:40, input = inp$mat)
 #' 
@@ -202,6 +203,7 @@
 #' inp <- createInputs(smoking_output)
 #' EVPPI <- evppi(m, c(2,3), inp$mat, h.value = 0.0000005)
 #' plot(EVPPI)
+#' }
 #' 
 evppi <- function(he,
                   param_idx,

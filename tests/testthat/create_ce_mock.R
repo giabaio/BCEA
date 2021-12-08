@@ -60,14 +60,14 @@ bugsfit <- openbugs(data = model.data,
                     inits = list(list(cost = 0, eff = 0)),
                     model.file = "ce_mock.txt")
 
-stanfit <- stan(data = model.data,
-                pars = model.params,
-                chains = 1,
-                iter = 10,
-                init = 0,
-                file = "ce_mock.stan")
+# stanfit <- stan(data = model.data,
+#                 pars = model.params,
+#                 chains = 1,
+#                 iter = 10,
+#                 init = 0,
+#                 file = "ce_mock.stan")
 
 save(jagsfit, file = test_path("data", "jagsfit.RData"))
 save(bugsfit, file = test_path("data", "bugsfit.RData"))
-save(stanfit, file = test_path("data", "stanfit.RData"))
+# save(stanfit, file = test_path("data", "stanfit.RData"))
 

@@ -39,6 +39,7 @@ Set of Parameters
 }
 \examples{
 
+\dontrun{
 data(Vaccine, package = "BCEA")
 treats <- c("Status quo", "Vaccination")
 
@@ -50,9 +51,10 @@ inp <- createInputs(vaccine)
 
 # Compute the EVPPI using INLA/SPDE
 x0 <- evppi(m, c("beta.1." , "beta.2."), input = inp$mat)
-x1 <- evppi(m, c(32,48,49), input = inp$mat)
 
 plot(x0, pos = c(0,1))
+
+x1 <- evppi(m, c(32,48,49), input = inp$mat)
 plot(x1, pos = "topright")
 
 plot(x0, col = c("black", "red"), pos = "topright")
@@ -70,6 +72,7 @@ if (FALSE)
  plot(x0, col = 3, pos = "topright")
 # The vector 'col' must have the number of elements for an EVPI
 # colour and each of the EVPPI parameters. Forced to black
+}
 
 }
 \references{

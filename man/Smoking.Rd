@@ -34,9 +34,6 @@ cost-effectiveness analysis. The variables are as follows:
  the intervention ID number, \code{r_i}: the number of patients who quit
  smoking, \code{n_i}: the total number of patients for the row-specific arm
  and \code{b_i}: the reference intervention for each study}
-\item{list("smoking_output")}{a \code{rjags} object obtained by running the
- network meta-analysis model based on the data contained in the
- \code{smoking} object}
 \item{list("smoking_mat")}{a matrix obtained by running the network
  meta-analysis model based on the data contained in the \code{smoking} object}
 \item{list("treats")}{a vector of labels associated with the four strategies}
@@ -50,7 +47,7 @@ Cost and population characteristics data adapted from various sources:
    \item Taylor, D.H. Jr, et al. (2002). Benefits of smoking
    cessation on longevity. American Journal of Public Health 2002;92(6)
    \item ASH: Action on Smoking and Health (2013). ASH fact sheet on smoking
-   statistics, \cr \code{http://ash.org.uk/files/documents/ASH_106.pdf}
+   statistics, \cr \code{https://ash.org.uk/files/documents/ASH_106.pdf}
    \item Flack, S., et al. (2007). Cost-effectiveness of interventions for smoking
    cessation. York Health Economics Consortium, January 2007
    \item McGhan, W.F.D., and Smith, M. (1996). Pharmacoeconomic analysis of
@@ -61,14 +58,6 @@ Cost and population characteristics data adapted from various sources:
 This data set contains the results of the Bayesian analysis used to model
 the clinical output and the costs associated with the health economic
 evaluation of four different smoking cessation interventions.
-}
-\examples{
-
-data(Smoking)
-
-\donttest{
-m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
-}
 }
 \references{
 Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London

@@ -4,7 +4,7 @@
 #' Computes the weights to be associated with a set of competing models in
 #' order to perform structural PSA.
 #' 
-#' The model is a list containing the output from either R2jags or R2OpenBUGS /
+#' The model is a list containing the output from either R2jags or
 #' R2WinBUGS for all the models that need to be combined in the model average
 #' effect is a list containing the measure of effectiveness computed from the 
 #' various models (one matrix with n_sim x n_ints simulations for each model)
@@ -12,8 +12,7 @@
 #' models (one matrix with n_sim x n_ints simulations for each model).
 #' 
 #' @param models A list containing the output from either R2jags or
-#' R2OpenBUGS/R2WinBUGS for all the models that need to be combined in the
-#' model average
+#' R2WinBUGS for all the models that need to be combined in the model average
 #' @param effect A list containing the measure of effectiveness computed from
 #' the various models (one matrix with n.sim x n.ints simulations for each
 #' model)
@@ -66,33 +65,21 @@ struct.psa <- function(models,
   for (i in seq_len(n_models)) {
     # 1. checks whether each model has been run using JAGS or BUGS    
     if (inherits(models[[i]], "rjags")) {
-      if (!(requireNamespace("R2jags", quietly = TRUE))) {
-        stop ("You need to install the package 'R2jags'.
-             Please run in your R terminal:\n install.packages('R2jags')",
-              call. = FALSE)
-      }
-      if (requireNamespace("R2jags", quietly = TRUE)) {
-        mdl[[i]] <- models[[i]]$BUGSoutput  # model is run using R2jags/rjags        
-      }
+      mdl[[i]] <- models[[i]]$BUGSoutput
     }
-    if (inherits(models[[i]], "bugs")) {		# model is run using R2WinBUGS/R2OpenBUGS
-      if (!(requireNamespace("R2OpenBUGS", quietly = TRUE))) {
-        stop ("You need to install the package 'R2OpenBUGS'.
-             Please run in your R terminal:\n install.packages('R2OpenBUGS')",
-              call. = FALSE)
-      }
-      if (requireNamespace("R2OpenBUGS", quietly = TRUE)) {
-        mdl[[i]] <- models[[i]]
-      }
+    if (inherits(models[[i]], "bugs")) {
+      mdl[[i]] <- models[[i]]
     }
+    
+    # 2. saves the DIC in vector d
     mdl[[i]] <- models[[i]]
-    # 2. saves the DIC in the vector d
     d[i] <- mdl[[i]]$DIC
   }
-  dmin <- min(d)					# minimum value to re-scale the DICs
+  
+  dmin <- min(d)					                        # minimum value to re-scale DICs
   w <- exp(-0.5*(d - dmin))/sum(exp(-0.5*(d - dmin))) 	# model weights (cfr BMHE)
   
-  # Now weights the simulations for the variables of effectiveness and costs in each model
+  # weights the simulations for the variables of effectiveness and costs in each model
   # using the respective weights, to produce the economic analysis for the average model
   e <- c <- matrix(NA,
                    nrow = dim(effect[[1]])[1],
@@ -105,7 +92,7 @@ struct.psa <- function(models,
     c <- c + w[i]*cost[[i]]
   }
   
-  # perform the economic analysis on the averaged model
+  # perform economic analysis on averaged model
   he <-
     bcea(eff = e,
          cost = c,

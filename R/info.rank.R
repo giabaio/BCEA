@@ -107,13 +107,16 @@ info.rank.bcea <- function(he,
 #' @export
 #' 
 #' @examples
+#' \dontrun{
 #' data("Vaccine")
 #' m <- bcea(e,c)
 #' inp <- createInputs(vaccine)
 #' info.rank(m, inp)
+#' 
 #' info.rank(m, inp, graph = "base")
 #' info.rank(m, inp, graph = "plotly")
 #' info.rank(m, inp, graph = "ggplot2")
+#' }
 #' 
 info.rank <- function(he, ...) {
   UseMethod('info.rank', he)
