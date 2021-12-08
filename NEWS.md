@@ -3,7 +3,7 @@ Oct 2021
 
 ## Major refactoring
 
-Code base improved robustness and extensibility.
+* Code base improved robustness and extensibility.
 * `bcea()` is now a helper function which calls the constructor `new_bcea()`, separating concerns.
 * `new_bcea()` composed of smaller HEE statistics functions with names starting with `compute_*` e.g. `compute_CEAC()`, `compute_EIB()`,.... This allows us to call and test them individually.
   It also allows more flexibility in changing or adding functionality to `new_bcea()`.
@@ -25,7 +25,7 @@ Code base improved robustness and extensibility.
 Now subsets can be set in both the original `bcea()` construction or separately using a setter functions `setComparisons()`.
 * Similarly, maximum willingness to pay and the reference group can be set with `setKmax()` and `setReferenceGroup()`, respectively.
 * `multi.ce()` and `CEriskAv()` also now work similarly. They operate by modifying the `bcea` object, rather than creating new one (think decorator pattern).
-* `bcea()` methods for jags, WinBUGS, Stan (#76)
+* `bcea()` methods for JAGS, WinBUGS, Stan (#76)
 
 ## Miscellaneous
 

@@ -4,7 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="BCEA">
 <title>Info-rank plot • BCEA</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -12,12 +13,11 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Info-rank plot">
 <meta property="og:description" content="BCEA">
 <meta property="og:image" content="/logo.png">
@@ -26,138 +26,105 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">BCEA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
-      </span>
-    </div>
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
+    
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
+    
+    <a class="navbar-brand me-2" href="../index.html">BCEA</a>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.1</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-2">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/bcea.html">Get started</a>
-    </li>
-    <li>
-      <a href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
-    </li>
-    <li class="divider">
-    <li>
-      <a href="../articles/index.html">More...</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/giabaio/BCEA/">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul>
-</div>
-<!--/.nav-collapse -->
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/bcea.html">Get started</a>
+    <a class="dropdown-item" href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="../articles/index.html">More articles...</a>
   </div>
-<!--/.container -->
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
+      </ul>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/giabaio/BCEA/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
-<!--/.navbar -->
 
-      
+    
+  </div>
+</nav><div class="container template-article">
 
-      </header><script src="info-rank_files/header-attrs-2.11/header-attrs.js"></script><script src="info-rank_files/htmlwidgets-1.5.3/htmlwidgets.js"></script><script src="info-rank_files/plotly-binding-4.9.4.1/plotly.js"></script><script src="info-rank_files/typedarray-0.1/typedarray.min.js"></script><script src="info-rank_files/jquery-3.5.1/jquery.min.js"></script><link href="info-rank_files/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet">
-<script src="info-rank_files/crosstalk-1.1.1/js/crosstalk.min.js"></script><link href="info-rank_files/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet">
-<script src="info-rank_files/plotly-main-1.57.1/plotly-latest.min.js"></script><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Info-rank plot</h1>
+<div class="row">
+  <main id="main"><div class="page-header">
+      <img src="../logo.png" class="logo" alt=""><h1>Info-rank plot</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/master/vignettes/info-rank.Rmd"><code>vignettes/info-rank.Rmd</code></a></small>
-      <div class="hidden name"><code>info-rank.Rmd</code></div>
-
+      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/HEAD/vignettes/info-rank.Rmd" class="external-link"><code>vignettes/info-rank.Rmd</code></a></small>
+      <div class="d-none name"><code>info-rank.Rmd</code></div>
     </div>
 
     
     
-<p>##TODO…</p>
-<div id="introduction" class="section level2">
-<h2 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h2>
+<!-- ##TODO... -->
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/Smoking.html">data</a></span><span class="op">(</span><span class="st">"Vaccine"</span><span class="op">)</span>
-<span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>,<span class="va">c</span><span class="op">)</span>
-<span class="co">#&gt; No reference selected. Defaulting to first intervention.</span>
-<span class="va">inp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createInputs.default.html">createInputs</a></span><span class="op">(</span><span class="va">vaccine</span>, print_is_linear_comb <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="../reference/info.rank.bcea.html">info.rank</a></span><span class="op">(</span><span class="va">m</span>, <span class="va">inp</span><span class="op">)</span>
-<span class="fu"><a href="../reference/info.rank.bcea.html">info.rank</a></span><span class="op">(</span><span class="va">m</span>, <span class="va">inp</span>, graph <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span></code></pre></div>
-<p><img src="info-rank_files/figure-html/unnamed-chunk-2-1.png" width="768"></p>
+<span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span><span class="op">)</span>
+<span class="va">inp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/createInputs.html">createInputs</a></span><span class="op">(</span><span class="va">vaccine</span>, print_is_linear_comb <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu"><a href="../reference/info.rank.html">info.rank</a></span><span class="op">(</span><span class="va">m</span>, <span class="va">inp</span><span class="op">)</span>
+<span class="fu"><a href="../reference/info.rank.html">info.rank</a></span><span class="op">(</span><span class="va">m</span>, <span class="va">inp</span>, graph <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span>
+<span class="fu"><a href="../reference/info.rank.html">info.rank</a></span><span class="op">(</span><span class="va">m</span>, <span class="va">inp</span>, graph <span class="op">=</span> <span class="st">"plotly"</span><span class="op">)</span></code></pre></div>
+<p>A smaller number of the top variables can be selected using the <code>howManyPars</code> argument.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/info.rank.bcea.html">info.rank</a></span><span class="op">(</span><span class="va">m</span>, <span class="va">inp</span>, graph <span class="op">=</span> <span class="st">"plotly"</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-dd7e41036aa87de0f8cf" style="width:768px;height:1440px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-dd7e41036aa87de0f8cf">{"x":{"visdat":{"6a54fab4ec0":["function () ","plotlyVisDat"]},"cur_data":"6a54fab4ec0","attrs":{"6a54fab4ec0":{"y":{},"x":{},"orientation":"h","marker":{"color":"royalblue"},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":[1.36,1.5,1,1],"xaxis":{"domain":[0,1],"automargin":true,"hoverformat":".2f","title":"Proportion of total EVPI","range":[0,0.08709924978029]},"yaxis":{"domain":[0,1],"automargin":true,"hoverformat":".2f","title":"","type":"category","categoryorder":"array","categoryarray":["delta","q.6.","pi.1.2.","beta.7.","psi.4.","psi.8.","psi.2.","Hospital.1.1.","GP.2.1.","Infected.2.2.","Hospital.2.1.","Trt.1.2.1.","q.7.","xi","beta.4.","Mild.Compl.2.1.","psi.6.","Adverse.events","q.1.","psi.1.","Trt.2.2.1.","beta.5.","Death.1.1.","rho.2.","Death.2.1.","beta.1.","q.4.","gamma.1.","Infected.1.1.","Infected.2.1.","Death.2.2.","beta.3.","eta","Pneumonia.2.1.","Pneumonia.1.1.","Mild.Compl.1.1.","psi.5.","Trt.2.1.1.","psi.3.","lambda","Trt.1.1.1.","GP.1.1.","psi.7.","Trt.1.2.2.","n.1.2.","n.2.2.","phi","Pneumonia.2.2.","beta.2.","Mild.Compl.2.2.","GP.2.2.","q.5.","Trt.2.2.2.","gamma.2.","beta.6."]},"bargap":0.5,"title":"Info-rank plot for willingness to pay = 20100","hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"y":["delta","q.6.","pi.1.2.","beta.7.","psi.4.","psi.8.","psi.2.","Hospital.1.1.","GP.2.1.","Infected.2.2.","Hospital.2.1.","Trt.1.2.1.","q.7.","xi","beta.4.","Mild.Compl.2.1.","psi.6.","Adverse.events","q.1.","psi.1.","Trt.2.2.1.","beta.5.","Death.1.1.","rho.2.","Death.2.1.","beta.1.","q.4.","gamma.1.","Infected.1.1.","Infected.2.1.","Death.2.2.","beta.3.","eta","Pneumonia.2.1.","Pneumonia.1.1.","Mild.Compl.1.1.","psi.5.","Trt.2.1.1.","psi.3.","lambda","Trt.1.1.1.","GP.1.1.","psi.7.","Trt.1.2.2.","n.1.2.","n.2.2.","phi","Pneumonia.2.2.","beta.2.","Mild.Compl.2.2.","GP.2.2.","q.5.","Trt.2.2.2.","gamma.2.","beta.6."],"x":[0.00523552661474226,0.00590722021133251,0.00732768351053516,0.00765466085019153,0.0105306477532769,0.0142624644263862,0.0160302866580168,0.016571472570235,0.0195355384355969,0.020054423485377,0.0205437155224184,0.0205980112799589,0.0208495521575074,0.0214245765056402,0.0218878143234245,0.0224170509885862,0.0224525614834639,0.0240974769257285,0.024582007955894,0.0249323088050978,0.0254593640148945,0.0259372900109327,0.0265106511394303,0.0285808128735134,0.0290217064303956,0.0328494891221642,0.0336413356473609,0.0341779806560669,0.0345304069741732,0.0366431624008438,0.0367198332657933,0.0372015137815348,0.0376982255437509,0.0378488124275004,0.0411721646605155,0.0416476370133409,0.0422295692658478,0.042313521262932,0.0433786611311719,0.0435250170514603,0.0448942573821592,0.0467150892652422,0.0498680248462158,0.055926540244226,0.0562487227261279,0.056248722726235,0.0570915052423573,0.0594353268331159,0.0601114628984382,0.0606241203811728,0.0613263941445515,0.0723644506340108,0.0744666544362747,0.0867939055028253,0.08709924978029],"orientation":"h","marker":{"color":"royalblue","line":{"color":"rgba(31,119,180,1)"}},"type":"bar","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script><p>A smaller number of the top variables can be selected using the <code>howManyPars</code> argument.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/info.rank.bcea.html">info.rank</a></span><span class="op">(</span><span class="va">m</span>, <span class="va">inp</span>, graph <span class="op">=</span> <span class="st">"base"</span>, howManyPars <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
-<p><img src="info-rank_files/figure-html/unnamed-chunk-3-1.png" width="768"></p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/info.rank.bcea.html">info.rank</a></span><span class="op">(</span><span class="va">m</span>, <span class="va">inp</span>, graph <span class="op">=</span> <span class="st">"plotly"</span>, howManyPars <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-2b114039c385c911de80" style="width:768px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2b114039c385c911de80">{"x":{"visdat":{"6a5413fd5f37":["function () ","plotlyVisDat"]},"cur_data":"6a5413fd5f37","attrs":{"6a5413fd5f37":{"y":{},"x":{},"orientation":"h","marker":{"color":"royalblue"},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":[1.36,1.5,1,1],"xaxis":{"domain":[0,1],"automargin":true,"hoverformat":".2f","title":"Proportion of total EVPI","range":[0,0.08709924978029]},"yaxis":{"domain":[0,1],"automargin":true,"hoverformat":".2f","title":"","type":"category","categoryorder":"array","categoryarray":["n.2.2.","phi","Pneumonia.2.2.","beta.2.","Mild.Compl.2.2.","GP.2.2.","q.5.","Trt.2.2.2.","gamma.2.","beta.6."]},"bargap":0.5,"title":"Info-rank plot for willingness to pay = 20100","hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"y":["n.2.2.","phi","Pneumonia.2.2.","beta.2.","Mild.Compl.2.2.","GP.2.2.","q.5.","Trt.2.2.2.","gamma.2.","beta.6."],"x":[0.056248722726235,0.0570915052423573,0.0594353268331159,0.0601114628984382,0.0606241203811728,0.0613263941445515,0.0723644506340108,0.0744666544362747,0.0867939055028253,0.08709924978029],"orientation":"h","marker":{"color":"royalblue","line":{"color":"rgba(31,119,180,1)"}},"type":"bar","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<code class="sourceCode R"><span class="fu"><a href="../reference/info.rank.html">info.rank</a></span><span class="op">(</span><span class="va">m</span>, <span class="va">inp</span>, graph <span class="op">=</span> <span class="st">"base"</span>, howManyPars <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
+<span class="fu"><a href="../reference/info.rank.html">info.rank</a></span><span class="op">(</span><span class="va">m</span>, <span class="va">inp</span>, graph <span class="op">=</span> <span class="st">"plotly"</span>, howManyPars <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
-
+  </main>
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan Green.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p></p>
+<p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan Green.</p>
 </div>
 
-<div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+<div class="pkgdown-footer-right">
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
 
+  
 
   </body>
 </html>

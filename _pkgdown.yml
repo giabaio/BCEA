@@ -2,7 +2,7 @@ news:
   cran_dates: false
   
 template:
-  bootstrap: 4
+  bootstrap: 5
   bootswatch: flatly
 
 reference:

@@ -130,15 +130,14 @@ value of information
 
 ```{r}
 evi.plot(bcea_vacc)
-
-inp <- createInputs(vaccine, print_is_linear_comb = FALSE)
 ```
 
-```{r}
+```{r eval=FALSE}
+inp <- createInputs(vaccine, print_is_linear_comb = FALSE)
 info.rank(bcea_vacc, inp)
 ```
 
-```{r}
+```{r eval=FALSE}
 EVPPI <- evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
 plot(EVPPI)
 ```
