@@ -22,7 +22,7 @@
   bcea(eff = he$e,
        cost = he$c,         
        ref = value,
-       interventions = he$treats,
+       interventions = he$interventions,
        Kmax = he$Kmax,          
        plot = FALSE)
 }
@@ -59,7 +59,7 @@
   bcea(eff = he$e,
        cost = he$c,         
        ref = he$ref,
-       interventions = he$treats,
+       interventions = he$interventions,
        Kmax = value,          
        plot = FALSE)
 }
