@@ -127,18 +127,28 @@ summary(bcea_vacc, wtp = 10000)
 head(sim_table(bcea_vacc, wtp = 25000)$Table)
 ```
 
+risk aversion
+
+```{r}
+r <- c(0, 0.005, 0.020, 0.035)
+CEriskav(bcea_vacc) <- r
+
+plot(bcea_vacc)
+```
+
 value of information
 
 ```{r}
 evi.plot(bcea_vacc)
 ```
 
-```{r eval=FALSE}
+```{r eval=TRUE}
+data("vaccine_jags")
 inp <- createInputs(vaccine, print_is_linear_comb = FALSE)
 info.rank(bcea_vacc, inp)
 ```
 
-```{r eval=FALSE}
+```{r eval=TRUE}
 EVPPI <- evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
 plot(EVPPI)
 ```

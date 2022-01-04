@@ -15,3 +15,4 @@
 ^cran-comments\.md$
 ^README_dev\.md$
 ^\.github$
+^data\vaccine_jags.RData$
