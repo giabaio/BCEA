@@ -29,6 +29,11 @@ Main features of `BCEA` include:
 * EVPPI calculations and plots
 
 ## Installation
+Install the released version from CRAN with
+```r
+install.packages("BCEA")
+```
+
 The development version can be installed using this GitHub repository. On Windows machines, you need to install a few dependencies, including [Rtools](https://cran.r-project.org/bin/windows/Rtools/) first, e.g. by running
 
 ```r
