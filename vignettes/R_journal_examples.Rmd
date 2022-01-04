@@ -8,13 +8,14 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-  
+
+<!-- these are taken directly from the BCEA book by G Baio -->
+
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-collapse = TRUE,
-comment = "#>",
-fig.width = 6
-)
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 6)
 ```
 
 ```{r setup, results='hide', message=FALSE, warning=FALSE, echo=FALSE}

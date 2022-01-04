@@ -24,6 +24,6 @@ line_labels.default <- function(he, ...) {
 #' @export
 #' 
 line_labels.pairwise <- function(he, ...) {
-  he$interventions
+  he$interventions[c(he$comp, he$ref)]
 }
 
