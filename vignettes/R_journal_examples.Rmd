@@ -8,13 +8,14 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-  
+
+<!-- these are taken directly from the BCEA book by G Baio -->
+
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-collapse = TRUE,
-comment = "#>",
-fig.width = 6
-)
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 6)
 ```
 
 ```{r setup, results='hide', message=FALSE, warning=FALSE, echo=FALSE}
@@ -126,18 +127,28 @@ summary(bcea_vacc, wtp = 10000)
 head(sim_table(bcea_vacc, wtp = 25000)$Table)
 ```
 
+risk aversion
+
+```{r}
+r <- c(0, 0.005, 0.020, 0.035)
+CEriskav(bcea_vacc) <- r
+
+plot(bcea_vacc)
+```
+
 value of information
 
 ```{r}
 evi.plot(bcea_vacc)
 ```
 
-```{r eval=FALSE}
+```{r eval=TRUE}
+data("vaccine_jags")
 inp <- createInputs(vaccine, print_is_linear_comb = FALSE)
 info.rank(bcea_vacc, inp)
 ```
 
-```{r eval=FALSE}
+```{r eval=TRUE}
 EVPPI <- evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
 plot(EVPPI)
 ```

@@ -63,8 +63,9 @@ ceplane_legend_base <- function(he,
 where_legend <- function(he,
                          pos_legend) {
   
-  # empty legend
+  # cases with empty legend
   if (!inherits(he, "pairwise") &&
+      !inherits(he, "CEriskav") &&
       ("n_comparisons" %in% names(he)) &&
       he$n_comparisons == 1)
     return(NA)

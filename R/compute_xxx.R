@@ -349,14 +349,15 @@ compute_ceaf <- function(p_best_interv) {
 #' 
 compute_p_best_interv <- function(he) {
   
+  intervs <- c(he$comp, he$ref)
   p_best_interv <- array(NA,
                          c(length(he$k),
-                           he$n_comparators))
+                           length(intervs)))
   
-  for (i in seq_len(he$n_comparators)) {
+  for (i in seq_along(intervs)) {
     for (k in seq_along(he$k)) {
       
-      is_interv_best <- he$U[, k, ] <= he$U[, k, i]
+      is_interv_best <- he$U[, k, ] <= he$U[, k, intervs[i]]
       
       rank <- apply(!is_interv_best, 1, sum)
       
