@@ -34,13 +34,16 @@ pfc <-
     
     Trace<-function(X)
     {	
-      if (!is.matrix(X)) stop("Argument to Trace is not a matrix in pfc");
+      if (!is.matrix(X)) stop("Argument to Trace is not a matrix in pfc")
       return(sum(diag(X))) 
     }
 
     if (is.null(fy)) {fy <- scale(y, TRUE, TRUE); numdir <- 1}
-    r <- dim(fy)[2]; X <- as.matrix(X)
-    op <- dim(X); n <- op[1]; p <- op[2] 
+    r <- dim(fy)[2]
+    X <- as.matrix(X)
+    op <- dim(X)
+    n <- op[1]
+    p <- op[2] 
     eff.numdir <- min(numdir, r, p)	
     
     vnames <- dimnames(X)[[2]]
@@ -60,71 +63,71 @@ pfc <-
     {
       iso <- function(i)
       {
-        ev <- eigen(Sigmahat);	
-        ev.fit <- eigen(Sigmahat_fit); 
+        ev <- eigen(Sigmahat)
+        ev.fit <- eigen(Sigmahat_fit)
         all_evalues <-ev.fit$values
         evalues <- all_evalues[1:i]
-        sigma2hat <- Re(sum(ev$values)/p); 
+        sigma2hat <- Re(sum(ev$values)/p)
         
-        Gammahat <- Re(matrix(ev.fit$vectors[,1:i], ncol=i));
+        Gammahat <- Re(matrix(ev.fit$vectors[,1:i], ncol=i))
         dimnames(Gammahat) <- list(vnames, paste("Dir", 1:i, sep=""))
-        Betahat <-Re(t(Gammahat)%*%t(Xc)%*%fy%*%solve(t(fy)%*%fy));
-        sigma2hat <- Re((sum(ev$values)-sum(evalues))/p); 
-        Deltahat <- sigma2hat*diag(1, p); 
+        Betahat <-Re(t(Gammahat)%*%t(Xc)%*%fy%*%solve(t(fy)%*%fy))
+        sigma2hat <- Re((sum(ev$values)-sum(evalues))/p)
+        Deltahat <- sigma2hat*diag(1, p)
         dimnames(Deltahat) <- list(vnames, vnames)
         
-        loglik <- - 0.5*n*p*(1+log(2*pi*sigma2hat));
-        numpar <- p + (p-i)*i + i*dim(fy)[2] + 1;
-        aic <- -2*loglik + 2*numpar;
-        bic <- -2*loglik + log(n)*numpar;
+        loglik <- - 0.5*n*p*(1+log(2*pi*sigma2hat))
+        numpar <- p + (p-i)*i + i*dim(fy)[2] + 1
+        aic <- -2*loglik + 2*numpar
+        bic <- -2*loglik + log(n)*numpar
         
         return(list(Betahat=Betahat, Gammahat=Gammahat, Deltahat=Deltahat, 
-                    evalues=evalues, loglik=loglik, aic=aic, bic=bic, numpar=numpar));
+                    evalues=evalues, loglik=loglik, aic=aic, bic=bic, numpar=numpar))
       }
       
       if (identical(numdir.test, FALSE))
       {
-        out <- iso(eff.numdir);
+        out <- iso(eff.numdir)
         
         ans <- list(R=X%*%orthonorm(out$Gammahat), Muhat=Muhat, Betahat=out$Betahat, Gammahat=out$Gammahat, 
                     Deltahat=out$Deltahat, loglik=out$loglik, aic=out$aic, bic=out$bic, numpar=out$numpar, 
                     numdir=eff.numdir, evalues=out$evalues, structure="iso", y=y, fy=fy,  
-                    Xc=Xc, call=match.call(expand.dots=TRUE), numdir.test=numdir.test);
+                    Xc=Xc, call=match.call(expand.dots=TRUE), numdir.test=numdir.test)
         
-        class(ans) <- "pfc";	
-        return(ans);		
+        class(ans) <- "pfc"
+        return(ans)
       }
       
       if (identical(numdir.test, TRUE))
       {
-        aic <- bic <- numpar <- loglik <- vector(length=eff.numdir+1);
-        Betahat <- Deltahat <- Gammahat <-vector("list"); 
+        aic <- bic <- numpar <- loglik <- vector(length=eff.numdir+1)
+        Betahat <- Deltahat <- Gammahat <-vector("list")
         
         # No fitting values (eff.numdir=0)
-        ev <- eigen(Sigmahat); 
-        sigma2hat <- sum(ev$values)/p; 
-        loglik[1] <- - 0.5*n*p*(1+log(2*pi*sigma2hat));
-        numpar[1] <- p + 1;
-        aic[1] <- -2*loglik[1] + 2*numpar[1];
-        bic[1] <- -2*loglik[1] + log(n)*numpar[1];
+        ev <- eigen(Sigmahat)
+        sigma2hat <- sum(ev$values)/p
+        loglik[1] <- - 0.5*n*p*(1+log(2*pi*sigma2hat))
+        numpar[1] <- p + 1
+        aic[1] <- -2*loglik[1] + 2*numpar[1]
+        bic[1] <- -2*loglik[1] + log(n)*numpar[1]
         
         for (i in 1:eff.numdir)
         {
-          fit <- iso(i);
-          Betahat[[i]] <-fit$Betahat; 
-          Gammahat[[i]] <-fit$Gammahat; 
-          Deltahat[[i]] <- fit$Deltahat;
-          loglik[i+1] <- fit$loglik; 
-          numpar[i+1] <- fit$numpar;
-          aic[i+1] <- fit$aic; 
-          bic[i+1] <- fit$bic;	
+          fit <- iso(i)
+          Betahat[[i]] <-fit$Betahat
+          Gammahat[[i]] <-fit$Gammahat
+          Deltahat[[i]] <- fit$Deltahat
+          loglik[i+1] <- fit$loglik
+          numpar[i+1] <- fit$numpar
+          aic[i+1] <- fit$aic
+          bic[i+1] <- fit$bic
         }
         ans <- list(R=X%*%orthonorm(Gammahat[[eff.numdir]]), Muhat=Muhat, Betahat=Betahat, Gammahat=Gammahat, 
                     Deltahat=Deltahat, loglik=loglik, aic=aic, bic=bic, numpar=numpar, 
                     numdir=eff.numdir, model="pfc", evalues=fit$evalues, structure="iso", 
-                    y=y, fy=fy,  Xc=Xc, call=match.call(), numdir.test=numdir.test);
+                    y=y, fy=fy,  Xc=Xc, call=match.call(), numdir.test=numdir.test)
         
-        class(ans)<- "pfc";
+        class(ans)<- "pfc"
         return(ans)
       } 
     }
@@ -135,14 +138,17 @@ pfc <-
       {
         vnames <- dimnames(X)[[2]]
         if (is.null(vnames)) vnames <- paste("X", 1:ncol(X), sep="")
-        op <- dim(X); n <- op[1]; p <- op[2]
+        op <- dim(X)
+        n <- op[1]
+        p <- op[2]
         
         # Initial Step
         fit <- pfc(X=X, y=y, fy=fy, numdir=d, structure="iso", numdir.test=numdir.test)
         
         if (identical(numdir.test, FALSE))
         {
-          Betahatx <- fit$Betahat; Gammahatx <- fit$Gammahat
+          Betahatx <- fit$Betahat
+          Gammahatx <- fit$Gammahat
           Xc <- scale(X, TRUE, FALSE) - fy%*%t(Gammahatx%*%Betahatx)
           deltahat <- diag(cov(Xc))
           
@@ -150,7 +156,8 @@ pfc <-
           {
             Xnew = X%*%((1/sqrt(deltahat))*diag(p))
             fit <- pfc(X=Xnew, y=y, fy=fy, numdir=d, structure="iso", numdir.test=FALSE)
-            Betahatx <- fit$Betahat; Gammahatx <- (diag(p)*sqrt(deltahat))%*%fit$Gammahat 
+            Betahatx <- fit$Betahat
+            Gammahatx <- (diag(p)*sqrt(deltahat))%*%fit$Gammahat 
             Xc <- scale(X, TRUE, FALSE) - fy%*%t(Gammahatx%*%Betahatx)
             deltahat0 <- diag(t(Xc)%*%(Xc)/n)
             if (sum(abs(deltahat-deltahat0)) < eps_aniso) break
@@ -172,10 +179,10 @@ pfc <-
         }
         
         Deltahat <- Betahat <- Gammahat <- vector("list")
-        aic <- bic <- numpar <- loglik <- vector(length=eff.numdir+1)
+        aic <- bic <- numpar <- loglik <- vector(length=eff.numdir + 1)
         
         # No fitting values (eff.numdir=0)
-        ev <- eigen(Sigmahat); 
+        ev <- eigen(Sigmahat)
         loglik[1] <- - 0.5*n*p*(1+log(2*pi)) - 0.5*n*log(prod(ev$values))
         numpar[1] <- p + p
         aic[1] <- -2*loglik[1] + 2*numpar[1]
@@ -183,7 +190,8 @@ pfc <-
         
         for (i in 1:eff.numdir)
         {
-          Betahatx <- fit$Betahat[[i]]; Gammahatx <- fit$Gammahat[[i]] 
+          Betahatx <- fit$Betahat[[i]]
+          Gammahatx <- fit$Gammahat[[i]] 
           Xc <- scale(X, TRUE, FALSE) - fy%*%t(Gammahatx%*%Betahatx)
           deltahat <- diag(t(Xc)%*%(Xc)/n)
           
@@ -191,7 +199,8 @@ pfc <-
           {
             Xnew = X%*%((1/sqrt(deltahat))*diag(p))
             fit2 <- pfc(X=Xnew, y=y, fy=fy, numdir=i, structure="iso", numdir.test=FALSE)
-            Betahatx <- fit2$Betahat; Gammahatx <- (diag(p)*sqrt(deltahat))%*%fit2$Gammahat 
+            Betahatx <- fit2$Betahat
+            Gammahatx <- (diag(p)*sqrt(deltahat))%*%fit2$Gammahat 
             Xc <- scale(X, TRUE, FALSE) - fy%*%t(Gammahatx%*%Betahatx)
             deltahat0 <- diag(t(Xc)%*%(Xc)/n)
             if (sum(abs(deltahat-deltahat0)) < eps_aniso) break
@@ -252,7 +261,7 @@ pfc <-
         
         temp0 <- -(n*p/2)*(1 + log(2*pi))
         temp1 <- -(n/2)*log(det(Sigmahat_res)) 
-        temp2 <- 0; 
+        temp2 <- 0
         
         if (i < min(ncol(fy),p)) temp2 <- -(n/2)*sum(log(1 + all_evalues[(i+1):p]))
         loglik <- temp0 + temp1 + temp2
@@ -273,7 +282,7 @@ pfc <-
                     numdir=eff.numdir, model="pfc", structure="unstr", y=y, fy=fy, Xc=Xc,  call=match.call(), numdir.test=numdir.test)
         
         class(ans) <- "pfc"	
-        return(ans);	
+        return(ans)
       }
       
       aic <- bic <- numpar <- loglik <- vector(length=eff.numdir+1)
@@ -289,7 +298,7 @@ pfc <-
       
       for (i in 1:eff.numdir)
       {
-        fit <- unstr(i);
+        fit <- unstr(i)
         Betahat[[i]] <-fit$Betahat 
         Gammahat[[i]] <-fit$Gammahat 
         Deltahat[[i]] <- fit$Deltahat
@@ -312,13 +321,15 @@ pfc <-
       {
         objfun <- function(W)
         {
-          Qt <- W$Qt; dc <- W$dim[1] 
-          p <- ncol(Qt); S <- W$Sigmas
+          Qt <- W$Qt
+          dc <- W$dim[1] 
+          p <- ncol(Qt)
+          S <- W$Sigmas
           U <- matrix(Qt[,1:dc], ncol=dc)	
           V <- matrix(Qt[,(dc+1):p], ncol=(p-dc))
           value <- -(n/2)*(p*log(2*pi)+p+log(det(t(V)%*%S$Sigmahat%*%V))+ log(det(t(U)%*%S$Sigmahat_res%*%U)))
           
-          terme1 <- solve(t(U)%*%S$Sigmahat_res%*%U)%*%(t(U)%*%S$Sigmahat_res%*%V);
+          terme1 <- solve(t(U)%*%S$Sigmahat_res%*%U)%*%(t(U)%*%S$Sigmahat_res%*%V)
           terme2 <- (t(U)%*%S$Sigmahat%*%V)%*%solve(t(V)%*%S$Sigmahat%*%V)
           
           gradient <- 2*(terme1 - terme2)
@@ -326,8 +337,9 @@ pfc <-
         }
         sigmas <- list(Sigmahat=Sigmahat, Sigmahat_fit=Sigmahat_fit, Sigmahat_res=Sigmahat_res, p=p, n=n)
         
-        W <- list(Qt = svd(Sigmahat_fit)$u, dim=c(numdir, p), Sigmas=list(Sigmahat=Sigmahat, Sigmahat_fit=Sigmahat_fit, 
-                                                                          Sigmahat_res=Sigmahat_res, p=p, n=n))
+        W <- list(Qt = svd(Sigmahat_fit)$u, dim=c(numdir, p),
+                  Sigmas=list(Sigmahat=Sigmahat, Sigmahat_fit=Sigmahat_fit, 
+                              Sigmahat_res=Sigmahat_res, p=p, n=n))
         
         objfun <- assign("objfun", objfun, envir=.BaseNamespaceEnv) 
         grassoptim <- GrassmannOptim(objfun, W,...)
@@ -381,7 +393,7 @@ pfc <-
       
       for(m in 1:numdir)
       {
-        fit <- unstr2(m);
+        fit <- unstr2(m)
         Betahat[[m]] <-fit$Betahat 
         Gammahat[[m]] <-fit$Gammahat 
         Omegahat[[m]] <- fit$Omegahat 
@@ -398,7 +410,7 @@ pfc <-
                   Deltahat=Deltahat, model="pfc", structure="unstr2", 
                   y=y, fy=fy, Xc=Xc,  call=match.call(), numdir.test=numdir.test)
       
-      class(ans)<- "pfc";
+      class(ans)<- "pfc"
       return(ans)
     }
     
@@ -409,33 +421,35 @@ pfc <-
 #' 
 onepfc <- function(X, y, fy, p, numdir.test) {
   # X is univariate predictor
-  nobs <- length(X); r <- dim(fy)[2]
+  nobs <- length(X)
+  r <- dim(fy)[2]
   
   P_F <- fy%*%solve(t(fy)%*%fy)%*%t(fy)
   Xc <- scale(X, TRUE, FALSE)
   Sigmahat_fit <- (1/nobs)*t(Xc)%*%P_F%*%(Xc)
   ev.fit <- eigen(Sigmahat_fit)
   
-  temp.dat<-data.frame(cbind(X, fy)); xnam<-paste("xx", 1:r, sep="");
-  names(temp.dat)<-c("yy", xnam);
-  fm.lm<- as.formula( paste("yy ~ ", paste(xnam, collapse= "+")));
-  summary.fm <- summary(lm(fm.lm, data=temp.dat));
+  temp.dat<-data.frame(cbind(X, fy))
+  xnam<-paste("xx", 1:r, sep="")
+  names(temp.dat)<-c("yy", xnam)
+  fm.lm<- as.formula( paste("yy ~ ", paste(xnam, collapse= "+")))
+  summary.fm <- summary(lm(fm.lm, data=temp.dat))
   
-  Betahat <- matrix(summary.fm$coefficients[2:(r+1),1], ncol=r);
-  Gammahat <- matrix(1, ncol=1, nrow=1); 
-  Deltahat <- matrix(summary.fm$sigma^2, ncol=1, nrow=1);
-  Muhat <- matrix(summary.fm$coefficients[1,1], ncol=1);
+  Betahat <- matrix(summary.fm$coefficients[2:(r+1),1], ncol=r)
+  Gammahat <- matrix(1, ncol=1, nrow=1)
+  Deltahat <- matrix(summary.fm$sigma^2, ncol=1, nrow=1)
+  Muhat <- matrix(summary.fm$coefficients[1,1], ncol=1)
   
-  loglik <- - 0.5*n*(1+log(2*pi*summary.fm$sigma^2));
-  numpar <- p  + dim(fy)[2] + 1;
-  aic <- -2*loglik + 2*numpar;
-  bic <- -2*loglik + log(n)*numpar;
+  loglik <- - 0.5*n*(1+log(2*pi*summary.fm$sigma^2))
+  numpar <- p  + dim(fy)[2] + 1
+  aic <- -2*loglik + 2*numpar
+  bic <- -2*loglik + log(n)*numpar
   
   ans <- list(R=X, Muhat=Muhat, Betahat=Betahat, Gammahat=Gammahat, Deltahat=Deltahat, 
               loglik=loglik, aic=aic, bic=bic, numpar=numpar, numdir=1, model="pfc", 
-              call=match.call(), structure="iso", y=y, fy=fy, Xc=Xc, numdir.test=numdir.test);
+              call=match.call(), structure="iso", y=y, fy=fy, Xc=Xc, numdir.test=numdir.test)
   
-  class(ans)<- "pfc";
+  class(ans)<- "pfc"
   
   return(ans)
 }
