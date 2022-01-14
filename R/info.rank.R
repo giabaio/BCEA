@@ -114,7 +114,7 @@ info.rank.bcea <- function(he,
 #' 
 #' data("Vaccine")
 #' m <- bcea(e,c)
-#' inp <- createInputs(vaccine)
+#' inp <- createInputs(vaccine_mat)
 #' info.rank(m, inp)
 #' 
 #' info.rank(m, inp, graph = "base")

@@ -167,7 +167,7 @@
 #' m <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
 #'
 #' # Compute the EVPPI for a bunch of parameters
-#' inp <- createInputs(vaccine)
+#' inp <- createInputs(vaccine_mat)
 #' 
 #' EVPPI <- evppi(m, c("beta.1." , "beta.2."), inp$mat)
 #' 

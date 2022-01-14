@@ -47,7 +47,7 @@ treats <- c("Status quo", "Vaccination")
 m <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
 
 # Compute the EVPPI for a bunch of parameters
-inp <- createInputs(vaccine)
+inp <- createInputs(vaccine_mat)
 
 # Compute the EVPPI using INLA/SPDE
 x0 <- evppi(m, c("beta.1." , "beta.2."), input = inp$mat)
