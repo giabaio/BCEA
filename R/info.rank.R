@@ -108,6 +108,10 @@ info.rank.bcea <- function(he,
 #' 
 #' @examples
 #' \dontrun{
+#' # Load the post-processed results of the MCMC simulation model
+#' # original JAGS output is can be downloaded from here
+#' # https://gianluca.statistica.it/book/bcea/code/vaccine.RData
+#' 
 #' data("Vaccine")
 #' m <- bcea(e,c)
 #' inp <- createInputs(vaccine)
