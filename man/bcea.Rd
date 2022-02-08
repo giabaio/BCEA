@@ -81,8 +81,8 @@ the summary plot or not.}
 \value{
 An object of the class "bcea" containing the following elements
 \item{n_sim}{Number of simulations produced by the Bayesian model}
-\item{n.comparators}{Number of interventions being analysed}
-\item{n.comparisons}{Number of possible pairwise comparisons}
+\item{n_comparators}{Number of interventions being analysed}
+\item{n_comparisons}{Number of possible pairwise comparisons}
 \item{delta.e}{For each possible comparison, the differential in the
 effectiveness measure}
 \item{delta.c}{For each possible comparison, the differential in the cost

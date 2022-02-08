@@ -39,7 +39,8 @@ the most cost-effective.
 
 # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 # Bayesian model and economic problem
-#
+
+\dontrun{
 # Load the processed results of the MCMC simulation model
 data(Vaccine)
 # 
@@ -64,6 +65,7 @@ mce.plot(mce,               # plots the probability of being most cost-effective
 if(require(ggplot2)){
 mce.plot(mce,               # the same plot
       graph="ggplot2")      #  using ggplot2 instead
+}
 }
 
 }

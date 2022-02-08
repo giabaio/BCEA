@@ -3,6 +3,7 @@
 #' Plots the probability that each of the n_int interventions being analysed is
 #' the most cost-effective.
 #' 
+#' This function is deprecated. Use \code{\link{ceac.plot}} instead.
 #' 
 #' @param mce The output of the call to the function \code{\link{multi.ce}}.
 #' @param pos Parameter to set the position of the legend. Can be given in form
@@ -35,7 +36,8 @@
 #' 
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 #' # Bayesian model and economic problem
-#' #
+#' 
+#' \dontrun{
 #' # Load the processed results of the MCMC simulation model
 #' data(Vaccine)
 #' # 
@@ -61,6 +63,7 @@
 #' mce.plot(mce,               # the same plot
 #'       graph="ggplot2")      #  using ggplot2 instead
 #' }
+#' }
 #' 
 #' @export mce.plot
 #' 
@@ -76,19 +79,20 @@ mce.plot <- function(mce,pos=c(1,0.5),graph=c("base","ggplot2"),...){
   # Allows to specify colours for the plots
   # If the user doesn't specify anything, use defaults
   if(!exists("color",exArgs)) {
-    color <- rep(1,(mce$n.comparators+1)); lwd <- 1
-    if (mce$n.comparators>7) {
+    color <- rep(1,(mce$n_comparators+1)); lwd <- 1
+    if (mce$n_comparators>7) {
       cl <- colors()
-      color <- cl[floor(seq(262,340,length.out=mce$n.comparators))]	# gray scale
+      color <- cl[floor(seq(262,340,length.out=mce$n_comparators))]	# gray scale
       lwd <- 1.5
     }  
   } 
   # If the user specify colours, then use but check they are the right number
   if(exists("color",exArgs)) {
-    color <- exArgs$color; lwd <- 1
-    if(mce$n.comparators>7) {lwd=1.5}
-    if (length(color)!=(mce$n.comparators))	 {
-      message(paste0("You need to specify ",(mce$n.comparators)," colours. Falling back to default\n"))
+    color <- exArgs$color
+    lwd <- 1
+    if(mce$n_comparators>7) {lwd=1.5}
+    if (length(color)!=(mce$n_comparators))	 {
+      message(paste0("You need to specify ",(mce$n_comparators)," colours. Falling back to default\n"))
     }
   } 
   
@@ -115,20 +119,20 @@ mce.plot <- function(mce,pos=c(1,0.5),graph=c("base","ggplot2"),...){
         alt.legend="right"
     }
     
-    #    color <- rep(1,(mce$n.comparators+1)); lwd <- 1
-    #    if (mce$n.comparators>7) {
+    #    color <- rep(1,(mce$n_comparators+1)); lwd <- 1
+    #    if (mce$n_comparators>7) {
     #      cl <- colors()
-    #      color <- cl[floor(seq(262,340,length.out=mce$n.comparators))]	# gray scale
+    #      color <- cl[floor(seq(262,340,length.out=mce$n_comparators))]	# gray scale
     #      lwd <- 1.5
     #    }
     
     plot(mce$k,mce$m.ce[,1],t="l",col=color[1],lwd=lwd,lty=1,xlab="Willingness to pay",
          ylab="Probability of most cost effectiveness",ylim=c(0,1),
          main="Cost-effectiveness acceptability curve \nfor multiple comparisons")
-    for (i in 2:mce$n.comparators) {
+    for (i in 2:mce$n_comparators) {
       points(mce$k,mce$m.ce[,i],t="l",col=color[i],lwd=lwd,lty=i)
     }
-    legend(alt.legend,mce$interventions,col=color,cex=.7,bty="n",lty=1:mce$n.comparators)
+    legend(alt.legend,mce$interventions,col=color,cex=.7,bty="n",lty=1:mce$n_comparators)
   } # base graphics
   else{
     if(!isTRUE(requireNamespace("ggplot2",quietly=TRUE)&requireNamespace("grid",quietly=TRUE))) {
@@ -142,11 +146,11 @@ mce.plot <- function(mce,pos=c(1,0.5),graph=c("base","ggplot2"),...){
       ceplane <- k <- ce <- comp <- NA_real_
       
       alt.legend <- pos
-      lty <- rep(1:6,ceiling(mce$n.comparators/6))[1:mce$n.comparators]
+      lty <- rep(1:6,ceiling(mce$n_comparators/6))[1:mce$n_comparators]
       label <- paste0(mce$interventions)
       
-      df <- cbind("k"=rep(mce$k,mce$n.comparators),"ce"=c(mce$m.ce))
-      df <- data.frame(df,"comp"=as.factor(sort(rep(1:mce$n.comparators,length(mce$k)))))
+      df <- cbind("k"=rep(mce$k,mce$n_comparators),"ce"=c(mce$m.ce))
+      df <- data.frame(df,"comp"=as.factor(sort(rep(1:mce$n_comparators,length(mce$k)))))
       names(df) <- c("k","ce","comp")
       
       mceplot <- ggplot2::ggplot(df,ggplot2::aes(x=k,y=ce)) + ggplot2::theme_bw() +
