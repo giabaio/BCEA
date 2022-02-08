@@ -167,7 +167,7 @@ ceef.plot.bcea <- function(he,
 }
 
 
-#' Cost-Effectiveness Efficiency Frontier (CEAF) Plot
+#' Cost-Effectiveness Efficiency Frontier (CEEF) Plot
 #' 
 #' The line connecting successive points on a cost-effectiveness plane which each
 #' represent the effect and cost associated with different treatment alternatives.
