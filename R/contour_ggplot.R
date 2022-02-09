@@ -157,7 +157,7 @@ contour_ggplot <- function(he, params, scale, nlevels, levels,
     
     if (!is.null(scale) && requireNamespace("MASS", quietly = TRUE)) {
       densitydf <- data.frame()
-      for (i in seq_len(he$n.comparison)) {
+      for (i in seq_len(he$n_comparison)) {
         temp <-
           MASS::kde2d(
             as.matrix(he$delta_e)[, i],

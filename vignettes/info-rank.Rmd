@@ -31,7 +31,7 @@ library(purrr)
 ```{r fig.height=15, fig.width=8, eval=FALSE}
 data("Vaccine")
 m <- bcea(e, c)
-inp <- createInputs(vaccine, print_is_linear_comb = FALSE)
+inp <- createInputs(vaccine_mat, print_is_linear_comb = FALSE)
 info.rank(m, inp)
 info.rank(m, inp, graph = "base")
 info.rank(m, inp, graph = "plotly")

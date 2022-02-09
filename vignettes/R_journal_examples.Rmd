@@ -143,8 +143,7 @@ evi.plot(bcea_vacc)
 ```
 
 ```{r eval=TRUE}
-data("vaccine_jags")
-inp <- createInputs(vaccine, print_is_linear_comb = FALSE)
+inp <- createInputs(vaccine_mat, print_is_linear_comb = FALSE)
 info.rank(bcea_vacc, inp)
 ```
 

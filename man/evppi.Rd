@@ -155,7 +155,10 @@ use GAM if the number of parameters is <5 and INLA otherwise.
 # Bayesian model and economic problem
 
 \dontrun{
-# Load the processed results of the MCMC simulation model
+# Load the post-processed results of the MCMC simulation model
+# original JAGS output is can be downloaded from here
+# https://gianluca.statistica.it/book/bcea/code/vaccine.RData
+
 data(Vaccine, package = "BCEA")
 treats <- c("Status quo", "Vaccination")
 
@@ -163,7 +166,7 @@ treats <- c("Status quo", "Vaccination")
 m <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
 
 # Compute the EVPPI for a bunch of parameters
-inp <- createInputs(vaccine)
+inp <- createInputs(vaccine_mat)
 
 EVPPI <- evppi(m, c("beta.1." , "beta.2."), inp$mat)
 

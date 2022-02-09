@@ -136,7 +136,7 @@ compute_vi <- function(Ustar, U) {
   vi <- matrix(NA, nrow = n_sim, ncol = K)
   
   for (i in seq_len(K)) {
-    vi[, i] <- Ustar[, i] - max(apply(U[, i, , drop = FALSE], 2, mean))
+    vi[, i] <- Ustar[, i] - max(apply(U[, i, ], 2, mean))
   }
   
   vi

@@ -3,7 +3,7 @@
 \name{ceef.plot.bcea}
 \alias{ceef.plot.bcea}
 \alias{ceef.plot}
-\title{Cost-Effectiveness Efficiency Frontier (CEAF) Plot}
+\title{Cost-Effectiveness Efficiency Frontier (CEEF) Plot}
 \usage{
 \method{ceef.plot}{bcea}(
   he,

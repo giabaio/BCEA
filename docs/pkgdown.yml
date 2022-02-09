@@ -1,5 +1,5 @@
-pandoc: 2.14.2
-pkgdown: 2.0.1
+pandoc: 2.14.0.3
+pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
   bcea: bcea.html
@@ -14,5 +14,5 @@ articles:
   plot_bcea: plot_bcea.html
   R_journal_examples: R_journal_examples.html
   Set_bcea_parameters: Set_bcea_parameters.html
-last_built: 2021-12-08T15:20Z
+last_built: 2022-02-08T09:23Z
 
