@@ -9,6 +9,10 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/n8thangreen/bcea/badge)](https://www.codefactor.io/repository/github/n8thangreen/bcea)
 <!-- badges: end -->
 
+> Perform Bayesian Cost-Effectiveness Analysis in R.
+
+:rocket: **Version 2.4.1 out now!** [Check out the release notes here](https://github.com/n8thangreen/BCEA/releases/tag/v2.4.1).
+
 ## Contents
 
 - [Overview](#introduction)
@@ -18,7 +22,6 @@
 
 ## Overview
 
-Perform Bayesian Cost-Effectiveness Analysis in R.
 Given the results of a Bayesian model (possibly based on MCMC) in the form of simulations from the posterior distributions of suitable variables of costs and clinical benefits for two or more interventions, produces a health economic evaluation. Compares one of the interventions (the "reference") to the others ("comparators").
 
 ## Features
