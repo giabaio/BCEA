@@ -16,3 +16,5 @@
 ^README_dev\.md$
 ^\.github$
 ^inst\vaccine_jags.RData$
+^paper.bib$
+^paper.md$
