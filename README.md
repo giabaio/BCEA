@@ -61,6 +61,6 @@ The `pkgdown` site is [here](https://n8thangreen.github.io/BCEA/).
 More details on `BCEA` are available in our book [_Bayesian Cost-Effectiveness Analysis with the R Package BCEA_](https://gianluca.statistica.it/book/bcea/) (published in the UseR! Springer series). Also, details about the package, including some references and links to a pdf presentation and some posts on my own blog) are given [here](https://gianluca.statistica.it/software/bcea/).
 
 ## Licence
-GPL-3 © [G Baio](https://github.com/giabaio/).
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [G Baio](https://github.com/giabaio/).
 
 Please note that this project is released with a [Contributor Code of Conduct](https://github.com/n8thangreen/BCEA/blob/dev/CONDUCT.md). By participating in this project you agree to abide by its terms.
