@@ -4,7 +4,7 @@
 \alias{inforank_params}
 \title{Prepare Info Rank plot parameters}
 \usage{
-inforank_params(he, inp, wtp, rel, howManyPars, extra_args)
+inforank_params(he, inp, wtp = NULL, rel, howManyPars, extra_args)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
