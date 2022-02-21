@@ -46,7 +46,7 @@ evppi_legend_text <- function(evppi_obj) {
 
     cmd <-
       paste0("(",
-             paste(1:length(evppi_obj$index)),
+             paste(seq_len(evppi_obj$index)),
              ") EVPPI for ",
              evppi_obj$parameters)
   }

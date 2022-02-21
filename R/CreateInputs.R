@@ -14,6 +14,9 @@
 createInputs.default <- function(inputs,
                                  print_is_linear_comb = TRUE) {
   
+  if (!is.logical(print_is_linear_comb))
+    stop("print_is_linear_comb must be logical.", call. = FALSE)
+  
   inputs <- inputs[, !colnames(inputs) %in% c("lp__", "deviance")]
   
   # remove redundant parameters
