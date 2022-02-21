@@ -13,7 +13,7 @@
 #' 
 inforank_params <- function(he,
                             inp,
-                            wtp,
+                            wtp = NULL,
                             rel,
                             howManyPars,
                             extra_args) {
@@ -21,7 +21,10 @@ inforank_params <- function(he,
   parameter <- inp$parameters
   input <- inp$mat
   
-  if (is.null(wtp)) wtp <- he$k[min(which(he$k >= he$ICER))]
+  ##TODO: what to do for multiple ICER?
+  if (is.null(wtp)) wtp <- he$k[min(which(he$k >= he$ICER[1]))]
+  if (!wtp %in% he$k)
+    stop("wtp must be from values computed in call to bcea().", call. = FALSE)
   
   if (is.character(parameter[1])) {
     parameters <- array()
@@ -42,7 +45,7 @@ inforank_params <- function(he,
   
   input <- input[, w]
   
-  ##TODO: what does this do?
+  ##TODO: what does this do? where is this used?
   # chk1 <- which(apply(input, 2, "var") > 0)   # only takes those with var > 0
   
   # check those with < 5 possible values (would break GAM)

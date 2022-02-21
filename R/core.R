@@ -29,30 +29,30 @@ core <- function(X, y, Sigmas=NULL, ns=NULL, numdir=2, numdir.test=FALSE, ...) {
   {
     if (is.null(ns)) stop("Number of observations per class must be provided")
     
-    p <- dim(Sigmas[[1]])[1]; hlevels <- length(Sigmas);
+    p <- dim(Sigmas[[1]])[1]; hlevels <- length(Sigmas)
   }
   
   if (is.null(Sigmas) & is.null(ns))
   {
-    if (is.factor(y)) y <- as.integer(y);
+    if (is.factor(y)) y <- as.integer(y)
     
-    hlevels <- length(unique(y)); p <- ncol(X);
+    hlevels <- length(unique(y)); p <- ncol(X)
     
-    Sigmas <-list(); ns <- vector(length=hlevels);
+    Sigmas <-list(); ns <- vector(length=hlevels)
     
     for (h in 1:hlevels) 
     {
-      ns[h] <- sum(y==h);
+      ns[h] <- sum(y==h)
       
-      Sigmas[[h]] <- cov(as.matrix(X[y==h,], ncol=p));
+      Sigmas[[h]] <- cov(as.matrix(X[y==h,], ncol=p))
     }
   } 
   
-  n <- sum(ns); ff <- ns/n; d <- numdir;
+  n <- sum(ns); ff <- ns/n; d <- numdir
   
   if (!numdir.test)
   {
-    fit <- one.core(d, p, hlevels, ff, Sigmas, ns, ...);
+    fit <- one.core(d, p, hlevels, ff, Sigmas, ns, ...)
     
     ans <- list(Gammahat=fit$Gammahat, Sigmahat = fit$Sigmahat, Sigmashat = fit$Sigmashat, 
                 loglik=fit$loglik, aic=fit$aic, bic=fit$bic, numpar=fit$numpar, numdir=d, 
@@ -62,11 +62,11 @@ core <- function(X, y, Sigmas=NULL, ns=NULL, numdir=2, numdir.test=FALSE, ...) {
     
     return(invisible(ans))
   }
-  aic <- bic <- numpar <- loglik <- vector(length=d+1);
+  aic <- bic <- numpar <- loglik <- vector(length=d+1)
   
-  Gammahat <- Sigmahat <- Sigmashat <- list();
+  Gammahat <- Sigmahat <- Sigmashat <- list()
   
-  loglik <- numpar <- aic <- bic <- numeric(d+1);
+  loglik <- numpar <- aic <- bic <- numeric(d+1)
   
   for (i in 0:d)
   {
@@ -103,34 +103,34 @@ core <- function(X, y, Sigmas=NULL, ns=NULL, numdir=2, numdir.test=FALSE, ...) {
 one.core <- function(d, p, hlevels, ff, Sigmas, ns, ...) {
   if (d == 0)
   {
-    Gamma.hat <- NULL;
+    Gamma.hat <- NULL
     
-    Sigma.hat <- matrix(0, p, p);
+    Sigma.hat <- matrix(0, p, p)
     
     for (g in 1:hlevels) {Sigma.hat <- Sigma.hat + ff[g] * Sigmas[[g]]}
     
-    term0 <- 0;
+    term0 <- 0
     
-    term1 <- n/2 * log(det(Sigma.hat));
+    term1 <- n/2 * log(det(Sigma.hat))
     
-    loglik <- term0 - term1;
+    loglik <- term0 - term1
   }
   else if (d == p)
   {
-    Gamma.hat <- diag(p);
+    Gamma.hat <- diag(p)
     
-    Sigma.hat <- matrix(0, p, p);
+    Sigma.hat <- matrix(0, p, p)
     
     for (g in 1:hlevels){Sigma.hat <- Sigma.hat + ff[g] * Sigmas[[g]]}
     
-    term0 <- 0;
+    term0 <- 0
     
-    term1 <- n/2 * log(det(Sigma.hat));
+    term1 <- n/2 * log(det(Sigma.hat))
     
-    term2 <- n/2 * log(det(Sigma.hat));
+    term2 <- n/2 * log(det(Sigma.hat))
     
-    term3 <- 0;
-    
+    term3 <- 0
+  
     for (g in 1:hlevels){term3 <- term3 + ns[g]/2 * log(det(Sigmas[[g]]))}
     
     loglik <- Re(term0 - term1 + term2 - term3)
@@ -139,31 +139,31 @@ one.core <- function(d, p, hlevels, ff, Sigmas, ns, ...) {
   {
     objfun <- function(W)
     {
-      Q <- W$Qt;	d <- W$dim[1]; p <- W$dim[2];
+      Q <- W$Qt;	d <- W$dim[1]; p <- W$dim[2]
       
-      Sigmas <- W$Sigmas;
+      Sigmas <- W$Sigmas
       
-      n <- sum(W$ns);
+      n <- sum(W$ns)
       
-      U <- matrix(Q[,1:d], ncol=d);
+      U <- matrix(Q[,1:d], ncol=d)
       
-      V <- matrix(Q[,(d+1):p], ncol=(p-d));
+      V <- matrix(Q[,(d+1):p], ncol=(p-d))
       
-      Sigma.hat <- matrix(0, p, p);
+      Sigma.hat <- matrix(0, p, p)
       
       for (g in 1:hlevels){Sigma.hat <- Sigma.hat + ff[g] * Sigmas[[g]]}
       
-      Ps <- projection(U, diag(p));
+      Ps <- projection(U, diag(p))
       
       # Objective function
       
-      term0 <- 0;
+      term0 <- 0
       
-      term1 <- n/2 * log(det(Sigma.hat));
+      term1 <- n/2 * log(det(Sigma.hat))
       
-      term2 <- n/2 * log(det(t(U) %*% Sigma.hat %*% U));
+      term2 <- n/2 * log(det(t(U) %*% Sigma.hat %*% U))
       
-      term3 <- 0;
+      term3 <- 0
       
       for (g in 1:hlevels){term3 <- term3 + ns[g]/2 * log(det(t(U) %*% Sigmas[[g]] %*% U))}
       
@@ -171,13 +171,13 @@ one.core <- function(d, p, hlevels, ff, Sigmas, ns, ...) {
       
       return(list(value=value))
     }
-    objfun <- assign("objfun", objfun, envir=.BaseNamespaceEnv); 
+    objfun <- assign("objfun", objfun, envir=.BaseNamespaceEnv)
     
-    W <- list(dim=c(d, p), Sigmas=Sigmas, ns=ns);
+    W <- list(dim=c(d, p), Sigmas=Sigmas, ns=ns)
     
-    grassmann <- GrassmannOptim(objfun, W, ...);
+    grassmann <- GrassmannOptim(objfun, W, ...)
     
-    Gamma.hat <- matrix(grassmann$Qt[,1:d], ncol = d);
+    Gamma.hat <- matrix(grassmann$Qt[,1:d], ncol = d)
     
     loglik <- tail(grassmann$fvalues, n = 1)
   }
@@ -188,7 +188,7 @@ one.core <- function(d, p, hlevels, ff, Sigmas, ns, ...) {
   
   if (d != 0){Ps.hat <- projection(Gamma.hat, Sigma.hat)}
   
-  Sigmas.hat <- list();
+  Sigmas.hat <- list()
   
   for (g in 1:hlevels)
   {
@@ -201,11 +201,11 @@ one.core <- function(d, p, hlevels, ff, Sigmas, ns, ...) {
       Sigmas.hat[[g]] <- Sigma.hat + t(Ps.hat) %*% ( Sigmas[[g]] - Sigma.hat) %*% Ps.hat
     }
   }
-  numpar <- p*(p+1)/2 + d*(p-d) + (hlevels-1)*d*(d+1)/2;
+  numpar <- p*(p+1)/2 + d*(p-d) + (hlevels-1)*d*(d+1)/2
   
-  aic <- -2*loglik + 2 * numpar;
+  aic <- -2*loglik + 2 * numpar
   
-  bic <- -2*loglik + log(n) * numpar;
+  bic <- -2*loglik + log(n) * numpar
   
   return(list(Gammahat=Gamma.hat, Sigmahat = Sigma.hat, Sigmashat = Sigmas.hat,
               loglik=loglik, numpar=numpar, aic=aic, bic=bic))

@@ -27,7 +27,7 @@ test_that("input errors", {
   
   expect_error(
     bcea(eff, cost,
-         interventions = c("aaa"),
+         interventions = "aaa",
          plot = FALSE),
     regexp = "interventions names wrong length.")
   
