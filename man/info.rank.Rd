@@ -8,7 +8,7 @@
 \method{info.rank}{bcea}(
   he,
   inp,
-  wtp = he$k[min(which(he$k >= he$ICER))],
+  wtp = NULL,
   howManyPars = NA,
   graph = c("base", "ggplot2", "plotly"),
   rel = TRUE,
@@ -39,7 +39,7 @@ not specified then the break-even point for the current model will be used.}
 \item{howManyPars}{Optional maximum number of parameters to be included in the bar plot. 
 Includes all parameters by default.}
 
-\item{graph}{A string used to select the graphical enging to use for plotting.
+\item{graph}{A string used to select the graphical engine to use for plotting.
 Should (partial-)match one of the two options "base" or "plotly". Default value is "base"}
 
 \item{rel}{Logical argument that specifies whether the ratio of

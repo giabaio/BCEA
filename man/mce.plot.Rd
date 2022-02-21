@@ -35,6 +35,9 @@ if \code{graph="ggplot2"}. }
 Plots the probability that each of the n_int interventions being analysed is
 the most cost-effective.
 }
+\details{
+This function is deprecated. Use \code{\link{ceac.plot}} instead.
+}
 \examples{
 
 # See Baio G., Dawid A.P. (2011) for a detailed description of the 
