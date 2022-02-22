@@ -1,9 +1,8 @@
 #' Plots the probability that each intervention is the most cost-effective
 #' 
+#' This function is deprecated. Use \code{\link{ceac.plot}} instead.
 #' Plots the probability that each of the n_int interventions being analysed is
 #' the most cost-effective.
-#' 
-#' This function is deprecated. Use \code{\link{ceac.plot}} instead.
 #' 
 #' @param mce The output of the call to the function \code{\link{multi.ce}}.
 #' @param pos Parameter to set the position of the legend. Can be given in form
@@ -24,13 +23,13 @@
 #' @return \item{mceplot}{ A ggplot object containing the plot. Returned only
 #' if \code{graph="ggplot2"}. }
 #' @author Gianluca Baio, Andrea Berardi
-#' @seealso \code{\link{bcea}}
+#' @seealso \code{\link{BCEA-deprecated}}
+#' 
 #' @references Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics.  Statistical Methods in Medical Research
+#' Analysis in Health Economics. Statistical Methods in Medical Research
 #' doi:10.1177/0962280211419832.
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-#' London
+#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
 #' @keywords Health economic evaluation Multiple comparison
 #' @examples
 #' 
@@ -65,7 +64,7 @@
 #' }
 #' }
 #' 
-#' @export mce.plot
+#' @export
 #' 
 mce.plot <- function(mce,pos=c(1,0.5),graph=c("base","ggplot2"),...){
   
