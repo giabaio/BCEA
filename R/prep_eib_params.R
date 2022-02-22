@@ -12,7 +12,7 @@ prep_eib_params <- function(he, plot.cri, ...) {
   
   graph_params <- list(...)
   
-  ##TODO: what is this?...
+    ##TODO: what is this?...
   # # if existing, read and store graphical options
   # aes_cat <- strsplit(aes_arg, "_")[[1]][1]
   # aes_name <- paste0(strsplit(aes_arg, "_")[[1]][-1], collapse = "_")
@@ -31,7 +31,10 @@ prep_eib_params <- function(he, plot.cri, ...) {
         lwd = ifelse(he$n_comparisons > 6, 1.5, 1),
         colors = 1, #1:he$n_comparisons,
         cri_col = "grey50",
-        cri_lty = 2))
+        cri_lty = 2),
+      plot.cri = ifelse((is.null(plot.cri) && he$n_comparisons == 1) ||
+                          (!is.null(plot.cri) && plot.cri),
+                        TRUE, FALSE))
   
   graph_params <- modifyList(default_params, graph_params)
   
@@ -39,7 +42,7 @@ prep_eib_params <- function(he, plot.cri, ...) {
     paste0(
       "Expected Incremental Benefit",
       ifelse(
-        plot.cri,
+        default_params$plot.cri,
         paste0("\nand ", format((1 - graph_params$alpha_cri)*100, digits = 4),
                "% credible intervals"),
         ""))

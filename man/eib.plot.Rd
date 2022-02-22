@@ -10,7 +10,7 @@
   comparison = NULL,
   pos = c(1, 0),
   size = NULL,
-  plot.cri = FALSE,
+  plot.cri = NULL,
   graph = c("base", "ggplot2", "plotly"),
   ...
 )

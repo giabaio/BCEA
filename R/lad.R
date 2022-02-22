@@ -179,8 +179,9 @@ InitialMatrix <- function(X, y, nslices) {
 
 #' @importFrom GrassmannOptim GrassmannOptim
 #' 
-onelad <-function(d, Deltatilde, p, Sigmatilde, Deltatilde_y, N_y, use.nslices, mf, X, yy, Sigmas, vnames, ...) {
-  if (d==0)
+onelad <-function(d, Deltatilde, p, Sigmatilde, Deltatilde_y, N_y,
+                  use.nslices, mf, X, yy, Sigmas, vnames, ...) {
+  if (d == 0)
   {
     Gammahat <- NULL
     Deltahat <- Deltatilde
@@ -194,15 +195,15 @@ onelad <-function(d, Deltatilde, p, Sigmatilde, Deltatilde_y, N_y, use.nslices, 
   }
   else if (d==p)
   {
-    Gammahat=diag(p)
-    Deltahat=Deltatilde
+    Gammahat <- diag(p)
+    Deltahat <- Deltatilde
     terme0 <- -(n*p)*(1+log(2*pi))/2
-    terme3<-0
+    terme3 <- 0
     for (i in 1:length(N_y))
     {	
-      terme3<- terme3 - N_y[i] * log( det(Deltatilde_y[[i]]) )/2;
+      terme3 <- terme3 - N_y[i] * log( det(Deltatilde_y[[i]]) )/2;
     } 
-    loglik = terme0 + terme
+    loglik = terme0 + terme3
     Deltahat_y <- Deltatilde_y;
     numpar <- p+(use.nslices-1)*d + p*(p+1)/2 + (use.nslices-1)*d*(d+1)/2; 
     AIC <- -2*loglik + 2 * numpar

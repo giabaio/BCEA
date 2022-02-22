@@ -6,10 +6,8 @@
 #' @export
 #' 
 contour2.bcea <- function(he,
-                          wtp = 25000,
-                          xlim = NULL,
-                          ylim = NULL,
                           comparison = NULL,
+                          wtp = 25000,
                           graph_type = c("base", "ggplot2"),
                           ...) {
   
@@ -23,8 +21,8 @@ contour2.bcea <- function(he,
     ps.options(encoding = "CP1250")
     pdf.options(encoding = "CP1250")
     
-    # Selects the first comparison by default if not selected
-    if (is.null(comparison) || length(comparison) > 1 ) {
+    # Select the first comparison by default if not selected
+    if (is.null(comparison) || length(comparison) > 1) {
       message("The first available comparison will be selected.
               To plot multiple comparisons together please use the ggplot2 version.
               Please see ?contour2 for additional details.")
@@ -32,7 +30,7 @@ contour2.bcea <- function(he,
     }
     
     he <- setComparisons(he, comparison)
-    ceplane.plot(he, comparison = NULL, wtp, graph_type = "base")
+    ceplane.plot(he, comparison = NULL, wtp = wtp, graph_type = "base", ...)
     
     # plot contours ----
     
@@ -74,7 +72,7 @@ contour2.bcea <- function(he,
   } else {
     
     if (!(requireNamespace("ggplot2", quietly = TRUE) &
-          requireNamespace("grid", quietly = TRUE))){
+          requireNamespace("grid", quietly = TRUE))) {
       
       message("falling back to base graphics\n")
       contour2(he,
@@ -122,11 +120,6 @@ contour2.bcea <- function(he,
         bins = nlevels,
         linetype = 1, inherit.aes = FALSE)
     
-    contour <-
-      contour +
-      coord_cartesian(xlim = xlim,
-                      ylim = ylim)
-    
     return(contour)
   }
 }
@@ -140,17 +133,13 @@ contour2.bcea <- function(he,
 #' selected value of the willingness-to-pay threshold).
 #' 
 #' @template args-he
-#' @param wtp The selected value of the willingness-to-pay. Default is
-#' \code{25000}.
-#' @param xlim Limits on the x-axis (default=\code{NULL}, so that R will select
-#' appropriate limits).
-#' @param ylim Limits on the y-axis (default=\code{NULL}, so that R will select
-#' appropriate limits).
 #' @param comparison The comparison being plotted. Default to \code{NULL}
 #' chooses the first comparison if \code{graph_type="base"}. If
 #' \code{graph_type="ggplot2"} the default value will choose all the possible
 #' comparisons. Any subset of the possible comparisons can be selected (e.g.,
 #' \code{comparison=c(1,3)}).
+#' @param wtp The selected value of the willingness-to-pay. Default is
+#' \code{25000}.
 #' @param graph_type A string used to select the graphical engine to use for
 #' plotting. Should (partial-)match the two options \code{"base"} or
 #' \code{"ggplot2"}. Default value is \code{"base"}.
@@ -195,6 +184,13 @@ contour2.bcea <- function(he,
 #'          ICER_size = 2,
 #'          graph_type = "ggplot2")
 #' }
+#' 
+#' ## vaccination example
+#' data(Vaccine)
+#' treats = c("Status quo","Vaccination")
+#' m <- bcea(e=e,c=c,ref=2,interventions=treats,Kmax=50000)
+#' contour2(m)
+#' contour2(m, wtp=100)
 #' 
 #' @rdname contour2
 #' @export

@@ -111,6 +111,9 @@ ceplane_plot_base <- function(he, ...) {
 #' he <- bcea(e, c)
 #' 
 #' ceplane.plot(he, graph = "ggplot2")
+#' ceplane.plot(he, wtp=10000, graph = "ggplot2",
+#'              point = list(colors = "blue", sizes = 2),
+#'              area = list(col = "springgreen3"))
 #' 
 #' data(Smoking)
 #' he <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)

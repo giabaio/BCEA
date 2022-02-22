@@ -66,7 +66,7 @@ ceplane_ggplot_params <- function(he,
       area = list(
         # geom = "polygon",
         fill = graph_params$area$col,
-        alpha = ifelse(ext_params$area_include, 0.8, 0),
+        alpha = ifelse(ext_params$area_include, 1, 0),
         data = data.frame(x = graph_params$area$x,
                           y = graph_params$area$y),
         mapping = aes(x = .data$x, y = .data$y),

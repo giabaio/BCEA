@@ -7,10 +7,8 @@
 \usage{
 \method{contour2}{bcea}(
   he,
-  wtp = 25000,
-  xlim = NULL,
-  ylim = NULL,
   comparison = NULL,
+  wtp = 25000,
   graph_type = c("base", "ggplot2"),
   ...
 )
@@ -21,20 +19,14 @@ contour2(he, ...)
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
-\item{wtp}{The selected value of the willingness-to-pay. Default is
-\code{25000}.}
-
-\item{xlim}{Limits on the x-axis (default=\code{NULL}, so that R will select
-appropriate limits).}
-
-\item{ylim}{Limits on the y-axis (default=\code{NULL}, so that R will select
-appropriate limits).}
-
 \item{comparison}{The comparison being plotted. Default to \code{NULL}
 chooses the first comparison if \code{graph_type="base"}. If
 \code{graph_type="ggplot2"} the default value will choose all the possible
 comparisons. Any subset of the possible comparisons can be selected (e.g.,
 \code{comparison=c(1,3)}).}
+
+\item{wtp}{The selected value of the willingness-to-pay. Default is
+\code{25000}.}
 
 \item{graph_type}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the two options \code{"base"} or
@@ -74,6 +66,13 @@ contour2(m,
          ICER_size = 2,
          graph_type = "ggplot2")
 }
+
+## vaccination example
+data(Vaccine)
+treats = c("Status quo","Vaccination")
+m <- bcea(e=e,c=c,ref=2,interventions=treats,Kmax=50000)
+contour2(m)
+contour2(m, wtp=100)
 
 }
 \references{

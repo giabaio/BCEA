@@ -181,8 +181,6 @@
 #'       m,          # uses the results of the economic evaluation 
 #'                   #  (a "bcea" object)
 #'       wtp=25000,  # selects the willingness-to-pay threshold
-#'       xlim=NULL,    # assumes default values
-#'       ylim=NULL     # assumes default values
 #' )
 #'
 #' # Using ggplot2
@@ -192,8 +190,6 @@
 #'                       #  (a "bcea" object)
 #'       graph="ggplot2",# selects the graphical engine
 #'       wtp=25000,      # selects the willingness-to-pay threshold
-#'       xlim=NULL,      # assumes default values
-#'       ylim=NULL,      # assumes default values
 #'       label.pos=FALSE # alternative position for the wtp label
 #' )
 #' }
