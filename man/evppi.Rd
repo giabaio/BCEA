@@ -43,7 +43,7 @@ GAM regression.
 - For multi-parameter:
 INLA/SPDE. However, it is possible (mainly for backward compatibility) to
 use different methods. For single-parameter, the user can specify the method
-of Sadatsafavi et al or the method of Strong & Oakley. In order to do so, it
+of Sadatsafavi \emph{et al.} or the method of Strong & Oakley. In order to do so, it
 is necessary to include the extra parameter \code{method} which takes as
 value a string \code{"sad"} in the former case and a string \code{"so"} in
 the latter. In case "sal" is selected, then it is possible to also specify
@@ -77,9 +77,9 @@ parameter EVPPI and the SPDE-INLA method for larger parameter subsets.
 }
 \details{
 The single parameter EVPPI has been calculated using the non-parametric GAM
-regression developed by Strong et al. (2014). The multi-parameter EVPPI is
+regression developed by Strong \emph{et al.} (2014). The multi-parameter EVPPI is
 calculated using the SPDE-INLA regression method for Gaussian Process
-regression developed by Heath et al. (2015).
+regression developed by Heath \emph{et al.} (2015).
 
 This function has been completely changed and restructured to make it possible
 to change regression method.
@@ -107,7 +107,7 @@ notation \code{formula = "s(p1) + s(p2)"}. This may lead to worse accuracy in
 the estimates.
 }
 
-\section{Strong et al. GP regression}{
+\section{Strong \emph{et al.} GP regression}{
 
 This is used if \code{method="GP"} (BCEA will also accept the specification
 \code{method="gp"}). In this case, the user can also specify the number of
@@ -117,7 +117,7 @@ PSA runs that should be used to estimate the hyperparameters of the model
 
 \section{INLA-related options}{
 
-These are all rather technical and are described in detail in Baio et al. (2017).
+These are all rather technical and are described in detail in Baio \emph{et al.} (2017).
 The optional parameter vector \code{int.ord} can take integer values (c(1,1) is
 default) and will force the predictor to include interactions: if
 \code{int.ord = c(k, h)}, then all k-way interactions will be used for the
@@ -213,10 +213,12 @@ Strong M., Oakley J. and Brennan A. (2014). Estimating
 multi-parameter partial Expected Value of Perfect Information from a
 probabilistic sensitivity analysis sample: a non-parametric regression
 approach. Medical Decision Making.
+\url{https://doi.org/10.1177/0272989X13505910}
 
 Sadatsafavi M., Bansback N., Zafari Z., Najafzadeh M., Marra C. (2013). Need
 for speed: an efficient algorithm for calculation of single-parameter
 expected value of partial perfect information. Value in Health.
+\url{https://doi.org/10.1016/j.jval.2012.10.018}
 
 Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 
@@ -226,7 +228,7 @@ with the R package BCEA. New York, NY: Springer. doi:10.1007/978-3-319-55718-2.
 Heath A., Manolopoulou I., Baio G. (2016). Estimating the Expected Value of
 Partial Perfect Information in Health Economic Evaluations using Integrated
 Nested Laplace Approximation. Statistics in Medicine.
-https://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full
+\url{https://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full}
 }
 \seealso{
 \code{\link{bcea}},

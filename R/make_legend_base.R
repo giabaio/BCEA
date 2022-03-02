@@ -14,7 +14,7 @@ evppi_legend_base <- function(evppi_obj,
        legend = text,
        cex = 0.7,
        bty = "n", 
-       lty = c(1, seq_len(evppi_obj$parameters)),
+       lty = c(1, seq_along(evppi_obj$parameters)),
        lwd = c(2, rep(1, length(evppi_obj$parameters))),
        col = cols)
 }
