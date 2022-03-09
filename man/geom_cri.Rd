@@ -14,3 +14,4 @@ geom_cri(plot.cri = TRUE, params = NA)
 \description{
 Credible interval ggplot geom
 }
+\keyword{internal}

@@ -5,6 +5,7 @@
 #' @param graph_params Type of plot device
 #' @param cri_params Credible interval parameters
 #' @return list
+#' @keywords internal
 #' 
 eib_params_base <- function(he,
                             graph_params,

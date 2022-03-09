@@ -3,6 +3,7 @@
 #' 
 #' @template args-he
 #' @param plot_params Plots parameters
+#' @keywords internal
 #' 
 kstar_vlines <- function(he, plot_params) {
   

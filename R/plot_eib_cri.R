@@ -5,6 +5,7 @@
 #' @template args-he
 #' @param params Graph parameters
 #' @importFrom graphics matlines
+#' @keywords internal
 #' 
 plot_eib_cri <- function(he, params) {
   

@@ -23,3 +23,4 @@ modelling and the economic evaluation.}
 \description{
 Prepare Info Rank plot parameters
 }
+\keyword{internal}

@@ -7,6 +7,7 @@
 #' @param plot.cri Make title including credible interval? Logical
 #' @param ... Additional parameters
 #' @return List of graph parameters
+#' @keywords internal
 #'  
 prep_eib_params <- function(he, plot.cri, ...) {
   
@@ -58,6 +59,7 @@ prep_eib_params <- function(he, plot.cri, ...) {
 #' @param params Graph parameters
 #' @seealso \code{\link{prep_eib_params}}
 #' @return List of graph parameters
+#' @keywords internal
 #' 
 validate_eib_params <- function(params) {
   

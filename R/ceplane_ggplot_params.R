@@ -8,7 +8,8 @@
 #' @param ... Additional arguments
 #'
 #' @import ggplot2
-#'
+#' @keywords internal
+#' 
 ceplane_ggplot_params <- function(he,
                                   wtp,
                                   pos_legend,

@@ -20,3 +20,4 @@ list
 \description{
 EIB parameters specific to base R plot
 }
+\keyword{internal}

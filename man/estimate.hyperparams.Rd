@@ -21,3 +21,4 @@ Estimate hyperparameters
 \seealso{
 \code{\link{evppi}}
 }
+\keyword{internal}

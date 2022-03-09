@@ -8,6 +8,7 @@
 #' @param k e or c? 1 or 2.
 #' @param l Columns of (e,c) to keep
 #' @seealso \code{\link{evppi}}
+#' @keywords internal
 #' 
 prep.x <- function(he,
                    seq_rows,
@@ -121,7 +122,8 @@ post.density <- function(hyperparams,
 #' 
 #' @importFrom stats optim
 #' @seealso \code{\link{evppi}}
-#'  
+#' @keywords internal
+#' 
 estimate.hyperparams <- function(x,
                                  input.matrix,
                                  parameter,
@@ -514,6 +516,7 @@ compute.evppi <- function(he, fit.full) {
 
 
 #' Prepare output
+#' 
 #' @param parameters Parameters
 #' @param inputs Inputs
 #' @return name

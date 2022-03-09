@@ -11,6 +11,7 @@
 #'
 #' @return List pf graph parameters
 #' @export
+#' @keywords internal
 #'
 prep_ceplane_params <- function(he, wtp, ...) {
   

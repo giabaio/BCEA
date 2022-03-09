@@ -4,6 +4,7 @@
 #' @template args-he
 #' @param ... Additional arguments
 #' @export
+#' @keywords internal
 #' 
 line_labels <- function(he, ...) UseMethod("line_labels", he)
 

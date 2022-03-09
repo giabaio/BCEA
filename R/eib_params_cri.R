@@ -1,5 +1,7 @@
 
-#'
+#' eib_params_cri
+#' @keywords internal
+#' 
 eib_params_cri <- function(he, graph_params) {
   list(plot.cri = graph_params$plot.cri,
        data =

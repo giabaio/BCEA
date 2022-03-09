@@ -6,6 +6,7 @@
 #' @param start.origin Where should the frontier start from?
 #' @return List with scatter.data, ceef.points, orig.avg
 #' @seealso ceef.plot
+#' @keywords internal
 #' 
 prep_frontier_data <- function(he,
                                threshold = NULL,

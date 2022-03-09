@@ -12,3 +12,4 @@ loo_rank(params)
 \description{
 Leave-one-out ranking
 }
+\keyword{internal}

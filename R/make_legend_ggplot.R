@@ -9,7 +9,7 @@
 #' @param dat data
 #' @param legend_pos Legend position
 #'
-#' @keywords dplot
+#' @keywords internal
 #' 
 make_legend_ggplot <- function(dat, legend_pos) {
   

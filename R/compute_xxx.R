@@ -323,7 +323,8 @@ compute_EVI <- function(ol) {
 
 #' Comparison Names From
 #' @param df_ce Cost-effectiveness dataframe 
-#'
+#' @keywords internal
+#' 
 comp_names_from_ <- function(df_ce) {
   
   df_ce[, c("ref", "ints", "interv_names")] %>%

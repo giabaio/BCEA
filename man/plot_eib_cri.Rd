@@ -15,3 +15,4 @@ modelling and the economic evaluation.}
 \description{
 Bayesian posterior credible intervals against willingness to pay.
 }
+\keyword{internal}

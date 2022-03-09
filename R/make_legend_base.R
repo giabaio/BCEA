@@ -1,5 +1,5 @@
 
-#' @keywords dplot
+#' @keywords dplot internal
 #' 
 evppi_legend_base <- function(evppi_obj,
                               pos_legend,
@@ -20,7 +20,7 @@ evppi_legend_base <- function(evppi_obj,
 }
 
 
-#' @keywords dplot
+#' @keywords dplot internal
 #' 
 ceac_legend_base <- function(he,
                              pos_legend,
@@ -40,7 +40,7 @@ ceac_legend_base <- function(he,
 }
 
 
-#' @keywords dplot
+#' @keywords dplot internal
 #' 
 ceplane_legend_base <- function(he,
                                 pos_legend,
@@ -59,7 +59,8 @@ ceplane_legend_base <- function(he,
 }
 
 
-#'
+#' @keywords internal
+#' 
 where_legend <- function(he,
                          pos_legend) {
   
@@ -74,7 +75,8 @@ where_legend <- function(he,
 }
 
 
-#'
+#' @keywords internal
+#' 
 where_legend_always <- function(he,
                                 pos_legend) {
   

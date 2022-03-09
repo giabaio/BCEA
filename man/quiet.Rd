@@ -12,3 +12,4 @@ quiet(x)
 \description{
 Allow disabling of the cat messages
 }
+\keyword{internal}

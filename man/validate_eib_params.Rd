@@ -18,3 +18,4 @@ Validate EIB parameters
 \seealso{
 \code{\link{prep_eib_params}}
 }
+\keyword{internal}

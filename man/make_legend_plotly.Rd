@@ -15,3 +15,4 @@ String
 \description{
 Legend Positioning
 }
+\keyword{internal}

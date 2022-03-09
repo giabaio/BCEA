@@ -18,3 +18,4 @@ validate_bcea(eff, cost, ref, interventions)
 \description{
 Validate bcea
 }
+\keyword{internal}

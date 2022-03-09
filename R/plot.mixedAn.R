@@ -1,7 +1,12 @@
+
+#' @rdname BCEA-deprecated
+#' @section \code{plot.mixedAn}:
+#' For \code{plot.mixedAn}, use \code{\link{evi.plot}}.
+#' 
 #' Summary plot of the health economic analysis when the mixed analysis is
 #' considered
 #' 
-#' Compares the optimal scenario to the mixed case in terms of the EVPI
+#' Compares the optimal scenario to the mixed case in terms of the EVPI.
 #' 
 #' @param x An object of class \code{mixedAn}, given as output of the call to
 #' the function \code{\link{mixedAn}}.
@@ -27,20 +32,12 @@
 #' cost-effective intervention is included in the market) and the mixed
 #' strategy one (when more than one intervention is considered in the market).
 #' @author Gianluca Baio, Andrea Berardi
-#'
-#' @name plot.mixedAn-deprecated
 #' @usage plot.mixedAn(x, y.limits=NULL, pos=c(0,1), graph=c("base","ggplot2"),...)
-#' @seealso \code{\link{BCEA-deprecated}}
-#' @keywords internal
-NULL
-
-
-#' @rdname BCEA-deprecated
-#' @section \code{plot.mixedAn}:
-#' For \code{plot.mixedAn}, use \code{\link{evi.plot}}.
 #'
 #' @export
-plot.mixedAn <- function(x, y.limits=NULL, pos=c(0,1), graph=c("base","ggplot2"),...) {
+#' 
+plot.mixedAn <- function(x, y.limits = NULL, pos = c(0,1),
+                         graph = c("base","ggplot2"), ...) {
   .Deprecated(new = "evi.plot")
 }
 

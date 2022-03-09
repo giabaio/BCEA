@@ -3,6 +3,7 @@
 #' 
 #' @param plot.cri Should we plot CrI? Logical
 #' @param params Plot parameters including data
+#' @keywords internal
 #' 
 geom_cri <- function(plot.cri = TRUE,
                      params = NA) {
