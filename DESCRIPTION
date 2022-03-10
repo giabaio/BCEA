@@ -2,7 +2,6 @@ Package: BCEA
 Type: Package
 Title: Bayesian Cost Effectiveness Analysis
 Version: 2.4.1.1
-Date: 2022-01-31
 Authors@R: c(
     person("Gianluca", "Baio",
             email = "gianluca@stats.ucl.ac.uk",
@@ -55,7 +54,9 @@ Description: Produces an economic evaluation of a sample of suitable variables o
 License: GPL-3
 URL: https://gianluca.statistica.it/software/bcea/,
      https://gianluca.statistica.it/,
-     https://github.com/giabaio/BCEA    
+     https://github.com/giabaio/BCEA/  
 NeedsCompilation: no
 RoxygenNote: 7.1.2
 Encoding: UTF-8
+BugReports: https://github.com/n8thangreen/BCEA/issues/
+
