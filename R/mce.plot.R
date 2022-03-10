@@ -89,7 +89,7 @@ mce.plot <- function(mce,pos=c(1,0.5),graph=c("base","ggplot2"),...){
   if(exists("color",exArgs)) {
     color <- exArgs$color
     lwd <- 1
-    if(mce$n_comparators>7) {lwd=1.5}
+    if(mce$n_comparators>7) {lwd <- 1.5}
     if (length(color)!=(mce$n_comparators))	 {
       message(paste0("You need to specify ",(mce$n_comparators)," colours. Falling back to default\n"))
     }
@@ -113,9 +113,9 @@ mce.plot <- function(mce,pos=c(1,0.5),graph=c("base","ggplot2"),...){
     }
     if(is.logical(alt.legend)){
       if(!alt.legend)
-        alt.legend="topright"
+        alt.legend <- "topright"
       else
-        alt.legend="right"
+        alt.legend <- "right"
     }
     
     #    color <- rep(1,(mce$n_comparators+1)); lwd <- 1
@@ -162,16 +162,16 @@ mce.plot <- function(mce,pos=c(1,0.5),graph=c("base","ggplot2"),...){
       
       jus <- NULL
       if(isTRUE(alt.legend)) {
-        alt.legend="bottom"
+        alt.legend <- "bottom"
         mceplot <- mceplot + ggplot2::theme(legend.direction="vertical")
       }
       else{
         if(is.character(alt.legend)) {
           choices <- c("left", "right", "bottom", "top")
           alt.legend <- choices[pmatch(alt.legend,choices)]
-          jus="center"
+          jus <- "center"
           if(is.na(alt.legend))
-            alt.legend=FALSE
+            alt.legend <- FALSE
         }
         if(length(alt.legend)>1)
           jus <- alt.legend

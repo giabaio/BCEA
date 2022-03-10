@@ -477,7 +477,7 @@ fit.inla <- function(parameter,
     )
   })
   fitted <-
-    (Result$summary.linear.predictor[1:length(x), "mean"] + mean(scale * x)) / scale
+    (Result$summary.linear.predictor[seq_along(x), "mean"] + mean(scale * x)) / scale
   fit <- Result
   toc <- proc.time() - tic
   time <- toc[3]

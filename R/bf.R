@@ -6,8 +6,10 @@
 # Date: 2014-06-06
 # Author: Kofi Placid Adragni, Andrew Raim
 # Maintainer: Kofi Placid Adragni <kofi@umbc.edu>
-# Description: Functions, methods, and data sets for fitting likelihood-based dimension reduction in regression,
-# using principal fitted components (pfc), likelihood acquired directions (lad), covariance reducing models (core).
+# Description: Functions, methods, and data sets for fitting likelihood-based
+# dimension reduction in regression,
+# using principal fitted components (pfc), likelihood acquired directions (lad),
+# covariance reducing models (core).
 # URL: https://www.jstatsoft.org/v61/i03/
 #   License: GPL (>= 2)
 # Packaged: 2021-10-08 16:32:42 UTC; Nathan
@@ -16,10 +18,14 @@
 #
 # Function to generate a basis function.
 # 
-# This function is to construct a data-matrix of basis function using the n response observations.
-# The response can be continuous or categorical. The function returns a matrix of n rows and r columns.
-# The number of columns r depends on the choice of basis function. Polynomial, piecewise polynomial continuous and discontinuous,
-# and Fourier bases are implemented. For a polynomial basis, r is the degree of the polynomial.
+# This function is to construct a data-matrix of basis function using the n
+# response observations.
+# The response can be continuous or categorical. The function returns a matrix of n
+# rows and r columns.
+# The number of columns r depends on the choice of basis function. Polynomial,
+# piecewise polynomial continuous and discontinuous,
+# and Fourier bases are implemented. For a polynomial basis, r is the degree of
+# the polynomial.
 # 
 bf <-
   function(y, case=c("poly", "categ", "fourier", "pcont", "pdisc"), degree=1, nslices=1, scale=FALSE)

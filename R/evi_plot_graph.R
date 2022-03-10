@@ -153,9 +153,9 @@ evi_plot_plotly <- function(data.psa,
            function(x)
              ifelse(grepl(pattern = "^rgba\\(", x = x), x, plotly::toRGB(x, 0.4)))
   
-  legend_list = list(orientation = "h",
-                     xanchor = "center",
-                     x = 0.5)
+  legend_list <- list(orientation = "h",
+                      xanchor = "center",
+                      x = 0.5)
   # actual plot
   evi <- plotly::plot_ly(data.psa, x = ~k)
   

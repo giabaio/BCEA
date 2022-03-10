@@ -49,11 +49,11 @@
 #'   make.report(m)
 #' }
 #' 
-make.report = function(he,
-                       evppi = NULL,
-                       ext = "pdf",
-                       echo = FALSE,
-                       ...) {
+make.report <- function(he,
+                        evppi = NULL,
+                        ext = "pdf",
+                        echo = FALSE,
+                        ...) {
   
   # check if knitr installed (and if not, asks for it)
   if(!isTRUE(requireNamespace("knitr", quietly = TRUE))) {

@@ -249,7 +249,7 @@ eib_plot_plotly <- function(he,
   legend_list <- list(orientation = "h", xanchor = "center", x = 0.5)
   
   if (is.character(alt.legend))
-    legend_list = switch(
+    legend_list <- switch(
       alt.legend,
       "left" = list(orientation = "v", x = 0, y = 0.5),
       "right" = list(orientation = "v", x = 0, y = 0.5),
