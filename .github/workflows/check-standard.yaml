@@ -42,6 +42,7 @@ jobs:
       - name: Add inla repo
         run: |
           writeLines('options(repos = c(INLA = "https://inla.r-inla-download.org/R/stable/", getOption(\"repos\")))', file("~/.Rprofile", "ab"))
+# https://inla.r-inla-download.org/R/stable/src/contrib/INLA_21.02.23.tar.gz
         shell: Rscript {0}
 
 #      - name: Install JAGS
