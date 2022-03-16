@@ -1,5 +1,5 @@
 ---
-title: "Cost-effectiveness efficiency frontier"
+title: "Cost-Effectiveness Efficiency Frontier"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Cost-effectiveness efficiency frontier}

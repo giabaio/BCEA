@@ -1,18 +1,13 @@
-pandoc: 2.14.0.3
+pandoc: 2.17.1.1
 pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
   bcea: bcea.html
   ceac: ceac.html
   ceef: ceef.html
-  ceplane: ceplane.html
   CEriskav: CEriskav.html
   eib: eib.html
-  evi: evi.html
-  info-rank: info-rank.html
   paired_vs_multiple_comps: paired_vs_multiple_comps.html
-  plot_bcea: plot_bcea.html
-  R_journal_examples: R_journal_examples.html
   Set_bcea_parameters: Set_bcea_parameters.html
-last_built: 2022-02-08T09:23Z
+last_built: 2022-03-16T10:24Z
 

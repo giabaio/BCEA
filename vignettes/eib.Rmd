@@ -1,5 +1,5 @@
 ---
-title: "Expected incremental benefit plot"
+title: "Expected Incremental Benefit Plot"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Expected incremental benefit plot}

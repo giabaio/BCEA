@@ -59,18 +59,12 @@ reference:
   - Vaccine
 
 
-articles:
-- title: Basics
-  navbar: ~
-  contents:
-  - bcea
-  - Set_bcea_parameters
-- title: Advanced
-  contents:
-  - ceac
-  - ceef
-  - CEriskav
-  - eib
-  - info-rank
-  - paired_vs_multiple_comps
+# articles:
+#   - bcea
+#   - Set_bcea_parameters
+#   - ceac
+#   - ceef
+#   - CEriskav
+#   - eib
+#   - paired_vs_multiple_comps
   

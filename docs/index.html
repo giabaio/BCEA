@@ -57,10 +57,13 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="articles/bcea.html">Get started</a>
+    <a class="dropdown-item" href="articles/bcea.html">Get Started</a>
+    <a class="dropdown-item" href="articles/ceac.html">Cost-Effectiveness Acceptability Curve Plots</a>
+    <a class="dropdown-item" href="articles/ceef.html">Cost-Effectiveness Efficiency Frontier</a>
+    <a class="dropdown-item" href="articles/CEriskav.html">Risk Aversion Analysis</a>
+    <a class="dropdown-item" href="articles/eib.html">Expected Incremental Benefit Plot</a>
+    <a class="dropdown-item" href="articles/paired_vs_multiple_comps.html">Paired vs Multiple Comparisons</a>
     <a class="dropdown-item" href="articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="articles/index.html">More articles...</a>
   </div>
 </li>
 <li class="nav-item">
@@ -73,7 +76,7 @@
 
       <ul class="navbar-nav">
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/giabaio/BCEA/" aria-label="github">
+  <a class="external-link nav-link" href="https://github.com/n8thangreen/BCEA/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -92,6 +95,12 @@
 </div>
 <!-- badges: start -->
 
+<blockquote>
+<p>Perform Bayesian Cost-Effectiveness Analysis in R.</p>
+</blockquote>
+<p><span class="emoji" data-emoji="rocket">🚀</span> <strong>Version
+2.4.1 out now!</strong> <a href="https://github.com/n8thangreen/BCEA/releases/tag/v2.4.1" class="external-link">Check out
+the release notes here</a>.</p>
 <div class="section level2">
 <h2 id="contents">Contents<a class="anchor" aria-label="anchor" href="#contents"></a>
 </h2>
@@ -99,13 +108,18 @@
 <li><a href="#introduction">Overview</a></li>
 <li><a href="#features">Features</a></li>
 <li><a href="#installation">Installation</a></li>
+<li><a href="#articles">Articles</a></li>
 <li><a href="#further-details">Further details</a></li>
 </ul>
 </div>
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>Perform Bayesian Cost-Effectiveness Analysis in R. Given the results of a Bayesian model (possibly based on MCMC) in the form of simulations from the posterior distributions of suitable variables of costs and clinical benefits for two or more interventions, produces a health economic evaluation. Compares one of the interventions (the “reference”) to the others (“comparators”).</p>
+<p>Given the results of a Bayesian model (possibly based on MCMC) in the
+form of simulations from the posterior distributions of suitable
+variables of costs and clinical benefits for two or more interventions,
+produces a health economic evaluation. Compares one of the interventions
+(the “reference”) to the others (“comparators”).</p>
 </div>
 <div class="section level2">
 <h2 id="features">Features<a class="anchor" aria-label="anchor" href="#features"></a>
@@ -123,7 +137,10 @@
 <p>Install the released version from CRAN with</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BCEA"</span><span class="op">)</span></code></pre></div>
-<p>The development version can be installed using this GitHub repository. On Windows machines, you need to install a few dependencies, including <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a> first, e.g. by running</p>
+<p>The development version can be installed using this GitHub
+repository. On Windows machines, you need to install a few dependencies,
+including <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a> first,
+e.g. by running</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pkgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/Smoking.html">c</a></span><span class="op">(</span><span class="st">"MASS"</span>, <span class="st">"Rtools"</span>, <span class="st">"remotes"</span><span class="op">)</span>
 <span class="va">repos</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/Smoking.html">c</a></span><span class="op">(</span><span class="st">"https://cran.rstudio.com"</span>, <span class="st">"https://inla.r-inla-download.org/R/stable"</span><span class="op">)</span> 
@@ -131,28 +148,68 @@
 <p>before installing the package using <code>remotes</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"giabaio/BCEA"</span>, ref<span class="op">=</span><span class="st">"dev"</span><span class="op">)</span></code></pre></div>
-<p>Under Linux or MacOS, it is sufficient to install the package via <code>remotes</code>:</p>
+<p>Under Linux or MacOS, it is sufficient to install the package via
+<code>remotes</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"giabaio/BCEA"</span>, ref<span class="op">=</span><span class="st">"dev"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="articles">Articles<a class="anchor" aria-label="anchor" href="#articles"></a>
+</h2>
+<p>Examples of using specific functions and their different arguments
+are given in <a href="https://n8thangreen.github.io/BCEA/articles/index.html" class="external-link">these
+articles</a>:</p>
+<ul>
+<li><a href="https://n8thangreen.github.io/BCEA/articles/bcea.html" class="external-link">Get
+Started</a></li>
+<li><a href="https://n8thangreen.github.io/BCEA/articles/Set_bcea_parameters.html" class="external-link">Set
+<code>bcea()</code> Parameters: Constructor and Setters</a></li>
+<li><a href="https://n8thangreen.github.io/BCEA/articles/ceac.html" class="external-link">Cost-Effectiveness
+Acceptability Curve Plots</a></li>
+<li><a href="https://n8thangreen.github.io/BCEA/articles/ceef.html" class="external-link">Cost-Effectiveness
+Efficiency Frontier</a></li>
+<li><a href="https://n8thangreen.github.io/BCEA/articles/CEriskav.html" class="external-link">Risk
+Aversion Analysis</a></li>
+<li><a href="https://n8thangreen.github.io/BCEA/articles/eib.html" class="external-link">Expected
+Incremental Benefit Plot</a></li>
+<li><a href="https://n8thangreen.github.io/BCEA/articles/paired_vs_multiple_comps.html" class="external-link">Paired
+vs Multiple Comparisons</a></li>
+</ul>
+</div>
+<div class="section level2">
 <h2 id="further-details">Further details<a class="anchor" aria-label="anchor" href="#further-details"></a>
 </h2>
-<p>The <code>pkgdown</code> site is <a href="https://n8thangreen.github.io/BCEA/" class="external-link">here</a>. More details on <code>BCEA</code> are available in our book <a href="https://gianluca.statistica.it/book/bcea/" class="external-link"><em>Bayesian Cost-Effectiveness Analysis with the R Package BCEA</em></a> (published in the UseR! Springer series). Also, details about the package, including some references and links to a pdf presentation and some posts on my own blog) are given <a href="https://gianluca.statistica.it/software/bcea/" class="external-link">here</a>.</p>
+<p>The <code>pkgdown</code> site is <a href="https://n8thangreen.github.io/BCEA/" class="external-link">here</a>. More details on
+<code>BCEA</code> are available in our book <a href="https://gianluca.statistica.it/book/bcea/" class="external-link"><em>Bayesian
+Cost-Effectiveness Analysis with the R Package BCEA</em></a> (published
+in the UseR! Springer series). Also, details about the package,
+including some references and links to a pdf presentation and some posts
+on my own blog) are given <a href="https://gianluca.statistica.it/software/bcea/" class="external-link">here</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="licence">Licence<a class="anchor" aria-label="anchor" href="#licence"></a>
 </h2>
-<p>GPL-3 © <a href="https://github.com/giabaio/" class="external-link">G Baio</a>.</p>
-<p>Please note that this project is released with a <a href="https://github.com/n8thangreen/BCEA/blob/dev/CONDUCT.md" class="external-link">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
+<p><a href="https://www.gnu.org/licenses/gpl-3.0" class="external-link"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3"></a></p>
+</div>
+<div class="section level2">
+<h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
+</h2>
+<p>Please submit contributions through <code>Pull Requests</code>,
+following the <a href="https://github.com/n8thangreen/BCEA/blob/dev/CONTRIBUTING.md" class="external-link">contributing
+guidelines</a>. To report issues and/or seek support, please file a new
+ticket in the <a href="https://github.com/n8thangreen/BCEA/issues" class="external-link">issue</a> tracker.</p>
+<p>Please note that this project is released with a <a href="https://github.com/n8thangreen/BCEA/blob/dev/CONDUCT.md" class="external-link">Contributor
+Code of Conduct</a>. By participating in this project you agree to abide
+by its terms.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li><a href="https://cloud.r-project.org/package=BCEA" class="external-link">View on CRAN</a></li>
-<li><a href="https://github.com/giabaio/BCEA/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/n8thangreen/BCEA/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/n8thangreen/BCEA/issues/" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -164,6 +221,12 @@
 </ul>
 </div>
 
+<div class="community">
+<h2 data-toc-skip>Community</h2>
+<ul class="list-unstyled">
+<li><a href="CONTRIBUTING.html">Contributing guide</a></li>
+</ul>
+</div>
 
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
@@ -200,12 +263,14 @@
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan Green.</p>
+<p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan
+Green.</p>
 </div>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
     </footer>

@@ -49,6 +49,9 @@
     <loc>/CONDUCT.html</loc>
   </url>
   <url>
+    <loc>/CONTRIBUTING.html</loc>
+  </url>
+  <url>
     <loc>/index.html</loc>
   </url>
   <url>
@@ -62,6 +65,9 @@
   </url>
   <url>
     <loc>/README_dev.html</loc>
+  </url>
+  <url>
+    <loc>/reference/BCEA-deprecated.html</loc>
   </url>
   <url>
     <loc>/reference/BCEA-package.html</loc>
@@ -235,6 +241,9 @@
     <loc>/reference/eib_params_base.html</loc>
   </url>
   <url>
+    <loc>/reference/eib_params_cri.html</loc>
+  </url>
+  <url>
     <loc>/reference/eib_plot_graph.html</loc>
   </url>
   <url>
@@ -323,6 +332,9 @@
   </url>
   <url>
     <loc>/reference/make_legend_plotly.html</loc>
+  </url>
+  <url>
+    <loc>/reference/mce.plot.html</loc>
   </url>
   <url>
     <loc>/reference/mixedAn-set.html</loc>

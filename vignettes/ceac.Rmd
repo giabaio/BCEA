@@ -1,5 +1,5 @@
 ---
-title: "Cost-effectiveness acceptability curve plots"
+title: "Cost-Effectiveness Acceptability Curve Plots"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Cost-effectiveness acceptability curve plots}

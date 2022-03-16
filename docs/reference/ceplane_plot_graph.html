@@ -24,10 +24,13 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/bcea.html">Get started</a>
+    <a class="dropdown-item" href="../articles/bcea.html">Get Started</a>
+    <a class="dropdown-item" href="../articles/ceac.html">Cost-Effectiveness Acceptability Curve Plots</a>
+    <a class="dropdown-item" href="../articles/ceef.html">Cost-Effectiveness Efficiency Frontier</a>
+    <a class="dropdown-item" href="../articles/CEriskav.html">Risk Aversion Analysis</a>
+    <a class="dropdown-item" href="../articles/eib.html">Expected Incremental Benefit Plot</a>
+    <a class="dropdown-item" href="../articles/paired_vs_multiple_comps.html">Paired vs Multiple Comparisons</a>
     <a class="dropdown-item" href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="../articles/index.html">More articles...</a>
   </div>
 </li>
 <li class="nav-item">
@@ -37,7 +40,7 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/giabaio/BCEA/" aria-label="github">
+  <a class="external-link nav-link" href="https://github.com/n8thangreen/BCEA/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -50,7 +53,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Cost-Effectiveness Plane Plot By Graph Device</h1>
-      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/HEAD/R/ceplane_plot_graph.R" class="external-link"><code>R/ceplane_plot_graph.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/n8thangreen/BCEA/blob/HEAD/R/ceplane_plot_graph.R" class="external-link"><code>R/ceplane_plot_graph.R</code></a></small>
       <div class="d-none name"><code>ceplane_plot_graph.Rd</code></div>
     </div>
 
@@ -155,31 +158,35 @@ For plotly returns a plot in the Viewer</p>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu"><a href="ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="ceplane_plot_graph-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span class="fu"><a href="ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he</span>, wtp<span class="op">=</span><span class="fl">10000</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span>,</span>
+<span class="r-in">             point <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>colors <span class="op">=</span> <span class="st">"blue"</span>, sizes <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
+<span class="r-in">             area <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"springgreen3"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-plt img"><img src="ceplane_plot_graph-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu"><a href="Smoking.html">data</a></span><span class="op">(</span><span class="va">Smoking</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">he</span> <span class="op">&lt;-</span> <span class="fu"><a href="bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span>, ref <span class="op">=</span> <span class="fl">4</span>, Kmax <span class="op">=</span> <span class="fl">500</span>, interventions <span class="op">=</span> <span class="va">treats</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu"><a href="ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></span>
-<span class="r-plt img"><img src="ceplane_plot_graph-3.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ceplane_plot_graph-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu"><a href="ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he</span>,</span>
 <span class="r-in">             wtp <span class="op">=</span> <span class="fl">200</span>,</span>
 <span class="r-in">             pos <span class="op">=</span> <span class="st">"right"</span>,</span>
 <span class="r-in">             ICER_size <span class="op">=</span> <span class="fl">2</span>,</span>
 <span class="r-in">             graph <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></span>
-<span class="r-plt img"><img src="ceplane_plot_graph-4.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ceplane_plot_graph-5.png" alt="" width="700" height="433"></span>
 <span class="r-in">   </span>
 <span class="r-in"><span class="fu"><a href="ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he</span>,</span>
 <span class="r-in">             wtp <span class="op">=</span> <span class="fl">200</span>,</span>
 <span class="r-in">             pos <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span class="r-in">             graph <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></span>
-<span class="r-plt img"><img src="ceplane_plot_graph-5.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ceplane_plot_graph-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu"><a href="ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he</span>,</span>
 <span class="r-in">             graph <span class="op">=</span> <span class="st">"ggplot2"</span>,</span>
 <span class="r-in">             wtp<span class="op">=</span><span class="fl">200</span>,</span>
 <span class="r-in">             theme <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_linedraw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-plt img"><img src="ceplane_plot_graph-6.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="ceplane_plot_graph-7.png" alt="" width="700" height="433"></span>
 <span class="r-in">             </span>
 </code></pre></div>
     </div>
@@ -188,11 +195,13 @@ For plotly returns a plot in the Viewer</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan Green.</p>
+  <p></p><p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan
+Green.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
     </footer></div>
