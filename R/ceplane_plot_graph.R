@@ -164,13 +164,15 @@ ceplane_plot_ggplot.bcea <- function(he,
   theme_add <- purrr::keep(list(...), is.theme)
   
   ggplot(delta_ce,
-         aes(x = .data$delta_e, y = .data$delta_c, col = .data$comparison)) +
+         aes(x = .data$delta_e, y = .data$delta_c, group = factor(.data$comparison), col = factor(.data$comparison), shape = factor(.data$comparison))) +
     do.call(geom_polygon, graph_params$area) +
     theme_ceplane() +
     theme_add +
-    do.call(geom_point, graph_params$point) +
+    geom_point(size = graph_params$point$size) +
     scale_color_manual(labels = line_labels.default(he),
-                       values = graph_params$point$colors) +
+                       values = graph_params$point$color) +
+    scale_shape_manual(labels = line_labels.default(he),
+                       values = graph_params$point$shape) +
     geom_hline(yintercept = 0, colour = "grey") +
     geom_vline(xintercept = 0, colour = "grey") +
     coord_cartesian(xlim = graph_params$xlim,

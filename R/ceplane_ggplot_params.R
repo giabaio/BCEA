@@ -58,6 +58,7 @@ ceplane_ggplot_params <- function(he,
         hjust = "inward",
         vjust = "inward"),
       point = list(
+        shape = rep(19, he$n_comparisons),
         size = 4),
       line = list(
         color = "black"),
@@ -72,6 +73,6 @@ ceplane_ggplot_params <- function(he,
   
   modifyList(default_params,
              graph_params) %>% 
-  modifyList(ext_params)
+    modifyList(ext_params)
 }
 
