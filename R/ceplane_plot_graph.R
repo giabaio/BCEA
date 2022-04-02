@@ -70,7 +70,7 @@ ceplane_plot_base.bcea <- function(he,
                                    wtp = 25000,
                                    pos_legend,
                                    graph_params, ...) {
-  
+
   plot_params <-
     ceplane_base_params(he, wtp, graph_params)
   
@@ -168,7 +168,7 @@ ceplane_plot_ggplot.bcea <- function(he,
     do.call(geom_polygon, graph_params$area) +
     theme_ceplane() +
     theme_add +
-    geom_point(size = graph_params$point$size) +
+    do.call(geom_point, graph_params$point) +
     scale_color_manual(labels = line_labels.default(he),
                        values = graph_params$point$colors) +
     geom_hline(yintercept = 0, colour = "grey") +
@@ -180,8 +180,7 @@ ceplane_plot_ggplot.bcea <- function(he,
             list(title = graph_params$title,
                  x = graph_params$xlab,
                  y = graph_params$ylab)) +
-    do.call(geom_abline, list(slope = wtp,
-                              col = graph_params$line$color)) +
+    do.call(geom_abline, c(slope = wtp, graph_params$line)) +
     do.call(geom_point, graph_params$icer) +
     do.call(annotate, graph_params$wtp) +
     do.call(annotate, graph_params$icer_txt) +

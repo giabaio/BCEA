@@ -26,80 +26,72 @@ library(purrr)
 
 ##TODO...
 
-<!-- ## Introduction -->
+## Introduction
 
-<!-- The intention of this vignette is to show how to plot different styles of cost-effectiveness acceptability curves using the BCEA package. -->
+The intention of this vignette is to show how to plot different styles of cost-effectiveness acceptability curves using the BCEA package.
 
-<!-- ## Two interventions only -->
+## Two interventions only
 
-<!-- This is the simplest case, usually an alternative intervention ($i=1$) versus status-quo ($i=0$). -->
+This is the simplest case, usually an alternative intervention ($i=1$) versus status-quo ($i=0$).
 
-<!-- The plot show the probability that the alternative intervention is cost-effective for each willingness to pay, $k$, -->
+The plot show the probability that the alternative intervention is cost-effective for each willingness to pay, $k$,
 
-<!-- $$ -->
-<!-- p(NB_1 \geq NB_0 | k) \mbox{  where  } NB_i = ke - c -->
-<!-- $$ -->
+$$
+p(NB_1 \geq NB_0 | k) \mbox{  where  } NB_i = ke - c
+$$
 
-<!-- Using the set of $N$ posterior samples, this is approximated by -->
+Using the set of $N$ posterior samples, this is approximated by
 
-<!-- $$ -->
-<!-- \frac{1}{N} \sum_j^N \mathbb{I} (k \Delta e^j - \Delta c^j) -->
-<!-- $$ -->
+$$
+\frac{1}{N} \sum_j^N \mathbb{I} (k \Delta e^j - \Delta c^j)
+$$
 
-<!-- #### R code -->
+#### R code
 
-<!-- To calculate these in BCEA we use the `bcea()` function. -->
+To calculate these in BCEA we use the `bcea()` function.
 
-<!-- ```{r} -->
-<!-- data("Vaccine") -->
+```{r}
+data("Vaccine")
 
-<!-- he <- bcea(e, c) -->
-<!-- # str(he) -->
+he <- bcea(e, c)
+```
 
-<!-- ceac.plot(he) -->
-<!-- ``` -->
+The plot defaults to base R plotting. Type of plot can be set explicitly using the `graph` argument.
 
-<!-- The plot defaults to base R plotting. Type of plot can be set explicitly using the `graph` argument. -->
+```{r}
+ceplane.plot(he, graph = "base")
+ceplane.plot(he, graph = "ggplot2")
+# ceac.plot(he, graph = "plotly")
+```
 
-<!-- ```{r} -->
-<!-- ceac.plot(he, graph = "base") -->
-<!-- ceac.plot(he, graph = "ggplot2") -->
-<!-- # ceac.plot(he, graph = "plotly") -->
-<!-- ``` -->
+Other plotting arguments can be specified such as title, line colours and theme.
 
-<!-- Other plotting arguments can be specified such as title, line colours and theme. -->
+```{r}
+ceplane.plot(he,
+             graph = "ggplot2",
+             title = "my title",
+             line = list(color = "green", size = 3),
+             point = list(color = "blue", shape = 10, size = 5),
+             icer = list(color = "orange", size = 5),
+             area = list(fill = "grey"),
+             theme = theme_linedraw())
+```
 
-<!-- ```{r} -->
-<!-- ceac.plot(he, -->
-<!--           graph = "ggplot2", -->
-<!--           title = "my title", -->
-<!--           line = list(colors = "green"), -->
-<!--           theme = theme_dark()) -->
-<!-- ``` -->
+If you only what the mean point then you can suppress the sample points by passing colour `NA`.
+
+```{r}
+ceplane.plot(he,
+             graph = "ggplot2",
+             point = list(color = NA),
+             icer = list(size = 5))
+```
 
 
 <!-- ## Multiple interventions -->
 
 <!-- This situation is when there are more than two interventions to consider. -->
-<!-- Incremental values can be obtained either always against a fixed reference intervention, such as status-quo, or for all pair-wise comparisons. -->
-
-<!-- ### Against a fixed reference intervention -->
-
-<!-- Without loss of generality, if we assume that we are interested in intervention $i=1$, then we wish to calculate -->
-
-<!-- $$ -->
-<!-- p(NB_1 \geq NB_s | k) \;\; \exists \; s \in S -->
-<!-- $$ -->
-
-<!-- Using the set of $N$ posterior samples, this is approximated by -->
-
-<!-- $$ -->
-<!-- \frac{1}{N} \sum_j^N \mathbb{I} (k \Delta e_{1,s}^j - \Delta c_{1,s}^j) -->
-<!-- $$ -->
 
 <!-- #### R code -->
-
-<!-- This is the default plot for `ceac.plot()` so we simply follow the same steps as above with the new data set. -->
 
 <!-- ```{r} -->
 <!-- data("Smoking") -->
