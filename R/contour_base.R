@@ -38,7 +38,7 @@ contour_base <- function(he,
   
   add_ceplane_legend(legend_params)
   
-  add_contour_quadrants(he, plot_params)
+  add_contour_quadrants(plot_params)
   add_contours(he, plot_params)
 }
 

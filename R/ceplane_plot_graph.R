@@ -164,7 +164,8 @@ ceplane_plot_ggplot.bcea <- function(he,
   theme_add <- purrr::keep(list(...), is.theme)
   
   ggplot(delta_ce,
-         aes(x = .data$delta_e, y = .data$delta_c, group = factor(.data$comparison), col = factor(.data$comparison), shape = factor(.data$comparison))) +
+         aes(x = .data$delta_e, y = .data$delta_c, group = factor(.data$comparison),
+             col = factor(.data$comparison), shape = factor(.data$comparison))) +
     do.call(geom_polygon, graph_params$area) +
     theme_ceplane() +
     theme_add +
