@@ -14,3 +14,17 @@ ceplane_base_params <- function(he,
     icer_params(graph_params, he))
 }
 
+
+#' @keywords dplot
+#' 
+contour_base_params <- function(he,
+                                graph_params) {
+  
+  c(list(
+    setup = setup_params(graph_params),
+    points = points_params(graph_params),
+    scale = graph_params$scale,
+    levels = graph_params$levels,
+    nlevels = graph_params$nlevels),
+    icer_params(graph_params, he))
+}

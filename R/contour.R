@@ -39,6 +39,8 @@ contour.bcea <- function(he,
   # Additional/optional arguments
   extra_args <- list(...)
   
+  graph <- match.arg(graph)
+  
   params <- list()
   
   params$xlab <- 
@@ -66,21 +68,28 @@ contour.bcea <- function(he,
     } else {
       extra_args$title
     }
-  
-  params$alt.legend <- pos
-  
-  graph <- match.arg(graph)
+
+  axes_lim <- xy_params(he, wtp = 100000, graph_params)
+
+  params$pos_legend <- pos
+  params$xlim <- axes_lim$xlim
+  params$ylim <- axes_lim$ylim
+  params$scale <- scale
+  params$nlevels <- nlevels
+  params$levels <- levels
+  params$point$color <- "grey"
+  params$point$size <- 1
   
   if (is_baseplot(graph)) {
     
-    contour_base(he, params, scale, nlevels, levels, xlim, ylim, extra_args)
+    contour_base(he, params, extra_args)
     
   } else if (is_ggplot(graph)) {
     
     if (!is.null(levels))
       message("Option level will be ignored using ggplot2 graphics")
     
-    contour_ggplot(he, params, scale, nlevels, levels, xlim, ylim, extra_args)
+    contour_ggplot(he, params, extra_args)
   }
 }
 
