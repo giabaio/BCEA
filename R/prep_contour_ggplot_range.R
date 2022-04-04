@@ -9,8 +9,8 @@ prep_contour_ggplot_range <- function(he) {
                      c = unlist(he$delta_c))
     
     # plot limits
-    ranges$e <- ranges(kd$e)
-    ranges$c <- ranges(kd$c)
+    ranges$e <- range(kd$e)
+    ranges$c <- range(kd$c)
     ranges$e[1] <- ifelse(ranges$e[1] < 0, ranges$e[1], -ranges$e[1])
     ranges$c[1] <- ifelse(ranges$c[1] < 0, ranges$c[1], -ranges$c[1])
   }

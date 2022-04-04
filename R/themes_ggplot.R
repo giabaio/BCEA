@@ -38,3 +38,9 @@ theme_eib <- function() {
   theme_default()
 }
 
+
+#'
+theme_contour <- function() {
+  theme_default()
+}
+
