@@ -43,7 +43,7 @@ contour_ggplot <- function(he,
         value.name = "delta_e",
         id.vars = "sim"),
       by = c("sim", "comparison"))
-  browser()
+
   ggplot(delta_ce,
          aes(x = .data$delta_e, y = .data$delta_c, group = factor(.data$comparison),
              col = factor(.data$comparison), shape = factor(.data$comparison))) +

@@ -6,49 +6,21 @@
 \alias{contour_ggplot}
 \title{Contour Cost-Effectiveness Plane}
 \usage{
-contour_base(
-  he,
-  params,
-  scale,
-  nlevels,
-  levels,
-  xlim,
-  ylim,
-  extra_args,
-  comparison = 1
-)
+contour_base(he, graph_params, extra_args, comparison = 1)
 
-contour_ggplot(
-  he,
-  params,
-  scale,
-  nlevels,
-  levels,
-  xlim,
-  ylim,
-  extra_args,
-  comparison = 1
-)
+contour_ggplot(he, params, extra_args, ...)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
-\item{params}{Plot parameters}
+\item{graph_params}{Plot parameters}
 
-\item{scale}{Scale}
-
-\item{nlevels}{Number of levels}
-
-\item{levels}{levels}
-
-\item{xlim}{x-axis limits}
-
-\item{ylim}{y-axis limits}
-
-\item{extra_args}{additional arguments}
+\item{extra_args}{Additional arguments}
 
 \item{comparison}{Comparison interventions; default 1}
+
+\item{params}{Plot parameters}
 }
 \description{
 Choice of base R, ggplot2

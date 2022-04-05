@@ -21,22 +21,26 @@
 #'   plotting. Should (partial-) match the two options \code{"base"} or
 #'   \code{"ggplot2"}. Default value is \code{"base"}.
 #' @param ...  If \code{graph = "ggplot2"} and a named theme object is supplied,
-#'   it will be added to the ggplot object. Additional graphical arguments:
+#'   it will be passed to the ggplot object. The usual ggplot2 syntax is used.
+#'   Additional graphical arguments:
 #'  \itemize{
 #'   \item \code{label.pos = FALSE}: will place the willingness to pay label in a
 #'   different  position at the bottom of the graph - base and ggplot2 only (no
 #'   label in plotly).
-#'   \item \code{point_colors}: a vector of colours specifying the colour(s) associated
+#'   \item \code{line = list(color)}: a colour specifying the colour of the willingness-to-pay line.
+#'   \item \code{point = list(color)}: a vector of colours specifying the colour(s) associated
 #'   to the cloud of points. Should be of length 1 or equal to the number of comparisons.
-#'   \item \code{point_size}: a vector of colours specifying the size(s) of the points.
+#'   \item \code{point = list(size)}: a vector of colours specifying the size(s) of the points.
 #'   Should be of length 1 or equal to the number of comparisons.
-#'   \item \code{ICER_colors}: a vector of colours specifying the colour(s) of the ICER
+#'   \item \code{point = list(shape)}: a vector of shapes specifying type(s) of the points.
+#'   Should be of length 1 or equal to the number of comparisons.
+#'   \item \code{icer = list(color)}: a vector of colours specifying the colour(s) of the ICER
 #'   points. Should be of length 1 or equal to the number of comparisons.
-#'   \item \code{ICER_size}: a vector of colours specifying the size(s) of the ICER
+#'   \item \code{icer = list(size)}: a vector of colours specifying the size(s) of the ICER
 #'   points. Should be of length 1 or equal to the number of comparisons.
 #'   \item \code{area_include}: logical, include or exclude the cost-effectiveness 
 #'   acceptability area (default is TRUE).
-#'   \item \code{area_color}: a colour specifying the colour of the cost-effectiveness
+#'   \item \code{area = list(color)}: a colour specifying the colour of the cost-effectiveness
 #'   acceptability area.
 #'  }
 #'  
@@ -136,7 +140,6 @@ ceplane.plot.bcea <- function(he,
 #' the selected willingness to pay threshold.
 #' 
 #' @template args-he
-#' @param ... Additional arguments
 #' 
 #' @export
 #' @aliases ceplane.plot
