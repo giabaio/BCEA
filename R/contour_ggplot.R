@@ -13,21 +13,19 @@ contour_ggplot <- function(he,
                            params,
                            extra_args,
                            ...) {
-  
   graph_params <-
     contour_ggplot_params(he, params, ...)
   
   theme_add <- purrr::keep(list(...), is.theme)
   
-  rg <- graph_params$ranges
   quad <- graph_params$quadrant
   
-  labels.df <-
+  quad_txt <-
     data.frame(
-      he = c(rg$e[2], rg$e[1], rg$e[1], rg$e[2]),
-      y = c(rep(rg$c[2], 2), rep(rg$c[1], 2)),
-      label = c(quad$p.ne, quad$p.nw, quad$p.sw, quad$p.se),
-      hjust = as.factor(c(1, 0, 0, 1)))
+      x = c(params$xlim[2], params$xlim[1], params$xlim[1], params$xlim[2]),
+      y = c(params$ylim[2], params$ylim[2], params$ylim[1], params$ylim[1]),
+      label = c(quad$t1, quad$t2, quad$t3, quad$t4),
+      hjust = c(1, 0, 0, 1))
 
   # single long format for ggplot data
   delta_ce <-
@@ -45,14 +43,14 @@ contour_ggplot <- function(he,
         value.name = "delta_e",
         id.vars = "sim"),
       by = c("sim", "comparison"))
-  
+  browser()
   ggplot(delta_ce,
          aes(x = .data$delta_e, y = .data$delta_c, group = factor(.data$comparison),
              col = factor(.data$comparison), shape = factor(.data$comparison))) +
     geom_point(size = graph_params$point$size) +
-    stat_density_2d(aes(colour = comparison)) +
-    geom_text(data = labels.df,
-              aes(x = .data$he,
+    do.call(geom_density_2d, graph_params$contour) +
+    geom_text(data = quad_txt,
+              aes(x = .data$x,
                   y = .data$y,
                   hjust = .data$hjust,
                   label = .data$label),
@@ -67,7 +65,7 @@ contour_ggplot <- function(he,
                        values = graph_params$point$shape) +
     coord_cartesian(xlim = graph_params$xlim,
                     ylim = graph_params$ylim,
-                    expand = FALSE) +
+                    expand = TRUE) +
     do.call(labs,
             list(title = graph_params$title,
                  x = graph_params$xlab,

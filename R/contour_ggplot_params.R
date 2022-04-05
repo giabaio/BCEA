@@ -29,9 +29,13 @@ contour_ggplot_params <- function(he,
   default_params <-
     list(
       quadrant = quadrant_params(he, graph_params),
-      ranges = prep_contour_ggplot_range(he),
       size = rel(3.5),
-      nlevels = nlevels,
+      contour = list(
+        aes_string(col = "comparison"),
+        adjust = 2,
+        size = 1,
+        col = "black",
+        bins = 5),
       icer = list(
         data = data.frame(x = colMeans(he$delta_e),
                           y = colMeans(he$delta_c)),
