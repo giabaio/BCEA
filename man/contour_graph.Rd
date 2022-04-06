@@ -6,7 +6,7 @@
 \alias{contour_ggplot}
 \title{Contour Cost-Effectiveness Plane}
 \usage{
-contour_base(he, graph_params, extra_args, comparison = 1)
+contour_base(he, graph_params, extra_args)
 
 contour_ggplot(he, params, extra_args, ...)
 }
@@ -17,8 +17,6 @@ modelling and the economic evaluation.}
 \item{graph_params}{Plot parameters}
 
 \item{extra_args}{Additional arguments}
-
-\item{comparison}{Comparison interventions; default 1}
 
 \item{params}{Plot parameters}
 }

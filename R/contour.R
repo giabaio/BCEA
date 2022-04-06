@@ -16,8 +16,8 @@
 #' @param ...  Additional graphical arguments. The usual ggplot2 syntax is used.
 #'  \itemize{
 #'   \item \code{title}:
-#'   \item \code{Axis):
-#'   \item \code{cex.axis)}:
+#'   \item \code{Axis}:
+#'   \item \code{cex.axis}:
 #' }
 #'   
 #' @importFrom stats sd

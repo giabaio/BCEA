@@ -14,6 +14,7 @@
   xlim = NULL,
   ylim = NULL,
   graph = c("base", "ggplot2"),
+  comparison = 1,
   ...
 )
 
@@ -27,8 +28,7 @@ modelling and the economic evaluation.}
 
 \item{nlevels}{Number of levels to be plotted in the contour.}
 
-\item{levels}{Numeric vector of levels at which to draw contour lines.
-Will be ignored using \code{graph="ggplot2"}.}
+\item{levels}{Numeric vector of levels at which to draw contour lines.}
 
 \item{pos}{Parameter to set the position of the legend (only relevant for
 multiple interventions, ie more than 2 interventions being compared).
@@ -70,7 +70,7 @@ effectiveness (x-axis).
 \examples{
 data(Vaccine)
 
-# Runs the health economic evaluation using BCEA
+# run the health economic evaluation using BCEA
 m <- bcea(e=e,
           c=c,              # defines the variables of 
                             #  effectiveness and cost
@@ -87,7 +87,7 @@ m <- bcea(e=e,
 contour(m)
 contour(m, graph = "ggplot2")
 
-# Plots the contour and scatterplot of the bivariate 
+# plot the contour and scatterplot of the bivariate 
 # distribution of (Delta_e, Delta_c)
 contour(m,          # uses the results of the economic evaluation 
                     #  (a "bcea" object)
@@ -101,6 +101,10 @@ contour(m,          # uses the results of the economic evaluation
                     #  y-axis (default=0.5)
       graph="base"  # uses base graphics to produce the plot
 )
+
+# use the smoking cessation dataset
+data(Smoking)
+m <- bcea(e, c, ref = 4, intervention = treats, Kmax = 500, plot = FALSE)
 
 }
 \references{
