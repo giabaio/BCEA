@@ -2,22 +2,25 @@
 #
 quadrant_params <- function(he, params) {
   
+  comp <- params$comparison
+  
   p.ne <-
-    sum(he$delta_e[, he$comp] > 0 &
-          he$delta_c[, he$comp] > 0) / he$n_sim
+    sum(he$delta_e[, comp] > 0 &
+          he$delta_c[, comp] > 0) / he$n_sim
   p.nw <-
-    sum(he$delta_e[, he$comp] <= 0 &
-          he$delta_c[, he$comp] > 0) / he$n_sim
+    sum(he$delta_e[, comp] <= 0 &
+          he$delta_c[, comp] > 0) / he$n_sim
   p.sw <-
-    sum(he$delta_e[, he$comp] <= 0 &
-          he$delta_c[, he$comp] <= 0) / he$n_sim
+    sum(he$delta_e[, comp] <= 0 &
+          he$delta_c[, comp] <= 0) / he$n_sim
   p.se <-
-    sum(he$delta_e[, he$comp] > 0 &
-          he$delta_c[, he$comp] <= 0) / he$n_sim
+    sum(he$delta_e[, comp] > 0 &
+          he$delta_c[, comp] <= 0) / he$n_sim
   
   list(
     cex = 0.8,
-    offset = 0, #1.0,
+    offset = 1.0,
+    adj = list(c(1,1), c(0,1),c(0,0), c(1,0)),
     p.ne = p.ne,
     p.nw = p.nw,
     p.sw = p.sw,

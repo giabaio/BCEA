@@ -4,7 +4,6 @@
 #' @template args-he
 #' @param scale Scales the plot as a function of the observed standard deviation.
 #' @param levels Numeric vector of levels at which to draw contour lines.
-#'               Will be ignored using \code{graph="ggplot2"}.
 #' @param nlevels Number of levels to be plotted in the contour.
 #' @template args-pos
 #' @param graph A string used to select the graphical engine to use for
@@ -14,10 +13,13 @@
 #'             determined by the range of the simulated values for \code{delta_e}
 #' @param ylim The range of the plot along the y-axis. If NULL (default) it is
 #'             determined by the range of the simulated values for \code{delta_c}
-#' @param ...  Additional arguments to 'plot.window', 'title', 'Axis' and
-#'             'box', typically graphical parameters such as 'cex.axis'.
-#'             Will be ignored if \code{graph="ggplot2"}.
-#' 
+#' @param ...  Additional graphical arguments. The usual ggplot2 syntax is used.
+#'  \itemize{
+#'   \item \code{title}:
+#'   \item \code{Axis):
+#'   \item \code{cex.axis)}:
+#' }
+#'   
 #' @importFrom stats sd
 #' @importFrom graphics par
 #' 
@@ -31,12 +33,12 @@ contour.bcea <- function(he,
                          xlim = NULL,
                          ylim = NULL,
                          graph = c("base", "ggplot2"),
+                         comparison = 1,
                          ...) {
   
   # comparison selects which plot should be made
   # by default it is the first possible
   
-  # Additional/optional arguments
   extra_args <- list(...)
   
   graph <- match.arg(graph)
@@ -79,6 +81,7 @@ contour.bcea <- function(he,
   params$levels <- levels
   params$point$color <- "grey"
   params$point$size <- 1
+  params$comparison <- comparison
   
   if (is_baseplot(graph)) {
     
@@ -131,7 +134,7 @@ contour.bcea <- function(he,
 #' @examples
 #' data(Vaccine)
 #'
-#' # Runs the health economic evaluation using BCEA
+#' # run the health economic evaluation using BCEA
 #' m <- bcea(e=e,
 #'           c=c,              # defines the variables of 
 #'                             #  effectiveness and cost
@@ -148,7 +151,7 @@ contour.bcea <- function(he,
 #' contour(m)
 #' contour(m, graph = "ggplot2")
 #' 
-#' # Plots the contour and scatterplot of the bivariate 
+#' # plot the contour and scatterplot of the bivariate 
 #' # distribution of (Delta_e, Delta_c)
 #' contour(m,          # uses the results of the economic evaluation 
 #'                     #  (a "bcea" object)
@@ -162,6 +165,10 @@ contour.bcea <- function(he,
 #'                     #  y-axis (default=0.5)
 #'       graph="base"  # uses base graphics to produce the plot
 #' )
+#' 
+#' # use the smoking cessation dataset
+#' data(Smoking)
+#' m <- bcea(e, c, ref = 4, intervention = treats, Kmax = 500, plot = FALSE)
 #' 
 #' @export
 #' 

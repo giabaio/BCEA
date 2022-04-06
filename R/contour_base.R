@@ -13,12 +13,11 @@ NULL
 #' @template args-he
 #' @param graph_params Plot parameters
 #' @param extra_args additional arguments
-#' @param comparison Comparison interventions; default 1
 #' 
 contour_base <- function(he,
                          graph_params,
-                         extra_args,
-                         comparison = 1) {
+                         extra_args) {
+
   plot_params <-
     contour_base_params(he, graph_params)
   
