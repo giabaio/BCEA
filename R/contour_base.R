@@ -17,7 +17,7 @@ NULL
 contour_base <- function(he,
                          graph_params,
                          extra_args) {
-
+  browser()
   plot_params <-
     contour_base_params(he, graph_params)
   
@@ -28,6 +28,7 @@ contour_base <- function(he,
   add_ceplane_points(he, plot_params)
   add_axes()
   
+  # only plot one comparison icer
   do.call("points",
           c(list(
             x = colMeans(he$delta_e),

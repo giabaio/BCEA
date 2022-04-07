@@ -1,21 +1,20 @@
 
-#
+#' requires just a single comparison group
+#'
 quadrant_params <- function(he, params) {
   
-  comp <- params$comparison
-  
   p.ne <-
-    sum(he$delta_e[, comp] > 0 &
-          he$delta_c[, comp] > 0) / he$n_sim
+    sum(he$delta_e > 0 &
+          he$delta_c > 0) / he$n_sim
   p.nw <-
-    sum(he$delta_e[, comp] <= 0 &
-          he$delta_c[, comp] > 0) / he$n_sim
+    sum(he$delta_e <= 0 &
+          he$delta_c > 0) / he$n_sim
   p.sw <-
-    sum(he$delta_e[, comp] <= 0 &
-          he$delta_c[, comp] <= 0) / he$n_sim
+    sum(he$delta_e <= 0 &
+          he$delta_c <= 0) / he$n_sim
   p.se <-
-    sum(he$delta_e[, comp] > 0 &
-          he$delta_c[, comp] <= 0) / he$n_sim
+    sum(he$delta_e > 0 &
+          he$delta_c <= 0) / he$n_sim
   
   list(
     cex = 0.8,

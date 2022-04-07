@@ -51,7 +51,7 @@ contour(he, graph = "ggplot2")
 Other plotting arguments can be specified such as title, line colours and theme.
 
 ```{r}
-ceplane.plot(he,
+contour(he,
              graph = "ggplot2",
              title = "my title",
              line = list(color = "green", size = 3),
@@ -71,19 +71,18 @@ This situation is when there are more than two interventions to consider.
 
 ```{r}
 data("Smoking")
-
 he <- bcea(e, c, ref = 4)
 # str(he)
 ```
 
 ```{r}
-ceplane.plot(he)
-ceplane.plot(he, graph = "ggplot2")
+contour(he)
+contour(he, graph = "ggplot2")
 ```
 
 
 ```{r}
-ceplane.plot(he,
+contour(he,
              graph = "ggplot2",
              title = "my title",
              line = list(color = "red", size = 1),

@@ -19,7 +19,7 @@ ceplane_base_params <- function(he,
 #' 
 contour_base_params <- function(he,
                                 graph_params) {
-  
+
   c(list(
     setup = setup_params(graph_params),
     points = points_params(graph_params),

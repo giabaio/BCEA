@@ -3,7 +3,7 @@
 #' 
 #' @template args-he
 #' @param scale Scales the plot as a function of the observed standard deviation.
-#' @param levels Numeric vector of levels at which to draw contour lines.
+#' @param levels Numeric vector of levels at which to draw contour lines. Quantiles 0<p<1.
 #' @param nlevels Number of levels to be plotted in the contour.
 #' @template args-pos
 #' @param graph A string used to select the graphical engine to use for
@@ -13,6 +13,9 @@
 #'             determined by the range of the simulated values for \code{delta_e}
 #' @param ylim The range of the plot along the y-axis. If NULL (default) it is
 #'             determined by the range of the simulated values for \code{delta_c}
+#' @param comparison Only one comparison is used. This should be an integer index
+#'    of the comparison from the full set of interventions including the reference.
+#     By default it is the first possible.
 #' @param ...  Additional graphical arguments. The usual ggplot2 syntax is used.
 #'  \itemize{
 #'   \item \code{title}:
@@ -33,55 +36,25 @@ contour.bcea <- function(he,
                          xlim = NULL,
                          ylim = NULL,
                          graph = c("base", "ggplot2"),
-                         comparison = 1,
+                         comparison = he$comp[1],
                          ...) {
   
-  # comparison selects which plot should be made
-  # by default it is the first possible
+  if (!comparison %in% he$comp)
+    stop("Comparison index not available.", call. = FALSE)
   
   extra_args <- list(...)
   
   graph <- match.arg(graph)
   
-  params <- list()
+  # remove redundant comparisons
+  comp_idx <- which(he$comp %in% comparison)
+  he$delta_c <- he$delta_c[comp_idx]
+  he$delta_e <- he$delta_e[comp_idx]
   
-  params$xlab <- 
-    if (!exists("xlab", where = extra_args)) {
-      "Effectiveness differential"
-    } else {
-      extra_args$xlab
-    }
-  
-  params$ylab <- 
-    if (!exists("ylab", where = extra_args)) {
-      "Cost differential"
-    } else {
-      extra_args$ylab
-    }
-  
-  params$title <- 
-    if (!exists("title", where = extra_args)) {
-      paste(
-        "Cost effectiveness plane contour plot\n",
-        he$interventions[he$ref],
-        " vs ",
-        he$interventions[he$comp],
-        sep = "")
-    } else {
-      extra_args$title
-    }
-
-  axes_lim <- xy_params(he, wtp = 100000, graph_params)
-
-  params$pos_legend <- pos
-  params$xlim <- axes_lim$xlim
-  params$ylim <- axes_lim$ylim
-  params$scale <- scale
-  params$nlevels <- nlevels
-  params$levels <- levels
-  params$point$color <- "grey"
-  params$point$size <- 1
-  params$comparison <- comparison
+  ##TODO:
+  params <-
+    prep_contour_params(he, xlab, ylab, title, comparison,
+                        pos, scale, nlevels, levels, extra_ags)
   
   if (is_baseplot(graph)) {
     
@@ -151,17 +124,15 @@ contour.bcea <- function(he,
 #' contour(m)
 #' contour(m, graph = "ggplot2")
 #' 
-#' # plot the contour and scatterplot of the bivariate 
-#' # distribution of (Delta_e, Delta_c)
 #' contour(m,          # uses the results of the economic evaluation 
 #'                     #  (a "bcea" object)
 #'       comparison=1, # if more than 2 interventions, selects the 
 #'                     #  pairwise comparison 
-#'       nlevels=4,    # selects the number of levels to be 
+#'       nlevels=10,    # selects the number of levels to be 
 #'                     #  plotted (default=4)
 #'       levels=NULL,  # specifies the actual levels to be plotted 
 #'                     #  (default=NULL, so that R will decide)
-#'       scale=0.5,    # scales the bandwidths for both x- and 
+#'       scale=1,    # scales the bandwidths for both x- and 
 #'                     #  y-axis (default=0.5)
 #'       graph="base"  # uses base graphics to produce the plot
 #' )
@@ -169,6 +140,7 @@ contour.bcea <- function(he,
 #' # use the smoking cessation dataset
 #' data(Smoking)
 #' m <- bcea(e, c, ref = 4, intervention = treats, Kmax = 500, plot = FALSE)
+#' contour(m)
 #' 
 #' @export
 #' 
