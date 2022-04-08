@@ -15,30 +15,29 @@ NULL
 #' @param extra_args additional arguments
 #' 
 contour_base <- function(he,
+                         pos_legend,
                          graph_params,
                          extra_args) {
-  browser()
   plot_params <-
     contour_base_params(he, graph_params)
   
   legend_params <-
-    ceplane_legend_base(he, graph_params$pos_legend, plot_params)
+    ceplane_legend_base(he, pos_legend, plot_params)
   
   add_ceplane_setup(plot_params)
   add_ceplane_points(he, plot_params)
   add_axes()
   
-  # only plot one comparison icer
-  do.call("points",
-          c(list(
-            x = colMeans(he$delta_e),
-            y = colMeans(he$delta_c)),
-            plot_params$icer_points),
-          quote = TRUE)
+  # do.call("points",
+  #         c(list(
+  #           x = colMeans(he$delta_e),
+  #           y = colMeans(he$delta_c)),
+  #           plot_params$icer_points),
+  #         quote = TRUE)
   
   add_ceplane_legend(legend_params)
   
-  add_contour_quadrants(plot_params)
+  add_contour_quadrants(he, plot_params)
   add_contours(he, plot_params)
 }
 

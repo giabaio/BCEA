@@ -1,12 +1,15 @@
 
 #' add_contour_quadrants
 #'
-#' @param params 
+#' @param params List
 #'
 #' @return
 #' @export
 #'
-add_contour_quadrants <- function(params) {
+add_contour_quadrants <- function(he, params) {
+  
+  if (length(he$comp) > 1) return()
+  
   pm <- params$quadrants
   
   text(x = pm$offset * pm$M.e,

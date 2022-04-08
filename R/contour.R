@@ -29,43 +29,29 @@
 #' @export
 #' 
 contour.bcea <- function(he,
-                         scale = 0.5,
-                         nlevels = 4,
-                         levels = NULL,
-                         pos = c(1, 0),
-                         xlim = NULL,
-                         ylim = NULL,
+                         pos = c(0, 1),
                          graph = c("base", "ggplot2"),
-                         comparison = he$comp[1],
+                         comparison = NULL,
                          ...) {
-  
-  if (!comparison %in% he$comp)
-    stop("Comparison index not available.", call. = FALSE)
-  
+ 
   extra_args <- list(...)
   
   graph <- match.arg(graph)
   
-  # remove redundant comparisons
-  comp_idx <- which(he$comp %in% comparison)
-  he$delta_c <- he$delta_c[comp_idx]
-  he$delta_e <- he$delta_e[comp_idx]
+  he <- setComparisons(he, comparison)
   
-  ##TODO:
-  params <-
-    prep_contour_params(he, xlab, ylab, title, comparison,
-                        pos, scale, nlevels, levels, extra_ags)
+  params <- prep_contour_params(he, ...)
   
   if (is_baseplot(graph)) {
     
-    contour_base(he, params, extra_args)
+    contour_base(he, pos_legend = pos, params, extra_args)
     
   } else if (is_ggplot(graph)) {
     
     if (!is.null(levels))
       message("Option level will be ignored using ggplot2 graphics")
     
-    contour_ggplot(he, params, extra_args)
+    contour_ggplot(he, pos_legend = pos, params, extra_args)
   }
 }
 
