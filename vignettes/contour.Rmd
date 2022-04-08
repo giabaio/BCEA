@@ -37,7 +37,7 @@ To calculate these in BCEA we use the `bcea()` function.
 
 ```{r}
 data("Vaccine")
-he <- bcea(e, c)
+he <- bcea(e, c, ref = 2)
 ```
 
 The plot defaults to base R plotting. Type of plot can be set explicitly using the `graph` argument.
@@ -52,13 +52,10 @@ Other plotting arguments can be specified such as title, line colours and theme.
 
 ```{r}
 contour(he,
-             graph = "ggplot2",
-             title = "my title",
-             line = list(color = "green", size = 3),
-             point = list(color = "blue", shape = 10, size = 5),
-             icer = list(color = "orange", size = 5),
-             area = list(fill = "grey"),
-             theme = theme_linedraw())
+        graph = "ggplot2",
+        title = "my title",
+        point = list(color = "blue", shape = 10, size = 5),
+        contour = list(size = 2))
 ```
 
 
@@ -83,22 +80,22 @@ contour(he, graph = "ggplot2")
 
 ```{r}
 contour(he,
-             graph = "ggplot2",
-             title = "my title",
-             line = list(color = "red", size = 1),
-             point = list(color = c("plum", "tomato", "springgreen"), shape = 3:5, size = 2),
-             icer = list(color = c("red", "orange", "black"), size = 5))
+        graph = "ggplot2",
+        title = "my title",
+        line = list(color = "red", size = 1),
+        point = list(color = c("plum", "tomato", "springgreen"), shape = 3:5, size = 2),
+        icer = list(color = c("red", "orange", "black"), size = 5))
 ```
 
 
 Reposition legend.
 
 ```{r}
-ceplane.plot(he, pos = FALSE) # bottom right
-ceplane.plot(he, pos = c(0, 0))
-ceplane.plot(he, pos = c(0, 1))
-ceplane.plot(he, pos = c(1, 0))
-ceplane.plot(he, pos = c(1, 1))
+contour(he, pos = FALSE) # bottom right
+contour(he, pos = c(0, 0))
+contour(he, pos = c(0, 1))
+contour(he, pos = c(1, 0))
+contour(he, pos = c(1, 1))
 ```
 
 <!-- ```{r} -->

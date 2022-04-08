@@ -31,10 +31,9 @@ contour_ggplot_params <- function(he,
       quadrant = quadrant_params(he, graph_params),
       size = rel(3.5),
       contour = list(
-        aes_string(col = "comparison"),
+        aes_string(colour = "comparison"), 
         adjust = 2,
         size = 1,
-        col = "black",
         bins = 5),
       icer = list(
         data = data.frame(x = colMeans(he$delta_e),

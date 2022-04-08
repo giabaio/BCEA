@@ -89,7 +89,7 @@
 #' 
 #' ## use ggplot2
 #' if (requireNamespace("ggplot2")) {
-#'    ceplane.plot(m, wtp = 200, pos = "right", ICER_size = 2, graph = "ggplot2")
+#'    ceplane.plot(m, wtp = 200, pos = "right", icer = list(size = 2), graph = "ggplot2")
 #' }
 #' 
 #' ## plotly

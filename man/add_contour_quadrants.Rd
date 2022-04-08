@@ -4,10 +4,10 @@
 \alias{add_contour_quadrants}
 \title{add_contour_quadrants}
 \usage{
-add_contour_quadrants(params)
+add_contour_quadrants(he, params)
 }
 \arguments{
-\item{params}{}
+\item{params}{List}
 }
 \value{
 

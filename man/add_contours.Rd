@@ -2,18 +2,19 @@
 % Please edit documentation in R/add_contours.R
 \name{add_contours}
 \alias{add_contours}
-\title{add_contours}
+\title{Add Contours to Base R Plot}
 \usage{
 add_contours(he, params)
 }
 \arguments{
-\item{he}{}
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
 
-\item{params}{}
+\item{params}{List}
 }
 \value{
 
 }
 \description{
-add_contours
+Add Contours to Base R Plot
 }
