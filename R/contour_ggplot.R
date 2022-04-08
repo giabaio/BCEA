@@ -54,7 +54,6 @@ contour_ggplot <- function(he,
             list(title = graph_params$title,
                  x = graph_params$xlab,
                  y = graph_params$ylab)) +
-    do.call(geom_point, graph_params$icer) +
     do.call(theme, graph_params$legend) +
     theme_contour() +
     theme_add

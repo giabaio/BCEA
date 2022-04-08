@@ -27,16 +27,7 @@ contour_base <- function(he,
   add_ceplane_setup(plot_params)
   add_ceplane_points(he, plot_params)
   add_axes()
-  
-  # do.call("points",
-  #         c(list(
-  #           x = colMeans(he$delta_e),
-  #           y = colMeans(he$delta_c)),
-  #           plot_params$icer_points),
-  #         quote = TRUE)
-  
   add_ceplane_legend(legend_params)
-  
   add_contour_quadrants(he, plot_params)
   add_contours(he, plot_params)
 }
