@@ -7,7 +7,7 @@
 #' @return
 #'
 add_contours <- function(he, params) {
-  browser()
+  
   scale <- params$scale
   levels <- params$levels
   nlevels <- params$nlevels

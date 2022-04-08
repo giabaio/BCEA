@@ -49,8 +49,19 @@ contour_ggplot_params <- function(he,
       line = list(
         color = "black"))
   
-  modifyList(default_params,
-             graph_params) %>% 
+  params <- 
+    modifyList(default_params,
+               graph_params) %>% 
     modifyList(ext_params)
+  
+  params$quad_txt <-
+    data.frame(
+      x = c(params$xlim[2], params$xlim[1], params$xlim[1], params$xlim[2]),
+      y = c(params$ylim[2], params$ylim[2], params$ylim[1], params$ylim[1]),
+      label = c(params$quadrant$t1, params$quadrant$t2,
+                params$quadrant$t3, params$quadrant$t4),
+      hjust = c(1, 0, 0, 1))
+  
+  params
 }
 

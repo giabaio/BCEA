@@ -36,3 +36,20 @@ add_contour_quadrants <- function(he, params) {
        parse(text = pm$t4),
        cex = pm$cex)
 }
+
+
+#
+geom_quad_txt <- function(he, graph_params) {
+  
+  if (length(he$comp) > 1) return(NULL)
+  
+  geom_text(data = graph_params$quad_txt,
+            aes(x = .data$x,
+                y = .data$y,
+                hjust = .data$hjust,
+                label = .data$label),
+            parse = TRUE,
+            size = rel(3.5),
+            inherit.aes = FALSE)
+}
+

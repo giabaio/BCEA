@@ -18,15 +18,6 @@ contour_ggplot <- function(he,
   
   theme_add <- purrr::keep(list(...), is.theme)
   
-  quad <- graph_params$quadrant
-  
-  quad_txt <-
-    data.frame(
-      x = c(params$xlim[2], params$xlim[1], params$xlim[1], params$xlim[2]),
-      y = c(params$ylim[2], params$ylim[2], params$ylim[1], params$ylim[1]),
-      label = c(quad$t1, quad$t2, quad$t3, quad$t4),
-      hjust = c(1, 0, 0, 1))
-
   # single long format for ggplot data
   delta_ce <-
     merge(
@@ -49,14 +40,7 @@ contour_ggplot <- function(he,
              col = factor(.data$comparison), shape = factor(.data$comparison))) +
     geom_point(size = graph_params$point$size) +
     do.call(geom_density_2d, graph_params$contour) +
-    geom_text(data = quad_txt,
-              aes(x = .data$x,
-                  y = .data$y,
-                  hjust = .data$hjust,
-                  label = .data$label),
-              parse = TRUE,
-              size = rel(3.5),
-              inherit.aes = FALSE) +
+    geom_quad_txt(he, graph_params) +
     geom_hline(yintercept = 0, colour = "grey") +
     geom_vline(xintercept = 0, colour = "grey") +
     scale_color_manual(labels = line_labels.default(he),

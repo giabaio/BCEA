@@ -48,9 +48,6 @@ contour.bcea <- function(he,
     
   } else if (is_ggplot(graph)) {
     
-    if (!is.null(levels))
-      message("Option level will be ignored using ggplot2 graphics")
-    
     contour_ggplot(he, pos_legend = pos, params, extra_args)
   }
 }
@@ -127,6 +124,7 @@ contour.bcea <- function(he,
 #' data(Smoking)
 #' m <- bcea(e, c, ref = 4, intervention = treats, Kmax = 500, plot = FALSE)
 #' contour(m)
+#' contour(m, graph = "ggplot2")
 #' 
 #' @export
 #' 
