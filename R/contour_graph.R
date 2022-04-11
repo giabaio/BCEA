@@ -76,6 +76,9 @@ contour_ggplot <- function(he,
       by = c("sim", "comparison")) %>% 
     mutate(comparison = factor(comparison))
 
+  ##TODO: calculate qantiles from data
+  # L95 <- getLevel(delta_ce$delta_e, delta_ce$delta_c)
+  
   ggplot(delta_ce,
          aes(x = .data$delta_e, y = .data$delta_c, group = .data$comparison,
              col = .data$comparison, shape = .data$comparison)) +
@@ -99,4 +102,17 @@ contour_ggplot <- function(he,
     theme_contour() +
     theme_add
 }
+
+#' contour quantiles
+#' https://stackoverflow.com/questions/23437000/
+#' how-to-plot-a-contour-line-showing-where-95-of-values-fall-within-in-r-and-in
+getLevel <- function(x,y,prob=0.95) {
+  kk <- MASS::kde2d(x,y)
+  dx <- diff(kk$x[1:2])
+  dy <- diff(kk$y[1:2])
+  sz <- sort(kk$z)
+  c1 <- cumsum(sz) * dx * dy
+  approx(c1, sz, xout = 1 - prob)$y
+}
+
 

@@ -31,7 +31,8 @@ bottom of the plot.}
 
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the three options \code{"base"},
-\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.}
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
+Not all plotting functions have a \code{"plotly"} implementation yet.}
 
 \item{comparison}{Selects the comparator, in case of more than two
 interventions being analysed. Default as NULL plots all the comparisons

@@ -26,6 +26,7 @@ contour_base_params <- function(he,
     quadrants = quadrant_params(he, graph_params),
     scale = graph_params$scale,
     levels = graph_params$levels,
+    contour = graph_params$contour,
     nlevels = graph_params$nlevels),
     icer_params(graph_params, he))
 }

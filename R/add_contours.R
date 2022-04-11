@@ -22,7 +22,7 @@ add_contours <- function(he, params) {
                                  sd(as.matrix(he$delta_c[, i]))/scale))
     
     if (!any(is.na(density$z))) {
-      if (!is.null(levels)) {
+      if (is.null(nlevels)) {
         # normalise the density and use levels in the contour
         density$z <-
           (density$z - min(density$z)) / (max(density$z) - min(density$z))
@@ -34,15 +34,17 @@ add_contours <- function(he, params) {
           add = TRUE,
           levels = levels,
           col = pts_col[i],
+          lwd = params$contour$size,
           drawlabels = TRUE)
       }
-      if (is.null(levels)) {
+      if (!is.null(nlevels)) {
         graphics::contour(
           density$x,
           density$y,
           density$z,
           add = TRUE,
           col = pts_col[i],
+          lwd = params$contour$size,
           nlevels = nlevels,
           drawlabels = FALSE)
       }

@@ -8,7 +8,7 @@ prep_contour_params <- function(he, ...) {
   default_params <-
     modifyList(ceplane_params,
                list(scale = 0.5,
-                    nlevels = 4,
-                    levels = NULL))
+                    nlevels = NULL,
+                    levels = c(0.25, 0.5, 0.75, 0.95)))
   modifyList(default_params, contour_params)
 }

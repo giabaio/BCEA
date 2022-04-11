@@ -36,7 +36,8 @@ bottom of the plot.}
 
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the three options \code{"base"},
-\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.}
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
+Not all plotting functions have a \code{"plotly"} implementation yet.}
 
 \item{...}{If \code{graph = "ggplot2"} and a named theme object is supplied,
  it will be passed to the ggplot2 object. The usual ggplot2 syntax is used.

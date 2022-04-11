@@ -40,7 +40,7 @@ polygon_params <- function(graph_params, wtp) {
 #' 
 points_params <- function(graph_params) {
   
-  list(pch = 20,
+  list(pch = graph_params$point$shape,  #20,
        cex = graph_params$point$size,
        col = graph_params$point$color)
 }

@@ -50,7 +50,8 @@ level of the intervals can be also set, see \ldots{} for more details.}
 
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the three options \code{"base"},
-\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.}
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
+Not all plotting functions have a \code{"plotly"} implementation yet.}
 
 \item{...}{If \code{graph="ggplot2"} and a named theme object is supplied,
  it will be added to the ggplot object. Additional arguments:

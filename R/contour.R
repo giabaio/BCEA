@@ -5,7 +5,7 @@
 #' @template args-graph
 #' @template args-pos
 #' @template args-comparison
-#' @param ...  Additional graphical arguments. The usual ggplot2 syntax is used.
+#' @param ...  Additional graphical arguments. The usual ggplot2 syntax is used regardless of graph type.
 #'  \itemize{
 #'   \item \code{xlim}: The range of the plot along the x-axis. If NULL (default) it is
 #'             determined by the range of the simulated values for \code{delta_e}
@@ -14,8 +14,6 @@
 #'   \item \code{scale}: Scales the plot as a function of the observed standard deviation.
 #'   \item \code{levels}: Numeric vector of levels at which to draw contour lines. Quantiles 0<p<1.
 #'   \item \code{nlevels}: Number of levels to be plotted in the contour.
-#'   \item \code{title}:
-#'   \item \code{cex.axis}:
 #' }
 #'   
 #' @importFrom stats sd
@@ -29,17 +27,17 @@ contour.bcea <- function(he,
                          comparison = NULL,
                          ...) {
   
-  graph <- match.arg(graph)
+  graph_type <- match.arg(graph)
   
   he <- setComparisons(he, comparison)
   
   params <- prep_contour_params(he, ...)
   
-  if (is_baseplot(graph)) {
+  if (is_baseplot(graph_type)) {
     
     contour_base(he, pos_legend = pos, params, ...)
     
-  } else if (is_ggplot(graph)) {
+  } else if (is_ggplot(graph_type)) {
     
     contour_ggplot(he, pos_legend = pos, params, ...)
   }
