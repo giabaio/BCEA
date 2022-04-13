@@ -46,11 +46,13 @@ contour(he, graph = "ggplot2")
 # ceac.plot(he, graph = "plotly")
 ```
 
-User-defined contour level can be provided. At the moment the base R and `ggplot2` arguments are different, corresponding to their different wrapped functions.
+User-defined contour levels can be provided.
+The `levels` and `nlevels` arguments specify the quantiles or number of levels.
+The base R levels arguments are kept for back-compatibility.
 
 ```{r}
 contour(he, levels = c(0.2, 0.8))
-contour(he, graph = "ggplot2", contour = list(breaks = c(50, 200)))
+contour(he, graph = "ggplot2", contour = list(breaks = c(0.2, 0.8)))
 ```
 
 
@@ -125,7 +127,7 @@ contour(he, scale = 0.9)
 contour(he, graph = "ggplot2", scale = 0.9)  ##TODO: what is the equivalent ggplot2 argument?
 ```
 
-The `levels` and `nlevels` arguments specify the quantiles or number of levels.
+The quantiles or number of levels.
 
 ```{r}
 contour(he, nlevels = 10)
@@ -134,10 +136,11 @@ contour(he, graph = "ggplot2", contour = list(bins = 10))
 
 ```{r}
 contour(he, levels = c(0.2, 0.8))
-contour(he, graph = "ggplot2", contour = list(breaks = c(0.005, 0.01, 0.02)))
-```
+contour(he, graph = "ggplot2", contour = list(breaks = c(0.005, 0.02)))
 
-The styling of the plot for multiple comparisons can specifically change the colour and point type for each comparison.
+# again, the probabilities are calculated a little oddly
+contour(he, graph = "ggplot2", contour = list(levels = c(0.02, 0.8)))
+```
 
 ```{r}
 contour(he,
