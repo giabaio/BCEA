@@ -76,16 +76,6 @@ contour_ggplot <- function(he,
       by = c("sim", "comparison")) %>% 
     mutate(comparison = factor(comparison))
   
-  ##TODO: move to prep function
-  ##      before define default values
-  # calculate quantiles from data
-  if (!is.null(plot_params$contour$levels)) {
-    plot_params$contour$breaks <-
-      map_dbl(plot_params$contour$levels,
-              ~ getLevel(delta_ce$delta_e, delta_ce$delta_c, prob = .))
-    plot_params$contour$levels <- NULL
-  }
-  
   ggplot(delta_ce,
          aes(x = .data$delta_e, y = .data$delta_c, group = .data$comparison,
              col = .data$comparison, shape = .data$comparison)) +

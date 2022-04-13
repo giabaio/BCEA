@@ -48,7 +48,7 @@ contour(he, graph = "ggplot2")
 
 User-defined contour levels can be provided.
 The `levels` and `nlevels` arguments specify the quantiles or number of levels.
-The base R levels arguments are kept for back-compatibility.
+The base R levels arguments are kept for back-compatibility and the `ggplot2` style arguments are used in the associated plot.
 
 ```{r}
 contour(he, levels = c(0.2, 0.8))
@@ -136,10 +136,7 @@ contour(he, graph = "ggplot2", contour = list(bins = 10))
 
 ```{r}
 contour(he, levels = c(0.2, 0.8))
-contour(he, graph = "ggplot2", contour = list(breaks = c(0.005, 0.02)))
-
-# again, the probabilities are calculated a little oddly
-contour(he, graph = "ggplot2", contour = list(levels = c(0.02, 0.8)))
+contour(he, graph = "ggplot2", contour = list(breaks = c(0.2, 0.8)))
 ```
 
 ```{r}
