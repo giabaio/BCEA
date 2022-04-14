@@ -71,7 +71,7 @@ contour.bcea <- function(he,
 #' @seealso \code{\link{bcea}},
 #'          \code{\link{ceplane.plot}},
 #'          \code{\link{contour2}}
-#' @keywords "Health economic evaluation" "Bayesian model"
+#' @keywords hplot
 #' 
 #' @import ggplot2
 #' @importFrom MASS kde2d

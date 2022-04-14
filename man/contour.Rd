@@ -39,7 +39,7 @@ interventions being analysed. Default as NULL plots all the comparisons
 together. Any subset of the possible comparisons can be selected (e.g.,
 \code{comparison=c(1,3)} or \code{comparison=2}).}
 
-\item{...}{Additional graphical arguments. The usual ggplot2 syntax is used.
+\item{...}{Additional graphical arguments. The usual ggplot2 syntax is used regardless of graph type.
  \itemize{
   \item \code{xlim}: The range of the plot along the x-axis. If NULL (default) it is
             determined by the range of the simulated values for \code{delta_e}
@@ -48,8 +48,6 @@ together. Any subset of the possible comparisons can be selected (e.g.,
   \item \code{scale}: Scales the plot as a function of the observed standard deviation.
   \item \code{levels}: Numeric vector of levels at which to draw contour lines. Quantiles 0<p<1.
   \item \code{nlevels}: Number of levels to be plotted in the contour.
-  \item \code{title}:
-  \item \code{cex.axis}:
 }}
 }
 \value{
@@ -122,8 +120,4 @@ Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 \author{
 Gianluca Baio, Andrea Berardi
 }
-\keyword{"Bayesian}
-\keyword{"Health}
-\keyword{economic}
-\keyword{evaluation"}
-\keyword{model"}
+\keyword{hplot}

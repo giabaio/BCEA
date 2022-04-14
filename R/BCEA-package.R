@@ -32,7 +32,7 @@
 #' 
 #' Baio G., Berardi A., Heath A. (2017). Bayesian Cost Effectiveness
 #' Analysis with the R package BCEA. Springer
-#' @keywords "Bayesian models" "Health economic evaluation"
+#' @keywords package
 #' 
 #' @docType package
 #' @name BCEA-package

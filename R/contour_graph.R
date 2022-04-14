@@ -46,6 +46,8 @@ contour_base <- function(he,
 #' 
 #' @import ggplot2
 #' @importFrom grid unit
+#' @importFrom dplyr mutate
+#' @importFrom reshape2 melt
 #' 
 contour_ggplot <- function(he,
                            pos_legend,
@@ -99,17 +101,4 @@ contour_ggplot <- function(he,
     theme_contour() +
     theme_add
 }
-
-#' contour quantiles
-#' https://stackoverflow.com/questions/23437000/
-#' how-to-plot-a-contour-line-showing-where-95-of-values-fall-within-in-r-and-in
-getLevel <- function(x,y,prob=0.95) {
-  kk <- MASS::kde2d(x,y)
-  dx <- diff(kk$x[1:2])
-  dy <- diff(kk$y[1:2])
-  sz <- sort(kk$z)
-  c1 <- cumsum(sz) * dx * dy
-  approx(c1, sz, xout = 1 - prob)$y
-}
-
 

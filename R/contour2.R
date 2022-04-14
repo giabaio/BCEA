@@ -75,7 +75,7 @@ contour2.bcea <- function(he,
 #' doi:10.1177/0962280211419832.
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
-#' @keywords "Health economic evaluation" "Bayesian model"
+#' @keywords hplot
 #' @import ggplot2
 #' @importFrom grDevices ps.options pdf.options
 #' @importFrom MASS kde2d

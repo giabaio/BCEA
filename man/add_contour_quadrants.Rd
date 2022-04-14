@@ -7,6 +7,9 @@
 add_contour_quadrants(he, params)
 }
 \arguments{
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
+
 \item{params}{List}
 }
 \value{

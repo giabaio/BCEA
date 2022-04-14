@@ -114,7 +114,7 @@ eib.plot.bcea <- function(he,
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' 
-#' @keywords "Health economic evaluation" "Expected Incremental Benefit"
+#' @keywords hplot
 #' @import ggplot2
 #' @importFrom grid unit
 #' @export

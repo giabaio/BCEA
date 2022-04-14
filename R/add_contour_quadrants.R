@@ -1,6 +1,7 @@
 
 #' add_contour_quadrants
 #'
+#' @template args-he
 #' @param params List
 #'
 #' @return
@@ -38,7 +39,9 @@ add_contour_quadrants <- function(he, params) {
 }
 
 
-#
+#' @template args-he
+#' @template args-graph
+#' 
 geom_quad_txt <- function(he, graph_params) {
   
   if (length(he$comp) > 1) return(NULL)

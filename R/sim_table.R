@@ -32,7 +32,7 @@ sim_table <- function(he, ...) UseMethod("sim_table", he)
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' 
-#' @keywords Health economic evaluation
+#' @keywords print
 #' @import dplyr
 #' 
 #' @examples 

@@ -60,9 +60,4 @@ Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 \author{
 Gianluca Baio, Anna Heath
 }
-\keyword{"Health}
-\keyword{"Value}
-\keyword{Information"}
-\keyword{economic}
-\keyword{evaluation"}
-\keyword{of}
+\keyword{hplot}

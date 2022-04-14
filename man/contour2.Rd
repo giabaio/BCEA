@@ -5,13 +5,7 @@
 \alias{contour2}
 \title{Specialised CE-plane Contour Plot}
 \usage{
-\method{contour2}{bcea}(
-  he,
-  comparison = NULL,
-  wtp = 25000,
-  graph_type = c("base", "ggplot2"),
-  ...
-)
+\method{contour2}{bcea}(he, comparison = NULL, wtp = 25000, graph = c("base", "ggplot2"), ...)
 
 contour2(he, ...)
 }
@@ -27,13 +21,13 @@ comparisons. Any subset of the possible comparisons can be selected (e.g.,
 \item{wtp}{The selected value of the willingness-to-pay. Default is
 \code{25000}.}
 
-\item{...}{Arguments to be passed to \code{\link{ceplane.plot}}. See the
-relative manual page for more details.}
-
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the three options \code{"base"},
 \code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
 Not all plotting functions have a \code{"plotly"} implementation yet.}
+
+\item{...}{Arguments to be passed to \code{\link{ceplane.plot}}. See the
+relative manual page for more details.}
 }
 \value{
 \item{contour}{ A ggplot item containing the requested plot.
@@ -90,8 +84,4 @@ Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 \author{
 Gianluca Baio, Andrea Berardi
 }
-\keyword{"Bayesian}
-\keyword{"Health}
-\keyword{economic}
-\keyword{evaluation"}
-\keyword{model"}
+\keyword{hplot}

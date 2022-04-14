@@ -124,9 +124,4 @@ Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 \author{
 Gianluca Baio, Andrea Berardi
 }
-\keyword{"Expected}
-\keyword{"Health}
-\keyword{Benefit"}
-\keyword{Incremental}
-\keyword{economic}
-\keyword{evaluation"}
+\keyword{hplot}
