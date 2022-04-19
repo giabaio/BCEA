@@ -72,7 +72,6 @@
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' 
 #' @keywords hplot
-#' @concept "Health economic evaluation" "Cost Effectiveness Plane"
 #' @export
 #' 
 #' @examples

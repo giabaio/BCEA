@@ -1,6 +1,8 @@
 # themes for ggplot functions ---------------------------------------------
 
-#'
+#' @name theme_bcea
+#' @keywords internal aplot
+#' 
 theme_default <- function() {
   
   theme_bw() %+replace%
@@ -20,25 +22,25 @@ theme_default <- function() {
           complete = TRUE)
 }
 
-
+#' @rdname theme_bcea
 #'
 theme_ceac <- function() {
   theme_default()  
 }
 
-
+#' @rdname theme_bcea
 #'
 theme_ceplane <- function() {
   theme_default()
 }
 
-
+#' @rdname theme_bcea
 #'
 theme_eib <- function() {
   theme_default()
 }
 
-
+#' @rdname theme_bcea
 #'
 theme_contour <- function() {
   theme_default()

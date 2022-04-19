@@ -1,6 +1,8 @@
 
+#' Quadrant Parameters
 #' requires just a single comparison group
-#'
+#' @keywords internal aplot
+#' 
 quadrant_params <- function(he, params) {
   
   p.ne <-

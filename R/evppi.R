@@ -149,8 +149,6 @@
 #' Nested Laplace Approximation. Statistics in Medicine.
 #' \url{https://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full}
 #' 
-#' @concept "Health economic evaluation" "Expected value of partial information"
-#' 
 #' @export
 #' 
 #' @examples

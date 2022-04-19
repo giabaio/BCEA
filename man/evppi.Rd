@@ -237,4 +237,3 @@ Nested Laplace Approximation. Statistics in Medicine.
 \author{
 Anna Heath, Gianluca Baio
 }
-\concept{"Health economic evaluation" "Expected value of partial information"}

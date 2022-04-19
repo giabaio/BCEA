@@ -3,7 +3,7 @@
 #'
 #' @template args-he 
 #' @param params List
-#'
+#' @keywords internal aplot
 #' @return
 #'
 add_contours <- function(he, params) {

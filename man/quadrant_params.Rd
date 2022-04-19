@@ -2,10 +2,14 @@
 % Please edit documentation in R/quadrant_params.R
 \name{quadrant_params}
 \alias{quadrant_params}
-\title{requires just a single comparison group}
+\title{Quadrant Parameters
+requires just a single comparison group}
 \usage{
 quadrant_params(he, params)
 }
 \description{
+Quadrant Parameters
 requires just a single comparison group
 }
+\keyword{aplot}
+\keyword{internal}

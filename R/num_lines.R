@@ -1,4 +1,4 @@
-# num_lines ---------------------------------------------------------------
+# num_lines
 
 
 #' @title Get number of lines

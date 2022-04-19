@@ -50,7 +50,6 @@
 #' 
 #' IQWIG (2009). General methods for the Assessment of the Relation of Benefits
 #' to Cost, Version 1.0. IQWIG, November 2009.
-#' @concept "Health economic evaluation" "Multiple comparisons"
 #' @importFrom graphics rect abline points legend box
 #' @importFrom grDevices colours
 #' 

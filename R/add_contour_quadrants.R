@@ -1,11 +1,11 @@
 
-#' add_contour_quadrants
+#' Add Contour Quadrants
 #'
 #' @template args-he
 #' @param params List
 #'
-#' @return
-#' @export
+#' @return 
+#' @keywords internal aplot
 #'
 add_contour_quadrants <- function(he, params) {
   
@@ -39,8 +39,11 @@ add_contour_quadrants <- function(he, params) {
 }
 
 
+#' Geom Quadrant Text
+#' 
 #' @template args-he
 #' @template args-graph
+#' @keywords internal aplot
 #' 
 geom_quad_txt <- function(he, graph_params) {
   

@@ -2,11 +2,12 @@
 % Please edit documentation in R/eib_params_cri.R
 \name{eib_params_cri}
 \alias{eib_params_cri}
-\title{eib_params_cri}
+\title{EIB Parameters CrI}
 \usage{
 eib_params_cri(he, graph_params)
 }
 \description{
-eib_params_cri
+EIB Parameters CrI
 }
+\keyword{aplot}
 \keyword{internal}

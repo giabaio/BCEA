@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_contour_quadrants.R
 \name{add_contour_quadrants}
 \alias{add_contour_quadrants}
-\title{add_contour_quadrants}
+\title{Add Contour Quadrants}
 \usage{
 add_contour_quadrants(he, params)
 }
@@ -16,5 +16,7 @@ modelling and the economic evaluation.}
 
 }
 \description{
-add_contour_quadrants
+Add Contour Quadrants
 }
+\keyword{aplot}
+\keyword{internal}

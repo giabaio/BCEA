@@ -92,7 +92,6 @@
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' @keywords manip
-#' @concept Health economic evaluation
 #' @import dplyr
 #' 
 #' @examples
