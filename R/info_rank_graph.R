@@ -86,17 +86,20 @@ info_rank_ggplot <- function(he, params) {
 #' 
 #' @param params Graph Parameters including data
 #' @export
+#' @importFrom cli cli_alert_warning
 #' 
 info_rank_plotly <- function(params) {
   
   if (exists("ca", where = params)) {
-    warning("Argument ca was specified in info.rank.plotly but is not an accepted argument.
-                Parameter will be ignored.")
+    cli::cli_alert_warning(
+      "Argument {.var ca} was specified in {.fn info.rank.plotly} but is not an accepted argument.
+       Parameter will be ignored.")
   }
   
   if (exists("cn", where = params)) {
-    warning("Argument cn was specified in info.rank.plotly but is not an accepted argument.
-                Parameter will be ignored.")
+    cli::cli_alert_warning(
+      "Argument {.var cn} was specified in {.fn info.rank.plotly} but is not an accepted argument.
+      Parameter will be ignored.")
   }
   
   res <- params$res

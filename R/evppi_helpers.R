@@ -232,12 +232,11 @@ fit.gp <- function(parameter,
 #' @param l l
 #' @return list
 #' @seealso \code{\link{evppi}}
+#' @importFrom cli cli_alert_warning
 #'
 make.proj <- function(parameter,
                       inputs,
-                      x,
-                      k,
-                      l) {
+                      x, k, l) {
   tic <- proc.time()
   scale <- 8 / (range(x)[2] - range(x)[1])
   scale.x <- scale * x - mean(scale * x)
@@ -298,12 +297,12 @@ make.proj <- function(parameter,
   
   if (dim.d > 2){
     cur <- c("effects", "costs")
-    warning(
-      paste(
-        "The dimension of the sufficient reduction for the incremental",
-        cur[k], ", column", l, ", is", dim.d,
-        ".Dimensions greater than 2 imply that the EVPPI approximation using INLA may be inaccurate.
-        Full residual checking using diag.evppi is required."))
+
+    cli::cli_alert_warning(
+      "The dimension of the sufficient reduction for the incremental
+      {.code cur[k]} column {.code l} is {.code dim.d}.
+      Dimensions greater than 2 imply that the EVPPI approximation using INLA may be inaccurate.
+      Full residual checking using {.fn diag.evppi} is required.")
   }
   names(time) <- "Time to fit find projections (seconds)"
   

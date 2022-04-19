@@ -59,21 +59,21 @@ prep_eib_params <- function(he, plot.cri, ...) {
 #' @param params Graph parameters
 #' @seealso \code{\link{prep_eib_params}}
 #' @return List of graph parameters
+#' @importFrom cli cli_alert_warning
 #' @keywords internal
 #' 
 validate_eib_params <- function(params) {
   
   if (params$alpha_cri < 0 || params$alpha_cri > 1) {
-    warning("Argument alpha must be between 0 and 1. Reset to default value 0.95.",
-            call. = FALSE)
+    cli::cli_alert_warning(
+      "Argument {.var alpha} must be between 0 and 1. Reset to default value 0.95.")
     params$alpha_cri <- 0.05
   }
   
   if (params$alpha_cri > 0.8 && params$cri.quantile) {
-    warning(
-      "It is recommended adopting the normal approximation of the credible interval for high values of alpha.
-       Please set the argument cri.quantile = FALSE to use the normal approximation.",
-      call. = FALSE)
+    cli::cli_alert_warning(
+      "It is recommended adopting the normal approximation of the credible interval for high values of {.var alpha}.
+       Please set the argument {.code cri.quantile = FALSE} to use the normal approximation.")
   }
   
   params

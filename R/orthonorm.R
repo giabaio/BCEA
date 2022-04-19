@@ -13,6 +13,7 @@
 # Packaged: 2021-10-08 16:32:42 UTC; Nathan
 # Repository: https://github.com/cran/ldr
 # Date/Publication: 2014-10-29 16:36:14
+#' @importFrom cli cli_alert_warning
 #
 orthonorm <- function (u) {
   if (is.null(u)) 
@@ -25,7 +26,8 @@ orthonorm <- function (u) {
   if (prod(abs(La.svd(u)$d) > 1e-08) == 0) 
     stop("collinears vectors in orthonorm")
   if (n < p) {
-    warning("There are too many vectors to orthonormalize in orthonorm.")
+    cli::cli_alert_warning(
+      "There are too many vectors to orthonormalize in orthonorm.")
     u <- as.matrix(u[, 1:p])
     n <- p
   }

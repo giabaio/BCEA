@@ -28,6 +28,7 @@ Imports:
 Depends:
     R (>= 3.5.0)
 Suggests:
+    cli,
     coda,
     grid,
     INLA,
