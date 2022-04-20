@@ -24,6 +24,7 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+<<<<<<< HEAD
     <a class="dropdown-item" href="../articles/bcea.html">Get Started</a>
     <a class="dropdown-item" href="../articles/ceac.html">Cost-Effectiveness Acceptability Curve Plots</a>
     <a class="dropdown-item" href="../articles/ceef.html">Cost-Effectiveness Efficiency Frontier</a>
@@ -31,6 +32,12 @@
     <a class="dropdown-item" href="../articles/eib.html">Expected Incremental Benefit Plot</a>
     <a class="dropdown-item" href="../articles/paired_vs_multiple_comps.html">Paired vs Multiple Comparisons</a>
     <a class="dropdown-item" href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+=======
+    <a class="dropdown-item" href="../articles/bcea.html">Get started</a>
+    <a class="dropdown-item" href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="../articles/index.html">More articles...</a>
+>>>>>>> vignettes
   </div>
 </li>
 <li class="active nav-item">
@@ -57,10 +64,76 @@
     </div>
 
     <div class="section level2">
+<<<<<<< HEAD
 <h2 class="pkg-version" data-toc-text="2.4.1" id="bcea-241">BCEA 2.4.1<a class="anchor" aria-label="anchor" href="#bcea-241"></a></h2>
 <p>Oct 2021</p>
 <div class="section level3">
 <h3 id="major-refactoring-2-4-1">Major refactoring<a class="anchor" aria-label="anchor" href="#major-refactoring-2-4-1"></a></h3>
+=======
+<h2 class="pkg-version" data-toc-text="2.4.1.2" id="bcea-2412">BCEA 2.4.1.2<a class="anchor" aria-label="anchor" href="#bcea-2412"></a></h2>
+<p>April 2022</p>
+<div class="section level3">
+<h3 id="bug-fixes-2-4-1-2">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-4-1-2"></a></h3>
+<ul><li>
+<code>ceplane_ggplot()</code> missing legend</li>
+<li>Legend bug in <code><a href="../reference/evppi.html">evppi()</a></code>
+</li>
+<li>Arguments in consistent same order as
+<code><a href="../reference/ceplane.plot.html">ceplane.plot()</a></code>
+</li>
+<li>
+<code><a href="../reference/ceplane_plot_graph.html">ceplane_plot_base()</a></code> wasn’t showing grey area. Fixed by
+removing <code>alpha</code> transparency</li>
+<li>
+<code><a href="../reference/ceac.plot.html">ceac.plot()</a></code> wasn’t showing confidence interval by
+default for one comparison</li>
+<li>Typo fixed in dropping dimension in <code><a href="../reference/compute_vi.html">compute_vi()</a></code>
+</li>
+<li>
+<code>setReferenceGroup()</code> for CEAC plot legend error; doesn’t
+use supplied names but generic intervention 1, intervention 2, …
+(<a href="https://github.com/n8thangreen/BCEA/issues/82" class="external-link">#82</a>)</li>
+<li>Missing <code><a href="../reference/multi.ce.html">multi.ce()</a></code> line for reference group (<a href="https://github.com/n8thangreen/BCEA/issues/80" class="external-link">#80</a>)</li>
+</ul></div>
+<div class="section level3">
+<h3 id="miscellaneous-2-4-1-2">Miscellaneous<a class="anchor" aria-label="anchor" href="#miscellaneous-2-4-1-2"></a></h3>
+<ul><li>Use <code>cli</code> package for warning messages</li>
+<li>Clean <a href="https://github.com/keywords" class="external-link">@keywords</a> in Roxygen
+<ul><li>Removed all the internal helper functions from the Manual by using
+<a href="https://github.com/keyword" class="external-link">@keyword</a> internal</li>
+</ul></li>
+<li>Refactor contour plots</li>
+<li>Plot functions take more standard <code>ggplot2</code> format style
+arguments e.g. as list
+<ul><li>Extend some function (<code><a href="../reference/ceac.plot.html">ceac.plot()</a></code>) to take more style
+arguments than before for e.g. colour of lines, types of points and line
+thickness.</li>
+<li>Resuse <code><a href="../reference/ceplane.plot.html">ceplane.plot()</a></code> code in
+<code><a href="../reference/contour.html">contour()</a></code>
+</li>
+</ul></li>
+<li>
+<code>goodpractice</code> package suggested changes
+<ul><li>line length, <code><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len()</a></code>, remove <code>;</code>
+</li>
+</ul></li>
+<li>Contributor guidelines (<a href="https://github.com/n8thangreen/BCEA/issues/93" class="external-link">#93</a>)</li>
+<li>Deprecated functions document</li>
+<li>
+<code><a href="../reference/contour2.html">contour2()</a></code> changed so <code>xlim</code>,
+<code>ylim</code> arguments are optional; the same as
+<code><a href="../reference/ceplane.plot.html">ceplane.plot()</a></code> since they are passes to it</li>
+<li>
+<code><a href="../reference/contour.html">contour()</a></code> and <code><a href="../reference/ceplane.plot.html">ceplane.plot()</a></code> vignettes
+written</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.4.1.1" id="bcea-2411">BCEA 2.4.1.1<a class="anchor" aria-label="anchor" href="#bcea-2411"></a></h2>
+<p>Oct 2021</p>
+<div class="section level3">
+<h3 id="major-refactoring-2-4-1-1">Major refactoring<a class="anchor" aria-label="anchor" href="#major-refactoring-2-4-1-1"></a></h3>
+>>>>>>> vignettes
 <ul><li>Code base improved robustness and extensibility.</li>
 <li>
 <code><a href="../reference/bcea.html">bcea()</a></code> is now a helper function which calls the
@@ -103,7 +176,11 @@ S3 methods by JAGS, BUGS, Stan and other R data types.</li>
 files.</li>
 </ul></div>
 <div class="section level3">
+<<<<<<< HEAD
 <h3 id="new-features-2-4-1">New features<a class="anchor" aria-label="anchor" href="#new-features-2-4-1"></a></h3>
+=======
+<h3 id="new-features-2-4-1-1">New features<a class="anchor" aria-label="anchor" href="#new-features-2-4-1-1"></a></h3>
+>>>>>>> vignettes
 <ul><li>Extend ways to set comparison interventions. Subsets of comparison
 can still be set in a call to a plotting function as before. Now subsets
 can be set in both the original <code><a href="../reference/bcea.html">bcea()</a></code> construction or
@@ -119,7 +196,11 @@ rather than creating new one (think decorator pattern).</li>
 <code><a href="../reference/bcea.html">bcea()</a></code> methods for JAGS, WinBUGS, Stan (<a href="https://github.com/n8thangreen/BCEA/issues/76" class="external-link">#76</a>)</li>
 </ul></div>
 <div class="section level3">
+<<<<<<< HEAD
 <h3 id="miscellaneous-2-4-1">Miscellaneous<a class="anchor" aria-label="anchor" href="#miscellaneous-2-4-1"></a></h3>
+=======
+<h3 id="miscellaneous-2-4-1-1">Miscellaneous<a class="anchor" aria-label="anchor" href="#miscellaneous-2-4-1-1"></a></h3>
+>>>>>>> vignettes
 <ul><li>Additional help documentation and examples.</li>
 <li>New vignettes about plotting and comparison intervention
 setting.</li>

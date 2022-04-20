@@ -24,6 +24,7 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+<<<<<<< HEAD
     <a class="dropdown-item" href="../articles/bcea.html">Get Started</a>
     <a class="dropdown-item" href="../articles/ceac.html">Cost-Effectiveness Acceptability Curve Plots</a>
     <a class="dropdown-item" href="../articles/ceef.html">Cost-Effectiveness Efficiency Frontier</a>
@@ -31,6 +32,12 @@
     <a class="dropdown-item" href="../articles/eib.html">Expected Incremental Benefit Plot</a>
     <a class="dropdown-item" href="../articles/paired_vs_multiple_comps.html">Paired vs Multiple Comparisons</a>
     <a class="dropdown-item" href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+=======
+    <a class="dropdown-item" href="../articles/bcea.html">Get started</a>
+    <a class="dropdown-item" href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="../articles/index.html">More articles...</a>
+>>>>>>> vignettes
   </div>
 </li>
 <li class="nav-item">
@@ -53,7 +60,11 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Contour Cost-Effectiveness Plane</h1>
+<<<<<<< HEAD
       <small class="dont-index">Source: <a href="https://github.com/n8thangreen/BCEA/blob/HEAD/R/contour_base.R" class="external-link"><code>R/contour_base.R</code></a>, <a href="https://github.com/n8thangreen/BCEA/blob/HEAD/R/contour_ggplot.R" class="external-link"><code>R/contour_ggplot.R</code></a></small>
+=======
+      <small class="dont-index">Source: <a href="https://github.com/n8thangreen/BCEA/blob/HEAD/R/contour_graph.R" class="external-link"><code>R/contour_graph.R</code></a></small>
+>>>>>>> vignettes
       <div class="d-none name"><code>contour_graph.Rd</code></div>
     </div>
 
@@ -63,6 +74,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
+<<<<<<< HEAD
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">contour_base</span><span class="op">(</span>
   <span class="va">he</span>,
   <span class="va">params</span>,
@@ -86,6 +98,11 @@
   <span class="va">extra_args</span>,
   comparison <span class="op">=</span> <span class="fl">1</span>
 <span class="op">)</span></code></pre></div>
+=======
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">contour_base</span><span class="op">(</span><span class="va">he</span>, <span class="va">pos_legend</span>, <span class="va">graph_params</span>, <span class="va">...</span><span class="op">)</span>
+
+<span class="fu">contour_ggplot</span><span class="op">(</span><span class="va">he</span>, <span class="va">pos_legend</span>, <span class="va">graph_params</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+>>>>>>> vignettes
     </div>
 
     <div class="section level2">
@@ -93,6 +110,7 @@
     <dl><dt>he</dt>
 <dd><p>A <code>bcea</code> object containing the results of the Bayesian
 modelling and the economic evaluation.</p></dd>
+<<<<<<< HEAD
 <dt>params</dt>
 <dd><p>Plot parameters</p></dd>
 <dt>scale</dt>
@@ -110,6 +128,19 @@ modelling and the economic evaluation.</p></dd>
 <dt>comparison</dt>
 <dd><p>Comparison interventions; default 1</p></dd>
 </dl></div>
+=======
+<dt>pos_legend</dt>
+<dd><p>Legend position</p></dd>
+<dt>graph_params</dt>
+<dd><p>Plot parameters; list</p></dd>
+<dt>...</dt>
+<dd><p>Additional arguments</p></dd>
+</dl></div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><code><a href="contour.html">contour</a></code></p></div>
+    </div>
+>>>>>>> vignettes
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

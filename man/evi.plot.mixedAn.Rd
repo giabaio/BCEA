@@ -96,4 +96,3 @@ Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
 \author{
 Gianluca Baio, Andrea Berardi
 }
-\concept{"Health economic evaluation" "Mixed analysis"}

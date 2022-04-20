@@ -37,7 +37,6 @@
 #' doi:10.1177/0962280211419832.
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
-#' @concept "Health economic evaluation" "Mixed analysis"
 #' 
 #' @examples
 #' 

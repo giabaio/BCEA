@@ -40,7 +40,7 @@
 #' 
 #' ceac.plot(he, graph = "ggplot2",
 #'           title = "my title",
-#'           line = list(colors = "green"),
+#'           line = list(color = "green"),
 #'           theme = ggplot2::theme_dark())
 #'
 #' ## more interventions
@@ -50,9 +50,9 @@
 #'           title = "my title",
 #'           theme = ggplot2::theme_dark(),
 #'           pos = TRUE,
-#'           line = list(colors = mypalette))
+#'           line = list(color = mypalette))
 #
-#' ceac.plot(he, graph = "base", title = "my title", line = list(colors = "green"))
+#' ceac.plot(he, graph = "base", title = "my title", line = list(color = "green"))
 #
 #' ceac.plot(he2, graph = "base")
 #' 
@@ -68,7 +68,7 @@ ceac.plot.bcea <- function(he,
   
   he <- setComparisons(he, comparison)
   
-  graph_params <- prepare_ceac_params(...)
+  graph_params <- prepare_ceac_params(he, ...)
   
   if (is_baseplot(graph)) {
     
@@ -114,10 +114,12 @@ ceac.plot.bcea <- function(he,
 #' 
 #' @template args-he
 #' @param ...  If \code{graph = "ggplot2"} and a named theme object is supplied,
-#'   it will be added to the ggplot object. Additional arguments:
+#'   it will be passed to the ggplot2 object. The usual ggplot2 syntax is used.
+#'   Additional arguments:
 #'  \itemize{
-#'   \item \code{line_colors}: specifies the line colour(s) - all graph types.
-#'   \item \code{line_types}: specifies the line type(s) as lty numeric values - all graph types.
+#'   \item \code{line = list(color)}: specifies the line colour(s) - all graph types.
+#'   \item \code{line = list(type)}: specifies the line type(s) as \code{lty} numeric values - all graph types.
+#'   \item \code{line = list(size)}: specifies the line width(s) as numeric values - all graph types.
 #'   \item \code{area_include}: logical, include area under the CEAC curves - plotly only.
 #'   \item \code{area_color}: specifies the AUC colour - plotly only.}
 #' @aliases ceac.plot

@@ -38,8 +38,4 @@ Analysis with the R package BCEA. Springer
 \author{
 Gianluca Baio, Andrea Berardi, Anna Heath, Nathan Green
 }
-\keyword{"Bayesian}
-\keyword{"Health}
-\keyword{economic}
-\keyword{evaluation"}
-\keyword{models"}
+\keyword{package}

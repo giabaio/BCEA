@@ -30,6 +30,7 @@ effectiveness (x-axis)."><meta property="og:image" content="/logo.png"><!-- math
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+<<<<<<< HEAD
     <a class="dropdown-item" href="../articles/bcea.html">Get Started</a>
     <a class="dropdown-item" href="../articles/ceac.html">Cost-Effectiveness Acceptability Curve Plots</a>
     <a class="dropdown-item" href="../articles/ceef.html">Cost-Effectiveness Efficiency Frontier</a>
@@ -37,6 +38,12 @@ effectiveness (x-axis)."><meta property="og:image" content="/logo.png"><!-- math
     <a class="dropdown-item" href="../articles/eib.html">Expected Incremental Benefit Plot</a>
     <a class="dropdown-item" href="../articles/paired_vs_multiple_comps.html">Paired vs Multiple Comparisons</a>
     <a class="dropdown-item" href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+=======
+    <a class="dropdown-item" href="../articles/bcea.html">Get started</a>
+    <a class="dropdown-item" href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="../articles/index.html">More articles...</a>
+>>>>>>> vignettes
   </div>
 </li>
 <li class="nav-item">
@@ -75,6 +82,7 @@ effectiveness (x-axis).</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="co"># S3 method for bcea</span>
 <span class="fu">contour</span><span class="op">(</span>
   <span class="va">he</span>,
+<<<<<<< HEAD
   scale <span class="op">=</span> <span class="fl">0.5</span>,
   nlevels <span class="op">=</span> <span class="fl">4</span>,
   levels <span class="op">=</span> <span class="cn">NULL</span>,
@@ -82,6 +90,11 @@ effectiveness (x-axis).</p>
   xlim <span class="op">=</span> <span class="cn">NULL</span>,
   ylim <span class="op">=</span> <span class="cn">NULL</span>,
   graph <span class="op">=</span> <span class="fu"><a href="Smoking.html">c</a></span><span class="op">(</span><span class="st">"base"</span>, <span class="st">"ggplot2"</span><span class="op">)</span>,
+=======
+  pos <span class="op">=</span> <span class="fu"><a href="Smoking.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,
+  graph <span class="op">=</span> <span class="fu"><a href="Smoking.html">c</a></span><span class="op">(</span><span class="st">"base"</span>, <span class="st">"ggplot2"</span><span class="op">)</span>,
+  comparison <span class="op">=</span> <span class="cn">NULL</span>,
+>>>>>>> vignettes
   <span class="va">...</span>
 <span class="op">)</span>
 
@@ -93,6 +106,7 @@ effectiveness (x-axis).</p>
     <dl><dt>he</dt>
 <dd><p>A <code>bcea</code> object containing the results of the Bayesian
 modelling and the economic evaluation.</p></dd>
+<<<<<<< HEAD
 <dt>scale</dt>
 <dd><p>Scales the plot as a function of the observed standard deviation.</p></dd>
 <dt>nlevels</dt>
@@ -100,6 +114,8 @@ modelling and the economic evaluation.</p></dd>
 <dt>levels</dt>
 <dd><p>Numeric vector of levels at which to draw contour lines.
 Will be ignored using <code>graph="ggplot2"</code>.</p></dd>
+=======
+>>>>>>> vignettes
 <dt>pos</dt>
 <dd><p>Parameter to set the position of the legend (only relevant for
 multiple interventions, ie more than 2 interventions being compared).
@@ -110,6 +126,7 @@ which specifies the relative position on the x and y axis respectively, or
 alternatively it can be in form of a logical variable, with <code>FALSE</code>
 indicating to use the default position and <code>TRUE</code> to place it on the
 bottom of the plot.</p></dd>
+<<<<<<< HEAD
 <dt>xlim</dt>
 <dd><p>The range of the plot along the x-axis. If NULL (default) it is
 determined by the range of the simulated values for <code>delta_e</code></p></dd>
@@ -122,6 +139,27 @@ plotting. Should (partial-) match the two options <code>"base"</code> or
 <code>"ggplot2"</code>. Default value is <code>"base"</code>.</p></dd>
 <dt>...</dt>
 <dd><p>Additional arguments</p></dd>
+=======
+<dt>graph</dt>
+<dd><p>A string used to select the graphical engine to use for
+plotting. Should (partial-)match the three options <code>"base"</code>,
+<code>"ggplot2"</code> or <code>"plotly"</code>. Default value is <code>"base"</code>.
+Not all plotting functions have a <code>"plotly"</code> implementation yet.</p></dd>
+<dt>comparison</dt>
+<dd><p>Selects the comparator, in case of more than two
+interventions being analysed. Default as NULL plots all the comparisons
+together. Any subset of the possible comparisons can be selected (e.g.,
+<code>comparison=c(1,3)</code> or <code>comparison=2</code>).</p></dd>
+<dt>...</dt>
+<dd><p>Additional graphical arguments. The usual ggplot2 syntax is used regardless of graph type.</p><ul><li><p><code>xlim</code>: The range of the plot along the x-axis. If NULL (default) it is
+            determined by the range of the simulated values for <code>delta_e</code></p></li>
+<li><p><code>ylim</code>: The range of the plot along the y-axis. If NULL (default) it is
+            determined by the range of the simulated values for <code>delta_c</code></p></li>
+<li><p><code>scale</code>: Scales the plot as a function of the observed standard deviation.</p></li>
+<li><p><code>levels</code>: Numeric vector of levels at which to draw contour lines. Quantiles 0&lt;p&lt;1.</p></li>
+<li><p><code>nlevels</code>: Number of levels to be plotted in the contour.</p></li>
+</ul></dd>
+>>>>>>> vignettes
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -157,7 +195,11 @@ doi:10.1177/0962280211419832.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="Smoking.html">data</a></span><span class="op">(</span><span class="va">Vaccine</span><span class="op">)</span></span>
 <span class="r-in"></span>
+<<<<<<< HEAD
 <span class="r-in"><span class="co"># Runs the health economic evaluation using BCEA</span></span>
+=======
+<span class="r-in"><span class="co"># run the health economic evaluation using BCEA</span></span>
+>>>>>>> vignettes
 <span class="r-in"><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="bcea.html">bcea</a></span><span class="op">(</span>e<span class="op">=</span><span class="va">e</span>,</span>
 <span class="r-in">          c<span class="op">=</span><span class="va">c</span>,              <span class="co"># defines the variables of </span></span>
 <span class="r-in">                            <span class="co">#  effectiveness and cost</span></span>
@@ -177,22 +219,44 @@ doi:10.1177/0962280211419832.</p>
 <span class="r-in"><span class="fu">contour</span><span class="op">(</span><span class="va">m</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="contour-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
+<<<<<<< HEAD
 <span class="r-in"><span class="co"># Plots the contour and scatterplot of the bivariate </span></span>
 <span class="r-in"><span class="co"># distribution of (Delta_e, Delta_c)</span></span>
+=======
+>>>>>>> vignettes
 <span class="r-in"><span class="fu">contour</span><span class="op">(</span><span class="va">m</span>,          <span class="co"># uses the results of the economic evaluation </span></span>
 <span class="r-in">                    <span class="co">#  (a "bcea" object)</span></span>
 <span class="r-in">      comparison<span class="op">=</span><span class="fl">1</span>, <span class="co"># if more than 2 interventions, selects the </span></span>
 <span class="r-in">                    <span class="co">#  pairwise comparison </span></span>
+<<<<<<< HEAD
 <span class="r-in">      nlevels<span class="op">=</span><span class="fl">4</span>,    <span class="co"># selects the number of levels to be </span></span>
 <span class="r-in">                    <span class="co">#  plotted (default=4)</span></span>
 <span class="r-in">      levels<span class="op">=</span><span class="cn">NULL</span>,  <span class="co"># specifies the actual levels to be plotted </span></span>
 <span class="r-in">                    <span class="co">#  (default=NULL, so that R will decide)</span></span>
 <span class="r-in">      scale<span class="op">=</span><span class="fl">0.5</span>,    <span class="co"># scales the bandwidths for both x- and </span></span>
+=======
+<span class="r-in">      nlevels<span class="op">=</span><span class="fl">10</span>,   <span class="co"># selects the number of levels to be </span></span>
+<span class="r-in">                    <span class="co">#  plotted (default=4)</span></span>
+<span class="r-in">      levels<span class="op">=</span><span class="cn">NULL</span>,  <span class="co"># specifies the actual levels to be plotted </span></span>
+<span class="r-in">                    <span class="co">#  (default=NULL, so that R will decide)</span></span>
+<span class="r-in">      scale<span class="op">=</span><span class="fl">1</span>,      <span class="co"># scales the bandwidths for both x- and </span></span>
+>>>>>>> vignettes
 <span class="r-in">                    <span class="co">#  y-axis (default=0.5)</span></span>
 <span class="r-in">      graph<span class="op">=</span><span class="st">"base"</span>  <span class="co"># uses base graphics to produce the plot</span></span>
 <span class="r-in"><span class="op">)</span></span>
 <span class="r-plt img"><img src="contour-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
+<<<<<<< HEAD
+=======
+<span class="r-in"><span class="co"># use the smoking cessation dataset</span></span>
+<span class="r-in"><span class="fu"><a href="Smoking.html">data</a></span><span class="op">(</span><span class="va">Smoking</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span>, ref <span class="op">=</span> <span class="fl">4</span>, intervention <span class="op">=</span> <span class="va">treats</span>, Kmax <span class="op">=</span> <span class="fl">500</span>, plot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">contour</span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span>
+<span class="r-plt img"><img src="contour-5.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span class="fu">contour</span><span class="op">(</span><span class="va">m</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></span>
+<span class="r-plt img"><img src="contour-6.png" alt="" width="700" height="433"></span>
+<span class="r-in"></span>
+>>>>>>> vignettes
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

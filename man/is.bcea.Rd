@@ -11,7 +11,8 @@ is.bcea(he)
 modelling and the economic evaluation.}
 }
 \value{
-\code{is.bcea} returns TRUE or FALSE depending on whether its argument is a bcea class object.
+\code{is.bcea} returns TRUE or FALSE depending on whether its argument
+ is a bcea class object.
 }
 \description{
 Check bcea Class

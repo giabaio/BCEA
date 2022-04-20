@@ -18,7 +18,7 @@
 #' @references
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' 
-#' @keywords "Health economic evaluation" "Expected value of information"
+#' @keywords hplot
 #' 
 #' @export
 #' @examples

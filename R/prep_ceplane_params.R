@@ -43,10 +43,11 @@ prep_ceplane_params <- function(he, wtp, ...) {
          xlim = axes_lim$x,
          ylim = axes_lim$y,
          point = list(
-           colors = grey.colors(n = he$n_comparisons,
-                                end = 0.7,
-                                alpha = 1),
-           sizes = 0.35),
+           color = grey.colors(n = he$n_comparisons,
+                               end = 0.7,
+                               alpha = 1),
+           size = 0.35,
+           shape = rep(20, he$n_comparisons)),
          area_include = TRUE,
          ICER_size = 2,
          area = list(

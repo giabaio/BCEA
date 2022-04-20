@@ -59,12 +59,15 @@ reference:
   - Vaccine
 
 
-# articles:
-#   - bcea
-#   - Set_bcea_parameters
-#   - ceac
-#   - ceef
-#   - CEriskav
-#   - eib
-#   - paired_vs_multiple_comps
+articles:
+  - bcea
+  - Set_bcea_parameters
+  - ceac
+  - ceef
+  - ceplane
+  - CEriskav
+  - contour
+  - eib
+  - paired_vs_multiple_comps
+
   

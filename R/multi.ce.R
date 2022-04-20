@@ -17,7 +17,7 @@
 #' @author Gianluca Baio
 #' @seealso \code{\link{bcea}},
 #'          \code{\link{ceaf.plot}}
-#' @keywords "Health economic evaluation" "Multiple comparison"
+#' @keywords hplot dplot
 #' 
 #' @examples
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 

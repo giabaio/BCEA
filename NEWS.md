@@ -1,4 +1,36 @@
-# BCEA 2.4.1
+# BCEA 2.4.1.2
+April 2022
+
+## Bug fixes
+
+* `ceplane_ggplot()` missing legend
+* Legend bug in `evppi()`
+* Arguments in consistent same order as `ceplane.plot()`
+* `ceplane_plot_base()` wasn't showing grey area. Fixed by removing `alpha` transparency
+* `ceac.plot()` wasn't showing confidence interval by default for one comparison
+* Typo fixed in dropping dimension in `compute_vi()`
+* `setReferenceGroup()` for CEAC plot legend error; doesn't use supplied names but generic intervention 1, intervention 2, ... (#82)
+* Missing `multi.ce()` line for reference group (#80)
+
+## Miscellaneous
+
+* Use `cli` package for warning messages
+* Clean @keywords in Roxygen
+  * Removed all the internal helper functions from the Manual by using @keyword internal
+* Refactor contour plots
+* Plot functions take more standard `ggplot2` format style arguments e.g. as list
+  * Extend some function (`ceac.plot()`) to take more style arguments than before for e.g. colour of lines, types of points and line thickness.
+  * Resuse `ceplane.plot()` code in `contour()`
+* `goodpractice` package suggested changes
+  * line length, `seq_len()`, remove `;`
+* Contributor guidelines (#93)
+* Deprecated functions document
+* `contour2()` changed so `xlim`, `ylim` arguments are optional; the same as `ceplane.plot()` since they are passes to it
+* `contour()` and `ceplane.plot()` vignettes written
+
+
+
+# BCEA 2.4.1.1
 Oct 2021
 
 ## Major refactoring

@@ -31,7 +31,7 @@
 #' doi:10.1177/0962280211419832.
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
-#' @keywords Health economic evaluation Risk aversion
+#' @keywords hplot
 #' 
 #' @importFrom grDevices dev.new devAskNewPage
 #' @importFrom grid unit

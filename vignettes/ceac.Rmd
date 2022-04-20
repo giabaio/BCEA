@@ -70,7 +70,7 @@ Other plotting arguments can be specified such as title, line colours and theme.
 ceac.plot(he,
           graph = "ggplot2",
           title = "my title",
-          line = list(colors = "green"),
+          line = list(color = "green"),
           theme = theme_dark())
 ```
 
@@ -111,14 +111,14 @@ ceac.plot(he)
 ceac.plot(he,
           graph = "base",
           title = "my title",
-          line = list(colors = "green"))
+          line = list(color = "green"))
 ```
 
 ```{r}
 ceac.plot(he,
           graph = "ggplot2",
           title = "my title",
-          line = list(colors = "green"))
+          line = list(color = "green"))
 ```
 
 Reposition legend.
@@ -146,13 +146,13 @@ mypalette <- RColorBrewer::brewer.pal(3, "Accent")
 ceac.plot(he,
           graph = "base",
           title = "my title",
-          line = list(colors = mypalette),
+          line = list(color = mypalette),
           pos = FALSE)
 
 ceac.plot(he,
           graph = "ggplot2",
           title = "my title",
-          line = list(colors = mypalette),
+          line = list(color = mypalette),
           pos = FALSE)
 ```
 
@@ -187,7 +187,7 @@ ceac.plot(he, graph = "base")
 ceac.plot(he,
           graph = "base",
           title = "my title",
-          line = list(colors = "green"),
+          line = list(color = "green"),
           pos = FALSE)
 
 mypalette <- RColorBrewer::brewer.pal(4, "Dark2")
@@ -195,7 +195,7 @@ mypalette <- RColorBrewer::brewer.pal(4, "Dark2")
 ceac.plot(he,
           graph = "base",
           title = "my title",
-          line = list(colors = mypalette),
+          line = list(color = mypalette),
           pos = c(0,1))
 ```
 
@@ -203,7 +203,7 @@ ceac.plot(he,
 ceac.plot(he,
           graph = "ggplot2",
           title = "my title",
-          line = list(colors = mypalette),
+          line = list(color = mypalette),
           pos = c(0,1))
 ```
 

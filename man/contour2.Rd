@@ -5,13 +5,7 @@
 \alias{contour2}
 \title{Specialised CE-plane Contour Plot}
 \usage{
-\method{contour2}{bcea}(
-  he,
-  comparison = NULL,
-  wtp = 25000,
-  graph_type = c("base", "ggplot2"),
-  ...
-)
+\method{contour2}{bcea}(he, comparison = NULL, wtp = 25000, graph = c("base", "ggplot2"), ...)
 
 contour2(he, ...)
 }
@@ -20,17 +14,17 @@ contour2(he, ...)
 modelling and the economic evaluation.}
 
 \item{comparison}{The comparison being plotted. Default to \code{NULL}
-chooses the first comparison if \code{graph_type="base"}. If
-\code{graph_type="ggplot2"} the default value will choose all the possible
+If \code{graph_type="ggplot2"} the default value will choose all the possible
 comparisons. Any subset of the possible comparisons can be selected (e.g.,
 \code{comparison=c(1,3)}).}
 
 \item{wtp}{The selected value of the willingness-to-pay. Default is
 \code{25000}.}
 
-\item{graph_type}{A string used to select the graphical engine to use for
-plotting. Should (partial-)match the two options \code{"base"} or
-\code{"ggplot2"}. Default value is \code{"base"}.}
+\item{graph}{A string used to select the graphical engine to use for
+plotting. Should (partial-)match the three options \code{"base"},
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
+Not all plotting functions have a \code{"plotly"} implementation yet.}
 
 \item{...}{Arguments to be passed to \code{\link{ceplane.plot}}. See the
 relative manual page for more details.}
@@ -69,10 +63,10 @@ contour2(m,
 
 ## vaccination example
 data(Vaccine)
-treats = c("Status quo","Vaccination")
-m <- bcea(e=e,c=c,ref=2,interventions=treats,Kmax=50000)
+treats = c("Status quo", "Vaccination")
+m <- bcea(e=e, c=c, ref = 2, interventions = treats, Kmax = 50000)
 contour2(m)
-contour2(m, wtp=100)
+contour2(m, wtp = 100)
 
 }
 \references{
@@ -90,8 +84,4 @@ Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 \author{
 Gianluca Baio, Andrea Berardi
 }
-\keyword{"Bayesian}
-\keyword{"Health}
-\keyword{economic}
-\keyword{evaluation"}
-\keyword{model"}
+\keyword{hplot}

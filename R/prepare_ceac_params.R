@@ -1,15 +1,17 @@
 
 #' @keywords dplot
 #' 
-prepare_ceac_params <- function(...) {
+prepare_ceac_params <- function(he, ...) {
   
   extra_params <- list(...)
   
   # defaults
   
-  plot_params <- list(area = list(include = TRUE,
+  plot_params <- list(area = list(include = FALSE,
                                   color = NULL),
-                      line = list(colors = "black"))
+                      line = list(color = "black",
+                                  size = 1,
+                                  type = 1:num_lines(he)))
   
   annot_params <- list(title = "Cost Effectiveness Acceptability Curve",
                        x = "Willingness to pay",
@@ -21,6 +23,6 @@ prepare_ceac_params <- function(...) {
   annot_params <- modifyList(annot_params, annot_extra_params)
   plot_params <- modifyList(plot_params, plot_extra_params)
   
-  list(annot = annot_params,
-       plot = plot_params)
+  c(plot_params,
+    list(annot = annot_params))
 }
