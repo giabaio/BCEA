@@ -68,7 +68,7 @@ ceac.plot.bcea <- function(he,
   
   he <- setComparisons(he, comparison)
   
-  graph_params <- prepare_ceac_params(...)
+  graph_params <- prepare_ceac_params(he, ...)
   
   if (is_baseplot(graph)) {
     

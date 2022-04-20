@@ -1,7 +1,7 @@
 Package: BCEA
 Type: Package
 Title: Bayesian Cost Effectiveness Analysis
-Version: 2.4.1.1
+Version: 2.4.1.2
 Authors@R: c(
     person("Gianluca", "Baio",
             email = "gianluca@stats.ucl.ac.uk",

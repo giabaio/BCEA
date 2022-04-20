@@ -43,7 +43,7 @@ parameter EVPPI and the SPDE-INLA method for larger parameter subsets."><meta pr
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/giabaio/BCEA/" aria-label="github">
+  <a class="external-link nav-link" href="https://github.com/n8thangreen/BCEA/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -57,7 +57,7 @@ parameter EVPPI and the SPDE-INLA method for larger parameter subsets."><meta pr
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Expected Value of Perfect Partial Information (EVPPI) for Selected
 Parameters</h1>
-      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/HEAD/R/evppi.R" class="external-link"><code>R/evppi.R</code></a>, <a href="https://github.com/giabaio/BCEA/blob/HEAD/R/evppi.default.R" class="external-link"><code>R/evppi.default.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/n8thangreen/BCEA/blob/HEAD/R/evppi.R" class="external-link"><code>R/evppi.R</code></a>, <a href="https://github.com/n8thangreen/BCEA/blob/HEAD/R/evppi.default.R" class="external-link"><code>R/evppi.default.R</code></a></small>
       <div class="d-none name"><code>evppi.Rd</code></div>
     </div>
 
@@ -110,7 +110,7 @@ GAM regression.
 - For multi-parameter:
 INLA/SPDE. However, it is possible (mainly for backward compatibility) to
 use different methods. For single-parameter, the user can specify the method
-of Sadatsafavi et al or the method of Strong &amp; Oakley. In order to do so, it
+of Sadatsafavi <em>et al.</em> or the method of Strong &amp; Oakley. In order to do so, it
 is necessary to include the extra parameter <code>method</code> which takes as
 value a string <code>"sad"</code> in the former case and a string <code>"so"</code> in
 the latter. In case "sal" is selected, then it is possible to also specify
@@ -153,9 +153,9 @@ parameters for which the EVPPI was calculated, used for plotting the EVPPI.</p><
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The single parameter EVPPI has been calculated using the non-parametric GAM
-regression developed by Strong et al. (2014). The multi-parameter EVPPI is
+regression developed by Strong <em>et al.</em> (2014). The multi-parameter EVPPI is
 calculated using the SPDE-INLA regression method for Gaussian Process
-regression developed by Heath et al. (2015).</p>
+regression developed by Heath <em>et al.</em> (2015).</p>
 <p>This function has been completely changed and restructured to make it possible
 to change regression method.
 The method argument can now be given as a list. The first element element in the
@@ -184,7 +184,7 @@ notation <code>formula = "s(p1) + s(p2)"</code>. This may lead to worse accuracy
 the estimates.</p>
     </div>
     <div class="section level2">
-    <h2 id="strong-et-al-gp-regression">Strong et al. GP regression<a class="anchor" aria-label="anchor" href="#strong-et-al-gp-regression"></a></h2>
+    <h2 id="strong-et-al-gp-regression">Strong <em>et al.</em> GP regression<a class="anchor" aria-label="anchor" href="#strong-et-al-gp-regression"></a></h2>
     
 
 <p>This is used if <code>method="GP"</code> (BCEA will also accept the specification
@@ -196,7 +196,7 @@ PSA runs that should be used to estimate the hyperparameters of the model
     <h2 id="inla-related-options">INLA-related options<a class="anchor" aria-label="anchor" href="#inla-related-options"></a></h2>
     
 
-<p>These are all rather technical and are described in detail in Baio et al. (2017).
+<p>These are all rather technical and are described in detail in Baio <em>et al.</em> (2017).
 The optional parameter vector <code>int.ord</code> can take integer values (c(1,1) is
 default) and will force the predictor to include interactions: if
 <code>int.ord = c(k, h)</code>, then all k-way interactions will be used for the
@@ -232,17 +232,19 @@ use GAM if the number of parameters is &lt;5 and INLA otherwise.</p>
     <p>Strong M., Oakley J. and Brennan A. (2014). Estimating
 multi-parameter partial Expected Value of Perfect Information from a
 probabilistic sensitivity analysis sample: a non-parametric regression
-approach. Medical Decision Making.</p>
+approach. Medical Decision Making.
+<a href="https://doi.org/10.1177/0272989X13505910" class="external-link">https://doi.org/10.1177/0272989X13505910</a></p>
 <p>Sadatsafavi M., Bansback N., Zafari Z., Najafzadeh M., Marra C. (2013). Need
 for speed: an efficient algorithm for calculation of single-parameter
-expected value of partial perfect information. Value in Health.</p>
+expected value of partial perfect information. Value in Health.
+<a href="https://doi.org/10.1016/j.jval.2012.10.018" class="external-link">https://doi.org/10.1016/j.jval.2012.10.018</a></p>
 <p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
 <p>Baio, G, A Berardi, and A Heath. 2017. Bayesian Cost-Effectiveness Analysis
 with the R package BCEA. New York, NY: Springer. doi:10.1007/978-3-319-55718-2.</p>
 <p>Heath A., Manolopoulou I., Baio G. (2016). Estimating the Expected Value of
 Partial Perfect Information in Health Economic Evaluations using Integrated
 Nested Laplace Approximation. Statistics in Medicine.
-https://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full</p>
+<a href="https://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full" class="external-link">https://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full</a></p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -260,7 +262,10 @@ https://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full</p>
 <span class="r-in"><span class="co"># Bayesian model and economic problem</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="co"># Load the processed results of the MCMC simulation model</span></span>
+<span class="r-in"><span class="co"># Load the post-processed results of the MCMC simulation model</span></span>
+<span class="r-in"><span class="co"># original JAGS output is can be downloaded from here</span></span>
+<span class="r-in"><span class="co"># https://gianluca.statistica.it/book/bcea/code/vaccine.RData</span></span>
+<span class="r-in"></span>
 <span class="r-in"><span class="fu"><a href="Smoking.html">data</a></span><span class="op">(</span><span class="va">Vaccine</span>, package <span class="op">=</span> <span class="st">"BCEA"</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">treats</span> <span class="op">&lt;-</span> <span class="fu"><a href="Smoking.html">c</a></span><span class="op">(</span><span class="st">"Status quo"</span>, <span class="st">"Vaccination"</span><span class="op">)</span></span>
 <span class="r-in"></span>
@@ -268,7 +273,7 @@ https://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full</p>
 <span class="r-in"><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="bcea.html">bcea</a></span><span class="op">(</span><span class="va">e.pts</span>, <span class="va">c.pts</span>, ref <span class="op">=</span> <span class="fl">2</span>, interventions <span class="op">=</span> <span class="va">treats</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Compute the EVPPI for a bunch of parameters</span></span>
-<span class="r-in"><span class="va">inp</span> <span class="op">&lt;-</span> <span class="fu"><a href="createInputs.html">createInputs</a></span><span class="op">(</span><span class="va">vaccine</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">inp</span> <span class="op">&lt;-</span> <span class="fu"><a href="createInputs.html">createInputs</a></span><span class="op">(</span><span class="va">vaccine_mat</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">EVPPI</span> <span class="op">&lt;-</span> <span class="fu">evppi</span><span class="op">(</span><span class="va">m</span>, <span class="fu"><a href="Smoking.html">c</a></span><span class="op">(</span><span class="st">"beta.1."</span> , <span class="st">"beta.2."</span><span class="op">)</span>, <span class="va">inp</span><span class="op">$</span><span class="va">mat</span><span class="op">)</span></span>
 <span class="r-in"></span>
@@ -316,11 +321,13 @@ https://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan Green.</p>
+  <p></p><p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan
+Green.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
     </footer></div>

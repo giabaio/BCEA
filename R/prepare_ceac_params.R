@@ -1,7 +1,7 @@
 
 #' @keywords dplot
 #' 
-prepare_ceac_params <- function(...) {
+prepare_ceac_params <- function(he, ...) {
   
   extra_params <- list(...)
   
@@ -11,7 +11,7 @@ prepare_ceac_params <- function(...) {
                                   color = NULL),
                       line = list(color = "black",
                                   size = 1,
-                                  type = 1))
+                                  type = 1:num_lines(he)))
   
   annot_params <- list(title = "Cost Effectiveness Acceptability Curve",
                        x = "Willingness to pay",
