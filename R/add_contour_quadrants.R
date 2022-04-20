@@ -4,7 +4,7 @@
 #' @template args-he
 #' @param params List
 #'
-#' @return 
+#' @return Plot side effect
 #' @keywords internal aplot
 #'
 add_contour_quadrants <- function(he, params) {

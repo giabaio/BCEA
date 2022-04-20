@@ -1,5 +1,6 @@
 # themes for ggplot functions ---------------------------------------------
 
+#' bcea theme ggplot2
 #' @name theme_bcea
 #' @keywords internal aplot
 #' 

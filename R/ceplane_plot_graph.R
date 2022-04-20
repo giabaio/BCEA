@@ -198,35 +198,6 @@ ceplane_plot_ggplot <- function(he, ...) {
 }
 
 
-#' Calculate Dataset For ICERs From bcea Object
-#'
-#' @template args-he
-#' @param comp_label Optional vector of strings with comparison labels
-#' @param ... Additional arguments
-#' 
-#' @return A data.frame object including mean outcomes, comparison identifier,
-#'   comparison label and associated ICER
-#' 
-#' @export
-#' 
-tabulate_means <- function(he,
-                           comp_label = NULL,
-                           ...) {
-  
-  if (is.null(comp_label))
-    comp_label <- 1:he$n_comparisons
-  
-  data.frame(
-    lambda.e = sapply(1:he$n_comparisons,
-                      function(x) mean(as.matrix(he$delta_e)[, x])),
-    lambda.c = sapply(1:he$n_comparisons,
-                      function(x) mean(as.matrix(he$delta_c)[, x])),
-    comparison = as.factor(1:he$n_comparisons),
-    label = comp_label,
-    ICER = he$ICER)
-}
-
-
 #' @rdname ceplane_plot_graph
 #'  
 #' @return For plotly returns a plot in the Viewer
@@ -238,7 +209,7 @@ ceplane_plot_plotly.bcea <- function(he,
   
   comp_label <-
     paste(he$interventions[he$ref], "vs", he$interventions[he$comp])
-  
+
   # single long format for plotting data
   delta_ce <-
     merge(
@@ -259,10 +230,10 @@ ceplane_plot_plotly.bcea <- function(he,
   graph_params$ICER_size <- ifelse(he$n_comparisons == 1, 8, 0)
   
   if (length(graph_params$point$colors) != length(comp_label))
-    graph_params$point$colors <- rep_len(graph_params$point$colors, length(comp_label))
+    graph_params$point$colors <- rep_len(graph_params$point$color, length(comp_label))
   
   if (length(graph_params$point$sizes) != length(comp_label))
-    graph_params$point$sizes <- rep_len(graph_params$point$sizes, length(comp_label))
+    graph_params$point$sizes <- rep_len(graph_params$point$size, length(comp_label))
   
   if (!"colors" %in% names(graph_params$ICER) ||
       length(graph_params$ICER$colors) != length(comp_label))

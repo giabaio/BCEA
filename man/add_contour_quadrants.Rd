@@ -13,7 +13,7 @@ modelling and the economic evaluation.}
 \item{params}{List}
 }
 \value{
-
+Plot side effect
 }
 \description{
 Add Contour Quadrants

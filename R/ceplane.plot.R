@@ -57,7 +57,7 @@
 #'   pay. If the comparators are more than 2 and no pairwise comparison is
 #'   specified, all scatterplots are graphed using different colours.
 #'   
-#' @details In the plotly version, point_colors, ICER_colors and area_color can also
+#' @details In the plotly version, \code{point_colors}, \code{ICER_colors} and \code{area_color} can also
 #' be specified as rgba colours using either the \code{\link[plotly]{toRGB}}
 #' function or a rgba colour string, e.g. \code{'rgba(1, 1, 1, 1)'}.
 #'   

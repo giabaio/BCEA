@@ -11,7 +11,7 @@ NULL
 #' @rdname contour_graph
 #' 
 #' @template args-he
-#' @template args-pos
+#' @param pos_legend Legend position
 #' @param graph_params Plot parameters; list
 #' @param ... Additional arguments
 #' 
@@ -40,7 +40,7 @@ contour_base <- function(he,
 #' @rdname contour_graph
 #' 
 #' @template args-he
-#' @template args-pos
+#' @param pos_legend Legend position
 #' @param graph_params Plot parameters; list
 #' @param ... Additional arguments
 #' 
@@ -76,7 +76,7 @@ contour_ggplot <- function(he,
         value.name = "delta_e",
         id.vars = "sim"),
       by = c("sim", "comparison")) %>% 
-    mutate(comparison = factor(comparison))
+    mutate(comparison = factor(.data$comparison))
   
   ggplot(delta_ce,
          aes(x = .data$delta_e, y = .data$delta_c, group = .data$comparison,

@@ -13,7 +13,7 @@ modelling and the economic evaluation.}
 \item{params}{List}
 }
 \value{
-
+plot side effect
 }
 \description{
 Add Contours to Base R Plot

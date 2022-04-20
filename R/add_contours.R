@@ -4,7 +4,7 @@
 #' @template args-he 
 #' @param params List
 #' @keywords internal aplot
-#' @return
+#' @return plot side effect
 #'
 add_contours <- function(he, params) {
   

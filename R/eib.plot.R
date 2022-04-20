@@ -42,7 +42,7 @@ eib.plot.bcea <- function(he,
                           plot.cri = NULL,
                           graph = c("base", "ggplot2", "plotly"),
                           ...) {
-  
+
   graph <- match.arg(graph)
   
   he <- setComparisons(he, comparison)

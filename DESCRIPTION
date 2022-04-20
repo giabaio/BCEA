@@ -16,6 +16,7 @@ Authors@R: c(
             email = "n.green@ucl.ac.uk",
             role = c("aut")))
 Imports:
+    cli,
     dplyr,
     ggplot2,
     GrassmannOptim,
@@ -28,7 +29,6 @@ Imports:
 Depends:
     R (>= 3.5.0)
 Suggests:
-    cli,
     coda,
     grid,
     INLA,

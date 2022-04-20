@@ -32,7 +32,6 @@ eib_plot_base <- function(he,
 }
 
 
-
 #' EIB plot ggplot2 version
 #' @rdname eib_plot_graph
 #' 
@@ -89,12 +88,12 @@ eib_plot_ggplot <- function(he,
       size = 0.5) +
     scale_linetype_manual(
       "",
-      labels = graph_params$plot$labels,
-      values = graph_params$plot$line$types) +
+      labels = graph_params$labels,
+      values = graph_params$line$type) +
     scale_colour_manual(
       "",
-      labels = graph_params$plot$labels,
-      values = graph_params$plot$line$colors)
+      labels = graph_params$labels,
+      values = graph_params$line$color)
 }
 
 

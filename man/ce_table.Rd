@@ -6,6 +6,15 @@
 \usage{
 ce_table(he, wtp = 25000, ...)
 }
+\arguments{
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
+
+\item{wtp}{Willingness to pay}
+
+\item{...}{Additional parameters}
+}
 \description{
 As is commonly shown in a journal paper
 }
+\keyword{internal}
