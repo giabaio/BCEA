@@ -58,6 +58,12 @@ jobs:
           del wjags.exe
         shell: cmd
         
+      - name: Install jags (macOS-latest)
+        if: runner.os == 'macOS'
+        run : |
+              rm '/usr/local/bin/gfortran'
+              brew install jags
+              
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
           extra-packages: rcmdcheck
