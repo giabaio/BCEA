@@ -63,8 +63,8 @@ Not all plotting functions have a \code{"plotly"} implementation yet.}
  interval between the \code{alpha/2}-th and \code{1-alpha/2}-th quantiles of
  the IB distribution. Setting \code{cri.quantile=FALSE} will use a normal
  approximation on the IB distribution to calculate the intervals.
- \item \code{line_colors}: specifies the line colour(s) - all graph types.
- \item \code{line_types}: specifies the line type(s) as lty numeric values - all graph types.
+ \item \code{line = list(color)}: specifies the line colour(s) - all graph types.
+ \item \code{line = list(type)}: specifies the line type(s) as lty numeric values - all graph types.
  \item \code{area_include}: include area under the EIB curve - plotly only.
  \item \code{area_color}: specifies the AUC curve - plotly only.}}
 }

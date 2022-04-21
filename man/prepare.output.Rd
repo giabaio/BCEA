@@ -20,3 +20,4 @@ Prepare output
 \seealso{
 \code{\link{evppi}}
 }
+\keyword{internal}

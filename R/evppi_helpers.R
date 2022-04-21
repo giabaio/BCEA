@@ -35,6 +35,7 @@ prep.x <- function(he,
 #' 
 #' @importFrom stats update
 #' @seealso \code{\link{evppi}}
+#' @keywords internal
 #' 
 fit.gam <- function(parameter,
                     inputs,
@@ -71,6 +72,7 @@ fit.gam <- function(parameter,
 #' 
 #' @importFrom stats dist dnorm
 #' @seealso \code{\link{evppi}}
+#' @keywords internal
 #' 
 post.density <- function(hyperparams,
                          parameter,
@@ -160,6 +162,7 @@ estimate.hyperparams <- function(x,
 #' @return list
 #' @importFrom stats dist
 #' @seealso \code{\link{evppi}}
+#' @keywords internal
 #' 
 fit.gp <- function(parameter,
                    inputs,
@@ -233,6 +236,7 @@ fit.gp <- function(parameter,
 #' @return list
 #' @seealso \code{\link{evppi}}
 #' @importFrom cli cli_alert_warning
+#' @keywords internal
 #'
 make.proj <- function(parameter,
                       inputs,
@@ -323,6 +327,7 @@ make.proj <- function(parameter,
 #' @importFrom utils select.list
 #' @importFrom grDevices dev.off
 #' @seealso \code{\link{evppi}}
+#' @keywords internal
 #' 
 plot.mesh <- function(mesh, data, plot) {
   
@@ -365,6 +370,7 @@ plot.mesh <- function(mesh, data, plot) {
 #' @param max.edge Maximum edge 
 #' @return list
 #' @seealso \code{\link{evppi}}
+#' @keywords internal
 #' 
 make.mesh <- function(data,
                       convex.inner,
@@ -409,6 +415,7 @@ make.mesh <- function(data,
 #' @return list
 #' @importFrom stats as.formula
 #' @seealso \code{\link{evppi}}
+#' @keywords internal
 #' 
 fit.inla <- function(parameter,
                      inputs,
@@ -520,6 +527,7 @@ compute.evppi <- function(he, fit.full) {
 #' @param inputs Inputs
 #' @return name
 #' @seealso \code{\link{evppi}}
+#' @keywords internal
 #'
 prepare.output <- function(parameters,
                            inputs) {

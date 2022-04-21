@@ -24,3 +24,4 @@ Fit Gaussian Process
 \seealso{
 \code{\link{evppi}}
 }
+\keyword{internal}

@@ -19,3 +19,4 @@ Option of interactively saving the plot.
 \seealso{
 \code{\link{evppi}}
 }
+\keyword{internal}

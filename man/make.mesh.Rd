@@ -26,3 +26,4 @@ Fit using INLA methods.
 \seealso{
 \code{\link{evppi}}
 }
+\keyword{internal}

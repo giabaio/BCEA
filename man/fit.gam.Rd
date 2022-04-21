@@ -24,3 +24,4 @@ Gaussian Additive Model Fitting
 \seealso{
 \code{\link{evppi}}
 }
+\keyword{internal}

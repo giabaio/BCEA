@@ -87,7 +87,7 @@ the selected willingness to pay threshold.
 }
 \details{
 In the plotly version, \code{point_colors}, \code{ICER_colors} and \code{area_color} can also
-be specified as rgba colours using either the \code{\link[plotly]{toRGB}}
+be specified as rgba colours using either the \code{[plotly]toRGB}
 function or a rgba colour string, e.g. \code{'rgba(1, 1, 1, 1)'}.
 }
 \examples{
