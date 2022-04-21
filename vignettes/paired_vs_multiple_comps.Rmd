@@ -23,8 +23,6 @@ library(ggplot2)
 library(purrr)
 ```
 
-__TODO: why are the k* different for each eib plot?__
-
 ## Introduction
 
 The intention of this vignette is to show how to plot the CEAC and EIB plots depending on whether we consider all interventions simultaneously or pair-wise against a reference.

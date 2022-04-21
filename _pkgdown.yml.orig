@@ -1,0 +1,89 @@
+news:
+  cran_dates: false
+  
+template:
+  bootstrap: 5
+  bootswatch: flatly
+
+reference:
+- title: "Main"
+  contents:
+  - BCEA-package
+  - bcea
+  - new_bcea
+- title: "Setters"
+  desc: "Functions for modifying a `bcea()` analysis."
+  contents:
+  - setComparisons_assign
+  - setKmax_assign
+  - setReferenceGroup_assign
+  - mixedAn<-
+  - CEriskav
+  - multi.ce
+- title: "Plotting"
+  desc: "Functions for plotting a wide variety of cost-effectiveness plots in base R, ggplot2 and plotly."
+  contents:
+  - ceac.plot
+  - ceaf.plot
+  - ceef.plot
+  - ceplane.plot
+  - contour
+  - contour2
+  - eib.plot
+  - evi.plot
+  - ib.plot
+  - info.rank
+  - plot.bcea
+  - plot.CEriskav
+  - plot.evppi
+- title: "Statistics"
+  desc: "Lower level functions for computing a range of cost-effectiveness statistics."
+  contents:
+  - best_interv_given_k
+  - starts_with("compute_")
+- title: "Outputs"
+  desc: "Functions for reporting the results of the cost-effectiveness analysis."
+  contents:
+  - make.report
+  - sim_table
+  - starts_with("summary")
+- title: "Miscellaneous"
+  desc: "Helper functions and other intermediate computations."
+  contents:
+  - evppi
+  - select_plot_type
+  - struct.psa
+- title: "Data"
+  contents:
+  - Smoking
+  - Vaccine
+
+
+<<<<<<< HEAD
+# articles:
+#   - bcea
+#   - Set_bcea_parameters
+#   - ceac
+#   - ceef
+#   - CEriskav
+#   - eib
+#   - paired_vs_multiple_comps
+=======
+articles:
+- title: Basics
+  navbar: ~
+  contents:
+  - bcea
+  - Set_bcea_parameters
+- title: Advanced
+  contents:
+  - ceac
+  - ceef
+  - ceplane
+  - CEriskav
+  - contour
+  - eib
+  - info-rank
+  - paired_vs_multiple_comps
+>>>>>>> vignettes
+  

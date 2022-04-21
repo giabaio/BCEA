@@ -53,3 +53,4 @@ Fit INLA
 \seealso{
 \code{\link{evppi}}
 }
+\keyword{internal}

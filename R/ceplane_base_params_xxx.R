@@ -30,7 +30,9 @@ polygon_params <- function(graph_params, wtp) {
   list(x = polygon_x,
        y = polygon_y,
        # border = graph_params$area$line_color,
-       col = graph_params$area$color)
+       col = ifelse(is.null(graph_params$area$color),
+                    "grey95",
+                    graph_params$area$color))
 }
 
 
@@ -38,9 +40,9 @@ polygon_params <- function(graph_params, wtp) {
 #' 
 points_params <- function(graph_params) {
   
-  list(pch = 20,
-       cex = graph_params$point$sizes,
-       col = graph_params$point$colors)
+  list(pch = graph_params$point$shape,  #20,
+       cex = graph_params$point$size,
+       col = graph_params$point$color)
 }
 
 

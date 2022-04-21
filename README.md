@@ -18,6 +18,7 @@
 - [Overview](#introduction)
 - [Features](#features)
 - [Installation](#installation)
+- [Articles](#articles)
 - [Further details](#further-details)
 
 ## Overview
@@ -56,11 +57,29 @@ install.packages("remotes")
 remotes::install_github("giabaio/BCEA", ref="dev")
 ```
 
+## Articles
+Examples of using specific functions and their different arguments are given in [these articles](https://n8thangreen.github.io/BCEA/articles/index.html):
+
+-  [Get Started](https://n8thangreen.github.io/BCEA/articles/bcea.html)
+-  [Set `bcea()` Parameters: Constructor and Setters](https://n8thangreen.github.io/BCEA/articles/Set_bcea_parameters.html)
+-  [Cost-Effectiveness Acceptability Curve Plots](https://n8thangreen.github.io/BCEA/articles/ceac.html)
+-  [Cost-Effectiveness Efficiency Frontier](https://n8thangreen.github.io/BCEA/articles/ceef.html)
+-  [Risk Aversion Analysis](https://n8thangreen.github.io/BCEA/articles/CEriskav.html)
+-  [Expected Incremental Benefit Plot](https://n8thangreen.github.io/BCEA/articles/eib.html)
+-  [Paired vs Multiple Comparisons](https://n8thangreen.github.io/BCEA/articles/paired_vs_multiple_comps.html)
+
+
 ## Further details
 The `pkgdown` site is [here](https://n8thangreen.github.io/BCEA/).
 More details on `BCEA` are available in our book [_Bayesian Cost-Effectiveness Analysis with the R Package BCEA_](https://gianluca.statistica.it/book/bcea/) (published in the UseR! Springer series). Also, details about the package, including some references and links to a pdf presentation and some posts on my own blog) are given [here](https://gianluca.statistica.it/software/bcea/).
 
 ## Licence
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
+## Contributing
+Please submit contributions through `Pull Requests`, following the [contributing
+guidelines](https://github.com/n8thangreen/BCEA/blob/dev/CONTRIBUTING.md).
+To report issues and/or seek support, please file a new ticket in the
+[issue](https://github.com/n8thangreen/BCEA/issues) tracker.
 
 Please note that this project is released with a [Contributor Code of Conduct](https://github.com/n8thangreen/BCEA/blob/dev/CONDUCT.md). By participating in this project you agree to abide by its terms.

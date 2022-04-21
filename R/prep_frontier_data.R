@@ -6,6 +6,8 @@
 #' @param start.origin Where should the frontier start from?
 #' @return List with scatter.data, ceef.points, orig.avg
 #' @seealso ceef.plot
+#' @importFrom cli cli_alert_warning
+#' @keywords internal
 #' 
 prep_frontier_data <- function(he,
                                threshold = NULL,
@@ -17,9 +19,9 @@ prep_frontier_data <- function(he,
     threshold <- pi/2
   } else {
     if (threshold <= 0) {
-      warning(
-        "The value of the cost-effectiveness threshold should be positive. The argument will be ignored.",
-        call. = FALSE)
+      cli::cli_alert_warning(
+        "The value of the cost-effectiveness threshold should be positive.
+        The argument will be ignored.")
       threshold <- pi/2
     } else {
       threshold <- atan(threshold)

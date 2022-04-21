@@ -70,7 +70,7 @@ ceplane_plot_base.bcea <- function(he,
                                    wtp = 25000,
                                    pos_legend,
                                    graph_params, ...) {
-  
+
   plot_params <-
     ceplane_base_params(he, wtp, graph_params)
   
@@ -111,6 +111,9 @@ ceplane_plot_base <- function(he, ...) {
 #' he <- bcea(e, c)
 #' 
 #' ceplane.plot(he, graph = "ggplot2")
+#' ceplane.plot(he, wtp=10000, graph = "ggplot2",
+#'              point = list(colors = "blue", sizes = 2),
+#'              area = list(col = "springgreen3"))
 #' 
 #' data(Smoking)
 #' he <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
@@ -161,13 +164,16 @@ ceplane_plot_ggplot.bcea <- function(he,
   theme_add <- purrr::keep(list(...), is.theme)
   
   ggplot(delta_ce,
-         aes(x = .data$delta_e, y = .data$delta_c, col = .data$comparison)) +
+         aes(x = .data$delta_e, y = .data$delta_c, group = factor(.data$comparison),
+             col = factor(.data$comparison), shape = factor(.data$comparison))) +
     do.call(geom_polygon, graph_params$area) +
     theme_ceplane() +
     theme_add +
     geom_point(size = graph_params$point$size) +
     scale_color_manual(labels = line_labels.default(he),
-                       values = graph_params$point$colors) +
+                       values = graph_params$point$color) +
+    scale_shape_manual(labels = line_labels.default(he),
+                       values = graph_params$point$shape) +
     geom_hline(yintercept = 0, colour = "grey") +
     geom_vline(xintercept = 0, colour = "grey") +
     coord_cartesian(xlim = graph_params$xlim,
@@ -177,8 +183,7 @@ ceplane_plot_ggplot.bcea <- function(he,
             list(title = graph_params$title,
                  x = graph_params$xlab,
                  y = graph_params$ylab)) +
-    do.call(geom_abline, list(slope = wtp,
-                              col = graph_params$line$color)) +
+    do.call(geom_abline, c(slope = wtp, graph_params$line)) +
     do.call(geom_point, graph_params$icer) +
     do.call(annotate, graph_params$wtp) +
     do.call(annotate, graph_params$icer_txt) +
@@ -193,35 +198,6 @@ ceplane_plot_ggplot <- function(he, ...) {
 }
 
 
-#' Calculate Dataset For ICERs From bcea Object
-#'
-#' @template args-he
-#' @param comp_label Optional vector of strings with comparison labels
-#' @param ... Additional arguments
-#' 
-#' @return A data.frame object including mean outcomes, comparison identifier,
-#'   comparison label and associated ICER
-#' 
-#' @export
-#' 
-tabulate_means <- function(he,
-                           comp_label = NULL,
-                           ...) {
-  
-  if (is.null(comp_label))
-    comp_label <- 1:he$n_comparisons
-  
-  data.frame(
-    lambda.e = sapply(1:he$n_comparisons,
-                      function(x) mean(as.matrix(he$delta_e)[, x])),
-    lambda.c = sapply(1:he$n_comparisons,
-                      function(x) mean(as.matrix(he$delta_c)[, x])),
-    comparison = as.factor(1:he$n_comparisons),
-    label = comp_label,
-    ICER = he$ICER)
-}
-
-
 #' @rdname ceplane_plot_graph
 #'  
 #' @return For plotly returns a plot in the Viewer
@@ -233,7 +209,7 @@ ceplane_plot_plotly.bcea <- function(he,
   
   comp_label <-
     paste(he$interventions[he$ref], "vs", he$interventions[he$comp])
-  
+
   # single long format for plotting data
   delta_ce <-
     merge(
@@ -254,10 +230,10 @@ ceplane_plot_plotly.bcea <- function(he,
   graph_params$ICER_size <- ifelse(he$n_comparisons == 1, 8, 0)
   
   if (length(graph_params$point$colors) != length(comp_label))
-    graph_params$point$colors <- rep_len(graph_params$point$colors, length(comp_label))
+    graph_params$point$colors <- rep_len(graph_params$point$color, length(comp_label))
   
   if (length(graph_params$point$sizes) != length(comp_label))
-    graph_params$point$sizes <- rep_len(graph_params$point$sizes, length(comp_label))
+    graph_params$point$sizes <- rep_len(graph_params$point$size, length(comp_label))
   
   if (!"colors" %in% names(graph_params$ICER) ||
       length(graph_params$ICER$colors) != length(comp_label))

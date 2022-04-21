@@ -32,11 +32,9 @@ will fall back to the default values (all black, or shades of grey)}
 if \code{graph="ggplot2"}. }
 }
 \description{
+This function is deprecated. Use \code{\link{ceac.plot}} instead.
 Plots the probability that each of the n_int interventions being analysed is
 the most cost-effective.
-}
-\details{
-This function is deprecated. Use \code{\link{ceac.plot}} instead.
 }
 \examples{
 
@@ -74,20 +72,15 @@ mce.plot(mce,               # the same plot
 }
 \references{
 Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
+Analysis in Health Economics. Statistical Methods in Medical Research
 doi:10.1177/0962280211419832.
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London
+Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
 }
 \seealso{
-\code{\link{bcea}}
+\code{\link{BCEA-deprecated}}
 }
 \author{
 Gianluca Baio, Andrea Berardi
 }
-\keyword{Health}
-\keyword{Multiple}
-\keyword{comparison}
-\keyword{economic}
-\keyword{evaluation}
+\keyword{hplot}

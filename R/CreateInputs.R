@@ -149,7 +149,8 @@ createInputs.numeric <- function(inputs,
 
 #' Leave-one-out ranking
 #' @param params Parameters
+#' @keywords internal
 #' 
 loo_rank <- function(params)
-  sapply(1:NCOL(params), function(x) qr(params[, -x])$rank)
+  sapply(seq_len(NCOL(params)), function(x) qr(params[, -x])$rank)
 

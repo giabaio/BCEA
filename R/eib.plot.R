@@ -39,10 +39,10 @@ eib.plot.bcea <- function(he,
                           comparison = NULL,
                           pos = c(1, 0),
                           size = NULL,
-                          plot.cri = FALSE,
+                          plot.cri = NULL,
                           graph = c("base", "ggplot2", "plotly"),
                           ...) {
-  
+
   graph <- match.arg(graph)
   
   he <- setComparisons(he, comparison)
@@ -89,8 +89,8 @@ eib.plot.bcea <- function(he,
 #'   interval between the \code{alpha/2}-th and \code{1-alpha/2}-th quantiles of
 #'   the IB distribution. Setting \code{cri.quantile=FALSE} will use a normal
 #'   approximation on the IB distribution to calculate the intervals.
-#'   \item \code{line_colors}: specifies the line colour(s) - all graph types.
-#'   \item \code{line_types}: specifies the line type(s) as lty numeric values - all graph types.
+#'   \item \code{line = list(color)}: specifies the line colour(s) - all graph types.
+#'   \item \code{line = list(type)}: specifies the line type(s) as lty numeric values - all graph types.
 #'   \item \code{area_include}: include area under the EIB curve - plotly only.
 #'   \item \code{area_color}: specifies the AUC curve - plotly only.}
 #'    
@@ -114,7 +114,7 @@ eib.plot.bcea <- function(he,
 #' 
 #' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 #' 
-#' @keywords "Health economic evaluation" "Expected Incremental Benefit"
+#' @keywords hplot
 #' @import ggplot2
 #' @importFrom grid unit
 #' @export

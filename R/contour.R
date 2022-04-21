@@ -2,85 +2,44 @@
 #' @rdname contour
 #' 
 #' @template args-he
-#' @param scale Scales the plot as a function of the observed standard deviation.
-#' @param levels Numeric vector of levels at which to draw contour lines.
-#'               Will be ignored using \code{graph="ggplot2"}.
-#' @param nlevels Number of levels to be plotted in the contour.
+#' @template args-graph
 #' @template args-pos
-#' @param graph A string used to select the graphical engine to use for
-#'              plotting. Should (partial-) match the two options \code{"base"} or
-#'              \code{"ggplot2"}. Default value is \code{"base"}.
-#' @param xlim The range of the plot along the x-axis. If NULL (default) it is
+#' @template args-comparison
+#' @param ...  Additional graphical arguments. The usual ggplot2 syntax is used regardless of graph type.
+#'  \itemize{
+#'   \item \code{xlim}: The range of the plot along the x-axis. If NULL (default) it is
 #'             determined by the range of the simulated values for \code{delta_e}
-#' @param ylim The range of the plot along the y-axis. If NULL (default) it is
+#'   \item \code{ylim}: The range of the plot along the y-axis. If NULL (default) it is
 #'             determined by the range of the simulated values for \code{delta_c}
-#' @param ...  Additional arguments to 'plot.window', 'title', 'Axis' and
-#'             'box', typically graphical parameters such as 'cex.axis'.
-#'             Will be ignored if \code{graph="ggplot2"}.
-#' 
+#'   \item \code{scale}: Scales the plot as a function of the observed standard deviation.
+#'   \item \code{levels}: Numeric vector of levels at which to draw contour lines. Quantiles 0<p<1.
+#'   \item \code{nlevels}: Number of levels to be plotted in the contour.
+#' }
+#'   
 #' @importFrom stats sd
 #' @importFrom graphics par
 #' 
 #' @export
 #' 
 contour.bcea <- function(he,
-                         scale = 0.5,
-                         nlevels = 4,
-                         levels = NULL,
-                         pos = c(1, 0),
-                         xlim = NULL,
-                         ylim = NULL,
+                         pos = c(0, 1),
                          graph = c("base", "ggplot2"),
+                         comparison = NULL,
                          ...) {
   
-  # comparison selects which plot should be made
-  # by default it is the first possible
+  graph_type <- match.arg(graph)
   
-  # Additional/optional arguments
-  extra_args <- list(...)
+  he <- setComparisons(he, comparison)
   
-  params <- list()
+  params <- prep_contour_params(he, ...)
   
-  params$xlab <- 
-    if (!exists("xlab", where = extra_args)) {
-      "Effectiveness differential"
-    } else {
-      extra_args$xlab
-    }
-  
-  params$ylab <- 
-    if (!exists("ylab", where = extra_args)) {
-      "Cost differential"
-    } else {
-      extra_args$ylab
-    }
-  
-  params$title <- 
-    if (!exists("title", where = extra_args)) {
-      paste(
-        "Cost effectiveness plane contour plot\n",
-        he$interventions[he$ref],
-        " vs ",
-        he$interventions[he$comp],
-        sep = "")
-    } else {
-      extra_args$title
-    }
-  
-  params$alt.legend <- pos
-  
-  graph <- match.arg(graph)
-  
-  if (is_baseplot(graph)) {
+  if (is_baseplot(graph_type)) {
     
-    contour_base(he, params, scale, nlevels, levels, xlim, ylim, extra_args)
+    contour_base(he, pos_legend = pos, params, ...)
     
-  } else if (is_ggplot(graph)) {
+  } else if (is_ggplot(graph_type)) {
     
-    if (!is.null(levels))
-      message("Option level will be ignored using ggplot2 graphics")
-    
-    contour_ggplot(he, params, scale, nlevels, levels, xlim, ylim, extra_args)
+    contour_ggplot(he, pos_legend = pos, params, ...)
   }
 }
 
@@ -93,7 +52,6 @@ contour.bcea <- function(he,
 #' effectiveness (x-axis).
 #'
 #' @template args-he
-#' @param ... Additional arguments
 #' 
 #' @return \item{ceplane}{ A ggplot object containing the plot. Returned only
 #' if \code{graph="ggplot2"}. } Plots the cost-effectiveness plane with a
@@ -113,7 +71,7 @@ contour.bcea <- function(he,
 #' @seealso \code{\link{bcea}},
 #'          \code{\link{ceplane.plot}},
 #'          \code{\link{contour2}}
-#' @keywords "Health economic evaluation" "Bayesian model"
+#' @keywords hplot
 #' 
 #' @import ggplot2
 #' @importFrom MASS kde2d
@@ -122,7 +80,7 @@ contour.bcea <- function(he,
 #' @examples
 #' data(Vaccine)
 #'
-#' # Runs the health economic evaluation using BCEA
+#' # run the health economic evaluation using BCEA
 #' m <- bcea(e=e,
 #'           c=c,              # defines the variables of 
 #'                             #  effectiveness and cost
@@ -139,20 +97,24 @@ contour.bcea <- function(he,
 #' contour(m)
 #' contour(m, graph = "ggplot2")
 #' 
-#' # Plots the contour and scatterplot of the bivariate 
-#' # distribution of (Delta_e, Delta_c)
 #' contour(m,          # uses the results of the economic evaluation 
 #'                     #  (a "bcea" object)
 #'       comparison=1, # if more than 2 interventions, selects the 
 #'                     #  pairwise comparison 
-#'       nlevels=4,    # selects the number of levels to be 
+#'       nlevels=10,   # selects the number of levels to be 
 #'                     #  plotted (default=4)
 #'       levels=NULL,  # specifies the actual levels to be plotted 
 #'                     #  (default=NULL, so that R will decide)
-#'       scale=0.5,    # scales the bandwidths for both x- and 
+#'       scale=1,      # scales the bandwidths for both x- and 
 #'                     #  y-axis (default=0.5)
 #'       graph="base"  # uses base graphics to produce the plot
 #' )
+#' 
+#' # use the smoking cessation dataset
+#' data(Smoking)
+#' m <- bcea(e, c, ref = 4, intervention = treats, Kmax = 500, plot = FALSE)
+#' contour(m)
+#' contour(m, graph = "ggplot2")
 #' 
 #' @export
 #' 

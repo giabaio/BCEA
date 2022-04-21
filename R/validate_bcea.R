@@ -7,7 +7,8 @@
 #' @param interventions All interventions 
 #'
 #' @export
-#'
+#' @keywords internal
+#' 
 validate_bcea <- function(eff,
                           cost,
                           ref,

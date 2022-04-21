@@ -12,3 +12,4 @@ openPDF(file_name)
 \description{
 Automatically open pdf output using default pdf viewer
 }
+\keyword{internal}

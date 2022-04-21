@@ -1,5 +1,5 @@
 ---
-title: "Expected incremental benefit plot"
+title: "Expected Incremental Benefit Plot"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Expected incremental benefit plot}
@@ -91,14 +91,14 @@ Other plotting arguments can be specified such as title, line colours and theme.
 eib.plot(he,
          graph = "ggplot2",
          main = "my title",
-         line = list(colors = "green"),
+         line = list(color = "green"),
          theme = theme_dark())
 ```
 
 Credible interval can also be plotted using the `plot.cri` logical argument.
 
 ```{r}
-eib.plot(he, plot.cri = TRUE)
+eib.plot(he, plot.cri = FALSE)
 ```
 
 
@@ -143,17 +143,17 @@ For example, we can change the main title and the EIB line colours to green.
 eib.plot(he,
          graph = "base",
          main = "my title",
-         line = list(colors = "green"))
+         line = list(color = "green"))
 ```
 
 ```{r}
 eib.plot(he,
          graph = "ggplot2",
          main = "my title",
-         line = list(colors = "green"))
+         line = list(color = "green"))
 ```
 
-Credible interval can also be plotted as before.
+Credible interval can also be plotted as before. This isn't recommended in this case since its hard to understand with so many lines.
 
 ```{r}
 eib.plot(he, plot.cri = TRUE)
@@ -188,11 +188,11 @@ mypalette <- RColorBrewer::brewer.pal(3, "Accent")
 
 eib.plot(he,
          graph = "base",
-         line = list(colors = mypalette))
+         line = list(color = mypalette))
 
 eib.plot(he,
          graph = "ggplot2",
-         line = list(colors = mypalette))
+         line = list(color = mypalette))
 ```
 
 ```{r echo=FALSE}

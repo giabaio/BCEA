@@ -42,13 +42,28 @@ jobs:
       - name: Add inla repo
         run: |
           writeLines('options(repos = c(INLA = "https://inla.r-inla-download.org/R/stable/", getOption(\"repos\")))', file("~/.Rprofile", "ab"))
+# https://inla.r-inla-download.org/R/stable/src/contrib/INLA_21.02.23.tar.gz
         shell: Rscript {0}
 
 #      - name: Install JAGS
 #       run: |
 #          sudo apt-get update -y
 #          sudo apt-get install -y jags
-          
+      
+      - name: Install jags (windows-latest)
+        if: runner.os == 'Windows'
+        run: |
+          curl.exe -o wjags.exe --url https://deac-fra.dl.sourceforge.net/project/mcmc-jags/JAGS/4.x/Windows/JAGS-4.2.0-Rtools33.exe
+          wjags.exe /S
+          del wjags.exe
+        shell: cmd
+        
+      - name: Install jags (macOS-latest)
+        if: runner.os == 'macOS'
+        run : |
+              rm '/usr/local/bin/gfortran'
+              brew install jags
+              
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
           extra-packages: rcmdcheck

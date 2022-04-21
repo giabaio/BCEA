@@ -1,9 +1,10 @@
-# num_lines ---------------------------------------------------------------
+# num_lines
 
 
 #' @title Get number of lines
 #' @name num_lines
 #' @param dat Data
+#' @keywords internal
 #' 
 num_lines <- function(dat) {
   UseMethod('num_lines', dat)

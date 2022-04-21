@@ -169,4 +169,3 @@ to Cost, Version 1.0. IQWIG, November 2009.
 \author{
 Andrea Berardi, Gianluca Baio
 }
-\concept{"Health economic evaluation" "Multiple comparisons"}

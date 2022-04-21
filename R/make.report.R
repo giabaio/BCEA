@@ -49,11 +49,11 @@
 #'   make.report(m)
 #' }
 #' 
-make.report = function(he,
-                       evppi = NULL,
-                       ext = "pdf",
-                       echo = FALSE,
-                       ...) {
+make.report <- function(he,
+                        evppi = NULL,
+                        ext = "pdf",
+                        echo = FALSE,
+                        ...) {
   
   # check if knitr installed (and if not, asks for it)
   if(!isTRUE(requireNamespace("knitr", quietly = TRUE))) {
@@ -123,6 +123,7 @@ make.report = function(he,
 
 #' Allow disabling of the cat messages
 #' @param x Object to quietly return
+#' @keywords internal
 #' 
 quiet <- function(x) { 
   sink(tempfile()) 
@@ -133,6 +134,7 @@ quiet <- function(x) {
 #' Automatically open pdf output using default pdf viewer
 #' 
 #' @param file_name String file names for pdf
+#' @keywords internal
 #' 
 openPDF <- function(file_name) {
   os <- .Platform$OS.type

@@ -182,7 +182,7 @@ one.core <- function(d, p, hlevels, ff, Sigmas, ns, ...) {
     loglik <- tail(grassmann$fvalues, n = 1)
   }
   
-  Sigma.hat <- matrix(0, p, p);
+  Sigma.hat <- matrix(0, p, p)
   
   for (g in 1:hlevels){Sigma.hat <- Sigma.hat + ff[g] * Sigmas[[g]]}
   

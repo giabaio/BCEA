@@ -20,3 +20,4 @@ List of graph parameters
 \description{
 Parameters general to all plotting devices.
 }
+\keyword{internal}

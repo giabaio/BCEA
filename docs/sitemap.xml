@@ -19,6 +19,9 @@
     <loc>/articles/CEriskav.html</loc>
   </url>
   <url>
+    <loc>/articles/contour.html</loc>
+  </url>
+  <url>
     <loc>/articles/eib.html</loc>
   </url>
   <url>
@@ -49,6 +52,21 @@
     <loc>/CONDUCT.html</loc>
   </url>
   <url>
+    <loc>/CONDUCT_BACKUP_1725.html</loc>
+  </url>
+  <url>
+    <loc>/CONDUCT_BASE_1725.html</loc>
+  </url>
+  <url>
+    <loc>/CONDUCT_LOCAL_1725.html</loc>
+  </url>
+  <url>
+    <loc>/CONDUCT_REMOTE_1725.html</loc>
+  </url>
+  <url>
+    <loc>/CONTRIBUTING.html</loc>
+  </url>
+  <url>
     <loc>/index.html</loc>
   </url>
   <url>
@@ -62,6 +80,15 @@
   </url>
   <url>
     <loc>/README_dev.html</loc>
+  </url>
+  <url>
+    <loc>/reference/add_contours.html</loc>
+  </url>
+  <url>
+    <loc>/reference/add_contour_quadrants.html</loc>
+  </url>
+  <url>
+    <loc>/reference/BCEA-deprecated.html</loc>
   </url>
   <url>
     <loc>/reference/BCEA-package.html</loc>
@@ -148,6 +175,9 @@
     <loc>/reference/CEriskav_plot_graph.html</loc>
   </url>
   <url>
+    <loc>/reference/ce_table.html</loc>
+  </url>
+  <url>
     <loc>/reference/compute.evppi.html</loc>
   </url>
   <url>
@@ -208,6 +238,9 @@
     <loc>/reference/contour2.html</loc>
   </url>
   <url>
+    <loc>/reference/contour_ggplot_params.html</loc>
+  </url>
+  <url>
     <loc>/reference/contour_graph.html</loc>
   </url>
   <url>
@@ -233,6 +266,9 @@
   </url>
   <url>
     <loc>/reference/eib_params_base.html</loc>
+  </url>
+  <url>
+    <loc>/reference/eib_params_cri.html</loc>
   </url>
   <url>
     <loc>/reference/eib_plot_graph.html</loc>
@@ -275,6 +311,9 @@
   </url>
   <url>
     <loc>/reference/geom_cri.html</loc>
+  </url>
+  <url>
+    <loc>/reference/geom_quad_txt.html</loc>
   </url>
   <url>
     <loc>/reference/ib.plot.bcea.html</loc>
@@ -323,6 +362,9 @@
   </url>
   <url>
     <loc>/reference/make_legend_plotly.html</loc>
+  </url>
+  <url>
+    <loc>/reference/mce.plot.html</loc>
   </url>
   <url>
     <loc>/reference/mixedAn-set.html</loc>
@@ -388,6 +430,9 @@
     <loc>/reference/print.bcea.html</loc>
   </url>
   <url>
+    <loc>/reference/quadrant_params.html</loc>
+  </url>
+  <url>
     <loc>/reference/quiet.html</loc>
   </url>
   <url>
@@ -437,6 +482,9 @@
   </url>
   <url>
     <loc>/reference/tabulate_means.html</loc>
+  </url>
+  <url>
+    <loc>/reference/theme_bcea.html</loc>
   </url>
   <url>
     <loc>/reference/Vaccine.html</loc>

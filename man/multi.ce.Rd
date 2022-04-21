@@ -57,8 +57,5 @@ ceaf.plot(mce)
 \author{
 Gianluca Baio
 }
-\keyword{"Health}
-\keyword{"Multiple}
-\keyword{comparison"}
-\keyword{economic}
-\keyword{evaluation"}
+\keyword{dplot}
+\keyword{hplot}

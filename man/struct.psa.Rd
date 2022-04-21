@@ -35,7 +35,7 @@ intervention. By default and if \code{NULL}, assigns labels in the form
 
 \item{Kmax}{Maximum value of the willingness to pay to be considered.
 Default value is \code{k=50000}. The willingness to pay is then approximated
-on a discrete grid in the interval \code{[0,Kmax]}. The grid is equal to
+on a discrete grid in the interval \code{[0, Kmax]}. The grid is equal to
 \code{wtp} if the parameter is given, or composed of \code{501} elements if
 \code{wtp=NULL} (the default)}
 

@@ -24,3 +24,4 @@ num_lines(dat)
 \description{
 Get number of lines
 }
+\keyword{internal}

@@ -1,5 +1,7 @@
 
-#'
+#' EIB Parameters CrI
+#' @keywords internal aplot
+#' 
 eib_params_cri <- function(he, graph_params) {
   list(plot.cri = graph_params$plot.cri,
        data =

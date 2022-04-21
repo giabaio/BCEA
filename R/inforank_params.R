@@ -10,6 +10,7 @@
 #' 
 #' @importFrom purrr map_int
 #' @importFrom dplyr slice arrange desc
+#' @keywords internal
 #' 
 inforank_params <- function(he,
                             inp,

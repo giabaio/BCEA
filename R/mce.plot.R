@@ -1,9 +1,8 @@
 #' Plots the probability that each intervention is the most cost-effective
 #' 
+#' This function is deprecated. Use \code{\link{ceac.plot}} instead.
 #' Plots the probability that each of the n_int interventions being analysed is
 #' the most cost-effective.
-#' 
-#' This function is deprecated. Use \code{\link{ceac.plot}} instead.
 #' 
 #' @param mce The output of the call to the function \code{\link{multi.ce}}.
 #' @param pos Parameter to set the position of the legend. Can be given in form
@@ -24,14 +23,14 @@
 #' @return \item{mceplot}{ A ggplot object containing the plot. Returned only
 #' if \code{graph="ggplot2"}. }
 #' @author Gianluca Baio, Andrea Berardi
-#' @seealso \code{\link{bcea}}
+#' @seealso \code{\link{BCEA-deprecated}}
+#' 
 #' @references Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics.  Statistical Methods in Medical Research
+#' Analysis in Health Economics. Statistical Methods in Medical Research
 #' doi:10.1177/0962280211419832.
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-#' London
-#' @keywords Health economic evaluation Multiple comparison
+#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
+#' @keywords hplot
 #' @examples
 #' 
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
@@ -65,7 +64,7 @@
 #' }
 #' }
 #' 
-#' @export mce.plot
+#' @export
 #' 
 mce.plot <- function(mce,pos=c(1,0.5),graph=c("base","ggplot2"),...){
   
@@ -90,7 +89,7 @@ mce.plot <- function(mce,pos=c(1,0.5),graph=c("base","ggplot2"),...){
   if(exists("color",exArgs)) {
     color <- exArgs$color
     lwd <- 1
-    if(mce$n_comparators>7) {lwd=1.5}
+    if(mce$n_comparators>7) {lwd <- 1.5}
     if (length(color)!=(mce$n_comparators))	 {
       message(paste0("You need to specify ",(mce$n_comparators)," colours. Falling back to default\n"))
     }
@@ -114,9 +113,9 @@ mce.plot <- function(mce,pos=c(1,0.5),graph=c("base","ggplot2"),...){
     }
     if(is.logical(alt.legend)){
       if(!alt.legend)
-        alt.legend="topright"
+        alt.legend <- "topright"
       else
-        alt.legend="right"
+        alt.legend <- "right"
     }
     
     #    color <- rep(1,(mce$n_comparators+1)); lwd <- 1
@@ -163,16 +162,16 @@ mce.plot <- function(mce,pos=c(1,0.5),graph=c("base","ggplot2"),...){
       
       jus <- NULL
       if(isTRUE(alt.legend)) {
-        alt.legend="bottom"
+        alt.legend <- "bottom"
         mceplot <- mceplot + ggplot2::theme(legend.direction="vertical")
       }
       else{
         if(is.character(alt.legend)) {
           choices <- c("left", "right", "bottom", "top")
           alt.legend <- choices[pmatch(alt.legend,choices)]
-          jus="center"
+          jus <- "center"
           if(is.na(alt.legend))
-            alt.legend=FALSE
+            alt.legend <- FALSE
         }
         if(length(alt.legend)>1)
           jus <- alt.legend

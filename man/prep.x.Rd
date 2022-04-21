@@ -22,3 +22,4 @@ Prepare Delta arrays
 \seealso{
 \code{\link{evppi}}
 }
+\keyword{internal}

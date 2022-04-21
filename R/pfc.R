@@ -137,7 +137,7 @@ pfc <-
       aniso = function(X, y, fy, d, eps_aniso=1e-3, numdir.test)
       {
         vnames <- dimnames(X)[[2]]
-        if (is.null(vnames)) vnames <- paste("X", 1:ncol(X), sep="")
+        if (is.null(vnames)) vnames <- paste("X", seq_len(ncol(X)), sep="")
         op <- dim(X)
         n <- op[1]
         p <- op[2]

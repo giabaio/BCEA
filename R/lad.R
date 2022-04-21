@@ -25,9 +25,10 @@ lad <-
   {
     mf <- match.call();
     op <- dim(X); p <- op[2]; n <- op[1]; yy <- y; yfactor <- FALSE
-    verbose <- mf$verbose; if (is.null(verbose)) verbose=FALSE;
+    verbose <- mf$verbose; if (is.null(verbose)) verbose <- FALSE
     
-    if (is.factor(y)) {yy <- as.vector(as.integer(factor(y, levels=unique(y)))); yfactor <- TRUE}
+    if (is.factor(y)) {yy <- as.vector(as.integer(factor(y, levels=unique(y))))
+    yfactor <- TRUE}
     if (n != length(yy)) stop("X and y do not have the same number of observations") 
     if (p > n) stop("This method requires n larger than p")
     
@@ -41,13 +42,13 @@ lad <-
     
     if (is.null(nslices))
     {	
-      groups <- unique(sort(yy)); 
-      use.nslices <- length(groups); 
+      groups <- unique(sort(yy))
+      use.nslices <- length(groups)
       if (identical(use.nslices, 1)) stop("The response has a single level.")
       
-      numdir <- min(p, use.nslices-1);
-      N_y <-vector(length=use.nslices);
-      Deltatilde_y = vector(length=use.nslices, "list")
+      numdir <- min(p, use.nslices-1)
+      N_y <-vector(length=use.nslices)
+      Deltatilde_y <- vector(length=use.nslices, "list")
       
       for (i in 1:use.nslices)
       {	
@@ -60,7 +61,7 @@ lad <-
     if (!is.null(nslices)) 
     {	
       if (identical(nslices, 1)) stop("You need at least two slices.")
-      use.nslices=nslices
+      use.nslices <- nslices
       
       if (is.null(numdir)) numdir <- min(p, nslices-1)
       ysort <- ldr.slices(yy, nslices)
@@ -71,23 +72,23 @@ lad <-
       {	
         N_y[i] <- sum(ysort$slice.indicator==i)
         X_y <- X[which(ysort$slice.indicator == i),]
-        Deltatilde_y[[i]] <- cov(X_y); 
+        Deltatilde_y[[i]] <- cov(X_y)
       }
     }
-    Sigmas <- list(Sigmatilde=Sigmatilde, Deltatilde_y=Deltatilde_y, N_y=N_y);
-    Deltatilde <- 0;
-    for (i in 1:use.nslices) Deltatilde <- Deltatilde + N_y[i] * Deltatilde_y[[i]];
+    Sigmas <- list(Sigmatilde=Sigmatilde, Deltatilde_y=Deltatilde_y, N_y=N_y)
+    Deltatilde <- 0
+    for (i in 1:use.nslices) Deltatilde <- Deltatilde + N_y[i] * Deltatilde_y[[i]]
     
     if (identical(numdir.test, FALSE))
     {
-      fit <- onelad(numdir, Deltatilde, p, Sigmatilde, Deltatilde_y, N_y, use.nslices, mf, X, yy, Sigmas, vnames, ...);
-      R <- X%*%fit$Gammahat;
+      fit <- onelad(numdir, Deltatilde, p, Sigmatilde, Deltatilde_y, N_y, use.nslices, mf, X, yy, Sigmas, vnames, ...)
+      R <- X%*%fit$Gammahat
       
       ans <- list(R=R, Gammahat=fit$Gammahat, Deltahat=fit$Deltahat, Deltahat_y=fit$Deltahat_y, 
                   loglik=fit$loglik, aic=fit$aic, bic=fit$bic, numpar=fit$numpar, numdir=numdir, 
-                  yfactor=yfactor, y=y, model="lad", call=match.call(expand.dots=TRUE),numdir.test=numdir.test);
-      class(ans) <- "lad";	
-      return(invisible(ans));	
+                  yfactor=yfactor, y=y, model="lad", call=match.call(expand.dots=TRUE),numdir.test=numdir.test)
+      class(ans) <- "lad"
+      return(invisible(ans))
     }
     
     aic <- bic <- numpar <- loglik <- vector(length=numdir+1)
@@ -95,7 +96,7 @@ lad <-
     
     for (i in 0:numdir)
     {
-      fit <- onelad(i, Deltatilde, p, Sigmatilde, Deltatilde_y, N_y, use.nslices, mf, X, yy, Sigmas, vnames, ...);
+      fit <- onelad(i, Deltatilde, p, Sigmatilde, Deltatilde_y, N_y, use.nslices, mf, X, yy, Sigmas, vnames, ...)
       Gammahat[[i+1]] <-fit$Gammahat
       Deltahat[[i+1]] <- fit$Deltahat
       Deltahat_y[[i+1]] <- fit$Deltahat_y
@@ -117,12 +118,14 @@ lad <-
 #' @importFrom stats cov
 #' 
 InitialMatrix <- function(X, y, nslices) {
-  op <- dim(X); n <- op[1]; p <- op[2]
+  op <- dim(X)
+  n <- op[1]
+  p <- op[2]
   if (is.null(nslices)) 
   {
     yunique <- sort(unique(y))
     ygroups <- y
-    nslices=length(unique(y))
+    nslices <- length(unique(y))
   }
   else
   {
@@ -131,12 +134,12 @@ InitialMatrix <- function(X, y, nslices) {
     ygroups <- Slicing$slice.indicator
   }
   SigmaX <- cov(X)
-  X0 <- as.matrix(X - kronecker(cbind(rep(1,n)), rbind(apply(X,2,mean))));
+  X0 <- as.matrix(X - kronecker(cbind(rep(1,n)), rbind(apply(X,2,mean))))
   svdS<-svd(SigmaX)
   InvSqrtX  <- svdS$u %*% diag(c(svdS$d)^(-0.5)) %*% t(svdS$v)
   Z <- X0%*%InvSqrtX;
   pv <- vector(length=nslices)
-  for (i in 1:nslices) pv[i] <- sum(ygroups==yunique[i])/length(y);
+  for (i in 1:nslices) pv[i] <- sum(ygroups==yunique[i])/length(y)
   cez <- matrix(0,p,nslices)
   cezz <- array(0,dim=c(p,p,nslices))
   
@@ -148,7 +151,8 @@ InitialMatrix <- function(X, y, nslices) {
     cez[,i] <- cez[,i]/n/pv[i]
     cezz[,,i] <- cezz[,,i]/n/pv[i]
   }
-  mat1 <- mat2 <- mat4 <- mat5 <- matrix(0,p,p); mat3 <- 0 
+  mat1 <- mat2 <- mat4 <- mat5 <- matrix(0,p,p)
+  mat3 <- 0 
   
   for (i in 1:nslices){	
     mat1 <- mat1 + cezz[,,i]%*%cezz[,,i]*pv[i]
@@ -163,7 +167,8 @@ InitialMatrix <- function(X, y, nslices) {
   Wdr <- orthonorm(dr.direction)
   
   # using SIR
-  sir <- mat2;  vector.sir <- eigen(sir)$vectors
+  sir <- mat2
+  vector.sir <- eigen(sir)$vectors
   sir.direction <- InvSqrtX %*%vector.sir
   Wsir <- orthonorm(sir.direction)
   
@@ -179,14 +184,15 @@ InitialMatrix <- function(X, y, nslices) {
 
 #' @importFrom GrassmannOptim GrassmannOptim
 #' 
-onelad <-function(d, Deltatilde, p, Sigmatilde, Deltatilde_y, N_y, use.nslices, mf, X, yy, Sigmas, vnames, ...) {
-  if (d==0)
+onelad <-function(d, Deltatilde, p, Sigmatilde, Deltatilde_y, N_y,
+                  use.nslices, mf, X, yy, Sigmas, vnames, ...) {
+  if (d == 0)
   {
     Gammahat <- NULL
     Deltahat <- Deltatilde
     terme0 <- -(n*p)*(1+log(2*pi))/2
     terme1 <- -n*log( det(Sigmatilde) )/2
-    loglik = terme0 + terme1
+    loglik <- terme0 + terme1
     Deltahat_y <- Deltatilde_y
     numpar <- p + p*(p+1)/2;
     AIC <- -2*loglik + 2 * numpar
@@ -194,17 +200,17 @@ onelad <-function(d, Deltatilde, p, Sigmatilde, Deltatilde_y, N_y, use.nslices, 
   }
   else if (d==p)
   {
-    Gammahat=diag(p)
-    Deltahat=Deltatilde
+    Gammahat <- diag(p)
+    Deltahat <- Deltatilde
     terme0 <- -(n*p)*(1+log(2*pi))/2
-    terme3<-0
-    for (i in 1:length(N_y))
+    terme3 <- 0
+    for (i in seq_along(N_y))
     {	
-      terme3<- terme3 - N_y[i] * log( det(Deltatilde_y[[i]]) )/2;
+      terme3 <- terme3 - N_y[i] * log( det(Deltatilde_y[[i]]) )/2
     } 
-    loglik = terme0 + terme
-    Deltahat_y <- Deltatilde_y;
-    numpar <- p+(use.nslices-1)*d + p*(p+1)/2 + (use.nslices-1)*d*(d+1)/2; 
+    loglik <- terme0 + terme3
+    Deltahat_y <- Deltatilde_y
+    numpar <- p+(use.nslices-1)*d + p*(p+1)/2 + (use.nslices-1)*d*(d+1)/2
     AIC <- -2*loglik + 2 * numpar
     BIC <- -2*loglik + log(n) * numpar
   }
@@ -212,7 +218,9 @@ onelad <-function(d, Deltatilde, p, Sigmatilde, Deltatilde_y, N_y, use.nslices, 
   {
     objfun <- function(W)
     {	
-      Q <- W$Qt; d <- W$dim[1]; p <- W$dim[2]
+      Q <- W$Qt
+      d <- W$dim[1]
+      p <- W$dim[2]
       Sigmas <- W$Sigmas
       n <- sum(Sigmas$N_y)
       U <- matrix(Q[,1:d], ncol=d)
@@ -223,10 +231,10 @@ onelad <-function(d, Deltatilde, p, Sigmatilde, Deltatilde_y, N_y, use.nslices, 
       terme1 <- -n*log(det(Sigmas$Sigmatilde))/2
       term <- det(t(U)%*%Sigmas$Sigmatilde%*%U)
       
-      if (is.null(term)|is.na(term)|(term <= 0)) return(NA) else terme2 <- n*log(term)/2 ;
+      if (is.null(term)|is.na(term)|(term <= 0)) return(NA) else terme2 <- n*log(term)/2
       terme3<-0
       
-      for (i in 1:length(Sigmas$N_y))
+      for (i in seq_along(Sigmas$N_y))
       {
         term <- det(t(U)%*%Sigmas$Deltatilde_y[[i]]%*%U) 
         if (is.null(term)|is.na(term)|(term <=0)) {break
@@ -237,13 +245,13 @@ onelad <-function(d, Deltatilde, p, Sigmatilde, Deltatilde_y, N_y, use.nslices, 
       
       #Gradient 
       terme0 <- solve(t(U)%*%Sigmas$Sigmatilde%*%U)
-      terme1 <- sum(Sigmas$N_y) * t(V)%*%Sigmas$Sigmatilde%*%U%*%terme0;
+      terme1 <- sum(Sigmas$N_y) * t(V)%*%Sigmas$Sigmatilde%*%U%*%terme0
       terme2 <- 0
       
-      for (i in 1:length(Sigmas$N_y))
+      for (i in seq_along(Sigmas$N_y))
       {
         temp0 <- solve(t(U)%*%Sigmas$Deltatilde_y[[i]]%*%U)
-        temp <-Sigmas$N_y[i]*t(V)%*%Sigmas$Deltatilde_y[[i]]%*%U%*%temp0;
+        temp <-Sigmas$N_y[i]*t(V)%*%Sigmas$Deltatilde_y[[i]]%*%U%*%temp0
         terme2 <- terme2 - temp
       }
       gradient <- t(terme1 + terme2)
@@ -256,7 +264,7 @@ onelad <-function(d, Deltatilde, p, Sigmatilde, Deltatilde_y, N_y, use.nslices, 
       Wlist <- InitialMatrix(X=X, y=yy, use.nslices)
       values <- c(objfun(W=list(Qt=Wlist$Wsir, dim=c(d,p), Sigmas=Sigmas))$value, 
                   objfun(W=list(Qt=Wlist$Wsave, dim=c(d,p), Sigmas=Sigmas))$value, 
-                  objfun(W=list(Qt=Wlist$Wdr, dim=c(d,p), Sigmas=Sigmas))$value);
+                  objfun(W=list(Qt=Wlist$Wdr, dim=c(d,p), Sigmas=Sigmas))$value)
       
       W <- list(Qt=Wlist[[which(values == max(values))[1]]], dim=c(d,p), Sigmas=Sigmas)
       
@@ -267,19 +275,19 @@ onelad <-function(d, Deltatilde, p, Sigmatilde, Deltatilde_y, N_y, use.nslices, 
       W <- list(dim=c(d,p), Sigmas=Sigmas)
       grassmann <- GrassmannOptim(objfun, W,...)
     }
-    Gammahat = matrix(grassmann$Qt[,1:d], ncol=d)
+    Gammahat <- matrix(grassmann$Qt[,1:d], ncol=d)
     dimnames(Gammahat) <- list(vnames, paste("Dir", 1:d, sep=""))
     
     invDeltahat <- solve(Sigmatilde) + 
       Gammahat%*%solve(t(Gammahat)%*%Deltatilde%*%Gammahat)%*%t(Gammahat) -
-      Gammahat%*%solve(t(Gammahat)%*%Sigmatilde%*%Gammahat)%*%t(Gammahat);
+      Gammahat%*%solve(t(Gammahat)%*%Sigmatilde%*%Gammahat)%*%t(Gammahat)
     
-    Deltahat <- solve(invDeltahat); Pj <- projection(Gammahat, Deltahat);
+    Deltahat <- solve(invDeltahat); Pj <- projection(Gammahat, Deltahat)
     Deltahat_y <- vector("list", use.nslices)
     
-    for (i in 1:use.nslices)
+    for (i in seq_len(use.nslices))
     {
-      Deltahat_y[[i]] <- Deltahat + t(Pj) %*% (Deltatilde_y[[i]] - Deltahat)%*%Pj;
+      Deltahat_y[[i]] <- Deltahat + t(Pj) %*% (Deltatilde_y[[i]] - Deltahat)%*%Pj
     }
     terme0 <- -(n*p)*(1+log(2*pi))/2
     terme1 <- -n*log( det(Sigmatilde) )/2
@@ -288,10 +296,10 @@ onelad <-function(d, Deltatilde, p, Sigmatilde, Deltatilde_y, N_y, use.nslices, 
     
     for (i in 1:length(N_y))
     {
-      terme3 <- terme3 - N_y[i] * log( det(t(Gammahat)%*%Deltatilde_y[[i]]%*%Gammahat) )/2;
+      terme3 <- terme3 - N_y[i] * log( det(t(Gammahat)%*%Deltatilde_y[[i]]%*%Gammahat) )/2
     } 
-    loglik = terme0 + terme1 + terme2 + terme3
-    numpar <- p+(use.nslices-1)*d+p*(p+1)/2+d*(p-d)+(use.nslices-1)*d*(d+1)/2; 
+    loglik <- terme0 + terme1 + terme2 + terme3
+    numpar <- p+(use.nslices-1)*d+p*(p+1)/2+d*(p-d)+(use.nslices-1)*d*(d+1)/2
     AIC <- -2*loglik + 2 * numpar
     BIC <- -2*loglik + log(n) * numpar
   }

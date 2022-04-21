@@ -10,7 +10,7 @@
   comparison = NULL,
   pos = c(1, 0),
   size = NULL,
-  plot.cri = FALSE,
+  plot.cri = NULL,
   graph = c("base", "ggplot2", "plotly"),
   ...
 )
@@ -50,7 +50,8 @@ level of the intervals can be also set, see \ldots{} for more details.}
 
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the three options \code{"base"},
-\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.}
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
+Not all plotting functions have a \code{"plotly"} implementation yet.}
 
 \item{...}{If \code{graph="ggplot2"} and a named theme object is supplied,
  it will be added to the ggplot object. Additional arguments:
@@ -62,8 +63,8 @@ plotting. Should (partial-)match the three options \code{"base"},
  interval between the \code{alpha/2}-th and \code{1-alpha/2}-th quantiles of
  the IB distribution. Setting \code{cri.quantile=FALSE} will use a normal
  approximation on the IB distribution to calculate the intervals.
- \item \code{line_colors}: specifies the line colour(s) - all graph types.
- \item \code{line_types}: specifies the line type(s) as lty numeric values - all graph types.
+ \item \code{line = list(color)}: specifies the line colour(s) - all graph types.
+ \item \code{line = list(type)}: specifies the line type(s) as lty numeric values - all graph types.
  \item \code{area_include}: include area under the EIB curve - plotly only.
  \item \code{area_color}: specifies the AUC curve - plotly only.}}
 }
@@ -123,9 +124,4 @@ Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 \author{
 Gianluca Baio, Andrea Berardi
 }
-\keyword{"Expected}
-\keyword{"Health}
-\keyword{Benefit"}
-\keyword{Incremental}
-\keyword{economic}
-\keyword{evaluation"}
+\keyword{hplot}

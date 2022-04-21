@@ -23,3 +23,4 @@ Prepare frontier data
 \seealso{
 ceef.plot
 }
+\keyword{internal}

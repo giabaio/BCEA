@@ -26,3 +26,4 @@ INLA Fitting
 \seealso{
 \code{\link{evppi}}
 }
+\keyword{internal}
