@@ -16,7 +16,7 @@ Authors@R: c(
             email = "n.green@ucl.ac.uk",
             role = c("aut")))
 Imports:
-    cli,
+    cli (>= 3.3.0),
     dplyr,
     ggplot2,
     GrassmannOptim,

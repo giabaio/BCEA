@@ -66,7 +66,7 @@ summary.bcea <- function(object,
     }
   }
   
-  Table <- sim_table.bcea(he)$Table
+  Table <- sim_table(he, wtp = wtp)$Table
   
   EU_tab <- matrix(NA, he$n_comparators, 1)
   EU_tab[, 1] <-
@@ -200,5 +200,7 @@ summary.bcea <- function(object,
         quote = FALSE,
         digits = 5,
         justify = "center")
+  
+  invisible(he)
 }
 
