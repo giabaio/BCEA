@@ -1,12 +1,29 @@
 
 #' Cost-effectiveness summary statistics table
 #' 
-#' As is commonly shown in a journal paper
+#' As is commonly shown in a journal paper.
 #' @template args-he
 #' @param wtp Willingness to pay
 #' @param ... Additional parameters
 #' @keywords internal
+#' @examples 
+#' data(Vaccine)
 #'
+#' # Runs the health economic evaluation using BCEA
+#' m <- bcea(
+#'       e=e,
+#'       c=c,                  # defines the variables of 
+#'                             #  effectiveness and cost
+#'       ref=2,                # selects the 2nd row of (e, c) 
+#'                             #  as containing the reference intervention
+#'       interventions=treats, # defines the labels to be associated 
+#'                             #  with each intervention
+#'       Kmax=50000,           # maximum value possible for the willingness 
+#'                             #  to pay threshold; implies that k is chosen 
+#'                             #  in a grid from the interval (0, Kmax)
+#' )
+#' ce_table(m)
+#' 
 ce_table <- function(he,
                      wtp = 25000,
                      ...) {
@@ -40,10 +57,12 @@ tabulate_means <- function(he,
     comp_label <- 1:he$n_comparisons
   
   data.frame(
-    lambda.e = sapply(1:he$n_comparisons,
-                      function(x) mean(as.matrix(he$delta_e)[, x])),
-    lambda.c = sapply(1:he$n_comparisons,
-                      function(x) mean(as.matrix(he$delta_c)[, x])),
+    lambda.e = vapply(1:he$n_comparisons,
+                      function(x) mean(as.matrix(he$delta_e)[, x]),
+                      FUN.VALUE = NA_real_),
+    lambda.c = vapply(1:he$n_comparisons,
+                      function(x) mean(as.matrix(he$delta_c)[, x]),
+                      FUN.VALUE = NA_real_),
     comparison = as.factor(1:he$n_comparisons),
     label = comp_label,
     ICER = he$ICER)
