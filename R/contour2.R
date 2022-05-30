@@ -69,17 +69,18 @@ contour2.bcea <- function(he,
 #' @seealso \code{\link{bcea}},
 #'          \code{\link{ceplane.plot}},
 #'          \code{\link{contour}}
+#'          
 #' @references
-#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics. Statistical Methods in Medical Research
-#' doi:10.1177/0962280211419832.
+#' \insertRef{Baio2011}{BCEA}
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+#' \insertRef{Baio2013}{BCEA}
+#' 
 #' @keywords hplot
 #' @import ggplot2
 #' @importFrom grDevices ps.options pdf.options
 #' @importFrom MASS kde2d
-#' 
+#' @importFrom Rdpack reprompt
+#'  
 #' @examples
 #' ## create the bcea object m for the smoking cessation example
 #' data(Smoking)

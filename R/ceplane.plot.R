@@ -66,12 +66,12 @@
 #'          \code{\link{ceplane_plot_graph}}
 #' 
 #' @references
-#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in Health Economics.
-#' Statistical Methods in Medical Research. doi:10.1177/0962280211419832.
+#' \insertRef{Baio2011}{BCEA}
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+#' \insertRef{Baio2013}{BCEA}
 #' 
 #' @keywords hplot
+#' @importFrom Rdpack reprompt
 #' @export
 #' 
 #' @examples

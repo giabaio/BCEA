@@ -85,8 +85,7 @@ An object of the class "bcea" containing the following elements
 \item{n_comparisons}{Number of possible pairwise comparisons}
 \item{delta.e}{For each possible comparison, the differential in the
 effectiveness measure}
-\item{delta.c}{For each possible comparison, the differential in the cost
-measure}
+\item{delta.c}{For each possible comparison, the differential in the cost measure}
 \item{ICER}{The value of the Incremental Cost-Effectiveness Ratio}
 \item{Kmax}{The maximum value assumed for the willingness to pay threshold}
 \item{k}{The vector of values for the grid approximation of the willingness
@@ -120,8 +119,7 @@ a function of the willingness to pay}
 reference in the analysis}
 \item{comp}{The numeric index(es) associated with the intervention(s) used
 as comparator(s) in the analysis}
-\item{step}{The step size used to form the grid approximation to the willingness
-to pay}
+\item{step}{The step size used to form the grid approximation to the willingness to pay}
 \item{e}{The \code{eff} matrix used to generate the object (see Arguments)}
 \item{c}{The \code{cost} matrix used to generate the object (see Arguments)}
 }

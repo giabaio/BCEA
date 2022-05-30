@@ -158,10 +158,9 @@ ceef.plot(m,
 
 }
 \references{
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2013}{BCEA}
 
-IQWIG (2009). General methods for the Assessment of the Relation of Benefits
-to Cost, Version 1.0. IQWIG, November 2009.
+\insertRef{IQWIG2009}{BCEA}
 }
 \seealso{
 \code{\link{bcea}}
