@@ -35,8 +35,11 @@
 #' @return List object of bcea object, model weights and DIC
 #' @author Gianluca Baio
 #' @seealso \code{\link{bcea}}
+#' @importFrom Rdpack reprompt
+#' 
 #' @references
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+#' 
+#' \insertRef{Baio2013}{BCEA}
 #' 
 #' @export
 #' 
