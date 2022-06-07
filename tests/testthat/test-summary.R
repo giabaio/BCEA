@@ -18,3 +18,23 @@
 #   expect_snapshot_output(summary(he))
 # })
 
+
+test_that("eib in summary print is same as bcea", {
+  
+  data("Vaccine")
+  vacc_bcea <- bcea(e, c, ref = 1, interventions = c("1", "2"))
+  
+  capture_wtp <- capture.output(summary(vacc_bcea, wtp = 20000))
+  
+  expect_equal(tolerance = 0.0001,
+               as.double(strsplit(capture_wtp[17], split = " ")[[1]][4]),
+               vacc_bcea$eib[201])
+  
+  capture_wtp <- capture.output(summary(vacc_bcea, wtp = 30000))
+  
+  expect_equal(tolerance = 0.0001,
+               as.double(strsplit(capture_wtp[17], split = " ")[[1]][4]),
+               vacc_bcea$eib[301])
+})
+
+
