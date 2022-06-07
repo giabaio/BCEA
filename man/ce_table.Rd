@@ -34,6 +34,5 @@ m <- bcea(
                             #  in a grid from the interval (0, Kmax)
 )
 ce_table(m)
-
 }
 \keyword{internal}
