@@ -66,15 +66,11 @@ evi.plot(m)
 
 }
 \references{
-Baio, G. and Russo, P. (2009). A decision-theoretic framework for
-the application of cost-effectiveness analysis in regulatory processes.
-Pharmacoeconomics 27(8), 645-655 doi:10.2165/11310250
+\insertRef{Baio2009}{BCEA}
 
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in Health
-Economics.  Statistical Methods in Medical Research
-doi:10.1177/0962280211419832.
+\insertRef{Baio2011}{BCEA}
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2013}{BCEA}
 }
 \seealso{
 \code{\link{bcea}}

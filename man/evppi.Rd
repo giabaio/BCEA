@@ -211,30 +211,19 @@ plot(EVPPI)
 
 }
 \references{
-Strong M., Oakley J. and Brennan A. (2014). Estimating
-multi-parameter partial Expected Value of Perfect Information from a
-probabilistic sensitivity analysis sample: a non-parametric regression
-approach. Medical Decision Making.
-\url{https://doi.org/10.1177/0272989X13505910}
+\insertRef{Strong2014}{BCEA}
 
-Sadatsafavi M., Bansback N., Zafari Z., Najafzadeh M., Marra C. (2013). Need
-for speed: an efficient algorithm for calculation of single-parameter
-expected value of partial perfect information. Value in Health.
-\url{https://doi.org/10.1016/j.jval.2012.10.018}
+\insertRef{Sadatsafavi2013}{BCEA}
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2013}{BCEA}
 
-Baio, G, A Berardi, and A Heath. 2017. Bayesian Cost-Effectiveness Analysis
-with the R package BCEA. New York, NY: Springer. doi:10.1007/978-3-319-55718-2.
+\insertRef{Baio2017}{BCEA}
 
-Heath A., Manolopoulou I., Baio G. (2016). Estimating the Expected Value of
-Partial Perfect Information in Health Economic Evaluations using Integrated
-Nested Laplace Approximation. Statistics in Medicine.
-\url{https://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full}
+\insertRef{Heath2016}{BCEA}
 }
 \seealso{
 \code{\link{bcea}},
-         \code{\link{plot.evppi}},
+         \code{\link{plot.evppi}}
 }
 \author{
 Anna Heath, Gianluca Baio

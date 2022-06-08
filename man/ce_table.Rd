@@ -15,6 +15,24 @@ modelling and the economic evaluation.}
 \item{...}{Additional parameters}
 }
 \description{
-As is commonly shown in a journal paper
+As is commonly shown in a journal paper.
+}
+\examples{
+data(Vaccine)
+
+# Runs the health economic evaluation using BCEA
+m <- bcea(
+      e=e,
+      c=c,                  # defines the variables of 
+                            #  effectiveness and cost
+      ref=2,                # selects the 2nd row of (e, c) 
+                            #  as containing the reference intervention
+      interventions=treats, # defines the labels to be associated 
+                            #  with each intervention
+      Kmax=50000,           # maximum value possible for the willingness 
+                            #  to pay threshold; implies that k is chosen 
+                            #  in a grid from the interval (0, Kmax)
+)
+ce_table(m)
 }
 \keyword{internal}
