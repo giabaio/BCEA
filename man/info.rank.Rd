@@ -5,15 +5,8 @@
 \alias{info.rank}
 \title{Information-Rank Plot for bcea Class}
 \usage{
-\method{info.rank}{bcea}(
-  he,
-  inp,
-  wtp = NULL,
-  howManyPars = NA,
-  graph = c("base", "ggplot2", "plotly"),
-  rel = TRUE,
-  ...
-)
+\method{info.rank}{bcea}(he, inp, wtp = NULL, howManyPars = NA,
+  graph = c("base", "ggplot2", "plotly"), rel = TRUE, ...)
 
 info.rank(he, ...)
 }

@@ -5,7 +5,8 @@
 \alias{contour2}
 \title{Specialised CE-plane Contour Plot}
 \usage{
-\method{contour2}{bcea}(he, comparison = NULL, wtp = 25000, graph = c("base", "ggplot2"), ...)
+\method{contour2}{bcea}(he, comparison = NULL, wtp = 25000,
+  graph = c("base", "ggplot2"), ...)
 
 contour2(he, ...)
 }

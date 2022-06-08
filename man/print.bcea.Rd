@@ -4,7 +4,8 @@
 \alias{print.bcea}
 \title{bcea Print Method}
 \usage{
-\method{print}{bcea}(x, digits = getOption("digits"), give.attr = FALSE, no.list = TRUE, ...)
+\method{print}{bcea}(x, digits = getOption("digits"),
+  give.attr = FALSE, no.list = TRUE, ...)
 }
 \arguments{
 \item{x}{A \code{bcea} object containing the results of the Bayesian

@@ -4,20 +4,8 @@
 \alias{fit.inla}
 \title{Fit INLA}
 \usage{
-fit.inla(
-  parameter,
-  inputs,
-  x,
-  mesh,
-  data.scale,
-  int.ord,
-  convex.inner,
-  convex.outer,
-  cutoff,
-  max.edge,
-  h.value,
-  family
-)
+fit.inla(parameter, inputs, x, mesh, data.scale, int.ord, convex.inner,
+  convex.outer, cutoff, max.edge, h.value, family)
 }
 \arguments{
 \item{parameter}{Parameters}

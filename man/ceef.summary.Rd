@@ -4,7 +4,8 @@
 \alias{ceef.summary}
 \title{Summary table for CEEF}
 \usage{
-ceef.summary(he, frontier_data, frontier_params, include.ICER = FALSE, ...)
+ceef.summary(he, frontier_data, frontier_params, include.ICER = FALSE,
+  ...)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian

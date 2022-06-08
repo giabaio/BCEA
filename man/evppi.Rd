@@ -7,9 +7,11 @@
 \title{Expected Value of Perfect Partial Information (EVPPI) for Selected
 Parameters}
 \usage{
-evppi(he, param_idx, input, N = NULL, plot = FALSE, residuals = TRUE, ...)
+evppi(he, param_idx, input, N = NULL, plot = FALSE, residuals = TRUE,
+  ...)
 
-\method{evppi}{bcea}(he, param_idx, input, N = NULL, plot = FALSE, residuals = TRUE, ...)
+\method{evppi}{bcea}(he, param_idx, input, N = NULL, plot = FALSE,
+  residuals = TRUE, ...)
 
 \method{evppi}{default}(he, ...)
 }

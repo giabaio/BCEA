@@ -4,14 +4,8 @@
 \alias{plot.bcea}
 \title{Summary Plot of the Health Economic Analysis}
 \usage{
-\method{plot}{bcea}(
-  x,
-  comparison = NULL,
-  wtp = 25000,
-  pos = FALSE,
-  graph = c("base", "ggplot2"),
-  ...
-)
+\method{plot}{bcea}(x, comparison = NULL, wtp = 25000, pos = FALSE,
+  graph = c("base", "ggplot2"), ...)
 }
 \arguments{
 \item{x}{A \code{bcea} object containing the results of the Bayesian

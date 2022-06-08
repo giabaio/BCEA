@@ -10,15 +10,18 @@
 \alias{ceplane_plot_plotly}
 \title{Cost-Effectiveness Plane Plot By Graph Device}
 \usage{
-\method{ceplane_plot_base}{bcea}(he, wtp = 25000, pos_legend, graph_params, ...)
+\method{ceplane_plot_base}{bcea}(he, wtp = 25000, pos_legend,
+  graph_params, ...)
 
 ceplane_plot_base(he, ...)
 
-\method{ceplane_plot_ggplot}{bcea}(he, wtp = 25000, pos_legend, graph_params, ...)
+\method{ceplane_plot_ggplot}{bcea}(he, wtp = 25000, pos_legend,
+  graph_params, ...)
 
 ceplane_plot_ggplot(he, ...)
 
-\method{ceplane_plot_plotly}{bcea}(he, wtp = 25000, pos_legend, graph_params, ...)
+\method{ceplane_plot_plotly}{bcea}(he, wtp = 25000, pos_legend,
+  graph_params, ...)
 
 ceplane_plot_plotly(he, ...)
 }
@@ -31,6 +34,11 @@ modelling and the economic evaluation.}
 \item{pos_legend}{Legend position}
 
 \item{graph_params}{Graph parameters in ggplot format}
+
+\item{...}{Additional arguments}
+
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
 
 \item{...}{Additional arguments}
 }

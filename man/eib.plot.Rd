@@ -5,15 +5,9 @@
 \alias{eib.plot}
 \title{Expected Incremental Benefit (EIB) Plot}
 \usage{
-\method{eib.plot}{bcea}(
-  he,
-  comparison = NULL,
-  pos = c(1, 0),
-  size = NULL,
-  plot.cri = NULL,
-  graph = c("base", "ggplot2", "plotly"),
-  ...
-)
+\method{eib.plot}{bcea}(he, comparison = NULL, pos = c(1, 0),
+  size = NULL, plot.cri = NULL, graph = c("base", "ggplot2",
+  "plotly"), ...)
 
 eib.plot(he, ...)
 }
@@ -52,6 +46,24 @@ level of the intervals can be also set, see \ldots{} for more details.}
 plotting. Should (partial-)match the three options \code{"base"},
 \code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
 Not all plotting functions have a \code{"plotly"} implementation yet.}
+
+\item{...}{If \code{graph="ggplot2"} and a named theme object is supplied,
+ it will be added to the ggplot object. Additional arguments:
+\itemize{
+ \item \code{alpha} can be used to set the CrI level when \code{plot.cri=TRUE},
+ with a default value of \code{alpha=0.05}.
+ \item \code{cri.quantile} controls the the method of calculation of the credible
+ intervals. The default value \code{cri.quantile=TRUE} defines the CrI as the
+ interval between the \code{alpha/2}-th and \code{1-alpha/2}-th quantiles of
+ the IB distribution. Setting \code{cri.quantile=FALSE} will use a normal
+ approximation on the IB distribution to calculate the intervals.
+ \item \code{line_colors}: specifies the line colour(s) - all graph types.
+ \item \code{line_types}: specifies the line type(s) as lty numeric values - all graph types.
+ \item \code{area_include}: include area under the EIB curve - plotly only.
+ \item \code{area_color}: specifies the AUC curve - plotly only.}}
+
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
 
 \item{...}{If \code{graph="ggplot2"} and a named theme object is supplied,
  it will be added to the ggplot object. Additional arguments:
