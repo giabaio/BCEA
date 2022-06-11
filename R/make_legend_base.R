@@ -48,7 +48,7 @@ ceplane_legend_base <- function(he,
   
   pos_legend <- where_legend(he, pos_legend)
   
-  text <- line_labels(he)
+  text <- line_labels(he, ref_first = plot_params$ref_first)
   
   list(x = pos_legend,
        legend = text,
