@@ -70,7 +70,7 @@ ceplane_plot_base.bcea <- function(he,
                                    wtp = 25000,
                                    pos_legend,
                                    graph_params, ...) {
-
+  
   plot_params <-
     ceplane_base_params(he, wtp, graph_params)
   
@@ -164,16 +164,22 @@ ceplane_plot_ggplot.bcea <- function(he,
   theme_add <- purrr::keep(list(...), is.theme)
   
   ggplot(delta_ce,
-         aes(x = .data$delta_e, y = .data$delta_c, group = factor(.data$comparison),
-             col = factor(.data$comparison), shape = factor(.data$comparison))) +
+         aes(x = .data$delta_e, y = .data$delta_c,
+             group = factor(.data$comparison),
+             col = factor(.data$comparison),
+             shape = factor(.data$comparison))) +
     do.call(geom_polygon, graph_params$area) +
     theme_ceplane() +
     theme_add +
     geom_point(size = graph_params$point$size) +
-    scale_color_manual(labels = line_labels.default(he),
-                       values = graph_params$point$color) +
-    scale_shape_manual(labels = line_labels.default(he),
-                       values = graph_params$point$shape) +
+    scale_color_manual(
+      labels =
+        line_labels.default(he, ref_first = graph_params$ref_first),
+      values = graph_params$point$color) +
+    scale_shape_manual(
+      labels =
+        line_labels.default(he, ref_first = graph_params$ref_first),
+      values = graph_params$point$shape) +
     geom_hline(yintercept = 0, colour = "grey") +
     geom_vline(xintercept = 0, colour = "grey") +
     coord_cartesian(xlim = graph_params$xlim,
@@ -209,7 +215,7 @@ ceplane_plot_plotly.bcea <- function(he,
   
   comp_label <-
     paste(he$interventions[he$ref], "vs", he$interventions[he$comp])
-
+  
   # single long format for plotting data
   delta_ce <-
     merge(
