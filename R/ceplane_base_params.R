@@ -28,6 +28,7 @@ contour_base_params <- function(he,
     scale = graph_params$scale,
     levels = graph_params$levels,
     contour = graph_params$contour,
-    nlevels = graph_params$nlevels),
+    nlevels = graph_params$nlevels,
+    ref_first = graph_params$ref_first),
     icer_params(graph_params, he))
 }
