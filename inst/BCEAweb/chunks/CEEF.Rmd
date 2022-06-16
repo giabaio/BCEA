@@ -1,0 +1,24 @@
+---
+title: "CEEF"
+output: 
+	pdf_document
+	word_document
+---
+```{r, echo=FALSE}
+if(input$format=="PDF") {
+    align="center"
+} else {
+    align="default"
+}
+```
+
+## Cost-effectiveness efficiency frontier
+
+
+
+```{r, echo=FALSE, comment=" ", warning=FALSE, message=FALSE, fig.width=4.6, fig.height=4.6,fig.align=align}
+n.ints <- m()$n.comparators
+if (n.ints==2) {graph="base"; pos=c(1,1)} else {graph="ggplot2"; pos=TRUE}
+ceef.plot(m(),graph=graph)
+cat()
+```

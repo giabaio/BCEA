@@ -1,0 +1,39 @@
+---
+title: "Info Rank"
+output: 
+	pdf_document
+	word_document
+---
+```{r, echo=FALSE}
+if(input$format=="PDF") {
+    align="center"
+} else {
+    align="default"
+}
+```
+
+## Info-rank plot
+This section presents the results of the Info-rank plot. This is an extension of the Tornado plot, which is used to identify the most important parameters. Instead of using deterministic sensitivity analysis, however, the Info-rank plot is based on the analysis of the Expected Value of Partial Perfect Information (EVPPI). 
+
+
+For each parameter and value of the willingness-to-pay threshold $k$, a barchart is plotted to describe the ratio of EVPPI (specific to that parameter) to EVPI. This represents the relative 'importance' of each parameter in terms of the expected value of information.
+
+```{r, echo=FALSE,fig.width=6.0, fig.height=6.9, fig.align=align,results='asis'}
+if(!is.null(input$info_rank_parameters)){
+   if (input$from=="Spreadsheet" || input$from=="R") {
+     input_data_ir <- param()
+     names.par <- colnames(input_data_ir)
+   } 
+   if (input$from=="BUGS") {
+     input_data_ir <- param2()
+     names.par <- colnames(input_data_ir)
+   }
+   if(input$info_rank_parameters=="All parameters") {
+     rel.pars <- names.par
+   } else {
+     rel.pars <- input$info_rank_parameters 
+   }
+   wtp <- as.numeric(input$wtp_grid5)
+   x <- info.rank(parameter=rel.pars,input=input_data_ir,he=m(),wtp=wtp,cn=.6,ca=.8)
+}
+```

@@ -1,0 +1,102 @@
+---
+title: "Auto-generated report from BCEAweb"
+header-includes: \usepackage{graphicx} \usepackage{bm}
+date: "Version: `r format(Sys.time(), '%d %B, %Y')`"
+output:
+  word_document: default
+  pdf_document:
+    fontsize: 11pt
+    geometry: margin=1cm
+---
+
+```{r setup, echo=FALSE}
+iAssumption  <- FALSE
+iEcEval <- FALSE
+iCEAnalysis <- FALSE
+iCEPlane <- FALSE
+iEIB <- FALSE
+iPSA <- FALSE
+iCEAC <- FALSE
+iMCEAC <- FALSE
+iCEAF <- FALSE
+iCEEF <- FALSE
+iEVPI  <- FALSE
+iIR <- FALSE
+iEVPPI <- FALSE
+iEVPPIerror <- FALSE
+
+# If all NULL, then no data loaded for the parameters
+check1 <- all(is.null(param()),is.null(param2()))
+# If 0 then no economic analysis executed
+check2 <- input$buttonsum==0
+
+if(!check1 & !is.null(input$assumption)) iAssumption <- TRUE
+
+if(!check2 & !is.null(input$bcea)) {
+  iEcEval <- TRUE
+  for(i in 1:length(input$bcea)) {
+    if(input$bcea[i] == "Cost-effectiveness analysis") iCEAnalysis <- TRUE
+    if(input$bcea[i] == "Cost-effectiveness plane") iCEPlane <- TRUE
+    if(input$bcea[i] == "Expected Incremental Benefit") iEIB <- TRUE
+    if(input$bcea[i] == "Efficiency frontier") iCEEF <- TRUE
+  }
+}
+
+if(!is.null(input$psa) & !check2) {
+  iPSA <- TRUE
+  for(i in 1:length(input$psa)){
+    if(input$psa[i] == "CEAC") iCEAC <- TRUE
+    if(input$psa[i] == "CEAF") iCEAF <- TRUE  #& !is.null(mce()$ceaf)) iCEAF <- TRUE
+    if(input$psa[i] == "EVPI") iEVPI <- TRUE  #& !is.null(m()$evi)) iEVPI <- TRUE
+    if(input$psa[i] == "Multi-comparison CEAC") iMCEAC <- TRUE  #& !is.null(mce()$ceaf)) iMCEAC <- TRUE
+    if(input$psa[i] == "Info-rank" & !is.null(make_info_rank()$rank)) iIR <- TRUE 
+    if(input$psa[i] == "EVPPI" & !is.null(compute_evppi()$evppi)) iEVPPI <- TRUE
+  }
+}
+
+if(iMCEAC || iCEAF){
+  m.mce <- multi.ce(m())
+}
+```
+
+```{r child='chunks/checkAssumptions.Rmd', eval=iAssumption}
+```
+
+```{r child='chunks/EconomicEvaluation.Rmd', eval=iEcEval}
+```
+
+```{r child='chunks/CEAnalysis.Rmd', eval=iCEAnalysis}
+```
+
+```{r child='chunks/CEPlane.Rmd', eval=iCEPlane}
+```
+
+```{r child='chunks/EIB.Rmd', eval=iEIB}
+```
+
+```{r child='chunks/CEEF.Rmd', eval=iCEEF}
+```
+
+```{r child='chunks/PSA.Rmd', eval=iPSA}
+```
+
+```{r child='chunks/CEAC.Rmd', eval=iCEAC}
+```
+
+```{r child='chunks/MCEAC.Rmd', eval=iMCEAC}
+```
+
+```{r child='chunks/CEAF.Rmd', eval=iCEAF}
+```
+
+```{r child='chunks/EVPI.Rmd', eval=iEVPI}
+```
+
+```{r child='chunks/InfoRank.Rmd', eval=iIR}
+```
+
+```{r child='chunks/EVPPI.Rmd', eval=iEVPPI}
+```
+
+```{r child='chunks/EVPPIerror.Rmd', eval=iEVPPIerror}
+```

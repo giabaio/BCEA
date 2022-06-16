@@ -1,0 +1,22 @@
+---
+title: "EVPI"
+output: 
+	pdf_document
+	word_document
+---
+```{r, echo=FALSE}
+if(input$format=="PDF") {
+    align="center"
+} else {
+    align="default"
+}
+```
+
+## Expected value of perfect information
+
+
+
+
+```{r, echo=FALSE,fig.width=4.6, fig.height=4.6,fig.align=align}
+evi.plot(m())
+```

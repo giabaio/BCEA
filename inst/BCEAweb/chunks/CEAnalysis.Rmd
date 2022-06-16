@@ -1,0 +1,22 @@
+---
+title: "Untitled"
+output: 
+	pdf_document
+	word_document
+---
+```{r, echo=FALSE}
+if(input$format=="PDF") {
+    align="center"
+} else {
+    align="default"
+}
+```
+
+## Cost-effectiveness analysis 
+This sub-section presents a summary table reporting basic economic results as well as the optimal decision, given the selected willingness-to-pay threshold $k=`r input$value1`$.
+
+
+
+```{r, echo=FALSE, comment=" "}
+summary(m())
+```
