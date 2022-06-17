@@ -21,8 +21,9 @@
 
 test_that("eib in summary print is same as bcea", {
   
-  data("Vaccine")
-  vacc_bcea <- bcea(e, c, ref = 1, interventions = c("1", "2"))
+  load(test_path("ce_vaccine.RData"))
+  
+  vacc_bcea <- bcea(eff, cost, ref = 1, interventions = c("1", "2"))
   
   capture_wtp <- capture.output(summary(vacc_bcea, wtp = 20000))
   

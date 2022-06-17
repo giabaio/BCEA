@@ -5,9 +5,16 @@
 \alias{ib.plot}
 \title{Incremental Benefit (IB) Distribution Plot}
 \usage{
-\method{ib.plot}{bcea}(he, comparison = NULL, wtp = 25000,
-  bw = "bcv", n = 512, xlim = NULL, graph = c("base", "ggplot2"),
-  ...)
+\method{ib.plot}{bcea}(
+  he,
+  comparison = NULL,
+  wtp = 25000,
+  bw = "bcv",
+  n = 512,
+  xlim = NULL,
+  graph = c("base", "ggplot2"),
+  ...
+)
 
 ib.plot(he, ...)
 }

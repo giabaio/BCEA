@@ -26,7 +26,8 @@
 \alias{vaccine_mat}
 \title{Data set for the Bayesian model for the cost-effectiveness of influenza
 vaccination}
-\format{A data list including the variables needed for the influenza
+\format{
+A data list including the variables needed for the influenza
 vaccination. The variables are as follows:
 \describe{
   \item{list("c")}{a matrix of simulations from the posterior
@@ -74,7 +75,8 @@ vaccination. The variables are as follows:
   \item{list("treats")}{a vector of labels associated with the two treatments}
   \item{list("vaccine_mat")}{a matrix containing the simulations for the
   parameters used in the original model}
-  }}
+  }
+}
 \source{
 Adapted from Turner D, Wailoo A, Cooper N, Sutton A, Abrams K,
 Nicholson K. The cost-effectiveness of influenza vaccination of healthy

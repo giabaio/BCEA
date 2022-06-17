@@ -7,7 +7,7 @@
 #' @name CEriskav_plot_graph
 #' @title Cost-effectiveness Plot Including a Parameter of Risk Aversion
 #'
-#' Choice of base R, ggplot2.
+#' @description Choice of base R, ggplot2.
 #'
 #' @template args-he
 #' @param pos_legend Legend position

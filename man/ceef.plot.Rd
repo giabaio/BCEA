@@ -5,10 +5,20 @@
 \alias{ceef.plot}
 \title{Cost-Effectiveness Efficiency Frontier (CEEF) Plot}
 \usage{
-\method{ceef.plot}{bcea}(he, comparators = NULL, pos = c(1, 1),
-  start.from.origins = TRUE, threshold = NULL, flip = FALSE,
-  dominance = TRUE, relative = FALSE, print.summary = TRUE,
-  graph = c("base", "ggplot2"), print.plot = TRUE, ...)
+\method{ceef.plot}{bcea}(
+  he,
+  comparators = NULL,
+  pos = c(1, 1),
+  start.from.origins = TRUE,
+  threshold = NULL,
+  flip = FALSE,
+  dominance = TRUE,
+  relative = FALSE,
+  print.summary = TRUE,
+  graph = c("base", "ggplot2"),
+  print.plot = TRUE,
+  ...
+)
 
 ceef.plot(he, ...)
 }
@@ -63,9 +73,6 @@ plotting. Should (partial-)match the two options \code{"base"} or
 it will be added to the ggplot object. Ignored if \code{graph_type="base"}.
 Setting the optional argument \code{include.ICER} to \code{TRUE} will print
 the ICERs in the summary tables, if produced.}
-
-\item{he}{A \code{bcea} object containing the results of the Bayesian
-modelling and the economic evaluation.}
 }
 \value{
 \item{ceplane}{ A ggplot object containing the plot. Returned only

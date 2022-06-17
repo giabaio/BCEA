@@ -5,8 +5,13 @@
 \alias{contour}
 \title{Contour Plots for the Cost-Effectiveness Plane}
 \usage{
-\method{contour}{bcea}(he, pos = c(0, 1), graph = c("base", "ggplot2"),
-  comparison = NULL, ...)
+\method{contour}{bcea}(
+  he,
+  pos = c(0, 1),
+  graph = c("base", "ggplot2"),
+  comparison = NULL,
+  ...
+)
 
 contour(he, ...)
 }
@@ -44,9 +49,6 @@ together. Any subset of the possible comparisons can be selected (e.g.,
   \item \code{levels}: Numeric vector of levels at which to draw contour lines. Quantiles 0<p<1.
   \item \code{nlevels}: Number of levels to be plotted in the contour.
 }}
-
-\item{he}{A \code{bcea} object containing the results of the Bayesian
-modelling and the economic evaluation.}
 }
 \value{
 \item{ceplane}{ A ggplot object containing the plot. Returned only

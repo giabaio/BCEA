@@ -4,7 +4,7 @@
 # library(BCEA)
 
 
-load(test_path("smoking_ce.RData"))
+load(test_path("ce_smoking.RData"))
 
 test_that("errors for comparison groups base R", {
 

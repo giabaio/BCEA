@@ -8,11 +8,27 @@
 \alias{bcea.bugs}
 \title{Create Bayesian Cost-Effectiveness Analysis Object}
 \usage{
-bcea(eff, cost, ref = 1, interventions = NULL, .comparison = NULL,
-  Kmax = 50000, wtp = NULL, plot = FALSE)
+bcea(
+  eff,
+  cost,
+  ref = 1,
+  interventions = NULL,
+  .comparison = NULL,
+  Kmax = 50000,
+  wtp = NULL,
+  plot = FALSE
+)
 
-\method{bcea}{default}(eff, cost, ref = NULL, interventions = NULL,
-  .comparison = NULL, Kmax = 50000, wtp = NULL, plot = FALSE)
+\method{bcea}{default}(
+  eff,
+  cost,
+  ref = NULL,
+  interventions = NULL,
+  .comparison = NULL,
+  Kmax = 50000,
+  wtp = NULL,
+  plot = FALSE
+)
 
 \method{bcea}{rjags}(eff, ...)
 
@@ -59,10 +75,6 @@ computations (e.g. for the EVPPI).}
 
 \item{plot}{A logical value indicating whether the function should produce
 the summary plot or not.}
-
-\item{...}{Additional arguments}
-
-\item{...}{Additional arguments}
 
 \item{...}{Additional arguments}
 }

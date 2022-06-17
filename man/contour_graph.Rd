@@ -19,15 +19,6 @@ modelling and the economic evaluation.}
 \item{graph_params}{Plot parameters; list}
 
 \item{...}{Additional arguments}
-
-\item{he}{A \code{bcea} object containing the results of the Bayesian
-modelling and the economic evaluation.}
-
-\item{pos_legend}{Legend position}
-
-\item{graph_params}{Plot parameters; list}
-
-\item{...}{Additional arguments}
 }
 \description{
 Choice of base R, ggplot2

@@ -13,7 +13,8 @@
 \alias{treats}
 \title{Data set for the Bayesian model for the cost-effectiveness of smoking
 cessation interventions}
-\format{A data list including the variables needed for the smoking cessation
+\format{
+A data list including the variables needed for the smoking cessation
 cost-effectiveness analysis. The variables are as follows:
 \describe{
 \item{list("c")}{a matrix of 500 simulations from the posterior distribution
@@ -36,7 +37,8 @@ cost-effectiveness analysis. The variables are as follows:
 \item{list("smoking_mat")}{a matrix obtained by running the network
  meta-analysis model based on the data contained in the \code{smoking} object}
 \item{list("treats")}{a vector of labels associated with the four strategies}
-}}
+}
+}
 \source{
 Effectiveness data adapted from Hasselblad V. (1998). Meta-analysis
 of Multitreatment Studies. Medical Decision Making 1998;18:37-43.

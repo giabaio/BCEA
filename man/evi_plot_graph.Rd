@@ -22,21 +22,6 @@ modelling and the economic evaluation.}
 \item{plot_aes}{Aesthetic parameters}
 
 \item{plot_annotations}{Plot parameters}
-
-\item{he}{A \code{bcea} object containing the results of the Bayesian
-modelling and the economic evaluation.}
-
-\item{data.psa}{Data}
-
-\item{plot_aes}{Aesthetic parameters}
-
-\item{plot_annotations}{Plot parameters}
-
-\item{data.psa}{Data}
-
-\item{plot_aes}{Aesthetic parameters}
-
-\item{plot_annotations}{Plot parameters}
 }
 \description{
 Choice of base R, ggplot2 or plotly.

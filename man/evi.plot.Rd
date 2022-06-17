@@ -17,11 +17,6 @@ modelling and the economic evaluation.}
 plotting. Should (partial-)match the three options \code{"base"},
 \code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.}
 
-\item{...}{Additional parameters}
-
-\item{he}{A \code{bcea} object containing the results of the Bayesian
-modelling and the economic evaluation.}
-
 \item{...}{Additional graphical arguments:
 \itemize{
   \item \code{line_colors} to specify the EVPI line colour - all graph types.

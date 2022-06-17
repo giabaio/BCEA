@@ -4,8 +4,7 @@
 \alias{evi.plot.mixedAn}
 \title{EVI Plot of the Health Economic Analysis For Mixed Analysis}
 \usage{
-\method{evi.plot}{mixedAn}(he, y.limits = NULL, pos = c(0, 1),
-  graph = c("base", "ggplot2"), ...)
+\method{evi.plot}{mixedAn}(he, y.limits = NULL, pos = c(0, 1), graph = c("base", "ggplot2"), ...)
 }
 \arguments{
 \item{he}{An object of class \code{mixedAn}, a subclass of \code{bcea},

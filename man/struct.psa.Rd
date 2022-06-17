@@ -4,8 +4,15 @@
 \alias{struct.psa}
 \title{Structural Probability Sensitivity Analysis}
 \usage{
-struct.psa(models, effect, cost, ref = NULL, interventions = NULL,
-  Kmax = 50000, plot = FALSE)
+struct.psa(
+  models,
+  effect,
+  cost,
+  ref = NULL,
+  interventions = NULL,
+  Kmax = 50000,
+  plot = FALSE
+)
 }
 \arguments{
 \item{models}{A list containing the output from either R2jags or

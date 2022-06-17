@@ -13,7 +13,7 @@ line_labels <- function(he, ...) UseMethod("line_labels", he)
 #' @rdname line_labels
 #' @export
 #' 
-line_labels.default <- function(he, ref_first = TRUE) {
+line_labels.default <- function(he, ref_first = TRUE, ...) {
   
   if (he$n_comparisons == 1) return("")
   
