@@ -4,14 +4,8 @@
 \alias{plot.bcea}
 \title{Summary Plot of the Health Economic Analysis}
 \usage{
-\method{plot}{bcea}(
-  x,
-  comparison = NULL,
-  wtp = 25000,
-  pos = FALSE,
-  graph = c("base", "ggplot2"),
-  ...
-)
+\method{plot}{bcea}(x, comparison = NULL, wtp = 25000, pos = FALSE,
+  graph = c("base", "ggplot2"), ...)
 }
 \arguments{
 \item{x}{A \code{bcea} object containing the results of the Bayesian
@@ -98,11 +92,9 @@ plot(he,
 
 }
 \references{
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics. Statistical Methods in Medical Research
-doi:10.1177/0962280211419832.
+\insertRef{Baio2011}{BCEA}
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2013}{BCEA}
 }
 \seealso{
 \code{\link{bcea}},

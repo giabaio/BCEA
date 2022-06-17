@@ -5,7 +5,8 @@
 \title{Plot Expected Value of Partial Information With Respect to a
 Set of Parameters}
 \usage{
-\method{plot}{evppi}(x, pos = c(0, 0.8), graph = c("base", "ggplot2"), col = c(1, 1), ...)
+\method{plot}{evppi}(x, pos = c(0, 0.8), graph = c("base", "ggplot2"),
+  col = c(1, 1), ...)
 }
 \arguments{
 \item{x}{An object in the class \code{evppi},
@@ -76,7 +77,7 @@ if (FALSE)
 
 }
 \references{
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2013}{BCEA}
 }
 \seealso{
 \code{\link{bcea}}, \code{\link{evppi}}

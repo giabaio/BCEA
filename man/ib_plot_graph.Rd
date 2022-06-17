@@ -14,6 +14,19 @@ ib_plot_ggplot(he, comparison, wtp, bw, n, xlim)
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
+\item{comparison}{Comparison interventions}
+
+\item{wtp}{Willingness to pay}
+
+\item{bw}{Band width}
+
+\item{n}{Number}
+
+\item{xlim}{x-axis limits}
+
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
+
 \item{comparison}{Comparison intervention}
 
 \item{wtp}{Willingness to pay}

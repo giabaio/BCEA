@@ -17,6 +17,20 @@ eib_plot_plotly(he, graph_params, ...)
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
+\item{graph_params}{List of graph parameters}
+
+\item{...}{Additional arguments}
+
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
+
+\item{graph_params}{Graph parameters}
+
+\item{...}{Additional parameters}
+
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
+
 \item{graph_params}{Graph parameters}
 
 \item{...}{Additional parameters}

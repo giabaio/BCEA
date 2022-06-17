@@ -25,12 +25,14 @@
 #' 
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}}, \code{\link{CEriskav}}
-#' @references
-#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics.  Statistical Methods in Medical Research
-#' doi:10.1177/0962280211419832.
+#' @importFrom Rdpack reprompt
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
+#' @references
+#' 
+#' \insertRef{Baio2011}{BCEA}
+#' 
+#' \insertRef{Baio2013}{BCEA}
+#' 
 #' @keywords hplot
 #' 
 #' @importFrom grDevices dev.new devAskNewPage

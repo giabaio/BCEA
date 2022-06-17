@@ -5,14 +5,8 @@
 \alias{ceplane.plot}
 \title{Cost-effectiveness Plane Plot}
 \usage{
-\method{ceplane.plot}{bcea}(
-  he,
-  comparison = NULL,
-  wtp = 25000,
-  pos = c(0, 1),
-  graph = c("base", "ggplot2", "plotly"),
-  ...
-)
+\method{ceplane.plot}{bcea}(he, comparison = NULL, wtp = 25000,
+  pos = c(0, 1), graph = c("base", "ggplot2", "plotly"), ...)
 
 ceplane.plot(he, ...)
 }
@@ -65,6 +59,9 @@ plotting. Should (partial-) match the two options \code{"base"} or
  \item \code{area = list(color)}: a colour specifying the colour of the cost-effectiveness
  acceptability area.
 }}
+
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
 }
 \value{
 If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 
@@ -113,10 +110,9 @@ ceplane.plot(m, wtp = 200, comparison = 1, graph = "plotly")
  
 }
 \references{
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in Health Economics.
-Statistical Methods in Medical Research. doi:10.1177/0962280211419832.
+\insertRef{Baio2011}{BCEA}
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2013}{BCEA}
 }
 \seealso{
 \code{\link{bcea}},

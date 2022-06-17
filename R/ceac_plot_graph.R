@@ -164,8 +164,8 @@ ceac_plot_plotly <- function(he,
     paste0(he$interventions[he$ref]," vs ",he$interventions[he$comp])
   
   data.psa <- data.frame(
-    k = c(he$k),
-    ceac = c(he$ceac),
+    k = he$k,
+    ceac = he$ceac,
     comparison = as.factor(c(
       sapply(1:he$n_comparisons, function(x) rep(x, length(he$k)))
     )),
@@ -188,15 +188,15 @@ ceac_plot_plotly <- function(he,
   ceac <-
     plotly::add_trace(
       ceac,
-      y = ~ceac,
+      y = ~ ceac,
       type = "scatter",
       mode = "lines",
       fill = ifelse(graph_params$area$include, "tozeroy", "none"),
-      name = ~label,
+      name = ~ label,
       fillcolor = graph_params$area$color,
-      color = ~comparison,
+      color = ~ comparison,
       colors = graph_params$line$color,
-      linetype = ~comparison,
+      linetype = ~ comparison,
       linetypes = graph_params$line$type)
   
   legend_params <- make_legend_plotly(pos_legend)

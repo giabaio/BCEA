@@ -4,15 +4,8 @@
 \alias{struct.psa}
 \title{Structural Probability Sensitivity Analysis}
 \usage{
-struct.psa(
-  models,
-  effect,
-  cost,
-  ref = NULL,
-  interventions = NULL,
-  Kmax = 50000,
-  plot = FALSE
-)
+struct.psa(models, effect, cost, ref = NULL, interventions = NULL,
+  Kmax = 50000, plot = FALSE)
 }
 \arguments{
 \item{models}{A list containing the output from either R2jags or
@@ -58,7 +51,7 @@ cost is a list containing the measure of costs computed from the various
 models (one matrix with n_sim x n_ints simulations for each model).
 }
 \references{
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2013}{BCEA}
 }
 \seealso{
 \code{\link{bcea}}

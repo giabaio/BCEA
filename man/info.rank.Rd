@@ -5,15 +5,8 @@
 \alias{info.rank}
 \title{Information-Rank Plot for bcea Class}
 \usage{
-\method{info.rank}{bcea}(
-  he,
-  inp,
-  wtp = NULL,
-  howManyPars = NA,
-  graph = c("base", "ggplot2", "plotly"),
-  rel = TRUE,
-  ...
-)
+\method{info.rank}{bcea}(he, inp, wtp = NULL, howManyPars = NA,
+  graph = c("base", "ggplot2", "plotly"), rel = TRUE, ...)
 
 info.rank(he, ...)
 }
@@ -92,11 +85,9 @@ info.rank(m, inp, graph = "ggplot2")
 
 }
 \references{
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics. Statistical Methods in Medical Research
-doi:10.1177/0962280211419832.
+\insertRef{Baio2011}{BCEA}
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2013}{BCEA}
 }
 \seealso{
 \code{\link{bcea}},

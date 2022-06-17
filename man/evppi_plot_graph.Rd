@@ -9,7 +9,8 @@ Set of Parameters}
 \usage{
 evppi_plot_base(evppi_obj, pos_legend, col = NULL, annot = FALSE)
 
-evppi_plot_ggplot(evppi_obj, pos_legend = c(0, 0.8), col = c(1, 1), ...)
+evppi_plot_ggplot(evppi_obj, pos_legend = c(0, 0.8), col = c(1, 1),
+  ...)
 }
 \arguments{
 \item{evppi_obj}{Object of class evppi}
@@ -21,6 +22,12 @@ evppi_plot_ggplot(evppi_obj, pos_legend = c(0, 0.8), col = c(1, 1), ...)
 \item{annot}{Annotate EVPPI curve with parameter names}
 
 \item{...}{Additional arguments}
+
+\item{evppi_obj}{Object of class evppi}
+
+\item{pos_legend}{Position of legend}
+
+\item{col}{Colour}
 }
 \description{
 Base R and ggplot2 versions.

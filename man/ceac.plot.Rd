@@ -5,13 +5,8 @@
 \alias{ceac.plot}
 \title{Cost-Effectiveness Acceptability Curve (CEAC) Plot}
 \usage{
-\method{ceac.plot}{bcea}(
-  he,
-  comparison = NULL,
-  pos = c(1, 0),
-  graph = c("base", "ggplot2", "plotly"),
-  ...
-)
+\method{ceac.plot}{bcea}(he, comparison = NULL, pos = c(1, 0),
+  graph = c("base", "ggplot2", "plotly"), ...)
 
 ceac.plot(he, ...)
 }
@@ -48,6 +43,9 @@ Not all plotting functions have a \code{"plotly"} implementation yet.}
  \item \code{line = list(size)}: specifies the line width(s) as numeric values - all graph types.
  \item \code{area_include}: logical, include area under the CEAC curves - plotly only.
  \item \code{area_color}: specifies the AUC colour - plotly only.}}
+
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
 }
 \value{
 \item{ceac}{If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 
@@ -109,11 +107,9 @@ ceac.plot(he2, graph = "plotly", pos = "bottom")
 
 }
 \references{
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-  Analysis in Health Economics. Statistical Methods in Medical Research
-  doi:10.1177/0962280211419832.
+\insertRef{Baio2011}{BCEA}
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2013}{BCEA}
 }
 \seealso{
 \code{\link{bcea}},

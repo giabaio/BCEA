@@ -8,27 +8,11 @@
 \alias{bcea.bugs}
 \title{Create Bayesian Cost-Effectiveness Analysis Object}
 \usage{
-bcea(
-  eff,
-  cost,
-  ref = 1,
-  interventions = NULL,
-  .comparison = NULL,
-  Kmax = 50000,
-  wtp = NULL,
-  plot = FALSE
-)
+bcea(eff, cost, ref = 1, interventions = NULL, .comparison = NULL,
+  Kmax = 50000, wtp = NULL, plot = FALSE)
 
-\method{bcea}{default}(
-  eff,
-  cost,
-  ref = NULL,
-  interventions = NULL,
-  .comparison = NULL,
-  Kmax = 50000,
-  wtp = NULL,
-  plot = FALSE
-)
+\method{bcea}{default}(eff, cost, ref = NULL, interventions = NULL,
+  .comparison = NULL, Kmax = 50000, wtp = NULL, plot = FALSE)
 
 \method{bcea}{rjags}(eff, ...)
 
@@ -77,6 +61,10 @@ computations (e.g. for the EVPPI).}
 the summary plot or not.}
 
 \item{...}{Additional arguments}
+
+\item{...}{Additional arguments}
+
+\item{...}{Additional arguments}
 }
 \value{
 An object of the class "bcea" containing the following elements
@@ -85,8 +73,7 @@ An object of the class "bcea" containing the following elements
 \item{n_comparisons}{Number of possible pairwise comparisons}
 \item{delta.e}{For each possible comparison, the differential in the
 effectiveness measure}
-\item{delta.c}{For each possible comparison, the differential in the cost
-measure}
+\item{delta.c}{For each possible comparison, the differential in the cost measure}
 \item{ICER}{The value of the Incremental Cost-Effectiveness Ratio}
 \item{Kmax}{The maximum value assumed for the willingness to pay threshold}
 \item{k}{The vector of values for the grid approximation of the willingness
@@ -120,8 +107,7 @@ a function of the willingness to pay}
 reference in the analysis}
 \item{comp}{The numeric index(es) associated with the intervention(s) used
 as comparator(s) in the analysis}
-\item{step}{The step size used to form the grid approximation to the willingness
-to pay}
+\item{step}{The step size used to form the grid approximation to the willingness to pay}
 \item{e}{The \code{eff} matrix used to generate the object (see Arguments)}
 \item{c}{The \code{cost} matrix used to generate the object (see Arguments)}
 }
@@ -132,7 +118,7 @@ post-processed to give the health economic analysis. The output is stored in
 an object of the class "bcea".
 }
 \examples{
-# See Baio G., Dawid A.P. (2011) for a detailed description of the 
+# See Baio (2013), Baio (2011) for a detailed description of the 
 # Bayesian model and economic problem
 
 # Load the processed results of the MCMC simulation model
@@ -254,11 +240,9 @@ evi.plot(m)
 
 }
 \references{
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in
-Health Economics.  Statistical Methods in Medical Research.
-doi:10.1177/0962280211419832.
+\insertRef{Baio2013}{BCEA}
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2011}{BCEA}
 }
 \author{
 Gianluca Baio, Andrea Berardi, Nathan Green

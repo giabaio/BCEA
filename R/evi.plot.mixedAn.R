@@ -26,20 +26,17 @@
 #'          \code{\link{mixedAn}}
 #' @import ggplot2
 #' @importFrom grid unit
+#' @importFrom Rdpack reprompt
 #'          
 #' @references
-#' Baio, G. and Russo, P. (2009). A decision-theoretic framework for
-#' the application of cost-effectiveness analysis in regulatory processes.
-#' Pharmacoeconomics 27(8), 645-655 doi:10.2165/11310250
 #' 
-#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in Health
-#' Economics.  Statistical Methods in Medical Research
-#' doi:10.1177/0962280211419832.
+#' \insertRef{Baio2009}{BCEA}
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
+#' \insertRef{Baio2011}{BCEA}
+#' 
+#' \insertRef{Baio2013}{BCEA}
 #' 
 #' @examples
-#' 
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 #' # Bayesian model and economic problem
 #' #

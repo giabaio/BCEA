@@ -5,16 +5,9 @@
 \alias{ib.plot}
 \title{Incremental Benefit (IB) Distribution Plot}
 \usage{
-\method{ib.plot}{bcea}(
-  he,
-  comparison = NULL,
-  wtp = 25000,
-  bw = "bcv",
-  n = 512,
-  xlim = NULL,
-  graph = c("base", "ggplot2"),
-  ...
-)
+\method{ib.plot}{bcea}(he, comparison = NULL, wtp = 25000,
+  bw = "bcv", n = 512, xlim = NULL, graph = c("base", "ggplot2"),
+  ...)
 
 ib.plot(he, ...)
 }
@@ -57,11 +50,8 @@ Plots the distribution of the Incremental Benefit (IB) for a given value of
 the willingness to pay threshold.
 }
 \references{
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics. Statistical Methods in Medical Research
-doi:10.1177/0962280211419832.
-
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2011}{BCEA}
+\insertRef{Baio2013}{BCEA}
 }
 \seealso{
 \code{\link{bcea}},

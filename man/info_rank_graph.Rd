@@ -17,6 +17,13 @@ info_rank_plotly(params)
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
+\item{params}{Graph parameters}
+
+\item{he}{A \code{bcea} object containing the results of the Bayesian
+modelling and the economic evaluation.}
+
+\item{params}{Graph parameters}
+
 \item{params}{Graph Parameters including data}
 }
 \description{

@@ -19,7 +19,6 @@ prep_ceplane_params <- function(he, wtp, ...) {
   
   ##TODO: back-compatibility helper..
   
-  ##TODO: use line_labels()?
   intervs_in_title <-
     paste("\n",
           he$interventions[he$ref],
@@ -52,7 +51,8 @@ prep_ceplane_params <- function(he, wtp, ...) {
          ICER_size = 2,
          area = list(
            # line_color = "black",
-           col = "grey95"))
+           col = "grey95"),
+         ref_first = TRUE)
   
   modifyList(default_params, graph_params)
 }
