@@ -1,3 +1,17 @@
+# BCEA 2.4.1.3
+June 2022
+
+## Bug fixes
+
+* `summary.bcea()` wasn't passing `wtp` argument to `sim_table()` internally (5440eb3)
+
+## Refactoring
+
+* Now uses `Rdpack` for bibliography in documentation (229c96d)
+* Made it so that you can specify what order the interventions labels are in the legend for ce plane (and contour plots) for base R and ggplot2 i.e. reference first or second with optional `ref_first` argument (cc38f07)
+
+
+
 # BCEA 2.4.1.2
 April 2022
 
