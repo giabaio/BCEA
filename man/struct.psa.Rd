@@ -11,7 +11,8 @@ struct.psa(
   ref = NULL,
   interventions = NULL,
   Kmax = 50000,
-  plot = FALSE
+  plot = FALSE,
+  w = NULL
 )
 }
 \arguments{
@@ -41,6 +42,11 @@ on a discrete grid in the interval \code{[0, Kmax]}. The grid is equal to
 
 \item{plot}{A logical value indicating whether the function should produce
 the summary plot or not}
+
+\item{w}{A vector of weights. By default it's NULL to indicate that the 
+function will calculate the model weights based on DIC and the individual
+model fit. This behaviour can be overridden by passing a vector \code{w}, 
+for instance based on expert opinion}
 }
 \value{
 List object of bcea object, model weights and DIC

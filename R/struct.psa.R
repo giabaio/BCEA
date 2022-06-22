@@ -31,6 +31,10 @@
 #' \code{wtp=NULL} (the default)
 #' @param plot A logical value indicating whether the function should produce
 #' the summary plot or not
+#' @param w A vector of weights. By default it's NULL to indicate that the 
+#' function will calculate the model weights based on DIC and the individual
+#' model fit. This behaviour can be overridden by passing a vector \code{w}, 
+#' for instance based on expert opinion
 #' 
 #' @return List object of bcea object, model weights and DIC
 #' @author Gianluca Baio
@@ -46,7 +50,8 @@ struct.psa <- function(models,
                        ref = NULL,
                        interventions = NULL,
                        Kmax = 50000,
-                       plot = FALSE) {
+                       plot = FALSE,
+                       w=NULL) {
   
   if (is.null(ref)) {
     ref <- 1
@@ -77,7 +82,13 @@ struct.psa <- function(models,
   }
   
   dmin <- min(d)					                        # minimum value to re-scale DICs
-  w <- exp(-0.5*(d - dmin))/sum(exp(-0.5*(d - dmin))) 	# model weights (cfr BMHE)
+  # Only compute w using DIC if the user hasn't passed a suitable value 
+  if(is.null(w)) {
+    w <- exp(-0.5*(d - dmin))/sum(exp(-0.5*(d - dmin))) 	# model weights (cfr BMHE)
+  } 
+  if (!is.null(w) & length(w)!=n_models) {
+    stop("If you are considering user-defined weights, you must pass a vector whose length is the same as the number of models to average!")
+  }
   
   # weights the simulations for the variables of effectiveness and costs in each model
   # using the respective weights, to produce the economic analysis for the average model
