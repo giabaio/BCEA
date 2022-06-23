@@ -64,7 +64,7 @@ struct.psa <- function(models,
     stop("Need at least two models to run structural PSA",
          call. = FALSE)
   }
-  d <- w <- numeric()
+  d <- numeric()
   mdl <- list()
   
   for (i in seq_len(n_models)) {
