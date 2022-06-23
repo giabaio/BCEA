@@ -86,7 +86,7 @@ struct.psa <- function(models,
   if(is.null(w)) {
     w <- exp(-0.5*(d - dmin))/sum(exp(-0.5*(d - dmin))) 	# model weights (cfr BMHE)
   } 
-  if (!is.null(w) & length(w)!=n_models) {
+  if ((!is.null(w) & length(w)!=n_models)) {
     stop("If you are considering user-defined weights, you must pass a vector whose length is the same as the number of models to average!")
   }
   
