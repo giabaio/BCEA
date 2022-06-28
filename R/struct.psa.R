@@ -43,6 +43,32 @@
 #' 
 #' @export
 #' 
+#' @examples 
+#' 
+#' # load sample jags output
+#' load(system.file("extdata", "statins_base.Rdata", package = "BCEA"))
+#' load(system.file("extdata", "statins_HC.Rdata", package = "BCEA"))
+#' 
+#' interventions <- c("Atorvastatin","Fluvastatin",
+#'                    "Lovastatin","Pravastatin",
+#'                    "Rosuvastatin","Simvastatin")
+#' 
+#' m1 <- bcea(eff = statins_base$sims.list$effect,
+#'            cost = statins_base$sims.list$cost.tot,
+#'            ref = 1, interventions = interventions)
+#' 
+#' m2 <- bcea(eff = statins_HC$sims.list$effect,
+#'            cost = statins_HC$sims.list$cost.tot,
+#'            ref = 1, interventions = interventions)
+#' 
+#' models <- list(statins_base, statins_HC)
+#' 
+#' effects <- list(statins_base$sims.list$effect, statins_HC$sims.list$effect)
+#' costs <- list(statins_base$sims.list$cost.tot, statins_HC$sims.list$cost.tot)
+#' 
+#' m3 <- struct.psa(models, effects, costs,
+#'                  ref = 1, interventions = interventions)
+#'                  
 struct.psa <- function(models,
                        effect,
                        cost,
@@ -104,8 +130,9 @@ struct.psa <- function(models,
          Kmax = Kmax,
          plot = plot)
   
-  list(he = he,
-       w = w,
-       DIC = d)
+  res <- 
+    c(he, list(w = w, DIC = d))
+  
+  structure(res, class = c("struct.psa", class(he)))
 }
 
