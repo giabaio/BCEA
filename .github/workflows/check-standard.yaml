@@ -67,6 +67,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
+          dependencies: '"all"'
           extra-packages: rcmdcheck
           needs: check
           
