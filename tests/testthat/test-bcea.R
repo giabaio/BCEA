@@ -113,7 +113,7 @@ test_that("ib", {
   
   res <- 
     bcea(e = e_tmp,
-         c = c_tmp, wtp = 5)
+         c = c_tmp, k = 5)
   
   k <- 5
   n_comparisons <- 1
@@ -134,7 +134,7 @@ test_that("ib", {
   
   res <- 
     bcea(e = e_tmp,
-         c = c_tmp, wtp = k)
+         c = c_tmp, k = k)
   
   ib_1 <- k*delta_e[1] - delta_c[1] # 95, 10*(-1) - (-100) = 90
   ib_2 <- k*delta_e[2] - delta_c[2] # 20, 10*2 - (-10) = 30
@@ -150,9 +150,9 @@ test_that("ib", {
   
   res <- 
     bcea(e = e_tmp,
-         c = c_tmp, wtp = k)
+         c = c_tmp, k = k)
   
-  # sim x comprison
+  # sim x comparison
   delta_e <- matrix(c(-1, 3,
                       2, 4), nrow = 2, byrow = TRUE)
   delta_c <- matrix(c(-100,  0,

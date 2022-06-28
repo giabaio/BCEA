@@ -15,8 +15,9 @@ bcea(
   interventions = NULL,
   .comparison = NULL,
   Kmax = 50000,
-  wtp = NULL,
-  plot = FALSE
+  k = NULL,
+  plot = FALSE,
+  ...
 )
 
 \method{bcea}{default}(
@@ -26,8 +27,9 @@ bcea(
   interventions = NULL,
   .comparison = NULL,
   Kmax = 50000,
-  wtp = NULL,
-  plot = FALSE
+  k = NULL,
+  plot = FALSE,
+  ...
 )
 
 \method{bcea}{rjags}(eff, ...)
@@ -65,11 +67,12 @@ together. Any subset of the possible comparisons can be selected (e.g.,
 \item{Kmax}{Maximum value of the willingness to pay to be considered.
 Default value is \code{k = 50000}. The willingness to pay is then approximated
 on a discrete grid in the interval \code{[0, Kmax]}. The grid is equal to
-\code{wtp} if the parameter is given, or composed of \code{501} elements if
-\code{wtp = NULL} (the default).}
+\code{k} if the parameter is given, or composed of \code{501} elements if
+\code{k = NULL} (the default).}
 
-\item{wtp}{A(n optional) vector including the values of the willingness
-to pay grid. If not specified then BCEA will construct a grid of 501 values
+\item{k}{A(n optional) vector for the values of the willingness
+to pay grid. Should be of length > 1 otherwise plots will be empty.
+If not specified then BCEA will construct a grid of 501 values
 from 0 to \code{Kmax}. This option is useful when performing intensive
 computations (e.g. for the EVPPI).}
 
