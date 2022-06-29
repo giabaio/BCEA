@@ -4,11 +4,18 @@ June 2022
 ## Bug fixes
 
 * `summary.bcea()` wasn't passing `wtp` argument to `sim_table()` internally (5440eb3)
+* `summary()` was the same for basic `bcea` and `multi.ce` objects. Now has own `summary.pairwise()` method. (88ade51)
+* `struct.psa()` output now works with `summary()` and plots all still work without having to use $ to get at `bcea` object as before. (b014c83)
+* Changed `wtp` argument in `bcea()` to `k` because `wtp` in the plotting functions refers to the wtp line and so is a scalar whereas `k` is a grid of points. Added an error message to use new argument. (b014c83)
+* `bcea()` still allows a scalar `k` but added a warning that this will give empty plots.
 
 ## Refactoring
 
 * Now uses `Rdpack` for bibliography in documentation (229c96d)
-* Made it so that you can specify what order the interventions labels are in the legend for ce plane (and contour plots) for base R and ggplot2 i.e. reference first or second with optional `ref_first` argument (cc38f07)
+
+## New features
+
+* Can now specify what order the interventions labels are in the legend for ce plane (and contour plots) for base R and ggplot2 i.e. reference first or second with optional `ref_first` argument (cc38f07)
 
 
 
