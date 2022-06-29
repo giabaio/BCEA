@@ -70,33 +70,16 @@ summary.pairwise <- function(object,
   
   Table <- sim_table(he, wtp = wtp)$Table
   
-  EU_tab <- matrix(NA, he$n_comparators, 1)
-  EU_tab[, 1] <-
+  ##TODO: where is p_best_interv in this order??
+  row_idx <- c(he$comp, he$ref)
+  
+  EU_tab <- matrix(NA, he$n_comparators, 4)
+  EU_tab[row_idx, 1] <-
     unlist(Table[he$n_sim + 1, paste0("U", 1:he$n_comparators)])
-  colnames(EU_tab) <- "Expected utility"
-  rownames(EU_tab) <- he$interventions
+  colnames(EU_tab) <- c("Expected utility", "EIB", "CEAC", "ICER")
+  rownames(EU_tab) <- he$interventions[row_idx]
   
-  comp_tab <- matrix(NA, he$n_comparisons, 3)
-  comp_tab[, 1] <-
-    unlist(Table[he$n_sim + 1, paste0("IB", he$ref, "_", he$comp)])
-  
-  if (he$n_comparisons == 1) {
-    comp_tab[, 2] <-
-      sum(Table[1:he$n_sim, paste0("IB", he$ref, "_", he$comp)] > 0) / he$n_sim
-    comp_tab[, 3] <- he$ICER
-  }
-  
-  if (he$n_comparisons > 1) {
-    for (i in seq_len(he$n_comparisons)) {
-      comp_tab[i, 2] <-
-        sum(Table[1:he$n_sim, paste0("IB", he$ref, "_", he$comp[i])] > 0) / he$n_sim
-      comp_tab[i, 3] <- he$ICER[i]
-    }
-  }
-  
-  colnames(comp_tab) <- c("EIB", "CEAC", "ICER")
-  rownames(comp_tab) <-
-    paste0(he$interventions[he$ref], " vs ", he$interventions[he$comp])
+  EU_tab[, 3] <- he$p_best_interv[he$k == wtp, ]
   
   evpi_tab <- matrix(NA, 1, 1)
   evpi_tab[, 1] <- Table[he$n_sim + 1, "VI"]
@@ -121,10 +104,7 @@ summary.pairwise <- function(object,
       paste0(
         he$interventions[he$best[1]],
         " dominates for all k in [",
-        min(he$k),
-        " - ",
-        max(he$k),
-        "] \n"))
+        min(he$k), " - ", max(he$k), "] \n"))
   }
   if (length(he$kstar) == 1 & !is.na(he$step)) {
     kstar <- he$k[which(diff(he$best) == 1) + 1]
@@ -173,11 +153,7 @@ summary.pairwise <- function(object,
         digits = 5,
         justify = "center")
   cat("\n")
-  print(comp_tab,
-        quote = FALSE,
-        digits = 5,
-        justify = "center")
-  cat("\n")
+  
   cat(
     paste0(
       "Optimal intervention (max expected utility) for k = ",
@@ -185,6 +161,7 @@ summary.pairwise <- function(object,
       ": ",
       he$interventions[he$best][he$k == wtp],
       "\n"))
+  
   print(evpi_tab,
         quote = FALSE,
         digits = 5,
