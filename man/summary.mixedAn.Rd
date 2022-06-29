@@ -11,8 +11,7 @@
 the function \code{\link{mixedAn}}, generating the economic evaluation of a
 set of interventions, considering given market shares for each option.}
 
-\item{wtp}{The value of the willingness to pay choosen to present the
-analysis.}
+\item{wtp}{The value of the willingness to pay chosen to present the analysis.}
 
 \item{...}{Additional arguments affecting the summary produced.}
 }
