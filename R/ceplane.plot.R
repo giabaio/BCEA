@@ -42,6 +42,7 @@
 #'   acceptability area (default is TRUE).
 #'   \item \code{area = list(color)}: a colour specifying the colour of the cost-effectiveness
 #'   acceptability area.
+#'   \item \code{currency}: Currency prefix to cost differential values - ggplot2 only.
 #'  }
 #'  
 #' @return If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 

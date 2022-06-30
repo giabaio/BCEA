@@ -20,3 +20,4 @@ modelling and the economic evaluation.}
 CEAC plot using `matplot` in Base R.
 }
 \keyword{hplot}
+\keyword{internal}

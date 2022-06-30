@@ -46,6 +46,7 @@ Not all plotting functions have a \code{"plotly"} implementation yet.}
  \item \code{line = list(color)}: specifies the line colour(s) - all graph types.
  \item \code{line = list(type)}: specifies the line type(s) as \code{lty} numeric values - all graph types.
  \item \code{line = list(size)}: specifies the line width(s) as numeric values - all graph types.
+ \item \code{currency}: Currency prefix to willingness to pay values - ggplot2 only.
  \item \code{area_include}: logical, include area under the CEAC curves - plotly only.
  \item \code{area_color}: specifies the AUC colour - plotly only.}}
 }

@@ -54,7 +54,7 @@ ceac_plot_base.bcea <- function(he,
 #' 
 #' @inheritParams ceac_plot_graph
 #' @param ceac `ceac` index in `he`
-#' @keywords hplot
+#' @keywords internal hplot
 #' @importFrom graphics matplot legend
 #' 
 ceac_matplot <- function(he,
@@ -110,7 +110,8 @@ ceac_plot_ggplot.bcea <- function(he,
 
 #' @rdname ceac_plot_graph
 #' @param ceac ceac index in he
-#' @keywords hplot
+#' @importFrom scales label_dollar
+#' @keywords internal hplot
 #' 
 ceac_ggplot <- function(he,
                         pos_legend,
@@ -140,6 +141,8 @@ ceac_ggplot <- function(he,
     theme_ceac() + 
     theme_add +                                            # theme
     scale_y_continuous(limits = c(0, 1)) +
+    scale_x_continuous(
+      labels = scales::label_dollar(prefix = graph_params$currency)) +
     do.call(labs, graph_params$annot) +                    # text
     do.call(theme, legend_params) +                        # legend
     scale_linetype_manual("",                              # lines

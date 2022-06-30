@@ -503,6 +503,7 @@ fit.inla <- function(parameter,
 #' @param fit.full fit.full
 #' @return list
 #' @seealso \code{\link{evppi}}
+#' @keywords internal
 #'
 compute.evppi <- function(he, fit.full) {
   EVPPI <- array()

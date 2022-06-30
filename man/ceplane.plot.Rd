@@ -64,6 +64,7 @@ plotting. Should (partial-) match the two options \code{"base"} or
  acceptability area (default is TRUE).
  \item \code{area = list(color)}: a colour specifying the colour of the cost-effectiveness
  acceptability area.
+ \item \code{currency}: Currency prefix to cost differential values - ggplot2 only.
 }}
 }
 \value{

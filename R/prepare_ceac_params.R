@@ -11,13 +11,14 @@ prepare_ceac_params <- function(he, ...) {
                                   color = NULL),
                       line = list(color = "black",
                                   size = 1,
-                                  type = 1:num_lines(he)))
+                                  type = 1:num_lines(he)),
+                      currency = "")
   
   annot_params <- list(title = "Cost Effectiveness Acceptability Curve",
                        x = "Willingness to pay",
                        y = "Probability of cost effectiveness")
   
-  plot_extra_params <- extra_params[c("area", "line")]
+  plot_extra_params <- extra_params[c("area", "line", "currency")]
   annot_extra_params <- extra_params[c("title", "xlab", "ylab")]
   
   annot_params <- modifyList(annot_params, annot_extra_params)

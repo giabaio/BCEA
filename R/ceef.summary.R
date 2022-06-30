@@ -8,6 +8,7 @@
 #' @param ... Additional arguments
 #' 
 #' @return Summary printed to console
+#' @keywords internal print
 #' 
 ceef.summary <- function(he,
                          frontier_data,

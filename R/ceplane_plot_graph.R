@@ -175,6 +175,8 @@ ceplane_plot_ggplot.bcea <- function(he,
     ceplane_legend_manual(he, plot_params) +
     geom_hline(yintercept = 0, colour = "grey") +
     geom_vline(xintercept = 0, colour = "grey") +
+    scale_y_continuous(
+      labels = scales::label_dollar(prefix = plot_params$currency)) +
     coord_cartesian(xlim = plot_params$xlim,
                     ylim = plot_params$ylim,
                     expand = FALSE) +

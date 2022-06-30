@@ -68,7 +68,11 @@
 #' 
 #' @export
 #' 
-mce.plot <- function(mce,pos=c(1,0.5),graph=c("base","ggplot2"),...){
+mce.plot <- function(mce,
+                     pos = c(1, 0.5),
+                     graph = c("base", "ggplot2"),
+                     ...) {
+  
   
   # lifecycle::deprecate_warn("2.4.1", "mce.plot()", "ceac.plot()")
   .Deprecated(new = "ceac.plot", old = "mce.plot")
@@ -154,13 +158,18 @@ mce.plot <- function(mce,pos=c(1,0.5),graph=c("base","ggplot2"),...){
       df <- data.frame(df,"comp"=as.factor(sort(rep(1:mce$n_comparators,length(mce$k)))))
       names(df) <- c("k","ce","comp")
       
-      mceplot <- ggplot2::ggplot(df,ggplot2::aes(x=k,y=ce)) + ggplot2::theme_bw() +
-        ggplot2::geom_line(ggplot2::aes(linetype=comp)) + 
-        ggplot2::scale_linetype_manual("",labels=label,values=lty) +
-        ggplot2::labs(title="Cost-effectiveness acceptability curve\nfor multiple comparisons",x="Willingness to pay",y="Probability of most cost effectiveness") +
-        ggplot2::theme(text=ggplot2::element_text(size=11),legend.key.size=grid::unit(.66,"lines"),
-                       legend.spacing=grid::unit(-1.25,"line"),panel.grid=ggplot2::element_blank(),
-                       legend.key=ggplot2::element_blank())
+      mceplot <-
+        ggplot2::ggplot(df, ggplot2::aes(x = k, y = ce)) + ggplot2::theme_bw() +
+        ggplot2::geom_line(ggplot2::aes(linetype = comp)) +
+        ggplot2::scale_linetype_manual("", labels = label, values = lty) +
+        ggplot2::labs(title = "Cost-effectiveness acceptability curve\nfor multiple comparisons", x =
+                        "Willingness to pay", y = "Probability of most cost effectiveness") +
+        ggplot2::theme(
+          text = ggplot2::element_text(size = 11),
+          legend.key.size = grid::unit(.66, "lines"),
+          legend.spacing = grid::unit(-1.25, "line"),
+          panel.grid = ggplot2::element_blank(),
+          legend.key=ggplot2::element_blank())
       
       jus <- NULL
       if(isTRUE(alt.legend)) {
@@ -183,10 +192,21 @@ mce.plot <- function(mce,pos=c(1,0.5),graph=c("base","ggplot2"),...){
         }
       }
       
-      mceplot <- mceplot + ggplot2::coord_cartesian(ylim=c(-0.05,1.05)) +
-        ggplot2::theme(legend.position=alt.legend,legend.justification=jus,legend.title=ggplot2::element_blank(),
-                       legend.background=ggplot2::element_blank(),
-                       legend.text.align=0,plot.title = ggplot2::element_text(lineheight=1.05, face="bold",size=14.3,hjust=0.5))
+      mceplot <-
+        mceplot + ggplot2::coord_cartesian(ylim = c(-0.05, 1.05)) +
+        ggplot2::theme(
+          legend.position = alt.legend,
+          legend.justification = jus,
+          legend.title = ggplot2::element_blank(),
+          legend.background = ggplot2::element_blank(),
+          legend.text.align = 0,
+          plot.title = ggplot2::element_text(
+            lineheight = 1.05,
+            face = "bold",
+            size = 14.3,
+            hjust = 0.5
+          )
+        )
       return(mceplot)
     }
   }
