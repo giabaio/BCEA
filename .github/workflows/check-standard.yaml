@@ -70,7 +70,7 @@ jobs:
         with:
           dependencies: '"all"'
           extra-packages: |
-            rcmdcheck
+            any::rcmdcheck
           needs: check
           
       - uses: r-lib/actions/check-r-package@v2
