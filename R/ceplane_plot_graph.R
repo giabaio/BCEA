@@ -102,6 +102,7 @@ ceplane_plot_base <- function(he, ...) {
 #' @import ggplot2
 #' @importFrom grid unit
 #' @importFrom purrr keep
+#' @importFrom scales label_dollar
 #' 
 #' @keywords hplot
 #' 

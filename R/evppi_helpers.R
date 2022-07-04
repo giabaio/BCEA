@@ -414,6 +414,9 @@ make.mesh <- function(data,
 #' @param family family 
 #' @return list
 #' @importFrom stats as.formula
+#' @importFrom INLA inla.stack.data
+#' @importFrom INLA inla.stack.A
+#' @importFrom INLA inla
 #' @seealso \code{\link{evppi}}
 #' @keywords internal
 #' 

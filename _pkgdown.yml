@@ -12,7 +12,7 @@ reference:
   - bcea
   - new_bcea
 - title: "Setters"
-  desc: "Functions for modifying a `bcea()` analysis."
+  desc: "Functions for modifying or extending a `bcea()` analysis."
   contents:
   - setComparisons_assign
   - setKmax_assign
@@ -20,6 +20,7 @@ reference:
   - mixedAn<-
   - CEriskav
   - multi.ce
+  - struct.psa
 - title: "Plotting"
   desc: "Functions for plotting a wide variety of cost-effectiveness plots in base R, ggplot2 and plotly."
   contents:
@@ -46,13 +47,13 @@ reference:
   contents:
   - make.report
   - sim_table
+  - tabulate_means
   - starts_with("summary")
 - title: "Miscellaneous"
   desc: "Helper functions and other intermediate computations."
   contents:
   - evppi
   - select_plot_type
-  - struct.psa
 - title: "Data"
   contents:
   - Smoking

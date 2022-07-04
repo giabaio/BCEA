@@ -16,7 +16,7 @@ June 2022
 ## New features
 
 * Can now specify what order the interventions labels are in the legend for ce plane (and contour plots) for base R and ggplot2 i.e. reference first or second with optional `ref_first` argument (cc38f07)
-
+* Can specify currency for axes in ce-plane and ceac ggplot2 versions (6808aa6)
 
 
 # BCEA 2.4.1.2
