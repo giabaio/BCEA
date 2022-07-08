@@ -185,3 +185,20 @@ test_that("jags, bugs, stan methods", {
   # expect_s3_class(bcea.rstan(stanfit), class = "bcea")
 })
 
+
+test_that("k and wtp arguments", {
+  
+  m <- bcea(eff, cost, plot = FALSE)
+  
+  expect_equal(m$Kmax, 50000)
+  expect_length(m$k, 501)
+  
+  m <- bcea(eff, cost, k = 0:1000, plot = FALSE)
+  expect_equal(m$Kmax, 1000)
+  expect_length(m$k, 1001)
+  
+  expect_message(
+    bcea(eff, cost, wtp = 0:1000, plot = FALSE),
+    "wtp argument soft deprecated. Please use k instead in future.")
+})
+

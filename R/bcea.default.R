@@ -24,9 +24,10 @@ bcea.default <- function(eff,
     message("k should be a vector of length > 1, otherwise plots will be empty.")
   
   
-  if (exists("wtp", exArgs))
-    stop("wtp argument deprecated. Please use k instead.",
-         call. = FALSE)
+  if (exists("wtp", exArgs)) {
+    message("wtp argument soft deprecated. Please use k instead in future.")
+    k <- exArgs$wtp
+  }
   
   validate_bcea(eff, cost, ref, interventions)
   
