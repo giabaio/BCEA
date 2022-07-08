@@ -76,7 +76,7 @@ summary.pairwise <- function(object,
   EU_tab <- matrix(NA, he$n_comparators, 4)
   EU_tab[row_idx, 1] <-
     unlist(Table[he$n_sim + 1, paste0("U", 1:he$n_comparators)])
-  colnames(EU_tab) <- c("Expected utility", "EIB", "CEAC", "ICER")
+  colnames(EU_tab) <- c("Expected net benefit", "EIB", "CEAC", "ICER")
   rownames(EU_tab) <- he$interventions[row_idx]
   
   EU_tab[, 3] <- he$p_best_interv[he$k == wtp, ]
@@ -156,7 +156,7 @@ summary.pairwise <- function(object,
   
   cat(
     paste0(
-      "Optimal intervention (max expected utility) for k = ",
+      "Optimal intervention (max expected net benefit) for k = ",
       wtp,
       ": ",
       he$interventions[he$best][he$k == wtp],

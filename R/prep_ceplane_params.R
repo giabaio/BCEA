@@ -36,8 +36,8 @@ prep_ceplane_params <- function(he, wtp, ...) {
   axes_lim <- xy_params(he, wtp, graph_params)
   
   default_params <-
-    list(xlab = "Effectiveness differential",
-         ylab = "Cost differential",
+    list(xlab = "Incremental effectiveness",
+         ylab = "Incremental cost",
          title = plot_title,
          xlim = axes_lim$x,
          ylim = axes_lim$y,

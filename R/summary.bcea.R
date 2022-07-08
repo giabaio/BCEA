@@ -73,7 +73,7 @@ summary.bcea <- function(object,
   EU_tab <- matrix(NA, he$n_comparators, 1)
   EU_tab[, 1] <-
     unlist(Table[he$n_sim + 1, paste0("U", 1:he$n_comparators)])
-  colnames(EU_tab) <- "Expected utility"
+  colnames(EU_tab) <- "Expected net benefit"
   rownames(EU_tab) <- he$interventions
   
   comp_tab <- matrix(NA, he$n_comparisons, 3)
@@ -193,7 +193,7 @@ summary.bcea <- function(object,
   cat("\n")
   cat(
     paste0(
-      "Optimal intervention (max expected utility) for k = ",
+      "Optimal intervention (max expected net benefit) for k = ",
       wtp,
       ": ",
       he$interventions[he$best][he$k == wtp],
