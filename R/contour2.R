@@ -9,6 +9,7 @@ contour2.bcea <- function(he,
                           comparison = NULL,
                           wtp = 25000,
                           graph = c("base", "ggplot2"),
+                          pos = c(0, 1),
                           ...) {
   
   graph_type <- match.arg(graph)
@@ -27,7 +28,7 @@ contour2.bcea <- function(he,
     plot_params <-
       contour_base_params(he, params)
     
-    ceplane.plot(he, comparison = NULL, wtp = wtp, graph = "base", ...)
+    ceplane.plot(he, comparison = NULL, wtp = wtp, pos = pos, graph = "base", ...)
     add_contours(he, plot_params)
     
   } else if (is_ggplot(graph_type)) {
@@ -35,7 +36,7 @@ contour2.bcea <- function(he,
     plot_params <-
       contour_ggplot_params(he, params, ...)
     
-    ceplane.plot(he, comparison = NULL, wtp = wtp, graph = "ggplot2", ...) +
+    ceplane.plot(he, comparison = NULL, wtp = wtp, pos = pos, graph = "ggplot2", ...) +
       do.call(geom_density_2d, plot_params$contour)     
   }
 }
@@ -56,6 +57,7 @@ contour2.bcea <- function(he,
 #' @param wtp The selected value of the willingness-to-pay. Default is
 #' \code{25000}.
 #' @template args-graph
+#' @template args-pos
 #' @param ...  Arguments to be passed to \code{\link{ceplane.plot}}. See the
 #' relative manual page for more details.
 #' 
