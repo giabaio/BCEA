@@ -74,7 +74,8 @@ on a discrete grid in the interval \code{[0, Kmax]}. The grid is equal to
 to pay grid. Should be of length > 1 otherwise plots will be empty.
 If not specified then BCEA will construct a grid of 501 values
 from 0 to \code{Kmax}. This option is useful when performing intensive
-computations (e.g. for the EVPPI).}
+computations (e.g. for the EVPPI). This was changed from \code{wtp} in previous versions
+for consistency with other functions and so will be deprecated in the future.}
 
 \item{plot}{A logical value indicating whether the function should produce
 the summary plot or not.}
@@ -141,8 +142,8 @@ data(Vaccine)
 
 # Runs the health economic evaluation using BCEA
 m <- bcea(
-      e=e,
-      c=c,                  # defines the variables of 
+      e=eff,
+      c=cost,               # defines the variables of 
                             #  effectiveness and cost
       ref=2,                # selects the 2nd row of (e, c) 
                             #  as containing the reference intervention

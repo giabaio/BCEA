@@ -84,17 +84,17 @@ graph_params <-  list(xlab = "x-axis label",
                                    colors = grey.colors(3, start = 0.1, end = 0.7)),
                       area = list(color = "lightgrey"))
                                    
-he <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
+he <- bcea(eff, cost, ref = 4, Kmax = 500, interventions = treats)
 
 BCEA::ceplane_plot_base(he,
-                       wtp = 200,
-                       pos_legend = FALSE,
-                       graph_params = graph_params)
+                        wtp = 200,
+                        pos_legend = FALSE,
+                        graph_params = graph_params)
 }
 
 
 data(Vaccine)
-he <- bcea(e, c)
+he <- bcea(eff, cost)
 
 ceplane.plot(he, graph = "ggplot2")
 ceplane.plot(he, wtp=10000, graph = "ggplot2",
@@ -102,7 +102,7 @@ ceplane.plot(he, wtp=10000, graph = "ggplot2",
              area = list(col = "springgreen3"))
 
 data(Smoking)
-he <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
+he <- bcea(eff, cost, ref = 4, Kmax = 500, interventions = treats)
 
 ceplane.plot(he, graph = "ggplot2")
 

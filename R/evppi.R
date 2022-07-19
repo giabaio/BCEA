@@ -193,7 +193,7 @@
 #' data(Smoking)
 #' treats <- c("No intervention", "Self-help",
 #' "Individual counselling", "Group counselling")
-#' m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+#' m <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 #' inp <- createInputs(smoking_output)
 #' EVPPI <- evppi(m, c(2,3), inp$mat, h.value = 0.0000005)
 #' plot(EVPPI)

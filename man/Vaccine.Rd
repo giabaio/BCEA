@@ -30,7 +30,7 @@ vaccination}
 A data list including the variables needed for the influenza
 vaccination. The variables are as follows:
 \describe{
-  \item{list("c")}{a matrix of simulations from the posterior
+  \item{list("cost")}{a matrix of simulations from the posterior
   distribution of the overall costs associated with the two treatments}
   \item{list("c.pts")}{}
   \item{list("cost.GP")}{a matrix of simulations from the posterior
@@ -56,7 +56,7 @@ vaccination. The variables are as follows:
   interventions}
   \item{list("cost.vac")}{a matrix of simulations from the posterior
   distribution of the costs for vaccination}
-  \item{list("e")}{a matrix of simulations from the posterior distribution of
+  \item{list("eff")}{a matrix of simulations from the posterior distribution of
   the clinical benefits associated with the two treatments}
   \item{list("e.pts")}{}
   \item{list("N")}{the number of subjects in the reference population}

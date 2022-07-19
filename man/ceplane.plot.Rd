@@ -95,7 +95,7 @@ function or a rgba colour string, e.g. \code{'rgba(1, 1, 1, 1)'}.
 ## create the bcea object for the smoking cessation example
 data(Smoking)
 
-m <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
+m <- bcea(eff, cost, ref = 4, Kmax = 500, interventions = treats)
 
 ## produce the base plot
 ceplane.plot(m, wtp = 200, graph = "base")

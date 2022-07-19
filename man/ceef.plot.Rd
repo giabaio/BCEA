@@ -130,7 +130,7 @@ intervention (indexed by \code{ref} in the \code{\link{bcea}} function).
 
 ## create the bcea object m for the smoking cessation example
 data(Smoking)
-m <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
+m <- bcea(eff, cost, ref = 4, Kmax = 500, interventions = treats)
 
 ## produce plot
 ceef.plot(m, graph = "base")
