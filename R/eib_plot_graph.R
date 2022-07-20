@@ -42,6 +42,7 @@ eib_plot_base <- function(he,
 #' @import ggplot2
 #' @importFrom grid unit
 #' @importFrom purrr keep
+#' @importFrom scales label_dollar
 #' 
 eib_plot_ggplot <- function(he,
                             graph_params,
@@ -80,6 +81,8 @@ eib_plot_ggplot <- function(he,
                linetype = 1) + 
     geom_cri(graph_params$plot.cri, cri_params) +
     do.call(annotate, graph_params$kstar) +
+    scale_x_continuous(
+      labels = scales::label_dollar(prefix = graph_params$currency)) +
     geom_vline(
       aes(xintercept = .data$kstar),
       data = data.frame("kstar" = he$kstar),
