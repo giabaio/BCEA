@@ -163,7 +163,7 @@ ceplane_plot_ggplot.bcea <- function(he,
     ceplane_ggplot_params(he, wtp, pos_legend, graph_params, ...)
   
   theme_add <- purrr::keep(list(...), is.theme)
-  browser()
+  
   ggplot(delta_ce,
          aes(x = .data$delta_e, y = .data$delta_c,
              group = factor(.data$comparison),
