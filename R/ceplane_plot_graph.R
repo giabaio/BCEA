@@ -163,7 +163,7 @@ ceplane_plot_ggplot.bcea <- function(he,
     ceplane_ggplot_params(he, wtp, pos_legend, graph_params, ...)
   
   theme_add <- purrr::keep(list(...), is.theme)
-  
+  browser()
   ggplot(delta_ce,
          aes(x = .data$delta_e, y = .data$delta_c,
              group = factor(.data$comparison),
@@ -176,6 +176,15 @@ ceplane_plot_ggplot.bcea <- function(he,
     ceplane_legend_manual(he, plot_params) +
     geom_hline(yintercept = 0, colour = "grey") +
     geom_vline(xintercept = 0, colour = "grey") +
+    geom_text(data = data.frame(x = colMeans(he$delta_e),
+                                y = colMeans(he$delta_c)),
+              aes(x = x, y = y, 
+                  label = if (plot_params$icer_annot) {
+                    line_labels.default(
+                      he, ref_first = graph_params$ref_first)
+                  } else {""}),
+              inherit.aes = FALSE, show.legend = FALSE,
+              hjust = 0, vjust = 0) +
     scale_y_continuous(
       labels = scales::label_dollar(prefix = plot_params$currency)) +
     coord_cartesian(xlim = plot_params$xlim,
