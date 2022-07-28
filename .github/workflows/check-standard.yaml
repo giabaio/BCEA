@@ -73,7 +73,6 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          dependencies: TRUE
           extra-packages: any::rcmdcheck, INLA, local::. 
           needs: check
           
