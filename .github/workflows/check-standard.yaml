@@ -43,8 +43,13 @@ jobs:
       
       - name: Add inla repo
         run: |
-          writeLines('options(repos = c(INLA = "https://inla.r-inla-download.org/R/stable/", getOption(\"repos\")))', file("~/.Rprofile", "ab"))
+          cat('options(repos = c(INLA = "https://inla.r-inla-download.org/R/stable/", getOption("repos")))', file = "~/.Rprofile", append = TRUE)
         # cat("\noptions(tinytex.verbose = TRUE)\n", file = "~/.Rprofile", append = TRUE)
+        shell: Rscript {0}
+
+      - name: Double check repos
+        run: |
+          print(getOption("repos"))
         shell: Rscript {0}
 
 #      - name: Install JAGS
@@ -68,8 +73,8 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          dependencies: TRUE
-          extra-packages: any::rcmdcheck, INLA, local::. 
+          extra-packages:
+            any::rcmdcheck, local::.
           needs: check
           
       - uses: r-lib/actions/check-r-package@v2
