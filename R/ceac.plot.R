@@ -32,7 +32,7 @@
 #' 
 #' @examples 
 #' data("Vaccine")
-#' he <- BCEA::bcea(e, c)
+#' he <- BCEA::bcea(eff, cost)
 #' ceac.plot(he)
 #' 
 #' ceac.plot(he, graph = "base")
@@ -45,7 +45,7 @@
 #'           theme = ggplot2::theme_dark())
 #'
 #' ## more interventions
-#' he2 <- BCEA::bcea(cbind(e, e - 0.0002), cbind(c, c + 5))
+#' he2 <- BCEA::bcea(cbind(eff, eff - 0.0002), cbind(cost, cost + 5))
 #' mypalette <- RColorBrewer::brewer.pal(3, "Accent")
 #' ceac.plot(he2, graph = "ggplot2",
 #'           title = "my title",

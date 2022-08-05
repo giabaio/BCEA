@@ -48,7 +48,7 @@ Choice of base R, ggplot2 or plotly.
 # single comparator
 data(Vaccine, package = "BCEA")
 
-he <- bcea(e, c)
+he <- bcea(eff, cost)
 ceplane.plot(he, graph = "base")
 
 \dontrun{

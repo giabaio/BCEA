@@ -46,7 +46,7 @@
 #' 
 #' \dontrun{
 #'   data(Vaccine, package = "BCEA")
-#'   m <- bcea(e, c, ref = 2)
+#'   m <- bcea(eff, cost, ref = 2)
 #'   make.report(m)
 #' }
 #' 

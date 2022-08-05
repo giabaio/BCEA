@@ -46,7 +46,7 @@ Constructs the automated report from the output of the BCEA.
 
 \dontrun{
   data(Vaccine, package = "BCEA")
-  m <- bcea(e, c, ref = 2)
+  m <- bcea(eff, cost, ref = 2)
   make.report(m)
 }
 

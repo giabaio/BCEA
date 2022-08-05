@@ -24,7 +24,7 @@ is.bcea <- function(he) inherits(he, "bcea")
 #' 
 #' @examples 
 #' data("Vaccine")
-#' he <- BCEA::bcea(e, c)
+#' he <- BCEA::bcea(eff, cost)
 #' 
 print.bcea <- function(x,
                        digits = getOption("digits"),

@@ -3,11 +3,11 @@
 \docType{data}
 \name{Smoking}
 \alias{Smoking}
-\alias{c}
+\alias{cost}
 \alias{data}
-\alias{e}
+\alias{eff}
 \alias{life.years}
-\alias{pi}
+\alias{pi_post}
 \alias{smoking}
 \alias{smoking_output}
 \alias{treats}

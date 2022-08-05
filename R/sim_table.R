@@ -56,7 +56,6 @@ sim_table <- function(he, ...) UseMethod("sim_table", he)
 #'
 #' # Now can save the simulation exercise in an object using sim_table()
 #' sim_table(m,         # uses the results of the economic evaluation 
-#'                      #  (a 'bcea' object)
 #'           wtp=25000) # selects the particular value for k
 #'                
 #' @export

@@ -13,7 +13,7 @@
 #' # single comparator
 #' data(Vaccine, package = "BCEA")
 #' 
-#' he <- bcea(e, c)
+#' he <- bcea(eff, cost)
 #' ceplane.plot(he, graph = "base")
 #' 
 #' \dontrun{
@@ -178,7 +178,7 @@ ceplane_plot_ggplot.bcea <- function(he,
     geom_vline(xintercept = 0, colour = "grey") +
     geom_text(data = data.frame(x = colMeans(he$delta_e),
                                 y = colMeans(he$delta_c)),
-              aes(x = x, y = y, 
+              aes(x = .data$x, y = .data$y, 
                   label = if (plot_params$icer_annot) {
                     line_labels.default(
                       he, ref_first = graph_params$ref_first)

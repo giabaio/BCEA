@@ -8,7 +8,7 @@
 #' 
 #' @name Smoking
 #' @docType data
-#' @aliases Smoking c data e life.years pi smoking smoking_output treats
+#' @aliases Smoking cost data eff life.years pi_post smoking smoking_output treats
 #' @format A data list including the variables needed for the smoking cessation
 #' cost-effectiveness analysis. The variables are as follows:
 #' \describe{

@@ -113,7 +113,7 @@ info.rank.bcea <- function(he,
 #' # https://gianluca.statistica.it/book/bcea/code/vaccine.RData
 #' 
 #' data("Vaccine")
-#' m <- bcea(e,c)
+#' m <- bcea(eff, cost)
 #' inp <- createInputs(vaccine_mat)
 #' info.rank(m, inp)
 #' 
