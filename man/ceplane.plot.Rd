@@ -65,6 +65,7 @@ plotting. Should (partial-) match the two options \code{"base"} or
  \item \code{area = list(color)}: a colour specifying the colour of the cost-effectiveness
  acceptability area.
  \item \code{currency}: Currency prefix to cost differential values - ggplot2 only.
+ \item \code{icer_annot}: Annotate each ICER point with text label - ggplot2 only.
 }}
 }
 \value{

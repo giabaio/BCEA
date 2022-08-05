@@ -5,7 +5,14 @@
 \alias{contour2}
 \title{Specialised CE-plane Contour Plot}
 \usage{
-\method{contour2}{bcea}(he, comparison = NULL, wtp = 25000, graph = c("base", "ggplot2"), ...)
+\method{contour2}{bcea}(
+  he,
+  comparison = NULL,
+  wtp = 25000,
+  graph = c("base", "ggplot2"),
+  pos = c(0, 1),
+  ...
+)
 
 contour2(he, ...)
 }
@@ -25,6 +32,16 @@ comparisons. Any subset of the possible comparisons can be selected (e.g.,
 plotting. Should (partial-)match the three options \code{"base"},
 \code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
 Not all plotting functions have a \code{"plotly"} implementation yet.}
+
+\item{pos}{Parameter to set the position of the legend (only relevant for
+multiple interventions, ie more than 2 interventions being compared).
+Can be given in form
+of a string \code{(bottom|top)(right|left)} for base graphics and
+\code{bottom|top|left|right} for ggplot2. It can be a two-elements vector,
+which specifies the relative position on the x and y axis respectively, or
+alternatively it can be in form of a logical variable, with \code{FALSE}
+indicating to use the default position and \code{TRUE} to place it on the
+bottom of the plot.}
 
 \item{...}{Arguments to be passed to \code{\link{ceplane.plot}}. See the
 relative manual page for more details.}

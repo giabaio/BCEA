@@ -1,15 +1,14 @@
-context("eib_plot")
 
-library(ggplot2)
-library(dplyr)
-library(reshape2)
-library(purrr)
-library(vdiffr)
+# library(ggplot2)
+# library(dplyr)
+# library(reshape2)
+# library(purrr)
+# library(vdiffr)
 
-load("ce.RData")
-he <- BCEA::bcea(eff, cost)
 
 test_that("eib.plot_ggplot draws correctly", {
+  load("ce.RData")
+  he <- BCEA::bcea(eff, cost)
   
   eib_plot <- eib.plot(he, graph = "ggplot2", title = "my title")
   # vdiffr::expect_doppelganger(title = "eib plot ggplot", fig = eib_plot)
