@@ -45,7 +45,7 @@ than one intervention is present on the market.
 data(Vaccine)
 
 # Runs the health economic evaluation using BCEA
-m <- bcea(e=e,c=c,          # defines the variables of 
+m <- bcea(e=eff, c=cost,    # defines the variables of 
                             #  effectiveness and cost
       ref=2,                # selects the 2nd row of (e, c) 
                             #  as containing the reference intervention

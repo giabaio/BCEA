@@ -86,7 +86,7 @@ contour2.bcea <- function(he,
 #' @examples
 #' ## create the bcea object m for the smoking cessation example
 #' data(Smoking)
-#' m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+#' m <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 #' 
 #' ## produce the plot
 #' contour2(m,
@@ -104,7 +104,7 @@ contour2.bcea <- function(he,
 #' ## vaccination example
 #' data(Vaccine)
 #' treats = c("Status quo", "Vaccination")
-#' m <- bcea(e=e, c=c, ref = 2, interventions = treats, Kmax = 50000)
+#' m <- bcea(eff, cost, ref = 2, interventions = treats, Kmax = 50000)
 #' contour2(m)
 #' contour2(m, wtp = 100)
 #' 

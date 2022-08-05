@@ -185,7 +185,6 @@ test_that("jags, bugs, stan methods", {
   # expect_s3_class(bcea.rstan(stanfit), class = "bcea")
 })
 
-
 test_that("k and wtp arguments", {
   
   m <- bcea(eff, cost, plot = FALSE)
@@ -201,4 +200,15 @@ test_that("k and wtp arguments", {
     bcea(eff, cost, wtp = 0:1000, plot = FALSE),
     "wtp argument soft deprecated. Please use k instead in future.")
 })
+
+test_that("using e and c still works", {
+  e <- eff
+  c <- cost
+  bcea_res <- bcea(eff = eff, cost = cost)
+  
+  expect_equal(bcea(e, c), bcea_res)
+  expect_equal(bcea(e=e, c=c), bcea_res)
+  expect_equal(bcea(c=c, e=e), bcea_res)
+})
+
 

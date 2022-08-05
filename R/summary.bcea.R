@@ -29,7 +29,7 @@
 #' @examples 
 #' data(Vaccine)
 #' 
-#' he <- bcea(e, c, interventions = treats, ref = 2)
+#' he <- bcea(eff, cost, interventions = treats, ref = 2)
 #' summary(he)
 #' 
 summary.bcea <- function(object,

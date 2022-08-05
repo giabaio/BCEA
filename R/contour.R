@@ -81,8 +81,8 @@ contour.bcea <- function(he,
 #' data(Vaccine)
 #'
 #' # run the health economic evaluation using BCEA
-#' m <- bcea(e=e,
-#'           c=c,              # defines the variables of 
+#' m <- bcea(e=eff,
+#'           c=cost,           # defines the variables of 
 #'                             #  effectiveness and cost
 #'       ref=2,                # selects the 2nd row of (e,c) 
 #'                             #  as containing the reference intervention
@@ -112,7 +112,7 @@ contour.bcea <- function(he,
 #' 
 #' # use the smoking cessation dataset
 #' data(Smoking)
-#' m <- bcea(e, c, ref = 4, intervention = treats, Kmax = 500, plot = FALSE)
+#' m <- bcea(eff, cost, ref = 4, intervention = treats, Kmax = 500, plot = FALSE)
 #' contour(m)
 #' contour(m, graph = "ggplot2")
 #' 

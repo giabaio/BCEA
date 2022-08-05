@@ -36,8 +36,8 @@ data(Vaccine)
 
 # Runs the health economic evaluation using BCEA
 m <- bcea(
-      e=e,
-      c=c,                  # defines the variables of 
+      e=eff,
+      c=cost,               # defines the variables of 
                             #  effectiveness and cost
       ref=2,                # selects the 2nd row of (e, c) 
                             #  as containing the reference intervention
@@ -64,7 +64,7 @@ ceaf.plot(mce, graph = "g") # uses ggplot2
 \donttest{
 # Use the smoking cessation dataset
 data(Smoking)
-m <- bcea(e, c, ref = 4, intervention = treats, Kmax = 500, plot = FALSE)
+m <- bcea(eff, cost, ref = 4, intervention = treats, Kmax = 500, plot = FALSE)
 mce <- multi.ce(m)
 ceaf.plot(mce)
 }

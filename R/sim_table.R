@@ -44,8 +44,8 @@ sim_table <- function(he, ...) UseMethod("sim_table", he)
 #' data(Vaccine)
 #' 
 #' # Runs the health economic evaluation using BCEA
-#' m <- bcea(e=e,                  # defines the variables of 
-#'           c=c,                  # effectiveness and cost
+#' m <- bcea(e=eff,                # defines the variables of 
+#'           c=cost,               # effectiveness and cost
 #'           ref=2,                # selects the 2nd row of (e, c) 
 #'                                 # as containing the reference intervention
 #'           interventions=treats, # defines the labels to be associated 

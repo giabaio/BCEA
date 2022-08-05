@@ -32,8 +32,8 @@
 #' @examples
 #' data(Vaccine)
 #' m <- bcea(
-#'       e=e,
-#'       c=c,                  # defines the variables of 
+#'       e=eff,
+#'       c=cost,               # defines the variables of 
 #'                             #  effectiveness and cost
 #'       ref=2,                # selects the 2nd row of (e, c) 
 #'                             #  as containing the reference intervention
@@ -49,7 +49,7 @@
 #' data(Smoking)
 #' treats <- c("No intervention", "Self-help",
 #'             "Individual counselling", "Group counselling")
-#' m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+#' m <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 #' evi.plot(m)
 #' 
 evi.plot.bcea <- function(he,
