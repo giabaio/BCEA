@@ -12,6 +12,8 @@
 ^\.httr-oauth$
 ^CONDUCT\.md$
 ^man-roxygen$
+^.git
+^.gitignore
 ^cran-comments\.md$
 ^README_dev\.md$
 ^\.github$
