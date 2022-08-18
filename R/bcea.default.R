@@ -15,6 +15,15 @@ bcea.default <- function(eff,
                          plot = FALSE, ...) {
   exArgs <- list(...)
   
+  # provide named reference
+  if (is.character(ref)) {
+    if (length(ref) > 1 || !ref %in% interventions) {
+      ref <- NULL
+    } else {
+      ref <- which(ref == interventions)
+    }
+  }
+  
   if (is.null(ref)) {
     ref <- 1
     message("No reference selected. Defaulting to first intervention.")  

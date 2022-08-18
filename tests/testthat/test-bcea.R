@@ -211,4 +211,19 @@ test_that("using e and c still works", {
   expect_equal(bcea(c=c, e=e), bcea_res)
 })
 
+test_that("named reference", {
+  
+  expect_equal(bcea(eff, cost, ref = 1, interventions = c("a", "b")),
+               bcea(eff, cost, ref = "a", interventions = c("a", "b")))
+  
+  expect_equal(bcea(eff, cost, ref = 2, interventions = c("a", "b")),
+               bcea(eff, cost, ref = "b", interventions = c("a", "b")))
+  
+  expect_message(bcea(eff, cost, ref = "c", interventions = c("a", "b")),
+                 "No reference selected. Defaulting to first intervention.")
+  
+  expect_message(bcea(eff, cost, ref = "c"),
+                 "No reference selected. Defaulting to first intervention.")
+})
+
 
