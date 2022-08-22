@@ -1,11 +1,11 @@
 Package: BCEA
 Type: Package
 Title: Bayesian Cost Effectiveness Analysis
-Version: 2.4.1.3
+Version: 2.4.2
 Authors@R: c(
     person("Gianluca", "Baio",
             email = "gianluca@stats.ucl.ac.uk",
-            role = c("aut", "cre")),
+            role = c("aut")),
     person("Andrea", "Berardi",
             email = "a.berardi@ucl.ac.uk",
             role = c("aut")),
@@ -14,7 +14,7 @@ Authors@R: c(
             role = c("aut")),
     person("Nathan", "Green",
             email = "n.green@ucl.ac.uk",
-            role = c("aut")))
+            role = c("aut", "cre")))
 Imports:
     cli (>= 3.3.0),
     dplyr,

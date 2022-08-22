@@ -21,3 +21,4 @@
 ^paper\.bib$
 ^paper\.md$
 ^CONTRIBUTING\.md$
+^revdep$
