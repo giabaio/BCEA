@@ -5,7 +5,7 @@ Version: 2.4.2
 Authors@R: c(
     person("Gianluca", "Baio",
             email = "gianluca@stats.ucl.ac.uk",
-            role = c("aut")),
+            role = c("aut", "cre")),
     person("Andrea", "Berardi",
             email = "a.berardi@ucl.ac.uk",
             role = c("aut")),
@@ -14,12 +14,11 @@ Authors@R: c(
             role = c("aut")),
     person("Nathan", "Green",
             email = "n.green@ucl.ac.uk",
-            role = c("aut", "cre")))
+            role = c("aut")))
 Imports:
     cli (>= 3.3.0),
     dplyr,
     ggplot2,
-    GrassmannOptim,
     gridExtra,
     graphics,
     MASS,

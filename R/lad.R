@@ -182,7 +182,6 @@ InitialMatrix <- function(X, y, nslices) {
 }
 
 
-#' @importFrom GrassmannOptim GrassmannOptim
 #' 
 onelad <-function(d, Deltatilde, p, Sigmatilde, Deltatilde_y, N_y,
                   use.nslices, mf, X, yy, Sigmas, vnames, ...) {
