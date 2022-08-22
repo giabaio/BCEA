@@ -5,16 +5,20 @@ Version: 2.4.2
 Authors@R: c(
     person("Gianluca", "Baio",
             email = "gianluca@stats.ucl.ac.uk",
-            role = c("aut", "cre")),
+            role = c("aut", "cre"),
+            comment = c(ORCID = "0000-0003-4314-2570")),
     person("Andrea", "Berardi",
             email = "a.berardi@ucl.ac.uk",
-            role = c("aut")),
+            role = c("aut"),
+            comment = c(ORCID = "0000-0002-2906-496X")),
     person("Anna", "Heath",
             email = "anna.heath@sickkids.ca",
-            role = c("aut")),
+            role = c("aut"),
+            comment = c(ORCID = "0000-0002-7263-4251")),
     person("Nathan", "Green",
             email = "n.green@ucl.ac.uk",
-            role = c("aut")))
+            role = c("aut"),
+            comment = c(ORCID = "0000-0003-2745-1736")))
 Imports:
     cli (>= 3.3.0),
     dplyr,
