@@ -9,6 +9,7 @@ August 2022
 * Changed `wtp` argument in `bcea()` to `k` because `wtp` in the plotting functions refers to the wtp line and so is a scalar whereas `k` is a grid of points. Added an error message to use new argument. (b014c83)
 * `bcea()` still allows a scalar `k` but added a warning that this will give empty plots.
 * Updated GitHub Actions for checking the package to use `r-lib/Actions` version 2. There was an error with not finding INLA but this was solved by Gabor at RStudio (see thread here https://community.rstudio.com/t/not-finding-inla-package-not-on-cran-in-actions/141398)
+* GrassmannOptim package r-release-macos-x86_64 isn't available resulting in a CRAN check error and doesn't appear to be maintained. Tried emailing the author but bounced. Removed dependency and copied `GrassmannOptim()` function inside of package with acknowledgement.
 
 ## Refactoring
 
