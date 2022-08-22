@@ -1,4 +1,4 @@
-# BCEA 2.4.1.3
+# BCEA 2.4.2
 August 2022
 
 ## Bug fixes
@@ -22,6 +22,7 @@ August 2022
 * Can specify currency for axes in `ce-plane.plot` and `ceac.plot` `ggplot2` versions (6808aa6)
 * Argument added to `ceplane.plot` of `icer_annot` to annotate each of the ICER points with the text label of the intervention name. Only for `ggplot2` at the moment. (a7b4beb)
 * Added `pos` argument to `contour2()` so that its consistent with `contour()` and `ceplane.plot()`. (50f8f8b)
+* Allow passing `ref` argument by name as well as index in `bcea()`. (9eab459)
 
 
 
