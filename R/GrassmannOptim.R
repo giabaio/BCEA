@@ -16,7 +16,8 @@
 #' @param eps_grad eps_grad 
 #' @param eps_f eps_f 
 #' @param verbose verbose 
-#'
+#' @importFrom stats rnorm runif
+#' @importFrom Matrix Matrix expm
 #' @return List
 #'
 GrassmannOptim <-
@@ -197,8 +198,15 @@ GrassmannOptim <-
     if ((norm_grad <= eps_conv)) 
     {
       converged = TRUE
-      return(invisible(list(Qt = round(Qt, digits = 4), d = d,  norm_grads = norm_grads, 
-                            fvalues = fvalues, converged = converged, call = call)))
+      return(invisible(
+        list(
+          Qt = round(Qt, digits = 4),
+          d = d,
+          norm_grads = norm_grads,
+          fvalues = fvalues,
+          converged = converged,
+          call = call)
+      ))
     }
     
     repeat 
