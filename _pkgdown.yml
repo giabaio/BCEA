@@ -3,7 +3,9 @@ news:
   
 template:
   bootstrap: 5
-  bootswatch: flatly
+  theme: atom-one-light
+  bslib:
+    font_scale: 1.0
 
 reference:
 - title: "Main"
