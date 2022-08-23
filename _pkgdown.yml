@@ -16,9 +16,9 @@ reference:
 - title: "Setters"
   desc: "Functions for modifying or extending a `bcea()` analysis."
   contents:
-  - setComparisons_assign
-  - setKmax_assign
-  - setReferenceGroup_assign
+  - starts_with("setComparisons")
+  - starts_with("setKmax")
+  - starts_with("setReferenceGroup")
   - mixedAn<-
   - CEriskav
   - multi.ce
@@ -26,19 +26,23 @@ reference:
 - title: "Plotting"
   desc: "Functions for plotting a wide variety of cost-effectiveness plots in base R, ggplot2 and plotly."
   contents:
-  - ceac.plot
-  - ceaf.plot
-  - ceef.plot
-  - ceplane.plot
-  - contour
-  - contour2
-  - eib.plot
-  - evi.plot
+  - starts_with("ceac")
+  - starts_with("ceaf")
+  - starts_with("ceef")
+  - starts_with("ceplane")
+  - starts_with("contour")
+  - starts_with("eib.plot")
+  - starts_with("evi.plot")
+  - starts_with("evi_plot_graph")
   - ib.plot
+  - starts_with("ib_plot")
   - info.rank
+  - starts_with("info_rank_graph")
   - plot.bcea
   - plot.CEriskav
+  - starts_with("CEriskav_plot_graph")
   - plot.evppi
+  - starts_with("evppi_plot_graph")
 - title: "Statistics"
   desc: "Lower level functions for computing a range of cost-effectiveness statistics."
   contents:
@@ -54,7 +58,10 @@ reference:
 - title: "Miscellaneous"
   desc: "Helper functions and other intermediate computations."
   contents:
+  - starts_with("createInputs")
   - evppi
+  - is.bcea
+  - print.bcea
   - select_plot_type
 - title: "Data"
   contents:

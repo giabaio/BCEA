@@ -34,7 +34,7 @@ treats <- c("No intervention", "Self-help", "Individual counselling", "Group cou
 
 Setting the reference group (`ref`) to _Group counselling_ and the maximum willingness to pay (`Kmax`) as 500
 ```{r}
-bcea_smoke <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+bcea_smoke <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 ```
 
 We can easily create a grid of the most common plots

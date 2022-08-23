@@ -12,23 +12,34 @@ parameter EVPPI and the SPDE-INLA method for larger parameter subsets."><meta pr
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">BCEA</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../articles/index.html">Articles</a>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/bcea.html">Get Started</a>
+    <a class="dropdown-item" href="../articles/ceac.html">Cost-Effectiveness Acceptability Curve Plots</a>
+    <a class="dropdown-item" href="../articles/ceef.html">Cost-Effectiveness Efficiency Frontier</a>
+    <a class="dropdown-item" href="../articles/ceplane.html">Cost-effectiveness plane</a>
+    <a class="dropdown-item" href="../articles/CEriskav.html">Risk Aversion Analysis</a>
+    <a class="dropdown-item" href="../articles/contour.html">Contour plots</a>
+    <a class="dropdown-item" href="../articles/eib.html">Expected Incremental Benefit Plot</a>
+    <a class="dropdown-item" href="../articles/paired_vs_multiple_comps.html">Paired vs Multiple Comparisons</a>
+    <a class="dropdown-item" href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+  </div>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
@@ -63,13 +74,13 @@ parameter EVPPI and the SPDE-INLA method for larger parameter subsets.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">evppi</span><span class="op">(</span><span class="va">he</span>, <span class="va">param_idx</span>, <span class="va">input</span>, N <span class="op">=</span> <span class="cn">NULL</span>, plot <span class="op">=</span> <span class="cn">FALSE</span>, residuals <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for bcea</span>
-<span class="fu">evppi</span><span class="op">(</span><span class="va">he</span>, <span class="va">param_idx</span>, <span class="va">input</span>, N <span class="op">=</span> <span class="cn">NULL</span>, plot <span class="op">=</span> <span class="cn">FALSE</span>, residuals <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for default</span>
-<span class="fu">evppi</span><span class="op">(</span><span class="va">he</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">evppi</span><span class="op">(</span><span class="va">he</span>, <span class="va">param_idx</span>, <span class="va">input</span>, N <span class="op">=</span> <span class="cn">NULL</span>, plot <span class="op">=</span> <span class="cn">FALSE</span>, residuals <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for bcea</span></span>
+<span><span class="fu">evppi</span><span class="op">(</span><span class="va">he</span>, <span class="va">param_idx</span>, <span class="va">input</span>, N <span class="op">=</span> <span class="cn">NULL</span>, plot <span class="op">=</span> <span class="cn">FALSE</span>, residuals <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for default</span></span>
+<span><span class="fu">evppi</span><span class="op">(</span><span class="va">he</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -77,25 +88,37 @@ parameter EVPPI and the SPDE-INLA method for larger parameter subsets.</p>
     <dl><dt>he</dt>
 <dd><p>A <code>bcea</code> object containing the results of the Bayesian
 modelling and the economic evaluation.</p></dd>
+
+
 <dt>param_idx</dt>
 <dd><p>A vector of parameters for which the EVPPI should be
 calculated. This can be given as a string (or vector of strings) of names or
 a numeric vector, corresponding to the column numbers of important
 parameters.</p></dd>
+
+
 <dt>input</dt>
 <dd><p>A matrix containing the simulations for all the parameters
 monitored by the call to JAGS or BUGS. The matrix should have column names
 matching the names of the parameters and the values in the vector parameter
 should match at least one of those values.</p></dd>
+
+
 <dt>N</dt>
 <dd><p>The number of PSA simulations used to calculate the EVPPI. The
 default uses all the available samples.</p></dd>
+
+
 <dt>plot</dt>
 <dd><p>A logical value indicating whether the triangular mesh for
 SPDE-INLA should be plotted. Default set to `FALSE`.</p></dd>
+
+
 <dt>residuals</dt>
 <dd><p>A logical value indicating whether the fitted values for
 the SPDE-INLA method should be outputted. Default set to `TRUE`.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Additional arguments. The default methods to compute the EVPPI
 are:
@@ -112,37 +135,52 @@ the number of "separators" (e.g. <code>n.seps=3</code>). If none is specified, t
 default value <code>n.seps=1</code> is used. If <code>"so"</code> is used as method for
 the calculation of the EVPPI, then the user *needs* to also specify the
 number of "blocks" (e.g. <code>n.blocks=20</code>).</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>Object of class `evppi`:</p>
+    
+
+<p>Object of class `evppi`:</p>
 <dl><dt>evppi</dt>
 <dd><p>The computed values of evppi for all values of the
  parameter of willingness to pay.</p></dd>
+
 <dt>index</dt>
 <dd><p>A numerical vector with the index associated with the
  parameters for which the EVPPI was calculated.</p></dd>
+
 <dt>k</dt>
 <dd><p>The vector of values for the willingness to pay.</p></dd>
+
 <dt>evi</dt>
 <dd><p>The vector of values for the overall EVPPI.</p></dd>
+
 <dt>fitted.costs</dt>
 <dd><p>The fitted values for the costs.</p></dd>
+
 <dt>fitted.effects</dt>
 <dd><p>The fitted values for the effects.</p></dd>
+
 <dt>parameters</dt>
 <dd><p>A single string containing the names of the
 parameters for which the EVPPI was calculated, used for plotting the EVPPI.</p></dd>
+
 <dt>time</dt>
 <dd><p>Computational time (in seconds).</p></dd>
+
 <dt>fit.c</dt>
 <dd><p>The object produced by the model fit for the costs.</p></dd>
+
 <dt>fit.e</dt>
 <dd><p>The object produced by the model fit for the effects.</p></dd>
+
 <dt>formula</dt>
 <dd><p>The formula used to fit the model.</p></dd>
+
 <dt>method</dt>
 <dd><p>A string indicating the method used to estimate the EVPPI.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -239,12 +277,12 @@ CRC.</p>
 <p>Baio, Gianluca, Berardi, Andrea, Heath A (2017).
 <em>Bayesian Cost-Effectiveness Analysis with the R package BCEA</em>.
 Springer International Publishing.
-<a href="https://www.springer.com/gp/book/9783319557168" class="external-link">https://www.springer.com/gp/book/9783319557168</a>.</p>
+<a href="https://link.springer.com/book/10.1007/978-3-319-55718-2" class="external-link">https://link.springer.com/book/10.1007/978-3-319-55718-2</a>.</p>
 <p>Heath A, Manolopoulou I, Baio G (2016).
 “Estimating the expected value of partial perfect information in health economic evaluations using integrated nested Laplace approximation.”
 <em>Stat. Med.</em>, <b>35</b>(23), 4264--4280.
 ISSN 0277-6715, doi: <a href="https://doi.org/10.1002/sim.6983" class="external-link">10.1002/sim.6983</a>
-, 1504.05436, <a href="https://onlinelibrary.wiley.com/doi/10.1002/sim.6983" class="external-link">https://onlinelibrary.wiley.com/doi/10.1002/sim.6983</a>.</p>
+, 1504.05436, <a href="https://pubmed.ncbi.nlm.nih.gov/27189534/" class="external-link">https://pubmed.ncbi.nlm.nih.gov/27189534/</a>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -258,62 +296,62 @@ ISSN 0277-6715, doi: <a href="https://doi.org/10.1002/sim.6983" class="external-
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># See Baio G., Dawid A.P. (2011) for a detailed description of the </span></span>
-<span class="r-in"><span class="co"># Bayesian model and economic problem</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="co"># Load the post-processed results of the MCMC simulation model</span></span>
-<span class="r-in"><span class="co"># original JAGS output is can be downloaded from here</span></span>
-<span class="r-in"><span class="co"># https://gianluca.statistica.it/book/bcea/code/vaccine.RData</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="Smoking.html">data</a></span><span class="op">(</span><span class="va">Vaccine</span>, package <span class="op">=</span> <span class="st">"BCEA"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">treats</span> <span class="op">&lt;-</span> <span class="fu"><a href="Smoking.html">c</a></span><span class="op">(</span><span class="st">"Status quo"</span>, <span class="st">"Vaccination"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Run the health economic evaluation using BCEA</span></span>
-<span class="r-in"><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="bcea.html">bcea</a></span><span class="op">(</span><span class="va">e.pts</span>, <span class="va">c.pts</span>, ref <span class="op">=</span> <span class="fl">2</span>, interventions <span class="op">=</span> <span class="va">treats</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Compute the EVPPI for a bunch of parameters</span></span>
-<span class="r-in"><span class="va">inp</span> <span class="op">&lt;-</span> <span class="fu"><a href="createInputs.html">createInputs</a></span><span class="op">(</span><span class="va">vaccine_mat</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">EVPPI</span> <span class="op">&lt;-</span> <span class="fu">evppi</span><span class="op">(</span><span class="va">m</span>, <span class="fu"><a href="Smoking.html">c</a></span><span class="op">(</span><span class="st">"beta.1."</span> , <span class="st">"beta.2."</span><span class="op">)</span>, <span class="va">inp</span><span class="op">$</span><span class="va">mat</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">EVPPI</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># deprecated (single parameter) methods</span></span>
-<span class="r-in"><span class="va">EVPPI.so</span> <span class="op">&lt;-</span> <span class="fu">evppi</span><span class="op">(</span><span class="va">m</span>, <span class="fu"><a href="Smoking.html">c</a></span><span class="op">(</span><span class="st">"beta.1."</span>, <span class="st">"beta.2."</span><span class="op">)</span>, <span class="va">inp</span><span class="op">$</span><span class="va">mat</span>, method <span class="op">=</span> <span class="st">"so"</span>, n.blocks <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">EVPPI.sad</span> <span class="op">&lt;-</span> <span class="fu">evppi</span><span class="op">(</span><span class="va">m</span>, <span class="fu"><a href="Smoking.html">c</a></span><span class="op">(</span><span class="st">"beta.1."</span>, <span class="st">"beta.2."</span><span class="op">)</span>, <span class="va">inp</span><span class="op">$</span><span class="va">mat</span>, method <span class="op">=</span> <span class="st">"sad"</span>, n.seps <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">EVPPI.so</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">EVPPI.sad</span><span class="op">)</span></span>
-<span class="r-in"> </span>
-<span class="r-in"><span class="co"># Compute the EVPPI using INLA/SPDE</span></span>
-<span class="r-in"><span class="va">x_inla</span> <span class="op">&lt;-</span> <span class="fu">evppi</span><span class="op">(</span>he <span class="op">=</span> <span class="va">m</span>, <span class="fl">39</span><span class="op">:</span><span class="fl">40</span>, input <span class="op">=</span> <span class="va">inp</span><span class="op">$</span><span class="va">mat</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># using GAM regression</span></span>
-<span class="r-in"><span class="va">x_gam</span> <span class="op">&lt;-</span> <span class="fu">evppi</span><span class="op">(</span>he <span class="op">=</span> <span class="va">m</span>, <span class="fl">39</span><span class="op">:</span><span class="fl">40</span>, input <span class="op">=</span> <span class="va">inp</span><span class="op">$</span><span class="va">mat</span>, method <span class="op">=</span> <span class="st">"GAM"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># using Strong et al GP regression</span></span>
-<span class="r-in"><span class="va">x_gp</span> <span class="op">&lt;-</span> <span class="fu">evppi</span><span class="op">(</span>he <span class="op">=</span> <span class="va">m</span>, <span class="fl">39</span><span class="op">:</span><span class="fl">40</span>, input <span class="op">=</span> <span class="va">inp</span><span class="op">$</span><span class="va">mat</span>, method <span class="op">=</span> <span class="st">"GP"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># plot results</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x_inla</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">x_inla</span><span class="op">$</span><span class="va">k</span>, <span class="va">x_inla</span><span class="op">$</span><span class="va">evppi</span>, type <span class="op">=</span> <span class="st">"l"</span>, lwd <span class="op">=</span> <span class="fl">2</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">x_gam</span><span class="op">$</span><span class="va">k</span>, <span class="va">x_gam</span><span class="op">$</span><span class="va">evppi</span>, type <span class="op">=</span> <span class="st">"l"</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">x_gp</span><span class="op">$</span><span class="va">k</span>, <span class="va">x_gp</span><span class="op">$</span><span class="va">evppi</span>, type <span class="op">=</span> <span class="st">"l"</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x_inla</span><span class="op">$</span><span class="va">k</span>, <span class="va">x_inla</span><span class="op">$</span><span class="va">evppi</span>, type <span class="op">=</span> <span class="st">"l"</span>, lwd <span class="op">=</span> <span class="fl">2</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">x_gam</span><span class="op">$</span><span class="va">k</span>, <span class="va">x_gam</span><span class="op">$</span><span class="va">evppi</span>, type <span class="op">=</span> <span class="st">"l"</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">x_gp</span><span class="op">$</span><span class="va">k</span>, <span class="va">x_gp</span><span class="op">$</span><span class="va">evppi</span>, type <span class="op">=</span> <span class="st">"l"</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="Smoking.html">data</a></span><span class="op">(</span><span class="va">Smoking</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">treats</span> <span class="op">&lt;-</span> <span class="fu"><a href="Smoking.html">c</a></span><span class="op">(</span><span class="st">"No intervention"</span>, <span class="st">"Self-help"</span>,</span>
-<span class="r-in"><span class="st">"Individual counselling"</span>, <span class="st">"Group counselling"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span>, ref <span class="op">=</span> <span class="fl">4</span>, interventions <span class="op">=</span> <span class="va">treats</span>, Kmax <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">inp</span> <span class="op">&lt;-</span> <span class="fu"><a href="createInputs.html">createInputs</a></span><span class="op">(</span><span class="va">smoking_output</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">EVPPI</span> <span class="op">&lt;-</span> <span class="fu">evppi</span><span class="op">(</span><span class="va">m</span>, <span class="fu"><a href="Smoking.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>, <span class="va">inp</span><span class="op">$</span><span class="va">mat</span>, h.value <span class="op">=</span> <span class="fl">0.0000005</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">EVPPI</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># See Baio G., Dawid A.P. (2011) for a detailed description of the </span></span></span>
+<span class="r-in"><span><span class="co"># Bayesian model and economic problem</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># Load the post-processed results of the MCMC simulation model</span></span></span>
+<span class="r-in"><span><span class="co"># original JAGS output is can be downloaded from here</span></span></span>
+<span class="r-in"><span><span class="co"># https://gianluca.statistica.it/book/bcea/code/vaccine.RData</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="Smoking.html">data</a></span><span class="op">(</span><span class="va">Vaccine</span>, package <span class="op">=</span> <span class="st">"BCEA"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">treats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Status quo"</span>, <span class="st">"Vaccination"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Run the health economic evaluation using BCEA</span></span></span>
+<span class="r-in"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="bcea.html">bcea</a></span><span class="op">(</span><span class="va">e.pts</span>, <span class="va">c.pts</span>, ref <span class="op">=</span> <span class="fl">2</span>, interventions <span class="op">=</span> <span class="va">treats</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Compute the EVPPI for a bunch of parameters</span></span></span>
+<span class="r-in"><span><span class="va">inp</span> <span class="op">&lt;-</span> <span class="fu"><a href="createInputs.html">createInputs</a></span><span class="op">(</span><span class="va">vaccine_mat</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">EVPPI</span> <span class="op">&lt;-</span> <span class="fu">evppi</span><span class="op">(</span><span class="va">m</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"beta.1."</span> , <span class="st">"beta.2."</span><span class="op">)</span>, <span class="va">inp</span><span class="op">$</span><span class="va">mat</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">EVPPI</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># deprecated (single parameter) methods</span></span></span>
+<span class="r-in"><span><span class="va">EVPPI.so</span> <span class="op">&lt;-</span> <span class="fu">evppi</span><span class="op">(</span><span class="va">m</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"beta.1."</span>, <span class="st">"beta.2."</span><span class="op">)</span>, <span class="va">inp</span><span class="op">$</span><span class="va">mat</span>, method <span class="op">=</span> <span class="st">"so"</span>, n.blocks <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">EVPPI.sad</span> <span class="op">&lt;-</span> <span class="fu">evppi</span><span class="op">(</span><span class="va">m</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"beta.1."</span>, <span class="st">"beta.2."</span><span class="op">)</span>, <span class="va">inp</span><span class="op">$</span><span class="va">mat</span>, method <span class="op">=</span> <span class="st">"sad"</span>, n.seps <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">EVPPI.so</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">EVPPI.sad</span><span class="op">)</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span><span class="co"># Compute the EVPPI using INLA/SPDE</span></span></span>
+<span class="r-in"><span><span class="va">x_inla</span> <span class="op">&lt;-</span> <span class="fu">evppi</span><span class="op">(</span>he <span class="op">=</span> <span class="va">m</span>, <span class="fl">39</span><span class="op">:</span><span class="fl">40</span>, input <span class="op">=</span> <span class="va">inp</span><span class="op">$</span><span class="va">mat</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># using GAM regression</span></span></span>
+<span class="r-in"><span><span class="va">x_gam</span> <span class="op">&lt;-</span> <span class="fu">evppi</span><span class="op">(</span>he <span class="op">=</span> <span class="va">m</span>, <span class="fl">39</span><span class="op">:</span><span class="fl">40</span>, input <span class="op">=</span> <span class="va">inp</span><span class="op">$</span><span class="va">mat</span>, method <span class="op">=</span> <span class="st">"GAM"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># using Strong et al GP regression</span></span></span>
+<span class="r-in"><span><span class="va">x_gp</span> <span class="op">&lt;-</span> <span class="fu">evppi</span><span class="op">(</span>he <span class="op">=</span> <span class="va">m</span>, <span class="fl">39</span><span class="op">:</span><span class="fl">40</span>, input <span class="op">=</span> <span class="va">inp</span><span class="op">$</span><span class="va">mat</span>, method <span class="op">=</span> <span class="st">"GP"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># plot results</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x_inla</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">x_inla</span><span class="op">$</span><span class="va">k</span>, <span class="va">x_inla</span><span class="op">$</span><span class="va">evppi</span>, type <span class="op">=</span> <span class="st">"l"</span>, lwd <span class="op">=</span> <span class="fl">2</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">x_gam</span><span class="op">$</span><span class="va">k</span>, <span class="va">x_gam</span><span class="op">$</span><span class="va">evppi</span>, type <span class="op">=</span> <span class="st">"l"</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">x_gp</span><span class="op">$</span><span class="va">k</span>, <span class="va">x_gp</span><span class="op">$</span><span class="va">evppi</span>, type <span class="op">=</span> <span class="st">"l"</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x_inla</span><span class="op">$</span><span class="va">k</span>, <span class="va">x_inla</span><span class="op">$</span><span class="va">evppi</span>, type <span class="op">=</span> <span class="st">"l"</span>, lwd <span class="op">=</span> <span class="fl">2</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">x_gam</span><span class="op">$</span><span class="va">k</span>, <span class="va">x_gam</span><span class="op">$</span><span class="va">evppi</span>, type <span class="op">=</span> <span class="st">"l"</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">x_gp</span><span class="op">$</span><span class="va">k</span>, <span class="va">x_gp</span><span class="op">$</span><span class="va">evppi</span>, type <span class="op">=</span> <span class="st">"l"</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="Smoking.html">data</a></span><span class="op">(</span><span class="va">Smoking</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">treats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"No intervention"</span>, <span class="st">"Self-help"</span>,</span></span>
+<span class="r-in"><span><span class="st">"Individual counselling"</span>, <span class="st">"Group counselling"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="bcea.html">bcea</a></span><span class="op">(</span><span class="va">eff</span>, <span class="va">cost</span>, ref <span class="op">=</span> <span class="fl">4</span>, interventions <span class="op">=</span> <span class="va">treats</span>, Kmax <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">inp</span> <span class="op">&lt;-</span> <span class="fu"><a href="createInputs.html">createInputs</a></span><span class="op">(</span><span class="va">smoking_output</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">EVPPI</span> <span class="op">&lt;-</span> <span class="fu">evppi</span><span class="op">(</span><span class="va">m</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>, <span class="va">inp</span><span class="op">$</span><span class="va">mat</span>, h.value <span class="op">=</span> <span class="fl">0.0000005</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">EVPPI</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -321,13 +359,11 @@ ISSN 0277-6715, doi: <a href="https://doi.org/10.1002/sim.6983" class="external-
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan
-Green.</p>
+  <p></p><p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan Green.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

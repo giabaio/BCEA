@@ -49,3 +49,4 @@ This function is taken from the GrassmannOptim package
 by Kofi Placid Adragni and Seongho Wu
 https://cran.r-project.org/web/packages/GrassmannOptim/index.html
 }
+\keyword{internal}

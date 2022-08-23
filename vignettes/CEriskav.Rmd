@@ -31,7 +31,7 @@ Set-up analysis using smoking cessation data set.
 data(Smoking)
 
 treats <- c("No intervention", "Self-help", "Individual counselling", "Group counselling")
-bcea_smoke <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+bcea_smoke <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 ```
 
 Run the risk aversion analysis straight away
@@ -75,7 +75,7 @@ plot(bcea_smoke)
 
 plot(bcea_smoke, graph = "ggplot")
 
-bcea_smoke0 <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+bcea_smoke0 <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 eib.plot(bcea_smoke0, comparison = 1)
 evi.plot(bcea_smoke0)
 ```
