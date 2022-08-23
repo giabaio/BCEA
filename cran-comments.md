@@ -1,7 +1,13 @@
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Removed from the build large data files so that not more than 5 MB for a CRAN package.
+
+* Reference about the method added in the Description.
+
 ## R CMD check results
 There were no ERRORs or WARNINGs. 
 
-* Note: `installed size is  5.3Mb sub-directories of 1Mb or more: extdata 4.0Mb`. This is resulting from a standard jags output file.
 * Any notes about using INLA has been condoned in previous versions, as they are only suggested.
 
 
