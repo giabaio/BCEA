@@ -4,7 +4,8 @@
 #' @export
 #' 
 #' @return
-#' \code{is.bcea} returns TRUE or FALSE depending on whether its argument is a bcea class object.
+#' \code{is.bcea} returns TRUE or FALSE depending on whether its argument
+#'  is a bcea class object.
 #' 
 is.bcea <- function(he) inherits(he, "bcea")
 
@@ -23,7 +24,7 @@ is.bcea <- function(he) inherits(he, "bcea")
 #' 
 #' @examples 
 #' data("Vaccine")
-#' he <- BCEA::bcea(e, c)
+#' he <- BCEA::bcea(eff, cost)
 #' 
 print.bcea <- function(x,
                        digits = getOption("digits"),

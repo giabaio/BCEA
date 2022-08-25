@@ -1,0 +1,194 @@
+---
+title: "Cost-effectiveness plane"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Cost-effectiveness plane}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+  
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+collapse = TRUE,
+comment = "#>",
+fig.width = 6
+)
+```
+
+```{r setup, results='hide', message=FALSE, warning=FALSE, echo=FALSE}
+library(BCEA)
+library(dplyr)
+library(reshape2)
+library(ggplot2)
+library(purrr)
+```
+
+
+##TODO...
+
+## Introduction
+
+The intention of this vignette is to show how to plot different styles of cost-effectiveness acceptability curves using the BCEA package.
+
+
+#### R code
+
+To calculate these in BCEA we use the `bcea()` function.
+
+```{r}
+data("Vaccine")
+
+he <- bcea(eff, cost)
+```
+
+The plot defaults to base R plotting. Type of plot can be set explicitly using the `graph` argument.
+
+```{r}
+ceplane.plot(he, graph = "base")
+ceplane.plot(he, graph = "ggplot2")
+# ceac.plot(he, graph = "plotly")
+```
+
+Other plotting arguments can be specified such as title, line colours and theme.
+
+```{r}
+ceplane.plot(he,
+             graph = "ggplot2",
+             title = "my title",
+             line = list(color = "green", size = 3),
+             point = list(color = "blue", shape = 10, size = 5),
+             icer = list(color = "orange", size = 5),
+             area = list(fill = "grey"),
+             theme = theme_linedraw())
+```
+
+If you only what the mean point then you can suppress the sample points by passing size `NA`.
+
+```{r}
+ceplane.plot(he,
+             graph = "ggplot2",
+             point = list(size = NA),
+             icer = list(size = 5))
+```
+
+
+## Multiple interventions
+
+This situation is when there are more than two interventions to consider.
+
+#### R code
+
+```{r}
+data("Smoking")
+
+he <- bcea(eff, cost, ref = 4)
+# str(he)
+```
+
+```{r}
+ceplane.plot(he)
+ceplane.plot(he, graph = "ggplot2")
+```
+
+
+```{r}
+ceplane.plot(he,
+             graph = "ggplot2",
+             title = "my title",
+             line = list(color = "red", size = 1),
+             point = list(color = c("plum", "tomato", "springgreen"), shape = 3:5, size = 2),
+             icer = list(color = c("red", "orange", "black"), size = 5))
+```
+
+
+Reposition legend.
+
+```{r}
+ceplane.plot(he, pos = FALSE) # bottom right
+ceplane.plot(he, pos = c(0, 0))
+ceplane.plot(he, pos = c(0, 1))
+ceplane.plot(he, pos = c(1, 0))
+ceplane.plot(he, pos = c(1, 1))
+```
+
+<!-- ```{r} -->
+<!-- ceac.plot(he, graph = "ggplot2", pos = c(0, 0)) -->
+<!-- ceac.plot(he, graph = "ggplot2", pos = c(0, 1)) -->
+<!-- ceac.plot(he, graph = "ggplot2", pos = c(1, 0)) -->
+<!-- ceac.plot(he, graph = "ggplot2", pos = c(1, 1)) -->
+<!-- ``` -->
+
+<!-- Define colour palette. -->
+
+<!-- ```{r} -->
+<!-- mypalette <- RColorBrewer::brewer.pal(3, "Accent") -->
+
+<!-- ceac.plot(he, -->
+<!--           graph = "base", -->
+<!--           title = "my title", -->
+<!--           line = list(colors = mypalette), -->
+<!--           pos = FALSE) -->
+
+<!-- ceac.plot(he, -->
+<!--           graph = "ggplot2", -->
+<!--           title = "my title", -->
+<!--           line = list(colors = mypalette), -->
+<!--           pos = FALSE) -->
+<!-- ``` -->
+
+<!-- ### Pair-wise comparisons -->
+
+<!-- Again, without loss of generality, if we assume that we are interested in intervention $i=1$, the we wish to calculate -->
+
+<!-- $$ -->
+<!-- p(NB_1 = \max\{NB_i : i \in S\} | k) -->
+<!-- $$ -->
+
+<!-- This can be approximated by the following. -->
+
+<!-- $$ -->
+<!-- \frac{1}{N} \sum_j^N \prod_{i \in S} \mathbb{I} (k \Delta e_{1,i}^j - \Delta c_{1,i}^j) -->
+<!-- $$ -->
+
+<!-- #### R code -->
+
+<!-- In BCEA we first we must determine all combinations of paired interventions using the `multi.ce()` function. -->
+
+<!-- ```{r} -->
+<!-- he <- multi.ce(he) -->
+<!-- ``` -->
+
+<!-- We can use the same plotting calls as before i.e. `ceac.plot()` and BCEA will deal with the pairwise situation appropriately. -->
+<!-- Note that in this case the probabilities at a given willingness to pay sum to 1. -->
+
+<!-- ```{r} -->
+<!-- ceac.plot(he, graph = "base") -->
+
+<!-- ceac.plot(he, -->
+<!--           graph = "base", -->
+<!--           title = "my title", -->
+<!--           line = list(colors = "green"), -->
+<!--           pos = FALSE) -->
+
+<!-- mypalette <- RColorBrewer::brewer.pal(4, "Dark2") -->
+
+<!-- ceac.plot(he, -->
+<!--           graph = "base", -->
+<!--           title = "my title", -->
+<!--           line = list(colors = mypalette), -->
+<!--           pos = c(0,1)) -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- ceac.plot(he, -->
+<!--           graph = "ggplot2", -->
+<!--           title = "my title", -->
+<!--           line = list(colors = mypalette), -->
+<!--           pos = c(0,1)) -->
+<!-- ``` -->
+
+<!-- ```{r echo=FALSE} -->
+<!-- # create output docs -->
+<!-- # rmarkdown::render(input = "vignettes/ceac.Rmd", output_format = "pdf_document", output_dir = "vignettes") -->
+<!-- # rmarkdown::render(input = "vignettes/ceac.Rmd", output_format = "html_document", output_dir = "vignettes") -->
+<!-- ``` -->

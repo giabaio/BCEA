@@ -37,12 +37,34 @@ plotting. Should (partial-)match the three options \code{"base"},
 \description{
 Plots the Expected Value of Information (EVI) against the willingness to pay.
 }
-\references{
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
-doi:10.1177/0962280211419832.
+\examples{
+data(Vaccine)
+m <- bcea(
+      e=eff,
+      c=cost,               # defines the variables of 
+                            #  effectiveness and cost
+      ref=2,                # selects the 2nd row of (e, c) 
+                            #  as containing the reference intervention
+      interventions=treats, # defines the labels to be associated 
+                            #  with each intervention
+      Kmax=50000,           # maximum value possible for the willingness 
+                            #  to pay threshold; implies that k is chosen 
+                            #  in a grid from the interval (0, Kmax)
+      plot=FALSE            # plots the results
+)
+evi.plot(m)
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+data(Smoking)
+treats <- c("No intervention", "Self-help",
+            "Individual counselling", "Group counselling")
+m <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
+evi.plot(m)
+
+}
+\references{
+\insertRef{Baio2011}{BCEA}
+
+\insertRef{Baio2013}{BCEA}
 }
 \seealso{
 \code{\link{bcea}},
@@ -52,10 +74,4 @@ Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 \author{
 Gianluca Baio, Andrea Berardi
 }
-\keyword{Expected}
-\keyword{Health}
-\keyword{economic}
-\keyword{evaluation}
-\keyword{information}
-\keyword{of}
-\keyword{value}
+\keyword{hplot}

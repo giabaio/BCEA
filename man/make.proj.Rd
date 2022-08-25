@@ -11,12 +11,19 @@ make.proj(parameter, inputs, x, k, l)
 
 \item{inputs}{Inputs}
 
-\item{x}{x}
+\item{x}{Response variable}
 
 \item{k}{k}
 
 \item{l}{l}
 }
+\value{
+list
+}
 \description{
 INLA Fitting
 }
+\seealso{
+\code{\link{evppi}}
+}
+\keyword{internal}

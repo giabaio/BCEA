@@ -23,22 +23,17 @@
 #' @author Gianluca Baio, Andrea Berardi, Anna Heath, Nathan Green
 #' 
 #' @references
-#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics.  Statistical Methods in Medical Research
-#' doi:10.1177/0962280211419832.
+#' \insertRef{Baio2011}{BCEA}
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-#' London.
+#' \insertRef{Baio2013}{BCEA}
 #' 
-#' Baio G., Berardi A., Heath A. (2017). Bayesian Cost Effectiveness
-#' Analysis with the R package BCEA. Springer
-#' @keywords "Bayesian models" "Health economic evaluation"
+#' \insertRef{Baio2017}{BCEA}
+#'  
+#' @keywords package
 #' 
 #' @docType package
 #' @name BCEA-package
 #' 
-#' @import dplyr
-#' @import ggplot2
-#' @import purrr
-#' @import reshape2
+#' @import dplyr ggplot2 purrr reshape2
+#' @importFrom Rdpack reprompt
 NULL

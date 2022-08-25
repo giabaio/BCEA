@@ -11,10 +11,17 @@ fit.gp(parameter, inputs, x, n.sim)
 
 \item{inputs}{Inputs}
 
-\item{x}{x}
+\item{x}{Response variable}
 
 \item{n.sim}{Number of simulations}
+}
+\value{
+list
 }
 \description{
 Fit Gaussian Process
 }
+\seealso{
+\code{\link{evppi}}
+}
+\keyword{internal}

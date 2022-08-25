@@ -23,7 +23,7 @@ bcea Print Method
 }
 \examples{
 data("Vaccine")
-he <- BCEA::bcea(e, c)
+he <- BCEA::bcea(eff, cost)
 
 }
 \keyword{print}

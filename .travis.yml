@@ -48,7 +48,7 @@ language: r
  
 r_binary_packages:
   - rjags
-  - R2jags
+  # - R2jags   # CRAN doesnt like this
   
 # script:
 #   - echo "Overriding travis R script"

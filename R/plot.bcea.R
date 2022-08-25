@@ -14,12 +14,7 @@
 #' @template args-comparison
 #' @param wtp The value of the willingness to pay parameter. It is passed to
 #' \code{\link{ceplane.plot}}.
-#' @param pos Parameter to set the position of the legend. Can be given in form
-#' of a string, a single logical value, or a two-element vector with the
-#' respective relative positions on the x and y axis. Default as \code{FALSE}
-#' sets the legend position to the default one for each plot (see the details
-#' section), while \code{TRUE} puts it on the bottom of each plot.  Changes
-#' will affect all the individual plots.
+#' @template args-pos
 #' @param graph A string used to select the graphical engine to use for
 #' plotting. Should (partial-)match the two options \code{"base"} or
 #' \code{"ggplot2"}. Default value is \code{"base"}.
@@ -39,14 +34,15 @@
 #'          \code{\link{eib.plot}},
 #'          \code{\link{ceac.plot}},
 #'          \code{\link{evi.plot}}
+#' @importFrom Rdpack reprompt
+#'          
 #' @references
-#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics. Statistical Methods in Medical Research
-#' doi:10.1177/0962280211419832.
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+#' \insertRef{Baio2011}{BCEA}
 #' 
-#' @keywords "Health economic evaluation" hplot
+#' \insertRef{Baio2013}{BCEA}
+#' 
+#' @keywords hplot
 #' 
 #' @examples
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
@@ -57,7 +53,7 @@
 #' 
 #' # Runs the health economic evaluation using BCEA
 #' he <- bcea(
-#'        e=e, c=c,             # defines the variables of 
+#'        e=eff, c=cost,        # defines the variables of 
 #'                              #  effectiveness and cost
 #'        ref=2,                # selects the 2nd row of (e,c) 
 #'                              #  as containing the reference intervention
@@ -95,7 +91,9 @@ plot.bcea <- function(x,
                       graph = c("base", "ggplot2"),
                       ...) {
   
-  named_args <- c(as.list(environment()), list(...))
+  ##TODO: where should this be used?
+  # named_args <- c(as.list(environment()), list(...))
+  
   graph <- match.arg(graph)
   use_base_graphics <- pmatch(graph, c("base", "ggplot2")) != 2
   extra_args <- list(...)
@@ -155,7 +153,11 @@ plot.bcea <- function(x,
         names(default_params)[names(default_params) %in% names(extra_args)]
       
       extra_params <- extra_args[keep_param]
-      global_params <- modifyList(default_params, extra_params, keep.null = TRUE)
+
+      global_params <-
+        modifyList(default_params,
+                   extra_params,
+                   keep.null = TRUE)
       
       theme_add <- purrr::keep(extra_args, is.theme)
       

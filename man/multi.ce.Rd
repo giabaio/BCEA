@@ -2,23 +2,24 @@
 % Please edit documentation in R/multi.ce.R
 \name{multi.ce}
 \alias{multi.ce}
+\alias{multi.ce.bcea}
 \title{Cost-effectiveness Analysis With Multiple Comparison}
 \usage{
-multi.ce(he)
+\method{multi.ce}{bcea}(he)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 }
 \value{
-Original bcea object (list) of class "pairwise" with additional:
+Original \code{bcea} object (list) of class "pairwise" with additional:
    \item{p_best_interv}{A matrix including the probability that each
    intervention is the most cost-effective for all values of the willingness to
    pay parameter}
    \item{ceaf}{A vector containing the cost-effectiveness acceptability frontier}
 }
 \description{
-Computes and plots the probability that each of the `n_int` interventions
+Computes and plots the probability that each of the \code{n_int} interventions
 being analysed is the most cost-effective and the cost-effectiveness
 acceptability frontier.
 }
@@ -31,7 +32,7 @@ data(Vaccine)
  
 # Runs the health economic evaluation using BCEA
 
-m <- bcea(e=e,c=c,          # defines the variables of 
+m <- bcea(e=eff, c=cost,    # defines the variables of 
                             #  effectiveness and cost
       ref=2,                # selects the 2nd row of (e,c) 
                             #  as containing the reference intervention
@@ -43,7 +44,10 @@ m <- bcea(e=e,c=c,          # defines the variables of
       plot=FALSE            # inhibits graphical output
 )
 
-mce <- multi.ce(m)          # uses the results of the economic analysis 
+mce <- multi.ce(m)          # uses the results of the economic analysis
+
+ceac.plot(mce)
+ceaf.plot(mce)
 
 }
 \seealso{
@@ -53,8 +57,5 @@ mce <- multi.ce(m)          # uses the results of the economic analysis
 \author{
 Gianluca Baio
 }
-\keyword{"Health}
-\keyword{"Multiple}
-\keyword{comparison"}
-\keyword{economic}
-\keyword{evaluation"}
+\keyword{dplot}
+\keyword{hplot}

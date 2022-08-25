@@ -26,15 +26,15 @@ interventions being analysed. Default as NULL plots all the comparisons
 together. Any subset of the possible comparisons can be selected (e.g.,
 \code{comparison=c(1,3)} or \code{comparison=2}).}
 
-\item{pos}{Parameter to set the position of the legend; for a single
-comparison plot, the ICER legend position. Can be given in form of a string
-\code{(bottom|top)(right|left)} for base graphics and
+\item{pos}{Parameter to set the position of the legend (only relevant for
+multiple interventions, ie more than 2 interventions being compared).
+Can be given in form
+of a string \code{(bottom|top)(right|left)} for base graphics and
 \code{bottom|top|left|right} for ggplot2. It can be a two-elements vector,
 which specifies the relative position on the x and y axis respectively, or
 alternatively it can be in form of a logical variable, with \code{FALSE}
 indicating to use the default position and \code{TRUE} to place it on the
-bottom of the plot. Default value is \code{c(1,0)}, that is the bottomright
-corner inside the plot area.}
+bottom of the plot.}
 
 \item{size}{Value (in millimetres) of the size of the willingness to pay
 label. Used only if \code{graph="ggplot2"}, otherwise it will be ignored
@@ -50,7 +50,8 @@ level of the intervals can be also set, see \ldots{} for more details.}
 
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the three options \code{"base"},
-\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.}
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
+Not all plotting functions have a \code{"plotly"} implementation yet.}
 
 \item{...}{If \code{graph="ggplot2"} and a named theme object is supplied,
  it will be added to the ggplot object. Additional arguments:
@@ -62,8 +63,8 @@ plotting. Should (partial-)match the three options \code{"base"},
  interval between the \code{alpha/2}-th and \code{1-alpha/2}-th quantiles of
  the IB distribution. Setting \code{cri.quantile=FALSE} will use a normal
  approximation on the IB distribution to calculate the intervals.
- \item \code{line_colors}: specifies the line colour(s) - all graph types.
- \item \code{line_types}: specifies the line type(s) as lty numeric values - all graph types.
+ \item \code{line = list(color)}: specifies the line colour(s) - all graph types.
+ \item \code{line = list(type)}: specifies the line type(s) as lty numeric values - all graph types.
  \item \code{area_include}: include area under the EIB curve - plotly only.
  \item \code{area_color}: specifies the AUC curve - plotly only.}}
 }
@@ -86,8 +87,8 @@ data(Vaccine)
  
 # Runs the health economic evaluation using BCEA
 m <- bcea(
-      e=e,
-      c=c,                  # defines the variables of 
+      e=eff,
+      c=cost,               # defines the variables of 
                             #  effectiveness and cost
       ref=2,                # selects the 2nd row of (e, c) 
                             #  as containing the reference intervention
@@ -96,18 +97,22 @@ m <- bcea(
       Kmax=50000,           # maximum value possible for the willingness 
                             #  to pay threshold; implies that k is chosen 
                             #  in a grid from the interval (0, Kmax)
-      plot=TRUE             # plots the results
+      plot=FALSE             # plots the results
 )
 eib.plot(m)
 eib.plot(m, graph = "ggplot2") + ggplot2::theme_linedraw()
 
+data(Smoking)
+treats <- c("No intervention", "Self-help",
+            "Individual counselling", "Group counselling")
+m <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
+eib.plot(m)
+
 }
 \references{
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics. Statistical Methods in Medical Research
-doi:10.1177/0962280211419832.
+\insertRef{Baio2011}{BCEA}
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2013}{BCEA}
 }
 \seealso{
 \code{\link{bcea}},
@@ -117,9 +122,4 @@ Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 \author{
 Gianluca Baio, Andrea Berardi
 }
-\keyword{"Expected}
-\keyword{"Health}
-\keyword{Benefit"}
-\keyword{Incremental}
-\keyword{economic}
-\keyword{evaluation"}
+\keyword{hplot}

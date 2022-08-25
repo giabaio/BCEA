@@ -7,9 +7,9 @@
 #' parameter EVPPI and the SPDE-INLA method for larger parameter subsets.
 #' 
 #' The single parameter EVPPI has been calculated using the non-parametric GAM
-#' regression developed by Strong et al. (2014). The multi-parameter EVPPI is
+#' regression developed by Strong \emph{et al.} (2014). The multi-parameter EVPPI is
 #' calculated using the SPDE-INLA regression method for Gaussian Process
-#' regression developed by Heath et al. (2015).
+#' regression developed by Heath \emph{et al.} (2015).
 #' 
 #' This function has been completely changed and restructured to make it possible
 #' to change regression method.
@@ -46,7 +46,7 @@
 #' - For multi-parameter:
 #' INLA/SPDE. However, it is possible (mainly for backward compatibility) to
 #' use different methods. For single-parameter, the user can specify the method
-#' of Sadatsafavi et al or the method of Strong & Oakley. In order to do so, it
+#' of Sadatsafavi \emph{et al.} or the method of Strong & Oakley. In order to do so, it
 #' is necessary to include the extra parameter \code{method} which takes as
 #' value a string \code{"sad"} in the former case and a string \code{"so"} in
 #' the latter. In case "sal" is selected, then it is possible to also specify
@@ -67,14 +67,14 @@
 #' notation \code{formula = "s(p1) + s(p2)"}. This may lead to worse accuracy in
 #' the estimates.
 #' 
-#' @section Strong et al. GP regression:
+#' @section Strong \emph{et al.} GP regression:
 #' This is used if \code{method="GP"} (BCEA will also accept the specification
 #' \code{method="gp"}). In this case, the user can also specify the number of
 #' PSA runs that should be used to estimate the hyperparameters of the model
 #' (e.g. \code{n.sim=100}). This value is set by default to 500.
 #' 
 #' @section INLA-related options:
-#' These are all rather technical and are described in detail in Baio et al. (2017).
+#' These are all rather technical and are described in detail in Baio \emph{et al.} (2017).
 #' The optional parameter vector \code{int.ord} can take integer values (c(1,1) is
 #' default) and will force the predictor to include interactions: if
 #' \code{int.ord = c(k, h)}, then all k-way interactions will be used for the
@@ -125,29 +125,20 @@
 #' 
 #' @author Anna Heath, Gianluca Baio
 #' @seealso \code{\link{bcea}},
-#'          \code{\link{plot.evppi}},
+#'          \code{\link{plot.evppi}}
+#' @importFrom Rdpack reprompt
 #' 
 #' @references
-#' Strong M., Oakley J. and Brennan A. (2014). Estimating
-#' multi-parameter partial Expected Value of Perfect Information from a
-#' probabilistic sensitivity analysis sample: a non-parametric regression
-#' approach. Medical Decision Making.
 #' 
-#' Sadatsafavi M., Bansback N., Zafari Z., Najafzadeh M., Marra C. (2013). Need
-#' for speed: an efficient algorithm for calculation of single-parameter
-#' expected value of partial perfect information. Value in Health.
+#' \insertRef{Strong2014}{BCEA}
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+#' \insertRef{Sadatsafavi2013}{BCEA}
 #' 
-#' Baio, G, A Berardi, and A Heath. 2017. Bayesian Cost-Effectiveness Analysis
-#' with the R package BCEA. New York, NY: Springer. doi:10.1007/978-3-319-55718-2.
+#' \insertRef{Baio2013}{BCEA}
 #' 
-#' Heath A., Manolopoulou I., Baio G. (2016). Estimating the Expected Value of
-#' Partial Perfect Information in Health Economic Evaluations using Integrated
-#' Nested Laplace Approximation. Statistics in Medicine.
-#' http://onlinelibrary.wiley.com/doi/10.1002/sim.6983/full
+#' \insertRef{Baio2017}{BCEA}
 #' 
-#' @concept "Health economic evaluation" "Expected value of partial information"
+#' \insertRef{Heath2016}{BCEA}
 #' 
 #' @export
 #' 
@@ -155,53 +146,58 @@
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 #' # Bayesian model and economic problem
 #'
-#' # Load the processed results of the MCMC simulation model
-#' data(Vaccine)
+#' \dontrun{
+#' # Load the post-processed results of the MCMC simulation model
+#' # original JAGS output is can be downloaded from here
+#' # https://gianluca.statistica.it/book/bcea/code/vaccine.RData
+#' 
+#' data(Vaccine, package = "BCEA")
 #' treats <- c("Status quo", "Vaccination")
 #' 
 #' # Run the health economic evaluation using BCEA
 #' m <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
 #'
 #' # Compute the EVPPI for a bunch of parameters
-#' inp <- createInputs(vaccine)
+#' inp <- createInputs(vaccine_mat)
 #' 
 #' EVPPI <- evppi(m, c("beta.1." , "beta.2."), inp$mat)
+#' 
 #' plot(EVPPI)
 #' 
 #' # deprecated (single parameter) methods
 #' EVPPI.so <- evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "so", n.blocks = 50)
 #' EVPPI.sad <- evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps = 1)
 #' 
-#' ##TODO:
-#' #plot(EVPPI.so)
-#' #plot(EVPPI.sad)
-#' 
+#' plot(EVPPI.so)
+#' plot(EVPPI.sad)
+#'  
 #' # Compute the EVPPI using INLA/SPDE
-#' x0 <- evppi(he = m, 39:40, input = inp$mat)
+#' x_inla <- evppi(he = m, 39:40, input = inp$mat)
 #' 
 #' # using GAM regression
-#' x1 <- evppi(he = m, 39:40, input = inp$mat, method = "GAM")
+#' x_gam <- evppi(he = m, 39:40, input = inp$mat, method = "GAM")
 #' 
-#' # using GP regression
-#' x2 <- evppi(he = m, 39:40, input = inp$mat, method = "GP")
+#' # using Strong et al GP regression
+#' x_gp <- evppi(he = m, 39:40, input = inp$mat, method = "GP")
 #' 
 #' # plot results
-#' plot(x0)
-#' points(x0$k, x0$evppi, type = "l", lwd = 2, lty = 2)
-#' points(x1$k, x1$evppi, type = "l", col = "red")
-#' points(x2$k, x2$evppi, type = "l", col = "blue")
+#' plot(x_inla)
+#' points(x_inla$k, x_inla$evppi, type = "l", lwd = 2, lty = 2)
+#' points(x_gam$k, x_gam$evppi, type = "l", col = "red")
+#' points(x_gp$k, x_gp$evppi, type = "l", col = "blue")
 #' 
-#' plot(x0$k, x0$evppi, type = "l", lwd = 2, lty = 2)
-#' points(x1$k, x1$evppi, type = "l", col = "red")
-#' points(x2$k, x2$evppi, type = "l", col = "blue")
+#' plot(x_inla$k, x_inla$evppi, type = "l", lwd = 2, lty = 2)
+#' points(x_gam$k, x_gam$evppi, type = "l", col = "red")
+#' points(x_gp$k, x_gp$evppi, type = "l", col = "blue")
 #' 
 #' data(Smoking)
 #' treats <- c("No intervention", "Self-help",
 #' "Individual counselling", "Group counselling")
-#' m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+#' m <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 #' inp <- createInputs(smoking_output)
 #' EVPPI <- evppi(m, c(2,3), inp$mat, h.value = 0.0000005)
 #' plot(EVPPI)
+#' }
 #' 
 evppi <- function(he,
                   param_idx,

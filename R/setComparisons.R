@@ -2,7 +2,8 @@
 #' @name setComparisons
 #' @title Set Comparisons Group
 #' 
-#' One of the alternative way to set (e,c) comparison group.
+#' @description One of the alternative way to set (e,c) comparison group.
+#' Simply recompute all comparisons and drop unwanted.
 #' 
 #' @template args-he
 #' @template args-comparison 
@@ -17,13 +18,18 @@ setComparisons <- function(he, comparison) {
     stop("Can't select Reference group. Change Reference first.",
          call. = FALSE)
   
+  n_interv <- ncol(he$e)
+  if (any(!comparison %in% 1:n_interv))
+    stop("Comparison index not in available comparisons.",
+         call. = FALSE)
+  
   res <- 
     bcea(eff = he$e,
          cost = he$c,
          ref = he$ref,
          interventions = he$interventions,
          Kmax = he$Kmax,
-         wtp = he$wtp)
+         k = he$k)
   
   name_comp <- he$interventions[comparison]
   
@@ -37,6 +43,7 @@ setComparisons <- function(he, comparison) {
   res$ICER <- res$ICER[name_comp]
   res$ib <- res$ib[, , name_comp, drop = FALSE]
   res$eib <- res$eib[, name_comp, drop = FALSE]
+  res$ceac <- res$ceac[, name_comp, drop = FALSE]
   
   ##TODO: currently compute _all_ interventions in compute_U()
   # res$U <- res$U[, , name_comp, drop = FALSE]
@@ -48,7 +55,7 @@ setComparisons <- function(he, comparison) {
 #' @name setComparisons_assign
 #' @title Set Comparison Group
 #'
-#' One of the alternative way to set (e,c) comparison group.
+#' @description One of the alternative way to set (e,c) comparison group.
 #' 
 #' @template args-he
 #' @param value Comparison 

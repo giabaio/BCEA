@@ -7,11 +7,10 @@
 \usage{
 \method{contour2}{bcea}(
   he,
-  wtp = 25000,
-  xlim = NULL,
-  ylim = NULL,
   comparison = NULL,
-  graph_type = c("base", "ggplot2"),
+  wtp = 25000,
+  graph = c("base", "ggplot2"),
+  pos = c(0, 1),
   ...
 )
 
@@ -21,24 +20,28 @@ contour2(he, ...)
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
-\item{wtp}{The selected value of the willingness-to-pay. Default is
-\code{25000}.}
-
-\item{xlim}{Limits on the x-axis (default=\code{NULL}, so that R will select
-appropriate limits).}
-
-\item{ylim}{Limits on the y-axis (default=\code{NULL}, so that R will select
-appropriate limits).}
-
 \item{comparison}{The comparison being plotted. Default to \code{NULL}
-chooses the first comparison if \code{graph_type="base"}. If
-\code{graph_type="ggplot2"} the default value will choose all the possible
+If \code{graph_type="ggplot2"} the default value will choose all the possible
 comparisons. Any subset of the possible comparisons can be selected (e.g.,
 \code{comparison=c(1,3)}).}
 
-\item{graph_type}{A string used to select the graphical engine to use for
-plotting. Should (partial-)match the two options \code{"base"} or
-\code{"ggplot2"}. Default value is \code{"base"}.}
+\item{wtp}{The selected value of the willingness-to-pay. Default is
+\code{25000}.}
+
+\item{graph}{A string used to select the graphical engine to use for
+plotting. Should (partial-)match the three options \code{"base"},
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
+Not all plotting functions have a \code{"plotly"} implementation yet.}
+
+\item{pos}{Parameter to set the position of the legend (only relevant for
+multiple interventions, ie more than 2 interventions being compared).
+Can be given in form
+of a string \code{(bottom|top)(right|left)} for base graphics and
+\code{bottom|top|left|right} for ggplot2. It can be a two-elements vector,
+which specifies the relative position on the x and y axis respectively, or
+alternatively it can be in form of a logical variable, with \code{FALSE}
+indicating to use the default position and \code{TRUE} to place it on the
+bottom of the plot.}
 
 \item{...}{Arguments to be passed to \code{\link{ceplane.plot}}. See the
 relative manual page for more details.}
@@ -60,7 +63,7 @@ selected value of the willingness-to-pay threshold).
 \examples{
 ## create the bcea object m for the smoking cessation example
 data(Smoking)
-m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+m <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 
 ## produce the plot
 contour2(m,
@@ -75,24 +78,25 @@ contour2(m,
          graph_type = "ggplot2")
 }
 
+## vaccination example
+data(Vaccine)
+treats = c("Status quo", "Vaccination")
+m <- bcea(eff, cost, ref = 2, interventions = treats, Kmax = 50000)
+contour2(m)
+contour2(m, wtp = 100)
+
 }
 \references{
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics. Statistical Methods in Medical Research
-doi:10.1177/0962280211419832.
+\insertRef{Baio2011}{BCEA}
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2013}{BCEA}
 }
 \seealso{
 \code{\link{bcea}},
          \code{\link{ceplane.plot}},
-         \code{\link{contour.bcea}}
+         \code{\link{contour}}
 }
 \author{
 Gianluca Baio, Andrea Berardi
 }
-\keyword{"Bayesian}
-\keyword{"Health}
-\keyword{economic}
-\keyword{evaluation"}
-\keyword{model"}
+\keyword{hplot}

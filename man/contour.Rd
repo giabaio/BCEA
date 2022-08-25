@@ -7,14 +7,9 @@
 \usage{
 \method{contour}{bcea}(
   he,
-  comparison = 1,
-  scale = 0.5,
-  nlevels = 4,
-  levels = NULL,
-  pos = c(1, 0),
-  xlim = NULL,
-  ylim = NULL,
+  pos = c(0, 1),
   graph = c("base", "ggplot2"),
+  comparison = NULL,
   ...
 )
 
@@ -24,42 +19,36 @@ contour(he, ...)
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
-\item{comparison}{In case of more than 2 interventions being analysed,
-selects which plot should be made. By default the first comparison among
-the possible ones will be plotted. If \code{graph="ggplot2"} any subset of
-the possible comparisons can be selected, and \code{comparison=NULL} will
-yield a plot of all the possible comparisons together.}
-
-\item{scale}{Scales the plot as a function of the observed standard
-deviation.}
-
-\item{nlevels}{Number of levels to be plotted in the contour.}
-
-\item{levels}{Numeric vector of levels at which to draw contour lines. Will
-be ignored using \code{graph="ggplot2"}.}
-
-\item{pos}{Parameter to set the position of the legend. Can be given in form
+\item{pos}{Parameter to set the position of the legend (only relevant for
+multiple interventions, ie more than 2 interventions being compared).
+Can be given in form
 of a string \code{(bottom|top)(right|left)} for base graphics and
-\code{bottom}, \code{top}, \code{left} or \code{right} for ggplot2. It can
-be a two-elements vector, which specifies the relative position on the x and
-y axis respectively, or alternatively it can be in form of a logical
-variable, with \code{FALSE} indicating to use the default position and
-\code{TRUE} to place the legend on the bottom of the plot. Default value is
-\code{c(1,0)}, that is the bottomright corner inside the plot area.}
-
-\item{xlim}{The range of the plot along the x-axis. If NULL (default) it is
-determined by the range of the simulated values for \code{delta_e}}
-
-\item{ylim}{The range of the plot along the y-axis. If NULL (default) it is
-determined by the range of the simulated values for \code{delta_c}}
+\code{bottom|top|left|right} for ggplot2. It can be a two-elements vector,
+which specifies the relative position on the x and y axis respectively, or
+alternatively it can be in form of a logical variable, with \code{FALSE}
+indicating to use the default position and \code{TRUE} to place it on the
+bottom of the plot.}
 
 \item{graph}{A string used to select the graphical engine to use for
-plotting. Should (partial-) match the two options \code{"base"} or
-\code{"ggplot2"}. Default value is \code{"base"}.}
+plotting. Should (partial-)match the three options \code{"base"},
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
+Not all plotting functions have a \code{"plotly"} implementation yet.}
 
-\item{...}{Additional arguments to 'plot.window', 'title', 'Axis' and
-'box', typically graphical parameters such as 'cex.axis'. Will be ignored if
-\code{graph="ggplot2"}.}
+\item{comparison}{Selects the comparator, in case of more than two
+interventions being analysed. Default as NULL plots all the comparisons
+together. Any subset of the possible comparisons can be selected (e.g.,
+\code{comparison=c(1,3)} or \code{comparison=2}).}
+
+\item{...}{Additional graphical arguments. The usual ggplot2 syntax is used regardless of graph type.
+ \itemize{
+  \item \code{xlim}: The range of the plot along the x-axis. If NULL (default) it is
+            determined by the range of the simulated values for \code{delta_e}
+  \item \code{ylim}: The range of the plot along the y-axis. If NULL (default) it is
+            determined by the range of the simulated values for \code{delta_c}
+  \item \code{scale}: Scales the plot as a function of the observed standard deviation.
+  \item \code{levels}: Numeric vector of levels at which to draw contour lines. Quantiles 0<p<1.
+  \item \code{nlevels}: Number of levels to be plotted in the contour.
+}}
 }
 \value{
 \item{ceplane}{ A ggplot object containing the plot. Returned only
@@ -79,9 +68,9 @@ effectiveness (x-axis).
 \examples{
 data(Vaccine)
 
-# Runs the health economic evaluation using BCEA
-m <- bcea(e=e,
-          c=c,              # defines the variables of 
+# run the health economic evaluation using BCEA
+m <- bcea(e=eff,
+          c=cost,           # defines the variables of 
                             #  effectiveness and cost
       ref=2,                # selects the 2nd row of (e,c) 
                             #  as containing the reference intervention
@@ -96,28 +85,30 @@ m <- bcea(e=e,
 contour(m)
 contour(m, graph = "ggplot2")
 
-# Plots the contour and scatterplot of the bivariate 
-# distribution of (Delta_e, Delta_c)
 contour(m,          # uses the results of the economic evaluation 
                     #  (a "bcea" object)
       comparison=1, # if more than 2 interventions, selects the 
                     #  pairwise comparison 
-      nlevels=4,    # selects the number of levels to be 
+      nlevels=10,   # selects the number of levels to be 
                     #  plotted (default=4)
       levels=NULL,  # specifies the actual levels to be plotted 
                     #  (default=NULL, so that R will decide)
-      scale=0.5,    # scales the bandwidths for both x- and 
+      scale=1,      # scales the bandwidths for both x- and 
                     #  y-axis (default=0.5)
       graph="base"  # uses base graphics to produce the plot
 )
 
+# use the smoking cessation dataset
+data(Smoking)
+m <- bcea(eff, cost, ref = 4, intervention = treats, Kmax = 500, plot = FALSE)
+contour(m)
+contour(m, graph = "ggplot2")
+
 }
 \references{
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics. Statistical Methods in Medical Research
-doi:10.1177/0962280211419832.
+\insertRef{Baio2011}{BCEA}
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2013}{BCEA}
 }
 \seealso{
 \code{\link{bcea}},
@@ -127,8 +118,4 @@ Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 \author{
 Gianluca Baio, Andrea Berardi
 }
-\keyword{"Bayesian}
-\keyword{"Health}
-\keyword{economic}
-\keyword{evaluation"}
-\keyword{model"}
+\keyword{hplot}

@@ -3,6 +3,9 @@
 \name{bcea}
 \alias{bcea}
 \alias{bcea.default}
+\alias{bcea.rjags}
+\alias{bcea.rstan}
+\alias{bcea.bugs}
 \title{Create Bayesian Cost-Effectiveness Analysis Object}
 \usage{
 bcea(
@@ -12,20 +15,28 @@ bcea(
   interventions = NULL,
   .comparison = NULL,
   Kmax = 50000,
-  wtp = NULL,
-  plot = FALSE
+  k = NULL,
+  plot = FALSE,
+  ...
 )
 
 \method{bcea}{default}(
   eff,
   cost,
-  ref = 1,
+  ref = NULL,
   interventions = NULL,
   .comparison = NULL,
   Kmax = 50000,
-  wtp = NULL,
-  plot = FALSE
+  k = NULL,
+  plot = FALSE,
+  ...
 )
+
+\method{bcea}{rjags}(eff, ...)
+
+\method{bcea}{rstan}(eff, ...)
+
+\method{bcea}{bugs}(eff, ...)
 }
 \arguments{
 \item{eff}{An object containing \code{nsim} simulations for the variable of
@@ -56,26 +67,29 @@ together. Any subset of the possible comparisons can be selected (e.g.,
 \item{Kmax}{Maximum value of the willingness to pay to be considered.
 Default value is \code{k = 50000}. The willingness to pay is then approximated
 on a discrete grid in the interval \code{[0, Kmax]}. The grid is equal to
-\code{wtp} if the parameter is given, or composed of \code{501} elements if
-\code{wtp = NULL} (the default).}
+\code{k} if the parameter is given, or composed of \code{501} elements if
+\code{k = NULL} (the default).}
 
-\item{wtp}{A(n optional) vector including the values of the willingness
-to pay grid. If not specified then BCEA will construct a grid of 501 values
+\item{k}{A(n optional) vector for the values of the willingness
+to pay grid. Should be of length > 1 otherwise plots will be empty.
+If not specified then BCEA will construct a grid of 501 values
 from 0 to \code{Kmax}. This option is useful when performing intensive
-computations (e.g. for the EVPPI).}
+computations (e.g. for the EVPPI). This was changed from \code{wtp} in previous versions
+for consistency with other functions and so will be deprecated in the future.}
 
 \item{plot}{A logical value indicating whether the function should produce
 the summary plot or not.}
+
+\item{...}{Additional arguments}
 }
 \value{
 An object of the class "bcea" containing the following elements
 \item{n_sim}{Number of simulations produced by the Bayesian model}
-\item{n.comparators}{Number of interventions being analysed}
-\item{n.comparisons}{Number of possible pairwise comparisons}
+\item{n_comparators}{Number of interventions being analysed}
+\item{n_comparisons}{Number of possible pairwise comparisons}
 \item{delta.e}{For each possible comparison, the differential in the
 effectiveness measure}
-\item{delta.c}{For each possible comparison, the differential in the cost
-measure}
+\item{delta.c}{For each possible comparison, the differential in the cost measure}
 \item{ICER}{The value of the Incremental Cost-Effectiveness Ratio}
 \item{Kmax}{The maximum value assumed for the willingness to pay threshold}
 \item{k}{The vector of values for the grid approximation of the willingness
@@ -109,8 +123,7 @@ a function of the willingness to pay}
 reference in the analysis}
 \item{comp}{The numeric index(es) associated with the intervention(s) used
 as comparator(s) in the analysis}
-\item{step}{The step size used to form the grid approximation to the willingness
-to pay}
+\item{step}{The step size used to form the grid approximation to the willingness to pay}
 \item{e}{The \code{eff} matrix used to generate the object (see Arguments)}
 \item{c}{The \code{cost} matrix used to generate the object (see Arguments)}
 }
@@ -121,7 +134,7 @@ post-processed to give the health economic analysis. The output is stored in
 an object of the class "bcea".
 }
 \examples{
-# See Baio G., Dawid A.P. (2011) for a detailed description of the 
+# See Baio (2013), Baio (2011) for a detailed description of the 
 # Bayesian model and economic problem
 
 # Load the processed results of the MCMC simulation model
@@ -129,8 +142,8 @@ data(Vaccine)
 
 # Runs the health economic evaluation using BCEA
 m <- bcea(
-      e=e,
-      c=c,                  # defines the variables of 
+      e=eff,
+      c=cost,               # defines the variables of 
                             #  effectiveness and cost
       ref=2,                # selects the 2nd row of (e, c) 
                             #  as containing the reference intervention
@@ -206,8 +219,6 @@ contour2(
       m,          # uses the results of the economic evaluation 
                   #  (a "bcea" object)
       wtp=25000,  # selects the willingness-to-pay threshold
-      xlim=NULL,    # assumes default values
-      ylim=NULL     # assumes default values
 )
 
 # Using ggplot2
@@ -217,8 +228,6 @@ contour2(
                       #  (a "bcea" object)
       graph="ggplot2",# selects the graphical engine
       wtp=25000,      # selects the willingness-to-pay threshold
-      xlim=NULL,      # assumes default values
-      ylim=NULL,      # assumes default values
       label.pos=FALSE # alternative position for the wtp label
 )
 }
@@ -247,14 +256,11 @@ evi.plot(m)
 
 }
 \references{
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in
-Health Economics.  Statistical Methods in Medical Research.
-doi:10.1177/0962280211419832.
+\insertRef{Baio2013}{BCEA}
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2011}{BCEA}
 }
 \author{
 Gianluca Baio, Andrea Berardi, Nathan Green
 }
-\concept{Health economic evaluation}
 \keyword{manip}

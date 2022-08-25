@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Contour Plots for the Cost-Effectiveness Plane — contour.bcea • BCEA</title>
+<title>Contour CE plane — contour.bcea • BCEA</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -45,12 +45,11 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
-<meta property="og:title" content="Contour Plots for the Cost-Effectiveness Plane — contour.bcea" />
-<meta property="og:description" content="Contour method for objects in the class bcea.
-Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
-of the bivariate density of the differentials of cost (y-axis) and
-effectiveness (x-axis)." />
+<meta property="og:title" content="Contour CE plane — contour.bcea" />
+<meta property="og:description" content="Contour CE plane" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -83,7 +82,7 @@ effectiveness (x-axis)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BCEA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.1</span>
       </span>
     </div>
 
@@ -91,7 +90,7 @@ effectiveness (x-axis)." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -106,10 +105,14 @@ effectiveness (x-axis)." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
+      <a href="../articles/bcea.html">Get started</a>
     </li>
     <li>
-      <a href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+      <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../articles/index.html">More...</a>
     </li>
   </ul>
 </li>
@@ -120,7 +123,7 @@ effectiveness (x-axis)." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/giabaio/BCEA/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -137,31 +140,27 @@ effectiveness (x-axis)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Contour Plots for the Cost-Effectiveness Plane</h1>
-    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/contour.bcea.R'><code>R/contour.bcea.R</code></a></small>
+    <h1>Contour CE plane</h1>
+    <small class="dont-index">Source: <a href='https://github.com/giabaio/BCEA/blob/master/R/contour.R'><code>R/contour.R</code></a></small>
     <div class="hidden name"><code>contour.bcea.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Contour method for objects in the class <code>bcea</code>.
-Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
-of the bivariate density of the differentials of cost (y-axis) and
-effectiveness (x-axis).</p>
+    <p>Contour CE plane</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for bcea</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/contour.html'>contour</a></span>(
-  <span class='no'>he</span>,
-  <span class='kw'>comparison</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>nlevels</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>levels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>pos</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>0</span>),
-  <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='fu'><a href='Vaccine.html'>c</a></span>(<span class='st'>"base"</span>, <span class='st'>"ggplot2"</span>),
-  <span class='no'>...</span>
-)</pre>
+<span class='fu'><a href='contour.html'>contour</a></span><span class='op'>(</span>
+  <span class='va'>he</span>,
+  scale <span class='op'>=</span> <span class='fl'>0.5</span>,
+  nlevels <span class='op'>=</span> <span class='fl'>4</span>,
+  levels <span class='op'>=</span> <span class='cn'>NULL</span>,
+  pos <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>0</span><span class='op'>)</span>,
+  xlim <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ylim <span class='op'>=</span> <span class='cn'>NULL</span>,
+  graph <span class='op'>=</span> <span class='fu'><a href='Smoking.html'>c</a></span><span class='op'>(</span><span class='st'>"base"</span>, <span class='st'>"ggplot2"</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -172,17 +171,8 @@ effectiveness (x-axis).</p>
 modelling and the economic evaluation.</p></td>
     </tr>
     <tr>
-      <th>comparison</th>
-      <td><p>In case of more than 2 interventions being analysed,
-selects which plot should be made. By default the first comparison among
-the possible ones will be plotted. If <code>graph="ggplot2"</code> any subset of
-the possible comparisons can be selected, and <code>comparison=NULL</code> will
-yield a plot of all the possible comparisons together.</p></td>
-    </tr>
-    <tr>
       <th>scale</th>
-      <td><p>Scales the plot as a function of the observed standard
-deviation.</p></td>
+      <td><p>Scales the plot as a function of the observed standard deviation.</p></td>
     </tr>
     <tr>
       <th>nlevels</th>
@@ -190,19 +180,20 @@ deviation.</p></td>
     </tr>
     <tr>
       <th>levels</th>
-      <td><p>Numeric vector of levels at which to draw contour lines. Will
-be ignored using <code>graph="ggplot2"</code>.</p></td>
+      <td><p>Numeric vector of levels at which to draw contour lines.
+Will be ignored using <code>graph="ggplot2"</code>.</p></td>
     </tr>
     <tr>
       <th>pos</th>
-      <td><p>Parameter to set the position of the legend. Can be given in form
+      <td><p>Parameter to set the position of the legend (only relevant for
+multiple interventions, ie more than 2 interventions being compared).
+Can be given in form
 of a string <code>(bottom|top)(right|left)</code> for base graphics and
-<code>bottom</code>, <code>top</code>, <code>left</code> or <code>right</code> for ggplot2. It can
-be a two-elements vector, which specifies the relative position on the x and
-y axis respectively, or alternatively it can be in form of a logical
-variable, with <code>FALSE</code> indicating to use the default position and
-<code>TRUE</code> to place the legend on the bottom of the plot. Default value is
-<code><a href='Vaccine.html'>c(1,0)</a></code>, that is the bottomright corner inside the plot area.</p></td>
+<code>bottom|top|left|right</code> for ggplot2. It can be a two-elements vector,
+which specifies the relative position on the x and y axis respectively, or
+alternatively it can be in form of a logical variable, with <code>FALSE</code>
+indicating to use the default position and <code>TRUE</code> to place it on the
+bottom of the plot.</p></td>
     </tr>
     <tr>
       <th>xlim</th>
@@ -217,39 +208,17 @@ determined by the range of the simulated values for <code>delta_c</code></p></td
     <tr>
       <th>graph</th>
       <td><p>A string used to select the graphical engine to use for
-plotting. Should (partial-)match the two options <code>"base"</code> or
+plotting. Should (partial-) match the two options <code>"base"</code> or
 <code>"ggplot2"</code>. Default value is <code>"base"</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
       <td><p>Additional arguments to 'plot.window', 'title', 'Axis' and
-'box', typically graphical parameters such as 'cex.axis'. Will be ignored if
-<code>graph="ggplot2"</code>.</p></td>
+'box', typically graphical parameters such as 'cex.axis'.
+Will be ignored if <code>graph="ggplot2"</code>.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    
-
-<dt>ceplane</dt><dd><p>A ggplot object containing the plot. Returned only
-if <code>graph="ggplot2"</code>.</p></dd> Plots the cost-effectiveness plane with a
-scatterplot of all the simulated values from the (posterior) bivariate
-distribution of (Delta_e, Delta_c), the differentials of effectiveness and
-costs; superimposes a contour of the distribution and prints the estimated
-value of the probability of each quadrant (combination of positive/negative
-values for both Delta_e and Delta_c)
-
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics. Statistical Methods in Medical Research
-doi:10.1177/0962280211419832.</p>
-<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='bcea.html'>bcea</a></code>, <code>ceplane.plot</code>,
-<code><a href='contour2.html'>contour2</a></code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -266,7 +235,7 @@ doi:10.1177/0962280211419832.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

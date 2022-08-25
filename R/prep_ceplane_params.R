@@ -11,6 +11,7 @@
 #'
 #' @return List pf graph parameters
 #' @export
+#' @keywords internal
 #'
 prep_ceplane_params <- function(he, wtp, ...) {
   
@@ -35,21 +36,23 @@ prep_ceplane_params <- function(he, wtp, ...) {
   axes_lim <- xy_params(he, wtp, graph_params)
   
   default_params <-
-    list(xlab = "Effectiveness differential",
-         ylab = "Cost differential",
+    list(xlab = "Incremental effectiveness",
+         ylab = "Incremental cost",
          title = plot_title,
          xlim = axes_lim$x,
          ylim = axes_lim$y,
          point = list(
-           colors = grey.colors(n = he$n_comparisons,
-                                end = 0.7,
-                                alpha = 1),
-           sizes = 0.35),
+           color = grey.colors(n = he$n_comparisons,
+                               end = 0.7,
+                               alpha = 1),
+           size = 0.35,
+           shape = rep(20, he$n_comparisons)),
          area_include = TRUE,
          ICER_size = 2,
          area = list(
            # line_color = "black",
-           col = "grey95"))
+           col = "grey95"),
+         ref_first = TRUE)
   
   modifyList(default_params, graph_params)
 }

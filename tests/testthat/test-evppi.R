@@ -70,3 +70,5 @@ test_that("basic", {
 # 
 # points(m$k, f, t = "l", col = "red")			# 2. the numerical-approximated EVPPI
 # points(m$k, m$evi, t = "l")				# 3. the full EVPI (for reference)
+
+

@@ -2,10 +2,14 @@
 % Please edit documentation in R/CreateInputs.R
 \name{loo_rank}
 \alias{loo_rank}
-\title{leave-one-out ranking}
+\title{Leave-one-out ranking}
 \usage{
 loo_rank(params)
 }
-\description{
-leave-one-out ranking
+\arguments{
+\item{params}{Parameters}
 }
+\description{
+Leave-one-out ranking
+}
+\keyword{internal}

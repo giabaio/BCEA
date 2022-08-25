@@ -1,19 +1,20 @@
 
 #' @noRd
+#' @title make_legend_ggplot
 #' 
-#' c(0, 0) corresponds to the “bottom left”
-#' c(1, 1) corresponds to the “top right”
-#' inside the plotting area
+#' @description c(0, 0) corresponds to the “bottom left”
+#'  c(1, 1) corresponds to the “top right”
+#'  inside the plotting area
 #' 
 #' @param dat data
-#' @param legend_pos
+#' @param legend_pos Legend position
 #'
-#' @keywords dplot
+#' @keywords internal
 #' 
 make_legend_ggplot <- function(dat, legend_pos) {
   
   legend_just <- NULL  # sets the corner that the legend_pos position refers to
-  legend_dir <- "vertical"
+  legend_dir <- NULL
   
   n_lines <- num_lines(dat)
   
@@ -27,9 +28,8 @@ make_legend_ggplot <- function(dat, legend_pos) {
     
   } else if (is.logical(legend_pos)) {
     
-    if (legend_pos) {
+    if (isTRUE(legend_pos)) {
       legend_pos <- "bottom"
-      legend_dir <- "vertical"
     } else {
       legend_pos <- c(1, 0)
       legend_just <- legend_pos 

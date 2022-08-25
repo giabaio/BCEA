@@ -4,6 +4,7 @@
 #' @param ... Additional arguments
 #' 
 #' @importFrom utils modifyList
+#' @keywords internal
 #' 
 ceplane_geom_params <- function(...) {
   

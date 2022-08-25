@@ -1,61 +1,85 @@
-# BCEA --- development version <img src="man/figures/logo.png" align="right" />
+# BCEA <img src="man/figures/logo.png" align="right" />
 
 <!-- badges: start -->
-
-[![Travis build status](https://travis-ci.com/n8thangreen/BCEA.svg?branch=dev)](https://travis-ci.com/n8thangreen/BCEA)
- [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/BCEA)](https://cran.r-project.org/package=BCEA) [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/BCEA)](https://cran.r-project.org/package=BCEA)
-[![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/grand-total/BCEA?color=orange)](	)
+[![Build Status](https://app.travis-ci.com/n8thangreen/BCEA.svg?branch=dev)](https://app.travis-ci.com/n8thangreen/BCEA)
+[![R-CMD-check](https://github.com/n8thangreen/BCEA/actions/workflows/check-standard.yaml/badge.svg?branch=dev)](https://github.com/n8thangreen/BCEA/actions/workflows/check-standard.yaml)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/BCEA)](https://cran.r-project.org/package=BCEA)
+[![CRAN_Download_Badge](https://cranlogs.r-pkg.org/badges/BCEA)](https://cran.r-project.org/package=BCEA)
+[![CRAN_Download_Badge](https://cranlogs.r-pkg.org/badges/grand-total/BCEA?color=orange)](https://cran.r-project.org/package=BCEA)
 [![CodeFactor](https://www.codefactor.io/repository/github/n8thangreen/bcea/badge)](https://www.codefactor.io/repository/github/n8thangreen/bcea)
-[![R build status](https://github.com/n8thangreen/BCEA/workflows/R-CMD-check/badge.svg)](https://github.com/n8thangreen/BCEA/actions)
 <!-- badges: end -->
+
+> Perform Bayesian Cost-Effectiveness Analysis in R.
+
+:rocket: **Version 2.4.2 out now!** [Check out the release notes here](https://github.com/n8thangreen/BCEA/releases/tag/v2.4.2).
 
 ## Contents
 
 - [Overview](#introduction)
 - [Features](#features)
 - [Installation](#installation)
+- [Articles](#articles)
 - [Further details](#further-details)
 
 ## Overview
 
-Perform Bayesian Cost-Effectiveness Analysis in R.
 Given the results of a Bayesian model (possibly based on MCMC) in the form of simulations from the posterior distributions of suitable variables of costs and clinical benefits for two or more interventions, produces a health economic evaluation. Compares one of the interventions (the "reference") to the others ("comparators").
 
 ## Features
-
 Main features of `BCEA` include:
 
-* Summary statistics and tables
 * Cost-effectiveness analysis plots, such as CE planes and CEAC
+* Summary statistics and tables
 * EVPPI calculations and plots
 
-This is the **development** version of BCEA (currently 2.4). It contains a major refactoring of the code to streamline the functions.
-
 ## Installation
+Install the released version from CRAN with
+```r
+install.packages("BCEA")
+```
+
 The development version can be installed using this GitHub repository. On Windows machines, you need to install a few dependencies, including [Rtools](https://cran.r-project.org/bin/windows/Rtools/) first, e.g. by running
 
 ```r
-pkgs <- c("MASS", "Rtools", "devtools")
-repos <- c("https://cran.rstudio.com", "https://inla.r-inla-download.org/R/stable") 
-install.packages(pkgs,repos=repos, dependencies = "Depends")
+pkgs <- c("MASS", "Rtools", "remotes")
+repos <- c("https://cran.rstudio.com", "https://inla.r-inla-download.org/R/stable/") 
+install.packages(pkgs, repos=repos, dependencies = "Depends")
 ```
-before installing the package using `devtools`:
+before installing the package using `remotes`:
 
 ```r
-devtools::install_github("giabaio/BCEA", ref="dev")
+remotes::install_github("giabaio/BCEA", ref="dev")
 ```
-Under Linux or MacOS, it is sufficient to install the package via `devtools`:
+Under Linux or MacOS, it is sufficient to install the package via `remotes`:
 
 ```r
-install.packages("devtools")
-devtools:install_github("giabaio/BCEA", ref="dev")
+install.packages("remotes")
+remotes::install_github("giabaio/BCEA", ref="dev")
 ```
+
+## Articles
+Examples of using specific functions and their different arguments are given in [these articles](https://n8thangreen.github.io/BCEA/articles/index.html):
+
+-  [Get Started](https://n8thangreen.github.io/BCEA/articles/bcea.html)
+-  [Set `bcea()` Parameters: Constructor and Setters](https://n8thangreen.github.io/BCEA/articles/Set_bcea_parameters.html)
+-  [Cost-Effectiveness Acceptability Curve Plots](https://n8thangreen.github.io/BCEA/articles/ceac.html)
+-  [Cost-Effectiveness Efficiency Frontier](https://n8thangreen.github.io/BCEA/articles/ceef.html)
+-  [Risk Aversion Analysis](https://n8thangreen.github.io/BCEA/articles/CEriskav.html)
+-  [Expected Incremental Benefit Plot](https://n8thangreen.github.io/BCEA/articles/eib.html)
+-  [Paired vs Multiple Comparisons](https://n8thangreen.github.io/BCEA/articles/paired_vs_multiple_comps.html)
+
 
 ## Further details
 The `pkgdown` site is [here](https://n8thangreen.github.io/BCEA/).
-More details on `BCEA` are available in our book [_Bayesian Cost-Effectiveness Analysis with the R Package BCEA_](http://www.statistica.it/gianluca/book/bcea/) (published in the UseR! Springer series). Also, details about the package, including some references and links to a pdf presentation and some posts on my own blog) are given [here](http://www.statistica.it/gianluca/software/bcea/).
+More details on `BCEA` are available in our book [_Bayesian Cost-Effectiveness Analysis with the R Package BCEA_](https://gianluca.statistica.it/book/bcea/) (published in the UseR! Springer series). Also, details about the package, including some references and links to a pdf presentation and some posts on my own blog) are given [here](https://gianluca.statistica.it/software/bcea/).
 
 ## Licence
-GPL-3 © [G Baio](https://github.com/giabaio).
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+## Contributing
+Please submit contributions through `Pull Requests`, following the [contributing
+guidelines](https://github.com/n8thangreen/BCEA/blob/dev/CONTRIBUTING.md).
+To report issues and/or seek support, please file a new ticket in the
+[issue](https://github.com/n8thangreen/BCEA/issues) tracker.
+
+Please note that this project is released with a [Contributor Code of Conduct](https://github.com/n8thangreen/BCEA/blob/dev/CONDUCT.md). By participating in this project you agree to abide by its terms.

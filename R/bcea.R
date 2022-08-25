@@ -29,23 +29,24 @@
 #' @param Kmax Maximum value of the willingness to pay to be considered.
 #' Default value is \code{k = 50000}. The willingness to pay is then approximated
 #' on a discrete grid in the interval \code{[0, Kmax]}. The grid is equal to
-#' \code{wtp} if the parameter is given, or composed of \code{501} elements if
-#' \code{wtp = NULL} (the default).
-#' @param wtp A(n optional) vector including the values of the willingness
-#' to pay grid. If not specified then BCEA will construct a grid of 501 values
-#' from 0 to \code{Kmax}. This option is useful when performing intensive
-#' computations (e.g. for the EVPPI).
+#' \code{k} if the parameter is given, or composed of \code{501} elements if
+#' \code{k = NULL} (the default).
+#' @param k A(n optional) vector for the values of the willingness
+#'  to pay grid. Should be of length > 1 otherwise plots will be empty.
+#'  If not specified then BCEA will construct a grid of 501 values
+#'  from 0 to \code{Kmax}. This option is useful when performing intensive
+#'  computations (e.g. for the EVPPI). This was changed from \code{wtp} in previous versions
+#'  for consistency with other functions and so will be deprecated in the future.
 #' @param plot A logical value indicating whether the function should produce
 #' the summary plot or not.
 #' 
 #' @return An object of the class "bcea" containing the following elements
 #' \item{n_sim}{Number of simulations produced by the Bayesian model}
-#' \item{n.comparators}{Number of interventions being analysed}
-#' \item{n.comparisons}{Number of possible pairwise comparisons}
+#' \item{n_comparators}{Number of interventions being analysed}
+#' \item{n_comparisons}{Number of possible pairwise comparisons}
 #' \item{delta.e}{For each possible comparison, the differential in the
 #' effectiveness measure}
-#' \item{delta.c}{For each possible comparison, the differential in the cost
-#' measure}
+#' \item{delta.c}{For each possible comparison, the differential in the cost measure}
 #' \item{ICER}{The value of the Incremental Cost-Effectiveness Ratio}
 #' \item{Kmax}{The maximum value assumed for the willingness to pay threshold}
 #' \item{k}{The vector of values for the grid approximation of the willingness
@@ -79,24 +80,22 @@
 #' reference in the analysis}
 #' \item{comp}{The numeric index(es) associated with the intervention(s) used
 #' as comparator(s) in the analysis}
-#' \item{step}{The step size used to form the grid approximation to the willingness
-#' to pay}
+#' \item{step}{The step size used to form the grid approximation to the willingness to pay}
 #' \item{e}{The \code{eff} matrix used to generate the object (see Arguments)}
 #' \item{c}{The \code{cost} matrix used to generate the object (see Arguments)}
 #' 
 #' @author Gianluca Baio, Andrea Berardi, Nathan Green
 #' @references
-#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in
-#' Health Economics.  Statistical Methods in Medical Research.
-#' doi:10.1177/0962280211419832.
+#' \insertRef{Baio2013}{BCEA}
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
-#' @keywords manip
-#' @concept Health economic evaluation
+#' \insertRef{Baio2011}{BCEA}
+#' 
 #' @import dplyr
+#' @importFrom Rdpack reprompt
+#' @keywords manip
 #' 
 #' @examples
-#' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
+#' # See Baio (2013), Baio (2011) for a detailed description of the 
 #' # Bayesian model and economic problem
 #'
 #' # Load the processed results of the MCMC simulation model
@@ -104,8 +103,8 @@
 #'
 #' # Runs the health economic evaluation using BCEA
 #' m <- bcea(
-#'       e=e,
-#'       c=c,                  # defines the variables of 
+#'       e=eff,
+#'       c=cost,               # defines the variables of 
 #'                             #  effectiveness and cost
 #'       ref=2,                # selects the 2nd row of (e, c) 
 #'                             #  as containing the reference intervention
@@ -181,8 +180,6 @@
 #'       m,          # uses the results of the economic evaluation 
 #'                   #  (a "bcea" object)
 #'       wtp=25000,  # selects the willingness-to-pay threshold
-#'       xlim=NULL,    # assumes default values
-#'       ylim=NULL     # assumes default values
 #' )
 #'
 #' # Using ggplot2
@@ -192,8 +189,6 @@
 #'                       #  (a "bcea" object)
 #'       graph="ggplot2",# selects the graphical engine
 #'       wtp=25000,      # selects the willingness-to-pay threshold
-#'       xlim=NULL,      # assumes default values
-#'       ylim=NULL,      # assumes default values
 #'       label.pos=FALSE # alternative position for the wtp label
 #' )
 #' }
@@ -228,7 +223,7 @@ bcea <- function(eff,
                  interventions = NULL,
                  .comparison = NULL,
                  Kmax = 50000,
-                 wtp = NULL,
-                 plot = FALSE)
+                 k = NULL,
+                 plot = FALSE, ...)
   UseMethod("bcea", eff)
 

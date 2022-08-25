@@ -36,8 +36,8 @@ data(Vaccine)
 
 # Runs the health economic evaluation using BCEA
 m <- bcea(
-      e=e,
-      c=c,                  # defines the variables of 
+      e=eff,
+      c=cost,               # defines the variables of 
                             #  effectiveness and cost
       ref=2,                # selects the 2nd row of (e, c) 
                             #  as containing the reference intervention
@@ -64,18 +64,16 @@ ceaf.plot(mce, graph = "g") # uses ggplot2
 \donttest{
 # Use the smoking cessation dataset
 data(Smoking)
-m <- bcea(e, c, ref = 4, intervention = treats, Kmax = 500, plot = FALSE)
+m <- bcea(eff, cost, ref = 4, intervention = treats, Kmax = 500, plot = FALSE)
 mce <- multi.ce(m)
 ceaf.plot(mce)
 }
  
 }
 \references{
-Baio G, Dawid AP. (2011). Probabilistic Sensitivity
-Analysis in Health Economics. Statistical Methods in Medical Research
-doi:10.1177/0962280211419832.
+\insertRef{Baio2011}{BCEA}
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2013}{BCEA}
 }
 \seealso{
 \code{\link{bcea}},
@@ -84,5 +82,4 @@ Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 \author{
 Gianluca Baio, Andrea Berardi
 }
-\concept{"Health economic evaluation" "Multiple comparison"}
 \keyword{hplot}

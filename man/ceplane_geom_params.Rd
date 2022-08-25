@@ -12,3 +12,4 @@ ceplane_geom_params(...)
 \description{
 Extract Separate Parameter Sets
 }
+\keyword{internal}

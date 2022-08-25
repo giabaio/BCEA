@@ -1,0 +1,82 @@
+# Workflow derived from https://github.com/r-lib/actions/tree/master/examples
+# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+on:
+  push:
+    branches: [dev, main, master]
+  pull_request:
+    branches: [dev, main, master]
+
+name: R-CMD-check
+
+jobs:
+  R-CMD-check:
+    runs-on: ${{ matrix.config.os }}
+
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: macOS-latest,   r: 'release'}
+          - {os: windows-latest, r: 'release'}
+          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
+          - {os: ubuntu-latest,   r: 'release'}
+          - {os: ubuntu-latest,   r: 'oldrel-1'}
+
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
+      RSPM: ${{ matrix.config.rspm }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          extra-repositories: 'https://inla.r-inla-download.org/R/stable'
+          r-version: ${{ matrix.config.r }}
+          http-user-agent: ${{ matrix.config.http-user-agent }}
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-pandoc@v2
+      
+      - name: Add inla repo
+        run: |
+          cat('options(repos = c(INLA = "https://inla.r-inla-download.org/R/stable/", getOption("repos")))', file = "~/.Rprofile", append = TRUE)
+        # cat("\noptions(tinytex.verbose = TRUE)\n", file = "~/.Rprofile", append = TRUE)
+        shell: Rscript {0}
+
+      - name: Double check repos
+        run: |
+          print(getOption("repos"))
+        shell: Rscript {0}
+
+#      - name: Install JAGS
+#       run: |
+#          sudo apt-get update -y
+#          sudo apt-get install -y jags
+
+      - name: Install jags (windows-latest)
+        if: runner.os == 'Windows'
+        run: |
+          curl.exe -o wjags.exe --url https://deac-fra.dl.sourceforge.net/project/mcmc-jags/JAGS/4.x/Windows/JAGS-4.2.0-Rtools33.exe
+          wjags.exe /S
+          del wjags.exe
+        shell: cmd
+
+      - name: Install jags (macOS-latest)
+        if: runner.os == 'macOS'
+        run : |
+              rm '/usr/local/bin/gfortran'
+              brew install jags
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages:
+            any::rcmdcheck, local::.
+          needs: check
+          
+      - uses: r-lib/actions/check-r-package@v2
+        with:
+          upload-snapshots: true

@@ -19,3 +19,7 @@ modelling and the economic evaluation.}
 \description{
 Prepare Delta arrays
 }
+\seealso{
+\code{\link{evppi}}
+}
+\keyword{internal}

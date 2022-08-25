@@ -30,7 +30,7 @@ vaccination}
 A data list including the variables needed for the influenza
 vaccination. The variables are as follows:
 \describe{
-  \item{list("c")}{a matrix of simulations from the posterior
+  \item{list("cost")}{a matrix of simulations from the posterior
   distribution of the overall costs associated with the two treatments}
   \item{list("c.pts")}{}
   \item{list("cost.GP")}{a matrix of simulations from the posterior
@@ -56,7 +56,7 @@ vaccination. The variables are as follows:
   interventions}
   \item{list("cost.vac")}{a matrix of simulations from the posterior
   distribution of the costs for vaccination}
-  \item{list("e")}{a matrix of simulations from the posterior distribution of
+  \item{list("eff")}{a matrix of simulations from the posterior distribution of
   the clinical benefits associated with the two treatments}
   \item{list("e.pts")}{}
   \item{list("N")}{the number of subjects in the reference population}
@@ -73,8 +73,6 @@ vaccination. The variables are as follows:
   \item{list("QALYs.pne")}{a vector from the posterior distribution of the
   QALYs associated with pneumonia}
   \item{list("treats")}{a vector of labels associated with the two treatments}
-  \item{list("vaccine")}{a \code{rjags} object containing the simulations for
-  the parameters used in the original model}
   \item{list("vaccine_mat")}{a matrix containing the simulations for the
   parameters used in the original model}
   }
@@ -87,14 +85,6 @@ adults 50-64 years of age. Vaccine. 2006;24:1035-1043.
 \description{
 This data set contains the results of the Bayesian analysis used to model
 the clinical output and the costs associated with an influenza vaccination.
-}
-\examples{
-
-data(Vaccine)
-
-\donttest{
-m <- bcea(e, c, ref = 1, interventions = treats)
-}
 }
 \references{
 Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity

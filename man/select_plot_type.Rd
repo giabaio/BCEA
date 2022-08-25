@@ -16,3 +16,4 @@ Plot ID integer 1:base R; 2:ggplot2; 3:plotly
 From base R, ggplot2 or plotly.
 }
 \keyword{dplot}
+\keyword{internal}

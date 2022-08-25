@@ -1,4 +1,4 @@
-.bcea_env = new.env(parent = emptyenv())
+.bcea_env <- new.env(parent = emptyenv())
 
 .onLoad <- function(libname, pkgname) {
   op <- options()

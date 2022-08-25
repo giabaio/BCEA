@@ -24,7 +24,7 @@ fit.inla(
 
 \item{inputs}{Inputs}
 
-\item{x}{x}
+\item{x}{Response variable}
 
 \item{mesh}{Mesh}
 
@@ -44,6 +44,13 @@ fit.inla(
 
 \item{family}{family}
 }
+\value{
+list
+}
 \description{
 Fit INLA
 }
+\seealso{
+\code{\link{evppi}}
+}
+\keyword{internal}

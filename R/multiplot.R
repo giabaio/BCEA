@@ -9,7 +9,7 @@
 #' @return ggplot TableGrob object
 #' 
 #' @importFrom gridExtra grid.arrange
-#' @export
+#' @keywords internal
 #' 
 multiplot <- function(plotlist = NULL,
                       cols = 1,

@@ -26,16 +26,14 @@ evaluation.
 \examples{
 data(Vaccine)
 
-he <- bcea(e, c, interventions = treats, ref = 2)
+he <- bcea(eff, cost, interventions = treats, ref = 2)
 summary(he)
 
 }
 \references{
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics. Statistical Methods in Medical Research
-doi:10.1177/0962280211419832.
+\insertRef{Baio2011}{BCEA}
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2013}{BCEA}
 }
 \seealso{
 \code{\link{bcea}}
@@ -43,6 +41,4 @@ Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 \author{
 Gianluca Baio
 }
-\keyword{Health}
-\keyword{economic}
-\keyword{evaluation}
+\keyword{print}

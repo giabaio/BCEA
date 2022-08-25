@@ -1,35 +1,117 @@
-# BCEA 2.3-2
+# BCEA 2.4.2
+August 2022
 
-* Major refactoring of code base to improve robustness and extensibility.
-  * `bcea()` is now a helper function which calls the constructor `new_bcea()`, separating concerns.
-  * `new_bcea()` composed of smaller HEE statistics functions e.g. `compute_CEAC()`, `compute_EIB()`,.... This allows us to call and test them individually. It also allows more flexibility in changing or adding functionality to `new_bcea()`.
-  * Main plotting functions `ceac_plot()` and `ceplane_plot()` have been rewritten. These functions now simply dispatch to the base R, ggplot2 or plotly versions. Internally, these functions, e.g.`ceplane_plot_ggplot()`, are also split into parameter setting and plotting components. This modulisation allows us to add new layers to plots or modify existing parameter sets and defaults. It also means we can reuse some functionality across plots such as axes and legend setting.
-  * Plots and tables using S3 methods for `bcea` type object.
-  * New vignettes about CEAC plotting and comparison intervention setting.
-  * Tables updated. Duplication in `summary()` and `sim.table.bcea()` removed.
-  * `CreateInputs()` used for EVPI calculation now dispatches S3 methods by JAGS, BUGS, Stan and other R data types. 
-* Extend ways to set comparison interventions. Subsets of comparison can still be set in a call to a plotting function as before. Now subsets can be set in both the original `bcea()` construction or separately using a setter functions `setComparison()`.
-* Similarly, maximum willingness to pay and the reference group can be set with `setKmax()` and `setReferenceGroup()`, respectively.
+## Bug fixes
+
+* `summary.bcea()` wasn't passing `wtp` argument to `sim_table()` internally (5440eb3)
+* `summary()` was the same for basic `bcea` and `multi.ce` objects. Now has own `summary.pairwise()` method. (88ade51)
+* `struct.psa()` output now works with `summary()` and plots all still work without having to use $ to get at `bcea` object as before. (b014c83)
+* Changed `wtp` argument in `bcea()` to `k` because `wtp` in the plotting functions refers to the wtp line and so is a scalar whereas `k` is a grid of points. Added an error message to use new argument. (b014c83)
+* `bcea()` still allows a scalar `k` but added a warning that this will give empty plots.
+* Updated GitHub Actions for checking the package to use `r-lib/Actions` version 2. There was an error with not finding INLA but this was solved by Gabor at RStudio (see thread here https://community.rstudio.com/t/not-finding-inla-package-not-on-cran-in-actions/141398)
+* GrassmannOptim package r-release-macos-x86_64 isn't available resulting in a CRAN check error and doesn't appear to be maintained. Tried emailing the author but bounced. Removed dependency and copied `GrassmannOptim()` function inside of package with acknowledgement.
+
+## Refactoring
+
+* Now uses `Rdpack` for bibliography in documentation (229c96d)
+* The cost and health values in the `Smoking` and `Vaccine` data sets have been renamed from `c` and `e` to `cost` and `eff`. This is to avoid any conflict with the `c()` function.
+* Changed the axes labels in the cost-effectiveness planes from "differential" to "incremental". (688d98b)
+
+## New features
+
+* Can now specify what order the interventions labels are in the legend for ce plane (and contour plots) for base R and ggplot2 i.e. reference first or second with optional `ref_first` argument (cc38f07)
+* Can specify currency for axes in `ce-plane.plot` and `ceac.plot` `ggplot2` versions (6808aa6)
+* Argument added to `ceplane.plot` of `icer_annot` to annotate each of the ICER points with the text label of the intervention name. Only for `ggplot2` at the moment. (a7b4beb)
+* Added `pos` argument to `contour2()` so that its consistent with `contour()` and `ceplane.plot()`. (50f8f8b)
+* Allow passing `ref` argument by name as well as index in `bcea()`. (9eab459)
+
+
+
+# BCEA 2.4.1.2
+April 2022
+
+## Bug fixes
+
+* `ceplane_ggplot()` missing legend
+* Legend bug in `evppi()`
+* Arguments in consistent same order as `ceplane.plot()`
+* `ceplane_plot_base()` wasn't showing grey area. Fixed by removing `alpha` transparency
+* `ceac.plot()` wasn't showing confidence interval by default for one comparison
+* Typo fixed in dropping dimension in `compute_vi()`
+* `setReferenceGroup()` for CEAC plot legend error; doesn't use supplied names but generic intervention 1, intervention 2, ... (#82)
+* Missing `multi.ce()` line for reference group (#80)
+
+## Miscellaneous
+
+* Use `cli` package for warning messages
+* Clean @keywords in Roxygen
+  * Removed all the internal helper functions from the Manual by using @keyword internal
+* Refactor contour plots
+* Plot functions take more standard `ggplot2` format style arguments e.g. as list
+  * Extend some function (`ceac.plot()`) to take more style arguments than before for e.g. colour of lines, types of points and line thickness.
+  * Resuse `ceplane.plot()` code in `contour()`
+* `goodpractice` package suggested changes
+  * line length, `seq_len()`, remove `;`
+* Contributor guidelines (#93)
+* Deprecated functions document
+* `contour2()` changed so `xlim`, `ylim` arguments are optional; the same as `ceplane.plot()` since they are passes to it
+* `contour()` and `ceplane.plot()` vignettes written
+
+
+
+# BCEA 2.4.1.1
+Oct 2021
+
+## Major refactoring
+
+* Code base improved robustness and extensibility.
+* `bcea()` is now a helper function which calls the constructor `new_bcea()`, separating concerns.
+* `new_bcea()` composed of smaller HEE statistics functions with names starting with `compute_*` e.g. `compute_CEAC()`, `compute_EIB()`,.... This allows us to call and test them individually.
+  It also allows more flexibility in changing or adding functionality to `new_bcea()`.
+* Plotting functions have been rewritten. These functions now simply dispatch to the base R, ggplot2 or plotly versions (think strategy pattern).
+  Internally, these functions, e.g.`ceplane_plot_ggplot()`, are also split into parameter and data setting and plotting components.
+  This modulisation allows us to add new layers to plots or modify existing parameter sets and defaults. We could also return the data without the plotting step as in e.g. `ggplot2::autoplot()`.
+  It also means we can reuse some functionality across plots such as axes and legend setting e.g. `BCEA:::where_legend()`.
 * `ceac_plot()` changes
   * Deprecated `mce.plot()`. Now dispatched on `ceac.plot()` for both `multi.ce()` and `bcea()` outputs.
   * For a multiple comparison the plot for pairwise comparison over all interventions is returned by default. The alternative version of each comparison against the reference group is still available.
-* Additional documentation and examples.
+  * Plots and tables using S3 methods for `bcea` type object.
+* Tables updated. Duplication in `summary()` and `sim_table()` removed.
+* `createInputs()` used for EVPI calculation now dispatches S3 methods by JAGS, BUGS, Stan and other R data types.
 * `make.report()` rewritten to have separate section files.
+
+## New features
+
+* Extend ways to set comparison interventions. Subsets of comparison can still be set in a call to a plotting function as before.
+Now subsets can be set in both the original `bcea()` construction or separately using a setter functions `setComparisons()`.
+* Similarly, maximum willingness to pay and the reference group can be set with `setKmax()` and `setReferenceGroup()`, respectively.
+* `multi.ce()` and `CEriskAv()` also now work similarly. They operate by modifying the `bcea` object, rather than creating new one (think decorator pattern).
+* `bcea()` methods for JAGS, WinBUGS, Stan (#76)
+
+## Miscellaneous
+
+* Additional help documentation and examples.
+* New vignettes about plotting and comparison intervention setting.
 * Testing suite started. This is not comprehensive as of yet.
 * Added a `NEWS.md` file to track changes to the package. Details about previous releases, such as dates, versions, fixes and enhancements obtained from CRAN and code comments so a little patchy.
 * `pkgdown` GitHub site made.
+* Cheatsheet written and published on RStudio site (#22).
+* Dependency package **ldr** removed from **BCEA** because it was removed from CRAN (#74)
+
+
+
 
 
 # BCEA 2.3-1.1
 26 Aug 2019
-	
+
 # BCEA 2.3-1
 5 Aug 2019
- 
+
 # BCEA 2.2-6
 11 July 2018
 
-* Fix in `evppi` to allow N to be selected in all methods
+* Fix in `evppi` to allow `N` to be selected in all methods
 * Fix `diag.evppi`
 
 # BCEA 2.2-5
@@ -40,13 +122,13 @@
 # BCEA 2.2.4
 Nov 2016
 
-* Fixes for new ggplot2 version (`legend.spacing()` and `plot.title` hjust argument)
+* Fixes for new ggplot2 version (`legend.spacing()` and `plot.title` `hjust` argument)
 
 # BCEA 2.2-3
 22 May 2016
 
 * Major update for the EVPPI to include PFC
-* Fixed issues with info.rank
+* Fixed issues with `info.rank`
 
 # BCEA 2.2-2
 25 Jan 2016
@@ -68,16 +150,16 @@ Oct 2015
 6 May 2015 2015
 
 * New function for EVPPI using SPDE-INLA
-* Modifications to the EVPPI functions 
+* Modifications to the EVPPI functions
 * Documentation updated
-* Allows xlim & ylim in the `ceplane.plot`, `contour` and `contour2` functions
-* It is now possible to run bcea for a scalar wtp
-* Old evppi function and method has been renamed `evppi0`, which means there's also a new `plot.evppi0` method
-	  
+* Allows `xlim` & `ylim` in the `ceplane.plot`, `contour` and `contour2` functions
+* It is now possible to run `bcea` for a scalar wtp
+* Old `evppi` function and method has been renamed `evppi0`, which means there's also a new `plot.evppi0` method
+
 # BCEA 2.1-0
 13 Jan 2015
 
-* Migrated from `if(require())` to `if(requireNamespace(,quietly=TRUE))`
+* Migrated from `if (require())` to `if (requireNamespace(,quietly=TRUE))`
 * Documentation updated
 * Added threshold argument to `ceef.plot` function
 
@@ -114,7 +196,7 @@ Oct 2014
 * Implements two quick and general methods to compute the EVPPI
 * Function `CreateInputs()`, which takes as input an object in the class rjags or bugs
 * Compute the EVPPI for one or more parameters calling the function `evppi()`
-* Results can be visualised using the specific method plot for the class evppi and show the overall EVPI with the EVPPI for the selected parameter(s)
+* Results can be visualised using the specific method plot for the class `evppi` and show the overall EVPI with the EVPPI for the selected parameter(s)
 
 # BCEA 1.3-1
 

@@ -2,22 +2,20 @@
 % Please edit documentation in R/validate_bcea.R
 \name{validate_bcea}
 \alias{validate_bcea}
-\title{validate_bcea}
+\title{Validate bcea}
 \usage{
 validate_bcea(eff, cost, ref, interventions)
 }
 \arguments{
-\item{eff}{}
+\item{eff}{Effectiveness matrix}
 
-\item{cost}{}
+\item{cost}{Cost matrix}
 
-\item{ref}{}
+\item{ref}{Reference intervention}
 
-\item{interventions}{}
-}
-\value{
-
+\item{interventions}{All interventions}
 }
 \description{
-validate_bcea
+Validate bcea
 }
+\keyword{internal}

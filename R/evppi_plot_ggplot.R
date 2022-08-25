@@ -1,11 +1,18 @@
 
 #' @rdname evppi_plot_graph
-#' @export
-#'
-evppi_plot_ggplot.evppi <- function(evppi_obj,
-                                    pos_legend = c(0, 0.8),
-                                    col = c(1,1),
-                                    ...) {
+#' 
+#' @param evppi_obj Object of class evppi
+#' @param pos_legend Position of legend 
+#' @param col Colour
+#' @param ... Additional arguments
+#' 
+#' @importFrom purrr pluck keep
+#' @import dplyr ggplot2
+#' 
+evppi_plot_ggplot <- function(evppi_obj,
+                              pos_legend = c(0, 0.8),
+                              col = c(1,1),
+                              ...) {
   
   extra_args <- list(...)
   
@@ -14,19 +21,20 @@ evppi_plot_ggplot.evppi <- function(evppi_obj,
     bind_rows() %>% 
     ##TODO: for >1 evppi
     melt(id.vars = "k") %>% 
-    mutate(variable = as.character(variable),
-           variable = ifelse(variable == "evppi",
+    mutate(variable = as.character(.data$variable),
+           variable = ifelse(.data$variable == "evppi",
                              paste("EVPPI for",
                                    evppi_obj$parameters),
                              "EVPI"))
   
   theme_add <- purrr::keep(extra_args, is.theme)
-  size <- pluck(extra_args, "size", .default = c(1, 0.5))
+  size <- purrr::pluck(extra_args, "size", .default = c(1, 0.5))
   
   legend_params <- make_legend_ggplot(evppi_obj, pos_legend)
   
   ggplot(plot_dat,
-         aes(x = k, y = value, group = variable, size = variable, colour = variable)) +
+         aes(x = .data$k, y = .data$value,
+             group = .data$variable, size = .data$variable, colour = .data$variable)) +
     geom_line() +
     theme_default() +
     theme_add +
@@ -36,13 +44,5 @@ evppi_plot_ggplot.evppi <- function(evppi_obj,
     ggtitle("Expected Value of Perfect Partial Information") +
     xlab("Willingness to pay") +
     ylab("")
-}
-
-
-#' @rdname evppi_plot_graph
-#' @export
-#' 
-evppi_plot_ggplot <- function(evppi_obj, ...) {
-  UseMethod('evppi_plot_ggplot', evppi_obj)
 }
 

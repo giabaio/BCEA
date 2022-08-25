@@ -1,60 +1,69 @@
 Package: BCEA
 Type: Package
 Title: Bayesian Cost Effectiveness Analysis
-Version: 2.4.1
-Date: 2021-02-05
+Version: 2.4.2
 Authors@R: c(
     person("Gianluca", "Baio",
             email = "gianluca@stats.ucl.ac.uk",
-            role = c("aut", "cre")),
+            role = c("aut", "cre"),
+            comment = c(ORCID = "0000-0003-4314-2570")),
     person("Andrea", "Berardi",
             email = "a.berardi@ucl.ac.uk",
-            role = c("aut")),
+            role = c("aut"),
+            comment = c(ORCID = "0000-0002-2906-496X")),
     person("Anna", "Heath",
             email = "anna.heath@sickkids.ca",
-            role = c("aut")),
+            role = c("aut"),
+            comment = c(ORCID = "0000-0002-7263-4251")),
     person("Nathan", "Green",
             email = "n.green@ucl.ac.uk",
-            role = c("aut")))
+            role = c("aut"),
+            comment = c(ORCID = "0000-0003-2745-1736")))
 Imports:
-    crayon,
+    cli (>= 3.3.0),
     dplyr,
     ggplot2,
+    gridExtra,
     graphics,
-    INLA,
-    knitr,
-    ldr,
     MASS,
-    plotly,
+    Matrix,
     purrr,
+    Rdpack,
     reshape2,
     rlang,
-    rmarkdown,
-    withr,
-    gridExtra
+    scales
 Depends:
     R (>= 3.5.0)
 Suggests:
-    RColorBrewer,
+    coda,
     grid,
+    INLA,
+    knitr,
+    markdown,
+    MCMCvis,
     mgcv,
-    R2jags,
-    R2OpenBUGS,
+    plotly,
+    rjags,
+    rmarkdown,
+    rstan,
+    RColorBrewer,
     splancs,
     testthat (>= 2.1.0),
-    vdiffr
+    vdiffr,
+    withr
+RdMacros: Rdpack
 Additional_repositories: https://inla.r-inla-download.org/R/stable/
 Description: Produces an economic evaluation of a sample of suitable variables of
              cost and effectiveness / utility for two or more interventions,
              e.g. from a Bayesian model in the form of MCMC simulations.
              This package computes the most cost-effective alternative and
-             produces graphical summaries and probabilistic sensitivity analysis.
+             produces graphical summaries and probabilistic sensitivity analysis,
+             see Baio et al (2017) <10.1007/978-3-319-55718-2>.
 License: GPL-3
-URL: http://www.statistica.it/gianluca/BCEA,
-     http://www.statistica.it/gianluca,
-     https://github.com/giabaio/BCEA    
+URL: https://gianluca.statistica.it/software/bcea/,
+     https://gianluca.statistica.it/,
+     https://github.com/giabaio/BCEA/  
 NeedsCompilation: no
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.1
 Encoding: UTF-8
-VignetteBuilder: knitr
-
+BugReports: https://github.com/n8thangreen/BCEA/issues/

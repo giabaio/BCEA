@@ -8,7 +8,8 @@
 #' @param ... Additional arguments
 #'
 #' @import ggplot2
-#'
+#' @keywords internal
+#' 
 ceplane_ggplot_params <- function(he,
                                   wtp,
                                   pos_legend,
@@ -25,7 +26,7 @@ ceplane_ggplot_params <- function(he,
   
   default_params <-
     list(
-      size = rel(3.5),         # relative size to what??...
+      size = rel(3.5),
       wtp = list(
         geom = "text",
         x = graph_params$xlim[1],
@@ -57,23 +58,23 @@ ceplane_ggplot_params <- function(he,
         hjust = "inward",
         vjust = "inward"),
       point = list(
-        sizes = 4),
+        shape = rep(19, he$n_comparisons),
+        size = 4),
       line = list(
-        x = graph_params$area$x[1:2],
-        y = graph_params$area$y[1:2],
-        geom = "line",
         color = "black"),
       area = list(
         # geom = "polygon",
         fill = graph_params$area$col,
-        alpha = ifelse(ext_params$area_include, 0.8, 0),
+        alpha = ifelse(ext_params$area_include, 1, 0),
         data = data.frame(x = graph_params$area$x,
                           y = graph_params$area$y),
         mapping = aes(x = .data$x, y = .data$y),
-        inherit.aes = FALSE))
+        inherit.aes = FALSE),
+      currency = "",
+      icer_annot = FALSE)
   
   modifyList(default_params,
              graph_params) %>% 
-  modifyList(ext_params)
+    modifyList(ext_params)
 }
 

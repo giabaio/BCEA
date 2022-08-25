@@ -5,6 +5,7 @@
 #' @return String
 #'
 #' @export
+#' @keywords internal
 #' 
 make_legend_plotly <- function(pos_legend) {
   

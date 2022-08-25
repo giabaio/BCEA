@@ -21,3 +21,4 @@ List pf graph parameters
 In ggplot format, combine user-supplied
 parameters with defaults.
 }
+\keyword{internal}

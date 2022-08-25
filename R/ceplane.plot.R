@@ -1,6 +1,7 @@
 
 #' @rdname ceplane.plot
 #' 
+#' @template args-he
 #' @param comparison Selects the comparator, in case of more than two
 #'   interventions being analysed. Default as \code{NULL} plots all the
 #'   comparisons together. Any subset of the possible comparisons can be selected
@@ -20,23 +21,29 @@
 #'   plotting. Should (partial-) match the two options \code{"base"} or
 #'   \code{"ggplot2"}. Default value is \code{"base"}.
 #' @param ...  If \code{graph = "ggplot2"} and a named theme object is supplied,
-#'   it will be added to the ggplot object. Additional graphical arguments:
+#'   it will be passed to the ggplot object. The usual ggplot2 syntax is used.
+#'   Additional graphical arguments:
 #'  \itemize{
 #'   \item \code{label.pos = FALSE}: will place the willingness to pay label in a
 #'   different  position at the bottom of the graph - base and ggplot2 only (no
 #'   label in plotly).
-#'   \item \code{point_colors}: a vector of colours specifying the colour(s) associated
+#'   \item \code{line = list(color)}: a colour specifying the colour of the willingness-to-pay line.
+#'   \item \code{point = list(color)}: a vector of colours specifying the colour(s) associated
 #'   to the cloud of points. Should be of length 1 or equal to the number of comparisons.
-#'   \item \code{point_size}: a vector of colours specifying the size(s) of the points.
+#'   \item \code{point = list(size)}: a vector of colours specifying the size(s) of the points.
 #'   Should be of length 1 or equal to the number of comparisons.
-#'   \item \code{ICER_colors}: a vector of colours specifying the colour(s) of the ICER
+#'   \item \code{point = list(shape)}: a vector of shapes specifying type(s) of the points.
+#'   Should be of length 1 or equal to the number of comparisons.
+#'   \item \code{icer = list(color)}: a vector of colours specifying the colour(s) of the ICER
 #'   points. Should be of length 1 or equal to the number of comparisons.
-#'   \item \code{ICER_size}: a vector of colours specifying the size(s) of the ICER
+#'   \item \code{icer = list(size)}: a vector of colours specifying the size(s) of the ICER
 #'   points. Should be of length 1 or equal to the number of comparisons.
 #'   \item \code{area_include}: logical, include or exclude the cost-effectiveness 
 #'   acceptability area (default is TRUE).
-#'   \item \code{area_color}: a colour specifying the colour of the cost-effectiveness
+#'   \item \code{area = list(color)}: a colour specifying the colour of the cost-effectiveness
 #'   acceptability area.
+#'   \item \code{currency}: Currency prefix to cost differential values - ggplot2 only.
+#'   \item \code{icer_annot}: Annotate each ICER point with text label - ggplot2 only.
 #'  }
 #'  
 #' @return If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 
@@ -52,8 +59,8 @@
 #'   pay. If the comparators are more than 2 and no pairwise comparison is
 #'   specified, all scatterplots are graphed using different colours.
 #'   
-#' @details In the plotly version, point_colors, ICER_colors and area_color can also
-#' be specified as rgba colours using either the \code{\link[plotly]{toRGB}}
+#' @details In the plotly version, \code{point_colors}, \code{ICER_colors} and \code{area_color} can also
+#' be specified as rgba colours using either the \code{[plotly]toRGB}
 #' function or a rgba colour string, e.g. \code{'rgba(1, 1, 1, 1)'}.
 #'   
 #' @author Gianluca Baio, Andrea Berardi
@@ -61,20 +68,19 @@
 #'          \code{\link{ceplane_plot_graph}}
 #' 
 #' @references
-#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in Health Economics.
-#' Statistical Methods in Medical Research. doi:10.1177/0962280211419832.
+#' \insertRef{Baio2011}{BCEA}
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+#' \insertRef{Baio2013}{BCEA}
 #' 
 #' @keywords hplot
-#' @concept "Health economic evaluation" "Cost Effectiveness Plane"
+#' @importFrom Rdpack reprompt
 #' @export
 #' 
 #' @examples
 #' ## create the bcea object for the smoking cessation example
 #' data(Smoking)
 #' 
-#' m <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
+#' m <- bcea(eff, cost, ref = 4, Kmax = 500, interventions = treats)
 #' 
 #' ## produce the base plot
 #' ceplane.plot(m, wtp = 200, graph = "base")
@@ -84,7 +90,7 @@
 #' 
 #' ## use ggplot2
 #' if (requireNamespace("ggplot2")) {
-#'    ceplane.plot(m, wtp = 200, pos = "right", ICER_size = 2, graph = "ggplot2")
+#'    ceplane.plot(m, wtp = 200, pos = "right", icer = list(size = 2), graph = "ggplot2")
 #' }
 #' 
 #' ## plotly
@@ -137,7 +143,6 @@ ceplane.plot.bcea <- function(he,
 #' @template args-he
 #' 
 #' @export
-#' @name ceplane.plot
 #' @aliases ceplane.plot
 #' 
 ceplane.plot <- function(he, ...) {

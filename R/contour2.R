@@ -1,133 +1,43 @@
 
 #' @rdname contour2
 #' @importFrom stats sd
-#' @importFrom graphics par
+#' @importFrom graphics par contour
 #' 
 #' @export
 #' 
 contour2.bcea <- function(he,
-                          wtp = 25000,
-                          xlim = NULL,
-                          ylim = NULL,
                           comparison = NULL,
-                          graph_type = c("base", "ggplot2"),
+                          wtp = 25000,
+                          graph = c("base", "ggplot2"),
+                          pos = c(0, 1),
                           ...) {
   
-  graph_type <- match.arg(graph_type)
+  graph_type <- match.arg(graph)
   
   he <- setComparisons(he, comparison)
   
+  params <- prep_contour_params(he, ...)
+  
   if (is_baseplot(graph_type)) {
-    # Encodes characters so that the graph can
+    
+    # encode characters so that the graph can
     # be saved as postscript or pdf
     ps.options(encoding = "CP1250")
     pdf.options(encoding = "CP1250")
     
-    # Selects the first comparison by default if not selected
-    if (is.null(comparison) || length(comparison) > 1 ) {
-      message("The first available comparison will be selected.
-              To plot multiple comparisons together please use the ggplot2 version.
-              Please see ?contour2 for additional details.")
-      comparison <- min(he$comp)
-    }
+    plot_params <-
+      contour_base_params(he, params)
     
-    he <- setComparisons(he, comparison)
-    ceplane.plot(he, comparison = NULL, wtp, graph_type = "base")
+    ceplane.plot(he, comparison = NULL, wtp = wtp, pos = pos, graph = "base", ...)
+    add_contours(he, plot_params)
     
-    # plot contours ----
+  } else if (is_ggplot(graph_type)) {
     
-    offset <- 1.0
-    nlevels <- 4
-    scale <- 0.5
+    plot_params <-
+      contour_ggplot_params(he, params, ...)
     
-    density <- MASS::kde2d(as.matrix(he$delta_e),
-                           as.matrix(he$delta_c),
-                           n = 300,
-                           h = c(sd(as.matrix(he$delta_e)) / scale,
-                                 sd(as.matrix(he$delta_c)) / scale))
-    
-    m.c <- range(he$delta_c)[1]
-    M.c <- range(he$delta_c)[2]
-    m.e <- range(he$delta_e)[1]
-    M.e <- range(he$delta_e)[2]
-    
-    # Changes the range so that the plot always shows the x and y axes
-    ch1 <- ifelse(m.e > 0, m.e <- -m.e, m.e <- m.e)
-    ch2 <- ifelse(M.e < 0, M.e <- -M.e, M.e <- M.e)
-    ch3 <- ifelse(m.c > 0, m.c <- -m.c, m.c <- m.c)
-    ch4 <- ifelse(M.c < 0, M.c <- -M.c, M.c <- M.c)
-    
-    par(new = TRUE)
-    graphics::contour(
-      density$x,
-      density$y,
-      density$z,
-      add = TRUE,
-      nlevels = nlevels,
-      drawlabels = FALSE,
-      lwd = 1.5)
-    
-    return(invisible(NULL))
-  } else {
-    
-    if (!(requireNamespace("ggplot2", quietly = TRUE) &
-          requireNamespace("grid", quietly = TRUE))){
-      
-      message("falling back to base graphics\n")
-      contour2(he,
-               comparison = comparison,
-               xlim = xlim,
-               ylim = ylim,
-               wtp = wtp,
-               graph = "base")
-      return(invisible(NULL))
-    }
-    
-    scale <- 0.5
-    nlevels <- 5
-    
-    ### no visible binding note
-    z <- e <- NA_real_
-    
-    densitydf <- data.frame()
-    
-    for (i in seq_along(he$comp)) {
-      density <-
-        MASS::kde2d(
-          as.matrix(he$delta_e[, i]),
-          as.matrix(he$delta_c[, i]),
-          n = 300,
-          h = c(sd(as.matrix(he$delta_e[, i])) / scale,
-                sd(as.matrix(he$delta_c[, i])) / scale))
-      
-      grid_density <-
-        data.frame(
-          expand.grid(
-            x = density$x,
-            y = density$y),
-          z = as.vector(density$z),
-          comparison = i)
-      
-      densitydf <-
-        rbind(densitydf, grid_density)
-    }
-    
-    densitydf$comparison <- as.factor(densitydf$comparison)
-    
-    contour <-
-      ceplane.plot(he, wtp = wtp, graph = "ggplot2", ...) +
-      geom_contour(
-        data = densitydf, aes(x = .data$x, y = .data$y, z = .data$z, group = .data$comparison),
-        colour = "black",
-        bins = nlevels,
-        linetype = 1, inherit.aes = FALSE)
-    
-    contour <-
-      contour +
-      coord_cartesian(xlim = xlim,
-                      ylim = ylim)
-    
-    return(contour)
+    ceplane.plot(he, comparison = NULL, wtp = wtp, pos = pos, graph = "ggplot2", ...) +
+      do.call(geom_density_2d, plot_params$contour)     
   }
 }
 
@@ -140,20 +50,14 @@ contour2.bcea <- function(he,
 #' selected value of the willingness-to-pay threshold).
 #' 
 #' @template args-he
-#' @param wtp The selected value of the willingness-to-pay. Default is
-#' \code{25000}.
-#' @param xlim Limits on the x-axis (default=\code{NULL}, so that R will select
-#' appropriate limits).
-#' @param ylim Limits on the y-axis (default=\code{NULL}, so that R will select
-#' appropriate limits).
 #' @param comparison The comparison being plotted. Default to \code{NULL}
-#' chooses the first comparison if \code{graph_type="base"}. If
-#' \code{graph_type="ggplot2"} the default value will choose all the possible
+#' If \code{graph_type="ggplot2"} the default value will choose all the possible
 #' comparisons. Any subset of the possible comparisons can be selected (e.g.,
 #' \code{comparison=c(1,3)}).
-#' @param graph_type A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the two options \code{"base"} or
-#' \code{"ggplot2"}. Default value is \code{"base"}.
+#' @param wtp The selected value of the willingness-to-pay. Default is
+#' \code{25000}.
+#' @template args-graph
+#' @template args-pos
 #' @param ...  Arguments to be passed to \code{\link{ceplane.plot}}. See the
 #' relative manual page for more details.
 #' 
@@ -166,22 +70,23 @@ contour2.bcea <- function(he,
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}},
 #'          \code{\link{ceplane.plot}},
-#'          \code{\link{contour.bcea}}
+#'          \code{\link{contour}}
+#'          
 #' @references
-#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics. Statistical Methods in Medical Research
-#' doi:10.1177/0962280211419832.
+#' \insertRef{Baio2011}{BCEA}
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
-#' @keywords "Health economic evaluation" "Bayesian model"
+#' \insertRef{Baio2013}{BCEA}
+#' 
+#' @keywords hplot
 #' @import ggplot2
 #' @importFrom grDevices ps.options pdf.options
 #' @importFrom MASS kde2d
-#' 
+#' @importFrom Rdpack reprompt
+#'  
 #' @examples
 #' ## create the bcea object m for the smoking cessation example
 #' data(Smoking)
-#' m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+#' m <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 #' 
 #' ## produce the plot
 #' contour2(m,
@@ -195,6 +100,13 @@ contour2.bcea <- function(he,
 #'          ICER_size = 2,
 #'          graph_type = "ggplot2")
 #' }
+#' 
+#' ## vaccination example
+#' data(Vaccine)
+#' treats = c("Status quo", "Vaccination")
+#' m <- bcea(eff, cost, ref = 2, interventions = treats, Kmax = 50000)
+#' contour2(m)
+#' contour2(m, wtp = 100)
 #' 
 #' @rdname contour2
 #' @export

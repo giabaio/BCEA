@@ -11,8 +11,7 @@
 the function \code{\link{mixedAn}}, generating the economic evaluation of a
 set of interventions, considering given market shares for each option.}
 
-\item{wtp}{The value of the willingness to pay choosen to present the
-analysis.}
+\item{wtp}{The value of the willingness to pay chosen to present the analysis.}
 
 \item{...}{Additional arguments affecting the summary produced.}
 }
@@ -34,7 +33,7 @@ economic evaluation of a given model.
 data(Vaccine)
 
 # Runs the health economic evaluation using BCEA
-m <- bcea(e=e,c=c,          # defines the variables of 
+m <- bcea(e=eff, c=cost,    # defines the variables of 
                             #  effectiveness and cost
       ref=2,                # selects the 2nd row of (e,c) 
                             #  as containing the reference intervention
@@ -45,31 +44,25 @@ m <- bcea(e=e,c=c,          # defines the variables of
                             #  in a grid from the interval (0,Kmax)
 )
 
-ma <- mixedAn(m,        # uses the results of the mixed strategy 
+mixedAn(m) <- NULL      # uses the results of the mixed strategy 
                         #  analysis (a "mixedAn" object)
-       mkt.shares=NULL  # the vector of market shares can be defined 
+                        # the vector of market shares can be defined 
                         #  externally. If NULL, then each of the T 
                         #  interventions will have 1/T market share
-)
 
 # Prints a summary of the results
-summary(ma,       # uses the results of the mixed strategy analysis 
-                  #  (a "mixedAn" object)
-     wtp=25000    # selects the relevant willingness to pay 
-                  #  (default: 25,000) 
-)
+summary(m,         # uses the results of the mixed strategy analysis 
+        wtp=25000) #  (a "mixedAn" object)
+                   # selects the relevant willingness to pay 
+                   #  (default: 25,000)
 
 }
 \references{
-Baio, G. and Russo, P. (2009). A decision-theoretic framework for
-the application of cost-effectiveness analysis in regulatory processes.
-Pharmacoeconomics 27(8), 645-655 doi:10.2165/11310250
+\insertRef{Baio2009}{BCEA}
 
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in Health
-Economics. Statistical Methods in Medical Research
-doi:10.1177/0962280211419832.
+\insertRef{Baio2011}{BCEA}
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2013}{BCEA}
 }
 \seealso{
 \code{\link{bcea}},
@@ -78,8 +71,4 @@ Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 \author{
 Gianluca Baio
 }
-\keyword{Health}
-\keyword{Mixed}
-\keyword{analysis}
-\keyword{economic}
-\keyword{evaluation}
+\keyword{print}

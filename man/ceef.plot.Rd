@@ -3,7 +3,7 @@
 \name{ceef.plot.bcea}
 \alias{ceef.plot.bcea}
 \alias{ceef.plot}
-\title{Cost-Effectiveness Efficiency Frontier (CEAF) Plot}
+\title{Cost-Effectiveness Efficiency Frontier (CEEF) Plot}
 \usage{
 \method{ceef.plot}{bcea}(
   he,
@@ -15,7 +15,8 @@
   dominance = TRUE,
   relative = FALSE,
   print.summary = TRUE,
-  graph_type = c("base", "ggplot2"),
+  graph = c("base", "ggplot2"),
+  print.plot = TRUE,
   ...
 )
 
@@ -29,14 +30,15 @@ modelling and the economic evaluation.}
 frontier analysis. It must have a length > 1. Default as \code{NULL} includes
 all the available comparators.}
 
-\item{pos}{Parameter to set the position of the legend. Can be given in form
+\item{pos}{Parameter to set the position of the legend (only relevant for
+multiple interventions, ie more than 2 interventions being compared).
+Can be given in form
 of a string \code{(bottom|top)(right|left)} for base graphics and
-\code{bottom}, \code{top}, \code{left} or \code{right} for ggplot2. It can
-be a two-elements vector, which specifies the relative position on the x and
-y axis respectively, or alternatively it can be in form of a logical
-variable, with \code{FALSE} indicating to use the default position and
-\code{TRUE} to place it on the bottom of the plot. Default value is
-\code{c(1,1)}, that is the topright corner inside the plot area.}
+\code{bottom|top|left|right} for ggplot2. It can be a two-elements vector,
+which specifies the relative position on the x and y axis respectively, or
+alternatively it can be in form of a logical variable, with \code{FALSE}
+indicating to use the default position and \code{TRUE} to place it on the
+bottom of the plot.}
 
 \item{start.from.origins}{Logical. Should the frontier start from the
 origins of the axes? The argument is reset to \code{FALSE} if the average
@@ -61,9 +63,11 @@ comparator?}
 \item{print.summary}{Logical. Should the efficiency frontier summary be
 printed along with the graph?  See Details for additional information.}
 
-\item{graph_type}{A string used to select the graphical engine to use for
+\item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the two options \code{"base"} or
 \code{"ggplot2"}. Default value is \code{"base"}.}
+
+\item{print.plot}{Logical. Should the efficiency frontier be plotted?}
 
 \item{...}{If \code{graph_type="ggplot2"} and a named theme object is supplied,
 it will be added to the ggplot object. Ignored if \code{graph_type="base"}.
@@ -84,14 +88,27 @@ Interventions in the areas between the dominance region and the frontier are
 in a situation of extended dominance.
 }
 \description{
+The line connecting successive points on a cost-effectiveness plane which each
+represent the effect and cost associated with different treatment alternatives.
+The gradient of a line segment represents the ICER of the treatment comparison
+between the two alternatives represented by that segment.
+The cost-effectiveness frontier consists of the set of points corresponding to
+treatment alternatives that are considered to be cost-effective at different values
+of the cost-effectiveness threshold. The steeper the gradient between successive
+points on the frontier, the higher is the ICER between these treatment alternatives
+and the more expensive alternative would be considered cost-effective only when a
+high value of the cost-effectiveness threshold is assumed.
+Points not lying on the cost-effectiveness frontier represent treatment alternatives
+that are not considered cost-effective at any value of the cost-effectiveness threshold.
+}
+\details{
 Back compatibility with BCEA previous versions:
 The \code{bcea} objects did not include the generating \code{e} and \code{c}
 matrices in BCEA versions <2.1-0. This function is not compatible with
 objects created with previous versions. The matrices can be appended to
 \code{bcea} objects obtained using previous versions, making sure that the
 class of the object remains unaltered.
-}
-\details{
+
 The argument \code{print.summary} allows for printing a brief summary of the
 efficiency frontier, with default to \code{TRUE}. Two tables are plotted,
 one for the interventions included in the frontier and one for the dominated
@@ -113,10 +130,10 @@ intervention (indexed by \code{ref} in the \code{\link{bcea}} function).
 
 ## create the bcea object m for the smoking cessation example
 data(Smoking)
-m <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
+m <- bcea(eff, cost, ref = 4, Kmax = 500, interventions = treats)
 
 ## produce plot
-ceef.plot(m, graph_type = "base")
+ceef.plot(m, graph = "base")
 
 \donttest{
 ## tweak the options
@@ -126,7 +143,7 @@ ceef.plot(m,
           dominance = FALSE,
           start.from.origins = FALSE,
           print.summary = FALSE,
-          graph_type = "base")
+          graph = "base")
           
 ## or use ggplot2 instead
 if(require(ggplot2)){
@@ -135,16 +152,15 @@ ceef.plot(m,
           start.from.origins = FALSE,
           pos = TRUE,
           print.summary = FALSE,
-          graph_type = "ggplot2")
+          graph = "ggplot2")
  }
 }
 
 }
 \references{
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2013}{BCEA}
 
-IQWIG (2009). General methods for the Assessment of the Relation of Benefits
-to Cost, Version 1.0. IQWIG, November 2009.
+\insertRef{IQWIG2009}{BCEA}
 }
 \seealso{
 \code{\link{bcea}}
@@ -152,4 +168,3 @@ to Cost, Version 1.0. IQWIG, November 2009.
 \author{
 Andrea Berardi, Gianluca Baio
 }
-\concept{"Health economic evaluation" "Multiple comparisons"}

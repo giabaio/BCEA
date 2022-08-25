@@ -1,53 +1,35 @@
 
-#' @rdname mixedAn
-#' 
 #' @export
 #'
-mixedAn.bcea <- function(he,
-                         mkt.shares = NULL,
-                         plot = FALSE) {
+'mixedAn<-.bcea' <- function(he,
+                             value = NULL) {
   
   Ubar <- OL.star <- evi.star <- NULL
-  if (is.null(mkt.shares)) {
-    mkt.shares <- rep(1, he$n_comparators)/he$n_comparators
+  
+  if (is.null(value)) {
+    value <- rep(1, he$n_comparators)/he$n_comparators
   }
-  temp <- array(NA, c(he$n_sim,length(he$k), he$n_comparators))
-  for (j in seq_len(he$n_comparators)) {
-    temp[, , j] <- mkt.shares[j]*he$U[, , j]
-  }
-  Ubar <- apply(temp, c(1, 2), sum)
+  
+  Ubar <- compute_Ubar(he, value)
   OL.star <- he$Ustar - Ubar
-  evi.star <- apply(OL.star, 2, mean)
+  evi.star <- compute_EVI(OL.star)
   
-  ma <- list(
-    Ubar = Ubar,
-    OL.star = OL.star,
-    evi.star = evi.star,
-    k = he$k,
-    Kmax = he$Kmax,
-    step = he$step,
-    ref = he$ref,
-    comp = he$comp,
-    mkt.shares = mkt.shares,
-    n_comparisons = he$n_comparisons,
-    interventions = he$interventions,
-    evi = he$evi)
-  
-  class(ma) <- "mixedAn"
-  
-  if (plot) {
-    plot.mixedAn(ma)
-  }
-  return(ma)
+  structure(
+    modifyList(
+      he,
+      list(
+        Ubar = Ubar,
+        OL.star = OL.star,
+        evi.star = evi.star,
+        mkt.shares = value)),
+    class = c("mixedAn", class(he)))
 }
 
 
-#' @rdname mixedAn
 #' @export
 #' 
-mixedAn.default <- function(he,
-                            mkt.shares = NULL,
-                            plot = FALSE) {
-  stop("No method available", call. = TRUE)
+'mixedAn<-.default' <- function(he,
+                                value) {
+  stop("No method available", call. = FALSE)
 }
 

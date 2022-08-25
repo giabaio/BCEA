@@ -1,0 +1,73 @@
+---
+title: "Paired vs Multiple Comparisons"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Paired vs Multiple Comparisons}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+  
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+collapse = TRUE,
+comment = "#>",
+fig.width = 6
+)
+```
+
+```{r setup, results='hide', message=FALSE, warning=FALSE, echo=FALSE}
+library(BCEA)
+library(dplyr)
+library(reshape2)
+library(ggplot2)
+library(purrr)
+```
+
+## Introduction
+
+The intention of this vignette is to show how to plot the CEAC and EIB plots depending on whether we consider all interventions simultaneously or pair-wise against a reference.
+
+## Multiple interventions
+
+This situation is when there are more than two interventions to consider.
+Incremental values can be obtained either always against a fixed reference intervention, such as status-quo, or for all comparisons simultaneously.
+We will call these a paired comparison or a multiple comparison.
+
+### Against a fixed reference intervention
+
+#### R code
+
+This is the default plot for `ceac.plot()` so we simply follow the same steps as above with the new data set.
+
+```{r}
+data("Smoking")
+he <- bcea(eff, cost, ref = 4, Kmax = 500)
+```
+
+```{r fig.height=10}
+par(mfrow = c(2,1))
+ceac.plot(he)
+abline(h = 0.5, lty = 2)
+abline(v = c(160, 225), lty = 3)
+eib.plot(he, plot.cri = FALSE)
+```
+
+
+### Pair-wise comparisons
+
+#### R code
+
+In _BCEA_ we first we must determine all combinations of paired interventions using the `multi.ce()` function.
+
+```{r}
+he.multi <- multi.ce(he)
+```
+
+```{r fig.height=10}
+par(mfrow = c(2, 1))
+ceac.plot(he.multi)
+abline(h = 0.5, lty = 2)
+abline(v = c(160, 225), lty = 3)
+eib.plot(he, plot.cri = FALSE)
+```
+

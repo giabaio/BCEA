@@ -9,7 +9,7 @@
   he,
   comparison = NULL,
   wtp = 25000,
-  bw = nbw,
+  bw = "bcv",
   n = 512,
   xlim = NULL,
   graph = c("base", "ggplot2"),
@@ -24,7 +24,8 @@ modelling and the economic evaluation.}
 
 \item{comparison}{In the case of multiple interventions, specifies the one
 to be used in comparison with the reference. Default value of \code{NULL}
-forces R to consider the first non-reference intervention as the comparator.}
+forces R to consider the first non-reference intervention as the comparator.
+Controls which comparator is used when more than 2 interventions are present}
 
 \item{wtp}{The value of the willingness to pay threshold. Default value at
 \code{25000}.}
@@ -56,18 +57,13 @@ Plots the distribution of the Incremental Benefit (IB) for a given value of
 the willingness to pay threshold.
 }
 \references{
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics. Statistical Methods in Medical Research
-doi:10.1177/0962280211419832.
-
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2011}{BCEA}
+\insertRef{Baio2013}{BCEA}
 }
 \seealso{
 \code{\link{bcea}},
-         \code{\link{ib.plot}},
          \code{\link{ceplane.plot}}
 }
 \author{
 Gianluca Baio, Andrea Berardi
 }
-\concept{"Health economic evaluation"}

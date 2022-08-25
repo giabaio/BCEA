@@ -4,7 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="BCEA">
 <title>Set bcea() Parameters: Constructor and Setters • BCEA</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -12,12 +13,12 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Set bcea() Parameters: Constructor and Setters">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
+<meta property="og:title" content="Set bcea() Parameters: Constructor and Setters">
 <meta property="og:description" content="BCEA">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -25,362 +26,368 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">BCEA</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4</span>
-      </span>
-    </div>
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
+    
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    
+    <a class="navbar-brand me-2" href="../index.html">BCEA</a>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.2</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../reference/index.html">Reference</a>
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/bcea.html">Get Started</a>
+    <a class="dropdown-item" href="../articles/ceac.html">Cost-Effectiveness Acceptability Curve Plots</a>
+    <a class="dropdown-item" href="../articles/ceef.html">Cost-Effectiveness Efficiency Frontier</a>
+    <a class="dropdown-item" href="../articles/ceplane.html">Cost-effectiveness plane</a>
+    <a class="dropdown-item" href="../articles/CEriskav.html">Risk Aversion Analysis</a>
+    <a class="dropdown-item" href="../articles/contour.html">Contour plots</a>
+    <a class="dropdown-item" href="../articles/eib.html">Expected Incremental Benefit Plot</a>
+    <a class="dropdown-item" href="../articles/paired_vs_multiple_comps.html">Paired vs Multiple Comparisons</a>
+    <a class="dropdown-item" href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+  </div>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/ceac.html">Cost-effectiveness acceptability curve plots</a>
-    </li>
-    <li class="divider">
-    <li>
-      <a href="../articles/index.html">More...</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/giabaio/BCEA/">
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/n8thangreen/BCEA/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
       </ul>
 </div>
-<!--/.nav-collapse -->
+
+    
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
+</nav><div class="container template-article">
 
-      
 
-      </header><script src="Set_bcea_parameters_files/header-attrs-2.5/header-attrs.js"></script><link href="Set_bcea_parameters_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="Set_bcea_parameters_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Set bcea() Parameters: Constructor and Setters</h1>
+
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+      <img src="../logo.png" class="logo" alt=""><h1>Set bcea() Parameters: Constructor and Setters</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/master/vignettes/Set_bcea_parameters.Rmd"><code>vignettes/Set_bcea_parameters.Rmd</code></a></small>
-      <div class="hidden name"><code>Set_bcea_parameters.Rmd</code></div>
-
+      <small class="dont-index">Source: <a href="https://github.com/n8thangreen/BCEA/blob/HEAD/vignettes/Set_bcea_parameters.Rmd" class="external-link"><code>vignettes/Set_bcea_parameters.Rmd</code></a></small>
+      <div class="d-none name"><code>Set_bcea_parameters.Rmd</code></div>
     </div>
 
     
     
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.statistica.it/gianluca/BCEA">BCEA</a></span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'BCEA'</span>
-<span class="co">#&gt; The following object is masked from 'package:graphics':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     contour</span></pre></div>
-<p>There are several arguments passed to <code><a href="../reference/bcea.html">bcea()</a></code> to specify the form of the analysis. These are</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>,
-     <span class="va">c</span>,
-     ref <span class="op">=</span> <span class="fl">1</span>,
-     interventions <span class="op">=</span> <span class="cn">NULL</span>,
-     .comparison <span class="op">=</span> <span class="cn">NULL</span>,
-     Kmax <span class="op">=</span> <span class="fl">50000</span>,
-     wtp <span class="op">=</span> <span class="cn">NULL</span>,
-     plot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://gianluca.statistica.it/software/bcea/" class="external-link">BCEA</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'BCEA'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:graphics':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     contour</span></span></code></pre></div>
+<p>There are several arguments passed to <code><a href="../reference/bcea.html">bcea()</a></code> to specify
+the form of the analysis. These are</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">eff</span>, <span class="va">cost</span>,</span>
+<span>     ref <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>     interventions <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>     .comparison <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>     Kmax <span class="op">=</span> <span class="fl">50000</span>,</span>
+<span>     wtp <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>     plot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p>Those of interest here are:</p>
 <ul>
 <li>
-<code>ref</code> is the reference intervention group to compare against the other groups.</li>
+<code>ref</code> is the reference intervention group to compare
+against the other groups.</li>
 <li>
-<code>.comparisons</code> are the groups to compare against <code>ref</code>. The default is all of the non-<code>ref</code> groups. This is a new argument in the latest release of BCEA to make it more flexible and consistent with other functions. A preceding dot is used to keep it back-compatible with previous versions of BCEA. Argument <code>c</code> is partially matched with both <code>c</code> and <code>comparison</code> otherwise throwing an error.</li>
+<code>.comparisons</code> are the groups to compare against
+<code>ref</code>. The default is all of the non-<code>ref</code> groups.
+This is a new argument in the latest release of BCEA to make it more
+flexible and consistent with other functions. A preceding dot is used to
+keep it back-compatible with previous versions of BCEA. Argument
+<code>c</code> is partially matched with both <code>c</code> and
+<code>comparison</code> otherwise throwing an error.</li>
 <li>
-<code>Kmax</code> is the maximum value of the willingness-to-pay to calculate statistics for.</li>
+<code>Kmax</code> is the maximum value of the willingness-to-pay to
+calculate statistics for.</li>
 </ul>
-<p>During an analysis we may want to explore changing some of these parameters and keeping all of the others the same. We can do with with package setter functions.</p>
-<div id="changing-reference-group" class="section level3">
-<h3 class="hasAnchor">
-<a href="#changing-reference-group" class="anchor"></a>Changing Reference Group</h3>
+<p>During an analysis we may want to explore changing some of these
+parameters and keeping all of the others the same. We can do with with
+package setter functions.</p>
+<div class="section level3">
+<h3 id="changing-reference-group">Changing Reference Group<a class="anchor" aria-label="anchor" href="#changing-reference-group"></a>
+</h3>
 <p>Load cost-effectiveness data.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="../reference/Smoking.html">data</a></span><span class="op">(</span><span class="va">Vaccine</span><span class="op">)</span></pre></div>
-<p>We first create <code>bcea</code> object using the constructor function for 2 different reference groups.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="va">he_ref1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span>,
-                ref <span class="op">=</span> <span class="fl">1</span>,           
-                interventions <span class="op">=</span> <span class="va">treats</span>,
-                Kmax <span class="op">=</span> <span class="fl">50000</span><span class="op">)</span>  
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">he_ref1</span><span class="op">)</span>
-<span class="co">#&gt; List of 24</span>
-<span class="co">#&gt;  $ n_sim        : int 1000</span>
-<span class="co">#&gt;  $ n_comparators: num 2</span>
-<span class="co">#&gt;  $ n_comparisons: int 1</span>
-<span class="co">#&gt;  $ delta_e      :'data.frame':   1000 obs. of  1 variable:</span>
-<span class="co">#&gt;   ..$ Vaccination: num [1:1000] -0.000148 -0.000152 -0.000192 -0.000504 -0.000394 ...</span>
-<span class="co">#&gt;  $ delta_c      :'data.frame':   1000 obs. of  1 variable:</span>
-<span class="co">#&gt;   ..$ Vaccination: num [1:1000] -5.84 -3.54 -10.15 -6.45 -6.68 ...</span>
-<span class="co">#&gt;  $ ICER         : Named num 20098</span>
-<span class="co">#&gt;   ..- attr(*, "names")= chr "Vaccination"</span>
-<span class="co">#&gt;  $ Kmax         : num 50000</span>
-<span class="co">#&gt;  $ k            : num [1:501] 0 100 200 300 400 500 600 700 800 900 ...</span>
-<span class="co">#&gt;  $ ceac         : num [1:501, 1] 0.98 0.978 0.977 0.977 0.977 0.976 0.976 0.975 0.975 0.973 ...</span>
-<span class="co">#&gt;   ..- attr(*, "dimnames")=List of 2</span>
-<span class="co">#&gt;   .. ..$ k   : NULL</span>
-<span class="co">#&gt;   .. ..$ ints: chr "Vaccination"</span>
-<span class="co">#&gt;  $ ib           : num [1:501, 1:1000, 1] 5.84 5.83 5.81 5.8 5.78 ...</span>
-<span class="co">#&gt;   ..- attr(*, "dimnames")=List of 3</span>
-<span class="co">#&gt;   .. ..$ k   : NULL</span>
-<span class="co">#&gt;   .. ..$ sims: NULL</span>
-<span class="co">#&gt;   .. ..$ ints: chr "Vaccination"</span>
-<span class="co">#&gt;  $ eib          : num [1:501, 1] 5.04 5.01 4.99 4.96 4.94 ...</span>
-<span class="co">#&gt;   ..- attr(*, "dimnames")=List of 2</span>
-<span class="co">#&gt;   .. ..$ k   : NULL</span>
-<span class="co">#&gt;   .. ..$ ints: chr "Vaccination"</span>
-<span class="co">#&gt;  $ kstar        : num 20100</span>
-<span class="co">#&gt;  $ best         : int [1:501] 1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="co">#&gt;  $ U            : num [1:1000, 1:501, 1:2] -10.41 -5.83 -5.78 -12.21 -9.79 ...</span>
-<span class="co">#&gt;   ..- attr(*, "dimnames")=List of 3</span>
-<span class="co">#&gt;   .. ..$ sims: NULL</span>
-<span class="co">#&gt;   .. ..$ k   : NULL</span>
-<span class="co">#&gt;   .. ..$ ints: chr [1:2] "Status Quo" "Vaccination"</span>
-<span class="co">#&gt;  $ vi           : num [1:1000, 1:501] 1.764 6.339 6.389 -0.035 2.387 ...</span>
-<span class="co">#&gt;  $ Ustar        : num [1:1000, 1:501] -10.41 -5.83 -5.78 -12.21 -9.79 ...</span>
-<span class="co">#&gt;  $ ol           : num [1:1000, 1:501] 0 0 0 0 0 0 0 0 0 0 ...</span>
-<span class="co">#&gt;  $ evi          : num [1:501] 0.0562 0.0573 0.0586 0.0598 0.0611 ...</span>
-<span class="co">#&gt;  $ ref          : int 1</span>
-<span class="co">#&gt;  $ comp         : int 2</span>
-<span class="co">#&gt;  $ step         : num 100</span>
-<span class="co">#&gt;  $ interventions: chr [1:2] "Status Quo" "Vaccination"</span>
-<span class="co">#&gt;  $ e            : num [1:1000, 1:2] -0.001047 -0.000884 -0.00089 -0.001643 -0.001352 ...</span>
-<span class="co">#&gt;   ..- attr(*, "dimnames")=List of 2</span>
-<span class="co">#&gt;   .. ..$ : NULL</span>
-<span class="co">#&gt;   .. ..$ : chr [1:2] "Status Quo" "Vaccination"</span>
-<span class="co">#&gt;  $ c            : num [1:1000, 1:2] 10.41 5.83 5.78 12.21 9.79 ...</span>
-<span class="co">#&gt;   ..- attr(*, "dimnames")=List of 2</span>
-<span class="co">#&gt;   .. ..$ : NULL</span>
-<span class="co">#&gt;   .. ..$ : chr [1:2] "Status Quo" "Vaccination"</span>
-<span class="co">#&gt;  - attr(*, "class")= chr [1:2] "bcea" "list"</span>
-
-<span class="fu"><a href="../reference/ceplane.plot.bcea.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_ref1</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/Smoking.html">data</a></span><span class="op">(</span><span class="va">Vaccine</span><span class="op">)</span></span></code></pre></div>
+<p>We first create <code>bcea</code> object using the constructor
+function for 2 different reference groups.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">he_ref1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">eff</span>, <span class="va">cost</span>,</span>
+<span>                ref <span class="op">=</span> <span class="fl">1</span>,           </span>
+<span>                interventions <span class="op">=</span> <span class="va">treats</span>,</span>
+<span>                Kmax <span class="op">=</span> <span class="fl">50000</span><span class="op">)</span>  </span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">he_ref1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 24</span></span>
+<span><span class="co">#&gt;  $ n_sim        : int 1000</span></span>
+<span><span class="co">#&gt;  $ n_comparators: num 2</span></span>
+<span><span class="co">#&gt;  $ n_comparisons: int 1</span></span>
+<span><span class="co">#&gt;  $ delta_e      :'data.frame':   1000 obs. of  1 variable:</span></span>
+<span><span class="co">#&gt;   ..$ Vaccination: num [1:1000] -0.000148 -0.000152 -0.000192 -0.000504 -0.000394 ...</span></span>
+<span><span class="co">#&gt;  $ delta_c      :'data.frame':   1000 obs. of  1 variable:</span></span>
+<span><span class="co">#&gt;   ..$ Vaccination: num [1:1000] -5.84 -3.54 -10.15 -6.45 -6.68 ...</span></span>
+<span><span class="co">#&gt;  $ ICER         : Named num 20098</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "names")= chr "Vaccination"</span></span>
+<span><span class="co">#&gt;  $ Kmax         : num 50000</span></span>
+<span><span class="co">#&gt;  $ k            : num [1:501] 0 100 200 300 400 500 600 700 800 900 ...</span></span>
+<span><span class="co">#&gt;  $ ceac         : num [1:501, 1] 0.98 0.978 0.977 0.977 0.977 0.976 0.976 0.975 0.975 0.973 ...</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "dimnames")=List of 2</span></span>
+<span><span class="co">#&gt;   .. ..$ k   : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ ints: chr "Vaccination"</span></span>
+<span><span class="co">#&gt;  $ ib           : num [1:501, 1:1000, 1] 5.84 5.83 5.81 5.8 5.78 ...</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "dimnames")=List of 3</span></span>
+<span><span class="co">#&gt;   .. ..$ k   : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ sims: NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ ints: chr "Vaccination"</span></span>
+<span><span class="co">#&gt;  $ eib          : num [1:501, 1] 5.04 5.01 4.99 4.96 4.94 ...</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "dimnames")=List of 2</span></span>
+<span><span class="co">#&gt;   .. ..$ k   : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ ints: chr "Vaccination"</span></span>
+<span><span class="co">#&gt;  $ kstar        : num 20100</span></span>
+<span><span class="co">#&gt;  $ best         : int [1:501] 1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span><span class="co">#&gt;  $ U            : num [1:1000, 1:501, 1:2] -10.41 -5.83 -5.78 -12.21 -9.79 ...</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "dimnames")=List of 3</span></span>
+<span><span class="co">#&gt;   .. ..$ sims: NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ k   : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ ints: chr [1:2] "Status Quo" "Vaccination"</span></span>
+<span><span class="co">#&gt;  $ vi           : num [1:1000, 1:501] -0.754 3.821 3.871 -2.553 -0.131 ...</span></span>
+<span><span class="co">#&gt;  $ Ustar        : num [1:1000, 1:501] -10.41 -5.83 -5.78 -12.21 -9.79 ...</span></span>
+<span><span class="co">#&gt;  $ ol           : num [1:1000, 1:501] 0 0 0 0 0 0 0 0 0 0 ...</span></span>
+<span><span class="co">#&gt;  $ evi          : num [1:501] 0.0562 0.0573 0.0586 0.0598 0.0611 ...</span></span>
+<span><span class="co">#&gt;  $ ref          : int 1</span></span>
+<span><span class="co">#&gt;  $ comp         : int 2</span></span>
+<span><span class="co">#&gt;  $ step         : num 100</span></span>
+<span><span class="co">#&gt;  $ interventions: chr [1:2] "Status Quo" "Vaccination"</span></span>
+<span><span class="co">#&gt;  $ e            : num [1:1000, 1:2] -0.001047 -0.000884 -0.00089 -0.001643 -0.001352 ...</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "dimnames")=List of 2</span></span>
+<span><span class="co">#&gt;   .. ..$ : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ : chr [1:2] "Status Quo" "Vaccination"</span></span>
+<span><span class="co">#&gt;  $ c            : num [1:1000, 1:2] 10.41 5.83 5.78 12.21 9.79 ...</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "dimnames")=List of 2</span></span>
+<span><span class="co">#&gt;   .. ..$ : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ : chr [1:2] "Status Quo" "Vaccination"</span></span>
+<span><span class="co">#&gt;  - attr(*, "class")= chr [1:2] "bcea" "list"</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_ref1</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-4-1.png" width="576"></p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">he_ref2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span>,
-                ref <span class="op">=</span> <span class="fl">2</span>,           
-                interventions <span class="op">=</span> <span class="va">treats</span>,
-                Kmax <span class="op">=</span> <span class="fl">50000</span><span class="op">)</span>  
-
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">he_ref2</span><span class="op">[</span><span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="st">"n_comparators"</span>, <span class="st">"ICER"</span>, <span class="st">"ref"</span>, <span class="st">"comp"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt; List of 4</span>
-<span class="co">#&gt;  $ n_comparators: num 2</span>
-<span class="co">#&gt;  $ ICER         : Named num 20098</span>
-<span class="co">#&gt;   ..- attr(*, "names")= chr "Status Quo"</span>
-<span class="co">#&gt;  $ ref          : int 2</span>
-<span class="co">#&gt;  $ comp         : int 1</span></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">he_ref2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">eff</span>, <span class="va">cost</span>,</span>
+<span>                ref <span class="op">=</span> <span class="fl">2</span>,           </span>
+<span>                interventions <span class="op">=</span> <span class="va">treats</span>,</span>
+<span>                Kmax <span class="op">=</span> <span class="fl">50000</span><span class="op">)</span>  </span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">he_ref2</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n_comparators"</span>, <span class="st">"ICER"</span>, <span class="st">"ref"</span>, <span class="st">"comp"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 4</span></span>
+<span><span class="co">#&gt;  $ n_comparators: num 2</span></span>
+<span><span class="co">#&gt;  $ ICER         : Named num 20098</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "names")= chr "Status Quo"</span></span>
+<span><span class="co">#&gt;  $ ref          : int 2</span></span>
+<span><span class="co">#&gt;  $ comp         : int 1</span></span></code></pre></div>
 <p>Alternatively, we can do the same by modifying the first output.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="fu">setReferenceGroup</span><span class="op">(</span><span class="va">he_ref1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">2</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">he_ref1</span><span class="op">[</span><span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="st">"n_comparators"</span>, <span class="st">"ICER"</span>, <span class="st">"ref"</span>, <span class="st">"comp"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt; List of 4</span>
-<span class="co">#&gt;  $ n_comparators: num 2</span>
-<span class="co">#&gt;  $ ICER         : Named num 20098</span>
-<span class="co">#&gt;   ..- attr(*, "names")= chr "intervention 1"</span>
-<span class="co">#&gt;  $ ref          : int 2</span>
-<span class="co">#&gt;  $ comp         : int 1</span></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">setReferenceGroup</span><span class="op">(</span><span class="va">he_ref1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">he_ref1</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n_comparators"</span>, <span class="st">"ICER"</span>, <span class="st">"ref"</span>, <span class="st">"comp"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 4</span></span>
+<span><span class="co">#&gt;  $ n_comparators: num 2</span></span>
+<span><span class="co">#&gt;  $ ICER         : Named num 20098</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "names")= chr "Status Quo"</span></span>
+<span><span class="co">#&gt;  $ ref          : int 2</span></span>
+<span><span class="co">#&gt;  $ comp         : int 1</span></span></code></pre></div>
 </div>
-<div id="changing-kmax" class="section level3">
-<h3 class="hasAnchor">
-<a href="#changing-kmax" class="anchor"></a>Changing Kmax</h3>
-<p>In the same way as above we can change <code>Kmax</code> in 2 equivalent ways.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="va">he_Kmax1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span>,
-                 ref <span class="op">=</span> <span class="fl">1</span>,           
-                 interventions <span class="op">=</span> <span class="va">treats</span>,
-                 Kmax <span class="op">=</span> <span class="fl">50000</span><span class="op">)</span>  
-
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">he_Kmax1</span><span class="op">[</span><span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="st">"n_comparators"</span>, <span class="st">"ICER"</span>, <span class="st">"ref"</span>, <span class="st">"comp"</span>, <span class="st">"Kmax"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt; List of 5</span>
-<span class="co">#&gt;  $ n_comparators: num 2</span>
-<span class="co">#&gt;  $ ICER         : Named num 20098</span>
-<span class="co">#&gt;   ..- attr(*, "names")= chr "Vaccination"</span>
-<span class="co">#&gt;  $ ref          : int 1</span>
-<span class="co">#&gt;  $ comp         : int 2</span>
-<span class="co">#&gt;  $ Kmax         : num 50000</span></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="va">he_Kmax2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span>,
-                 ref <span class="op">=</span> <span class="fl">2</span>,           
-                 interventions <span class="op">=</span> <span class="va">treats</span>,
-                 Kmax <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span>  
-
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">he_Kmax2</span><span class="op">[</span><span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="st">"n_comparators"</span>, <span class="st">"ICER"</span>, <span class="st">"ref"</span>, <span class="st">"comp"</span>, <span class="st">"Kmax"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt; List of 5</span>
-<span class="co">#&gt;  $ n_comparators: num 2</span>
-<span class="co">#&gt;  $ ICER         : Named num 20098</span>
-<span class="co">#&gt;   ..- attr(*, "names")= chr "Status Quo"</span>
-<span class="co">#&gt;  $ ref          : int 2</span>
-<span class="co">#&gt;  $ comp         : int 1</span>
-<span class="co">#&gt;  $ Kmax         : num 2000</span></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="fu">setKmax</span><span class="op">(</span><span class="va">he_Kmax1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">2000</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">he_Kmax1</span><span class="op">[</span><span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="st">"n_comparators"</span>, <span class="st">"ICER"</span>, <span class="st">"ref"</span>, <span class="st">"comp"</span>, <span class="st">"Kmax"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt; List of 5</span>
-<span class="co">#&gt;  $ n_comparators: num 2</span>
-<span class="co">#&gt;  $ ICER         : Named num 20098</span>
-<span class="co">#&gt;   ..- attr(*, "names")= chr "intervention 2"</span>
-<span class="co">#&gt;  $ ref          : int 1</span>
-<span class="co">#&gt;  $ comp         : int 2</span>
-<span class="co">#&gt;  $ Kmax         : num 2000</span></pre></div>
+<div class="section level3">
+<h3 id="changing-kmax">Changing Kmax<a class="anchor" aria-label="anchor" href="#changing-kmax"></a>
+</h3>
+<p>In the same way as above we can change <code>Kmax</code> in 2
+equivalent ways.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">he_Kmax1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">eff</span>, <span class="va">cost</span>,</span>
+<span>                 ref <span class="op">=</span> <span class="fl">1</span>,           </span>
+<span>                 interventions <span class="op">=</span> <span class="va">treats</span>,</span>
+<span>                 Kmax <span class="op">=</span> <span class="fl">50000</span><span class="op">)</span>  </span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">he_Kmax1</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n_comparators"</span>, <span class="st">"ICER"</span>, <span class="st">"ref"</span>, <span class="st">"comp"</span>, <span class="st">"Kmax"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 5</span></span>
+<span><span class="co">#&gt;  $ n_comparators: num 2</span></span>
+<span><span class="co">#&gt;  $ ICER         : Named num 20098</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "names")= chr "Vaccination"</span></span>
+<span><span class="co">#&gt;  $ ref          : int 1</span></span>
+<span><span class="co">#&gt;  $ comp         : int 2</span></span>
+<span><span class="co">#&gt;  $ Kmax         : num 50000</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">he_Kmax2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">eff</span>, <span class="va">cost</span>,</span>
+<span>                 ref <span class="op">=</span> <span class="fl">2</span>,           </span>
+<span>                 interventions <span class="op">=</span> <span class="va">treats</span>,</span>
+<span>                 Kmax <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span>  </span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">he_Kmax2</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n_comparators"</span>, <span class="st">"ICER"</span>, <span class="st">"ref"</span>, <span class="st">"comp"</span>, <span class="st">"Kmax"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 5</span></span>
+<span><span class="co">#&gt;  $ n_comparators: num 2</span></span>
+<span><span class="co">#&gt;  $ ICER         : Named num 20098</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "names")= chr "Status Quo"</span></span>
+<span><span class="co">#&gt;  $ ref          : int 2</span></span>
+<span><span class="co">#&gt;  $ comp         : int 1</span></span>
+<span><span class="co">#&gt;  $ Kmax         : num 2000</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">setKmax</span><span class="op">(</span><span class="va">he_Kmax1</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">2000</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">he_Kmax1</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n_comparators"</span>, <span class="st">"ICER"</span>, <span class="st">"ref"</span>, <span class="st">"comp"</span>, <span class="st">"Kmax"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 5</span></span>
+<span><span class="co">#&gt;  $ n_comparators: num 2</span></span>
+<span><span class="co">#&gt;  $ ICER         : Named num 20098</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "names")= chr "Vaccination"</span></span>
+<span><span class="co">#&gt;  $ ref          : int 1</span></span>
+<span><span class="co">#&gt;  $ comp         : int 2</span></span>
+<span><span class="co">#&gt;  $ Kmax         : num 2000</span></span></code></pre></div>
 </div>
-<div id="change-comparison-groups" class="section level3">
-<h3 class="hasAnchor">
-<a href="#change-comparison-groups" class="anchor"></a>Change Comparison Groups</h3>
+<div class="section level3">
+<h3 id="change-comparison-groups">Change Comparison Groups<a class="anchor" aria-label="anchor" href="#change-comparison-groups"></a>
+</h3>
 <p>Lets load some data with more than two groups.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="fu"><a href="../reference/Smoking.html">data</a></span><span class="op">(</span><span class="va">Smoking</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/Smoking.html">data</a></span><span class="op">(</span><span class="va">Smoking</span><span class="op">)</span></span></code></pre></div>
 <p>Defaults is all other groups which in this case is 2, 3 and 4.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="va">he_comp234</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span>,
-                   ref <span class="op">=</span> <span class="fl">1</span>,           
-                   interventions <span class="op">=</span> <span class="va">treats</span>,
-                   Kmax <span class="op">=</span> <span class="fl">50000</span><span class="op">)</span>  
-
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">he_comp234</span><span class="op">[</span><span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="st">"n_comparators"</span>, <span class="st">"ICER"</span>, <span class="st">"ref"</span>, <span class="st">"comp"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt; List of 4</span>
-<span class="co">#&gt;  $ n_comparators: num 4</span>
-<span class="co">#&gt;  $ ICER         : Named num [1:3] 159 196 198</span>
-<span class="co">#&gt;   ..- attr(*, "names")= chr [1:3] "Self-help" "Individual counselling" "Group counselling"</span>
-<span class="co">#&gt;  $ ref          : int 1</span>
-<span class="co">#&gt;  $ comp         : int [1:3] 2 3 4</span>
-
-<span class="fu"><a href="../reference/ceplane.plot.bcea.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_comp234</span>, wtp <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">he_comp234</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">eff</span>, <span class="va">cost</span>,</span>
+<span>                   ref <span class="op">=</span> <span class="fl">1</span>,           </span>
+<span>                   interventions <span class="op">=</span> <span class="va">treats</span>,</span>
+<span>                   Kmax <span class="op">=</span> <span class="fl">50000</span><span class="op">)</span>  </span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">he_comp234</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n_comparators"</span>, <span class="st">"ICER"</span>, <span class="st">"ref"</span>, <span class="st">"comp"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 4</span></span>
+<span><span class="co">#&gt;  $ n_comparators: num 4</span></span>
+<span><span class="co">#&gt;  $ ICER         : Named num [1:3] 159 196 198</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "names")= chr [1:3] "Self-help" "Individual counselling" "Group counselling"</span></span>
+<span><span class="co">#&gt;  $ ref          : int 1</span></span>
+<span><span class="co">#&gt;  $ comp         : int [1:3] 2 3 4</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_comp234</span>, wtp <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-11-1.png" width="576"></p>
 <p>Let us compare against only groups 2.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="va">he_comp2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span>,
-                 ref <span class="op">=</span> <span class="fl">1</span>,
-                 .comparison <span class="op">=</span> <span class="fl">2</span>,
-                 interventions <span class="op">=</span> <span class="va">treats</span>,
-                 Kmax <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span>  
-
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">he_comp2</span><span class="op">[</span><span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="st">"n_comparators"</span>, <span class="st">"ICER"</span>, <span class="st">"ref"</span>, <span class="st">"comp"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt; List of 4</span>
-<span class="co">#&gt;  $ n_comparators: num 2</span>
-<span class="co">#&gt;  $ ICER         : Named num 159</span>
-<span class="co">#&gt;   ..- attr(*, "names")= chr "Self-help"</span>
-<span class="co">#&gt;  $ ref          : int 1</span>
-<span class="co">#&gt;  $ comp         : num 2</span>
-
-<span class="fu"><a href="../reference/ceplane.plot.bcea.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_comp2</span>, wtp <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">he_comp2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">eff</span>, <span class="va">cost</span>,</span>
+<span>                 ref <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>                 .comparison <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>                 interventions <span class="op">=</span> <span class="va">treats</span>,</span>
+<span>                 Kmax <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span>  </span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">he_comp2</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n_comparators"</span>, <span class="st">"ICER"</span>, <span class="st">"ref"</span>, <span class="st">"comp"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 4</span></span>
+<span><span class="co">#&gt;  $ n_comparators: num 2</span></span>
+<span><span class="co">#&gt;  $ ICER         : Named num 159</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "names")= chr "Self-help"</span></span>
+<span><span class="co">#&gt;  $ ref          : int 1</span></span>
+<span><span class="co">#&gt;  $ comp         : num 2</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_comp2</span>, wtp <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-12-1.png" width="576"></p>
 <p>We can achieve the same thing using the appropriate setter.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="fu"><a href="../reference/setComparisons.html">setComparisons</a></span><span class="op">(</span><span class="va">he_comp234</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">2</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">he_comp234</span><span class="op">[</span><span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="st">"n_comparators"</span>, <span class="st">"ICER"</span>, <span class="st">"ref"</span>, <span class="st">"comp"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt; List of 4</span>
-<span class="co">#&gt;  $ n_comparators: num 2</span>
-<span class="co">#&gt;  $ ICER         : Named num 159</span>
-<span class="co">#&gt;   ..- attr(*, "names")= chr "Self-help"</span>
-<span class="co">#&gt;  $ ref          : int 1</span>
-<span class="co">#&gt;  $ comp         : num 2</span>
-
-<span class="fu"><a href="../reference/ceplane.plot.bcea.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_comp234</span>, wtp <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/setComparisons.html">setComparisons</a></span><span class="op">(</span><span class="va">he_comp234</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">he_comp234</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n_comparators"</span>, <span class="st">"ICER"</span>, <span class="st">"ref"</span>, <span class="st">"comp"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 4</span></span>
+<span><span class="co">#&gt;  $ n_comparators: num 2</span></span>
+<span><span class="co">#&gt;  $ ICER         : Named num 159</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "names")= chr "Self-help"</span></span>
+<span><span class="co">#&gt;  $ ref          : int 1</span></span>
+<span><span class="co">#&gt;  $ comp         : num 2</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_comp234</span>, wtp <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-13-1.png" width="576"></p>
-<p>We can select multiple comparison groups too. Let us compare against only groups 2 and 4.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="va">he_comp24</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span>,
-                  ref <span class="op">=</span> <span class="fl">1</span>,
-                  .comparison <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span><span class="op">)</span>,
-                  interventions <span class="op">=</span> <span class="va">treats</span>,
-                  Kmax <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span>  
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">he_comp24</span><span class="op">[</span><span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="st">"n_comparators"</span>, <span class="st">"ICER"</span>, <span class="st">"ref"</span>, <span class="st">"comp"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt; List of 4</span>
-<span class="co">#&gt;  $ n_comparators: num 3</span>
-<span class="co">#&gt;  $ ICER         : Named num [1:2] 159 198</span>
-<span class="co">#&gt;   ..- attr(*, "names")= chr [1:2] "Self-help" "Group counselling"</span>
-<span class="co">#&gt;  $ ref          : int 1</span>
-<span class="co">#&gt;  $ comp         : num [1:2] 2 4</span>
-
-<span class="fu"><a href="../reference/ceplane.plot.bcea.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_comp24</span>, wtp <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></pre></div>
+<p>We can select multiple comparison groups too. Let us compare against
+only groups 2 and 4.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">he_comp24</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">eff</span>, <span class="va">cost</span>,</span>
+<span>                  ref <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>                  .comparison <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span><span class="op">)</span>,</span>
+<span>                  interventions <span class="op">=</span> <span class="va">treats</span>,</span>
+<span>                  Kmax <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span>  </span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">he_comp24</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n_comparators"</span>, <span class="st">"ICER"</span>, <span class="st">"ref"</span>, <span class="st">"comp"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 4</span></span>
+<span><span class="co">#&gt;  $ n_comparators: num 3</span></span>
+<span><span class="co">#&gt;  $ ICER         : Named num [1:2] 159 198</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "names")= chr [1:2] "Self-help" "Group counselling"</span></span>
+<span><span class="co">#&gt;  $ ref          : int 1</span></span>
+<span><span class="co">#&gt;  $ comp         : num [1:2] 2 4</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_comp24</span>, wtp <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-14-1.png" width="576"></p>
-<div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="fu"><a href="../reference/setComparisons.html">setComparisons</a></span><span class="op">(</span><span class="va">he_comp234</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">he_comp234</span><span class="op">[</span><span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="st">"n_comparators"</span>, <span class="st">"ICER"</span>, <span class="st">"ref"</span>, <span class="st">"comp"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt; List of 4</span>
-<span class="co">#&gt;  $ n_comparators: num 3</span>
-<span class="co">#&gt;  $ ICER         : Named num [1:2] 159 198</span>
-<span class="co">#&gt;   ..- attr(*, "names")= chr [1:2] "Self-help" "Group counselling"</span>
-<span class="co">#&gt;  $ ref          : int 1</span>
-<span class="co">#&gt;  $ comp         : num [1:2] 2 4</span>
-
-<span class="fu"><a href="../reference/ceplane.plot.bcea.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_comp24</span>, wtp <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/setComparisons.html">setComparisons</a></span><span class="op">(</span><span class="va">he_comp234</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">he_comp234</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n_comparators"</span>, <span class="st">"ICER"</span>, <span class="st">"ref"</span>, <span class="st">"comp"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 4</span></span>
+<span><span class="co">#&gt;  $ n_comparators: num 3</span></span>
+<span><span class="co">#&gt;  $ ICER         : Named num [1:2] 159 198</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "names")= chr [1:2] "Self-help" "Group counselling"</span></span>
+<span><span class="co">#&gt;  $ ref          : int 1</span></span>
+<span><span class="co">#&gt;  $ comp         : num [1:2] 2 4</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_comp24</span>, wtp <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-15-1.png" width="576"></p>
-<p>Further, a <code>bcea</code> object with all comparison groups can be passed to other functions such as <code>ceplane.plot</code> and <code>ceac.plot</code> with a <code>comparison</code> argument, which will do the modifications using these functions internally instead.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit">
-<span class="fu"><a href="../reference/ceplane.plot.bcea.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_comp234</span>, comparison <span class="op">=</span> <span class="fl">2</span>, wtp <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></pre></div>
+<p>Further, a <code>bcea</code> object with all comparison groups can be
+passed to other functions such as <code>ceplane.plot</code> and
+<code>ceac.plot</code> with a <code>comparison</code> argument, which
+will do the modifications using these functions internally instead.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_comp234</span>, comparison <span class="op">=</span> <span class="fl">2</span>, wtp <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-16-1.png" width="576"></p>
-<div class="sourceCode" id="cb17"><pre class="downlit">
-<span class="fu"><a href="../reference/ceplane.plot.bcea.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_comp234</span>, comparison <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span><span class="op">)</span>, wtp <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_comp234</span>, comparison <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span><span class="op">)</span>, wtp <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-16-2.png" width="576"></p>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-      </div>
-
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan Green.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p></p>
+<p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan Green.</p>
 </div>
 
-<div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+<div class="pkgdown-footer-right">
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
 
+  
 
   </body>
 </html>

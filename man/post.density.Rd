@@ -18,3 +18,7 @@ post.density(hyperparams, parameter, x, input.matrix)
 \description{
 Gaussian Process Fitting
 }
+\seealso{
+\code{\link{evppi}}
+}
+\keyword{internal}

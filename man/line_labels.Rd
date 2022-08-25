@@ -8,7 +8,7 @@
 \usage{
 line_labels(he, ...)
 
-\method{line_labels}{default}(he, ...)
+\method{line_labels}{default}(he, ref_first = TRUE, ...)
 
 \method{line_labels}{pairwise}(he, ...)
 }
@@ -20,4 +20,7 @@ modelling and the economic evaluation.}
 }
 \description{
 Create Labels for Plot
+
+Swapped labels so that reference is second
 }
+\keyword{internal}

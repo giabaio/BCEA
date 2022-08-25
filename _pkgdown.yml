@@ -1,74 +1,70 @@
 news:
   cran_dates: false
+  
+template:
+  bootstrap: 5
+  theme: atom-one-light
+  bslib:
+    font_scale: 1.0
 
 reference:
-- title: Main
-- contents:
-  - '`BCEA-package`'
-  - '`bcea`'
-  - '`bcea.default`'
-  - '`BCEAweb`'
-  - '`multi.ce`'
-  - '`new_bcea`'
-  - '`setReferenceGroup<-`'
-  - '`setKmax<-`'
-- title: Plotting
-- contents:
-  - '`ceac.plot.bcea`'
-  - '`ceac_plot_graph`'
-  - '`ceaf.plot`'
-  - '`ceef.plot.bcea`'
-  - '`ceplane.plot.bcea`'
-  - '`ceplane_plot_graph`'
-  - '`contour.bcea`'
-  - '`contour2.bcea`'
-  - '`eib.plot.bcea`'
-  - '`evi.plot.bcea`'
-  - '`ib.plot.bcea`'
-  - '`info.rank.bcea`'
-  - '`plot.bcea`'
-  - '`plot.CEriskav`'
-  - '`plot.evppi`'
-  - '`plot.mixedAn`'
-- title: Statistics
-- contents:
-  - '`best_interv_given_k`'
-  - '`compute_CEAC`'
-  - '`compute_EIB`'
-  - '`compute_IB`'
-  - '`compute_kstar`'
-  - '`compute_ol`'
-  - '`compute_U`'
-  - '`compute_Ustar`'
-  - '`compute_vi`'
-- title: Outputs
-- contents:
-  - '`make.report`'
-  - '`sim_table.bcea`'
-  - '`summary.bcea`'
-  - '`summary.mixedAn`'
-- title: Miscellaneous
-- contents:
-  - '`CEriskav`'
-  - '`create_inputs_evpi`'
-  - '`diag.evppi`'
-  - '`evppi`'
-  - '`mixedAn`'
-  - '`select_plot_type`'
-  - '`struct.psa`'
-- title: Data
-- contents:
-  - '`Smoking`'
-  - '`Vaccine`'
-
-
-articles:
-- title: Basics
-  navbar: ~
+- title: "Main"
   contents:
-  # - plot_bcea
-  - ceac
-- title: Advanced
+  - BCEA-package
+  - bcea
+  - new_bcea
+- title: "Setters"
+  desc: "Functions for modifying or extending a `bcea()` analysis."
   contents:
-  - Set_bcea_parameters
+  - starts_with("setComparisons")
+  - starts_with("setKmax")
+  - starts_with("setReferenceGroup")
+  - mixedAn<-
+  - CEriskav
+  - multi.ce
+  - struct.psa
+- title: "Plotting"
+  desc: "Functions for plotting a wide variety of cost-effectiveness plots in base R, ggplot2 and plotly."
+  contents:
+  - starts_with("ceac")
+  - starts_with("ceaf")
+  - starts_with("ceef")
+  - starts_with("ceplane")
+  - starts_with("contour")
+  - starts_with("eib.plot")
+  - starts_with("evi.plot")
+  - starts_with("evi_plot_graph")
+  - ib.plot
+  - starts_with("ib_plot")
+  - info.rank
+  - starts_with("info_rank_graph")
+  - plot.bcea
+  - plot.CEriskav
+  - starts_with("CEriskav_plot_graph")
+  - plot.evppi
+  - starts_with("evppi_plot_graph")
+- title: "Statistics"
+  desc: "Lower level functions for computing a range of cost-effectiveness statistics."
+  contents:
+  - best_interv_given_k
+  - starts_with("compute_")
+- title: "Outputs"
+  desc: "Functions for reporting the results of the cost-effectiveness analysis."
+  contents:
+  - make.report
+  - sim_table
+  - tabulate_means
+  - starts_with("summary")
+- title: "Miscellaneous"
+  desc: "Helper functions and other intermediate computations."
+  contents:
+  - starts_with("createInputs")
+  - evppi
+  - is.bcea
+  - print.bcea
+  - select_plot_type
+- title: "Data"
+  contents:
+  - Smoking
+  - Vaccine
 

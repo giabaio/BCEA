@@ -39,8 +39,8 @@ cost-effectiveness analysis.
 data(Vaccine)
 
 # Runs the health economic evaluation using BCEA
-m <- bcea(e=e,                  # defines the variables of 
-          c=c,                  # effectiveness and cost
+m <- bcea(e=eff,                # defines the variables of 
+          c=cost,               # effectiveness and cost
           ref=2,                # selects the 2nd row of (e, c) 
                                 # as containing the reference intervention
           interventions=treats, # defines the labels to be associated 
@@ -51,16 +51,13 @@ m <- bcea(e=e,                  # defines the variables of
 
 # Now can save the simulation exercise in an object using sim_table()
 sim_table(m,         # uses the results of the economic evaluation 
-                     #  (a 'bcea' object)
           wtp=25000) # selects the particular value for k
                
 }
 \references{
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics. Statistical Methods in Medical Research
-doi:10.1177/0962280211419832.
+\insertRef{Baio2011}{BCEA}
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2013}{BCEA}
 }
 \seealso{
 \code{\link{bcea}}
@@ -68,6 +65,4 @@ Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
 \author{
 Gianluca Baio
 }
-\keyword{Health}
-\keyword{economic}
-\keyword{evaluation}
+\keyword{print}

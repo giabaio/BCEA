@@ -2,7 +2,7 @@
 % Please edit documentation in R/evppi_helpers.R
 \name{plot.mesh}
 \alias{plot.mesh}
-\title{Plot Mesh}
+\title{Mesh Plot}
 \usage{
 \method{plot}{mesh}(mesh, data, plot)
 }
@@ -11,8 +11,12 @@
 
 \item{data}{Data}
 
-\item{plot}{Plot; logical}
+\item{plot}{Create plot? logical}
 }
 \description{
-Plot Mesh
+Option of interactively saving the plot.
 }
+\seealso{
+\code{\link{evppi}}
+}
+\keyword{internal}

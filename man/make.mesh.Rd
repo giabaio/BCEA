@@ -13,10 +13,17 @@ make.mesh(data, convex.inner, convex.outer, cutoff, max.edge)
 
 \item{convex.outer}{convex.outer}
 
-\item{cutoff}{Cut-off}
+\item{cutoff}{Cut-off value}
 
 \item{max.edge}{Maximum edge}
 }
-\description{
-Make Mesh
+\value{
+list
 }
+\description{
+Fit using INLA methods.
+}
+\seealso{
+\code{\link{evppi}}
+}
+\keyword{internal}
