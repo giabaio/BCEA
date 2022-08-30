@@ -76,7 +76,7 @@ ceef.summary <- function(he,
     how.dominated <- rep("Extended dominance", length(no.ceef))
     
     for (i in seq_along(no.ceef))
-      for (j in 1:dim(ceef.points)[1]) {
+      for (j in seq_len(dim(ceef.points)[1])) {
         ## if the product of the deltas is negative it is dominated
         ## cannot be dominant since not on the frontier 
         if ((noceef.points[i, 1] - ceef.points[j, 1])*(noceef.points[i, 2] - ceef.points[j, 2]) < 0) {

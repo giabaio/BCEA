@@ -50,14 +50,14 @@ inforank_params <- function(he,
   # chk1 <- which(apply(input, 2, "var") > 0)   # only takes those with var > 0
   
   # check those with < 5 possible values (would break GAM)
-  tmp <- lapply(1:dim(input)[2], function(x) table(input[, x]))
+  tmp <- lapply(seq_len(dim(input)[2]), function(x) table(input[, x]))
   chk2 <- which(unlist(lapply(tmp, function(x) length(x) >= 5)) == TRUE)
   names(chk2) <- colnames(input[, chk2])
   
   N <- he$n_sim
   
   ##TODO: what does select do?
-  if (any(!is.na(N)) & length(N) > 1) {
+  if (any(!is.na(N)) && length(N) > 1) {
     # select <- N
   } else {
     N <- min(he$n_sim,N, na.rm = TRUE)

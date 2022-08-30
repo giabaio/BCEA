@@ -39,7 +39,7 @@ make_legend_ggplot <- function(dat, legend_pos) {
     pos_choices <- c("left", "right", "bottom", "top")
     legend_pos <- pos_choices[pmatch(legend_pos, pos_choices)]
     legend_just <- "center"
-  } else if (is.numeric(legend_pos) &
+  } else if (is.numeric(legend_pos) &&
              length(legend_pos) == 2) {
     
     legend_just <- legend_pos
