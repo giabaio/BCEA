@@ -12,23 +12,34 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">BCEA</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../articles/index.html">Articles</a>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/bcea.html">Get Started</a>
+    <a class="dropdown-item" href="../articles/ceac.html">Cost-Effectiveness Acceptability Curve Plots</a>
+    <a class="dropdown-item" href="../articles/ceef.html">Cost-Effectiveness Efficiency Frontier</a>
+    <a class="dropdown-item" href="../articles/ceplane.html">Cost-effectiveness plane</a>
+    <a class="dropdown-item" href="../articles/CEriskav.html">Risk Aversion Analysis</a>
+    <a class="dropdown-item" href="../articles/contour.html">Contour plots</a>
+    <a class="dropdown-item" href="../articles/eib.html">Expected Incremental Benefit Plot</a>
+    <a class="dropdown-item" href="../articles/paired_vs_multiple_comps.html">Paired vs Multiple Comparisons</a>
+    <a class="dropdown-item" href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+  </div>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
@@ -63,7 +74,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plot.mixedAn</span><span class="op">(</span><span class="va">x</span>, y.limits<span class="op">=</span><span class="cn">NULL</span>, pos<span class="op">=</span><span class="fu"><a href="Smoking.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, graph<span class="op">=</span><span class="fu"><a href="Smoking.html">c</a></span><span class="op">(</span><span class="st">"base"</span>,<span class="st">"ggplot2"</span><span class="op">)</span>,<span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot.mixedAn</span><span class="op">(</span><span class="va">x</span>, y.limits<span class="op">=</span><span class="cn">NULL</span>, pos<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, graph<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"base"</span>,<span class="st">"ggplot2"</span><span class="op">)</span>,<span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -71,10 +82,14 @@
     <dl><dt>x</dt>
 <dd><p>An object of class <code>mixedAn</code>, given as output of the call to
 the function <code><a href="mixedAn-set.html">mixedAn</a></code>.</p></dd>
+
+
 <dt>y.limits</dt>
 <dd><p>Range of the y-axis for the graph. The default value is
 <code>NULL</code>, in which case the maximum range between the optimal and the
 mixed analysis scenarios is considered.</p></dd>
+
+
 <dt>pos</dt>
 <dd><p>Parameter to set the position of the legend. Can be given in form
 of a string <code>(bottom|top)(right|left)</code> for base graphics and
@@ -84,13 +99,18 @@ alternatively it can be in form of a logical variable, with <code>FALSE</code>
 indicating to use the default position and <code>TRUE</code> to place it on the
 bottom of the plot. Default value is <code>c(0,1)</code>, that is in the topleft
 corner inside the plot area.</p></dd>
+
+
 <dt>graph</dt>
 <dd><p>A string used to select the graphical engine to use for
 plotting. Should (partial-)match the two options <code>"base"</code> or
 <code>"ggplot2"</code>. Default value is <code>"base"</code>.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Arguments to be passed to methods, such as graphical parameters
 (see <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>).</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -121,13 +141,11 @@ considered</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan
-Green.</p>
+  <p></p><p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan Green.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

@@ -67,8 +67,8 @@ models (one matrix with n_sim x n_ints simulations for each model).
 
 \dontrun{
 # load sample jags output
-load(system.file("extdata", "statins_base.Rdata", package = "BCEA"))
-load(system.file("extdata", "statins_HC.Rdata", package = "BCEA"))
+load(system.file("extdata", "statins_base.RData", package = "BCEA"))
+load(system.file("extdata", "statins_HC.RData", package = "BCEA"))
 
 interventions <- c("Atorvastatin", "Fluvastatin",
                    "Lovastatin", "Pravastatin",

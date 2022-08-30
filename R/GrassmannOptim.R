@@ -18,6 +18,7 @@
 #' @param verbose verbose 
 #' @importFrom stats rnorm runif
 #' @importFrom Matrix Matrix expm
+#' @keywords internal 
 #' @return List
 #'
 GrassmannOptim <-

@@ -25,8 +25,7 @@ There are several arguments passed to `bcea()` to specify the form of the analys
 These are
 
 ```{r eval=FALSE}
-bcea(e,
-     c,
+bcea(eff, cost,
      ref = 1,
      interventions = NULL,
      .comparison = NULL,
@@ -58,7 +57,7 @@ data(Vaccine)
 We first create `bcea` object using the constructor function for 2 different reference groups.
 
 ```{r}
-he_ref1 <- bcea(e, c,
+he_ref1 <- bcea(eff, cost,
                 ref = 1,           
                 interventions = treats,
                 Kmax = 50000)  
@@ -68,7 +67,7 @@ ceplane.plot(he_ref1)
 ```
 
 ```{r}
-he_ref2 <- bcea(e, c,
+he_ref2 <- bcea(eff, cost,
                 ref = 2,           
                 interventions = treats,
                 Kmax = 50000)  
@@ -89,7 +88,7 @@ str(he_ref1[c("n_comparators", "ICER", "ref", "comp")])
 In the same way as above we can change `Kmax` in 2 equivalent ways.
 
 ```{r}
-he_Kmax1 <- bcea(e, c,
+he_Kmax1 <- bcea(eff, cost,
                  ref = 1,           
                  interventions = treats,
                  Kmax = 50000)  
@@ -98,7 +97,7 @@ str(he_Kmax1[c("n_comparators", "ICER", "ref", "comp", "Kmax")])
 ```
 
 ```{r}
-he_Kmax2 <- bcea(e, c,
+he_Kmax2 <- bcea(eff, cost,
                  ref = 2,           
                  interventions = treats,
                  Kmax = 2000)  
@@ -123,7 +122,7 @@ data(Smoking)
 Defaults is all other groups which in this case is 2, 3 and 4.
 
 ```{r}
-he_comp234 <- bcea(e, c,
+he_comp234 <- bcea(eff, cost,
                    ref = 1,           
                    interventions = treats,
                    Kmax = 50000)  
@@ -136,7 +135,7 @@ ceplane.plot(he_comp234, wtp = 2000)
 Let us compare against only groups 2.
 
 ```{r}
-he_comp2 <- bcea(e, c,
+he_comp2 <- bcea(eff, cost,
                  ref = 1,
                  .comparison = 2,
                  interventions = treats,
@@ -161,7 +160,7 @@ We can select multiple comparison groups too.
 Let us compare against only groups 2 and 4.
 
 ```{r}
-he_comp24 <- bcea(e, c,
+he_comp24 <- bcea(eff, cost,
                   ref = 1,
                   .comparison = c(2,4),
                   interventions = treats,

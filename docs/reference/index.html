@@ -6,23 +6,34 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">BCEA</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../articles/index.html">Articles</a>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/bcea.html">Get Started</a>
+    <a class="dropdown-item" href="../articles/ceac.html">Cost-Effectiveness Acceptability Curve Plots</a>
+    <a class="dropdown-item" href="../articles/ceef.html">Cost-Effectiveness Efficiency Frontier</a>
+    <a class="dropdown-item" href="../articles/ceplane.html">Cost-effectiveness plane</a>
+    <a class="dropdown-item" href="../articles/CEriskav.html">Risk Aversion Analysis</a>
+    <a class="dropdown-item" href="../articles/contour.html">Contour plots</a>
+    <a class="dropdown-item" href="../articles/eib.html">Expected Incremental Benefit Plot</a>
+    <a class="dropdown-item" href="../articles/paired_vs_multiple_comps.html">Paired vs Multiple Comparisons</a>
+    <a class="dropdown-item" href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+  </div>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
@@ -75,7 +86,7 @@
       </dl></div><div class="section level2">
       <h2 id="setters">Setters<a class="anchor" aria-label="anchor" href="#setters"></a></h2>
       
-      <p class="section-desc"></p><p>Functions for modifying a <code><a href="../reference/bcea.html">bcea()</a></code> analysis.</p>
+      <p class="section-desc"></p><p>Functions for modifying or extending a <code><a href="../reference/bcea.html">bcea()</a></code> analysis.</p>
 
       
     </div><div id="" class="section level2">
@@ -84,6 +95,11 @@
       
 
       <dl><dt>
+          
+          <code><a href="setComparisons.html">setComparisons()</a></code> 
+        </dt>
+        <dd>Set Comparisons Group</dd>
+      </dl><dl><dt>
           
           <code><a href="setComparisons_assign.html">`setComparisons&lt;-`()</a></code> 
         </dt>
@@ -114,11 +130,15 @@ Interventions are Present on the Market</dd>
           <code><a href="multi.ce.html">multi.ce(<i>&lt;bcea&gt;</i>)</a></code> 
         </dt>
         <dd>Cost-effectiveness Analysis With Multiple Comparison</dd>
+      </dl><dl><dt>
+          
+          <code><a href="struct.psa.html">struct.psa()</a></code> 
+        </dt>
+        <dd>Structural Probability Sensitivity Analysis</dd>
       </dl></div><div class="section level2">
       <h2 id="plotting">Plotting<a class="anchor" aria-label="anchor" href="#plotting"></a></h2>
       
-      <p class="section-desc"></p><p>Functions for plotting a wide variety of cost-effectiveness plots in
-base R, ggplot2 and plotly.</p>
+      <p class="section-desc"></p><p>Functions for plotting a wide variety of cost-effectiveness plots in base R, ggplot2 and plotly.</p>
 
       
     </div><div id="" class="section level2">
@@ -143,9 +163,19 @@ base R, ggplot2 and plotly.</p>
         <dd>Cost-Effectiveness Efficiency Frontier (CEEF) Plot</dd>
       </dl><dl><dt>
           
+          <code><a href="ceef_plot_graph.html">ceef_plot_ggplot()</a></code> <code><a href="ceef_plot_graph.html">ceef_plot_base()</a></code> 
+        </dt>
+        <dd>Cost-effectiveness Efficiency Frontier Plot By Graph Device</dd>
+      </dl><dl><dt>
+          
           <code><a href="ceplane.plot.html">ceplane.plot()</a></code> 
         </dt>
         <dd>Cost-effectiveness Plane Plot</dd>
+      </dl><dl><dt>
+          
+          <code><a href="ceplane_plot_graph.html">ceplane_plot_base()</a></code> <code><a href="ceplane_plot_graph.html">ceplane_plot_ggplot()</a></code> <code><a href="ceplane_plot_graph.html">ceplane_plot_plotly()</a></code> 
+        </dt>
+        <dd>Cost-Effectiveness Plane Plot By Graph Device</dd>
       </dl><dl><dt>
           
           <code><a href="contour.html">contour()</a></code> 
@@ -158,9 +188,24 @@ base R, ggplot2 and plotly.</p>
         <dd>Specialised CE-plane Contour Plot</dd>
       </dl><dl><dt>
           
+          <code><a href="contour_graph.html">contour_base()</a></code> <code><a href="contour_graph.html">contour_ggplot()</a></code> 
+        </dt>
+        <dd>Contour Cost-Effectiveness Plane</dd>
+      </dl><dl><dt>
+          
           <code><a href="eib.plot.html">eib.plot()</a></code> 
         </dt>
         <dd>Expected Incremental Benefit (EIB) Plot</dd>
+      </dl><dl><dt>
+          
+          <code><a href="eib_plot_graph.html">eib_plot_base()</a></code> <code><a href="eib_plot_graph.html">eib_plot_ggplot()</a></code> <code><a href="eib_plot_graph.html">eib_plot_plotly()</a></code> 
+        </dt>
+        <dd>Expected Incremental Benefit Plot By Graph Device</dd>
+      </dl><dl><dt>
+          
+          <code><a href="evi.plot.mixedAn.html">evi.plot(<i>&lt;mixedAn&gt;</i>)</a></code> 
+        </dt>
+        <dd>EVI Plot of the Health Economic Analysis For Mixed Analysis</dd>
       </dl><dl><dt>
           
           <code><a href="evi.plot.html">evi.plot()</a></code> 
@@ -168,14 +213,29 @@ base R, ggplot2 and plotly.</p>
         <dd>Expected Value of Information (EVI) Plot</dd>
       </dl><dl><dt>
           
+          <code><a href="evi_plot_graph.html">evi_plot_base()</a></code> <code><a href="evi_plot_graph.html">evi_plot_ggplot()</a></code> <code><a href="evi_plot_graph.html">evi_plot_plotly()</a></code> 
+        </dt>
+        <dd>Expected Value of Information Plot By Graph Device</dd>
+      </dl><dl><dt>
+          
           <code><a href="ib.plot.html">ib.plot()</a></code> 
         </dt>
         <dd>Incremental Benefit (IB) Distribution Plot</dd>
       </dl><dl><dt>
           
+          <code><a href="ib_plot_graph.html">ib_plot_base()</a></code> <code><a href="ib_plot_graph.html">ib_plot_ggplot()</a></code> 
+        </dt>
+        <dd>IB plot base R version</dd>
+      </dl><dl><dt>
+          
           <code><a href="info.rank.html">info.rank()</a></code> 
         </dt>
         <dd>Information-Rank Plot for bcea Class</dd>
+      </dl><dl><dt>
+          
+          <code><a href="info_rank_graph.html">info_rank_base()</a></code> <code><a href="info_rank_graph.html">info_rank_ggplot()</a></code> <code><a href="info_rank_graph.html">info_rank_plotly()</a></code> 
+        </dt>
+        <dd>Info Rank Plot By Graph Device</dd>
       </dl><dl><dt>
           
           <code><a href="plot.bcea.html">plot(<i>&lt;bcea&gt;</i>)</a></code> 
@@ -188,15 +248,25 @@ base R, ggplot2 and plotly.</p>
         <dd>Plots EIB and EVPI for the Risk Aversion Case</dd>
       </dl><dl><dt>
           
+          <code><a href="CEriskav_plot_graph.html">CEriskav_plot_base()</a></code> <code><a href="CEriskav_plot_graph.html">CEriskav_plot_ggplot()</a></code> 
+        </dt>
+        <dd>Cost-effectiveness Plot Including a Parameter of Risk Aversion</dd>
+      </dl><dl><dt>
+          
           <code><a href="plot.evppi.html">plot(<i>&lt;evppi&gt;</i>)</a></code> 
+        </dt>
+        <dd>Plot Expected Value of Partial Information With Respect to a
+Set of Parameters</dd>
+      </dl><dl><dt>
+          
+          <code><a href="evppi_plot_graph.html">evppi_plot_base()</a></code> <code><a href="evppi_plot_graph.html">evppi_plot_ggplot()</a></code> 
         </dt>
         <dd>Plot Expected Value of Partial Information With Respect to a
 Set of Parameters</dd>
       </dl></div><div class="section level2">
       <h2 id="statistics">Statistics<a class="anchor" aria-label="anchor" href="#statistics"></a></h2>
       
-      <p class="section-desc"></p><p>Lower level functions for computing a range of cost-effectiveness
-statistics.</p>
+      <p class="section-desc"></p><p>Lower level functions for computing a range of cost-effectiveness statistics.</p>
 
       
     </div><div id="" class="section level2">
@@ -282,8 +352,7 @@ statistics.</p>
       </dl></div><div class="section level2">
       <h2 id="outputs">Outputs<a class="anchor" aria-label="anchor" href="#outputs"></a></h2>
       
-      <p class="section-desc"></p><p>Functions for reporting the results of the cost-effectiveness
-analysis.</p>
+      <p class="section-desc"></p><p>Functions for reporting the results of the cost-effectiveness analysis.</p>
 
       
     </div><div id="" class="section level2">
@@ -303,6 +372,11 @@ analysis.</p>
         <dd>Table of Simulation Statistics for the Health Economic Model</dd>
       </dl><dl><dt>
           
+          <code><a href="tabulate_means.html">tabulate_means()</a></code> 
+        </dt>
+        <dd>Calculate Dataset For ICERs From bcea Object</dd>
+      </dl><dl><dt>
+          
           <code><a href="summary.bcea.html">summary(<i>&lt;bcea&gt;</i>)</a></code> 
         </dt>
         <dd>Summary Method for Objects of Class <code>bcea</code></dd>
@@ -311,6 +385,11 @@ analysis.</p>
           <code><a href="summary.mixedAn.html">summary(<i>&lt;mixedAn&gt;</i>)</a></code> 
         </dt>
         <dd>Summary Methods For Objects in the Class <code>mixedAn</code> (Mixed Analysis)</dd>
+      </dl><dl><dt>
+          
+          <code><a href="summary.pairwise.html">summary(<i>&lt;pairwise&gt;</i>)</a></code> 
+        </dt>
+        <dd>Summary Method for Objects of Class <code>pairwise</code></dd>
       </dl></div><div class="section level2">
       <h2 id="miscellaneous">Miscellaneous<a class="anchor" aria-label="anchor" href="#miscellaneous"></a></h2>
       
@@ -324,20 +403,30 @@ analysis.</p>
 
       <dl><dt>
           
+          <code><a href="createInputs.html">createInputs()</a></code> 
+        </dt>
+        <dd>Create Inputs for EVPI Calculation</dd>
+      </dl><dl><dt>
+          
           <code><a href="evppi.html">evppi()</a></code> 
         </dt>
         <dd>Expected Value of Perfect Partial Information (EVPPI) for Selected
 Parameters</dd>
       </dl><dl><dt>
           
+          <code><a href="is.bcea.html">is.bcea()</a></code> 
+        </dt>
+        <dd>Check bcea Class</dd>
+      </dl><dl><dt>
+          
+          <code><a href="print.bcea.html">print(<i>&lt;bcea&gt;</i>)</a></code> 
+        </dt>
+        <dd>bcea Print Method</dd>
+      </dl><dl><dt>
+          
           <code><a href="select_plot_type.html">select_plot_type()</a></code> 
         </dt>
         <dd>Choose Graphical Engine</dd>
-      </dl><dl><dt>
-          
-          <code><a href="struct.psa.html">struct.psa()</a></code> 
-        </dt>
-        <dd>Structural Probability Sensitivity Analysis</dd>
       </dl></div><div class="section level2">
       <h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a></h2>
       
@@ -367,13 +456,11 @@ vaccination</dd>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan
-Green.</p>
+  <p></p><p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan Green.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

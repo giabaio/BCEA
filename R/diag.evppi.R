@@ -42,7 +42,7 @@
 #' 
 #' \insertRef{Baio2013}{BCEA}
 #' 
-#' @keywords hplot 
+#' @keywords internal hplot 
 #' @export
 #'  
 diag.evppi <- function(evppi,

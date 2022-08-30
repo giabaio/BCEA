@@ -41,7 +41,7 @@ This is the default plot for `ceac.plot()` so we simply follow the same steps as
 
 ```{r}
 data("Smoking")
-he <- bcea(e, c, ref = 4, Kmax = 500)
+he <- bcea(eff, cost, ref = 4, Kmax = 500)
 ```
 
 ```{r fig.height=10}

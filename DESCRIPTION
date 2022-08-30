@@ -57,7 +57,8 @@ Description: Produces an economic evaluation of a sample of suitable variables o
              cost and effectiveness / utility for two or more interventions,
              e.g. from a Bayesian model in the form of MCMC simulations.
              This package computes the most cost-effective alternative and
-             produces graphical summaries and probabilistic sensitivity analysis.
+             produces graphical summaries and probabilistic sensitivity analysis,
+             see Baio et al (2017) <10.1007/978-3-319-55718-2>.
 License: GPL-3
 URL: https://gianluca.statistica.it/software/bcea/,
      https://gianluca.statistica.it/,

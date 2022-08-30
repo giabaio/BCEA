@@ -56,7 +56,7 @@ To calculate these in BCEA we use the `bcea()` function.
 data(Vaccine)
 
 he <-
-  bcea(e, c,                  
+  bcea(eff, cost,                  
        ref = 2,                
        interventions = treats, 
        Kmax = 50000,
@@ -132,7 +132,7 @@ data(Smoking)
 
 treats <- c("No intervention", "Self-help",
             "Individual counselling", "Group counselling")
-he <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+he <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 
 eib.plot(he)
 ```

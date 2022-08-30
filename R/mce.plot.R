@@ -32,7 +32,7 @@
 #' 
 #' \insertRef{Baio2013}{BCEA}
 #' 
-#' @keywords hplot
+#' @keywords internal hplot
 #' @examples
 #' 
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 

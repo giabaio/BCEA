@@ -82,3 +82,4 @@ mce.plot(mce,               # the same plot
 Gianluca Baio, Andrea Berardi
 }
 \keyword{hplot}
+\keyword{internal}

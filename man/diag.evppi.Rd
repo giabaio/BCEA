@@ -59,3 +59,4 @@ identical, the Q-Q plot follows the 45 degrees line.
 Gianluca Baio, Anna Heath
 }
 \keyword{hplot}
+\keyword{internal}
