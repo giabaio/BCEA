@@ -40,7 +40,8 @@ ldr <-
     
     if (model=="core") 
     {
-      if (!is.null(Sigmas) & !is.null(ns)) return(invisible(core(Sigmas=Sigmas, ns=ns, numdir=numdir, numdir.test=numdir.test,...)))
+      if (!is.null(Sigmas) && !is.null(ns))
+        return(invisible(core(Sigmas=Sigmas, ns=ns, numdir=numdir, numdir.test=numdir.test,...)))
       
       return(invisible(core(X=X, y=y, numdir=numdir, numdir.test=numdir.test,...)))
     }

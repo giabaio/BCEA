@@ -99,26 +99,25 @@ plot.bcea <- function(x,
   extra_args <- list(...)
   
   if (use_base_graphics) {
-    op <- par(mfrow = c(2,2))
-    
-    ceplane.plot(x,
-                 comparison = comparison,
-                 wtp = wtp,
-                 pos = pos,
-                 graph = "base",...)
-    
-    eib.plot(x,
-             comparison = comparison,
-             pos = pos,
-             graph = "base",...)
-    
-    ceac.plot(x,
-              pos = pos,
-              graph = "base", ...)
-    
-    evi.plot(x,
-             graph = "base", ...)
-    par(op)
+    withr::with_par(list(mfrow = c(2,2)), {
+      ceplane.plot(x,
+                   comparison = comparison,
+                   wtp = wtp,
+                   pos = pos,
+                   graph = "base",...)
+      
+      eib.plot(x,
+               comparison = comparison,
+               pos = pos,
+               graph = "base",...)
+      
+      ceac.plot(x,
+                pos = pos,
+                graph = "base", ...)
+      
+      evi.plot(x,
+               graph = "base", ...)
+    })
   } else {
     
     is_req_pkgs <- map_lgl(c("ggplot2","grid"), requireNamespace, quietly = TRUE)
@@ -153,7 +152,7 @@ plot.bcea <- function(x,
         names(default_params)[names(default_params) %in% names(extra_args)]
       
       extra_params <- extra_args[keep_param]
-
+      
       global_params <-
         modifyList(default_params,
                    extra_params,
