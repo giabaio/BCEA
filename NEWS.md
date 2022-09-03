@@ -1,3 +1,32 @@
+# BCEA 2.4.2
+August 2022
+
+## Bug fixes
+
+* `summary.bcea()` wasn't passing `wtp` argument to `sim_table()` internally (5440eb3)
+* `summary()` was the same for basic `bcea` and `multi.ce` objects. Now has own `summary.pairwise()` method. (88ade51)
+* `struct.psa()` output now works with `summary()` and plots all still work without having to use $ to get at `bcea` object as before. (b014c83)
+* Changed `wtp` argument in `bcea()` to `k` because `wtp` in the plotting functions refers to the wtp line and so is a scalar whereas `k` is a grid of points. Added an error message to use new argument. (b014c83)
+* `bcea()` still allows a scalar `k` but added a warning that this will give empty plots.
+* Updated GitHub Actions for checking the package to use `r-lib/Actions` version 2. There was an error with not finding INLA but this was solved by Gabor at RStudio (see thread here https://community.rstudio.com/t/not-finding-inla-package-not-on-cran-in-actions/141398)
+* GrassmannOptim package r-release-macos-x86_64 isn't available resulting in a CRAN check error and doesn't appear to be maintained. Tried emailing the author but bounced. Removed dependency and copied `GrassmannOptim()` function inside of package with acknowledgement.
+
+## Refactoring
+
+* Now uses `Rdpack` for bibliography in documentation (229c96d)
+* The cost and health values in the `Smoking` and `Vaccine` data sets have been renamed from `c` and `e` to `cost` and `eff`. This is to avoid any conflict with the `c()` function.
+* Changed the axes labels in the cost-effectiveness planes from "differential" to "incremental". (688d98b)
+
+## New features
+
+* Can now specify what order the interventions labels are in the legend for ce plane (and contour plots) for base R and ggplot2 i.e. reference first or second with optional `ref_first` argument (cc38f07)
+* Can specify currency for axes in `ce-plane.plot` and `ceac.plot` `ggplot2` versions (6808aa6)
+* Argument added to `ceplane.plot` of `icer_annot` to annotate each of the ICER points with the text label of the intervention name. Only for `ggplot2` at the moment. (a7b4beb)
+* Added `pos` argument to `contour2()` so that its consistent with `contour()` and `ceplane.plot()`. (50f8f8b)
+* Allow passing `ref` argument by name as well as index in `bcea()`. (9eab459)
+
+
+
 # BCEA 2.4.1.2
 April 2022
 

@@ -62,8 +62,8 @@ ceef_plot_ggplot <- function(he,
   if (add_frontier)
     ceplane <- ceplane + geom_path()
   
-  xlab <- ifelse(!relative, "Effectiveness", "Effectiveness differential")
-  ylab <- ifelse(!relative, "Cost", "Cost differential")
+  xlab <- ifelse(!relative, "Effectiveness", "Incremental effectiveness")
+  ylab <- ifelse(!relative, "Cost", "Incremental cost")
   
   comparators <- sort(c(he$comp, he$ref))
   
@@ -161,13 +161,13 @@ ceef_plot_base <- function(he,
   
   # set up plot window
   xlab <- ifelse((!flip & !relative), "Effectiveness",
-                 ifelse((!flip & relative), "Differential effectiveness",
+                 ifelse((!flip & relative), "Incremental effectiveness",
                         ifelse((flip & !relative),
-                               "Cost", "Differential cost")))
-  ylab <- ifelse((!flip & !relative),"Cost",
-                 ifelse((!flip & relative),"Differential cost",
+                               "Cost", "Incremental cost")))
+  ylab <- ifelse((!flip & !relative), "Cost",
+                 ifelse((!flip & relative), "Incremental cost",
                         ifelse((flip & !relative),
-                               "Effectiveness", "Differential effectiveness")))
+                               "Effectiveness", "Incremental effectiveness")))
   plot(NULL,
        xlim = c(min(range(scatter.data$e)[1],0), max(range(scatter.data$e)[2],0)),
        ylim = c(min(range(scatter.data$c)[1],0), max(range(scatter.data$c)[2],0)),

@@ -11,12 +11,31 @@ bcea.default <- function(eff,
                          interventions = NULL,
                          .comparison = NULL,
                          Kmax = 50000,
-                         wtp = NULL,
-                         plot = FALSE) {
+                         k = NULL,
+                         plot = FALSE, ...) {
+  exArgs <- list(...)
+  
+  # provide named reference
+  if (is.character(ref)) {
+    if (length(ref) > 1 || !ref %in% interventions) {
+      ref <- NULL
+    } else {
+      ref <- which(ref == interventions)
+    }
+  }
   
   if (is.null(ref)) {
     ref <- 1
     message("No reference selected. Defaulting to first intervention.")  
+  }
+  
+  if (!is.null(k) && length(k) == 1)
+    message("k should be a vector of length > 1, otherwise plots will be empty.")
+  
+  
+  if (exists("wtp", exArgs)) {
+    message("wtp argument soft deprecated. Please use k instead in future.")
+    k <- exArgs$wtp
   }
   
   validate_bcea(eff, cost, ref, interventions)
@@ -32,8 +51,8 @@ bcea.default <- function(eff,
     } else {
       as.factor(interventions)}
   
-  if (!is.null(wtp)) {
-    k <- sort(unique(wtp))
+  if (!is.null(k)) {
+    k <- sort(unique(k))
   } else {
     step <- Kmax/500
     k <- seq(0, Kmax, by = step)

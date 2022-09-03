@@ -95,13 +95,13 @@ info.rank.bcea <- function(he,
 #' @author Anna Heath, Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}},
 #'          \code{\link{evppi}}
+#' @importFrom Rdpack reprompt
 #' 
 #' @references
-#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics. Statistical Methods in Medical Research
-#' doi:10.1177/0962280211419832.
+#' \insertRef{Baio2011}{BCEA}
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+#' \insertRef{Baio2013}{BCEA}
+#' 
 #' @keywords dplot models
 #' 
 #' @export
@@ -113,7 +113,7 @@ info.rank.bcea <- function(he,
 #' # https://gianluca.statistica.it/book/bcea/code/vaccine.RData
 #' 
 #' data("Vaccine")
-#' m <- bcea(e,c)
+#' m <- bcea(eff, cost)
 #' inp <- createInputs(vaccine_mat)
 #' info.rank(m, inp)
 #' 

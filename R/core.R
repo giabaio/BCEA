@@ -98,7 +98,6 @@ core <- function(X, y, Sigmas=NULL, ns=NULL, numdir=2, numdir.test=FALSE, ...) {
 }
 
 
-#' @importFrom GrassmannOptim GrassmannOptim
 #' 
 one.core <- function(d, p, hlevels, ff, Sigmas, ns, ...) {
   if (d == 0)

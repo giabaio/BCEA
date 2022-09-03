@@ -46,7 +46,7 @@ To create the plots in BCEA we first call the `bcea()` function.
 data(Smoking)
 
 treats <- c("No intervention", "Self-help", "Individual counselling", "Group counselling")
-bcea_smoke <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+bcea_smoke <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 ```
 
 * base R
@@ -77,7 +77,7 @@ ceef.plot(bcea_smoke)
 * ggplot
 
 ```{r}
-bcea_smoke <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+bcea_smoke <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 
 # all interventions
 ceef.plot(bcea_smoke, graph = "ggplot")
@@ -171,8 +171,8 @@ ceef.plot(bcea_smoke,
 ```{r}
 data("Smoking")
 
-c[, 4] <- -c[, 4]
-bcea_smoke <- bcea(e, c, ref = 3, interventions = treats, Kmax = 500)
+cost[, 4] <- -cost[, 4]
+bcea_smoke <- bcea(eff, cost, ref = 3, interventions = treats, Kmax = 500)
 
 # all interventions
 ceef.plot(bcea_smoke, graph = "ggplot")
@@ -185,15 +185,15 @@ setComparisons(bcea_smoke) <- c(1,2)
 ceef.plot(bcea_smoke, graph = "ggplot")
 ceef.plot(bcea_smoke, graph = "base")
 
-e[, 3] <- -e[, 3]
-bcea_smoke <- bcea(e, c, ref = 3, interventions = treats, Kmax = 500)
+eff[, 3] <- -eff[, 3]
+bcea_smoke <- bcea(eff, cost, ref = 3, interventions = treats, Kmax = 500)
 ceef.plot(bcea_smoke, graph = "ggplot")
 ceef.plot(bcea_smoke, graph = "base")
 
 
 data("Smoking")
-e[, 3] <- -e[, 3]
-bcea_smoke <- bcea(e, c, ref = 3, interventions = treats, Kmax = 500)
+eff[, 3] <- -eff[, 3]
+bcea_smoke <- bcea(eff, cost, ref = 3, interventions = treats, Kmax = 500)
 ceef.plot(bcea_smoke, graph = "ggplot")
 ceef.plot(bcea_smoke, graph = "base")
 ```

@@ -4,9 +4,7 @@
 \alias{CEriskav_plot_graph}
 \alias{CEriskav_plot_base}
 \alias{CEriskav_plot_ggplot}
-\title{Cost-effectiveness Plot Including a Parameter of Risk Aversion
-
-Choice of base R, ggplot2.}
+\title{Cost-effectiveness Plot Including a Parameter of Risk Aversion}
 \usage{
 CEriskav_plot_base(he, pos_legend)
 
@@ -19,11 +17,5 @@ modelling and the economic evaluation.}
 \item{pos_legend}{Legend position}
 }
 \description{
-Cost-effectiveness Plot Including a Parameter of Risk Aversion
-
 Choice of base R, ggplot2.
-
-CEriskav base R version
-
-CEriskav ggplot2 version
 }

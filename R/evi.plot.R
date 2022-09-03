@@ -18,21 +18,22 @@
 #' @seealso \code{\link{bcea}},
 #'          \code{\link{ceac.plot}},
 #'          \code{\link{ceplane.plot}}
+#' @importFrom Rdpack reprompt
 #' 
 #' @references
-#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics. Statistical Methods in Medical Research
-#' doi:10.1177/0962280211419832.
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+#' \insertRef{Baio2011}{BCEA}
+#' 
+#' \insertRef{Baio2013}{BCEA}
+#' 
 #' @keywords hplot
 #' @export
 #' 
 #' @examples
 #' data(Vaccine)
 #' m <- bcea(
-#'       e=e,
-#'       c=c,                  # defines the variables of 
+#'       e=eff,
+#'       c=cost,               # defines the variables of 
 #'                             #  effectiveness and cost
 #'       ref=2,                # selects the 2nd row of (e, c) 
 #'                             #  as containing the reference intervention
@@ -48,7 +49,7 @@
 #' data(Smoking)
 #' treats <- c("No intervention", "Self-help",
 #'             "Individual counselling", "Group counselling")
-#' m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+#' m <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 #' evi.plot(m)
 #' 
 evi.plot.bcea <- function(he,

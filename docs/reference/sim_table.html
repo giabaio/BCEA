@@ -10,11 +10,11 @@ cost-effectiveness analysis."><meta property="og:image" content="/logo.png"><!--
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">BCEA</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,8 +25,19 @@ cost-effectiveness analysis."><meta property="og:image" content="/logo.png"><!--
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../articles/index.html">Articles</a>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/bcea.html">Get Started</a>
+    <a class="dropdown-item" href="../articles/ceac.html">Cost-Effectiveness Acceptability Curve Plots</a>
+    <a class="dropdown-item" href="../articles/ceef.html">Cost-Effectiveness Efficiency Frontier</a>
+    <a class="dropdown-item" href="../articles/ceplane.html">Cost-effectiveness plane</a>
+    <a class="dropdown-item" href="../articles/CEriskav.html">Risk Aversion Analysis</a>
+    <a class="dropdown-item" href="../articles/contour.html">Contour plots</a>
+    <a class="dropdown-item" href="../articles/eib.html">Expected Incremental Benefit Plot</a>
+    <a class="dropdown-item" href="../articles/paired_vs_multiple_comps.html">Paired vs Multiple Comparisons</a>
+    <a class="dropdown-item" href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+  </div>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
@@ -60,10 +71,10 @@ cost-effectiveness analysis.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">sim_table</span><span class="op">(</span><span class="va">he</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for bcea</span>
-<span class="fu">sim_table</span><span class="op">(</span><span class="va">he</span>, wtp <span class="op">=</span> <span class="fl">25000</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">sim_table</span><span class="op">(</span><span class="va">he</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for bcea</span></span>
+<span><span class="fu">sim_table</span><span class="op">(</span><span class="va">he</span>, wtp <span class="op">=</span> <span class="fl">25000</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -71,31 +82,46 @@ cost-effectiveness analysis.</p>
     <dl><dt>he</dt>
 <dd><p>A <code>bcea</code> object containing the results of the Bayesian
 modelling and the economic evaluation.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Additional arguments</p></dd>
+
+
 <dt>wtp</dt>
 <dd><p>The value of the willingness to pay threshold to be used in the
 summary table.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>Produces the following elements:</p>
+    
+
+<p>Produces the following elements:</p>
 <dl><dt>table</dt>
 <dd><p>A table with simulation statistics from the economic model</p></dd>
-<dt>names.cols</dt>
+
+  <dt>names.cols</dt>
 <dd><p>A vector of labels to be associated with each column of the table</p></dd>
-<dt>wtp</dt>
+
+  <dt>wtp</dt>
 <dd><p>The selected value of the willingness to pay</p></dd>
-<dt>idx_wtp</dt>
+
+  <dt>idx_wtp</dt>
 <dd><p>The index associated with the selected value of the willingness
   to pay threshold in the grid used to run the analysis</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics. Statistical Methods in Medical Research
-doi:10.1177/0962280211419832.</p>
-<p>Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.</p>
+    <p>Baio G, Dawid aP (2011).
+“Probabilistic sensitivity analysis in health economics.”
+<em>Stat. Methods Med. Res.</em>, 1--20.
+ISSN 1477-0334, doi: <a href="https://doi.org/10.1177/0962280211419832" class="external-link">10.1177/0962280211419832</a>
+, <a href="https://pubmed.ncbi.nlm.nih.gov/21930515/" class="external-link">https://pubmed.ncbi.nlm.nih.gov/21930515/</a>.</p>
+<p>Baio G (2013).
+<em>Bayesian Methods in Health Economics</em>.
+CRC.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -108,27 +134,26 @@ doi:10.1177/0962280211419832.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># See Baio G., Dawid A.P. (2011) for a detailed description of the </span></span>
-<span class="r-in"><span class="co"># Bayesian model and economic problem</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Load the processed results of the MCMC simulation model</span></span>
-<span class="r-in"><span class="fu"><a href="Smoking.html">data</a></span><span class="op">(</span><span class="va">Vaccine</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Runs the health economic evaluation using BCEA</span></span>
-<span class="r-in"><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="bcea.html">bcea</a></span><span class="op">(</span>e<span class="op">=</span><span class="va">e</span>,                  <span class="co"># defines the variables of </span></span>
-<span class="r-in">          c<span class="op">=</span><span class="va">c</span>,                  <span class="co"># effectiveness and cost</span></span>
-<span class="r-in">          ref<span class="op">=</span><span class="fl">2</span>,                <span class="co"># selects the 2nd row of (e, c) </span></span>
-<span class="r-in">                                <span class="co"># as containing the reference intervention</span></span>
-<span class="r-in">          interventions<span class="op">=</span><span class="va">treats</span>, <span class="co"># defines the labels to be associated </span></span>
-<span class="r-in">                                <span class="co"># with each intervention</span></span>
-<span class="r-in">          Kmax<span class="op">=</span><span class="fl">50000</span><span class="op">)</span>           <span class="co"># maximum value possible for the willingness </span></span>
-<span class="r-in">                                <span class="co"># to pay threshold; implies that k is chosen </span></span>
-<span class="r-in">                                <span class="co"># in a grid from the interval (0, Kmax)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Now can save the simulation exercise in an object using sim_table()</span></span>
-<span class="r-in"><span class="fu">sim_table</span><span class="op">(</span><span class="va">m</span>,         <span class="co"># uses the results of the economic evaluation </span></span>
-<span class="r-in">                     <span class="co">#  (a 'bcea' object)</span></span>
-<span class="r-in">          wtp<span class="op">=</span><span class="fl">25000</span><span class="op">)</span> <span class="co"># selects the particular value for k</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># See Baio G., Dawid A.P. (2011) for a detailed description of the </span></span></span>
+<span class="r-in"><span><span class="co"># Bayesian model and economic problem</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Load the processed results of the MCMC simulation model</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="Smoking.html">data</a></span><span class="op">(</span><span class="va">Vaccine</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Runs the health economic evaluation using BCEA</span></span></span>
+<span class="r-in"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="bcea.html">bcea</a></span><span class="op">(</span>e<span class="op">=</span><span class="va">eff</span>,                <span class="co"># defines the variables of </span></span></span>
+<span class="r-in"><span>          c<span class="op">=</span><span class="va">cost</span>,               <span class="co"># effectiveness and cost</span></span></span>
+<span class="r-in"><span>          ref<span class="op">=</span><span class="fl">2</span>,                <span class="co"># selects the 2nd row of (e, c) </span></span></span>
+<span class="r-in"><span>                                <span class="co"># as containing the reference intervention</span></span></span>
+<span class="r-in"><span>          interventions<span class="op">=</span><span class="va">treats</span>, <span class="co"># defines the labels to be associated </span></span></span>
+<span class="r-in"><span>                                <span class="co"># with each intervention</span></span></span>
+<span class="r-in"><span>          Kmax<span class="op">=</span><span class="fl">50000</span><span class="op">)</span>           <span class="co"># maximum value possible for the willingness </span></span></span>
+<span class="r-in"><span>                                <span class="co"># to pay threshold; implies that k is chosen </span></span></span>
+<span class="r-in"><span>                                <span class="co"># in a grid from the interval (0, Kmax)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Now can save the simulation exercise in an object using sim_table()</span></span></span>
+<span class="r-in"><span><span class="fu">sim_table</span><span class="op">(</span><span class="va">m</span>,         <span class="co"># uses the results of the economic evaluation </span></span></span>
+<span class="r-in"><span>          wtp<span class="op">=</span><span class="fl">25000</span><span class="op">)</span> <span class="co"># selects the particular value for k</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Table</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                  U1        U2         U*         IB2_1          OL           VI</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1        -36.575816 -38.71760 -36.575816  -2.141786568  2.14178657  -1.75012057</span>
@@ -1142,7 +1167,7 @@ doi:10.1177/0962280211419832.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $ind.table</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 251</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in">               </span>
+<span class="r-in"><span>               </span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -1150,13 +1175,11 @@ doi:10.1177/0962280211419832.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan
-Green.</p>
+  <p></p><p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan Green.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

@@ -34,12 +34,13 @@
 #'          \code{\link{eib.plot}},
 #'          \code{\link{ceac.plot}},
 #'          \code{\link{evi.plot}}
+#' @importFrom Rdpack reprompt
+#'          
 #' @references
-#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics. Statistical Methods in Medical Research
-#' doi:10.1177/0962280211419832.
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+#' \insertRef{Baio2011}{BCEA}
+#' 
+#' \insertRef{Baio2013}{BCEA}
 #' 
 #' @keywords hplot
 #' 
@@ -52,7 +53,7 @@
 #' 
 #' # Runs the health economic evaluation using BCEA
 #' he <- bcea(
-#'        e=e, c=c,             # defines the variables of 
+#'        e=eff, c=cost,        # defines the variables of 
 #'                              #  effectiveness and cost
 #'        ref=2,                # selects the 2nd row of (e,c) 
 #'                              #  as containing the reference intervention
@@ -160,7 +161,7 @@ plot.bcea <- function(x,
       
       theme_add <- purrr::keep(extra_args, is.theme)
       
-      ceplane.pos <- ifelse(pos, pos, c(1, 1.025))
+   ceplane.pos <- ifelse(pos, pos, c(1, 1.025))
       
       #TODO: warnings...
       ceplane <-

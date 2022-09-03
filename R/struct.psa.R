@@ -25,10 +25,10 @@
 #' intervention. By default and if \code{NULL}, assigns labels in the form
 #' "Intervention1", ... , "InterventionT"
 #' @param Kmax Maximum value of the willingness to pay to be considered.
-#' Default value is \code{k=50000}. The willingness to pay is then approximated
+#' Default value is \code{50000}. The willingness to pay is then approximated
 #' on a discrete grid in the interval \code{[0, Kmax]}. The grid is equal to
-#' \code{wtp} if the parameter is given, or composed of \code{501} elements if
-#' \code{wtp=NULL} (the default)
+#' \code{k} if the parameter is given, or composed of \code{501} elements if
+#' \code{k=NULL} (the default)
 #' @param plot A logical value indicating whether the function should produce
 #' the summary plot or not
 #' @param w A vector of weights. By default it's NULL to indicate that the 
@@ -39,10 +39,43 @@
 #' @return List object of bcea object, model weights and DIC
 #' @author Gianluca Baio
 #' @seealso \code{\link{bcea}}
+#' @importFrom Rdpack reprompt
+#' 
 #' @references
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+#' 
+#' \insertRef{Baio2013}{BCEA}
 #' 
 #' @export
+#' 
+#' @examples
+#' 
+#' \dontrun{
+#' # load sample jags output
+#' load(system.file("extdata", "statins_base.RData", package = "BCEA"))
+#' load(system.file("extdata", "statins_HC.RData", package = "BCEA"))
+#' 
+#' interventions <- c("Atorvastatin", "Fluvastatin",
+#'                    "Lovastatin", "Pravastatin",
+#'                    "Rosuvastatin", "Simvastatin")
+#' 
+#' m1 <- bcea(eff = statins_base$sims.list$effect,
+#'            cost = statins_base$sims.list$cost.tot,
+#'            ref = 1, interventions = interventions)
+#' 
+#' m2 <- bcea(eff = statins_HC$sims.list$effect,
+#'            cost = statins_HC$sims.list$cost.tot,
+#'            ref = 1, interventions = interventions)
+#' 
+#' models <- list(statins_base, statins_HC)
+#' 
+#' effects <- list(statins_base$sims.list$effect,
+#'                 statins_HC$sims.list$effect)
+#' costs <- list(statins_base$sims.list$cost.tot,
+#'               statins_HC$sims.list$cost.tot)
+#' 
+#' m3 <- struct.psa(models, effects, costs,
+#'                  ref = 1, interventions = interventions)
+#' }
 #' 
 struct.psa <- function(models,
                        effect,
@@ -112,8 +145,9 @@ struct.psa <- function(models,
          Kmax = Kmax,
          plot = plot)
   
-  list(he = he,
-       w = w,
-       DIC = d)
+  res <- 
+    c(he, list(w = w, DIC = d))
+  
+  structure(res, class = c("struct.psa", class(he)))
 }
 

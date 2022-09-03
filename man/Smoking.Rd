@@ -3,11 +3,11 @@
 \docType{data}
 \name{Smoking}
 \alias{Smoking}
-\alias{c}
+\alias{cost}
 \alias{data}
-\alias{e}
+\alias{eff}
 \alias{life.years}
-\alias{pi}
+\alias{pi_post}
 \alias{smoking}
 \alias{smoking_output}
 \alias{treats}
@@ -17,16 +17,16 @@ cessation interventions}
 A data list including the variables needed for the smoking cessation
 cost-effectiveness analysis. The variables are as follows:
 \describe{
-\item{list("c")}{a matrix of 500 simulations from the posterior distribution
+\item{list("cost")}{a matrix of 500 simulations from the posterior distribution
  of the overall costs associated with the four strategies}
 \item{list("data")}{a dataset containing the characteristics of the smokers
  in the UK population}
-\item{list("e")}{a matrix of 500 simulations from the
+\item{list("eff")}{a matrix of 500 simulations from the
  posterior distribution of the clinical benefits associated with the four
  strategies}
 \item{list("life.years")}{a matrix of 500 simulations from the
  posterior distribution of the life years gained with each strategy}
-\item{list("pi")}{a matrix of 500 simulations from the posterior
+\item{list("pi_post")}{a matrix of 500 simulations from the posterior
  distribution of the event of smoking cessation with each strategy}
 \item{list("smoking")}{a data frame containing the inputs needed for the
  network meta-analysis model. The \code{data.frame} object contains:

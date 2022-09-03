@@ -21,3 +21,4 @@ Compute EVPPI
 \seealso{
 \code{\link{evppi}}
 }
+\keyword{internal}

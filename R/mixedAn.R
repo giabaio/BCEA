@@ -28,16 +28,16 @@
 #' 
 #' @author Gianluca Baio
 #' @seealso \code{\link{bcea}}
+#' @importFrom Rdpack reprompt
+#' 
 #' @references
-#' Baio, G. and Russo, P. (2009). A decision-theoretic framework for
-#' the application of cost-effectiveness analysis in regulatory processes.
-#' Pharmacoeconomics 27(8), 645-655 doi:10.2165/11310250
 #' 
-#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in Health
-#' Economics.  Statistical Methods in Medical Research
-#' doi:10.1177/0962280211419832.
+#' \insertRef{Baio2009}{BCEA}
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+#' \insertRef{Baio2011}{BCEA}
+#' 
+#' \insertRef{Baio2013}{BCEA}
+#' 
 #' @examples
 #' 
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
@@ -47,7 +47,7 @@
 #' data(Vaccine)
 #' 
 #' # Runs the health economic evaluation using BCEA
-#' m <- bcea(e=e,c=c,          # defines the variables of 
+#' m <- bcea(e=eff, c=cost,    # defines the variables of 
 #'                             #  effectiveness and cost
 #'       ref=2,                # selects the 2nd row of (e, c) 
 #'                             #  as containing the reference intervention

@@ -13,7 +13,7 @@
 #' # single comparator
 #' data(Vaccine, package = "BCEA")
 #' 
-#' he <- bcea(e, c)
+#' he <- bcea(eff, cost)
 #' ceplane.plot(he, graph = "base")
 #' 
 #' \dontrun{
@@ -49,12 +49,12 @@
 #'                                    colors = grey.colors(3, start = 0.1, end = 0.7)),
 #'                       area = list(color = "lightgrey"))
 #'                                    
-#' he <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
+#' he <- bcea(eff, cost, ref = 4, Kmax = 500, interventions = treats)
 #' 
 #' BCEA::ceplane_plot_base(he,
-#'                        wtp = 200,
-#'                        pos_legend = FALSE,
-#'                        graph_params = graph_params)
+#'                         wtp = 200,
+#'                         pos_legend = FALSE,
+#'                         graph_params = graph_params)
 #' }
 #' 
 #' @name ceplane_plot_graph
@@ -70,7 +70,7 @@ ceplane_plot_base.bcea <- function(he,
                                    wtp = 25000,
                                    pos_legend,
                                    graph_params, ...) {
-
+  
   plot_params <-
     ceplane_base_params(he, wtp, graph_params)
   
@@ -102,13 +102,14 @@ ceplane_plot_base <- function(he, ...) {
 #' @import ggplot2
 #' @importFrom grid unit
 #' @importFrom purrr keep
+#' @importFrom scales label_dollar
 #' 
 #' @keywords hplot
 #' 
 #' @examples
 #' 
 #' data(Vaccine)
-#' he <- bcea(e, c)
+#' he <- bcea(eff, cost)
 #' 
 #' ceplane.plot(he, graph = "ggplot2")
 #' ceplane.plot(he, wtp=10000, graph = "ggplot2",
@@ -116,7 +117,7 @@ ceplane_plot_base <- function(he, ...) {
 #'              area = list(col = "springgreen3"))
 #' 
 #' data(Smoking)
-#' he <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
+#' he <- bcea(eff, cost, ref = 4, Kmax = 500, interventions = treats)
 #' 
 #' ceplane.plot(he, graph = "ggplot2")
 #' 
@@ -158,36 +159,46 @@ ceplane_plot_ggplot.bcea <- function(he,
         id.vars = "sim"),
       by = c("sim", "comparison"))
   
-  graph_params <-
+  plot_params <-
     ceplane_ggplot_params(he, wtp, pos_legend, graph_params, ...)
   
   theme_add <- purrr::keep(list(...), is.theme)
   
   ggplot(delta_ce,
-         aes(x = .data$delta_e, y = .data$delta_c, group = factor(.data$comparison),
-             col = factor(.data$comparison), shape = factor(.data$comparison))) +
-    do.call(geom_polygon, graph_params$area) +
+         aes(x = .data$delta_e, y = .data$delta_c,
+             group = factor(.data$comparison),
+             col = factor(.data$comparison),
+             shape = factor(.data$comparison))) +
+    do.call(geom_polygon, plot_params$area) +
     theme_ceplane() +
     theme_add +
-    geom_point(size = graph_params$point$size) +
-    scale_color_manual(labels = line_labels.default(he),
-                       values = graph_params$point$color) +
-    scale_shape_manual(labels = line_labels.default(he),
-                       values = graph_params$point$shape) +
+    geom_point(size = plot_params$point$size) +
+    ceplane_legend_manual(he, plot_params) +
     geom_hline(yintercept = 0, colour = "grey") +
     geom_vline(xintercept = 0, colour = "grey") +
-    coord_cartesian(xlim = graph_params$xlim,
-                    ylim = graph_params$ylim,
+    geom_text(data = data.frame(x = colMeans(he$delta_e),
+                                y = colMeans(he$delta_c)),
+              aes(x = .data$x, y = .data$y, 
+                  label = if (plot_params$icer_annot) {
+                    line_labels.default(
+                      he, ref_first = graph_params$ref_first)
+                  } else {""}),
+              inherit.aes = FALSE, show.legend = FALSE,
+              hjust = 0, vjust = 0) +
+    scale_y_continuous(
+      labels = scales::label_dollar(prefix = plot_params$currency)) +
+    coord_cartesian(xlim = plot_params$xlim,
+                    ylim = plot_params$ylim,
                     expand = FALSE) +
     do.call(labs,
-            list(title = graph_params$title,
-                 x = graph_params$xlab,
-                 y = graph_params$ylab)) +
-    do.call(geom_abline, c(slope = wtp, graph_params$line)) +
-    do.call(geom_point, graph_params$icer) +
-    do.call(annotate, graph_params$wtp) +
-    do.call(annotate, graph_params$icer_txt) +
-    do.call(theme, graph_params$legend)
+            list(title = plot_params$title,
+                 x = plot_params$xlab,
+                 y = plot_params$ylab)) +
+    do.call(geom_abline, c(slope = wtp, plot_params$line)) +
+    do.call(geom_point, plot_params$icer) +
+    do.call(annotate, plot_params$wtp) +
+    do.call(annotate, plot_params$icer_txt) +
+    do.call(theme, plot_params$legend)
 }
 
 
@@ -209,7 +220,7 @@ ceplane_plot_plotly.bcea <- function(he,
   
   comp_label <-
     paste(he$interventions[he$ref], "vs", he$interventions[he$comp])
-
+  
   # single long format for plotting data
   delta_ce <-
     merge(

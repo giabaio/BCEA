@@ -39,12 +39,12 @@
 #' 
 #' @author Gianluca Baio
 #' @seealso \code{\link{bcea}}
-#' @references
-#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics. Statistical Methods in Medical Research
-#' doi:10.1177/0962280211419832.
+#' @importFrom Rdpack reprompt
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+#' @references
+#' \insertRef{Baio2011}{BCEA}
+#' 
+#' \insertRef{Baio2013}{BCEA}
 #' 
 #' @examples
 #' 
@@ -55,7 +55,7 @@
 #' data(Vaccine)
 #'
 #' # Runs the health economic evaluation using BCEA
-#' m <- bcea(e=e,c=c,          # defines the variables of 
+#' m <- bcea(e=eff,c=cost,     # defines the variables of 
 #'                             #  effectiveness and cost
 #'       ref=2,                # selects the 2nd row of (e, c) 
 #'                             #  as containing the reference intervention

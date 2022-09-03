@@ -69,7 +69,9 @@ ceplane_ggplot_params <- function(he,
         data = data.frame(x = graph_params$area$x,
                           y = graph_params$area$y),
         mapping = aes(x = .data$x, y = .data$y),
-        inherit.aes = FALSE))
+        inherit.aes = FALSE),
+      currency = "",
+      icer_annot = FALSE)
   
   modifyList(default_params,
              graph_params) %>% 

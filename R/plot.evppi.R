@@ -15,8 +15,11 @@
 #' 
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}}, \code{\link{evppi}}
+#' @importFrom Rdpack reprompt
+#' 
 #' @references
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+#' 
+#' \insertRef{Baio2013}{BCEA}
 #' 
 #' @keywords hplot
 #' 

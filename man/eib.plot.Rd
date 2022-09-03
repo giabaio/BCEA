@@ -87,8 +87,8 @@ data(Vaccine)
  
 # Runs the health economic evaluation using BCEA
 m <- bcea(
-      e=e,
-      c=c,                  # defines the variables of 
+      e=eff,
+      c=cost,               # defines the variables of 
                             #  effectiveness and cost
       ref=2,                # selects the 2nd row of (e, c) 
                             #  as containing the reference intervention
@@ -105,16 +105,14 @@ eib.plot(m, graph = "ggplot2") + ggplot2::theme_linedraw()
 data(Smoking)
 treats <- c("No intervention", "Self-help",
             "Individual counselling", "Group counselling")
-m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+m <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 eib.plot(m)
 
 }
 \references{
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics. Statistical Methods in Medical Research
-doi:10.1177/0962280211419832.
+\insertRef{Baio2011}{BCEA}
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2013}{BCEA}
 }
 \seealso{
 \code{\link{bcea}},

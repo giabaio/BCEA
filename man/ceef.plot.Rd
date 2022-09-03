@@ -130,7 +130,7 @@ intervention (indexed by \code{ref} in the \code{\link{bcea}} function).
 
 ## create the bcea object m for the smoking cessation example
 data(Smoking)
-m <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
+m <- bcea(eff, cost, ref = 4, Kmax = 500, interventions = treats)
 
 ## produce plot
 ceef.plot(m, graph = "base")
@@ -158,10 +158,9 @@ ceef.plot(m,
 
 }
 \references{
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2013}{BCEA}
 
-IQWIG (2009). General methods for the Assessment of the Relation of Benefits
-to Cost, Version 1.0. IQWIG, November 2009.
+\insertRef{IQWIG2009}{BCEA}
 }
 \seealso{
 \code{\link{bcea}}

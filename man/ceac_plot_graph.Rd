@@ -44,3 +44,4 @@ modelling and the economic evaluation.}
 Choice of base R, ggplot2 or plotly.
 }
 \keyword{hplot}
+\keyword{internal}

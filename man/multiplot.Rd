@@ -19,3 +19,4 @@ ggplot TableGrob object
 \description{
 Arrange plots in grid. Sourced from R graphics cookbook.
 }
+\keyword{internal}

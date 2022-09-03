@@ -316,6 +316,9 @@
     <loc>/reference/geom_quad_txt.html</loc>
   </url>
   <url>
+    <loc>/reference/GrassmannOptim.html</loc>
+  </url>
+  <url>
     <loc>/reference/ib.plot.bcea.html</loc>
   </url>
   <url>
@@ -479,6 +482,9 @@
   </url>
   <url>
     <loc>/reference/summary.mixedAn.html</loc>
+  </url>
+  <url>
+    <loc>/reference/summary.pairwise.html</loc>
   </url>
   <url>
     <loc>/reference/tabulate_means.html</loc>

@@ -35,7 +35,7 @@ The development version can be installed using this GitHub repository. On Window
 
 ```r
 pkgs <- c("MASS", "Rtools", "remotes")
-repos <- c("https://cran.rstudio.com", "https://inla.r-inla-download.org/R/stable") 
+repos <- c("https://cran.rstudio.com", "https://inla.r-inla-download.org/R/stable/") 
 install.packages(pkgs, repos=repos, dependencies = "Depends")
 ```
 before installing the package using `remotes`:

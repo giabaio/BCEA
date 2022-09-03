@@ -46,17 +46,15 @@ Constructs the automated report from the output of the BCEA.
 
 \dontrun{
   data(Vaccine, package = "BCEA")
-  m <- bcea(e, c, ref = 2)
+  m <- bcea(eff, cost, ref = 2)
   make.report(m)
 }
 
 }
 \references{
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics. Statistical Methods in Medical Research
-doi:10.1177/0962280211419832.
+\insertRef{Baio2011}{BCEA}
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2013}{BCEA}
 }
 \seealso{
 \code{\link{bcea}}

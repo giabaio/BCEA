@@ -20,7 +20,6 @@
 # This function estimates all parameters in the model.
 # 
 #' @importFrom stats cov
-#' @importFrom GrassmannOptim GrassmannOptim
 #' 
 pfc <-
   function(X, y, fy=NULL, numdir=NULL, structure=c("iso", "aniso", "unstr", "unstr2"), eps_aniso=1e-3, numdir.test=FALSE,...)

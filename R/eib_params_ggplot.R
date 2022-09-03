@@ -30,7 +30,8 @@ eib_params_ggplot <- function(he,
         vjust = 1),
       cri = list(
         lwd = ifelse(!graph_params$plot.cri, 0.5, 0.75),
-        show.legend = FALSE))
+        show.legend = FALSE),
+      currency = "")
   
   modifyList(default_params,
              graph_params)

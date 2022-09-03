@@ -29,7 +29,7 @@ setComparisons <- function(he, comparison) {
          ref = he$ref,
          interventions = he$interventions,
          Kmax = he$Kmax,
-         wtp = he$wtp)
+         k = he$k)
   
   name_comp <- he$interventions[comparison]
   

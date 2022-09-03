@@ -414,6 +414,7 @@ make.mesh <- function(data,
 #' @param family family 
 #' @return list
 #' @importFrom stats as.formula
+#' 
 #' @seealso \code{\link{evppi}}
 #' @keywords internal
 #' 
@@ -429,6 +430,10 @@ fit.inla <- function(parameter,
                      max.edge,
                      h.value,
                      family) {
+  # @importFrom INLA inla.stack.data
+  # @importFrom INLA inla.stack.A
+  # @importFrom INLA inla
+
   tic <- proc.time()
   inputs.scale <-
     scale(inputs, apply(inputs, 2, mean), apply(inputs, 2, sd))
@@ -503,6 +508,7 @@ fit.inla <- function(parameter,
 #' @param fit.full fit.full
 #' @return list
 #' @seealso \code{\link{evppi}}
+#' @keywords internal
 #'
 compute.evppi <- function(he, fit.full) {
   EVPPI <- array()

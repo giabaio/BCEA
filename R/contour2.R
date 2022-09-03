@@ -9,6 +9,7 @@ contour2.bcea <- function(he,
                           comparison = NULL,
                           wtp = 25000,
                           graph = c("base", "ggplot2"),
+                          pos = c(0, 1),
                           ...) {
   
   graph_type <- match.arg(graph)
@@ -27,7 +28,7 @@ contour2.bcea <- function(he,
     plot_params <-
       contour_base_params(he, params)
     
-    ceplane.plot(he, comparison = NULL, wtp = wtp, graph = "base", ...)
+    ceplane.plot(he, comparison = NULL, wtp = wtp, pos = pos, graph = "base", ...)
     add_contours(he, plot_params)
     
   } else if (is_ggplot(graph_type)) {
@@ -35,7 +36,7 @@ contour2.bcea <- function(he,
     plot_params <-
       contour_ggplot_params(he, params, ...)
     
-    ceplane.plot(he, comparison = NULL, wtp = wtp, graph = "ggplot2", ...) +
+    ceplane.plot(he, comparison = NULL, wtp = wtp, pos = pos, graph = "ggplot2", ...) +
       do.call(geom_density_2d, plot_params$contour)     
   }
 }
@@ -56,6 +57,7 @@ contour2.bcea <- function(he,
 #' @param wtp The selected value of the willingness-to-pay. Default is
 #' \code{25000}.
 #' @template args-graph
+#' @template args-pos
 #' @param ...  Arguments to be passed to \code{\link{ceplane.plot}}. See the
 #' relative manual page for more details.
 #' 
@@ -69,21 +71,22 @@ contour2.bcea <- function(he,
 #' @seealso \code{\link{bcea}},
 #'          \code{\link{ceplane.plot}},
 #'          \code{\link{contour}}
+#'          
 #' @references
-#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics. Statistical Methods in Medical Research
-#' doi:10.1177/0962280211419832.
+#' \insertRef{Baio2011}{BCEA}
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+#' \insertRef{Baio2013}{BCEA}
+#' 
 #' @keywords hplot
 #' @import ggplot2
 #' @importFrom grDevices ps.options pdf.options
 #' @importFrom MASS kde2d
-#' 
+#' @importFrom Rdpack reprompt
+#'  
 #' @examples
 #' ## create the bcea object m for the smoking cessation example
 #' data(Smoking)
-#' m <- bcea(e, c, ref = 4, interventions = treats, Kmax = 500)
+#' m <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 #' 
 #' ## produce the plot
 #' contour2(m,
@@ -101,7 +104,7 @@ contour2.bcea <- function(he,
 #' ## vaccination example
 #' data(Vaccine)
 #' treats = c("Status quo", "Vaccination")
-#' m <- bcea(e=e, c=c, ref = 2, interventions = treats, Kmax = 50000)
+#' m <- bcea(eff, cost, ref = 2, interventions = treats, Kmax = 50000)
 #' contour2(m)
 #' contour2(m, wtp = 100)
 #' 

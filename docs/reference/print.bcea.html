@@ -6,11 +6,11 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">BCEA</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,8 +21,19 @@
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../articles/index.html">Articles</a>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/bcea.html">Get Started</a>
+    <a class="dropdown-item" href="../articles/ceac.html">Cost-Effectiveness Acceptability Curve Plots</a>
+    <a class="dropdown-item" href="../articles/ceef.html">Cost-Effectiveness Efficiency Frontier</a>
+    <a class="dropdown-item" href="../articles/ceplane.html">Cost-effectiveness plane</a>
+    <a class="dropdown-item" href="../articles/CEriskav.html">Risk Aversion Analysis</a>
+    <a class="dropdown-item" href="../articles/contour.html">Contour plots</a>
+    <a class="dropdown-item" href="../articles/eib.html">Expected Incremental Benefit Plot</a>
+    <a class="dropdown-item" href="../articles/paired_vs_multiple_comps.html">Paired vs Multiple Comparisons</a>
+    <a class="dropdown-item" href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+  </div>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
@@ -54,8 +65,8 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="co"># S3 method for bcea</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"digits"</span><span class="op">)</span>, give.attr <span class="op">=</span> <span class="cn">FALSE</span>, no.list <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for bcea</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"digits"</span><span class="op">)</span>, give.attr <span class="op">=</span> <span class="cn">FALSE</span>, no.list <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -63,22 +74,31 @@
     <dl><dt>x</dt>
 <dd><p>A <code>bcea</code> object containing the results of the Bayesian
 modelling and the economic evaluation.</p></dd>
+
+
 <dt>digits</dt>
 <dd><p>Minimal number of significant digits, see <code><a href="https://rdrr.io/r/base/print.default.html" class="external-link">print.default</a></code>.</p></dd>
+
+
 <dt>give.attr</dt>
 <dd><p>Logical; if TRUE (default), show attributes as sub structures.</p></dd>
+
+
 <dt>no.list</dt>
 <dd><p>Logical; if TRUE, no ‘list of ...’ nor the class are printed.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Potential further arguments.</p></dd>
+
 </dl></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="Smoking.html">data</a></span><span class="op">(</span><span class="st">"Vaccine"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">he</span> <span class="op">&lt;-</span> <span class="fu">BCEA</span><span class="fu">::</span><span class="fu"><a href="bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="Smoking.html">data</a></span><span class="op">(</span><span class="st">"Vaccine"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">he</span> <span class="op">&lt;-</span> <span class="fu">BCEA</span><span class="fu">::</span><span class="fu"><a href="bcea.html">bcea</a></span><span class="op">(</span><span class="va">eff</span>, <span class="va">cost</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> No reference selected. Defaulting to first intervention.</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -86,13 +106,11 @@ modelling and the economic evaluation.</p></dd>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan
-Green.</p>
+  <p></p><p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan Green.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer></div>

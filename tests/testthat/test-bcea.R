@@ -113,7 +113,7 @@ test_that("ib", {
   
   res <- 
     bcea(e = e_tmp,
-         c = c_tmp, wtp = 5)
+         c = c_tmp, k = 5)
   
   k <- 5
   n_comparisons <- 1
@@ -134,7 +134,7 @@ test_that("ib", {
   
   res <- 
     bcea(e = e_tmp,
-         c = c_tmp, wtp = k)
+         c = c_tmp, k = k)
   
   ib_1 <- k*delta_e[1] - delta_c[1] # 95, 10*(-1) - (-100) = 90
   ib_2 <- k*delta_e[2] - delta_c[2] # 20, 10*2 - (-10) = 30
@@ -150,9 +150,9 @@ test_that("ib", {
   
   res <- 
     bcea(e = e_tmp,
-         c = c_tmp, wtp = k)
+         c = c_tmp, k = k)
   
-  # sim x comprison
+  # sim x comparison
   delta_e <- matrix(c(-1, 3,
                       2, 4), nrow = 2, byrow = TRUE)
   delta_c <- matrix(c(-100,  0,
@@ -184,4 +184,46 @@ test_that("jags, bugs, stan methods", {
   expect_s3_class(bcea.bugs(bugsfit), class = "bcea")
   # expect_s3_class(bcea.rstan(stanfit), class = "bcea")
 })
+
+test_that("k and wtp arguments", {
+  
+  m <- bcea(eff, cost, plot = FALSE)
+  
+  expect_equal(m$Kmax, 50000)
+  expect_length(m$k, 501)
+  
+  m <- bcea(eff, cost, k = 0:1000, plot = FALSE)
+  expect_equal(m$Kmax, 1000)
+  expect_length(m$k, 1001)
+  
+  expect_message(
+    bcea(eff, cost, wtp = 0:1000, plot = FALSE),
+    "wtp argument soft deprecated. Please use k instead in future.")
+})
+
+test_that("using e and c still works", {
+  e <- eff
+  c <- cost
+  bcea_res <- bcea(eff = eff, cost = cost)
+  
+  expect_equal(bcea(e, c), bcea_res)
+  expect_equal(bcea(e=e, c=c), bcea_res)
+  expect_equal(bcea(c=c, e=e), bcea_res)
+})
+
+test_that("named reference", {
+  
+  expect_equal(bcea(eff, cost, ref = 1, interventions = c("a", "b")),
+               bcea(eff, cost, ref = "a", interventions = c("a", "b")))
+  
+  expect_equal(bcea(eff, cost, ref = 2, interventions = c("a", "b")),
+               bcea(eff, cost, ref = "b", interventions = c("a", "b")))
+  
+  expect_message(bcea(eff, cost, ref = "c", interventions = c("a", "b")),
+                 "No reference selected. Defaulting to first intervention.")
+  
+  expect_message(bcea(eff, cost, ref = "c"),
+                 "No reference selected. Defaulting to first intervention.")
+})
+
 

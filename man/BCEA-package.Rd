@@ -12,8 +12,8 @@ and produce standardised output for the analysis of the results.
 \details{
 \tabular{ll}{ Package: \tab BCEA\cr
               Type: \tab Package\cr
-              Version: \tab 2.4.1\cr
-              Date: \tab 2021-02-05\cr
+              Version: \tab 2.4.2\cr
+              Date: \tab 2022-09-03\cr
               License: \tab GPL2 \cr
               LazyLoad: \tab Yes\cr }
               
@@ -25,15 +25,11 @@ Compares one of the interventions (the "reference") to the others
 ("comparators"). Produces many summaries and plots to analyse the results.
 }
 \references{
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
-doi:10.1177/0962280211419832.
+\insertRef{Baio2011}{BCEA}
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London.
+\insertRef{Baio2013}{BCEA}
 
-Baio G., Berardi A., Heath A. (2017). Bayesian Cost Effectiveness
-Analysis with the R package BCEA. Springer
+\insertRef{Baio2017}{BCEA}
 }
 \author{
 Gianluca Baio, Andrea Berardi, Anna Heath, Nathan Green

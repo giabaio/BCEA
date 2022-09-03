@@ -86,10 +86,7 @@ contour_ggplot <- function(he,
     geom_quad_txt(he, plot_params) +
     geom_hline(yintercept = 0, colour = "grey") +
     geom_vline(xintercept = 0, colour = "grey") +
-    scale_color_manual(labels = line_labels.default(he),
-                       values = plot_params$point$color) +
-    scale_shape_manual(labels = line_labels.default(he),
-                       values = plot_params$point$shape) +
+    ceplane_legend_manual(he, plot_params) +
     coord_cartesian(xlim = plot_params$xlim,
                     ylim = plot_params$ylim,
                     expand = TRUE) +

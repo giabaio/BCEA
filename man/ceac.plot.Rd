@@ -46,6 +46,7 @@ Not all plotting functions have a \code{"plotly"} implementation yet.}
  \item \code{line = list(color)}: specifies the line colour(s) - all graph types.
  \item \code{line = list(type)}: specifies the line type(s) as \code{lty} numeric values - all graph types.
  \item \code{line = list(size)}: specifies the line width(s) as numeric values - all graph types.
+ \item \code{currency}: Currency prefix to willingness to pay values - ggplot2 only.
  \item \code{area_include}: logical, include area under the CEAC curves - plotly only.
  \item \code{area_color}: specifies the AUC colour - plotly only.}}
 }
@@ -82,7 +83,7 @@ effectively depending on the willingness to pay value \eqn{k}.
 }
 \examples{
 data("Vaccine")
-he <- BCEA::bcea(e, c)
+he <- BCEA::bcea(eff, cost)
 ceac.plot(he)
 
 ceac.plot(he, graph = "base")
@@ -95,7 +96,7 @@ ceac.plot(he, graph = "ggplot2",
           theme = ggplot2::theme_dark())
 
 ## more interventions
-he2 <- BCEA::bcea(cbind(e, e - 0.0002), cbind(c, c + 5))
+he2 <- BCEA::bcea(cbind(eff, eff - 0.0002), cbind(cost, cost + 5))
 mypalette <- RColorBrewer::brewer.pal(3, "Accent")
 ceac.plot(he2, graph = "ggplot2",
           title = "my title",
@@ -109,11 +110,9 @@ ceac.plot(he2, graph = "plotly", pos = "bottom")
 
 }
 \references{
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-  Analysis in Health Economics. Statistical Methods in Medical Research
-  doi:10.1177/0962280211419832.
+\insertRef{Baio2011}{BCEA}
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2013}{BCEA}
 }
 \seealso{
 \code{\link{bcea}},

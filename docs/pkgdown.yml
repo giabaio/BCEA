@@ -1,5 +1,5 @@
-pandoc: 2.17.1.1
-pkgdown: 2.0.2
+pandoc: '2.18'
+pkgdown: 2.0.5
 pkgdown_sha: ~
 articles:
   bcea: bcea.html
@@ -11,5 +11,5 @@ articles:
   eib: eib.html
   paired_vs_multiple_comps: paired_vs_multiple_comps.html
   Set_bcea_parameters: Set_bcea_parameters.html
-last_built: 2022-04-21T08:05Z
+last_built: 2022-08-23T11:24Z
 

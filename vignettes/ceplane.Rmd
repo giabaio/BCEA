@@ -38,7 +38,7 @@ To calculate these in BCEA we use the `bcea()` function.
 ```{r}
 data("Vaccine")
 
-he <- bcea(e, c)
+he <- bcea(eff, cost)
 ```
 
 The plot defaults to base R plotting. Type of plot can be set explicitly using the `graph` argument.
@@ -81,7 +81,7 @@ This situation is when there are more than two interventions to consider.
 ```{r}
 data("Smoking")
 
-he <- bcea(e, c, ref = 4)
+he <- bcea(eff, cost, ref = 4)
 # str(he)
 ```
 

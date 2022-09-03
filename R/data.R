@@ -8,20 +8,20 @@
 #' 
 #' @name Smoking
 #' @docType data
-#' @aliases Smoking c data e life.years pi smoking smoking_output treats
+#' @aliases Smoking cost data eff life.years pi_post smoking smoking_output treats
 #' @format A data list including the variables needed for the smoking cessation
 #' cost-effectiveness analysis. The variables are as follows:
 #' \describe{
-#' \item{list("c")}{a matrix of 500 simulations from the posterior distribution
+#' \item{list("cost")}{a matrix of 500 simulations from the posterior distribution
 #'  of the overall costs associated with the four strategies}
 #' \item{list("data")}{a dataset containing the characteristics of the smokers
 #'  in the UK population}
-#' \item{list("e")}{a matrix of 500 simulations from the
+#' \item{list("eff")}{a matrix of 500 simulations from the
 #'  posterior distribution of the clinical benefits associated with the four
 #'  strategies}
 #' \item{list("life.years")}{a matrix of 500 simulations from the
 #'  posterior distribution of the life years gained with each strategy}
-#' \item{list("pi")}{a matrix of 500 simulations from the posterior
+#' \item{list("pi_post")}{a matrix of 500 simulations from the posterior
 #'  distribution of the event of smoking cessation with each strategy}
 #' \item{list("smoking")}{a data frame containing the inputs needed for the
 #'  network meta-analysis model. The \code{data.frame} object contains:
@@ -34,6 +34,7 @@
 #' \item{list("treats")}{a vector of labels associated with the four strategies}
 #' }
 #' @references Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
+#' 
 #' @source Effectiveness data adapted from Hasselblad V. (1998). Meta-analysis
 #' of Multitreatment Studies. Medical Decision Making 1998;18:37-43.
 #' Cost and population characteristics data adapted from various sources:
@@ -66,7 +67,7 @@ NULL
 #' @format A data list including the variables needed for the influenza
 #' vaccination. The variables are as follows:
 #' \describe{
-#'   \item{list("c")}{a matrix of simulations from the posterior
+#'   \item{list("cost")}{a matrix of simulations from the posterior
 #'   distribution of the overall costs associated with the two treatments}
 #'   \item{list("c.pts")}{}
 #'   \item{list("cost.GP")}{a matrix of simulations from the posterior
@@ -92,7 +93,7 @@ NULL
 #'   interventions}
 #'   \item{list("cost.vac")}{a matrix of simulations from the posterior
 #'   distribution of the costs for vaccination}
-#'   \item{list("e")}{a matrix of simulations from the posterior distribution of
+#'   \item{list("eff")}{a matrix of simulations from the posterior distribution of
 #'   the clinical benefits associated with the two treatments}
 #'   \item{list("e.pts")}{}
 #'   \item{list("N")}{the number of subjects in the reference population}

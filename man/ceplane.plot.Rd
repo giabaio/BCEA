@@ -64,6 +64,8 @@ plotting. Should (partial-) match the two options \code{"base"} or
  acceptability area (default is TRUE).
  \item \code{area = list(color)}: a colour specifying the colour of the cost-effectiveness
  acceptability area.
+ \item \code{currency}: Currency prefix to cost differential values - ggplot2 only.
+ \item \code{icer_annot}: Annotate each ICER point with text label - ggplot2 only.
 }}
 }
 \value{
@@ -94,7 +96,7 @@ function or a rgba colour string, e.g. \code{'rgba(1, 1, 1, 1)'}.
 ## create the bcea object for the smoking cessation example
 data(Smoking)
 
-m <- bcea(e, c, ref = 4, Kmax = 500, interventions = treats)
+m <- bcea(eff, cost, ref = 4, Kmax = 500, interventions = treats)
 
 ## produce the base plot
 ceplane.plot(m, wtp = 200, graph = "base")
@@ -113,10 +115,9 @@ ceplane.plot(m, wtp = 200, comparison = 1, graph = "plotly")
  
 }
 \references{
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity Analysis in Health Economics.
-Statistical Methods in Medical Research. doi:10.1177/0962280211419832.
+\insertRef{Baio2011}{BCEA}
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+\insertRef{Baio2013}{BCEA}
 }
 \seealso{
 \code{\link{bcea}},

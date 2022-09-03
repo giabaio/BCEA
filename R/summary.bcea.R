@@ -14,12 +14,14 @@
 #' output and synthetic information on the economic measures (EIB, CEAC, EVPI).
 #' @author Gianluca Baio
 #' @seealso \code{\link{bcea}}
-#' @references
-#' Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-#' Analysis in Health Economics. Statistical Methods in Medical Research
-#' doi:10.1177/0962280211419832.
+#' @importFrom Rdpack reprompt
 #' 
-#' Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London.
+#' @references
+#' 
+#' \insertRef{Baio2011}{BCEA}
+#' 
+#' \insertRef{Baio2013}{BCEA}
+#' 
 #' @keywords print
 #' 
 #' @export
@@ -27,13 +29,13 @@
 #' @examples 
 #' data(Vaccine)
 #' 
-#' he <- bcea(e, c, interventions = treats, ref = 2)
+#' he <- bcea(eff, cost, interventions = treats, ref = 2)
 #' summary(he)
 #' 
 summary.bcea <- function(object,
                          wtp = 25000,...) {
   he <- object
-  
+
   if (max(he$k) < wtp) {
     wtp <- max(he$k)
     message(
@@ -66,13 +68,14 @@ summary.bcea <- function(object,
     }
   }
   
-  Table <- sim_table.bcea(he)$Table
+  Table <- sim_table(he, wtp = wtp)$Table
   
   EU_tab <- matrix(NA, he$n_comparators, 1)
   EU_tab[, 1] <-
     unlist(Table[he$n_sim + 1, paste0("U", 1:he$n_comparators)])
-  colnames(EU_tab) <- "Expected utility"
-  rownames(EU_tab) <- he$interventions
+  colnames(EU_tab) <- "Expected net benefit"
+  
+  rownames(EU_tab) <- he$interventions[c(he$ref, he$comp)]
   
   comp_tab <- matrix(NA, he$n_comparisons, 3)
   comp_tab[, 1] <-
@@ -191,7 +194,7 @@ summary.bcea <- function(object,
   cat("\n")
   cat(
     paste0(
-      "Optimal intervention (max expected utility) for k = ",
+      "Optimal intervention (max expected net benefit) for k = ",
       wtp,
       ": ",
       he$interventions[he$best][he$k == wtp],
@@ -200,5 +203,7 @@ summary.bcea <- function(object,
         quote = FALSE,
         digits = 5,
         justify = "center")
+  
+  invisible(he)
 }
 

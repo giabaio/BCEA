@@ -30,11 +30,11 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">BCEA</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,8 +46,19 @@
 <li class="nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li class="active nav-item">
-  <a class="nav-link" href="../articles/index.html">Articles</a>
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/bcea.html">Get Started</a>
+    <a class="dropdown-item" href="../articles/ceac.html">Cost-Effectiveness Acceptability Curve Plots</a>
+    <a class="dropdown-item" href="../articles/ceef.html">Cost-Effectiveness Efficiency Frontier</a>
+    <a class="dropdown-item" href="../articles/ceplane.html">Cost-effectiveness plane</a>
+    <a class="dropdown-item" href="../articles/CEriskav.html">Risk Aversion Analysis</a>
+    <a class="dropdown-item" href="../articles/contour.html">Contour plots</a>
+    <a class="dropdown-item" href="../articles/eib.html">Expected Incremental Benefit Plot</a>
+    <a class="dropdown-item" href="../articles/paired_vs_multiple_comps.html">Paired vs Multiple Comparisons</a>
+    <a class="dropdown-item" href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
+  </div>
 </li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
@@ -75,7 +86,7 @@
 
 
 <div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Risk Aversion Analysis</h1>
             
       
@@ -87,20 +98,20 @@
     
 <p>Set-up analysis using smoking cessation data set.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/Smoking.html">data</a></span><span class="op">(</span><span class="va">Smoking</span><span class="op">)</span>
-
-<span class="va">treats</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="st">"No intervention"</span>, <span class="st">"Self-help"</span>, <span class="st">"Individual counselling"</span>, <span class="st">"Group counselling"</span><span class="op">)</span>
-<span class="va">bcea_smoke</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span>, ref <span class="op">=</span> <span class="fl">4</span>, interventions <span class="op">=</span> <span class="va">treats</span>, Kmax <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/Smoking.html">data</a></span><span class="op">(</span><span class="va">Smoking</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">treats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"No intervention"</span>, <span class="st">"Self-help"</span>, <span class="st">"Individual counselling"</span>, <span class="st">"Group counselling"</span><span class="op">)</span></span>
+<span><span class="va">bcea_smoke</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">eff</span>, <span class="va">cost</span>, ref <span class="op">=</span> <span class="fl">4</span>, interventions <span class="op">=</span> <span class="va">treats</span>, Kmax <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span></code></pre></div>
 <p>Run the risk aversion analysis straight away with both the base R and
 ggplot2 versions of plots.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.005</span>, <span class="fl">0.020</span>, <span class="fl">0.035</span><span class="op">)</span>
-<span class="fu"><a href="../reference/CEriskav_assign.html">CEriskav</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">r</span>
-
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.005</span>, <span class="fl">0.020</span>, <span class="fl">0.035</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/CEriskav_assign.html">CEriskav</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">r</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-3-1.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-3-2.png" width="576"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-3-3.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-3-4.png" width="576"></p>
 <p>Notice that the first value is asymptotically zero but the function
 handles that for us. Previously, you had to use something like 1e-10
@@ -109,53 +120,53 @@ which was a bit awkward.</p>
 (“self-help”) anymore. We still keep the same first comparison though
 “no intervention”.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/setComparisons.html">setComparisons</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/setComparisons.html">setComparisons</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <p>If we rerun the analysis we should see that the output is exactly the
 same.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/CEriskav_assign.html">CEriskav</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">r</span>
-
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/CEriskav_assign.html">CEriskav</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">r</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-5-1.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-5-2.png" width="576"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-5-3.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-5-4.png" width="576"></p>
 <p>What happens when we only have one risk adjustment value? Set it to
 zero so this should be exactly the same as the baseline
 <code>bcea</code> case.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">r</span> <span class="op">&lt;-</span> <span class="fl">0</span>
-<span class="fu"><a href="../reference/CEriskav_assign.html">CEriskav</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">r</span>
-
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span><span class="fu"><a href="../reference/CEriskav_assign.html">CEriskav</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">r</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-6-1.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-6-2.png" width="576"></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-6-3.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-6-4.png" width="576"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="va">bcea_smoke0</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">e</span>, <span class="va">c</span>, ref <span class="op">=</span> <span class="fl">4</span>, interventions <span class="op">=</span> <span class="va">treats</span>, Kmax <span class="op">=</span> <span class="fl">500</span><span class="op">)</span>
-<span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">bcea_smoke0</span>, comparison <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="va">bcea_smoke0</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">eff</span>, <span class="va">cost</span>, ref <span class="op">=</span> <span class="fl">4</span>, interventions <span class="op">=</span> <span class="va">treats</span>, Kmax <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">bcea_smoke0</span>, comparison <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-6-5.png" width="576"></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/evi.plot.html">evi.plot</a></span><span class="op">(</span><span class="va">bcea_smoke0</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/evi.plot.html">evi.plot</a></span><span class="op">(</span><span class="va">bcea_smoke0</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-6-6.png" width="576"></p>
 <p>Check that unusual or meaningless values for <code>r</code> are
 handled gracefully. At present the are just calculated and plotting
 exactly the same way. <em>should we limit values?</em></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># negative</span>
-<span class="va">r</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">0.005</span>
-<span class="fu"><a href="../reference/CEriskav_assign.html">CEriskav</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">r</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># negative</span></span>
+<span><span class="va">r</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">0.005</span></span>
+<span><span class="fu"><a href="../reference/CEriskav_assign.html">CEriskav</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">r</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-7-1.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-7-2.png" width="576"></p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co"># large</span>
-<span class="va">r</span> <span class="op">&lt;-</span> <span class="fl">2</span>
-<span class="fu"><a href="../reference/CEriskav_assign.html">CEriskav</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">r</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="co"># large</span></span>
+<span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
+<span><span class="fu"><a href="../reference/CEriskav_assign.html">CEriskav</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">r</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-7-3.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-7-4.png" width="576"></p>
 <p>If we select a new set of comparison interventions what will happen?
 There are specified in a different order and for other plots this makes
@@ -165,15 +176,15 @@ intervention is plotted so changing the order changes the plot. We can
 see this by swapping “non intervention” and “individual counselling”
 interventions from the analysis above.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/setComparisons.html">setComparisons</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/setComparisons.html">setComparisons</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.005</span>, <span class="fl">0.020</span>, <span class="fl">0.035</span><span class="op">)</span>
-<span class="fu"><a href="../reference/CEriskav_assign.html">CEriskav</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">r</span>
-
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.005</span>, <span class="fl">0.020</span>, <span class="fl">0.035</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/CEriskav_assign.html">CEriskav</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">r</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-9-1.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-9-2.png" width="576"></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-9-3.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-9-4.png" width="576"></p>
 <p>The previous version of <code><a href="../reference/CEriskav_assign.html">CEriskav()</a></code> had a
 <code>comparison</code> argument where you could specify the single
@@ -185,59 +196,59 @@ use <code>setComparison()</code> first and then call the plotting
 function.</p>
 <p>Check legend position argument:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># base R</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, pos <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># base R</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-1.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-2.png" width="576"></p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, pos <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-3.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-4.png" width="576"></p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, pos <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, pos <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-5.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-6.png" width="576"></p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, pos <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, pos <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-7.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-8.png" width="576"></p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, pos <span class="op">=</span> <span class="st">"topleft"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, pos <span class="op">=</span> <span class="st">"topleft"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-9.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-10.png" width="576"></p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, pos <span class="op">=</span> <span class="st">"topright"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, pos <span class="op">=</span> <span class="st">"topright"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-11.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-12.png" width="576"></p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, pos <span class="op">=</span> <span class="st">"bottomleft"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, pos <span class="op">=</span> <span class="st">"bottomleft"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-13.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-14.png" width="576"></p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, pos <span class="op">=</span> <span class="st">"bottomright"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, pos <span class="op">=</span> <span class="st">"bottomright"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-15.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-16.png" width="576"></p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co"># ggplot2</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="co"># ggplot2</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-17.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-18.png" width="576"></p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="fu"><a href="../reference/Smoking.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-19.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-20.png" width="576"></p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-21.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-22.png" width="576"></p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-23.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-24.png" width="576"></p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-25.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-26.png" width="576"></p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-27.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-28.png" width="576"></p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-29.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-30.png" width="576"></p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-31.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-32.png" width="576"></p>
   </main>
 </div>
@@ -246,14 +257,12 @@ function.</p>
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan
-Green.</p>
+<p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan Green.</p>
 </div>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
     </footer>

@@ -24,3 +24,5 @@ Summary printed to console
 \description{
 Summary table for CEEF
 }
+\keyword{internal}
+\keyword{print}

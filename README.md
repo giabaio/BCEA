@@ -2,7 +2,7 @@
 
 <!-- badges: start -->
 [![Build Status](https://app.travis-ci.com/n8thangreen/BCEA.svg?branch=dev)](https://app.travis-ci.com/n8thangreen/BCEA)
-[![R-CMD-check](https://github.com/n8thangreen/BCEA/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/n8thangreen/BCEA/actions/workflows/check-standard.yaml)
+[![R-CMD-check](https://github.com/n8thangreen/BCEA/actions/workflows/check-standard.yaml/badge.svg?branch=dev)](https://github.com/n8thangreen/BCEA/actions/workflows/check-standard.yaml)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/BCEA)](https://cran.r-project.org/package=BCEA)
 [![CRAN_Download_Badge](https://cranlogs.r-pkg.org/badges/BCEA)](https://cran.r-project.org/package=BCEA)
 [![CRAN_Download_Badge](https://cranlogs.r-pkg.org/badges/grand-total/BCEA?color=orange)](https://cran.r-project.org/package=BCEA)
@@ -11,7 +11,7 @@
 
 > Perform Bayesian Cost-Effectiveness Analysis in R.
 
-:rocket: **Version 2.4.1 out now!** [Check out the release notes here](https://github.com/n8thangreen/BCEA/releases/tag/v2.4.1).
+:rocket: **Version 2.4.2 out now!** [Check out the release notes here](https://github.com/n8thangreen/BCEA/releases/tag/v2.4.2).
 
 ## Contents
 
@@ -42,7 +42,7 @@ The development version can be installed using this GitHub repository. On Window
 
 ```r
 pkgs <- c("MASS", "Rtools", "remotes")
-repos <- c("https://cran.rstudio.com", "https://inla.r-inla-download.org/R/stable") 
+repos <- c("https://cran.rstudio.com", "https://inla.r-inla-download.org/R/stable/") 
 install.packages(pkgs, repos=repos, dependencies = "Depends")
 ```
 before installing the package using `remotes`:
