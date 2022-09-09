@@ -37,7 +37,7 @@ bf <-
     
     if (case=="categ")
     {
-      bins.y<-unique(sort(y)); 
+      bins.y<-unique(sort(y))
       r<- length(unique(sort(y)))-1
       fy<-array(rep(0), c(r, nobs))
       for (i in 1:r){ fy[i,]<-sapply(y, function(x) (x==bins.y[i]))} 
@@ -73,10 +73,10 @@ bf <-
       }	
       else if (degree==1) # Piecewise linear discontinuous
       { 
-        for(i in 1:(nslices-1))
+        for(i in seq_len(nslices-1))
         {
-          fy[2*i-1, ] <- Indicator(y, bins.y[[i]]);
-          fy[2*i, ] <- Indicator(y, bins.y[[i]])*(y-bins.y[[i]][1]);
+          fy[2*i-1, ] <- Indicator(y, bins.y[[i]])
+          fy[2*i, ] <- Indicator(y, bins.y[[i]])*(y-bins.y[[i]][1])
         }
         fy[2*nslices-1, ] <- Indicator(y, bins.y[[nslices]])*(y-bins.y[[nslices]][1])
       } 
@@ -107,14 +107,15 @@ bf <-
     } 
     else if (case=="pcont")
     {
-      if ((nslices==0) | (nslices==1)){message("The minimum number of slices is 2")
+      if (nslices == 0 || nslices == 1){
+        message("The minimum number of slices is 2")
         nslices <- 2}
       if (degree==0) stop("Piecewise Constant Continuous is not defined.")
       
       r <- nslices*degree+1
       fy <- array(rep(0), c(r, nobs))
       slicing <- ldr.slices(y, nslices)
-      bins.y <- slicing$bins;
+      bins.y <- slicing$bins
       
       if (degree==1)# Piecewise linear continuous
       {  

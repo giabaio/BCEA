@@ -11,9 +11,9 @@ evppi.bcea <- function(he,
                        residuals = TRUE, ...) {
   
   if (is.null(colnames(input))) {
-    colnames(input) <- paste0("theta", 1:dim(input)[2])
+    colnames(input) <- paste0("theta", seq_len(dim(input)[2]))
   }
-  if (is.numeric(param_idx[1]) | is.integer(param_idx[1])) {
+  if (is.numeric(param_idx[1]) || is.integer(param_idx[1])) {
     params <- colnames(input)[param_idx]
   } else {
     params <- param_idx
@@ -67,7 +67,7 @@ evppi.bcea <- function(he,
   
   if (!inherits(extra_args$method, "list")) {
     
-    if (extra_args$method != "sad" & extra_args$method != "so") {
+    if (extra_args$method != "sad" && extra_args$method != "so") {
       if (length(extra_args$method) > 1) {
         extra_args$method <- list(extra_args$method,
                                   extra_args$method)
