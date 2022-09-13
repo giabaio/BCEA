@@ -7,6 +7,7 @@
 [![CRAN_Download_Badge](https://cranlogs.r-pkg.org/badges/BCEA)](https://cran.r-project.org/package=BCEA)
 [![CRAN_Download_Badge](https://cranlogs.r-pkg.org/badges/grand-total/BCEA?color=orange)](https://cran.r-project.org/package=BCEA)
 [![CodeFactor](https://www.codefactor.io/repository/github/n8thangreen/bcea/badge)](https://www.codefactor.io/repository/github/n8thangreen/bcea)
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.04206/status.svg)](https://doi.org/10.21105/joss.04206)
 <!-- badges: end -->
 
 > Perform Bayesian Cost-Effectiveness Analysis in R.
