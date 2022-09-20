@@ -68,5 +68,8 @@ reference:
 - title: "Data"
   contents:
   - Smoking
-  - Vaccine
-
+- title: "Deprecated"
+  contents:
+  - mce.plot
+  - plot.mixedAn
+  
