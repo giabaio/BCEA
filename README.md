@@ -1,4 +1,4 @@
-# BCEA <img src="man/figures/logo.png" align="right" />
+# BCEA: Bayesian cost-effectiveness analysis <img src="man/figures/logo.png" align="right" />
 
 <!-- badges: start -->
 [![Build Status](https://app.travis-ci.com/n8thangreen/BCEA.svg?branch=dev)](https://app.travis-ci.com/n8thangreen/BCEA)
