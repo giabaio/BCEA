@@ -98,6 +98,12 @@ plot.bcea <- function(x,
   use_base_graphics <- pmatch(graph, c("base", "ggplot2")) != 2
   extra_args <- list(...)
   
+  # consistent colours across plots
+  if ("point" %in% names(extra_args)) {
+    if ("color" %in% names(extra_args$point)) {
+      extra_args$line$color <- extra_args$point$color   
+    }}
+  
   if (use_base_graphics) {
     withr::with_par(list(mfrow = c(2,2)), {
       ceplane.plot(x,
@@ -106,14 +112,18 @@ plot.bcea <- function(x,
                    pos = pos,
                    graph = "base",...)
       
-      eib.plot(x,
-               comparison = comparison,
-               pos = pos,
-               graph = "base",...)
-      
-      ceac.plot(x,
+      do.call(eib.plot,
+              c(he = list(x),
                 pos = pos,
-                graph = "base", ...)
+                comparison = comparison,
+                graph = "base",
+                extra_args))
+      
+      do.call(ceac.plot,
+              c(he = list(x),
+                pos = pos,
+                graph = "base",
+                extra_args))
       
       evi.plot(x,
                graph = "base", ...)
@@ -162,7 +172,7 @@ plot.bcea <- function(x,
       
       ceplane.pos <- ifelse(pos, pos, c(1, 1.025))
       
-      #TODO: warnings...
+      ##TODO: warnings...
       ceplane <-
         ceplane.plot(x,
                      wtp = wtp,
@@ -173,18 +183,22 @@ plot.bcea <- function(x,
         theme_add
       
       eib <-
-        eib.plot(x,
-                 pos = pos,
-                 comparison = comparison,
-                 graph = "ggplot2", ...) +
+        do.call(eib.plot,
+                c(he = list(x),
+                  pos = pos,
+                  comparison = comparison,
+                  graph = "ggplot2",
+                  extra_args)) +
         do.call(theme, global_params) +
         theme_add
       
       ceac <-
-        ceac.plot(x,
+        do.call(ceac.plot,
+                c(he = list(x),
                   pos = pos,
                   comparison = comparison,
-                  graph = "ggplot2", ...) +
+                  graph = "ggplot2",
+                  extra_args)) +
         do.call(theme, global_params) +
         theme_add
       
