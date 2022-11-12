@@ -1,7 +1,7 @@
 
 #' Info Rank Plot By Graph Device
 #'
-#' Choice of base R, ggplot2 and plotly.
+#' Choice of base R, \pkg{ggplot2} and \pkg{plotly}.
 #' @name info_rank_graph
 #' 
 NULL
