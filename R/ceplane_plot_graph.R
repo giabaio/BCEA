@@ -1,12 +1,12 @@
 
 #' Cost-Effectiveness Plane Plot By Graph Device
 #'
-#' Choice of base R, ggplot2 or plotly.
+#' Choice of base R, \pkg{ggplot2} or \pkg{plotly}.
 #' 
 #' @template args-he
 #' @param wtp Willingness to pay threshold; default 25,000
 #' @param pos_legend Legend position
-#' @param graph_params Graph parameters in ggplot format
+#' @param graph_params Graph parameters in \pkg{ggplot2} format
 #' @param ... Additional arguments
 #' 
 #' @examples
@@ -97,7 +97,7 @@ ceplane_plot_base <- function(he, ...) {
 
 #' @rdname ceplane_plot_graph
 #'
-#' @return For ggplot2 returns ggplot2 object
+#' @return For \pkg{ggplot2} returns \pkg{ggplot2} object
 #' 
 #' @import ggplot2
 #' @importFrom grid unit
@@ -211,7 +211,7 @@ ceplane_plot_ggplot <- function(he, ...) {
 
 #' @rdname ceplane_plot_graph
 #'  
-#' @return For plotly returns a plot in the Viewer
+#' @return For \pkg{plotly} returns a plot in the Viewer
 #' 
 ceplane_plot_plotly.bcea <- function(he,
                                      wtp = 25000,
