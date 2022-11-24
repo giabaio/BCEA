@@ -15,15 +15,15 @@ For each parameter and value of the willingness-to-pay threshold $k$, a barchart
 # Uses the BCEA function `createInputs` to pre-process 
 #  the PSA runs and obtain a suitable format
 
-mat <- createInputs(inputs = params$psa_sims,
+mat <- createInputs(inputs = rmd_params$psa_sims,
                     print_is_linear_comb = FALSE)
 
 IR <- info.rank(1:ncol(mat$mat),
                 mat$mat,
                 he = m,
-                wtp = params$wtp)
+                wtp = rmd_params$wtp)
 
-if (params$show.tab) IR$rank
+if (rmd_params$show.tab) IR$rank
 ```
 
 The graph shows a set of bars quantifying the proportion of the total EVPI associated with each parameter. The larger the bar, the higher the impact of a given parameter on decision uncertainty. As mentioned above, care is needed in giving this graph an 'absolute' interpretation --- just because a parameter shows a relatively low position in the Info-rank plot, does not mean that there will be no value in investigating it in conjunction with other parameters. 

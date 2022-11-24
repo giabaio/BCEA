@@ -3,7 +3,7 @@
 
 The following graph shows the _cost-effectiveness plane_. This presents the joint distribution of the population average benefit and cost differential, $(\Delta_e,\Delta_c)$ and can be used to assess the uncertainty underlying the decision-making problem. 
 
-Each point in the graph represents a 'potential future' in terms of expected incremental economic outcomes. The shaded portion of the plane is the _'sustainability area'_. The more points lay in the sustainability area, the more likely that the reference intervention will turn out to be cost-effective, at a given willingness to pay threshold, $k$ (in this case selected at $k=$ `r params$wtp`).
+Each point in the graph represents a 'potential future' in terms of expected incremental economic outcomes. The shaded portion of the plane is the _'sustainability area'_. The more points lay in the sustainability area, the more likely that the reference intervention will turn out to be cost-effective, at a given willingness to pay threshold, $k$ (in this case selected at $k=$ `r rmd_params$wtp`).
 
 
 ```{r, echo=echo, fig.width=4.6, fig.height=4.6, fig.align=align, warning=FALSE, message=FALSE, comment=NA}
@@ -16,5 +16,5 @@ if (n.ints == 2) {
   graph <- "ggplot2"
   pos <- TRUE
 }
-ceplane.plot(m, graph = graph, pos = pos, wtp = params$wtp)
+ceplane.plot(m, graph = graph, pos = pos, wtp = rmd_params$wtp)
 ```
