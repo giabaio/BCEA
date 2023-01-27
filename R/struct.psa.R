@@ -114,10 +114,11 @@ struct.psa <- function(models,
     d[i] <- mdl[[i]]$DIC
   }
   
-  dmin <- min(d)					                        # minimum value to re-scale DICs
+  dmin <- min(d)   # minimum value to re-scale DICs
+  delta_dic <- abs(dmin-d)
   # Only compute w using DIC if the user hasn't passed a suitable value 
   if(is.null(w)) {
-    w <- exp(-0.5*(d - dmin))/sum(exp(-0.5*(d - dmin))) 	# model weights (cfr BMHE)
+    w <- exp(-0.5*(delta_dic))/sum(exp(-0.5*(delta_dic))) # model weights (cfr BMHE)
   } 
   if ((!is.null(w) & length(w)!=n_models)) {
     stop("If you are considering user-defined weights, you must pass a vector whose length is the same as the number of models to average!")
