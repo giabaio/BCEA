@@ -170,7 +170,7 @@ plot.bcea <- function(x,
       
       theme_add <- purrr::keep(extra_args, is.theme)
       
-      ceplane.pos <- ifelse(pos, pos, c(1, 1.025))
+   ceplane.pos <- ifelse(pos, pos, c(1, 1.025))
       
       ##TODO: warnings...
       ceplane <-

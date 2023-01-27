@@ -74,7 +74,7 @@ summary.bcea <- function(object,
     unlist(Table[he$n_sim + 1, paste0("U", 1:he$n_comparators)])
   colnames(EU_tab) <- "Expected net benefit"
   
-  rownames(EU_tab) <- he$interventions[c(he$ref, he$comp)]  ##############
+  rownames(EU_tab) <- he$interventions ###he$interventions[c(he$ref, he$comp)]
   
   comp_tab <- matrix(NA, he$n_comparisons, 3)
   comp_tab[, 1] <-
