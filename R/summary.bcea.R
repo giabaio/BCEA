@@ -8,6 +8,7 @@
 #'               modelling and the economic evaluation.
 #' @param wtp The value of the willingness to pay threshold used in the
 #'            summary table.
+#' @param wtp The value of the willingness to pay threshold used in the summary table.
 #' @param ...  Additional arguments affecting the summary produced.
 #' 
 #' @return Prints a summary table with some information on the health economic
@@ -75,6 +76,7 @@ summary.bcea <- function(object,
     unlist(Table[he$n_sim + 1, paste0("U", 1:he$n_comparators)])
   colnames(EU_tab) <- "Expected net benefit"
   
+  rownames(EU_tab) <- he$interventions[c(he$ref, he$comp)]  ##############
   
   comp_tab <- matrix(NA, he$n_comparisons, 3)
   comp_tab[, 1] <-
