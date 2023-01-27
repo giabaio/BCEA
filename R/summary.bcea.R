@@ -6,8 +6,6 @@
 #' 
 #' @param object A \code{bcea} object containing the results of the Bayesian
 #'               modelling and the economic evaluation.
-#' @param wtp The value of the willingness to pay threshold used in the
-#'            summary table.
 #' @param wtp The value of the willingness to pay threshold used in the summary table.
 #' @param ...  Additional arguments affecting the summary produced.
 #' 
