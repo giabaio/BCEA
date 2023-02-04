@@ -99,8 +99,8 @@ plot.bcea <- function(x,
   extra_args <- list(...)
   
   # consistent colours across plots
-  if ("point" %in% names(extra_args)) {
-    if ("color" %in% names(extra_args$point)) {
+  if (is.element("point", names(extra_args))) {
+    if (is.element("color", names(extra_args$point))) {
       extra_args$line$color <- extra_args$point$color   
     }}
   
