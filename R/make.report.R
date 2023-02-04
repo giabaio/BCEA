@@ -73,7 +73,8 @@ make.report <- function(he,
     if (exists("wtp", extra_args)) {
       extra_args$wtp
     } else {
-      he$k[min(which(he$k >= he$ICER))]}
+      he$k[min(which(he$k >= he$ICER))]
+    }
   
   filename <- 
     if (exists("filename", extra_args)) {
@@ -97,6 +98,7 @@ make.report <- function(he,
     list(wtp = wtp,
          filename = filename,
          psa_params = psa_params,
+         ext = ext,
          show.tab = show.tab)
   
   # remove all warnings
@@ -104,9 +106,9 @@ make.report <- function(he,
     
     # get current directory, move to relevant path, go back to current directory
     file <- file.path(tempdir(), filename)
-    bcea_file_location <-  
+    bcea_file_location <-
       normalizePath(
-        file.path(system.file("report", package = "BCEA"), "report.Rmd"))
+        file.path(system.file("rmarkdown","report", package = "BCEA"), "report.Rmd"))
     rmd_format <-
       switch(ext,
              pdf = rmarkdown::pdf_document(),

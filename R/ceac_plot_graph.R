@@ -1,7 +1,7 @@
 
 #' Cost-Effectiveness Acceptability Curve (CEAC) Plot By Graph Device
 #'
-#' Choice of base R, ggplot2 or plotly.
+#' Choice of base R, \pkg{ggplot2} or \pkg{plotly}.
 #' @name ceac_plot_graph
 #' 
 #' @template args-he
@@ -56,7 +56,7 @@ ceac_plot_base.bcea <- function(he,
 #' @param ceac `ceac` index in `he`
 #' @keywords internal hplot
 #' @importFrom graphics matplot legend
-#' 
+#' @md
 ceac_matplot <- function(he,
                          pos_legend,
                          graph_params,
@@ -109,10 +109,10 @@ ceac_plot_ggplot.bcea <- function(he,
 }
 
 #' @rdname ceac_plot_graph
-#' @param ceac ceac index in he
+#' @param ceac ceac index in `he`
 #' @importFrom scales label_dollar
 #' @keywords internal hplot
-#' 
+#' @md
 ceac_ggplot <- function(he,
                         pos_legend,
                         graph_params,

@@ -11,7 +11,7 @@
 #' @param pos Parameter to set the position of the legend; for a single
 #'   comparison plot, the ICER legend position. Can be given in form of a string
 #'   \code{(bottom|top)(right|left)} for base graphics and
-#'   \code{bottom|top|left|right} for ggplot2. It can be a two-elements vector,
+#'   \code{bottom|top|left|right} for \pkg{ggplot2}. It can be a two-elements vector,
 #'   which specifies the relative position on the x and y axis respectively, or
 #'   alternatively it can be in form of a logical variable, with \code{FALSE}
 #'   indicating to use the default position and \code{TRUE} to place it on the
@@ -21,12 +21,12 @@
 #'   plotting. Should (partial-) match the two options \code{"base"} or
 #'   \code{"ggplot2"}. Default value is \code{"base"}.
 #' @param ...  If \code{graph = "ggplot2"} and a named theme object is supplied,
-#'   it will be passed to the ggplot object. The usual ggplot2 syntax is used.
+#'   it will be passed to the \pkg{ggplot2} object. The usual ggplot2 syntax is used.
 #'   Additional graphical arguments:
 #'  \itemize{
 #'   \item \code{label.pos = FALSE}: will place the willingness to pay label in a
-#'   different  position at the bottom of the graph - base and ggplot2 only (no
-#'   label in plotly).
+#'   different  position at the bottom of the graph - base and \pkg{ggplot2} only (no
+#'   label in \pkg{plotly}).
 #'   \item \code{line = list(color)}: a colour specifying the colour of the willingness-to-pay line.
 #'   \item \code{point = list(color)}: a vector of colours specifying the colour(s) associated
 #'   to the cloud of points. Should be of length 1 or equal to the number of comparisons.
@@ -42,8 +42,8 @@
 #'   acceptability area (default is TRUE).
 #'   \item \code{area = list(color)}: a colour specifying the colour of the cost-effectiveness
 #'   acceptability area.
-#'   \item \code{currency}: Currency prefix to cost differential values - ggplot2 only.
-#'   \item \code{icer_annot}: Annotate each ICER point with text label - ggplot2 only.
+#'   \item \code{currency}: Currency prefix to cost differential values - \pkg{ggplot2} only.
+#'   \item \code{icer_annot}: Annotate each ICER point with text label - \pkg{ggplot2} only.
 #'  }
 #'  
 #' @return If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 
@@ -59,7 +59,7 @@
 #'   pay. If the comparators are more than 2 and no pairwise comparison is
 #'   specified, all scatterplots are graphed using different colours.
 #'   
-#' @details In the plotly version, \code{point_colors}, \code{ICER_colors} and \code{area_color} can also
+#' @details In the \pkg{plotly} version, \code{point_colors}, \code{ICER_colors} and \code{area_color} can also
 #' be specified as rgba colours using either the \code{[plotly]toRGB}
 #' function or a rgba colour string, e.g. \code{'rgba(1, 1, 1, 1)'}.
 #'   

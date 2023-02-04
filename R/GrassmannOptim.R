@@ -265,7 +265,7 @@ GrassmannOptim <-
         break
       }
     }
-    return(invisible(
+    invisible(
       list(
         Qt = round(Qt, digits = 4),
         d = d,
@@ -273,5 +273,5 @@ GrassmannOptim <-
         fvalues = fvalues,
         converged = converged,
         call = call)
-    ))
+    )
   }

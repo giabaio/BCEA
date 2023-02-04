@@ -99,6 +99,7 @@ summary.pairwise <- function(object,
   }
   
   cat("\n")
+
   if (length(he$kstar) == 0 && !is.na(he$step)) {
     cat(
       paste0(
@@ -120,6 +121,7 @@ summary.pairwise <- function(object,
         kstar,
         "\n"))
   }
+
   if (length(he$kstar) > 1 && !is.na(he$step)) {
     cat(
       paste0(

@@ -2,7 +2,7 @@
 #' @name ceef_plot_graph
 #' @title Cost-effectiveness Efficiency Frontier Plot By Graph Device
 #'
-#' @description Choice of base R, ggplot2.
+#' @description Choice of base R, \pkg{ggplot2}.
 #'
 #' @template args-he
 #' @param frontier_data Frontier data
