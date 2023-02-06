@@ -75,7 +75,7 @@ ceaf.plot.pairwise <- function(mce,
   graph <- match.arg(graph)
   base_graphics <- all(pmatch(graph, c("base", "ggplot2")) != 2)
   
-  if (!(requireNamespace("ggplot2", quietly = TRUE) &
+  if (!(requireNamespace("ggplot2", quietly = TRUE) &&
         requireNamespace("grid", quietly = TRUE))) {
     message("Falling back to base graphics\n")
     base_graphics <- TRUE

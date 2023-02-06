@@ -1,7 +1,7 @@
 
 #' Expected Value of Information Plot By Graph Device
 #'
-#' Choice of base R, ggplot2 or plotly.
+#' Choice of base R, \pkg{ggplot2} or \pkg{plotly}.
 #' @name evi_plot_graph
 #' 
 NULL

@@ -2,7 +2,7 @@
 #' @title Plot Expected Value of Partial Information With Respect to a
 #' Set of Parameters
 #' 
-#' @description  Base R and ggplot2 versions.
+#' @description  Base R and \pkg{ggplot2} versions.
 #' 
 #' @name evppi_plot_graph
 #' 
@@ -11,7 +11,7 @@ NULL
 
 #' @rdname evppi_plot_graph
 #' 
-#' @param evppi_obj Object of class evppi
+#' @param evppi_obj Object of class \code{evppi}
 #' @param pos_legend Position of legend 
 #' @param col Colour
 #' @param annot Annotate EVPPI curve with parameter names

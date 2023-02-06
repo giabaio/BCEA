@@ -3,7 +3,7 @@ This is a resubmission. In this version I have:
 
 * Removed from the build large data files so that not more than 5 MB for a CRAN package.
 
-* Reference about the method added in the Description.
+* Reference about the method added in the Description with doi: prefix
 
 ## R CMD check results
 There were no ERRORs or WARNINGs. 

@@ -82,7 +82,8 @@ sim_table.bcea <- function(he,
     }
   }
   
-  table <-  
+  # specific willingness to pay
+  table <-
     cbind.data.frame(
       U = U_filter_by(he, wtp),
       Ustar = Ustar_filter_by(he, wtp),
@@ -94,9 +95,15 @@ sim_table.bcea <- function(he,
     bind_rows(table,
               summarise_all(table, mean))
   
+  # # use intervention names
+  # U_cols <- grepl(pattern = paste0("^U\\.", he$interventions, collapse = "|"), names(table))
+  # U_names <- names(table)[U_cols]
+
+  U_names <- paste0("U", seq_along(he$interventions))
+    
   names.cols <-
-    c(paste0("U", 1:he$n_comparators),
-      "U*",
+    c(U_names,
+       "U*",
       paste0("IB", he$ref, "_", he$comp),
       "OL",
       "VI")

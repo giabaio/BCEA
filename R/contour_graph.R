@@ -1,7 +1,7 @@
 
 #' Contour Cost-Effectiveness Plane
 #'
-#' Choice of base R, ggplot2
+#' Choice of base R, \pkg{ggplot2}.
 #' @name contour_graph
 #' @seealso \code{\link{contour}}
 NULL
