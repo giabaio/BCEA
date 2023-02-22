@@ -13,7 +13,7 @@
 best_interv_given_k <- function(eib,
                                 ref,
                                 comp) {
-  
+
   if (length(comp) == 1) {
     
     best <- rep(ref, NROW(eib))
