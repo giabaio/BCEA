@@ -65,6 +65,6 @@ URL: https://gianluca.statistica.it/software/bcea/,
      https://gianluca.statistica.it/,
      https://github.com/giabaio/BCEA/  
 NeedsCompilation: no
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Encoding: UTF-8
 BugReports: https://github.com/n8thangreen/BCEA/issues/
