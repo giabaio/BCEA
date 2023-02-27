@@ -6,6 +6,7 @@
 #' @param graph Type names; string
 #' @return Plot ID integer 1:base R; 2:ggplot2; 3:plotly
 #' @importFrom cli cli_alert_warning
+#' @importFrom purrr map_lgl
 #' @keywords dplot internal
 #' 
 select_plot_type <- function(graph) {
