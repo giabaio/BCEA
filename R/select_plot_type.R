@@ -16,7 +16,8 @@ select_plot_type <- function(graph) {
   graph_lup <- c(base = 1, ggplot2 = 2, plotly =3)
   graph_type <- graph_lup[graph]
   
-  is_req_pkgs <- map_lgl(c("ggplot2", "grid"), requireNamespace, quietly = TRUE)
+  is_req_pkgs <- purrr::map_lgl(c("ggplot2", "grid"),
+                                requireNamespace, quietly = TRUE)
   
   if (graph_type == 2 && !all(is_req_pkgs)) {
     cli::cli_alert_warning(
