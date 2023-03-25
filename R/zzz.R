@@ -10,6 +10,8 @@
   ps.options(encoding = "CP1250")
   pdf.options(encoding = "CP1250")
   
+  Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "TRUE")
+  
   invisible()
 }
 
