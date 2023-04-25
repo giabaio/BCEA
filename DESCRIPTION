@@ -52,6 +52,7 @@ Suggests:
     vdiffr,
     withr
 RdMacros: Rdpack
+VignetteBuilder: knitr
 Additional_repositories: https://inla.r-inla-download.org/R/stable/
 Description: Produces an economic evaluation of a sample of suitable variables of
              cost and effectiveness / utility for two or more interventions,
@@ -64,6 +65,6 @@ URL: https://gianluca.statistica.it/software/bcea/,
      https://gianluca.statistica.it/,
      https://github.com/giabaio/BCEA/  
 NeedsCompilation: no
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Encoding: UTF-8
 BugReports: https://github.com/n8thangreen/BCEA/issues/

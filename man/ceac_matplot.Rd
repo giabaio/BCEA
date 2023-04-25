@@ -14,10 +14,10 @@ modelling and the economic evaluation.}
 
 \item{graph_params}{Aesthetic ggplot parameters}
 
-\item{ceac}{`ceac` index in `he`}
+\item{ceac}{\code{ceac} index in \code{he}}
 }
 \description{
-CEAC plot using `matplot` in Base R.
+CEAC plot using \code{matplot} in Base R.
 }
 \keyword{hplot}
 \keyword{internal}

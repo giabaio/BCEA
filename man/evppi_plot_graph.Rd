@@ -23,5 +23,5 @@ evppi_plot_ggplot(evppi_obj, pos_legend = c(0, 0.8), col = c(1, 1), ...)
 \item{...}{Additional arguments}
 }
 \description{
-Base R and ggplot2 versions.
+Base R and \pkg{ggplot2} versions.
 }

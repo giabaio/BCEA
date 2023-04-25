@@ -35,6 +35,7 @@
 #'          \code{\link{ceac.plot}},
 #'          \code{\link{evi.plot}}
 #' @importFrom Rdpack reprompt
+#' @importFrom purrr map_lgl
 #'          
 #' @references
 #' 

@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 This vignette will demonstrate a simple cost-effectiveness analysis using __BCEA__ using the smoking cessation data set contained in the package.
 
-```{r setup}
+```{r setup, warning=FALSE, message=FALSE}
 library(BCEA)
 ```
 
@@ -42,6 +42,7 @@ We can easily create a grid of the most common plots
 
 ```{r fig.width=10, fig.height=10}
 library(ggplot2)
+library(purrr)
 
 plot(bcea_smoke)
 ```
@@ -60,7 +61,7 @@ ceac.plot(bcea_smoke)
 ib.plot(bcea_smoke)
 ```
 
-More on this in the other vignettesm but you can change the default plotting style, such as follows.
+More on this in the other vignettes but you can change the default plotting style, such as follows.
 
 ```{r}
 plot(bcea_smoke,

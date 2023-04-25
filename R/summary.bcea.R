@@ -133,6 +133,7 @@ summary.bcea <- function(object,
       # cat(paste0("                          : ", green(he$interventions[he$comp[i]]), "\n"))
     }
   }
+  
   cat("\n")
   if (length(he$kstar) == 0 && !is.na(he$step)) {
     cat(
@@ -144,8 +145,12 @@ summary.bcea <- function(object,
         max(he$k),
         "] \n"))
   }
+  
   if (length(he$kstar) == 1 && !is.na(he$step)) {
-    kstar <- he$k[which(diff(he$best) == 1) + 1]
+    
+    ##TODO: why recalc when same as he$kstar?
+    kstar <- he$k[which(diff(he$best) != 0) + 1]
+    
     cat(
       paste0(
         "Optimal decision: choose ",
@@ -158,6 +163,7 @@ summary.bcea <- function(object,
         kstar,
         "\n"))
   }
+  
   if (length(he$kstar) > 1 && !is.na(he$step)) {
     cat(
       paste0(
@@ -183,6 +189,7 @@ summary.bcea <- function(object,
       he$kstar[length(he$kstar)],
       "\n"))
   }
+  
   cat("\n\n")
   cat(paste0("Analysis for willingness to pay parameter k = ", wtp, "\n"))
   cat("\n")
