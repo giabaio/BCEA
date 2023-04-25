@@ -38,10 +38,10 @@ modelling and the economic evaluation.}
 
 \item{...}{Additional arguments}
 
-\item{ceac}{ceac index in he}
+\item{ceac}{ceac index in \code{he}}
 }
 \description{
-Choice of base R, ggplot2 or plotly.
+Choice of base R, \pkg{ggplot2} or \pkg{plotly}.
 }
 \keyword{hplot}
 \keyword{internal}

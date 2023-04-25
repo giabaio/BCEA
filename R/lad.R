@@ -23,7 +23,7 @@
 lad <-
   function(X, y, numdir=NULL, nslices=NULL, numdir.test=FALSE,...)
   {
-    mf <- match.call();
+    mf <- match.call()
     op <- dim(X); p <- op[2]; n <- op[1]; yy <- y; yfactor <- FALSE
     verbose <- mf$verbose; if (is.null(verbose)) verbose <- FALSE
     
@@ -137,7 +137,7 @@ InitialMatrix <- function(X, y, nslices) {
   X0 <- as.matrix(X - kronecker(cbind(rep(1,n)), rbind(apply(X,2,mean))))
   svdS<-svd(SigmaX)
   InvSqrtX  <- svdS$u %*% diag(c(svdS$d)^(-0.5)) %*% t(svdS$v)
-  Z <- X0%*%InvSqrtX;
+  Z <- X0%*%InvSqrtX
   pv <- vector(length=nslices)
   for (i in 1:nslices) pv[i] <- sum(ygroups==yunique[i])/length(y)
   cez <- matrix(0,p,nslices)
@@ -193,7 +193,7 @@ onelad <-function(d, Deltatilde, p, Sigmatilde, Deltatilde_y, N_y,
     terme1 <- -n*log( det(Sigmatilde) )/2
     loglik <- terme0 + terme1
     Deltahat_y <- Deltatilde_y
-    numpar <- p + p*(p+1)/2;
+    numpar <- p + p*(p+1)/2
     AIC <- -2*loglik + 2 * numpar
     BIC <- -2*loglik + log(n) * numpar
   }
@@ -291,10 +291,9 @@ onelad <-function(d, Deltatilde, p, Sigmatilde, Deltatilde_y, N_y,
     terme0 <- -(n*p)*(1+log(2*pi))/2
     terme1 <- -n*log( det(Sigmatilde) )/2
     terme2 <- n*log(det(t(Gammahat)%*%Sigmatilde%*%Gammahat))/2
-    terme3<-0;
+    terme3<-0
     
-    for (i in 1:length(N_y))
-    {
+    for (i in seq_along(N_y)) {
       terme3 <- terme3 - N_y[i] * log( det(t(Gammahat)%*%Deltatilde_y[[i]]%*%Gammahat) )/2
     } 
     loglik <- terme0 + terme1 + terme2 + terme3

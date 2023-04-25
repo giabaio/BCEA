@@ -45,7 +45,12 @@ setComparisons <- function(he, comparison) {
   res$eib <- res$eib[, name_comp, drop = FALSE]
   res$ceac <- res$ceac[, name_comp, drop = FALSE]
   
+  ##TODO: is there a way not to recompute the whole thing?
+  res$best <- best_interv_given_k(res$eib, res$ref, res$comp)
+  res$kstar <- compute_kstar(res$k, res$best, res$ref)
+  
   ##TODO: currently compute _all_ interventions in compute_U()
+  ##      change to this?
   # res$U <- res$U[, , name_comp, drop = FALSE]
   
   return(res)

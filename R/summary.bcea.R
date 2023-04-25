@@ -6,8 +6,7 @@
 #' 
 #' @param object A \code{bcea} object containing the results of the Bayesian
 #'               modelling and the economic evaluation.
-#' @param wtp The value of the willingness to pay threshold used in the
-#'            summary table.
+#' @param wtp The value of the willingness to pay threshold used in the summary table.
 #' @param ...  Additional arguments affecting the summary produced.
 #' 
 #' @return Prints a summary table with some information on the health economic
@@ -70,12 +69,17 @@ summary.bcea <- function(object,
   
   Table <- sim_table(he, wtp = wtp)$Table
   
-  EU_tab <- matrix(NA, he$n_comparators, 1)
-  EU_tab[, 1] <-
-    unlist(Table[he$n_sim + 1, paste0("U", 1:he$n_comparators)])
-  colnames(EU_tab) <- "Expected net benefit"
+  EU_tab <- matrix(NA, he$n_comparators, 1,
+                   dimnames = list(NULL, "Expected net benefit"))
   
-  rownames(EU_tab) <- he$interventions[c(he$ref, he$comp)]
+  # columns to keep
+  U_cols <- is.element(names(Table), paste0("U", c(he$ref, he$comp)))
+  
+  interv_idx <- gsub(pattern = "^.", "", x = names(Table)[U_cols])
+  # average row
+  EU_tab[, 1] <- unlist(Table[he$n_sim + 1, U_cols])
+  
+  rownames(EU_tab) <- he$interventions[as.numeric(interv_idx)]
   
   comp_tab <- matrix(NA, he$n_comparisons, 3)
   comp_tab[, 1] <-
@@ -129,8 +133,9 @@ summary.bcea <- function(object,
       # cat(paste0("                          : ", green(he$interventions[he$comp[i]]), "\n"))
     }
   }
+  
   cat("\n")
-  if (length(he$kstar) == 0 & !is.na(he$step)) {
+  if (length(he$kstar) == 0 && !is.na(he$step)) {
     cat(
       paste0(
         he$interventions[he$best[1]],
@@ -140,8 +145,12 @@ summary.bcea <- function(object,
         max(he$k),
         "] \n"))
   }
-  if (length(he$kstar) == 1 & !is.na(he$step)) {
-    kstar <- he$k[which(diff(he$best) == 1) + 1]
+  
+  if (length(he$kstar) == 1 && !is.na(he$step)) {
+    
+    ##TODO: why recalc when same as he$kstar?
+    kstar <- he$k[which(diff(he$best) != 0) + 1]
+    
     cat(
       paste0(
         "Optimal decision: choose ",
@@ -154,7 +163,8 @@ summary.bcea <- function(object,
         kstar,
         "\n"))
   }
-  if (length(he$kstar) > 1 & !is.na(he$step)) {
+  
+  if (length(he$kstar) > 1 && !is.na(he$step)) {
     cat(
       paste0(
         "Optimal decision: choose ",
@@ -179,6 +189,7 @@ summary.bcea <- function(object,
       he$kstar[length(he$kstar)],
       "\n"))
   }
+  
   cat("\n\n")
   cat(paste0("Analysis for willingness to pay parameter k = ", wtp, "\n"))
   cat("\n")

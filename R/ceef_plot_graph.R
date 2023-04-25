@@ -2,7 +2,7 @@
 #' @name ceef_plot_graph
 #' @title Cost-effectiveness Efficiency Frontier Plot By Graph Device
 #'
-#' @description Choice of base R, ggplot2.
+#' @description Choice of base R, \pkg{ggplot2}.
 #'
 #' @template args-he
 #' @param frontier_data Frontier data
@@ -177,7 +177,7 @@ ceef_plot_base <- function(he,
   
   if (dominance) {
     # add dominance regions
-    for (i in 1:dim(ceef.points)[1]) {
+    for (i in seq_len(dim(ceef.points)[1])) {
       rect(
         col = "grey95",
         border = NA,

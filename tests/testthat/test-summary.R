@@ -39,11 +39,24 @@ test_that("eib in summary print is same as bcea", {
 })
 
 
-test_that("not all possible interventions included in comp and ref", {
+test_that("subset of interventions included in comp and ref", {
   
   load(test_path("ce_smoking.RData"))
-  smoke_bcea <- bcea(eff, cost, ref = 1, .comparison = c(2,4))
 
+  # just dont error
+  smoke_bcea <- bcea(eff, cost, ref = 1)
+  expect_output(summary(smoke_bcea),
+                regexp = "Cost-effectiveness analysis summary")
+  
+  smoke_bcea <- bcea(eff, cost, ref = 1, .comparison = c(2,4))
+  expect_output(summary(smoke_bcea),
+                regexp = "Cost-effectiveness analysis summary")
+
+  smoke_bcea <- bcea(eff, cost, ref = 1, .comparison = 3)
+  expect_output(summary(smoke_bcea),
+                regexp = "Cost-effectiveness analysis summary")
+  
+  smoke_bcea <- bcea(eff, cost, ref = 1, .comparison = c(2,4), interventions = c("a", "b", "c", "d"))
   expect_output(summary(smoke_bcea),
                 regexp = "Cost-effectiveness analysis summary")
 })

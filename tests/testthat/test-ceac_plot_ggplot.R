@@ -3,8 +3,8 @@
 # library(ggplot2)
 # library(dplyr)
 # library(reshape2)
-# library(purrr)
 # library(vdiffr)
+library(purrr)
 
 
 test_that("ceac.plot_ggplot draws correctly", {

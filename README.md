@@ -1,4 +1,4 @@
-# BCEA <img src="man/figures/logo.png" align="right" />
+# BCEA: Bayesian cost-effectiveness analysis <img src="man/figures/logo.png" align="right" />
 
 <!-- badges: start -->
 [![Build Status](https://app.travis-ci.com/n8thangreen/BCEA.svg?branch=dev)](https://app.travis-ci.com/n8thangreen/BCEA)
@@ -7,6 +7,7 @@
 [![CRAN_Download_Badge](https://cranlogs.r-pkg.org/badges/BCEA)](https://cran.r-project.org/package=BCEA)
 [![CRAN_Download_Badge](https://cranlogs.r-pkg.org/badges/grand-total/BCEA?color=orange)](https://cran.r-project.org/package=BCEA)
 [![CodeFactor](https://www.codefactor.io/repository/github/n8thangreen/bcea/badge)](https://www.codefactor.io/repository/github/n8thangreen/bcea)
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.04206/status.svg)](https://doi.org/10.21105/joss.04206)
 <!-- badges: end -->
 
 > Perform Bayesian Cost-Effectiveness Analysis in R.
@@ -73,7 +74,7 @@ Examples of using specific functions and their different arguments are given in 
 The `pkgdown` site is [here](https://n8thangreen.github.io/BCEA/).
 More details on `BCEA` are available in our book [_Bayesian Cost-Effectiveness Analysis with the R Package BCEA_](https://gianluca.statistica.it/book/bcea/) (published in the UseR! Springer series). Also, details about the package, including some references and links to a pdf presentation and some posts on my own blog) are given [here](https://gianluca.statistica.it/software/bcea/).
 
-## Licence
+## License
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ## Contributing

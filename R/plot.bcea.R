@@ -35,6 +35,7 @@
 #'          \code{\link{ceac.plot}},
 #'          \code{\link{evi.plot}}
 #' @importFrom Rdpack reprompt
+#' @importFrom purrr map_lgl
 #'          
 #' @references
 #' 
@@ -98,27 +99,36 @@ plot.bcea <- function(x,
   use_base_graphics <- pmatch(graph, c("base", "ggplot2")) != 2
   extra_args <- list(...)
   
+  # consistent colours across plots
+  if (is.element("point", names(extra_args))) {
+    if (is.element("color", names(extra_args$point))) {
+      extra_args$line$color <- extra_args$point$color   
+    }}
+  
   if (use_base_graphics) {
-    op <- par(mfrow = c(2,2))
-    
-    ceplane.plot(x,
-                 comparison = comparison,
-                 wtp = wtp,
-                 pos = pos,
-                 graph = "base",...)
-    
-    eib.plot(x,
-             comparison = comparison,
-             pos = pos,
-             graph = "base",...)
-    
-    ceac.plot(x,
-              pos = pos,
-              graph = "base", ...)
-    
-    evi.plot(x,
-             graph = "base", ...)
-    par(op)
+    withr::with_par(list(mfrow = c(2,2)), {
+      ceplane.plot(x,
+                   comparison = comparison,
+                   wtp = wtp,
+                   pos = pos,
+                   graph = "base",...)
+      
+      do.call(eib.plot,
+              c(he = list(x),
+                pos = pos,
+                comparison = comparison,
+                graph = "base",
+                extra_args))
+      
+      do.call(ceac.plot,
+              c(he = list(x),
+                pos = pos,
+                graph = "base",
+                extra_args))
+      
+      evi.plot(x,
+               graph = "base", ...)
+    })
   } else {
     
     is_req_pkgs <- map_lgl(c("ggplot2","grid"), requireNamespace, quietly = TRUE)
@@ -153,7 +163,7 @@ plot.bcea <- function(x,
         names(default_params)[names(default_params) %in% names(extra_args)]
       
       extra_params <- extra_args[keep_param]
-
+      
       global_params <-
         modifyList(default_params,
                    extra_params,
@@ -163,7 +173,7 @@ plot.bcea <- function(x,
       
    ceplane.pos <- ifelse(pos, pos, c(1, 1.025))
       
-      #TODO: warnings...
+      ##TODO: warnings...
       ceplane <-
         ceplane.plot(x,
                      wtp = wtp,
@@ -174,18 +184,22 @@ plot.bcea <- function(x,
         theme_add
       
       eib <-
-        eib.plot(x,
-                 pos = pos,
-                 comparison = comparison,
-                 graph = "ggplot2", ...) +
+        do.call(eib.plot,
+                c(he = list(x),
+                  pos = pos,
+                  comparison = comparison,
+                  graph = "ggplot2",
+                  extra_args)) +
         do.call(theme, global_params) +
         theme_add
       
       ceac <-
-        ceac.plot(x,
+        do.call(ceac.plot,
+                c(he = list(x),
                   pos = pos,
                   comparison = comparison,
-                  graph = "ggplot2", ...) +
+                  graph = "ggplot2",
+                  extra_args)) +
         do.call(theme, global_params) +
         theme_add
       

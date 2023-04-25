@@ -1,3 +1,5 @@
+url: https://n8thangreen.github.io/BCEA/
+
 news:
   cran_dates: false
   
@@ -67,4 +69,9 @@ reference:
   contents:
   - Smoking
   - Vaccine
+- title: "Deprecated"
+  contents:
+  - mce.plot
+  - plot.mixedAn
+
 

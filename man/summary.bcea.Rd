@@ -10,8 +10,7 @@
 \item{object}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
-\item{wtp}{The value of the willingness to pay threshold used in the
-summary table.}
+\item{wtp}{The value of the willingness to pay threshold used in the summary table.}
 
 \item{...}{Additional arguments affecting the summary produced.}
 }

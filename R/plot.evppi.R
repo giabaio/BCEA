@@ -11,7 +11,7 @@
 #' @param col Sets the colour for the lines depicted in the graph.
 #' @param ...  Arguments to be passed to methods, such as graphical parameters
 #' (see \code{\link{par}}).
-#' @return Plot with base R or ggplot2.
+#' @return Plot with base R or \pkg{ggplot2}.
 #' 
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso \code{\link{bcea}}, \code{\link{evppi}}

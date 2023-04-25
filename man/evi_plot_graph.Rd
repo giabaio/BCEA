@@ -24,5 +24,5 @@ modelling and the economic evaluation.}
 \item{plot_annotations}{Plot parameters}
 }
 \description{
-Choice of base R, ggplot2 or plotly.
+Choice of base R, \pkg{ggplot2} or \pkg{plotly}.
 }

@@ -31,7 +31,7 @@ plotting. Should (partial-) match the two options \code{"base"} or
 (see \code{\link{par}}).}
 }
 \value{
-Plot with base R or ggplot2.
+Plot with base R or \pkg{ggplot2}.
 }
 \description{
 Plot Expected Value of Partial Information With Respect to a
