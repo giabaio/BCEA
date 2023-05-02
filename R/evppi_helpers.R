@@ -323,13 +323,14 @@ make.proj <- function(parameter,
 #' @param mesh Mesh
 #' @param data Data
 #' @param plot Create plot? logical
+#' @param ... Additional parameters
 #'
 #' @importFrom utils select.list
 #' @importFrom grDevices dev.off
 #' @seealso \code{\link{evppi}}
 #' @keywords internal
 #' 
-plot.mesh <- function(mesh, data, plot) {
+plot_mesh <- function(mesh, data, plot, ...) {
   
   if (!plot) return()
   
@@ -510,7 +511,7 @@ fit.inla <- function(parameter,
 #' @seealso \code{\link{evppi}}
 #' @keywords internal
 #'
-compute.evppi <- function(he, fit.full) {
+compute_evppi <- function(he, fit.full) {
   EVPPI <- array()
   tic <- proc.time()
   for (i in seq_along(he$k)) {

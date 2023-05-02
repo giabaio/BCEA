@@ -515,11 +515,12 @@ evppi.bcea <- function(he,
                 convex.inner = convex.inner,
                 convex.outer = convex.outer,
                 cutoff = cutoff,
-                max.edge = max.edge
-              )
-            plot.mesh(mesh = mesh$mesh,
+                max.edge = max.edge)
+            
+            plot_mesh(mesh = mesh$mesh,
                       data = data,
                       plot = plot)
+            
             if (!suppress.messages) {
               cat("Calculating fitted values for the GP regression using INLA/SPDE \n")
             }
@@ -579,7 +580,7 @@ evppi.bcea <- function(he,
     }
     if (!suppress.messages) cat("Calculating EVPPI \n")
     
-    comp <- compute.evppi(he = he, fit.full = fit.full)
+    comp <- compute_evppi(he = he, fit.full = fit.full)
     
     name <- prepare.output(parameters = params, inputs = inputs)
     
