@@ -11,7 +11,7 @@ May 2023
 
 ## Refactoring
 
-* `withr::with_par()` used in plotting function ``plot.bcea()` to only temporarily change graphics parameters. (725c536)
+* `withr::with_par()` used in plotting function `plot.bcea()` to only temporarily change graphics parameters. (725c536)
 * Using `@md` and markdown syntax in function documentation
 * Update `psa.struct()` to add the absolute value in the formula to compute the weights (1cea278)
 * Use `dplyr` piping new syntax from `.data$*` to simply using speech marks `"*"` (2b280ad)
@@ -43,7 +43,7 @@ August 2022
 ## New features
 
 * Can now specify what order the interventions labels are in the legend for ce plane (and contour plots) for base R and ggplot2 i.e. reference first or second with optional `ref_first` argument (cc38f07)
-* Can specify currency for axes in `ce-plane.plot` and `ceac.plot` `ggplot2` versions (6808aa6)
+* Can specify currency for axes in `ceplane.plot` and `ceac.plot` `ggplot2` versions (6808aa6)
 * Argument added to `ceplane.plot` of `icer_annot` to annotate each of the ICER points with the text label of the intervention name. Only for `ggplot2` at the moment. (a7b4beb)
 * Added `pos` argument to `contour2()` so that its consistent with `contour()` and `ceplane.plot()`. (50f8f8b)
 * Allow passing `ref` argument by name as well as index in `bcea()`. (9eab459)
