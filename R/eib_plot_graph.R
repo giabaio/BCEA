@@ -88,7 +88,7 @@ eib_plot_ggplot <- function(he,
       data = data.frame("kstar" = he$kstar),
       colour = "grey50",
       linetype = 2,
-      size = 0.5) +
+      linewidth = 0.5) +
     scale_linetype_manual(
       "",
       labels = graph_params$labels,

@@ -69,7 +69,7 @@ bcea.default <- function(eff,
   df_ce <- 
     df_ce %>%
     select(-ref) %>% 
-    rename(ref = .data$ints) %>% 
+    rename(ref = "ints") %>% 
     merge(df_ce,
           by = c("ref", "sim"),
           suffixes = c("0", "1"),

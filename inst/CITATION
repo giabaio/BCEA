@@ -1,6 +1,6 @@
 citHeader("To cite BCEA in publications use:")
 
-citEntry(
+bibentry(
   entry = "Book",
   title = "Bayesian Cost-Effectiveness Analysis with the R package BCEA",
   publisher = "Springer",

@@ -3,15 +3,13 @@
 ## names outputs?
 
 
-# library(BCEA)
-library(dplyr)
-library(reshape2)
-
-
-load(test_path("ce.RData"))
+# library(dplyr)
+# library(reshape2)
 
 
 test_that("input errors", {
+  
+  load(test_path("ce.RData"))
   
   expect_dims_error <- function(x, y) {
     expect_error(
@@ -61,6 +59,8 @@ test_that("input errors", {
 # realistic input data
 
 test_that("basic return", {
+  
+  load(test_path("ce.RData"))
   
   res <- 
     bcea(e = eff,
@@ -187,6 +187,8 @@ test_that("jags, bugs, stan methods", {
 
 test_that("k and wtp arguments", {
   
+  load(test_path("ce.RData"))
+  
   m <- bcea(eff, cost, plot = FALSE)
   
   expect_equal(m$Kmax, 50000)
@@ -202,6 +204,9 @@ test_that("k and wtp arguments", {
 })
 
 test_that("using e and c still works", {
+  
+  load(test_path("ce.RData"))
+  
   e <- eff
   c <- cost
   bcea_res <- bcea(eff = eff, cost = cost)
@@ -212,6 +217,8 @@ test_that("using e and c still works", {
 })
 
 test_that("named reference", {
+  
+  load(test_path("ce.RData"))
   
   expect_equal(bcea(eff, cost, ref = 1, interventions = c("a", "b")),
                bcea(eff, cost, ref = "a", interventions = c("a", "b")))
