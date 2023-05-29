@@ -10,9 +10,8 @@ evppi.bcea <- function(he,
                        plot = FALSE,
                        residuals = TRUE, ...) {
   
-  if (is.null(colnames(input))) {
-    colnames(input) <- paste0("theta", seq_len(dim(input)[2]))
-  }
+  colnames(input) <- colnames(input) %||% paste0("theta", seq_len(dim(input)[2]))
+  
   if (is.numeric(param_idx[1]) || is.integer(param_idx[1])) {
     params <- colnames(input)[param_idx]
   } else {
@@ -22,9 +21,8 @@ evppi.bcea <- function(he,
     }
     class(param_idx) <- "numeric"
   }
-  if (is.null(N)) {
-    N <- he$n_sim
-  }
+
+  N <- N %||% he$n_sim
   
   robust <- NULL
   extra_args <- list(...)

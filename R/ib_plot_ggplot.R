@@ -27,9 +27,7 @@ ib_plot_ggplot <- function(he,
                            n,
                            xlim) {
   
-  if (is.null(comparison)) {
-    comparison <- 1
-  }
+  comparison <- comparison %||% 1
   
   if (max(he$k) < wtp) {
     wtp <- max(he$k)
@@ -75,9 +73,9 @@ ib_plot_ggplot <- function(he,
     df <- data.frame(x = density$x,
                      y = density$y)
   }
-  if (is.null(xlim)) {
-    xlim <- range(df$x)
-  }
+  
+  xlim <- xlim %||% range(df$x)
+  
   ib <-
     ggplot(df, aes(.data$x, .data$y)) +
     theme_bw() +

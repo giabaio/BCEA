@@ -166,8 +166,7 @@ eib_plot_plotly <- function(he,
   
   n_comp <- length(comparison)
   
-  if (is.null(plot_aes$line$types))
-    plot_aes$line$types <- rep(1:6, ceiling(he$n_comparisons/6))[1:he$n_comparisons]
+  plot_aes$line$types <- plot_aes$line$types %||% rep(1:6, ceiling(he$n_comparisons/6))[1:he$n_comparisons]
   
   comparisons.label <-
     paste0(he$interventions[he$ref], " vs ", he$interventions[he$comp])

@@ -176,8 +176,7 @@ ceac_plot_plotly <- function(he,
       sapply(comparisons_label, function(x) rep(x, length(he$k)))
     )))
   
-  if (is.null(graph_params$line$types))
-    graph_params$line$type <- rep_len(1:6, he$n_comparisons)
+  graph_params$line$type <- graph_params$line$type %||% rep_len(1:6, he$n_comparisons)
   
   # opacities
   if (!is.null(graph_params$area$color))

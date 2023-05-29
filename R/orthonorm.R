@@ -18,6 +18,7 @@
 orthonorm <- function (u) {
   if (is.null(u)) 
     return(NULL)
+  
   if (!(is.matrix(u))) 
     u <- as.matrix(u)
   dd <- dim(u)
