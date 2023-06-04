@@ -301,7 +301,7 @@ make.proj <- function(parameter,
   
   if (dim.d > 2){
     cur <- c("effects", "costs")
-
+    
     cli::cli_alert_warning(
       "The dimension of the sufficient reduction for the incremental
       {.code cur[k]} column {.code l} is {.code dim.d}.
@@ -399,7 +399,7 @@ make.mesh <- function(data,
 }
 
 
-#' Fit INLA
+#' Fit using INLA
 #' 
 #' @param parameter Parameters
 #' @param inputs Inputs
@@ -434,7 +434,7 @@ fit.inla <- function(parameter,
   # @importFrom INLA inla.stack.data
   # @importFrom INLA inla.stack.A
   # @importFrom INLA inla
-
+  
   tic <- proc.time()
   inputs.scale <-
     scale(inputs, apply(inputs, 2, mean), apply(inputs, 2, sd))
@@ -505,6 +505,7 @@ fit.inla <- function(parameter,
 
 
 #' Compute EVPPI
+#' 
 #' @template args-he
 #' @param fit.full fit.full
 #' @return list
@@ -514,10 +515,12 @@ fit.inla <- function(parameter,
 compute_evppi <- function(he, fit.full) {
   EVPPI <- array()
   tic <- proc.time()
+  
   for (i in seq_along(he$k)) {
     NB.k <- -(he$k[i]*fit.full[[1]] - fit.full[[2]])
-    EVPPI[i] <- (mean(apply(NB.k, 1, max, na.rm = TRUE)) -
-                   max(apply(NB.k, 2, mean, na.rm = TRUE)))
+    EVPPI[i] <-
+      mean(apply(NB.k, 1, max, na.rm = TRUE)) -
+      max(apply(NB.k, 2, mean, na.rm = TRUE))
   }
   toc <- proc.time() - tic
   time <- toc[3]

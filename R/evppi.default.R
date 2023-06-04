@@ -137,8 +137,8 @@ evppi.bcea <- function(he,
               if (nSegs[i, j] == 1) {
                 l <- which.min(cm)
                 u <- which.max(cm)
-                if (cm[u] - max(cm[1], cm[n]) > min(cm[1],
-                                                    cm[n]) - cm[l]) {
+                if (cm[u] - max(cm[1], cm[n]) >
+                    min(cm[1], cm[n]) - cm[l]) {
                   segPoint <- u
                 } else {
                   segPoint <- l
@@ -247,6 +247,7 @@ evppi.bcea <- function(he,
                   distMinMax <- 0
                   minL <- Inf
                   maxL <- -Inf
+                  
                   for (sims in seq_len(n)) {
                     if (cm[sims] > maxL) {
                       maxLP <- sims
@@ -271,6 +272,7 @@ evppi.bcea <- function(he,
                   }
                   siMaxMin <- cm[segMaxMinL] + distMaxMin + (cm[n] - cm[segMaxMinR])
                   siMinMax <- -cm[segMaxMinL] + distMinMax - (cm[n] - cm[segMinMaxR])
+                  
                   if (siMaxMin > siMinMax) {
                     segPoint <- c(segMaxMinL, segMaxMinR)
                   } else {
