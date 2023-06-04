@@ -94,6 +94,7 @@ bcea.default <- function(eff,
 
 #' @rdname bcea
 #' @param ... Additional arguments
+#' @importFrom MCMCvis MCMCchains
 #' @export
 bcea.rjags <- function(eff, ...) {
   
