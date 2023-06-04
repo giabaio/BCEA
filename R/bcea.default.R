@@ -26,7 +26,7 @@ bcea.default <- function(eff,
   
   if (is.null(ref)) {
     ref <- 1
-    message("No reference selected. Defaulting to first intervention.")  
+    message("No reference selected. Defaulting to first intervention.")
   }
   
   if (!is.null(k) && length(k) == 1)
@@ -69,7 +69,7 @@ bcea.default <- function(eff,
   df_ce <- 
     df_ce %>%
     select(-ref) %>% 
-    rename(ref = .data$ints) %>% 
+    rename(ref = "ints") %>% 
     merge(df_ce,
           by = c("ref", "sim"),
           suffixes = c("0", "1"),
@@ -94,6 +94,7 @@ bcea.default <- function(eff,
 
 #' @rdname bcea
 #' @param ... Additional arguments
+#' @importFrom MCMCvis MCMCchains
 #' @export
 bcea.rjags <- function(eff, ...) {
   

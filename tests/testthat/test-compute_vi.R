@@ -1,14 +1,14 @@
 
 # value of information
 
-# library(BCEA)
-library(dplyr)
-library(reshape2)
+# library(dplyr)
+# library(reshape2)
 
 
-load(test_path("ce.RData"))
 
 test_that("simple data", {
+  
+  load(test_path("ce.RData"))
   
   # only one intervention
   # limiting case
@@ -50,6 +50,8 @@ test_that("simple data", {
 
 test_that("call via bcea", {
   
+  load(test_path("ce.RData"))
+  
   res <- 
     bcea(e = eff,
          c = cost)
@@ -83,6 +85,9 @@ test_that("errors in dimensions", {
 })
 
 test_that("using sim_table", {
+  
+  load(test_path("ce.RData"))
+  
   res <- 
     bcea(e = eff,
          c = cost)

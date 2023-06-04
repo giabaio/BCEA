@@ -10,9 +10,8 @@ evppi.bcea <- function(he,
                        plot = FALSE,
                        residuals = TRUE, ...) {
   
-  if (is.null(colnames(input))) {
-    colnames(input) <- paste0("theta", seq_len(dim(input)[2]))
-  }
+  colnames(input) <- colnames(input) %||% paste0("theta", seq_len(dim(input)[2]))
+  
   if (is.numeric(param_idx[1]) || is.integer(param_idx[1])) {
     params <- colnames(input)[param_idx]
   } else {
@@ -22,9 +21,8 @@ evppi.bcea <- function(he,
     }
     class(param_idx) <- "numeric"
   }
-  if (is.null(N)) {
-    N <- he$n_sim
-  }
+
+  N <- N %||% he$n_sim
   
   robust <- NULL
   extra_args <- list(...)
@@ -139,8 +137,8 @@ evppi.bcea <- function(he,
               if (nSegs[i, j] == 1) {
                 l <- which.min(cm)
                 u <- which.max(cm)
-                if (cm[u] - max(cm[1], cm[n]) > min(cm[1],
-                                                    cm[n]) - cm[l]) {
+                if (cm[u] - max(cm[1], cm[n]) >
+                    min(cm[1], cm[n]) - cm[l]) {
                   segPoint <- u
                 } else {
                   segPoint <- l
@@ -249,6 +247,7 @@ evppi.bcea <- function(he,
                   distMinMax <- 0
                   minL <- Inf
                   maxL <- -Inf
+                  
                   for (sims in seq_len(n)) {
                     if (cm[sims] > maxL) {
                       maxLP <- sims
@@ -273,6 +272,7 @@ evppi.bcea <- function(he,
                   }
                   siMaxMin <- cm[segMaxMinL] + distMaxMin + (cm[n] - cm[segMaxMinR])
                   siMinMax <- -cm[segMaxMinL] + distMinMax - (cm[n] - cm[segMinMaxR])
+                  
                   if (siMaxMin > siMinMax) {
                     segPoint <- c(segMaxMinL, segMaxMinR)
                   } else {
@@ -515,11 +515,12 @@ evppi.bcea <- function(he,
                 convex.inner = convex.inner,
                 convex.outer = convex.outer,
                 cutoff = cutoff,
-                max.edge = max.edge
-              )
-            plot.mesh(mesh = mesh$mesh,
+                max.edge = max.edge)
+            
+            plot_mesh(mesh = mesh$mesh,
                       data = data,
                       plot = plot)
+            
             if (!suppress.messages) {
               cat("Calculating fitted values for the GP regression using INLA/SPDE \n")
             }
@@ -579,7 +580,7 @@ evppi.bcea <- function(he,
     }
     if (!suppress.messages) cat("Calculating EVPPI \n")
     
-    comp <- compute.evppi(he = he, fit.full = fit.full)
+    comp <- compute_evppi(he = he, fit.full = fit.full)
     
     name <- prepare.output(parameters = params, inputs = inputs)
     

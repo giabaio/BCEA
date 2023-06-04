@@ -2,7 +2,7 @@
 % Please edit documentation in R/evppi_helpers.R
 \name{fit.inla}
 \alias{fit.inla}
-\title{Fit INLA}
+\title{Fit using INLA}
 \usage{
 fit.inla(
   parameter,
@@ -48,7 +48,7 @@ fit.inla(
 list
 }
 \description{
-Fit INLA
+Fit using INLA
 }
 \seealso{
 \code{\link{evppi}}

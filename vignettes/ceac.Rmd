@@ -2,7 +2,7 @@
 title: "Cost-Effectiveness Acceptability Curve Plots"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Cost-effectiveness acceptability curve plots}
+  %\VignetteIndexEntry{Cost-Effectiveness Acceptability Curve Plots}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

@@ -264,7 +264,7 @@ compute_IB <- function(df_ce, k) {
   df_ce <-
     df_ce %>% 
     filter(ints != .data$ref) %>%
-    rename(comps = .data$ints)
+    rename(comps = "ints")
   
   ib_df <-
     data.frame(k = rep(k, each = nrow(df_ce)),

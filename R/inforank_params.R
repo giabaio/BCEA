@@ -24,6 +24,7 @@ inforank_params <- function(he,
   
   ##TODO: what to do for multiple ICER?
   if (is.null(wtp)) wtp <- he$k[min(which(he$k >= he$ICER[1]))]
+  
   if (!wtp %in% he$k)
     stop("wtp must be from values computed in call to bcea().", call. = FALSE)
   

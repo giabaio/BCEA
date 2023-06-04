@@ -136,7 +136,7 @@ ceac_ggplot <- function(he,
   
   ggplot(data_psa, aes(.data$k, .data$ceac)) +
     geom_line(aes(linetype = .data$comparison,
-                  size = .data$comparison,
+                  linewidth = .data$comparison,
                   colour = factor(.data$comparison))) +
     theme_ceac() + 
     theme_add +                                            # theme
@@ -176,8 +176,7 @@ ceac_plot_plotly <- function(he,
       sapply(comparisons_label, function(x) rep(x, length(he$k)))
     )))
   
-  if (is.null(graph_params$line$types))
-    graph_params$line$type <- rep_len(1:6, he$n_comparisons)
+  graph_params$line$type <- graph_params$line$type %||% rep_len(1:6, he$n_comparisons)
   
   # opacities
   if (!is.null(graph_params$area$color))
