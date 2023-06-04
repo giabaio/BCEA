@@ -180,7 +180,8 @@ plot(EVPPI.so)
 plot(EVPPI.sad)
  
 # Compute the EVPPI using INLA/SPDE
-x_inla <- evppi(he = m, 39:40, input = inp$mat)
+if (require("INLA"))
+  x_inla <- evppi(he = m, 39:40, input = inp$mat)
 
 # using GAM regression
 x_gam <- evppi(he = m, 39:40, input = inp$mat, method = "GAM")
@@ -189,14 +190,16 @@ x_gam <- evppi(he = m, 39:40, input = inp$mat, method = "GAM")
 x_gp <- evppi(he = m, 39:40, input = inp$mat, method = "GP")
 
 # plot results
-plot(x_inla)
+if (require("INLA")) plot(x_inla)
 points(x_inla$k, x_inla$evppi, type = "l", lwd = 2, lty = 2)
 points(x_gam$k, x_gam$evppi, type = "l", col = "red")
 points(x_gp$k, x_gp$evppi, type = "l", col = "blue")
 
-plot(x_inla$k, x_inla$evppi, type = "l", lwd = 2, lty = 2)
-points(x_gam$k, x_gam$evppi, type = "l", col = "red")
-points(x_gp$k, x_gp$evppi, type = "l", col = "blue")
+if (require("INLA")) {
+  plot(x_inla$k, x_inla$evppi, type = "l", lwd = 2, lty = 2)
+  points(x_gam$k, x_gam$evppi, type = "l", col = "red")
+  points(x_gp$k, x_gp$evppi, type = "l", col = "blue")
+}
 
 data(Smoking)
 treats <- c("No intervention", "Self-help",

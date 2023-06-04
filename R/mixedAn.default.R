@@ -6,9 +6,7 @@
   
   Ubar <- OL.star <- evi.star <- NULL
   
-  if (is.null(value)) {
-    value <- rep(1, he$n_comparators)/he$n_comparators
-  }
+  value <- value %||% rep(1, he$n_comparators)/he$n_comparators
   
   Ubar <- compute_Ubar(he, value)
   OL.star <- he$Ustar - Ubar

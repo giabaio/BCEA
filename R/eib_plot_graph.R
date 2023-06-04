@@ -88,7 +88,7 @@ eib_plot_ggplot <- function(he,
       data = data.frame("kstar" = he$kstar),
       colour = "grey50",
       linetype = 2,
-      size = 0.5) +
+      linewidth = 0.5) +
     scale_linetype_manual(
       "",
       labels = graph_params$labels,
@@ -166,8 +166,7 @@ eib_plot_plotly <- function(he,
   
   n_comp <- length(comparison)
   
-  if (is.null(plot_aes$line$types))
-    plot_aes$line$types <- rep(1:6, ceiling(he$n_comparisons/6))[1:he$n_comparisons]
+  plot_aes$line$types <- plot_aes$line$types %||% rep(1:6, ceiling(he$n_comparisons/6))[1:he$n_comparisons]
   
   comparisons.label <-
     paste0(he$interventions[he$ref], " vs ", he$interventions[he$comp])

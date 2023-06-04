@@ -2,7 +2,7 @@
 title: "Cost-Effectiveness Efficiency Frontier"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Cost-effectiveness efficiency frontier}
+  %\VignetteIndexEntry{Cost-Effectiveness Efficiency Frontier}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

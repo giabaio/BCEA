@@ -58,9 +58,8 @@
 #   for (i in 1:n.out) {
 #     cmd <- paste(phi.name, " <- phi[i]", sep = "")
 #     eval(parse(text = cmd))
-#     if (is.null(n.thin)) {
-#       n.thin <- floor((n.iter - n.burnin) / (n.mc / 2))
-#     }
+#
+#     n.thin <- n.thin %||% floor((n.iter - n.burnin) / (n.mc / 2))
 #     
 #     model.evppi <-
 #       jags(data,

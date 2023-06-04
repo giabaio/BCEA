@@ -1,5 +1,24 @@
 
-# BCEA 2.4.2.9000
+# BCEA 2.4.3
+May 2023
+
+## Bug fixes
+
+* Consistent colours across plots for each intervention for grid of plots in `plot.bcea()` (cf1ee43)
+* `make.report()` change variable name (f940f2e)
+* Fixed issue with summary table where names of interventions in the wrong order (6a006e3)
+* `summary.bcea()` now only prints results for chosen comparisons and not always all of them. `kstar` and `best` in `bcea()` object were not updated with subset of interventions (#125)
+
+## Refactoring
+
+* `withr::with_par()` used in plotting function `plot.bcea()` to only temporarily change graphics parameters. (725c536)
+* Using `@md` and markdown syntax in function documentation
+* Update `psa.struct()` to add the absolute value in the formula to compute the weights (1cea278)
+* Use `dplyr` piping new syntax from `.data$*` to simply using speech marks `"*"` (2b280ad)
+
+## Miscellaneous
+
+* Template added for GitHub Issues (0ea59fa)
 
 
 # BCEA 2.4.2
@@ -24,11 +43,10 @@ August 2022
 ## New features
 
 * Can now specify what order the interventions labels are in the legend for ce plane (and contour plots) for base R and ggplot2 i.e. reference first or second with optional `ref_first` argument (cc38f07)
-* Can specify currency for axes in `ce-plane.plot` and `ceac.plot` `ggplot2` versions (6808aa6)
+* Can specify currency for axes in `ceplane.plot` and `ceac.plot` `ggplot2` versions (6808aa6)
 * Argument added to `ceplane.plot` of `icer_annot` to annotate each of the ICER points with the text label of the intervention name. Only for `ggplot2` at the moment. (a7b4beb)
 * Added `pos` argument to `contour2()` so that its consistent with `contour()` and `ceplane.plot()`. (50f8f8b)
 * Allow passing `ref` argument by name as well as index in `bcea()`. (9eab459)
-
 
 
 # BCEA 2.4.1.2

@@ -17,11 +17,10 @@ multiplot <- function(plotlist = NULL,
   
   n_plots <- length(plotlist)
   
-  if (is.null(layout_config)) {
-    layout_config <- matrix(seq(1, cols*ceiling(n_plots/cols)),
-                            ncol = cols,
-                            nrow = ceiling(n_plots/cols))
-  }
+  layout_config <-
+    layout_config %||% matrix(seq(1, cols*ceiling(n_plots/cols)),
+                              ncol = cols,
+                              nrow = ceiling(n_plots/cols))
   
   grid_params <-
     c(plotlist, list(layout_matrix = layout_config))

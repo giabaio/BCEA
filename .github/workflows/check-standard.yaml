@@ -67,9 +67,7 @@ jobs:
 
       - name: Install jags (macOS-latest)
         if: runner.os == 'macOS'
-        run : |
-              rm '/usr/local/bin/gfortran'
-              brew install jags
+        run : brew install jags
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:

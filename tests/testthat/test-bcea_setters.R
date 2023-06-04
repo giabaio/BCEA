@@ -1,10 +1,11 @@
 
-library(dplyr)
+# library(dplyr)
 
 # data(Vaccine)
-load(test_path("ce.RData"))
 
 test_that("setKmax", {
+
+  load(test_path("ce.RData"))
   
   m <- bcea(e = eff,
             c = cost,
@@ -22,6 +23,8 @@ test_that("setKmax", {
 
 test_that("setReferenceGroup", {
   
+  load(test_path("ce.RData"))
+  
   m <- bcea(e = eff,
             c = cost,
             ref = 2,
@@ -36,6 +39,8 @@ test_that("setReferenceGroup", {
 
 
 test_that("setComparison", {
+  
+  load(test_path("ce.RData"))
   
   m_r1 <- bcea(e = eff,
                c = cost,

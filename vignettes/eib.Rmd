@@ -2,7 +2,7 @@
 title: "Expected Incremental Benefit Plot"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Expected incremental benefit plot}
+  %\VignetteIndexEntry{Expected Incremental Benefit Plot}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

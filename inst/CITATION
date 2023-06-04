@@ -1,22 +1,20 @@
 citHeader("To cite BCEA in publications use:")
 
-citEntry(
-  entry = "Book",
-  title = "Bayesian Cost-Effectiveness Analysis with the R package BCEA",
-  publisher = "Springer",
-  year = "2017",
+bibentry( 
+  bibtype = "Book",
+  title = "Bayesian Cost-Effectiveness Analysis with the R package {BCEA}",
   author = "Baio, G and Berardi, A and Heath, A",
+  year = "2017",
+  publisher = "Springer",
   month = "Jul",
   address = "New York, NY",
   url = "https://link.springer.com/book/10.1007/978-3-319-55718-2",
   doi = "10.1007/978-3-319-55718-2",
   isbn = "978-3-319-55718-2",
-  
   textVersion = 
-  paste("Baio et al (2017).",
-        "Bayesian Cost Effectiveness Analysis with the R package BCEA.",
-        "Springer, New York, NY.",
-        "doi: 10.1007/978-3-319-55718-2,",
-        "URL: https://link.springer.com/book/10.1007/978-3-319-55718-2"
-  )
+    paste("Baio et al (2017).",
+          "Bayesian Cost Effectiveness Analysis with the R package BCEA.",
+          "Springer, New York, NY.",
+          "doi: 10.1007/978-3-319-55718-2,",
+          "URL: https://link.springer.com/book/10.1007/978-3-319-55718-2")
 )
