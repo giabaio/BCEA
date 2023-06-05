@@ -34,7 +34,7 @@ Main features of `BCEA` include:
 * EVPPI calculations and plots
 
 ## Installation
-Install the [released version from CRAN](https://cran.r-project.org/web/packages/BCEA/index.html) with
+Install the [released version from CRAN](https://cran.r-project.org/package=BCEA) with
 ```r
 install.packages("BCEA")
 ```
