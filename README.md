@@ -12,7 +12,7 @@
 
 > Perform Bayesian Cost-Effectiveness Analysis in R.
 
-:rocket: **Version 2.4.3 out now!** [Check out the release notes here](https://github.com/n8thangreen/BCEA/releases/tag/v2.4.3).
+:rocket: **Version 2.4.3 out now!** [Check out the release notes here](https://github.com/n8thangreen/BCEA/releases).
 
 ## Contents
 
@@ -34,7 +34,7 @@ Main features of `BCEA` include:
 * EVPPI calculations and plots
 
 ## Installation
-Install the [released version from CRAN](https://cran.r-project.org/web/packages/BCEA/index.html) with
+Install the [released version from CRAN](https://cran.r-project.org/package=BCEA) with
 ```r
 install.packages("BCEA")
 ```

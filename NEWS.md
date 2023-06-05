@@ -1,4 +1,9 @@
 
+# BCEA 2.4.4
+June 2023
+
+* Patch to fix a CRAN checks error. Suggested package `MCMCvis` wasn't used conditionally in unit test. Moved to Required packages in `DESCRIPTION`.
+
 # BCEA 2.4.3
 May 2023
 
