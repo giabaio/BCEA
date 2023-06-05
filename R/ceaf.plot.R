@@ -101,8 +101,8 @@ ceaf.plot.pairwise <- function(mce,
   } else {
     df <- data.frame(k = mce$k,
                      ceaf = mce$ceaf)
-    ggceaf <-
-      ggplot(df, aes(x = .data$k, y = .data$ceaf)) +
+
+    ggplot(df, aes(x = .data$k, y = .data$ceaf)) +
       theme_bw() +
       geom_line() +
       coord_cartesian(ylim = c(-0.05, 1.05)) +
@@ -119,8 +119,6 @@ ceaf.plot.pairwise <- function(mce,
               face = "bold",
               size = 14.3,
               hjust = 0.5))
-    
-    return(ggceaf)
   }
 }
 

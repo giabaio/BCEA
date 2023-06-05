@@ -52,9 +52,8 @@ ib_plot_base <- function(he,
                  sep = "")
   }
   if (he$n_comparisons > 1) {
-    if (is.null(comparison)) {
-      comparison <- 1
-    }
+    
+    comparison <- comparison %||% 1
     
     # nbw <- sd(he$ib[w, , comparison])/1.5
     
@@ -65,9 +64,9 @@ ib_plot_base <- function(he,
                  he$interventions[he$comp[comparison]],
                  sep = "")
   }
-  if (is.null(xlim)) {
-    xlim <- range(d$x)
-  }
+  
+  xlim <- xlim %||% range(d$x)
+  
   plot(
     d$x,
     d$y,

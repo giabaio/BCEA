@@ -82,9 +82,7 @@ evi.plot.mixedAn <- function(he,
   alt_legend <- pos
   base.graphics <- all(pmatch(graph, c("base", "ggplot2")) != 2)
   
-  if (is.null(y.limits)){
-    y.limits <- range(he$evi, he$evi.star)
-  }
+  y.limits <- y.limits %||% range(he$evi, he$evi.star)
   
   if (base.graphics) {
     

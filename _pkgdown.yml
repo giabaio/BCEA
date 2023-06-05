@@ -9,6 +9,15 @@ template:
   bslib:
     font_scale: 1.0
 
+navbar:
+  structure:
+    left:  [intro, reference, articles, tutorials, news, cheatsheet]
+    right: [search, github]
+  components:
+    cheatsheet:
+      text: "Cheatsheet"
+      href: "bcea_cheatsheet.pdf"
+    
 reference:
 - title: "Main"
   contents:

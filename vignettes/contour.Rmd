@@ -1,8 +1,8 @@
 ---
-title: "Contour plots"
+title: "Contour Plots"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Contour-plot}
+  %\VignetteIndexEntry{Contour Plots}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

@@ -21,7 +21,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Gianluca Baio \email{gianluca@stats.ucl.ac.uk} (\href{https://orcid.org/0000-0003-4314-2570}{ORCID})
+\strong{Maintainer}: Gianluca Baio \email{g.baio@ucl.ac.uk} (\href{https://orcid.org/0000-0003-4314-2570}{ORCID}) [copyright holder]
 
 Authors:
 \itemize{
