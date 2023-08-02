@@ -14,6 +14,12 @@
 createInputs.default <- function(inputs,
                                  print_is_linear_comb = TRUE) {
   
+  # remove NA columns
+  if (sum(is.na(inputs)) > 0) {
+    inputs <- inputs[ , colSums(is.na(inputs)) == 0]
+    message("Dropped any columns containing NAs")
+  }
+  
   if (!is.logical(print_is_linear_comb))
     stop("print_is_linear_comb must be logical.", call. = FALSE)
   
