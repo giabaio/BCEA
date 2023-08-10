@@ -21,6 +21,7 @@ test_that("vaccine data", {
   
   # GAM regression
   EVPPI <- evppi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat)
+  EVPPI_voi <- evppi_voi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat)
   
   expect_s3_class(EVPPI, "evppi")
   expect_length(EVPPI, 10)
@@ -31,6 +32,7 @@ test_that("vaccine data", {
   # deprecated (single parameter) methods
   # Strong & Oakley
   EVPPI.so <- evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "so", n.blocks = 50)
+  EVPPI.so_voi <- evppi_voi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "so", n.blocks = 50)
   
   expect_s3_class(EVPPI.so, "evppi")
   expect_length(EVPPI.so, 6)
@@ -38,6 +40,7 @@ test_that("vaccine data", {
   
   # Sadatsafavi et al
   EVPPI.sad <- evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps = 1)
+  EVPPI.sad_voi <- evppi_voi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps = 1)
   
   expect_s3_class(EVPPI.sad, "evppi")
   expect_length(EVPPI.sad, 6)
@@ -50,6 +53,7 @@ test_that("vaccine data", {
   # Compute the EVPPI using INLA/SPDE
   if (require("INLA")) {
     x_inla <- evppi(he = bcea_vacc, 39:40, input = inp$mat)
+    x_inla_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat)
 
     expect_s3_class(x_inla, "evppi")
     expect_length(x_inla, 10)
@@ -58,6 +62,7 @@ test_that("vaccine data", {
   
   # using GAM regression
   x_gam <- evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "GAM")
+  x_gam_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "GAM")
   
   expect_s3_class(x_gam, "evppi")
   expect_length(x_gam, 10)
@@ -65,6 +70,7 @@ test_that("vaccine data", {
   
   # using Strong et al GP regression
   x_gp <- evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "GP")
+  x_gp_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "GP")
   
   expect_s3_class(x_gp, "evppi")
   expect_length(x_gp, 10)
@@ -102,6 +108,7 @@ test_that("smoking data", {
   expect_type(inp, "list")
   
   EVPPI <- evppi(bcea_smoke, param_idx = c(2,3), inp$mat, h.value = 5e-7)
+  EVPPI_voi <- evppi_voi(bcea_smoke, param_idx = c(2,3), inp$mat, h.value = 5e-7)
   
   expect_s3_class(EVPPI, "evppi")
   expect_length(EVPPI, 10)

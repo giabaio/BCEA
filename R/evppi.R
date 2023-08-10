@@ -141,6 +141,7 @@
 #' \insertRef{Heath2016}{BCEA}
 #' 
 #' @export
+#' @md
 #' 
 #' @examples
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 

@@ -9,7 +9,15 @@ Parameters}
 \usage{
 evppi(he, param_idx, input, N = NULL, plot = FALSE, residuals = TRUE, ...)
 
-\method{evppi}{bcea}(he, param_idx, input, N = NULL, plot = FALSE, residuals = TRUE, ...)
+\method{evppi}{bcea}(
+  he,
+  param_idx = NULL,
+  input,
+  N = NULL,
+  plot = FALSE,
+  residuals = TRUE,
+  ...
+)
 
 \method{evppi}{default}(he, ...)
 }
@@ -31,16 +39,17 @@ should match at least one of those values.}
 default uses all the available samples.}
 
 \item{plot}{A logical value indicating whether the triangular mesh for
-SPDE-INLA should be plotted. Default set to `FALSE`.}
+SPDE-INLA should be plotted. Default set to \code{FALSE}.}
 
 \item{residuals}{A logical value indicating whether the fitted values for
-the SPDE-INLA method should be outputted. Default set to `TRUE`.}
+the SPDE-INLA method should be outputted. Default set to \code{TRUE}.}
 
 \item{...}{Additional arguments. The default methods to compute the EVPPI
 are:
-- For single-parameter:
+\itemize{
+\item For single-parameter:
 GAM regression.
-- For multi-parameter:
+\item For multi-parameter:
 INLA/SPDE. However, it is possible (mainly for backward compatibility) to
 use different methods. For single-parameter, the user can specify the method
 of Sadatsafavi \emph{et al.} or the method of Strong & Oakley. In order to do so, it
@@ -49,15 +58,16 @@ value a string \code{"sad"} in the former case and a string \code{"so"} in
 the latter. In case "sal" is selected, then it is possible to also specify
 the number of "separators" (e.g. \code{n.seps=3}). If none is specified, the
 default value \code{n.seps=1} is used. If \code{"so"} is used as method for
-the calculation of the EVPPI, then the user *needs* to also specify the
-number of "blocks" (e.g. \code{n.blocks=20}).}
+the calculation of the EVPPI, then the user \emph{needs} to also specify the
+number of "blocks" (e.g. \code{n.blocks=20}).
+}}
 }
 \value{
-Object of class `evppi`:
+Object of class \code{evppi}:
 \item{evppi}{The computed values of evppi for all values of the
- parameter of willingness to pay.}
+parameter of willingness to pay.}
 \item{index}{A numerical vector with the index associated with the
- parameters for which the EVPPI was calculated.}
+parameters for which the EVPPI was calculated.}
 \item{k}{The vector of values for the willingness to pay.}
 \item{evi}{The vector of values for the overall EVPPI.}
 \item{fitted.costs}{The fitted values for the costs.}
@@ -85,11 +95,7 @@ This function has been completely changed and restructured to make it possible
 to change regression method.
 The method argument can now be given as a list. The first element element in the
 list is a vector giving the regression method for the effects. The second gives
-the regression method for the costs. The `method' argument can also be given as
-before which then uses the same regression method for all curves.
-All other `extra_args` can be given as before. `int.ord` can be updated using the
-list formulation above to give the interactions for each different curve.
-The formula argument for GAM can only be given once, either `te()` or `s() + s()`
+the regression method for the costs. The \verb{method' argument can also be given as before which then uses the same regression method for all curves. All other }extra_args\verb{can be given as before.}int.ord\verb{can be updated using the list formulation above to give the interactions for each different curve. The formula argument for GAM can only be given once, either}te()\code{or}s() + s()`
 as this is for computational reasons rather than to aid fit.
 You can still plot the INLA mesh elements but not output the meshes.
 }
@@ -224,7 +230,7 @@ plot(EVPPI)
 }
 \seealso{
 \code{\link{bcea}},
-         \code{\link{plot.evppi}}
+\code{\link{plot.evppi}}
 }
 \author{
 Anna Heath, Gianluca Baio

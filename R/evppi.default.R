@@ -4,13 +4,14 @@
 #' @export
 #'
 evppi.bcea <- function(he,
-                       param_idx,
+                       param_idx = NULL,
                        input,
                        N = NULL,
                        plot = FALSE,
                        residuals = TRUE, ...) {
   
   colnames(input) <- colnames(input) %||% paste0("theta", seq_len(dim(input)[2]))
+  param_idx <- param_idx %||% colnames(input)
   
   if (is.numeric(param_idx[1]) || is.integer(param_idx[1])) {
     params <- colnames(input)[param_idx]
