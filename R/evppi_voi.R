@@ -23,6 +23,16 @@ evppi_voi <- function(he,
 evppi_voi.bcea <- function(he, param_idx = NULL, input, ...) {
   outputs <- he[c("e","c","k")]
   
-  voi::evppi(outputs, inputs = input, pars = param_idx, ...)
+  pars <- 
+    if (all(is.numeric(param_idx))) {
+      if (any(!param_idx %in% 1:ncol(input)))
+        stop("Column number(s) not in available parameter inputs")
+      
+      param_idx <- names(input)[param_idx]
+    } else {
+      param_idx
+    }
+  
+  voi::evppi(outputs, inputs = input, pars = pars, ...)
 }
 

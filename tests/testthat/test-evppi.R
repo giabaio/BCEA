@@ -20,7 +20,7 @@ test_that("vaccine data", {
   # Compute the EVPPI for a bunch of parameters
   
   # GAM regression
-  EVPPI <- evppi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat)
+  EVPPI <- BCEA::evppi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat)
   EVPPI_voi <- evppi_voi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat)
   
   expect_s3_class(EVPPI, "evppi")
@@ -31,20 +31,40 @@ test_that("vaccine data", {
   
   # deprecated (single parameter) methods
   # Strong & Oakley
-  EVPPI.so <- evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "so", n.blocks = 50)
-  EVPPI.so_voi <- evppi_voi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "so", n.blocks = 50)
+  EVPPI.so <- BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "so", n.blocks = 50)
+  
+  ##TODO: this in only available for single parameter
+  ## error
+  EVPPI.so_voi <- evppi_voi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "so")
+  
+  EVPPI.so_voi <- evppi_voi(bcea_vacc, "beta.1.", inp$mat, method = "so", n.blocks = 50)
+  EVPPI.so_voi <- evppi_voi(bcea_vacc, "beta.2.", inp$mat, method = "so", n.blocks = 50)
   
   expect_s3_class(EVPPI.so, "evppi")
   expect_length(EVPPI.so, 6)
   expect_type(EVPPI.so, "list")
   
   # Sadatsafavi et al
-  EVPPI.sad <- evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps = 1)
-  EVPPI.sad_voi <- evppi_voi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps = 1)
+  EVPPI.sad <- BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps = 1)
+  
+  ##TODO: this in only available for single parameter
+  ## error
+  EVPPI.sad_voi <- evppi_voi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "sal", n.seps = 1)
+  
+  EVPPI.sad_voi <- evppi_voi(bcea_vacc, "beta.1.", inp$mat, method = "sal", n.seps = 1)
+  EVPPI.sad_voi <- evppi_voi(bcea_vacc, "beta.2.", inp$mat, method = "sal", n.seps = 1)
   
   expect_s3_class(EVPPI.sad, "evppi")
   expect_length(EVPPI.sad, 6)
   expect_type(EVPPI.sad, "list")
+  
+  # select parameters by position
+  evppi_idx <- BCEA::evppi(he = bcea_vacc, param_idx = 39:40, input = inp$mat)
+  evppi_idx_voi <- evppi_voi(he = bcea_vacc, param_idx = 39:40, input = inp$mat)
+  
+  expect_s3_class(evppi_idx, "evppi")
+  expect_length(evppi_idx, 10)
+  expect_type(evppi_idx, "list")
   
   ##TODO: errors
   # plot(EVPPI.so)
@@ -52,7 +72,7 @@ test_that("vaccine data", {
   
   # Compute the EVPPI using INLA/SPDE
   if (require("INLA")) {
-    x_inla <- evppi(he = bcea_vacc, 39:40, input = inp$mat)
+    x_inla <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat)
     x_inla_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat)
 
     expect_s3_class(x_inla, "evppi")
@@ -61,7 +81,7 @@ test_that("vaccine data", {
   }
   
   # using GAM regression
-  x_gam <- evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "GAM")
+  x_gam <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "GAM")
   x_gam_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "GAM")
   
   expect_s3_class(x_gam, "evppi")
@@ -69,7 +89,7 @@ test_that("vaccine data", {
   expect_type(x_gam, "list")
   
   # using Strong et al GP regression
-  x_gp <- evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "GP")
+  x_gp <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "GP")
   x_gp_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "GP")
   
   expect_s3_class(x_gp, "evppi")
@@ -107,7 +127,7 @@ test_that("smoking data", {
   expect_named(inp, c("mat", "parameters"))
   expect_type(inp, "list")
   
-  EVPPI <- evppi(bcea_smoke, param_idx = c(2,3), inp$mat, h.value = 5e-7)
+  EVPPI <- BCEA::evppi(bcea_smoke, param_idx = c(2,3), inp$mat, h.value = 5e-7)
   EVPPI_voi <- evppi_voi(bcea_smoke, param_idx = c(2,3), inp$mat, h.value = 5e-7)
   
   expect_s3_class(EVPPI, "evppi")

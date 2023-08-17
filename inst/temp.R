@@ -31,6 +31,7 @@ evppi(outputs_nb, inputs, pars="p1", method="gp", nsim=1000)
 
 evppi(outputs_nb, inputs, pars="p1", method="earth")
 
+##TODO: error
 evppi(outputs_nb, inputs, pars=c("p1","p2"), method="inla", pfc_struc="iso")
 
 evppi(chemo_nb, chemo_pars, pars=colnames(chemo_pars), method="bart")
@@ -53,6 +54,7 @@ inp <- createInputs(vaccine_mat)
 evppi_bcea <- 
   BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
 
+# match columns with voi::evppi
 evppi_bcea2 <- as.data.frame(evppi_bcea[c("parameters", "k", "evppi")])
 
 evppi_voi <- 
@@ -60,13 +62,4 @@ evppi_voi <-
              inputs = vaccine_mat,
              pars = c("beta.1." , "beta.2."))#,
              # check = TRUE)                 ##TODO: error
-
-
-evppi_voi.bcea <- function(he, param_idx, input, ...) {
-  pars <- param_idx
-  inputs <- input
-  outputs <- he[c("e","c","k")]
-  
-  voi::evppi(outputs, inputs, pars, ...)
-}
 
