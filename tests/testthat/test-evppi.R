@@ -17,9 +17,9 @@ test_that("vaccine data", {
   expect_named(inp, c("mat", "parameters"))
   expect_type(inp, "list")
   
-  # Compute the EVPPI for a bunch of parameters
+  # Compute the EVPPI for a group of parameters
   
-  # GAM regression
+  # GAM regression (default)
   EVPPI <- BCEA::evppi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat)
   EVPPI_voi <- evppi_voi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat)
   
@@ -27,15 +27,15 @@ test_that("vaccine data", {
   expect_length(EVPPI, 10)
   expect_type(EVPPI, "list")
   
-  # plot(EVPPI)
+  plot.evppi(EVPPI)
   
   # deprecated (single parameter) methods
   # Strong & Oakley
   EVPPI.so <- BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "so", n.blocks = 50)
   
-  ##TODO: this in only available for single parameter
-  ## error
-  EVPPI.so_voi <- evppi_voi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "so")
+  ##TODO:
+  ## error: `method="so" only works for single-parameter EVPPI
+  # EVPPI.so_voi <- evppi_voi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "so", n.blocks = 50)
   
   EVPPI.so_voi <- evppi_voi(bcea_vacc, "beta.1.", inp$mat, method = "so", n.blocks = 50)
   EVPPI.so_voi <- evppi_voi(bcea_vacc, "beta.2.", inp$mat, method = "so", n.blocks = 50)
@@ -47,9 +47,9 @@ test_that("vaccine data", {
   # Sadatsafavi et al
   EVPPI.sad <- BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps = 1)
   
-  ##TODO: this in only available for single parameter
-  ## error
-  EVPPI.sad_voi <- evppi_voi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "sal", n.seps = 1)
+  ##TODO:
+  ## error: `method="sal" only works for single-parameter EVPPI
+  # EVPPI.sad_voi <- evppi_voi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "sal", n.seps = 1)
   
   EVPPI.sad_voi <- evppi_voi(bcea_vacc, "beta.1.", inp$mat, method = "sal", n.seps = 1)
   EVPPI.sad_voi <- evppi_voi(bcea_vacc, "beta.2.", inp$mat, method = "sal", n.seps = 1)
@@ -72,17 +72,22 @@ test_that("vaccine data", {
   
   # Compute the EVPPI using INLA/SPDE
   if (require("INLA")) {
-    x_inla <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat)
-    x_inla_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat)
+    x_inla <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla")
+    x_inla_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla")
 
     expect_s3_class(x_inla, "evppi")
     expect_length(x_inla, 10)
     expect_type(x_inla, "list")
+    
+    ##TODO: should we include this functionality in new evppi()?
+    # x_inla <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", plot = TRUE)
   }
   
   # using GAM regression
   x_gam <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "GAM")
-  x_gam_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "GAM")
+  
+  # lower case method name
+  x_gam_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "gam")
   
   expect_s3_class(x_gam, "evppi")
   expect_length(x_gam, 10)
@@ -90,24 +95,18 @@ test_that("vaccine data", {
   
   # using Strong et al GP regression
   x_gp <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "GP")
-  x_gp_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "GP")
+  
+  # lower case method name
+  x_gp_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "gp")
   
   expect_s3_class(x_gp, "evppi")
   expect_length(x_gp, 10)
   expect_type(x_gp, "list")
   
-  # # plot results
-  # if (require("INLA"))
-  #   plot(x_inla)
-  # points(x_inla$k, x_inla$evppi, type = "l", lwd = 2, lty = 2)
-  # points(x_gam$k, x_gam$evppi, type = "l", col = "red")
-  # points(x_gp$k, x_gp$evppi, type = "l", col = "blue")
-  # 
-  # if (require("INLA")) {
-  #   plot(x_inla$k, x_inla$evppi, type = "l", lwd = 2, lty = 2)
-  #   points(x_gam$k, x_gam$evppi, type = "l", col = "red")
-  #   points(x_gp$k, x_gp$evppi, type = "l", col = "blue")
-  # }
+  # test subsetting input PSA simulations
+  EVPPI <- BCEA::evppi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat, N = 100)
+  EVPPI_voi <- evppi_voi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat, N = 100)
+  
 })
 
 

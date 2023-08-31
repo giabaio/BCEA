@@ -20,9 +20,20 @@ evppi_voi <- function(he,
 #' evppi_voi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
 #' @export
 #' 
-evppi_voi.bcea <- function(he, param_idx = NULL, input, ...) {
+evppi_voi.bcea <- function(he,
+                           param_idx = NULL,
+                           input,
+                           N = NULL, 
+                           plot = FALSE,      # plot triangular mesh for SPDE-INLA 
+                           residuals = TRUE,  # output fitted values for SPDE-INLA method
+                           method = NULL, ...) {
+  
   outputs <- he[c("e","c","k")]
   
+  if (!is.null(method))
+    method <- tolower(method)
+  
+  # replace column numbers with names
   pars <- 
     if (all(is.numeric(param_idx))) {
       if (any(!param_idx %in% 1:ncol(input)))
@@ -32,6 +43,20 @@ evppi_voi.bcea <- function(he, param_idx = NULL, input, ...) {
     } else {
       param_idx
     }
+  
+  n_sims <- nrow(input)
+  
+  # subset number of PSA samples; default all
+  row_idxs <- 
+    if (is.null(N) || (N >= n_sims)) {
+      1:n_sims
+    } else {
+      sample(1:n_sims, size = N, replace = FALSE)
+    }
+  
+  input <- data.frame(input)[row_idxs, ]
+  outputs$e <- data.frame(outputs$e)[row_idxs, ]
+  outputs$c <- data.frame(outputs$c)[row_idxs, ]
   
   voi::evppi(outputs, inputs = input, pars = pars, ...)
 }
