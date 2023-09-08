@@ -1,5 +1,6 @@
 
 # library(BCEA)
+# library(testthat)
 
 
 test_that("vaccine data", {
@@ -20,14 +21,17 @@ test_that("vaccine data", {
   # Compute the EVPPI for a group of parameters
   
   # GAM regression (default)
-  EVPPI <- BCEA::evppi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat)
-  EVPPI_voi <- evppi_voi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat)
+  EVPPI <- BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
+  EVPPI_voi <- evppi_voi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
   
   expect_s3_class(EVPPI, "evppi")
   expect_length(EVPPI, 10)
   expect_type(EVPPI, "list")
   
   plot.evppi(EVPPI)
+  
+  # error
+  plot.evppi(EVPPI_voi)
   
   # deprecated (single parameter) methods
   # Strong & Oakley
@@ -47,12 +51,18 @@ test_that("vaccine data", {
   # Sadatsafavi et al
   EVPPI.sad <- BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps = 1)
   
+  # TODO: error
+  # EVPPI.sal <- BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "sal", n.seps = 1)
+  
   ##TODO:
   ## error: `method="sal" only works for single-parameter EVPPI
-  # EVPPI.sad_voi <- evppi_voi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "sal", n.seps = 1)
+  EVPPI.sal_voi <- evppi_voi(bcea_vacc, param_idx = c("beta.1.", "beta.2."), inp$mat, method = "sal", n.seps = 1)
+  EVPPI.sad_voi <- evppi_voi(bcea_vacc, param_idx = c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps = 1)
   
-  EVPPI.sad_voi <- evppi_voi(bcea_vacc, "beta.1.", inp$mat, method = "sal", n.seps = 1)
-  EVPPI.sad_voi <- evppi_voi(bcea_vacc, "beta.2.", inp$mat, method = "sal", n.seps = 1)
+  # voiEVPPI.sad <- voi::evppi(outputs = bcea_vacc[c("e","c","k")], inputs = inp$mat, pars = c("beta.1.", "beta.2."), method = "sal", n.seps = 1)
+  
+  EVPPI.sad_voi <- evppi_voi(bcea_vacc, "beta.2.", inp$mat, method = "sad", n.seps = 1)
+  EVPPI.sal_voi <- evppi_voi(bcea_vacc, "beta.1.", inp$mat, method = "sal", n.seps = 1)
   
   expect_s3_class(EVPPI.sad, "evppi")
   expect_length(EVPPI.sad, 6)

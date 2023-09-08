@@ -106,6 +106,7 @@ evppi.bcea <- function(he,
   }
   
   if (!inherits(extra_args$method, "list")) {
+    # why have two ways of specifying the same method?
     if (extra_args$method == "sal" || extra_args$method == "sad") {
       method <- "Sadatsafavi et al"
       n.blocks <- NULL
