@@ -60,6 +60,22 @@ evppi_voi.bcea <- function(he,
   outputs$e <- outputs$e[row_idxs, ]
   outputs$c <- outputs$c[row_idxs, ]
   
-  voi::evppi(outputs, inputs = input, pars = pars, method = method, ...)
-}
+  res <- voi::evppi(outputs, inputs = input, pars = pars, method = method, ...)
+
+  list(
+    evppi = res$evppi,
+    index = NULL,
+    # index = which(par %in% names(input)),
+    k = res$k,
+    evi = NULL,
+    fitted.costs = NULL,
+    fitted.effects = NULL,
+    parameters = pars,
+    pars = res$pars,
+    time = NULL,
+    fit.c = NULL,
+    fit.e = NULL,
+    formula = NULL,
+    method = method)
+  }
 
