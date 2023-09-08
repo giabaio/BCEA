@@ -57,7 +57,7 @@ evppi_voi.bcea <- function(he,
     }
   
   input <- data.frame(input[row_idxs, ])
-  outputse <- outputs$e[row_idxs, ]
+  outputs$e <- outputs$e[row_idxs, ]
   outputs$c <- outputs$c[row_idxs, ]
   
   voi::evppi(outputs, inputs = input, pars = pars, method = method, ...)
