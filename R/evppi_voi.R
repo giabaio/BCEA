@@ -33,7 +33,7 @@ evppi_voi.bcea <- function(he,
     method <- tolower(method)
   
   # allow alternative name for Sadatsafavi method
-  if (method == "sad") method <- "sal"
+  if (length(method) > 0 && method == "sad") method <- "sal"
     
   # replace column numbers with names
   pars <- 
@@ -64,13 +64,12 @@ evppi_voi.bcea <- function(he,
 
   list(
     evppi = res$evppi,
-    index = NULL,
-    # index = which(par %in% names(input)),
+    index = pars,
     k = res$k,
     evi = NULL,
     fitted.costs = NULL,
     fitted.effects = NULL,
-    parameters = pars,
+    parameters = paste(pars, collapse = " and "),
     pars = res$pars,
     time = NULL,
     fit.c = NULL,
