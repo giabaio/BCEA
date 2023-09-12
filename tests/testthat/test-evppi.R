@@ -29,8 +29,6 @@ test_that("vaccine data", {
   expect_type(EVPPI, "list")
   
   plot.evppi(EVPPI)
-  
-  # error
   plot.evppi(EVPPI_voi)
   
   # deprecated (single parameter) methods
@@ -83,13 +81,15 @@ test_that("vaccine data", {
   # Compute the EVPPI using INLA/SPDE
   if (require("INLA")) {
     x_inla <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla")
+    
+    ##TODO: error
     x_inla_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla")
 
     expect_s3_class(x_inla, "evppi")
     expect_length(x_inla, 10)
     expect_type(x_inla, "list")
     
-    ##TODO: should we include this functionality in new evppi()?
+    ##TODO: should we include this plot functionality in new evppi()?
     # x_inla <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", plot = TRUE)
   }
   
@@ -113,7 +113,8 @@ test_that("vaccine data", {
   expect_length(x_gp, 10)
   expect_type(x_gp, "list")
   
-  # test subsetting input PSA simulations
+  # subsetting input PSA simulations
+  ##TODO:...
   EVPPI <- BCEA::evppi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat, N = 100)
   EVPPI_voi <- evppi_voi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat, N = 100)
   
@@ -136,8 +137,12 @@ test_that("smoking data", {
   expect_named(inp, c("mat", "parameters"))
   expect_type(inp, "list")
   
-  EVPPI <- BCEA::evppi(bcea_smoke, param_idx = c(2,3), inp$mat, h.value = 5e-7)
+  ## doesn't return error when really should
+  # EVPPI <- BCEA::evppi(bcea_smoke, param_idx = c(2,3), inp$mat, h.value = 5e-7)
+  
+  # error
   EVPPI_voi <- evppi_voi(bcea_smoke, param_idx = c(2,3), inp$mat, h.value = 5e-7)
+  voiEVPPI <- voi::evppi(bcea_smoke[c("e","c","k")], pars = c("d.3.", "d.4."), inputs = inp$mat, h.value = 5e-7)
   
   expect_s3_class(EVPPI, "evppi")
   expect_length(EVPPI, 10)

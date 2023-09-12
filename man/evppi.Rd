@@ -44,22 +44,26 @@ SPDE-INLA should be plotted. Default set to \code{FALSE}.}
 \item{residuals}{A logical value indicating whether the fitted values for
 the SPDE-INLA method should be outputted. Default set to \code{TRUE}.}
 
-\item{...}{Additional arguments. The default methods to compute the EVPPI
-are:
+\item{...}{Additional arguments. To select which method use the \code{method} argument.
+The default methods are recommended. However, it is possible (mainly for backward compatibility) to
+use different methods. The methods to compute the EVPPI are:
 \itemize{
 \item For single-parameter:
-GAM regression.
+\itemize{
+\item Generalized additive model (GAM) (default).
+\item The method of Strong & Oakley use \code{method} as string \code{so}.
+The user \emph{needs} to also specify the number of "blocks" (e.g. \code{n.blocks=20}).
+Note that the multi-parameter version for this method has been deprecated.
+\item The method of Sadatsafavi \emph{et al.} where \code{method} takes as value a string of either \code{sad} or \code{sal}.
+It is then possible to also specify the number of "separators" (e.g. \code{n.seps=3}).
+If none is specified, the default value \code{n.seps=1} is used.
+Note that the multi-parameter version for this method has been deprecated.
+}
 \item For multi-parameter:
-INLA/SPDE. However, it is possible (mainly for backward compatibility) to
-use different methods. For single-parameter, the user can specify the method
-of Sadatsafavi \emph{et al.} or the method of Strong & Oakley. In order to do so, it
-is necessary to include the extra parameter \code{method} which takes as
-value a string \code{"sad"} in the former case and a string \code{"so"} in
-the latter. In case "sal" is selected, then it is possible to also specify
-the number of "separators" (e.g. \code{n.seps=3}). If none is specified, the
-default value \code{n.seps=1} is used. If \code{"so"} is used as method for
-the calculation of the EVPPI, then the user \emph{needs} to also specify the
-number of "blocks" (e.g. \code{n.blocks=20}).
+\itemize{
+\item INLA/SPDE (default).
+\item Gaussian process regression with \code{method} of \code{gp}.
+}
 }}
 }
 \value{
