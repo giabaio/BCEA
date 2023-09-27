@@ -23,6 +23,7 @@ test_that("vaccine data", {
   # GAM regression (default)
   EVPPI <- BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
   EVPPI_voi <- evppi_voi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
+  EVPPI_voi_orig <- voi::evppi(bcea_vacc[c("e","c","k")], inputs = inp$mat, pars = c("beta.1.", "beta.2."), check = TRUE)
   
   expect_s3_class(EVPPI, "evppi")
   expect_length(EVPPI, 10)

@@ -64,7 +64,7 @@ evppi_voi.bcea <- function(he,
     outputs$c <- outputs$c[row_idxs, ]
   }
   
-  res <- voi::evppi(outputs, inputs = input, pars = pars, method = method, ...)
+  res <- voi::evppi(outputs, inputs = input, pars = pars, method = method, check = TRUE, ...)
   
   form <- 
     if (!is.null(method) && method == "gam") {
@@ -73,24 +73,27 @@ evppi_voi.bcea <- function(he,
     } else {NULL}
   
   voi_methods <- unname(attr(res, "methods"))
+  voi_models <- attr(res, "models")
+  
+  fitted_c <- voi_models[[1]][[1]][[1]]$fitted.values
+  fitted_e <- voi_models[[1]][[2]][[1]]$fitted.values
   
   list(
     evppi = res$evppi,
     index = pars,
     k = res$k,
     evi = he$evi,
-    fitted.costs = NULL,
-    fitted.effects = NULL,
     parameters = paste(pars, collapse = " and "),
-    pars = res$pars,
     time = list("Fitting for Effects" = NULL,
                 "Fitting for Costs" = NULL,
                 "Calculating EVPPI" = NULL),
-    fit.c = NULL,
-    fit.e = NULL,
-    formula = form,
     method = list("Methods for Effects" = voi_methods,
                   "Methods for Costs" = voi_methods),
+    fitted.costs = cbind(fitted_c, 0),
+    fitted.effects = cbind(fitted_e, 0),
+    select = NULL,
+    formula = form,
+    pars = res$pars,
     res = res)
 }
 
