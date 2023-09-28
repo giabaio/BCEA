@@ -78,7 +78,7 @@ evppi_voi.bcea <- function(he,
   fitted_c <- voi_models[[1]][[1]][[1]]$fitted.values
   fitted_e <- voi_models[[1]][[2]][[1]]$fitted.values
   
-  list(
+  out <- list(
     evppi = res$evppi,
     index = pars,
     k = res$k,
@@ -95,5 +95,7 @@ evppi_voi.bcea <- function(he,
     formula = form,
     pars = res$pars,
     res = res)
+  
+  structure(out, class = c("evppi", class(out)))
 }
 

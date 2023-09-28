@@ -32,7 +32,8 @@ Imports:
     Rdpack,
     reshape2,
     rlang,
-    scales
+    scales,
+    voi
 Depends:
     R (>= 3.5.0)
 Suggests:
@@ -68,3 +69,5 @@ NeedsCompilation: no
 RoxygenNote: 7.2.3.9000
 Encoding: UTF-8
 BugReports: https://github.com/n8thangreen/BCEA/issues/
+Remotes: 
+    chjackson/voi

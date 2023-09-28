@@ -29,8 +29,8 @@ test_that("vaccine data", {
   expect_length(EVPPI, 10)
   expect_type(EVPPI, "list")
   
-  plot.evppi(EVPPI)
-  plot.evppi(EVPPI_voi)
+  plot(EVPPI)
+  plot(EVPPI_voi)
   
   # deprecated (single parameter) methods
   # Strong & Oakley
