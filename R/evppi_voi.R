@@ -11,6 +11,7 @@ evppi_voi <- function(he,
   UseMethod("evppi_voi", he)
 
 
+#' @importFrom voi evppi
 #' @examples
 #' 
 #' data(Vaccine, package = "BCEA")
