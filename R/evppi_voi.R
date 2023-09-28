@@ -65,7 +65,8 @@ evppi_voi.bcea <- function(he,
     outputs$c <- outputs$c[row_idxs, ]
   }
   
-  res <- voi::evppi(outputs, inputs = input, pars = pars, method = method, check = TRUE, ...)
+  res <- voi::evppi(outputs, inputs = input, pars = pars, method = method,
+                    check = TRUE, plot_inla_mesh = plot, ...)
   
   form <- 
     if (!is.null(method) && method == "gam") {
@@ -76,26 +77,42 @@ evppi_voi.bcea <- function(he,
   voi_methods <- unname(attr(res, "methods"))
   voi_models <- attr(res, "models")
   
-  fitted_c <- voi_models[[1]][[1]][[1]]$fitted.values
-  fitted_e <- voi_models[[1]][[2]][[1]]$fitted.values
+  # fitted values
+  if (is.null(method) || method == "gp") {
+    fitted_c <- voi_models[[1]][[1]][[1]]$fitted.values
+    fitted_e <- voi_models[[1]][[2]][[1]]$fitted.values
+  }
+  else if (method == "inla") {
+    fitted_c <- voi_models[[1]]$c[[1]]$fitted
+    fitted_e <- voi_models[[1]]$e[[1]]$fitted
+  } else {
+    fitted_c <- NULL
+    fitted_e <- NULL
+  }
   
-  out <- list(
-    evppi = res$evppi,
-    index = pars,
-    k = res$k,
-    evi = he$evi,
-    parameters = paste(pars, collapse = " and "),
-    time = list("Fitting for Effects" = NULL,
-                "Fitting for Costs" = NULL,
-                "Calculating EVPPI" = NULL),
-    method = list("Methods for Effects" = voi_methods,
-                  "Methods for Costs" = voi_methods),
-    fitted.costs = cbind(fitted_c, 0),
-    fitted.effects = cbind(fitted_e, 0),
-    select = NULL,
-    formula = form,
-    pars = res$pars,
-    res = res)
+  residuals_out <- 
+    if (residuals) {
+      list(fitted.costs = cbind(fitted_c, 0),
+           fitted.effects = cbind(fitted_e, 0),
+           select = seq_len(nrow(input)))
+    } else {NULL}
+  
+  out <- c(
+    list(
+      evppi = res$evppi,
+      index = pars,
+      k = res$k,
+      evi = he$evi,
+      parameters = paste(pars, collapse = " and "),
+      time = list("Fitting for Effects" = NULL,
+                  "Fitting for Costs" = NULL,
+                  "Calculating EVPPI" = NULL),
+      method = list("Methods for Effects" = voi_methods,
+                    "Methods for Costs" = voi_methods)),
+    residuals_out,
+    list(formula = form,
+         pars = res$pars,
+         res = res))
   
   structure(out, class = c("evppi", class(out)))
 }

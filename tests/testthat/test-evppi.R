@@ -119,6 +119,25 @@ test_that("vaccine data", {
   EVPPI <- BCEA::evppi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat, N = 100)
   EVPPI_voi <- evppi_voi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat, N = 100)
   
+  
+  ## mesh plotting and residuals
+  
+  # GAM regression (default)
+  # plot not produced
+  EVPPI <- BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, plot = TRUE)
+  EVPPI_voi <- evppi_voi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, plot = TRUE)
+  EVPPI_voi_orig <- voi::evppi(bcea_vacc[c("e","c","k")], inputs = inp$mat, pars = c("beta.1.", "beta.2."), check = TRUE, plot_inla_mesh = TRUE)
+
+  # INLA
+  EVPPI_inla <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", plot = TRUE)
+  EVPPI_inla_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", plot = TRUE)
+
+  EVPPI_inla <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla")
+  EVPPI_inla_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla")
+                          
+  EVPPI_inla_residuals <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", residuals = FALSE)
+  EVPPI_inla_voi_residuals <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", residuals = FALSE)
+  
 })
 
 
