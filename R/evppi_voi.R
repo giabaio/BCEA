@@ -85,11 +85,12 @@ evppi_voi.bcea <- function(he,
   else if (method == "inla") {
     fitted_c <- voi_models[[1]]$c[[1]]$fitted
     fitted_e <- voi_models[[1]]$e[[1]]$fitted
-  } else {
+  } else {                  ##TODO: other methods?
     fitted_c <- NULL
     fitted_e <- NULL
   }
   
+  ##TODO: test for more than two parameters
   residuals_out <- 
     if (residuals) {
       list(fitted.costs = cbind(fitted_c, 0),
