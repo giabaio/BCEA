@@ -315,6 +315,7 @@ evppi.bcea <- function(he,
                   evi = he$evi,
                   method = method)
     }
+    
     if (extra_args$method == "so") {
       method <- "Strong & Oakley (univariate)"
       n_seps <- NULL
@@ -567,6 +568,7 @@ evppi.bcea <- function(he,
             )
           }
         }
+        
         fit.full[[k]][,l] <- fit$fitted
         
         # calculate time taken

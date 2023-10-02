@@ -11,9 +11,11 @@ evppi_voi <- function(he,
   UseMethod("evppi_voi", he)
 
 
+#' @param plot plot triangular mesh for SPDE-INLA 
+#' @param residuals output fitted values for SPDE-INLA method
+#' 
 #' @importFrom voi evppi
 #' @examples
-#' 
 #' data(Vaccine, package = "BCEA")
 #' treats <- c("Status quo", "Vaccination")
 #' bcea_vacc <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
@@ -25,8 +27,8 @@ evppi_voi.bcea <- function(he,
                            param_idx = NULL,
                            input,
                            N = NULL, 
-                           plot = FALSE,      # plot triangular mesh for SPDE-INLA 
-                           residuals = TRUE,  # output fitted values for SPDE-INLA method
+                           plot = FALSE,
+                           residuals = TRUE,
                            method = NULL, ...) {
   outputs <- he[c("e","c","k")]
   if (!is.null(method))
@@ -78,19 +80,14 @@ evppi_voi.bcea <- function(he,
   voi_models <- attr(res, "models")
   
   # fitted values
-  if (is.null(method) || method == "gp") {
-    fitted_c <- voi_models[[1]][[1]][[1]]$fitted.values
-    fitted_e <- voi_models[[1]][[2]][[1]]$fitted.values
-  }
-  else if (method == "inla") {
+  if (is.null(method) || method %in% c("inla", "gp", "gam")) {
     fitted_c <- voi_models[[1]]$c[[1]]$fitted
     fitted_e <- voi_models[[1]]$e[[1]]$fitted
-  } else {                  ##TODO: other methods?
+  } else {
     fitted_c <- NULL
     fitted_e <- NULL
   }
   
-  ##TODO: test for more than two parameters
   residuals_out <- 
     if (residuals) {
       list(fitted.costs = cbind(fitted_c, 0),

@@ -14,13 +14,15 @@ test_that("vaccine data", {
   # inputs
   inp <- createInputs(vaccine_mat)
   
-  expect_length(inp , 2)
+  expect_length(inp, 2)
   expect_named(inp, c("mat", "parameters"))
   expect_type(inp, "list")
   
   # Compute the EVPPI for a group of parameters
   
+  ###########################
   # GAM regression (default)
+  
   EVPPI <- BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
   EVPPI_voi <- evppi_voi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
   EVPPI_voi_orig <- voi::evppi(bcea_vacc[c("e","c","k")], inputs = inp$mat, pars = c("beta.1.", "beta.2."), check = TRUE)
@@ -29,36 +31,51 @@ test_that("vaccine data", {
   expect_length(EVPPI, 10)
   expect_type(EVPPI, "list")
   
-  plot(EVPPI)
-  plot(EVPPI_voi)
+  expect_equivalent(EVPPI$evppi, EVPPI_voi$evppi, tolerance = 0.001)
+  expect_equivalent(EVPPI_voi_orig$evppi, EVPPI_voi$evppi, tolerance = 0.001)
   
-  # deprecated (single parameter) methods
+  expect_equivalent(EVPPI$k, EVPPI_voi$k, tolerance = 0.001)
+  expect_equivalent(EVPPI_voi_orig$k, EVPPI_voi$k, tolerance = 0.001)
+  
+  expect_equivalent(EVPPI$evi, EVPPI_voi$evi, tolerance = 0.001)
+  
+  ##TODO: snapshot
+  # plot(EVPPI)
+  # plot(EVPPI_voi)
+
+  ##################
   # Strong & Oakley
-  EVPPI.so <- BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "so", n.blocks = 50)
   
-  ##TODO:
-  ## error: `method="so" only works for single-parameter EVPPI
-  # EVPPI.so_voi <- evppi_voi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "so", n.blocks = 50)
+  expect_error(evppi_voi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "so", n.blocks = 50),
+               regexp = "only works for single-parameter EVPPI")
   
+  EVPPI.so <- BCEA::evppi(bcea_vacc, "beta.1.", inp$mat, method = "so", n.blocks = 50)
   EVPPI.so_voi <- evppi_voi(bcea_vacc, "beta.1.", inp$mat, method = "so", n.blocks = 50)
-  EVPPI.so_voi <- evppi_voi(bcea_vacc, "beta.2.", inp$mat, method = "so", n.blocks = 50)
   
   expect_s3_class(EVPPI.so, "evppi")
   expect_length(EVPPI.so, 6)
   expect_type(EVPPI.so, "list")
   
+  expect_equivalent(EVPPI.so$evppi, EVPPI.so_voi$evppi, tolerance = 0.001)
+  expect_equivalent(EVPPI.so$k, EVPPI.so_voi$k, tolerance = 0.001)
+  expect_equivalent(EVPPI.so$evi, EVPPI.so_voi$evi, tolerance = 0.001)
+  
+  ####################
   # Sadatsafavi et al
+  
+  # voi::evppi only works for single-parameter EVPPI
   EVPPI.sad <- BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps = 1)
   
   # TODO: error
   # EVPPI.sal <- BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "sal", n.seps = 1)
   
-  ##TODO:
-  ## error: `method="sal" only works for single-parameter EVPPI
-  EVPPI.sal_voi <- evppi_voi(bcea_vacc, param_idx = c("beta.1.", "beta.2."), inp$mat, method = "sal", n.seps = 1)
-  EVPPI.sad_voi <- evppi_voi(bcea_vacc, param_idx = c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps = 1)
+  expect_error(evppi_voi(bcea_vacc, param_idx = c("beta.1.", "beta.2."), inp$mat, method = "sal", n.seps = 1),
+               regexp = "only works for single-parameter EVPPI")
   
-  # voiEVPPI.sad <- voi::evppi(outputs = bcea_vacc[c("e","c","k")], inputs = inp$mat, pars = c("beta.1.", "beta.2."), method = "sal", n.seps = 1)
+  # voiEVPPI.sad <- voi::evppi(outputs = bcea_vacc[c("e","c","k")], inputs = inp$mat,
+  #                            pars = c("beta.1.", "beta.2."), method = "sal", n.seps = 1)
+  
+  EVPPI.sad <- BCEA::evppi(bcea_vacc, "beta.2.", inp$mat, method = "sad", n.seps = 1)
   
   EVPPI.sad_voi <- evppi_voi(bcea_vacc, "beta.2.", inp$mat, method = "sad", n.seps = 1)
   EVPPI.sal_voi <- evppi_voi(bcea_vacc, "beta.1.", inp$mat, method = "sal", n.seps = 1)
@@ -67,6 +84,10 @@ test_that("vaccine data", {
   expect_length(EVPPI.sad, 6)
   expect_type(EVPPI.sad, "list")
   
+  expect_equivalent(EVPPI.sad$evppi, EVPPI.sad_voi$evppi, tolerance = 0.001)
+  expect_equivalent(EVPPI.sad$k, EVPPI.sad_voi$k, tolerance = 0.001)
+  expect_equivalent(EVPPI.sad$evi, EVPPI.sad_voi$evi, tolerance = 0.001)
+  
   # select parameters by position
   evppi_idx <- BCEA::evppi(he = bcea_vacc, param_idx = 39:40, input = inp$mat)
   evppi_idx_voi <- evppi_voi(he = bcea_vacc, param_idx = 39:40, input = inp$mat)
@@ -74,27 +95,27 @@ test_that("vaccine data", {
   expect_s3_class(evppi_idx, "evppi")
   expect_length(evppi_idx, 10)
   expect_type(evppi_idx, "list")
-  
-  ##TODO: errors
+
+  ##TODO: snapshot
   # plot(EVPPI.so)
   # plot(EVPPI.sad)
+  # plot(EVPPI.so_voi)
+  # plot(EVPPI.sad_voi)
   
   # Compute the EVPPI using INLA/SPDE
   if (require("INLA")) {
     x_inla <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla")
-    
-    ##TODO: error
     x_inla_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla")
 
     expect_s3_class(x_inla, "evppi")
     expect_length(x_inla, 10)
     expect_type(x_inla, "list")
-    
-    ##TODO: should we include this plot functionality in new evppi()?
-    # x_inla <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", plot = TRUE)
   }
   
-  # using GAM regression
+  #############################
+  # different argument formats
+  
+  # GAM regression
   x_gam <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "GAM")
   
   # lower case method name
@@ -104,7 +125,7 @@ test_that("vaccine data", {
   expect_length(x_gam, 10)
   expect_type(x_gam, "list")
   
-  # using Strong et al GP regression
+  # Strong et al GP regression
   x_gp <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "GP")
   
   # lower case method name
@@ -115,29 +136,77 @@ test_that("vaccine data", {
   expect_type(x_gp, "list")
   
   # subsetting input PSA simulations
-  ##TODO:...
-  EVPPI <- BCEA::evppi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat, N = 100)
-  EVPPI_voi <- evppi_voi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat, N = 100)
+  EVPPI_psa <- BCEA::evppi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat, N = 100)
+  EVPPI_psa_voi <- evppi_voi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat, N = 100)
   
+  ##TODO: different
+  expect_equivalent(EVPPI_psa$evppi, EVPPI_psa_voi$evppi, tolerance = 0.001)
   
-  ## mesh plotting and residuals
+  expect_equivalent(EVPPI_psa$k, EVPPI_psa_voi$k, tolerance = 0.001)
+  expect_equivalent(EVPPI_psa$evi, EVPPI_psa_voi$evi, tolerance = 0.001)
   
-  # GAM regression (default)
-  # plot not produced
-  EVPPI <- BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, plot = TRUE)
-  EVPPI_voi <- evppi_voi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, plot = TRUE)
-  EVPPI_voi_orig <- voi::evppi(bcea_vacc[c("e","c","k")], inputs = inp$mat, pars = c("beta.1.", "beta.2."), check = TRUE, plot_inla_mesh = TRUE)
+  ################
+  # mesh plotting
+  
+  # # GAM regression (default)
+  # # plot not produced
+  # EVPPI <- BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, plot = TRUE)
+  # EVPPI_voi <- evppi_voi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, plot = TRUE)
+  # EVPPI_voi_orig <- voi::evppi(bcea_vacc[c("e","c","k")], inputs = inp$mat, pars = c("beta.1.", "beta.2."), check = TRUE, plot_inla_mesh = TRUE)
+  # 
+  # # INLA
+  # EVPPI_inla <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", plot = TRUE)
+  # EVPPI_inla_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", plot = TRUE)
 
-  # INLA
-  EVPPI_inla <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", plot = TRUE)
-  EVPPI_inla_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", plot = TRUE)
-
-  EVPPI_inla <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla")
-  EVPPI_inla_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla")
-                          
-  EVPPI_inla_residuals <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", residuals = FALSE)
-  EVPPI_inla_voi_residuals <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", residuals = FALSE)
+  ################
+  # fitted values
   
+  # two parameters
+  
+  EVPPI_inla_residuals <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", residuals = TRUE)
+  EVPPI_inla_voi_residuals <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", residuals = TRUE)
+  
+  expect_equivalent(EVPPI_inla_residuals$fitted.costs, EVPPI_inla_voi_residuals$fitted.costs, tolerance = 0.001)
+  expect_equivalent(EVPPI_inla_residuals$fitted.effects, EVPPI_inla_voi_residuals$fitted.effects, tolerance = 0.001)
+  
+  EVPPI_gp_residuals <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "gp", residuals = TRUE)
+  EVPPI_gp_voi_residuals <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "gp", residuals = TRUE)
+  
+  expect_equivalent(EVPPI_gp_residuals$fitted.costs, EVPPI_gp_voi_residuals$fitted.costs, tolerance = 0.001)
+  expect_equivalent(EVPPI_gp_residuals$fitted.effects, EVPPI_gp_voi_residuals$fitted.effects, tolerance = 0.001)
+  
+  # no fitted values returned
+  EVPPI_sad_residuals <- BCEA::evppi(he = bcea_vacc, "beta.2.", input = inp$mat, method = "sad", residuals = TRUE)
+  EVPPI_sad_voi_residuals <- evppi_voi(he = bcea_vacc, "beta.2.", input = inp$mat, method = "sad", residuals = TRUE)
+  
+  expect_equivalent(EVPPI_sad_residuals$fitted.costs, EVPPI_sad_voi_residuals$fitted.costs, tolerance = 0.001)
+  expect_equivalent(EVPPI_sad_residuals$fitted.effects, EVPPI_sad_voi_residuals$fitted.effects, tolerance = 0.001)
+  
+  EVPPI_gam_residuals <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "gam", residuals = TRUE)
+  EVPPI_gam_voi_residuals <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "gam", residuals = TRUE)
+  
+  expect_equivalent(EVPPI_gam_residuals$fitted.costs, EVPPI_gam_voi_residuals$fitted.costs, tolerance = 0.001)
+  expect_equivalent(EVPPI_gam_residuals$fitted.effects, EVPPI_gam_voi_residuals$fitted.effects, tolerance = 0.001)
+  
+  # three parameters
+  
+  EVPPI_inla_residuals <- BCEA::evppi(he = bcea_vacc, 39:41, input = inp$mat, method = "inla", residuals = TRUE)
+  EVPPI_inla_voi_residuals <- evppi_voi(he = bcea_vacc, 39:41, input = inp$mat, method = "inla", residuals = TRUE)
+  
+  expect_equivalent(EVPPI_inla_residuals$fitted.costs, EVPPI_inla_voi_residuals$fitted.costs, tolerance = 0.001)
+  expect_equivalent(EVPPI_inla_residuals$fitted.effects, EVPPI_inla_voi_residuals$fitted.effects, tolerance = 0.001)
+  
+  EVPPI_gp_residuals <- BCEA::evppi(he = bcea_vacc, 39:41, input = inp$mat, method = "gp", residuals = TRUE)
+  EVPPI_gp_voi_residuals <- evppi_voi(he = bcea_vacc, 39:41, input = inp$mat, method = "gp", residuals = TRUE)
+  
+  expect_equivalent(EVPPI_gp_residuals$fitted.costs, EVPPI_gp_voi_residuals$fitted.costs, tolerance = 0.001)
+  expect_equivalent(EVPPI_gp_residuals$fitted.effects, EVPPI_gp_voi_residuals$fitted.effects, tolerance = 0.001)
+  
+  EVPPI_gam_residuals <- BCEA::evppi(he = bcea_vacc, 39:41, input = inp$mat, method = "gam", residuals = TRUE)
+  EVPPI_gam_voi_residuals <- evppi_voi(he = bcea_vacc, 39:41, input = inp$mat, method = "gam", residuals = TRUE)
+  
+  expect_equivalent(EVPPI_gam_residuals$fitted.costs, EVPPI_gam_voi_residuals$fitted.costs, tolerance = 0.001)
+  expect_equivalent(EVPPI_gam_residuals$fitted.effects, EVPPI_gam_voi_residuals$fitted.effects, tolerance = 0.001)
 })
 
 
