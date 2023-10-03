@@ -53,7 +53,7 @@ Suggests:
     withr
 RdMacros: Rdpack
 VignetteBuilder: knitr
-Additional_repositories: https://inla.r-inla-download.org/R/stable/
+Additional_repositories: https://inla.r-inla-download.org/R/testing/
 Description: Produces an economic evaluation of a sample of suitable variables of
              cost and effectiveness / utility for two or more interventions,
              e.g. from a Bayesian model in the form of MCMC simulations.

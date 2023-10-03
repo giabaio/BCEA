@@ -34,7 +34,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r@v2
         with:
-          extra-repositories: 'https://inla.r-inla-download.org/R/stable'
+          extra-repositories: 'https://inla.r-inla-download.org/R/testing'
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
@@ -43,7 +43,7 @@ jobs:
       
       - name: Add inla repo
         run: |
-          cat('options(repos = c(INLA = "https://inla.r-inla-download.org/R/stable/", getOption("repos")))', file = "~/.Rprofile", append = TRUE)
+          cat('options(repos = c(INLA = "https://inla.r-inla-download.org/R/testing/", getOption("repos")))', file = "~/.Rprofile", append = TRUE)
         # cat("\noptions(tinytex.verbose = TRUE)\n", file = "~/.Rprofile", append = TRUE)
         shell: Rscript {0}
 
