@@ -53,7 +53,7 @@ jobs:
         shell: Rscript {0}
 
 #      - name: Install JAGS
-#       run: |
+#        run: |
 #          sudo apt-get update -y
 #          sudo apt-get install -y jags
 
@@ -71,9 +71,14 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages:
-            any::rcmdcheck, local::.
-          needs: check
+          dependencies: '"all"'
+          extra-packages: |
+             rcmdcheck
+        
+#          with:
+        #   extra-packages:
+        #     any::rcmdcheck, local::.
+        #   needs: check
           
       - uses: r-lib/actions/check-r-package@v2
         with:
