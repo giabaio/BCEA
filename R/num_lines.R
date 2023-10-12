@@ -1,4 +1,5 @@
-# num_lines
+# Number of lines
+# which depends on the type of plot
 
 
 #' @title Get number of lines
