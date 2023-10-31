@@ -1,6 +1,6 @@
 
 # library(BCEA)
-# library(testthat)
+if (interactive()) library(testthat)
 
 
 test_that("vaccine data", {
@@ -11,14 +11,11 @@ test_that("vaccine data", {
   # Run the health economic evaluation using BCEA
   bcea_vacc <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
   
-  # inputs
   inp <- createInputs(vaccine_mat)
   
   expect_length(inp, 2)
   expect_named(inp, c("mat", "parameters"))
   expect_type(inp, "list")
-  
-  # Compute the EVPPI for a group of parameters
   
   ###########################
   # GAM regression (default)
@@ -31,6 +28,9 @@ test_that("vaccine data", {
   expect_length(EVPPI, 10)
   expect_type(EVPPI, "list")
   
+  expect_s3_class(EVPPI_voi, "evppi")
+  expect_type(EVPPI_voi, "list")
+  
   expect_equivalent(EVPPI$evppi, EVPPI_voi$evppi, tolerance = 0.001)
   expect_equivalent(EVPPI_voi_orig$evppi, EVPPI_voi$evppi, tolerance = 0.001)
   
@@ -38,6 +38,10 @@ test_that("vaccine data", {
   expect_equivalent(EVPPI_voi_orig$k, EVPPI_voi$k, tolerance = 0.001)
   
   expect_equivalent(EVPPI$evi, EVPPI_voi$evi, tolerance = 0.001)
+  expect_equivalent(EVPPI$index, EVPPI_voi$index)
+  expect_equivalent(EVPPI$fitted.costs, EVPPI_voi$fitted.costs, tolerance = 0.001)
+  expect_equivalent(EVPPI$fitted.effects, EVPPI_voi$fitted.effects, tolerance = 0.001)
+  expect_equivalent(EVPPI$select, EVPPI_voi$select)
   
   ##TODO: snapshot
   # plot(EVPPI)
@@ -56,9 +60,13 @@ test_that("vaccine data", {
   expect_length(EVPPI.so, 6)
   expect_type(EVPPI.so, "list")
   
+  expect_s3_class(EVPPI.so_voi, "evppi")
+  expect_type(EVPPI.so_voi, "list")
+  
   expect_equivalent(EVPPI.so$evppi, EVPPI.so_voi$evppi, tolerance = 0.001)
   expect_equivalent(EVPPI.so$k, EVPPI.so_voi$k, tolerance = 0.001)
   expect_equivalent(EVPPI.so$evi, EVPPI.so_voi$evi, tolerance = 0.001)
+  expect_equivalent(EVPPI.so$index, EVPPI.so_voi$index)
   
   ####################
   # Sadatsafavi et al
@@ -84,9 +92,13 @@ test_that("vaccine data", {
   expect_length(EVPPI.sad, 6)
   expect_type(EVPPI.sad, "list")
   
+  expect_s3_class(EVPPI.sad_voi, "evppi")
+  expect_type(EVPPI.sad_voi, "list")
+  
   expect_equivalent(EVPPI.sad$evppi, EVPPI.sad_voi$evppi, tolerance = 0.001)
   expect_equivalent(EVPPI.sad$k, EVPPI.sad_voi$k, tolerance = 0.001)
   expect_equivalent(EVPPI.sad$evi, EVPPI.sad_voi$evi, tolerance = 0.001)
+  expect_equivalent(EVPPI.sad$index, EVPPI.sad_voi$index)
   
   # select parameters by position
   evppi_idx <- BCEA::evppi(he = bcea_vacc, param_idx = 39:40, input = inp$mat)
@@ -95,6 +107,9 @@ test_that("vaccine data", {
   expect_s3_class(evppi_idx, "evppi")
   expect_length(evppi_idx, 10)
   expect_type(evppi_idx, "list")
+  
+  expect_s3_class(evppi_idx_voi, "evppi")
+  expect_type(evppi_idx_voi, "list")
 
   ##TODO: snapshot
   # plot(EVPPI.so)
@@ -110,6 +125,9 @@ test_that("vaccine data", {
     expect_s3_class(x_inla, "evppi")
     expect_length(x_inla, 10)
     expect_type(x_inla, "list")
+
+    expect_s3_class(x_inla_voi, "evppi")
+    expect_type(x_inla_voi, "list")
   }
   
   #############################
@@ -121,9 +139,8 @@ test_that("vaccine data", {
   # lower case method name
   x_gam_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "gam")
   
-  expect_s3_class(x_gam, "evppi")
-  expect_length(x_gam, 10)
-  expect_type(x_gam, "list")
+  expect_s3_class(x_gam_voi, "evppi")
+  expect_type(x_gam_voi, "list")
   
   # Strong et al GP regression
   x_gp <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "GP")
@@ -131,19 +148,20 @@ test_that("vaccine data", {
   # lower case method name
   x_gp_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "gp")
   
-  expect_s3_class(x_gp, "evppi")
-  expect_length(x_gp, 10)
-  expect_type(x_gp, "list")
+  expect_s3_class(x_gp_voi, "evppi")
+  expect_type(x_gp_voi, "list")
   
   # subsetting input PSA simulations
   EVPPI_psa <- BCEA::evppi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat, N = 100)
   EVPPI_psa_voi <- evppi_voi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat, N = 100)
   
-  ##TODO: different
+  ##TODO: different why?..
   expect_equivalent(EVPPI_psa$evppi, EVPPI_psa_voi$evppi, tolerance = 0.001)
+  expect_equivalent(EVPPI_psa$select, EVPPI_psa_voi$select)
   
   expect_equivalent(EVPPI_psa$k, EVPPI_psa_voi$k, tolerance = 0.001)
   expect_equivalent(EVPPI_psa$evi, EVPPI_psa_voi$evi, tolerance = 0.001)
+  expect_equivalent(EVPPI_psa$index, EVPPI_psa_voi$index)
   
   ################
   # mesh plotting
@@ -169,13 +187,12 @@ test_that("vaccine data", {
   expect_equivalent(
     EVPPI_inla_residuals$fitted.costs,
     EVPPI_inla_voi_residuals$fitted.costs,
-    tolerance = 0.001
-  )
+    tolerance = 0.001)
+  
   expect_equivalent(
     EVPPI_inla_residuals$fitted.effects,
     EVPPI_inla_voi_residuals$fitted.effects,
-    tolerance = 0.001
-  )
+    tolerance = 0.001)
   
   EVPPI_gp_residuals <-
     BCEA::evppi(
@@ -183,16 +200,15 @@ test_that("vaccine data", {
       39:40,
       input = inp$mat,
       method = "gp",
-      residuals = TRUE
-    )
+      residuals = TRUE)
+  
   EVPPI_gp_voi_residuals <-
     evppi_voi(
       he = bcea_vacc,
       39:40,
       input = inp$mat,
       method = "gp",
-      residuals = TRUE
-    )
+      residuals = TRUE)
   
   expect_equivalent(
     EVPPI_gp_residuals$fitted.costs,
@@ -202,8 +218,7 @@ test_that("vaccine data", {
   expect_equivalent(
     EVPPI_gp_residuals$fitted.effects,
     EVPPI_gp_voi_residuals$fitted.effects,
-    tolerance = 0.001
-  )
+    tolerance = 0.001)
   
   # no fitted values returned
   EVPPI_sad_residuals <-
@@ -212,27 +227,25 @@ test_that("vaccine data", {
       "beta.2.",
       input = inp$mat,
       method = "sad",
-      residuals = TRUE
-    )
+      residuals = TRUE)
+  
   EVPPI_sad_voi_residuals <-
     evppi_voi(
       he = bcea_vacc,
       "beta.2.",
       input = inp$mat,
       method = "sad",
-      residuals = TRUE
-    )
+      residuals = TRUE)
   
   expect_equivalent(
     EVPPI_sad_residuals$fitted.costs,
     EVPPI_sad_voi_residuals$fitted.costs,
-    tolerance = 0.001
-  )
+    tolerance = 0.001)
+  
   expect_equivalent(
     EVPPI_sad_residuals$fitted.effects,
     EVPPI_sad_voi_residuals$fitted.effects,
-    tolerance = 0.001
-  )
+    tolerance = 0.001)
   
   EVPPI_gam_residuals <-
     BCEA::evppi(
@@ -240,27 +253,25 @@ test_that("vaccine data", {
       39:40,
       input = inp$mat,
       method = "gam",
-      residuals = TRUE
-    )
+      residuals = TRUE)
+  
   EVPPI_gam_voi_residuals <-
     evppi_voi(
       he = bcea_vacc,
       39:40,
       input = inp$mat,
       method = "gam",
-      residuals = TRUE
-    )
+      residuals = TRUE)
   
   expect_equivalent(
     EVPPI_gam_residuals$fitted.costs,
     EVPPI_gam_voi_residuals$fitted.costs,
-    tolerance = 0.001
-  )
+    tolerance = 0.001)
+  
   expect_equivalent(
     EVPPI_gam_residuals$fitted.effects,
     EVPPI_gam_voi_residuals$fitted.effects,
-    tolerance = 0.001
-  )
+    tolerance = 0.001)
   
   ## three parameters
   
@@ -270,27 +281,25 @@ test_that("vaccine data", {
       39:41,
       input = inp$mat,
       method = "inla",
-      residuals = TRUE
-    )
+      residuals = TRUE)
+  
   EVPPI_inla_voi_residuals <-
     evppi_voi(
       he = bcea_vacc,
       39:41,
       input = inp$mat,
       method = "inla",
-      residuals = TRUE
-    )
+      residuals = TRUE)
   
   expect_equivalent(
     EVPPI_inla_residuals$fitted.costs,
     EVPPI_inla_voi_residuals$fitted.costs,
-    tolerance = 0.001
-  )
+    tolerance = 0.001)
+  
   expect_equivalent(
     EVPPI_inla_residuals$fitted.effects,
     EVPPI_inla_voi_residuals$fitted.effects,
-    tolerance = 0.001
-  )
+    tolerance = 0.001)
   
   EVPPI_gp_residuals <-
     BCEA::evppi(
@@ -298,16 +307,15 @@ test_that("vaccine data", {
       39:41,
       input = inp$mat,
       method = "gp",
-      residuals = TRUE
-    )
+      residuals = TRUE)
+  
   EVPPI_gp_voi_residuals <-
     evppi_voi(
       he = bcea_vacc,
       39:41,
       input = inp$mat,
       method = "gp",
-      residuals = TRUE
-    )
+      residuals = TRUE)
   
   expect_equivalent(
     EVPPI_gp_residuals$fitted.costs,
@@ -317,8 +325,7 @@ test_that("vaccine data", {
   expect_equivalent(
     EVPPI_gp_residuals$fitted.effects,
     EVPPI_gp_voi_residuals$fitted.effects,
-    tolerance = 0.001
-  )
+    tolerance = 0.001)
   
   EVPPI_gam_residuals <-
     BCEA::evppi(
@@ -326,27 +333,25 @@ test_that("vaccine data", {
       39:41,
       input = inp$mat,
       method = "gam",
-      residuals = TRUE
-    )
+      residuals = TRUE)
+  
   EVPPI_gam_voi_residuals <-
     evppi_voi(
       he = bcea_vacc,
       39:41,
       input = inp$mat,
       method = "gam",
-      residuals = TRUE
-    )
+      residuals = TRUE)
   
   expect_equivalent(
     EVPPI_gam_residuals$fitted.costs,
     EVPPI_gam_voi_residuals$fitted.costs,
-    tolerance = 0.001
-  )
+    tolerance = 0.001)
+  
   expect_equivalent(
     EVPPI_gam_residuals$fitted.effects,
     EVPPI_gam_voi_residuals$fitted.effects,
-    tolerance = 0.001
-  )
+    tolerance = 0.001)
 })
 
 
