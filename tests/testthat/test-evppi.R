@@ -181,9 +181,11 @@ test_that("vaccine data", {
   
   ## two parameters
   
+  # INLA
   EVPPI_inla_residuals <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", residuals = TRUE)
   EVPPI_inla_voi_residuals <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", residuals = TRUE)
   
+  ##TODO:
   expect_equivalent(
     EVPPI_inla_residuals$fitted.costs,
     EVPPI_inla_voi_residuals$fitted.costs,
@@ -194,6 +196,7 @@ test_that("vaccine data", {
     EVPPI_inla_voi_residuals$fitted.effects,
     tolerance = 0.001)
   
+  # GP
   EVPPI_gp_residuals <-
     BCEA::evppi(
       he = bcea_vacc,
@@ -210,6 +213,7 @@ test_that("vaccine data", {
       method = "gp",
       residuals = TRUE)
   
+  ##TODO:
   expect_equivalent(
     EVPPI_gp_residuals$fitted.costs,
     EVPPI_gp_voi_residuals$fitted.costs,
@@ -220,6 +224,7 @@ test_that("vaccine data", {
     EVPPI_gp_voi_residuals$fitted.effects,
     tolerance = 0.001)
   
+  # SAD
   # no fitted values returned
   EVPPI_sad_residuals <-
     BCEA::evppi(
@@ -237,16 +242,19 @@ test_that("vaccine data", {
       method = "sad",
       residuals = TRUE)
   
+  ##TODO:
   expect_equivalent(
     EVPPI_sad_residuals$fitted.costs,
     EVPPI_sad_voi_residuals$fitted.costs,
     tolerance = 0.001)
   
+  ##TODO:
   expect_equivalent(
     EVPPI_sad_residuals$fitted.effects,
     EVPPI_sad_voi_residuals$fitted.effects,
     tolerance = 0.001)
   
+  # GAM
   EVPPI_gam_residuals <-
     BCEA::evppi(
       he = bcea_vacc,
@@ -275,6 +283,7 @@ test_that("vaccine data", {
   
   ## three parameters
   
+  # INLA
   EVPPI_inla_residuals <-
     BCEA::evppi(
       he = bcea_vacc,
@@ -291,6 +300,7 @@ test_that("vaccine data", {
       method = "inla",
       residuals = TRUE)
   
+  ##TODO:
   expect_equivalent(
     EVPPI_inla_residuals$fitted.costs,
     EVPPI_inla_voi_residuals$fitted.costs,
@@ -317,6 +327,7 @@ test_that("vaccine data", {
       method = "gp",
       residuals = TRUE)
   
+  ##TODO:
   expect_equivalent(
     EVPPI_gp_residuals$fitted.costs,
     EVPPI_gp_voi_residuals$fitted.costs,
