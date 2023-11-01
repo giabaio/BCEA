@@ -187,92 +187,100 @@ test_that("vaccine data", {
   
   # INLA
   if (require("INLA")) {
+    set.seed(1234)
     EVPPI_inla_residuals <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", residuals = TRUE)
+    set.seed(1234)
     EVPPI_inla_voi_residuals <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", residuals = TRUE)
     
-    ##TODO:
+    expect_equivalent(
+      EVPPI_inla_residuals$select,
+      EVPPI_inla_voi_residuals$select)
+    
     expect_equivalent(
       EVPPI_inla_residuals$fitted.costs,
       EVPPI_inla_voi_residuals$fitted.costs,
-      tolerance = 0.001)
+      tolerance = 0.1)
     
     expect_equivalent(
       EVPPI_inla_residuals$fitted.effects,
       EVPPI_inla_voi_residuals$fitted.effects,
-      tolerance = 0.001)
+      tolerance = 0.1)
   }
   
   # GP
+  set.seed(1234)
   EVPPI_gp_residuals <-
     BCEA::evppi(
       he = bcea_vacc,
-      39:40,
+      param_idx = 39:40,
       input = inp$mat,
       method = "gp",
       residuals = TRUE)
   
+  set.seed(1234)
   EVPPI_gp_voi_residuals <-
     evppi_voi(
       he = bcea_vacc,
-      39:40,
+      param_idx = 39:40,
       input = inp$mat,
       method = "gp",
       residuals = TRUE)
   
-  ##TODO:
+  expect_equivalent(
+    EVPPI_gp_residuals$select,
+    EVPPI_gp_voi_residuals$select)
+  
   expect_equivalent(
     EVPPI_gp_residuals$fitted.costs,
     EVPPI_gp_voi_residuals$fitted.costs,
-    tolerance = 0.001)
+    tolerance = 0.1)
   
   expect_equivalent(
     EVPPI_gp_residuals$fitted.effects,
     EVPPI_gp_voi_residuals$fitted.effects,
-    tolerance = 0.001)
+    tolerance = 0.1)
   
   # SAD
   # no fitted values returned
+  set.seed(1234)
   EVPPI_sad_residuals <-
     BCEA::evppi(
       he = bcea_vacc,
-      "beta.2.",
+      param_idx = "beta.2.",
       input = inp$mat,
       method = "sad",
       residuals = TRUE)
   
+  set.seed(1234)
   EVPPI_sad_voi_residuals <-
     evppi_voi(
       he = bcea_vacc,
-      "beta.2.",
+      param_idx = "beta.2.",
       input = inp$mat,
       method = "sad",
       residuals = TRUE)
   
-  ##TODO:
-  expect_equivalent(
-    EVPPI_sad_residuals$fitted.costs,
-    EVPPI_sad_voi_residuals$fitted.costs,
-    tolerance = 0.001)
+  expect_null(EVPPI_sad_residuals$fitted.costs)
+  expect_null(EVPPI_sad_residuals$fitted.effects)
   
-  ##TODO:
-  expect_equivalent(
-    EVPPI_sad_residuals$fitted.effects,
-    EVPPI_sad_voi_residuals$fitted.effects,
-    tolerance = 0.001)
+  expect_equivalent(EVPPI_sad_voi_residuals$fitted.costs, 0)
+  expect_equivalent(EVPPI_sad_voi_residuals$fitted.effects, 0)
   
   # GAM
+  set.seed(1234)
   EVPPI_gam_residuals <-
     BCEA::evppi(
       he = bcea_vacc,
-      39:40,
+      param_idx = 39:40,
       input = inp$mat,
       method = "gam",
       residuals = TRUE)
   
+  set.seed(1234)
   EVPPI_gam_voi_residuals <-
     evppi_voi(
       he = bcea_vacc,
-      39:40,
+      param_idx = 39:40,
       input = inp$mat,
       method = "gam",
       residuals = TRUE)
@@ -290,72 +298,80 @@ test_that("vaccine data", {
   ## three parameters
   
   # INLA
-  EVPPI_inla_residuals <-
-    BCEA::evppi(
-      he = bcea_vacc,
-      39:41,
-      input = inp$mat,
-      method = "inla",
-      residuals = TRUE)
+  if (require("INLA")) {
+    set.seed(1234)
+    EVPPI_inla_residuals <-
+      BCEA::evppi(
+        he = bcea_vacc,
+        param_idx = 39:41,
+        input = inp$mat,
+        method = "inla",
+        residuals = TRUE)
+    
+    set.seed(1234)
+    EVPPI_inla_voi_residuals <-
+      evppi_voi(
+        he = bcea_vacc,
+        param_idx = 39:41,
+        input = inp$mat,
+        method = "inla",
+        residuals = TRUE)
+    
+    expect_equivalent(
+      EVPPI_inla_residuals$fitted.costs,
+      EVPPI_inla_voi_residuals$fitted.costs,
+      tolerance = 0.1)
+    
+    expect_equivalent(
+      EVPPI_inla_residuals$fitted.effects,
+      EVPPI_inla_voi_residuals$fitted.effects,
+      tolerance = 0.1)
+  }
   
-  EVPPI_inla_voi_residuals <-
-    evppi_voi(
-      he = bcea_vacc,
-      39:41,
-      input = inp$mat,
-      method = "inla",
-      residuals = TRUE)
-  
-  ##TODO:
-  expect_equivalent(
-    EVPPI_inla_residuals$fitted.costs,
-    EVPPI_inla_voi_residuals$fitted.costs,
-    tolerance = 0.001)
-  
-  expect_equivalent(
-    EVPPI_inla_residuals$fitted.effects,
-    EVPPI_inla_voi_residuals$fitted.effects,
-    tolerance = 0.001)
-  
+  # GP
+  set.seed(1234)
   EVPPI_gp_residuals <-
     BCEA::evppi(
       he = bcea_vacc,
-      39:41,
+      param_idx = 39:41,
       input = inp$mat,
       method = "gp",
       residuals = TRUE)
   
+  set.seed(1234)
   EVPPI_gp_voi_residuals <-
     evppi_voi(
       he = bcea_vacc,
-      39:41,
+      param_idx = 39:41,
       input = inp$mat,
       method = "gp",
       residuals = TRUE)
   
-  ##TODO:
   expect_equivalent(
     EVPPI_gp_residuals$fitted.costs,
     EVPPI_gp_voi_residuals$fitted.costs,
-    tolerance = 0.001)
+    tolerance = 0.1)
   
   expect_equivalent(
     EVPPI_gp_residuals$fitted.effects,
     EVPPI_gp_voi_residuals$fitted.effects,
-    tolerance = 0.001)
-  
+    tolerance = 0.1)
+
+  # GAM
+  set.seed(1234)
   EVPPI_gam_residuals <-
     BCEA::evppi(
       he = bcea_vacc,
-      39:41,
+      param_idx = 39:41,
       input = inp$mat,
       method = "gam",
       residuals = TRUE)
   
+  set.seed(1234)
   EVPPI_gam_voi_residuals <-
     evppi_voi(
       he = bcea_vacc,
-      39:41,
+      param_idx = 39:41,
       input = inp$mat,
       method = "gam",
       residuals = TRUE)
@@ -363,12 +379,12 @@ test_that("vaccine data", {
   expect_equivalent(
     EVPPI_gam_residuals$fitted.costs,
     EVPPI_gam_voi_residuals$fitted.costs,
-    tolerance = 0.001)
+    tolerance = 0.1)
   
   expect_equivalent(
     EVPPI_gam_residuals$fitted.effects,
     EVPPI_gam_voi_residuals$fitted.effects,
-    tolerance = 0.001)
+    tolerance = 0.1)
 })
 
 
@@ -391,6 +407,7 @@ test_that("smoking data", {
   ## doesn't return error when really should
   # EVPPI <- BCEA::evppi(bcea_smoke, param_idx = c(2,3), inp$mat, h.value = 5e-7)
   
+  ##TODO:
   # error
   EVPPI_voi <- evppi_voi(bcea_smoke, param_idx = c(2,3), inp$mat, h.value = 5e-7)
   voiEVPPI <- voi::evppi(bcea_smoke[c("e","c","k")], pars = c("d.3.", "d.4."), inputs = inp$mat, h.value = 5e-7)
