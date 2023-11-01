@@ -46,7 +46,7 @@ test_that("vaccine data", {
   ##TODO: snapshot
   # plot(EVPPI)
   # plot(EVPPI_voi)
-
+  
   ##################
   # Strong & Oakley
   
@@ -110,7 +110,7 @@ test_that("vaccine data", {
   
   expect_s3_class(evppi_idx_voi, "evppi")
   expect_type(evppi_idx_voi, "list")
-
+  
   ##TODO: snapshot
   # plot(EVPPI.so)
   # plot(EVPPI.sad)
@@ -121,11 +121,11 @@ test_that("vaccine data", {
   if (require("INLA")) {
     x_inla <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla")
     x_inla_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla")
-
+    
     expect_s3_class(x_inla, "evppi")
     expect_length(x_inla, 10)
     expect_type(x_inla, "list")
-
+    
     expect_s3_class(x_inla_voi, "evppi")
     expect_type(x_inla_voi, "list")
   }
@@ -134,30 +134,34 @@ test_that("vaccine data", {
   # different argument formats
   
   # GAM regression
-  x_gam <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "GAM")
+  EVPPI_gam <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "GAM")
   
   # lower case method name
-  x_gam_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "gam")
+  EVPPI_gam_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "gam")
   
-  expect_s3_class(x_gam_voi, "evppi")
-  expect_type(x_gam_voi, "list")
+  expect_s3_class(EVPPI_gam_voi, "evppi")
+  expect_type(EVPPI_gam_voi, "list")
+  expect_equivalent(EVPPI_gam$k, EVPPI_gam_voi$k, tolerance = 0.001)
+  expect_equivalent(EVPPI_gam$select, EVPPI_gam_voi$select)
   
   # Strong et al GP regression
-  x_gp <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "GP")
+  EVPPI_gp <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "GP")
   
   # lower case method name
-  x_gp_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "gp")
+  EVPPI_gp_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "gp")
   
-  expect_s3_class(x_gp_voi, "evppi")
-  expect_type(x_gp_voi, "list")
+  expect_s3_class(EVPPI_gp_voi, "evppi")
+  expect_type(EVPPI_gp_voi, "list")
   
   # subsetting input PSA simulations
+  set.seed(1234)
   EVPPI_psa <- BCEA::evppi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat, N = 100)
+  
+  set.seed(1234)
   EVPPI_psa_voi <- evppi_voi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat, N = 100)
   
-  ##TODO: different why?..
-  expect_equivalent(EVPPI_psa$evppi, EVPPI_psa_voi$evppi, tolerance = 0.001)
   expect_equivalent(EVPPI_psa$select, EVPPI_psa_voi$select)
+  expect_equivalent(EVPPI_psa$evppi, EVPPI_psa_voi$evppi, tolerance = 0.001)
   
   expect_equivalent(EVPPI_psa$k, EVPPI_psa_voi$k, tolerance = 0.001)
   expect_equivalent(EVPPI_psa$evi, EVPPI_psa_voi$evi, tolerance = 0.001)
@@ -175,26 +179,28 @@ test_that("vaccine data", {
   # # INLA
   # EVPPI_inla <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", plot = TRUE)
   # EVPPI_inla_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", plot = TRUE)
-
+  
   ################
   # fitted values
   
   ## two parameters
   
   # INLA
-  EVPPI_inla_residuals <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", residuals = TRUE)
-  EVPPI_inla_voi_residuals <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", residuals = TRUE)
-  
-  ##TODO:
-  expect_equivalent(
-    EVPPI_inla_residuals$fitted.costs,
-    EVPPI_inla_voi_residuals$fitted.costs,
-    tolerance = 0.001)
-  
-  expect_equivalent(
-    EVPPI_inla_residuals$fitted.effects,
-    EVPPI_inla_voi_residuals$fitted.effects,
-    tolerance = 0.001)
+  if (require("INLA")) {
+    EVPPI_inla_residuals <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", residuals = TRUE)
+    EVPPI_inla_voi_residuals <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", residuals = TRUE)
+    
+    ##TODO:
+    expect_equivalent(
+      EVPPI_inla_residuals$fitted.costs,
+      EVPPI_inla_voi_residuals$fitted.costs,
+      tolerance = 0.001)
+    
+    expect_equivalent(
+      EVPPI_inla_residuals$fitted.effects,
+      EVPPI_inla_voi_residuals$fitted.effects,
+      tolerance = 0.001)
+  }
   
   # GP
   EVPPI_gp_residuals <-

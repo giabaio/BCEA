@@ -88,11 +88,12 @@ evppi_voi.bcea <- function(he,
     fitted_e <- NULL
   }
   
+  #
   residuals_out <- 
     if (residuals) {
       list(fitted.costs = cbind(fitted_c, 0),
            fitted.effects = cbind(fitted_e, 0),
-           select = seq_len(nrow(input)))
+           select = row_idxs)
     } else {NULL}
   
   out <- c(
