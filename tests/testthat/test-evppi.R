@@ -20,9 +20,15 @@ test_that("vaccine data", {
   ###########################
   # GAM regression (default)
   
-  EVPPI <- BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
+  # EVPPI <- BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
+  # save(EVPPI, file = "tests/testthat/testdata/EVPPI_GAM_default.RData")
+  load(file = test_path("testdata", "EVPPI_GAM_default.RData"))
+  
   EVPPI_voi <- evppi_voi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
-  EVPPI_voi_orig <- voi::evppi(bcea_vacc[c("e","c","k")], inputs = inp$mat, pars = c("beta.1.", "beta.2."), check = TRUE)
+  EVPPI_voi_orig <- voi::evppi(bcea_vacc[c("e","c","k")],
+                               inputs = inp$mat,
+                               pars = c("beta.1.", "beta.2."),
+                               check = TRUE)
   
   expect_s3_class(EVPPI, "evppi")
   expect_length(EVPPI, 10)
@@ -47,6 +53,8 @@ test_that("vaccine data", {
   # plot(EVPPI)
   # plot(EVPPI_voi)
   
+  rm(EVPPI)
+  
   ##################
   # Strong & Oakley
   
@@ -54,6 +62,9 @@ test_that("vaccine data", {
                regexp = "only works for single-parameter EVPPI")
   
   EVPPI.so <- BCEA::evppi(bcea_vacc, "beta.1.", inp$mat, method = "so", n.blocks = 50)
+  # save(EVPPI.so, file = "tests/testthat/testdata/EVPPI_so_default.RData")
+  load(file = test_path("testdata", "EVPPI_so_default.RData"))
+  
   EVPPI.so_voi <- evppi_voi(bcea_vacc, "beta.1.", inp$mat, method = "so", n.blocks = 50)
   
   expect_s3_class(EVPPI.so, "evppi")
@@ -73,6 +84,8 @@ test_that("vaccine data", {
   
   # voi::evppi only works for single-parameter EVPPI
   EVPPI.sad <- BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps = 1)
+  # save(EVPPI.sad, file = "tests/testthat/testdata/EVPPI_sad_default.RData")
+  load(file = test_path("testdata", "EVPPI_sad_default.RData"))
   
   # TODO: error
   # EVPPI.sal <- BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "sal", n.seps = 1)
@@ -119,22 +132,27 @@ test_that("vaccine data", {
   
   # Compute the EVPPI using INLA/SPDE
   if (require("INLA")) {
-    x_inla <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla")
-    x_inla_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla")
+    EVPPI_inla <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla")
+    # save(EVPPI_inla, file = "tests/testthat/testdata/EVPPI_inla_default.RData")
+    load(file = test_path("testdata", "EVPPI_inla_default.RData"))
     
-    expect_s3_class(x_inla, "evppi")
-    expect_length(x_inla, 10)
-    expect_type(x_inla, "list")
+    EVPPI_inla_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla")
     
-    expect_s3_class(x_inla_voi, "evppi")
-    expect_type(x_inla_voi, "list")
+    expect_s3_class(EVPPI_inla, "evppi")
+    expect_length(EVPPI_inla, 10)
+    expect_type(EVPPI_inla, "list")
+    
+    expect_s3_class(EVPPI_inla_voi, "evppi")
+    expect_type(EVPPI_inla_voi, "list")
   }
   
   #############################
   # different argument formats
   
   # GAM regression
-  EVPPI_gam <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "GAM")
+  EVPPI_gam <- BCEA::evppi(he = bcea_vacc, param_idx = 39:40, input = inp$mat, method = "GAM")
+  # save(EVPPI_gam, file = "tests/testthat/testdata/EVPPI_gam.RData")
+  load(file = test_path("testdata", "EVPPI_gam.RData"))
   
   # lower case method name
   EVPPI_gam_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "gam")
@@ -146,6 +164,8 @@ test_that("vaccine data", {
   
   # Strong et al GP regression
   EVPPI_gp <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "GP")
+  # save(EVPPI_gp, file = "tests/testthat/testdata/EVPPI_gp.RData")
+  load(file = test_path("testdata", "EVPPI_gp.RData"))
   
   # lower case method name
   EVPPI_gp_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "gp")
@@ -156,6 +176,8 @@ test_that("vaccine data", {
   # subsetting input PSA simulations
   set.seed(1234)
   EVPPI_psa <- BCEA::evppi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat, N = 100)
+  # save(EVPPI_psa, file = "tests/testthat/testdata/EVPPI_psa.RData")
+  load(file = test_path("testdata", "EVPPI_psa.RData"))
   
   set.seed(1234)
   EVPPI_psa_voi <- evppi_voi(bcea_vacc, c("beta.1." , "beta.2."), inp$mat, N = 100)
@@ -189,6 +211,9 @@ test_that("vaccine data", {
   if (require("INLA")) {
     set.seed(1234)
     EVPPI_inla_residuals <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", residuals = TRUE)
+    # save(EVPPI_inla_residuals, file = "tests/testthat/testdata/EVPPI_inla_residuals.RData")
+    load(file = test_path("testdata", "EVPPI_inla_residuals.RData"))
+    
     set.seed(1234)
     EVPPI_inla_voi_residuals <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", residuals = TRUE)
     
@@ -216,6 +241,8 @@ test_that("vaccine data", {
       input = inp$mat,
       method = "gp",
       residuals = TRUE)
+  # save(EVPPI_gp_residuals, file = "tests/testthat/testdata/EVPPI_gp_residuals.RData")
+  load(file = test_path("testdata", "EVPPI_gp_residuals.RData"))
   
   set.seed(1234)
   EVPPI_gp_voi_residuals <-
@@ -241,7 +268,6 @@ test_that("vaccine data", {
     tolerance = 0.1)
   
   # SAD
-  # no fitted values returned
   set.seed(1234)
   EVPPI_sad_residuals <-
     BCEA::evppi(
@@ -250,6 +276,8 @@ test_that("vaccine data", {
       input = inp$mat,
       method = "sad",
       residuals = TRUE)
+  # save(EVPPI_sad_residuals, file = "tests/testthat/testdata/EVPPI_sad_residuals.RData")
+  load(file = test_path("testdata", "EVPPI_sad_residuals.RData"))
   
   set.seed(1234)
   EVPPI_sad_voi_residuals <-
@@ -260,6 +288,7 @@ test_that("vaccine data", {
       method = "sad",
       residuals = TRUE)
   
+  # no fitted values returned
   expect_null(EVPPI_sad_residuals$fitted.costs)
   expect_null(EVPPI_sad_residuals$fitted.effects)
   
@@ -275,6 +304,8 @@ test_that("vaccine data", {
       input = inp$mat,
       method = "gam",
       residuals = TRUE)
+  # save(EVPPI_gam_residuals, file = "tests/testthat/testdata/EVPPI_gam_residuals.RData")
+  load(file = test_path("testdata", "EVPPI_gam_residuals.RData"))
   
   set.seed(1234)
   EVPPI_gam_voi_residuals <-
@@ -307,6 +338,8 @@ test_that("vaccine data", {
         input = inp$mat,
         method = "inla",
         residuals = TRUE)
+    # save(EVPPI_inla_residuals, file = "tests/testthat/testdata/EVPPI_inla_residuals.RData")
+    load(file = test_path("testdata", "EVPPI_inla_residuals.RData"))
     
     set.seed(1234)
     EVPPI_inla_voi_residuals <-
@@ -337,6 +370,8 @@ test_that("vaccine data", {
       input = inp$mat,
       method = "gp",
       residuals = TRUE)
+  # save(EVPPI_gp_residuals, file = "tests/testthat/testdata/EVPPI_gp_residuals.RData")
+  load(file = test_path("testdata", "EVPPI_gp_residuals.RData"))
   
   set.seed(1234)
   EVPPI_gp_voi_residuals <-
@@ -366,6 +401,8 @@ test_that("vaccine data", {
       input = inp$mat,
       method = "gam",
       residuals = TRUE)
+  # save(EVPPI_gam_residuals, file = "tests/testthat/testdata/EEVPPI_gam_residuals.RData")
+  load(file = test_path("testdata", "EVPPI_gam_residuals.RData"))
   
   set.seed(1234)
   EVPPI_gam_voi_residuals <-
@@ -406,6 +443,8 @@ test_that("smoking data", {
   
   ## doesn't return error when really should
   # EVPPI <- BCEA::evppi(bcea_smoke, param_idx = c(2,3), inp$mat, h.value = 5e-7)
+  # save(EVPPI, file = "tests/testthat/testdata/EVPPI_smoking.RData")
+  load(file = test_path("testdata", "EVPPI_smoking.RData"))
   
   ##TODO:
   # error
