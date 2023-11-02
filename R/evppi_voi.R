@@ -67,6 +67,7 @@ evppi_voi.bcea <- function(he,
     outputs$c <- outputs$c[row_idxs, ]
   }
   
+  browser()
   res <- voi::evppi(outputs, inputs = input, pars = pars, method = method,
                     check = TRUE, plot_inla_mesh = plot, ...)
   
