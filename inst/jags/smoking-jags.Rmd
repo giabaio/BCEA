@@ -28,7 +28,12 @@ Specify the name of the jags model file.
 model.file <- here::here("inst/jags/smoking_model_RE.txt")
 ```
 
-Copy smoking data . frame columns to local variables.
+Load smoking data.
+```{r}
+data("Smoking")
+```
+
+Copy smoking data frame columns to local variables.
 ```{r}
 attach(smoking)
 nobs <- nobs
@@ -43,10 +48,13 @@ detach(smoking)
 ```{r}
 # number of trials
 ns <- length(unique(s))
+
 # number of comparators
 nt <- length(unique(t))
+
 # number of observations
 nobs <- dim(smoking)[1]
+
 # how many studies include baseline
 incb <- sum(table(s, b)[, 1] > 0)
 ```
@@ -62,9 +70,10 @@ smoking_output <-
     inits = NULL,
     parameters.to.save = pars,
     model.file = model.file,
+    n.burnin = 5000,
     n.chains = 2,
     n.iter = 10000,
-    n.thin = 10)
+    n.thin = 20)
 ```
 
 

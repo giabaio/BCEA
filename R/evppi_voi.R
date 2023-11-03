@@ -67,7 +67,6 @@ evppi_voi.bcea <- function(he,
     outputs$c <- outputs$c[row_idxs, ]
   }
   
-  browser()
   res <- voi::evppi(outputs, inputs = input, pars = pars, method = method,
                     check = TRUE, plot_inla_mesh = plot, ...)
   
@@ -82,8 +81,8 @@ evppi_voi.bcea <- function(he,
   
   # fitted values
   if (is.null(method) || method %in% c("inla", "gp", "gam")) {
-    fitted_c <- voi_models[[1]]$c[[1]]$fitted
-    fitted_e <- voi_models[[1]]$e[[1]]$fitted
+    fitted_c <- purrr::map_dfc(voi_models[[1]]$c, "fitted.values")   # is this sometimes just 'fitted'?
+    fitted_e <-  purrr::map_dfc(voi_models[[1]]$e, "fitted.values")
   } else {
     fitted_c <- NULL
     fitted_e <- NULL
@@ -92,8 +91,8 @@ evppi_voi.bcea <- function(he,
   #
   residuals_out <- 
     if (residuals) {
-      list(fitted.costs = cbind(fitted_c, 0),
-           fitted.effects = cbind(fitted_e, 0),
+      list(fitted.costs = cbind(as.matrix(fitted_c), 0),
+           fitted.effects = cbind(as.matrix(fitted_e), 0),
            select = row_idxs)
     } else {NULL}
   

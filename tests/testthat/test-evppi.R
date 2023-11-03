@@ -447,28 +447,42 @@ test_that("smoking data", {
   
   bcea_smoke <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
   
-  # inp <- createInputs(smoking_output)
-  # 
+  inp <- createInputs(smoking_output)
+   
   # expect_length(inp , 2)
   # expect_named(inp, c("mat", "parameters"))
   # expect_type(inp, "list")
   
-  ## doesn't return error when really should
-  # EVPPI_smoke <- BCEA::evppi(bcea_smoke, param_idx = c(2,3), inp$mat, h.value = 5e-7)
-  # save(EVPPI_smoke, file = "tests/testthat/testdata/EVPPI_smoke.RData")
+  set.seed(1234)
+  EVPPI_smoke <- BCEA::evppi(bcea_smoke, param_idx = c(2,3), inp$mat, h.value = 5e-7)
+  save(EVPPI_smoke, file = "tests/testthat/testdata/EVPPI_smoke.RData")
   load(file = test_path("testdata", "EVPPI_smoke.RData"))
   
-  ##TODO:
-  # error
+  set.seed(1234)
   EVPPI_voi <- evppi_voi(bcea_smoke, param_idx = c(2,3), inp$mat, h.value = 5e-7)
   
-  voiEVPPI <- voi::evppi(bcea_smoke[c("e","c","k")], pars = c("d.3.", "d.4."), inputs = inp$mat, h.value = 5e-7)
+  # voiEVPPI <- voi::evppi(bcea_smoke[c("e","c","k")], pars = c("d.3.", "d.4."), inputs = inp$mat, h.value = 5e-7)
   
-  expect_s3_class(EVPPI, "evppi")
-  expect_length(EVPPI, 10)
-  expect_type(EVPPI, "list")
+  expect_s3_class(EVPPI_voi, "evppi")
+  expect_type(EVPPI_voi, "list")
   
-  # plot(EVPPI)
+  ##TODO: error
+  expect_equivalent(EVPPI_smoke$evppi, EVPPI_voi$evppi, tolerance = 0.01)
+  
+  expect_equivalent(EVPPI_smoke$k, EVPPI_voi$k, tolerance = 0.001)
+  expect_equivalent(EVPPI_smoke$k, EVPPI_voi$k, tolerance = 0.001)
+  
+  expect_equivalent(EVPPI_smoke$evi, EVPPI_voi$evi, tolerance = 0.001)
+  expect_equivalent(EVPPI_smoke$select, EVPPI_voi$select)
+  expect_equivalent(EVPPI_smoke$index, EVPPI_voi$index)
+  
+  ##TODO: error
+  ##TODO: seems like the wrong order of columns?
+  ## what is the correct order? label columns?
+  expect_equivalent(EVPPI_smoke$fitted.costs, EVPPI_voi$fitted.costs, tolerance = 0.001)
+  expect_equivalent(EVPPI_smoke$fitted.effects, EVPPI_voi$fitted.effects, tolerance = 0.001)
+  
+  # plot(EVPPI_voi)
 })
 
 
