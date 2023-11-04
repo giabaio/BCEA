@@ -30,7 +30,12 @@ evppi_voi.bcea <- function(he,
                            plot = FALSE,
                            residuals = TRUE,
                            method = NULL, ...) {
-  outputs <- he[c("e","c","k")]
+  
+  comp_ids <- c(he$comp, he$ref)
+  outputs <- list(e = he$e[, comp_ids],
+                  c = he$c[, comp_ids],
+                  k = he$k)
+  
   if (!is.null(method))
     method <- tolower(method)
   

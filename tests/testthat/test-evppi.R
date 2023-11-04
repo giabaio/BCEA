@@ -3,23 +3,19 @@
 if (interactive()) library(testthat)
 
 
-test_that("vaccine data", {
+test_that("GAM regression (default) with vaccine data", {
   
   data(Vaccine, package = "BCEA")
   treats <- c("Status quo", "Vaccination")
   
   # Run the health economic evaluation using BCEA
   bcea_vacc <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
-
-  ##TODO: remove in new release  
-  # inp <- createInputs(vaccine_mat)
-  # 
+  
+  inp <- createInputs(vaccine_mat)
+  
   # expect_length(inp, 2)
   # expect_named(inp, c("mat", "parameters"))
   # expect_type(inp, "list")
-  
-  ###########################
-  # GAM regression (default)
   
   # EVPPI <- BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
   # save(EVPPI, file = "tests/testthat/testdata/EVPPI_GAM_default.RData")
@@ -55,9 +51,16 @@ test_that("vaccine data", {
   # plot(EVPPI_voi)
   
   rm(EVPPI)
+})
+
+test_that("Strong & Oakley with vaccine data", {
   
-  ##################
-  # Strong & Oakley
+  data(Vaccine, package = "BCEA")
+  treats <- c("Status quo", "Vaccination")
+  
+  bcea_vacc <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
+  
+  inp <- createInputs(vaccine_mat)
   
   expect_error(evppi_voi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat, method = "so", n.blocks = 50),
                regexp = "only works for single-parameter EVPPI")
@@ -81,9 +84,17 @@ test_that("vaccine data", {
   expect_equivalent(EVPPI.so$index, EVPPI.so_voi$index)
   
   rm(EVPPI.so)
+})
+
+test_that("Sadatsafavi et al with vaccine data", {
   
-  ####################
-  # Sadatsafavi et al
+  data(Vaccine, package = "BCEA")
+  treats <- c("Status quo", "Vaccination")
+  
+  # Run the health economic evaluation using BCEA
+  bcea_vacc <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
+  
+  inp <- createInputs(vaccine_mat)
   
   # voi::evppi only works for single-parameter EVPPI
   
@@ -103,7 +114,7 @@ test_that("vaccine data", {
   # EVPPI.sad <- BCEA::evppi(bcea_vacc, "beta.2.", inp$mat, method = "sad", n.seps = 1)
   # save(EVPPI.sad, file = "tests/testthat/testdata/EVPPI_sad_default.RData")
   load(file = test_path("testdata", "EVPPI_sad_default.RData"))
-    
+  
   EVPPI.sad_voi <- evppi_voi(bcea_vacc, "beta.2.", inp$mat, method = "sad", n.seps = 1)
   EVPPI.sal_voi <- evppi_voi(bcea_vacc, "beta.1.", inp$mat, method = "sal", n.seps = 1)
   
@@ -124,10 +135,20 @@ test_that("vaccine data", {
   # plot(EVPPI.sad)
   # plot(EVPPI.so_voi)
   # plot(EVPPI.sad_voi)
-
-  rm(EVPPI.sad)
   
-  # select parameters by position
+  rm(EVPPI.sad)
+})
+
+test_that("Select parameters by position with vaccine data", {
+  
+  data(Vaccine, package = "BCEA")
+  treats <- c("Status quo", "Vaccination")
+  
+  # Run the health economic evaluation using BCEA
+  bcea_vacc <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
+  
+  inp <- createInputs(vaccine_mat)
+  
   # evppi_idx <- BCEA::evppi(he = bcea_vacc, param_idx = 39:40, input = inp$mat)
   # save(evppi_idx, file = "tests/testthat/testdata/EVPPI_idx.RData")
   load(file = test_path("testdata", "EVPPI_idx.RData"))
@@ -140,8 +161,18 @@ test_that("vaccine data", {
   
   expect_s3_class(evppi_idx_voi, "evppi")
   expect_type(evppi_idx_voi, "list")
+})
+
+test_that("INLA/SPDE with vaccine data", {
   
-  # Compute the EVPPI using INLA/SPDE
+  data(Vaccine, package = "BCEA")
+  treats <- c("Status quo", "Vaccination")
+  
+  # Run the health economic evaluation using BCEA
+  bcea_vacc <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
+  
+  inp <- createInputs(vaccine_mat)
+  
   if (require("INLA")) {
     # EVPPI_inla <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla")
     # save(EVPPI_inla, file = "tests/testthat/testdata/EVPPI_inla_default.RData")
@@ -156,9 +187,17 @@ test_that("vaccine data", {
     expect_s3_class(EVPPI_inla_voi, "evppi")
     expect_type(EVPPI_inla_voi, "list")
   }
+})
+
+test_that("Different argument formats with vaccine data", {
   
-  #############################
-  # different argument formats
+  data(Vaccine, package = "BCEA")
+  treats <- c("Status quo", "Vaccination")
+  
+  # Run the health economic evaluation using BCEA
+  bcea_vacc <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
+  
+  inp <- createInputs(vaccine_mat)
   
   # GAM regression
   # EVPPI_gam <- BCEA::evppi(he = bcea_vacc, param_idx = 39:40, input = inp$mat, method = "GAM")
@@ -201,9 +240,17 @@ test_that("vaccine data", {
   expect_equivalent(EVPPI_psa$k, EVPPI_psa_voi$k, tolerance = 0.001)
   expect_equivalent(EVPPI_psa$evi, EVPPI_psa_voi$evi, tolerance = 0.001)
   expect_equivalent(EVPPI_psa$index, EVPPI_psa_voi$index)
+})
+
+test_that("Mesh plotting with vaccine data", {
   
-  ################
-  # mesh plotting
+  data(Vaccine, package = "BCEA")
+  treats <- c("Status quo", "Vaccination")
+  
+  # Run the health economic evaluation using BCEA
+  bcea_vacc <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
+  
+  inp <- createInputs(vaccine_mat)
   
   # # GAM regression (default)
   # # plot not produced
@@ -214,9 +261,17 @@ test_that("vaccine data", {
   # # INLA
   # EVPPI_inla <- BCEA::evppi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", plot = TRUE)
   # EVPPI_inla_voi <- evppi_voi(he = bcea_vacc, 39:40, input = inp$mat, method = "inla", plot = TRUE)
+})
+
+test_that("Fitted values with vaccine data", {
   
-  ################
-  # fitted values
+  data(Vaccine, package = "BCEA")
+  treats <- c("Status quo", "Vaccination")
+  
+  # Run the health economic evaluation using BCEA
+  bcea_vacc <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
+  
+  inp <- createInputs(vaccine_mat)
   
   ## two parameters
   
@@ -404,7 +459,7 @@ test_that("vaccine data", {
     EVPPI_gp_3_residuals$fitted.effects,
     EVPPI_gp_voi_residuals$fitted.effects,
     tolerance = 0.1)
-
+  
   # GAM
   # set.seed(1234)
   # EVPPI_gam_3_residuals <-
@@ -437,29 +492,31 @@ test_that("vaccine data", {
     tolerance = 0.1)
 })
 
-
-test_that("smoking data", {
+test_that("More that two interventions with smoking data", {
   
   data(Smoking, package = "BCEA")
   treats <-
     c("No intervention", "Self-help",
       "Individual counselling", "Group counselling")
   
-  bcea_smoke <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
+  bcea_smoke <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)  # all interventions
+  
+  # bcea_smoke <- bcea(eff, cost, ref = 4, .comparison = 2, interventions = treats, Kmax = 500)
+  # bcea_smoke <- bcea(eff, cost, ref = 4, .comparison = c(2,3), interventions = treats, Kmax = 500)
   
   inp <- createInputs(smoking_output)
-   
+  
   # expect_length(inp , 2)
   # expect_named(inp, c("mat", "parameters"))
   # expect_type(inp, "list")
   
   set.seed(1234)
-  EVPPI_smoke <- BCEA::evppi(bcea_smoke, param_idx = c(2,3), inp$mat, h.value = 5e-7)
-  save(EVPPI_smoke, file = "tests/testthat/testdata/EVPPI_smoke.RData")
-  load(file = test_path("testdata", "EVPPI_smoke.RData"))
+  EVPPI_smoke <- BCEA::evppi(bcea_smoke, param_idx = c(2,3), inp$mat, h.value = 5e-7, method = "gam")
+  # save(EVPPI_smoke, file = "tests/testthat/testdata/EVPPI_smoke.RData")
+  # load(file = test_path("testdata", "EVPPI_smoke.RData"))
   
   set.seed(1234)
-  EVPPI_voi <- evppi_voi(bcea_smoke, param_idx = c(2,3), inp$mat, h.value = 5e-7)
+  EVPPI_voi <- evppi_voi(bcea_smoke, param_idx = c(2,3), inp$mat, h.value = 5e-7, method = "gam")
   
   # voiEVPPI <- voi::evppi(bcea_smoke[c("e","c","k")], pars = c("d.3.", "d.4."), inputs = inp$mat, h.value = 5e-7)
   
