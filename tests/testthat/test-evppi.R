@@ -499,12 +499,12 @@ test_that("More that two interventions with smoking data", {
     c("No intervention", "Self-help",
       "Individual counselling", "Group counselling")
   
+  inp <- createInputs(smoking_output)
+  
   bcea_smoke <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)  # all interventions
   
-  # bcea_smoke <- bcea(eff, cost, ref = 4, .comparison = 2, interventions = treats, Kmax = 500)
+  # bcea_smoke <- bcea(eff, cost, ref = 4, .comparison = 1, interventions = treats, Kmax = 500)
   # bcea_smoke <- bcea(eff, cost, ref = 4, .comparison = c(2,3), interventions = treats, Kmax = 500)
-  
-  inp <- createInputs(smoking_output)
   
   # expect_length(inp , 2)
   # expect_named(inp, c("mat", "parameters"))

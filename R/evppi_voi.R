@@ -86,8 +86,16 @@ evppi_voi.bcea <- function(he,
   
   # fitted values
   if (is.null(method) || method %in% c("inla", "gp", "gam")) {
-    fitted_c <- purrr::map_dfc(voi_models[[1]]$c, "fitted.values")   # is this sometimes just 'fitted'?
-    fitted_e <-  purrr::map_dfc(voi_models[[1]]$e, "fitted.values")
+    fitted_c <-
+      purrr::map(voi_models[[1]]$c,
+                 ~unname(as.data.frame(.x$fitted.values))) |>
+      rev() |> 
+      list_cbind()
+    fitted_e <-
+      purrr::map(voi_models[[1]]$e,
+                 ~unname(as.data.frame(.x$fitted.values))) |>
+      rev() |> 
+      list_cbind()
   } else {
     fitted_c <- NULL
     fitted_e <- NULL
