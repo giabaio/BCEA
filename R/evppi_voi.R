@@ -15,6 +15,7 @@ evppi_voi <- function(he,
 #' @param residuals output fitted values for SPDE-INLA method
 #' 
 #' @importFrom voi evppi
+#' @importFrom purrr list_cbind map
 #' @examples
 #' data(Vaccine, package = "BCEA")
 #' treats <- c("Status quo", "Vaccination")
@@ -85,29 +86,37 @@ evppi_voi.bcea <- function(he,
   voi_models <- attr(res, "models")
   
   # fitted values
-  if (is.null(method) || method %in% c("inla", "gp", "gam")) {
-    fitted_c <-
+  get_fitted_values <- residuals && (is.null(method) || method %in% c("inla", "gp", "gam"))
+  
+  if (get_fitted_values) {
+    fitted_c_ls <-
       purrr::map(voi_models[[1]]$c,
                  ~unname(as.data.frame(.x$fitted.values))) |>
-      rev() |> 
-      list_cbind()
-    fitted_e <-
+      rev()
+    
+    fitted_c <-
+      suppressMessages(purrr::list_cbind(fitted_c_ls)) |> 
+      as.matrix() |> 
+      cbind(0)
+    
+    fitted_e_ls <-
       purrr::map(voi_models[[1]]$e,
                  ~unname(as.data.frame(.x$fitted.values))) |>
-      rev() |> 
-      list_cbind()
+      rev()
+    
+    fitted_e <-
+      suppressMessages(purrr::list_cbind(fitted_e_ls)) |> 
+      as.matrix() |> 
+      cbind(0)
   } else {
     fitted_c <- NULL
     fitted_e <- NULL
   }
   
-  #
   residuals_out <- 
-    if (residuals) {
-      list(fitted.costs = cbind(as.matrix(fitted_c), 0),
-           fitted.effects = cbind(as.matrix(fitted_e), 0),
-           select = row_idxs)
-    } else {NULL}
+    list(fitted.costs = fitted_c,
+         fitted.effects = fitted_e,
+         select = row_idxs)
   
   out <- c(
     list(
