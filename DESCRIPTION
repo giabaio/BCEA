@@ -43,6 +43,7 @@ Suggests:
     markdown,
     mgcv,
     plotly,
+    plotrix,
     RColorBrewer,
     rjags,
     rmarkdown,
