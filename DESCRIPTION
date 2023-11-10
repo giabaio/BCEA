@@ -71,3 +71,4 @@ Encoding: UTF-8
 BugReports: https://github.com/n8thangreen/BCEA/issues/
 Remotes: 
     chjackson/voi
+LazyData: true
