@@ -76,22 +76,30 @@ evppi_voi.bcea <- function(he,
   res <- voi::evppi(outputs, inputs = input, pars = pars, method = method,
                     check = TRUE, plot_inla_mesh = plot, ...)
   
+  voi_methods <- unname(attr(res, "methods"))
+  voi_models <- attr(res, "models")
+  
+  # method name returned from evppi
+  method_nm <- voi_methods[1]
+  
   form <- 
-    if (!is.null(method) && method == "gam") {
+    if (method_nm == "gam") {
       paste("te(", paste(param_idx, ",", sep = "",
                          collapse = ""), "bs='cr')")
     } else {NULL}
   
-  voi_methods <- unname(attr(res, "methods"))
-  voi_models <- attr(res, "models")
-  
   # fitted values
-  get_fitted_values <- residuals && (is.null(method) || method %in% c("inla", "gp", "gam"))
+  get_fitted_values <- residuals && (method_nm %in% c("inla", "gp", "gam"))
+  
+  # named differently in different methods
+  fitted_lup <- c(inla = "fitted", gp = "fitted", gam = "fitted.values")
   
   if (get_fitted_values) {
+    fitted_txt <- fitted_lup[method_nm]
+    
     fitted_c_ls <-
       purrr::map(voi_models[[1]]$c,
-                 ~unname(as.data.frame(.x$fitted.values))) |>
+                 ~unname(as.data.frame(.x[[fitted_txt]]))) |>
       rev()
     
     fitted_c <-
@@ -101,7 +109,7 @@ evppi_voi.bcea <- function(he,
     
     fitted_e_ls <-
       purrr::map(voi_models[[1]]$e,
-                 ~unname(as.data.frame(.x$fitted.values))) |>
+                 ~unname(as.data.frame(.x[[fitted_txt]]))) |>
       rev()
     
     fitted_e <-
