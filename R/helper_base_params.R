@@ -1,6 +1,7 @@
 
 #' @importFrom grDevices colors
 #' @keywords dplot
+#' 
 helper_base_params <- function(he,
                                graph_params) {
   
