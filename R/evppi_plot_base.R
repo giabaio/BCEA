@@ -20,7 +20,6 @@ evppi_plot_base <- function(evppi_obj,
                             pos_legend,
                             col = NULL,
                             annot = FALSE) {
-  
   legend_params <-
     evppi_legend_base(evppi_obj, pos_legend, col)
   

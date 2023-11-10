@@ -2,7 +2,7 @@
 # Resubmission (2.4.4)
 
 * Suggested package wasn't used conditionally in unit test causing CRAN check error. `MCMCvis` is now moved to Required packages.
-
+* Fixed R package CRAN webpage canonical form in README
 
 ## R CMD check results
 

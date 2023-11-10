@@ -122,21 +122,21 @@ ceac_ggplot <- function(he,
   
   ceac_dat <- he[[ceac]]
   n_lines <- ncol(ceac_dat)
+  len_k <- length(he$k)
   
   data_psa <-
     tibble(k = rep(he$k,
                    times = n_lines),
            ceac = c(ceac_dat),
-           comparison = as.factor(rep(1:n_lines,
-                                      each = length(he$k))))
+           comparison = as.factor(rep(1:n_lines, each = len_k)))
   
   graph_params <- helper_ggplot_params(he, graph_params)
   legend_params <- make_legend_ggplot(he, pos_legend)
   theme_add <- purrr::keep(extra_params, is.theme)
   
-  ggplot(data_psa, aes(.data$k, .data$ceac)) +
+  ggplot(data_psa, aes(x = .data$k, y = .data$ceac)) +
     geom_line(aes(linetype = .data$comparison,
-                  linewidth = .data$comparison,
+                  size = factor(.data$comparison),
                   colour = factor(.data$comparison))) +
     theme_ceac() + 
     theme_add +                                            # theme

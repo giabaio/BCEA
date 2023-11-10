@@ -35,7 +35,7 @@ helper_ggplot_params <- function(he,
     
     is_enough_types <- length(types) >= n_lines
     is_enough_colours <- length(cols) >= n_lines
-    is_enough_sizes <- length(sizes) >= n_lines
+    is_enough_sizes <- length(sizes) == n_lines
     
     if (!is_enough_types) {
       graph_params$line$type <- rep_len(types, n_lines)}

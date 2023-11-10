@@ -34,7 +34,7 @@ This suggests that there are no outliers."><meta property="og:image" content="ht
     
     <a class="navbar-brand me-2" href="../index.html">BCEA</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -121,7 +121,7 @@ modelling and the economic evaluation.</p></dd>
 
 <dt>plot_type</dt>
 <dd><p>The type of diagnostics to be performed. It can be the 'residual
-plot' or the 'qqplot plot'.</p></dd>
+plot' (<code>residuals</code>) or the Q-Q (quantile-quantile) plot (<code>qqplot</code>).</p></dd>
 
 
 <dt>interv</dt>
@@ -137,7 +137,7 @@ performed (if there are many options being compared)</p></dd>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>The second possible diagnostic is the qqplot for the fitted value. This is a
+    <p>The second possible diagnostic is the Q-Q plot for the fitted value. This is a
 graphical method for comparing the fitted values distributions with the
 assumed underlying normal distribution by plotting their quantiles against
 each other. First, the set of intervals for the quantiles is chosen. A point

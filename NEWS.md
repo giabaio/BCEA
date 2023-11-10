@@ -1,11 +1,25 @@
 
+# BCEA 2.4.5
+
+_October 2023_
+
+Moved internal EVPPI calculation out of `BCEA` and now uses `voi` package instead. 
+Refactoring but retaining same interface and functionality.
+
+* `evppi()` tested against all use cases in BCEA book (1c1457d2)
+* Select parameters by position (as well as name) in new `evppi()` (f2e4d005)
+* Use single parameter case only like `voi` package for methods `sal` and `so` (#140)
+* New `evppi()` matching output of old `evppi()` (1e2c5e7)
+* Latest development version of `voi` needed when we use `check = TRUE` in `voi::evppi()` in order to access fitting data (6e436b5, 94f5fc5)
+* No longer require `INLA` package to be available inside of `BCEA` so can remove direct dependency. This helps with passing CRAN checks and GitHub Actions ()
+
 # BCEA 2.4.4
-June 2023
+_June 2023_
 
 * Patch to fix a CRAN checks error. Suggested package `MCMCvis` wasn't used conditionally in unit test. Moved to Required packages in `DESCRIPTION`.
 
 # BCEA 2.4.3
-May 2023
+_May 2023_
 
 ## Bug fixes
 
@@ -27,7 +41,7 @@ May 2023
 
 
 # BCEA 2.4.2
-August 2022
+_August 2022_
 
 ## Bug fixes
 
@@ -48,14 +62,14 @@ August 2022
 ## New features
 
 * Can now specify what order the interventions labels are in the legend for ce plane (and contour plots) for base R and ggplot2 i.e. reference first or second with optional `ref_first` argument (cc38f07)
-* Can specify currency for axes in `ceplane.plot` and `ceac.plot` `ggplot2` versions (6808aa6)
-* Argument added to `ceplane.plot` of `icer_annot` to annotate each of the ICER points with the text label of the intervention name. Only for `ggplot2` at the moment. (a7b4beb)
+* Can specify currency for axes in `ceplane.plot()` and `ceac.plot()` `ggplot2` versions (6808aa6)
+* Argument added to `ceplane.plot()` of `icer_annot` to annotate each of the ICER points with the text label of the intervention name. Only for `ggplot2` at the moment. (a7b4beb)
 * Added `pos` argument to `contour2()` so that its consistent with `contour()` and `ceplane.plot()`. (50f8f8b)
 * Allow passing `ref` argument by name as well as index in `bcea()`. (9eab459)
 
 
 # BCEA 2.4.1.2
-April 2022
+_April 2022_
 
 ## Bug fixes
 
@@ -87,7 +101,7 @@ April 2022
 
 
 # BCEA 2.4.1.1
-Oct 2021
+_Oct 2021_
 
 ## Major refactoring
 
@@ -179,9 +193,9 @@ Oct 2015
 * New function for EVPPI using SPDE-INLA
 * Modifications to the EVPPI functions
 * Documentation updated
-* Allows `xlim` & `ylim` in the `ceplane.plot`, `contour` and `contour2` functions
+* Allows `xlim` & `ylim` in the `ceplane.plot()`, `contour()` and `contour2()` functions
 * It is now possible to run `bcea` for a scalar wtp
-* Old `evppi` function and method has been renamed `evppi0`, which means there's also a new `plot.evppi0` method
+* Old `evppi()` function and method has been renamed `evppi0`, which means there's also a new `plot.evppi0` method
 
 # BCEA 2.1-0
 13 Jan 2015

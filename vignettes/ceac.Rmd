@@ -6,7 +6,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-  
+
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
 collapse = TRUE,
@@ -74,11 +74,9 @@ ceac.plot(he,
           theme = theme_dark())
 ```
 
-
 ## Multiple interventions
 
-This situation is when there are more than two interventions to consider.
-Incremental values can be obtained either always against a fixed reference intervention, such as status-quo, or for all pair-wise comparisons.
+This situation is when there are more than two interventions to consider. Incremental values can be obtained either always against a fixed reference intervention, such as status-quo, or for all pair-wise comparisons.
 
 ### Against a fixed reference intervention
 
@@ -178,8 +176,7 @@ In BCEA we first we must determine all combinations of paired interventions usin
 he <- multi.ce(he)
 ```
 
-We can use the same plotting calls as before i.e. `ceac.plot()` and BCEA will deal with the pairwise situation appropriately.
-Note that in this case the probabilities at a given willingness to pay sum to 1.
+We can use the same plotting calls as before i.e. `ceac.plot()` and BCEA will deal with the pairwise situation appropriately. Note that in this case the probabilities at a given willingness to pay sum to 1.
 
 ```{r}
 ceac.plot(he, graph = "base")
@@ -206,6 +203,23 @@ ceac.plot(he,
           line = list(color = mypalette),
           pos = c(0,1))
 ```
+
+The line width can be changes with either a single value to change all lines to the same thickness or a value for each.
+
+```{r}
+ceac.plot(he,
+          graph = "ggplot2",
+          title = "my title",
+          line = list(size = 2))
+```
+
+```{r}
+ceac.plot(he,
+          graph = "ggplot2",
+          title = "my title",
+          line = list(size = c(1,2,3)))
+```
+
 
 ```{r echo=FALSE}
 # create output docs

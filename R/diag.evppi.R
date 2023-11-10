@@ -15,7 +15,7 @@
 #' 3) None of the residual stands out from the basic random pattern of residuals.
 #' This suggests that there are no outliers.
 #' 
-#' The second possible diagnostic is the qqplot for the fitted value. This is a
+#' The second possible diagnostic is the Q-Q plot for the fitted value. This is a
 #' graphical method for comparing the fitted values distributions with the
 #' assumed underlying normal distribution by plotting their quantiles against
 #' each other. First, the set of intervals for the quantiles is chosen. A point
@@ -28,7 +28,7 @@
 #' on a \code{bcea} model.
 #' @template args-he
 #' @param plot_type The type of diagnostics to be performed. It can be the 'residual
-#' plot' or the 'qqplot plot'.
+#' plot' (\code{residuals}) or the Q-Q (quantile-quantile) plot (\code{qqplot}).
 #' @param interv Specifies the interventions for which diagnostic tests should be
 #' performed (if there are many options being compared)
 #' @return Plot
@@ -65,7 +65,9 @@ diag.evppi <- function(evppi,
 }
 
 
-#'
+#' Residual Plot
+#' @keywords internal hplot 
+#' 
 evppi_residual_plot <- function(evppi,
                                 he,
                                 interv) {
@@ -101,6 +103,9 @@ evppi_residual_plot <- function(evppi,
 }
 
 
+#' Q-Q Plot
+#' @keywords internal hplot 
+#' 
 #' @importFrom graphics par
 #' @importFrom stats qqnorm qqline
 #' 

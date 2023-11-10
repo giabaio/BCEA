@@ -176,8 +176,8 @@ test_that("jags, bugs, stan methods", {
   # bcea(jagsfit)
   
   # mocked inputs
-  load(test_path("data", "bugsfit.RData"))
-  load(test_path("data", "jagsfit.RData"))
+  load(test_path("testdata", "bugsfit.RData"))
+  load(test_path("testdata", "jagsfit.RData"))
   # load(test_path("data", "stanfit.RData"))
   
   expect_s3_class(bcea.rjags(jagsfit), class = "bcea")

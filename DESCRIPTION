@@ -1,7 +1,7 @@
 Package: BCEA
 Type: Package
 Title: Bayesian Cost Effectiveness Analysis
-Version: 2.4.4
+Version: 2.4.5
 Authors@R: c(
     person("Gianluca", "Baio",
             email = "g.baio@ucl.ac.uk",
@@ -23,8 +23,8 @@ Imports:
     cli (>= 3.3.0),
     dplyr,
     ggplot2,
-    gridExtra,
     graphics,
+    gridExtra,
     MASS,
     Matrix,
     MCMCvis,
@@ -32,28 +32,29 @@ Imports:
     Rdpack,
     reshape2,
     rlang,
-    scales
+    scales,
+    voi
 Depends:
     R (>= 3.5.0)
 Suggests:
     coda,
     grid,
-    INLA,
     knitr,
     markdown,
     mgcv,
     plotly,
+    plotrix,
+    RColorBrewer,
     rjags,
     rmarkdown,
     rstan,
-    RColorBrewer,
     splancs,
     testthat (>= 2.1.0),
     vdiffr,
     withr
 RdMacros: Rdpack
 VignetteBuilder: knitr
-Additional_repositories: https://inla.r-inla-download.org/R/stable/
+Additional_repositories: https://inla.r-inla-download.org/R/testing/
 Description: Produces an economic evaluation of a sample of suitable variables of
              cost and effectiveness / utility for two or more interventions,
              e.g. from a Bayesian model in the form of MCMC simulations.
@@ -68,3 +69,6 @@ NeedsCompilation: no
 RoxygenNote: 7.2.3.9000
 Encoding: UTF-8
 BugReports: https://github.com/n8thangreen/BCEA/issues/
+Remotes: 
+    chjackson/voi
+LazyData: false

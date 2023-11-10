@@ -39,21 +39,21 @@
 #' SPDE-INLA should be plotted. Default set to `FALSE`.
 #' @param residuals A logical value indicating whether the fitted values for
 #' the SPDE-INLA method should be outputted. Default set to `TRUE`.
-#' @param ...  Additional arguments. The default methods to compute the EVPPI
-#' are:
+#' @param method Character string to select which method to use. The default methods are recommended.
+#'   However, it is possible (mainly for backward compatibility) to use different methods. 
+#' @param ...  Additional arguments. Details of the methods to compute the EVPPI and their additional arguments are:
 #' - For single-parameter:
-#' GAM regression.
+#'    - Generalized additive model (GAM) (default).
+#'    - The method of Strong & Oakley use `method` as string `so`.
+#'      The user *needs* to also specify the number of "blocks" (e.g. `n.blocks=20`).
+#'      Note that the multi-parameter version for this method has been deprecated.
+#'    - The method of Sadatsafavi \emph{et al.} where `method` takes as value a string of either `sad` or `sal`.
+#'      It is then possible to also specify the number of "separators" (e.g. `n.seps=3`).
+#'      If none is specified, the default value `n.seps=1` is used. 
+#'      Note that the multi-parameter version for this method has been deprecated.
 #' - For multi-parameter:
-#' INLA/SPDE. However, it is possible (mainly for backward compatibility) to
-#' use different methods. For single-parameter, the user can specify the method
-#' of Sadatsafavi \emph{et al.} or the method of Strong & Oakley. In order to do so, it
-#' is necessary to include the extra parameter \code{method} which takes as
-#' value a string \code{"sad"} in the former case and a string \code{"so"} in
-#' the latter. In case "sal" is selected, then it is possible to also specify
-#' the number of "separators" (e.g. \code{n.seps=3}). If none is specified, the
-#' default value \code{n.seps=1} is used. If \code{"so"} is used as method for
-#' the calculation of the EVPPI, then the user *needs* to also specify the
-#' number of "blocks" (e.g. \code{n.blocks=20}).
+#'    - INLA/SPDE (default).
+#'    - Gaussian process regression with `method` of `gp`.
 #' 
 #' @section GAM regression:
 #' For multi-parameter, the user can select 3 possible methods. If
@@ -141,6 +141,7 @@
 #' \insertRef{Heath2016}{BCEA}
 #' 
 #' @export
+#' @md
 #' 
 #' @examples
 #' # See Baio G., Dawid A.P. (2011) for a detailed description of the 
