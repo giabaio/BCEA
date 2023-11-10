@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">BCEA</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,8 +62,25 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.4.5" id="bcea-245">BCEA 2.4.5<a class="anchor" aria-label="anchor" href="#bcea-245"></a></h2>
+<p><em>October 2023</em></p>
+<p>Moved internal EVPPI calculation out of <code>BCEA</code> and now uses <code>voi</code> package instead. Refactoring but retaining same interface and functionality.</p>
+<ul><li>
+<code><a href="../reference/evppi.html">evppi()</a></code> tested against all use cases in BCEA book (1c1457d2)</li>
+<li>Select parameters by position (as well as name) in new <code><a href="../reference/evppi.html">evppi()</a></code> (f2e4d005)</li>
+<li>Use single parameter case only like <code>voi</code> package for methods <code>sal</code> and <code>so</code> (<a href="https://github.com/n8thangreen/BCEA/issues/140" class="external-link">#140</a>)</li>
+<li>New <code><a href="../reference/evppi.html">evppi()</a></code> matching output of old <code><a href="../reference/evppi.html">evppi()</a></code> (1e2c5e7)</li>
+<li>Latest development version of <code>voi</code> needed when we use <code>check = TRUE</code> in <code><a href="https://chjackson.github.io/voi/reference/evppi.html" class="external-link">voi::evppi()</a></code> in order to access fitting data (6e436b5, 94f5fc5)</li>
+<li>No longer require <code>INLA</code> package to be available inside of <code>BCEA</code> so can remove direct dependency. This helps with passing CRAN checks and GitHub Actions ()</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.4.4" id="bcea-244">BCEA 2.4.4<a class="anchor" aria-label="anchor" href="#bcea-244"></a></h2>
+<p><em>June 2023</em></p>
+<ul><li>Patch to fix a CRAN checks error. Suggested package <code>MCMCvis</code> wasn’t used conditionally in unit test. Moved to Required packages in <code>DESCRIPTION</code>.</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.4.3" id="bcea-243">BCEA 2.4.3<a class="anchor" aria-label="anchor" href="#bcea-243"></a></h2>
-<p>May 2023</p>
+<p><em>May 2023</em></p>
 <div class="section level3">
 <h3 id="bug-fixes-2-4-3">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-4-3"></a></h3>
 <ul><li>Consistent colours across plots for each intervention for grid of plots in <code><a href="../reference/plot.bcea.html">plot.bcea()</a></code> (cf1ee43)</li>
@@ -88,7 +105,7 @@
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.4.2" id="bcea-242">BCEA 2.4.2<a class="anchor" aria-label="anchor" href="#bcea-242"></a></h2>
-<p>August 2022</p>
+<p><em>August 2022</em></p>
 <div class="section level3">
 <h3 id="bug-fixes-2-4-2">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-4-2"></a></h3>
 <ul><li>
@@ -112,15 +129,15 @@
 <div class="section level3">
 <h3 id="new-features-2-4-2">New features<a class="anchor" aria-label="anchor" href="#new-features-2-4-2"></a></h3>
 <ul><li>Can now specify what order the interventions labels are in the legend for ce plane (and contour plots) for base R and ggplot2 i.e. reference first or second with optional <code>ref_first</code> argument (cc38f07)</li>
-<li>Can specify currency for axes in <code>ceplane.plot</code> and <code>ceac.plot</code> <code>ggplot2</code> versions (6808aa6)</li>
-<li>Argument added to <code>ceplane.plot</code> of <code>icer_annot</code> to annotate each of the ICER points with the text label of the intervention name. Only for <code>ggplot2</code> at the moment. (a7b4beb)</li>
+<li>Can specify currency for axes in <code><a href="../reference/ceplane.plot.html">ceplane.plot()</a></code> and <code><a href="../reference/ceac.plot.html">ceac.plot()</a></code> <code>ggplot2</code> versions (6808aa6)</li>
+<li>Argument added to <code><a href="../reference/ceplane.plot.html">ceplane.plot()</a></code> of <code>icer_annot</code> to annotate each of the ICER points with the text label of the intervention name. Only for <code>ggplot2</code> at the moment. (a7b4beb)</li>
 <li>Added <code>pos</code> argument to <code><a href="../reference/contour2.html">contour2()</a></code> so that its consistent with <code><a href="../reference/contour.html">contour()</a></code> and <code><a href="../reference/ceplane.plot.html">ceplane.plot()</a></code>. (50f8f8b)</li>
 <li>Allow passing <code>ref</code> argument by name as well as index in <code><a href="../reference/bcea.html">bcea()</a></code>. (9eab459)</li>
 </ul></div>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.4.1.2" id="bcea-2412">BCEA 2.4.1.2<a class="anchor" aria-label="anchor" href="#bcea-2412"></a></h2>
-<p>April 2022</p>
+<p><em>April 2022</em></p>
 <div class="section level3">
 <h3 id="bug-fixes-2-4-1-2">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-4-1-2"></a></h3>
 <ul><li>
@@ -166,7 +183,7 @@
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.4.1.1" id="bcea-2411">BCEA 2.4.1.1<a class="anchor" aria-label="anchor" href="#bcea-2411"></a></h2>
-<p>Oct 2021</p>
+<p><em>Oct 2021</em></p>
 <div class="section level3">
 <h3 id="major-refactoring-2-4-1-1">Major refactoring<a class="anchor" aria-label="anchor" href="#major-refactoring-2-4-1-1"></a></h3>
 <ul><li>Code base improved robustness and extensibility.</li>
@@ -263,9 +280,9 @@
 <ul><li>New function for EVPPI using SPDE-INLA</li>
 <li>Modifications to the EVPPI functions</li>
 <li>Documentation updated</li>
-<li>Allows <code>xlim</code> &amp; <code>ylim</code> in the <code>ceplane.plot</code>, <code>contour</code> and <code>contour2</code> functions</li>
+<li>Allows <code>xlim</code> &amp; <code>ylim</code> in the <code><a href="../reference/ceplane.plot.html">ceplane.plot()</a></code>, <code><a href="../reference/contour.html">contour()</a></code> and <code><a href="../reference/contour2.html">contour2()</a></code> functions</li>
 <li>It is now possible to run <code>bcea</code> for a scalar wtp</li>
-<li>Old <code>evppi</code> function and method has been renamed <code>evppi0</code>, which means there’s also a new <code>plot.evppi0</code> method</li>
+<li>Old <code><a href="../reference/evppi.html">evppi()</a></code> function and method has been renamed <code>evppi0</code>, which means there’s also a new <code>plot.evppi0</code> method</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.1-0" id="bcea-21-0">BCEA 2.1-0<a class="anchor" aria-label="anchor" href="#bcea-21-0"></a></h2>
