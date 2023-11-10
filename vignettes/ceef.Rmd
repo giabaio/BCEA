@@ -2,7 +2,7 @@
 title: "Cost-Effectiveness Efficiency Frontier"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Cost-effectiveness efficiency frontier}
+  %\VignetteIndexEntry{Cost-Effectiveness Efficiency Frontier}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -76,7 +76,7 @@ ceef.plot(bcea_smoke)
 
 * ggplot
 
-```{r}
+```{r error=TRUE}
 bcea_smoke <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 
 # all interventions
@@ -103,7 +103,7 @@ ceef.plot(bcea_smoke, graph = "ggplot")
 
 Check legend position argument:
 
-```{r}
+```{r error=TRUE}
 # base R
 ceef.plot(bcea_smoke, pos = c(1,0))
 ceef.plot(bcea_smoke, pos = c(1,1))
@@ -131,7 +131,7 @@ ceef.plot(bcea_smoke, graph = "ggplot", pos = "right")
 
 ### Flipping plot
 
-```{r}
+```{r error=TRUE}
 ceef.plot(bcea_smoke,
           flip = TRUE,
           dominance = FALSE,
@@ -150,7 +150,7 @@ ceef.plot(bcea_smoke,
 
 ### Start from origin or smallest (e,c).
 
-```{r}
+```{r error=TRUE}
 ceef.plot(bcea_smoke,
           flip = TRUE,
           dominance = TRUE,
@@ -168,7 +168,7 @@ ceef.plot(bcea_smoke,
 
 ### Negative cost or effectiveness
 
-```{r}
+```{r error=TRUE}
 data("Smoking")
 
 cost[, 4] <- -cost[, 4]

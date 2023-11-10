@@ -20,5 +20,5 @@ modelling and the economic evaluation.}
 \item{params}{Graph Parameters including data}
 }
 \description{
-Choice of base R, ggplot2 and plotly.
+Choice of base R, \pkg{ggplot2} and \pkg{plotly}.
 }

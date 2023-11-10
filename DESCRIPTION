@@ -1,11 +1,11 @@
 Package: BCEA
 Type: Package
 Title: Bayesian Cost Effectiveness Analysis
-Version: 2.4.2.9000
+Version: 2.4.5
 Authors@R: c(
     person("Gianluca", "Baio",
-            email = "gianluca@stats.ucl.ac.uk",
-            role = c("aut", "cre"),
+            email = "g.baio@ucl.ac.uk",
+            role = c("aut", "cre", "cph"),
             comment = c(ORCID = "0000-0003-4314-2570")),
     person("Andrea", "Berardi",
             email = "a.berardi@ucl.ac.uk",
@@ -23,36 +23,38 @@ Imports:
     cli (>= 3.3.0),
     dplyr,
     ggplot2,
-    gridExtra,
     graphics,
+    gridExtra,
     MASS,
     Matrix,
+    MCMCvis,
     purrr,
     Rdpack,
     reshape2,
     rlang,
-    scales
+    scales,
+    voi
 Depends:
     R (>= 3.5.0)
 Suggests:
     coda,
     grid,
-    INLA,
     knitr,
     markdown,
-    MCMCvis,
     mgcv,
     plotly,
+    plotrix,
+    RColorBrewer,
     rjags,
     rmarkdown,
     rstan,
-    RColorBrewer,
     splancs,
     testthat (>= 2.1.0),
     vdiffr,
     withr
 RdMacros: Rdpack
-Additional_repositories: https://inla.r-inla-download.org/R/stable/
+VignetteBuilder: knitr
+Additional_repositories: https://inla.r-inla-download.org/R/testing/
 Description: Produces an economic evaluation of a sample of suitable variables of
              cost and effectiveness / utility for two or more interventions,
              e.g. from a Bayesian model in the form of MCMC simulations.
@@ -64,6 +66,9 @@ URL: https://gianluca.statistica.it/software/bcea/,
      https://gianluca.statistica.it/,
      https://github.com/giabaio/BCEA/  
 NeedsCompilation: no
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3.9000
 Encoding: UTF-8
 BugReports: https://github.com/n8thangreen/BCEA/issues/
+Remotes: 
+    chjackson/voi
+LazyData: false

@@ -17,5 +17,5 @@ modelling and the economic evaluation.}
 \item{pos_legend}{Legend position}
 }
 \description{
-Choice of base R, ggplot2.
+Choice of base R, \pkg{ggplot2}.
 }

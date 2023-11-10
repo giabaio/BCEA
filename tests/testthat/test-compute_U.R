@@ -1,13 +1,12 @@
 
-# library(BCEA)
-library(dplyr)
-library(reshape2)
+# library(dplyr)
+# library(reshape2)
 
-
-load("ce.RData")
-
+##TODO:
 
 test_that("compute_U", {
+  
+  load(test_path("ce.RData"))
   
   # single wtp
   

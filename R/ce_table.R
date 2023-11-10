@@ -54,8 +54,7 @@ tabulate_means <- function(he,
                            comp_label = NULL,
                            ...) {
   
-  if (is.null(comp_label))
-    comp_label <- 1:he$n_comparisons
+  comp_label <- comp_label %||% seq_len(he$n_comparisons)
   
   data.frame(
     lambda.e = vapply(1:he$n_comparisons,

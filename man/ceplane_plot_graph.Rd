@@ -30,19 +30,19 @@ modelling and the economic evaluation.}
 
 \item{pos_legend}{Legend position}
 
-\item{graph_params}{Graph parameters in ggplot format}
+\item{graph_params}{Graph parameters in \pkg{ggplot2} format}
 
 \item{...}{Additional arguments}
 }
 \value{
 For base R returns a plot
 
-For ggplot2 returns ggplot2 object
+For \pkg{ggplot2} returns \pkg{ggplot2} object
 
-For plotly returns a plot in the Viewer
+For \pkg{plotly} returns a plot in the Viewer
 }
 \description{
-Choice of base R, ggplot2 or plotly.
+Choice of base R, \pkg{ggplot2} or \pkg{plotly}.
 }
 \examples{
 # single comparator

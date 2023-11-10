@@ -264,7 +264,7 @@ compute_IB <- function(df_ce, k) {
   df_ce <-
     df_ce %>% 
     filter(ints != .data$ref) %>%
-    rename(comps = .data$ints)
+    rename(comps = "ints")
   
   ib_df <-
     data.frame(k = rep(k, each = nrow(df_ce)),
@@ -304,7 +304,7 @@ compute_ICER <- function(df_ce) {
     summarise(
       ICER = mean(.data$delta_c)/mean(.data$delta_e)) %>% 
     ungroup() %>% 
-    select(.data$ICER) %>%  # required to match current format 
+    select("ICER") %>%  # required to match current format 
     unlist() %>% 
     setNames(comp_names)
 }
@@ -331,7 +331,7 @@ comp_names_from_ <- function(df_ce) {
     filter(.data$ref != .data$ints) %>%
     distinct() %>%
     arrange(.data$ints) %>% 
-    select(.data$interv_names) %>% 
+    select("interv_names") %>% 
     unlist()
 }
 

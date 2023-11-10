@@ -1,14 +1,14 @@
 
 # opportunity loss
 
-# library(BCEA)
-library(dplyr)
-library(reshape2)
+# library(dplyr)
+# library(reshape2)
 
 
-load(test_path("ce.RData"))
 
 test_that("simple data input parameters", {
+  
+  load(test_path("ce.RData"))
   
   # only one intervention
   # limiting case
@@ -65,6 +65,8 @@ test_that("simple data input parameters", {
 })
 
 test_that("call via bcea", {
+  
+  load(test_path("ce.RData"))
   
   res <- 
     bcea(e = eff,

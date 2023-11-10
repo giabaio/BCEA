@@ -21,5 +21,5 @@ modelling and the economic evaluation.}
 \item{...}{Additional arguments}
 }
 \description{
-Choice of base R, ggplot2.
+Choice of base R, \pkg{ggplot2}.
 }

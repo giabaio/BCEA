@@ -12,7 +12,7 @@
 
 > Perform Bayesian Cost-Effectiveness Analysis in R.
 
-:rocket: **Version 2.4.2 out now!** [Check out the release notes here](https://github.com/n8thangreen/BCEA/releases/tag/v2.4.2).
+:rocket: **Version 2.4.5 out now!** [Check out the release notes here](https://github.com/n8thangreen/BCEA/releases).
 
 ## Contents
 
@@ -34,12 +34,12 @@ Main features of `BCEA` include:
 * EVPPI calculations and plots
 
 ## Installation
-Install the released version from CRAN with
+Install the [released version from CRAN](https://cran.r-project.org/package=BCEA) with
 ```r
 install.packages("BCEA")
 ```
 
-The development version can be installed using this GitHub repository. On Windows machines, you need to install a few dependencies, including [Rtools](https://cran.r-project.org/bin/windows/Rtools/) first, e.g. by running
+The stable version (which can be updated more quickly) can be installed using this GitHub repository. On Windows machines, you need to install a few dependencies, including [Rtools](https://cran.r-project.org/bin/windows/Rtools/) first, e.g. by running
 
 ```r
 pkgs <- c("MASS", "Rtools", "remotes")
@@ -49,13 +49,13 @@ install.packages(pkgs, repos=repos, dependencies = "Depends")
 before installing the package using `remotes`:
 
 ```r
-remotes::install_github("giabaio/BCEA", ref="dev")
+remotes::install_github("giabaio/BCEA")
 ```
 Under Linux or MacOS, it is sufficient to install the package via `remotes`:
 
 ```r
 install.packages("remotes")
-remotes::install_github("giabaio/BCEA", ref="dev")
+remotes::install_github("giabaio/BCEA")
 ```
 
 ## Articles
@@ -72,14 +72,13 @@ Examples of using specific functions and their different arguments are given in 
 
 ## Further details
 The `pkgdown` site is [here](https://n8thangreen.github.io/BCEA/).
-More details on `BCEA` are available in our book [_Bayesian Cost-Effectiveness Analysis with the R Package BCEA_](https://gianluca.statistica.it/book/bcea/) (published in the UseR! Springer series). Also, details about the package, including some references and links to a pdf presentation and some posts on my own blog) are given [here](https://gianluca.statistica.it/software/bcea/).
+More details on `BCEA` are available in our book [_Bayesian Cost-Effectiveness Analysis with the R Package BCEA_](https://gianluca.statistica.it/books/bcea/) (published in the UseR! Springer series). Also, details about the package, including some references and links to a pdf presentation and some posts on my own blog) are given [here](https://gianluca.statistica.it/software/bcea/).
 
 ## License
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ## Contributing
-Please submit contributions through `Pull Requests`, following the [contributing
-guidelines](https://github.com/n8thangreen/BCEA/blob/dev/CONTRIBUTING.md).
+Please submit contributions through `Pull Requests`, following the [contributing guidelines](https://github.com/n8thangreen/BCEA/blob/dev/CONTRIBUTING.md).
 To report issues and/or seek support, please file a new ticket in the
 [issue](https://github.com/n8thangreen/BCEA/issues) tracker.
 
