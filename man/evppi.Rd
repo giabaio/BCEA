@@ -9,6 +9,8 @@ Parameters}
 \usage{
 evppi(he, param_idx, input, N = NULL, plot = FALSE, residuals = TRUE, ...)
 
+\method{evppi}{default}(he, ...)
+
 \method{evppi}{bcea}(
   he,
   param_idx = NULL,
@@ -16,10 +18,9 @@ evppi(he, param_idx, input, N = NULL, plot = FALSE, residuals = TRUE, ...)
   N = NULL,
   plot = FALSE,
   residuals = TRUE,
+  method = NULL,
   ...
 )
-
-\method{evppi}{default}(he, ...)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
@@ -44,9 +45,7 @@ SPDE-INLA should be plotted. Default set to \code{FALSE}.}
 \item{residuals}{A logical value indicating whether the fitted values for
 the SPDE-INLA method should be outputted. Default set to \code{TRUE}.}
 
-\item{...}{Additional arguments. To select which method use the \code{method} argument.
-The default methods are recommended. However, it is possible (mainly for backward compatibility) to
-use different methods. The methods to compute the EVPPI are:
+\item{...}{Additional arguments. Details of the methods to compute the EVPPI and their additional arguments are:
 \itemize{
 \item For single-parameter:
 \itemize{
@@ -65,6 +64,9 @@ Note that the multi-parameter version for this method has been deprecated.
 \item Gaussian process regression with \code{method} of \code{gp}.
 }
 }}
+
+\item{method}{Character string to select which method to use. The default methods are recommended.
+However, it is possible (mainly for backward compatibility) to use different methods.}
 }
 \value{
 Object of class \code{evppi}:
@@ -220,6 +222,11 @@ EVPPI <- evppi(m, c(2,3), inp$mat, h.value = 0.0000005)
 plot(EVPPI)
 }
 
+data(Vaccine, package = "BCEA")
+treats <- c("Status quo", "Vaccination")
+bcea_vacc <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
+inp <- createInputs(vaccine_mat)
+evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
 }
 \references{
 \insertRef{Strong2014}{BCEA}

@@ -39,9 +39,9 @@
 #' SPDE-INLA should be plotted. Default set to `FALSE`.
 #' @param residuals A logical value indicating whether the fitted values for
 #' the SPDE-INLA method should be outputted. Default set to `TRUE`.
-#' @param ...  Additional arguments. To select which method use the `method` argument.
-#' The default methods are recommended. However, it is possible (mainly for backward compatibility) to
-#' use different methods. The methods to compute the EVPPI are:
+#' @param method Character string to select which method to use. The default methods are recommended.
+#'   However, it is possible (mainly for backward compatibility) to use different methods. 
+#' @param ...  Additional arguments. Details of the methods to compute the EVPPI and their additional arguments are:
 #' - For single-parameter:
 #'    - Generalized additive model (GAM) (default).
 #'    - The method of Strong & Oakley use `method` as string `so`.
