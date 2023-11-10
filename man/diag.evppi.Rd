@@ -14,7 +14,7 @@ on a \code{bcea} model.}
 modelling and the economic evaluation.}
 
 \item{plot_type}{The type of diagnostics to be performed. It can be the 'residual
-plot' or the 'qqplot plot'.}
+plot' (\code{residuals}) or the Q-Q (quantile-quantile) plot (\code{qqplot}).}
 
 \item{interv}{Specifies the interventions for which diagnostic tests should be
 performed (if there are many options being compared)}
@@ -38,7 +38,7 @@ suggests that the variances of the error terms are equal.
 This suggests that there are no outliers.
 }
 \details{
-The second possible diagnostic is the qqplot for the fitted value. This is a
+The second possible diagnostic is the Q-Q plot for the fitted value. This is a
 graphical method for comparing the fitted values distributions with the
 assumed underlying normal distribution by plotting their quantiles against
 each other. First, the set of intervals for the quantiles is chosen. A point
