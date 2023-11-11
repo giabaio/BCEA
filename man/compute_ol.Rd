@@ -35,5 +35,5 @@ as there would be no opportunity loss, if the parameter configuration were the
 one obtained in the current simulation.
 }
 \seealso{
-\code{\link{compute_vi}}
+\code{\link[=compute_vi]{compute_vi()}}
 }

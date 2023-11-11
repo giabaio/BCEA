@@ -3,14 +3,14 @@
 #' 
 #' @template args-he
 #' @param comparators Vector specifying the comparators to be included in the
-#' frontier analysis. It must have a length > 1. Default as \code{NULL} includes
+#' frontier analysis. It must have a length > 1. Default as `NULL` includes
 #' all the available comparators.
 #' @template args-pos
 #' @param start.from.origins Logical. Should the frontier start from the
-#'  origins of the axes? The argument is reset to \code{FALSE} if the average
+#'  origins of the axes? The argument is reset to `FALSE` if the average
 #'  effectiveness and/or costs of at least one comparator are negative.
 #' @param threshold Specifies if the efficiency should be defined based on a
-#'  willingness-to-pay threshold value. If set to \code{NULL} (the default), no
+#'  willingness-to-pay threshold value. If set to `NULL` (the default), no
 #'  conditions are included on the slope increase. If a positive value is passed
 #'  as argument, to be efficient an intervention also requires to have an ICER
 #'  for the comparison versus the last efficient strategy not greater than the
@@ -19,32 +19,32 @@
 #' @param dominance Logical. Should the dominance regions be included in the
 #'  plot?
 #' @param relative Logical. Should the plot display the absolute measures (the
-#'  default as \code{FALSE}) or the differential outcomes versus the reference
+#'  default as `FALSE`) or the differential outcomes versus the reference
 #'  comparator?
 #' @param print.summary Logical. Should the efficiency frontier summary be
 #'  printed along with the graph?  See Details for additional information.
 #' @param graph A string used to select the graphical engine to use for
-#'  plotting. Should (partial-)match the two options \code{"base"} or
-#'  \code{"ggplot2"}. Default value is \code{"base"}.
+#'  plotting. Should (partial-)match the two options `"base"` or
+#'  `"ggplot2"`. Default value is `"base"`.
 #' @param print.plot Logical. Should the efficiency frontier be plotted?
-#' @param ... If \code{graph_type="ggplot2"} and a named theme object is supplied,
-#'  it will be added to the ggplot object. Ignored if \code{graph_type="base"}.
-#'  Setting the optional argument \code{include.ICER} to \code{TRUE} will print
+#' @param ... If `graph_type="ggplot2"` and a named theme object is supplied,
+#'  it will be added to the ggplot object. Ignored if `graph_type="base"`.
+#'  Setting the optional argument `include.ICER` to `TRUE` will print
 #'  the ICERs in the summary tables, if produced.
 #' 
 #' @return \item{ceplane}{ A ggplot object containing the plot. Returned only
-#' if \code{graph_type="ggplot2"}. } The function produces a plot of the
+#' if `graph_type="ggplot2"`. } The function produces a plot of the
 #' cost-effectiveness efficiency frontier. The dots show the simulated values
 #' for the intervention-specific distributions of the effectiveness and costs.
 #' The circles indicate the average of each bivariate distribution, with the
 #' numbers referring to each included intervention. The numbers inside the
 #' circles are black if the intervention is included in the frontier and grey
-#' otherwise. If the option \code{dominance} is set to \code{TRUE}, the
+#' otherwise. If the option `dominance` is set to `TRUE`, the
 #' dominance regions are plotted, indicating the areas of dominance.
 #' Interventions in the areas between the dominance region and the frontier are
 #' in a situation of extended dominance.
 #' @author Andrea Berardi, Gianluca Baio
-#' @seealso \code{\link{bcea}}
+#' @seealso [bcea()]
 #' 
 #' @references
 #' \insertRef{Baio2013}{BCEA}
@@ -184,28 +184,28 @@ ceef.plot.bcea <- function(he,
 #' that are not considered cost-effective at any value of the cost-effectiveness threshold.
 #' 
 #' Back compatibility with BCEA previous versions:
-#' The \code{bcea} objects did not include the generating \code{e} and \code{c}
+#' The `bcea` objects did not include the generating `e` and `c`
 #' matrices in BCEA versions <2.1-0. This function is not compatible with
 #' objects created with previous versions. The matrices can be appended to
-#' \code{bcea} objects obtained using previous versions, making sure that the
+#' `bcea` objects obtained using previous versions, making sure that the
 #' class of the object remains unaltered.
 #' 
-#' The argument \code{print.summary} allows for printing a brief summary of the
-#' efficiency frontier, with default to \code{TRUE}. Two tables are plotted,
+#' The argument `print.summary` allows for printing a brief summary of the
+#' efficiency frontier, with default to `TRUE`. Two tables are plotted,
 #' one for the interventions included in the frontier and one for the dominated
 #' interventions. The average costs and clinical benefits are included for each
 #' intervention. The frontier table includes the slope for the increase in the
 #' frontier and the non-frontier table displays the dominance type of each
 #' dominated intervention. Please note that the slopes are defined as the
 #' increment in the costs for a unit increment in the benefits even if
-#' \code{flip = TRUE} for consistency with the ICER definition. The angle of
+#' `flip = TRUE` for consistency with the ICER definition. The angle of
 #' increase is in radians and depends on the definition of the axes, i.e. on
-#' the value given to the \code{flip} argument.
+#' the value given to the `flip` argument.
 #' 
-#' If the argument \code{relative} is set to \code{TRUE}, the graph will not
+#' If the argument `relative` is set to `TRUE`, the graph will not
 #' display the absolute measures of costs and benefits. Instead the axes will
 #' represent differential costs and benefits compared to the reference
-#' intervention (indexed by \code{ref} in the \code{\link{bcea}} function).
+#' intervention (indexed by `ref` in the [bcea()] function).
 #' 
 #' @template args-he
 #' @export

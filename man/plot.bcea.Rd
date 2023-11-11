@@ -23,7 +23,7 @@ together. Any subset of the possible comparisons can be selected (e.g.,
 \code{comparison=c(1,3)} or \code{comparison=2}).}
 
 \item{wtp}{The value of the willingness to pay parameter. It is passed to
-\code{\link{ceplane.plot}}.}
+\code{\link[=ceplane.plot]{ceplane.plot()}}.}
 
 \item{pos}{Parameter to set the position of the legend (only relevant for
 multiple interventions, ie more than 2 interventions being compared).
@@ -39,8 +39,8 @@ bottom of the plot.}
 plotting. Should (partial-)match the two options \code{"base"} or
 \code{"ggplot2"}. Default value is \code{"base"}.}
 
-\item{...}{Arguments to be passed to the methods \code{\link{ceplane.plot}}
-and \code{\link{eib.plot}}. Please see the manual pages for the individual
+\item{...}{Arguments to be passed to the methods \code{\link[=ceplane.plot]{ceplane.plot()}}
+and \code{\link[=eib.plot]{eib.plot()}}. Please see the manual pages for the individual
 functions.  Arguments like \code{size}, \code{ICER.size} and \code{plot.cri}
 can be supplied to the functions in this way. In addition if
 \code{graph="ggplot2"} and the arguments are named theme objects they will
@@ -55,7 +55,7 @@ Incremental Benefit, the CEAC and the EVPI.
 }
 \details{
 The default position of the legend for the cost-effectiveness plane
-(produced by \code{\link{ceplane.plot}}) is set to \code{c(1, 1.025)}
+(produced by \code{\link[=ceplane.plot]{ceplane.plot()}}) is set to \code{c(1, 1.025)}
 overriding its default for \code{pos=FALSE}, since multiple ggplot2 plots
 are rendered in a slightly different way than single plots.
 }
@@ -103,11 +103,11 @@ plot(he,
 \insertRef{Baio2013}{BCEA}
 }
 \seealso{
-\code{\link{bcea}},
-         \code{\link{ceplane.plot}},
-         \code{\link{eib.plot}},
-         \code{\link{ceac.plot}},
-         \code{\link{evi.plot}}
+\code{\link[=bcea]{bcea()}},
+\code{\link[=ceplane.plot]{ceplane.plot()}},
+\code{\link[=eib.plot]{eib.plot()}},
+\code{\link[=ceac.plot]{ceac.plot()}},
+\code{\link[=evi.plot]{evi.plot()}}
 }
 \author{
 Gianluca Baio, Andrea Berardi

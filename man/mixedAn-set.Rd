@@ -19,18 +19,18 @@ By default, assumes uniform distribution for each intervention.}
 }
 \value{
 Creates an object in the class \code{mixedAn}, a subclass of \code{bcea}
-  which contains the results of the health economic evaluation in the mixed analysis case:
-  \item{Ubar}{An array with the simulations of the ''known-distribution''
-  mixed utilities, for each value of the discrete grid approximation of the
-  willingness to pay parameter}
-  \item{OL.star}{An array with the simulations of the distribution of the
-  Opportunity Loss for the mixed strategy, for each value of the discrete grid
-  approximation of the willingness to pay parameter}
-  \item{evi.star}{The Expected Value of Information for the mixed strategy,
-  for each value of the discrete grid approximation of the willingness to pay
-  parameter}
-  \item{mkt.shares}{The vector of market shares associated with each available
-  intervention}
+which contains the results of the health economic evaluation in the mixed analysis case:
+\item{Ubar}{An array with the simulations of the ''known-distribution''
+mixed utilities, for each value of the discrete grid approximation of the
+willingness to pay parameter}
+\item{OL.star}{An array with the simulations of the distribution of the
+Opportunity Loss for the mixed strategy, for each value of the discrete grid
+approximation of the willingness to pay parameter}
+\item{evi.star}{The Expected Value of Information for the mixed strategy,
+for each value of the discrete grid approximation of the willingness to pay
+parameter}
+\item{mkt.shares}{The vector of market shares associated with each available
+intervention}
 }
 \description{
 Runs the cost-effectiveness analysis, but accounts for the fact that more
@@ -73,7 +73,7 @@ evi.plot(m)
 \insertRef{Baio2013}{BCEA}
 }
 \seealso{
-\code{\link{bcea}}
+\code{\link[=bcea]{bcea()}}
 }
 \author{
 Gianluca Baio

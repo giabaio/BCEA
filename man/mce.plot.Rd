@@ -7,7 +7,7 @@
 mce.plot(mce, pos = c(1, 0.5), graph = c("base", "ggplot2"), ...)
 }
 \arguments{
-\item{mce}{The output of the call to the function \code{\link{multi.ce}}.}
+\item{mce}{The output of the call to the function \code{\link[=multi.ce]{multi.ce()}}.}
 
 \item{pos}{Parameter to set the position of the legend. Can be given in form
 of a string \code{(bottom|top)(right|left)} for base graphics and
@@ -32,7 +32,7 @@ will fall back to the default values (all black, or shades of grey)}
 if \code{graph="ggplot2"}. }
 }
 \description{
-This function is deprecated. Use \code{\link{ceac.plot}} instead.
+This function is deprecated. Use \code{\link[=ceac.plot]{ceac.plot()}} instead.
 Plots the probability that each of the n_int interventions being analysed is
 the most cost-effective.
 }
@@ -76,7 +76,7 @@ mce.plot(mce,               # the same plot
 \insertRef{Baio2013}{BCEA}
 }
 \seealso{
-\code{\link{BCEA-deprecated}}
+\code{\link[=BCEA-deprecated]{BCEA-deprecated()}}
 }
 \author{
 Gianluca Baio, Andrea Berardi

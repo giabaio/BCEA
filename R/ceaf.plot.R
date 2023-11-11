@@ -2,15 +2,15 @@
 #' @rdname ceaf.plot
 #' 
 #' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-) match the two options \code{"base"} or
-#' \code{"ggplot2"}. Default value is \code{"base"}.
+#' plotting. Should (partial-) match the two options `"base"` or
+#' `"ggplot2"`. Default value is `"base"`.
 #' 
 #' @return \item{ceaf}{A ggplot object containing the plot. Returned only if
-#' \code{graph="ggplot2"}.}
+#' `graph="ggplot2"`.}
 #' 
 #' @author Gianluca Baio, Andrea Berardi
-#' @seealso \code{\link{bcea}},
-#'          \code{\link{multi.ce}}
+#' @seealso [bcea()],
+#'          [multi.ce()]
 #' 
 #' @references
 #' \insertRef{Baio2011}{BCEA}
@@ -128,7 +128,7 @@ ceaf.plot.pairwise <- function(mce,
 #' Produces a plot the Cost-Effectiveness Acceptability Frontier (CEAF)
 #' against the willingness to pay threshold.
 #' 
-#' @param mce The output of the call to the function \code{\link{multi.ce}}
+#' @param mce The output of the call to the function [multi.ce()]
 #' @param ... Additional arguments
 #' 
 #' @export

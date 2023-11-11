@@ -24,13 +24,13 @@
 #' \item{list("pi_post")}{a matrix of 500 simulations from the posterior
 #'  distribution of the event of smoking cessation with each strategy}
 #' \item{list("smoking")}{a data frame containing the inputs needed for the
-#'  network meta-analysis model. The \code{data.frame} object contains:
-#'  \code{nobs}: the record ID number, \code{s}: the study ID number, \code{i}:
-#'  the intervention ID number, \code{r_i}: the number of patients who quit
-#'  smoking, \code{n_i}: the total number of patients for the row-specific arm
-#'  and \code{b_i}: the reference intervention for each study}
+#'  network meta-analysis model. The `data.frame` object contains:
+#'  `nobs`: the record ID number, `s`: the study ID number, `i`:
+#'  the intervention ID number, `r_i`: the number of patients who quit
+#'  smoking, `n_i`: the total number of patients for the row-specific arm
+#'  and `b_i`: the reference intervention for each study}
 #' \item{list("smoking_mat")}{a matrix obtained by running the network
-#'  meta-analysis model based on the data contained in the \code{smoking} object}
+#'  meta-analysis model based on the data contained in the `smoking` object}
 #' \item{list("treats")}{a vector of labels associated with the four strategies}
 #' }
 #' @references Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
@@ -42,7 +42,7 @@
 #'    \item Taylor, D.H. Jr, et al. (2002). Benefits of smoking
 #'    cessation on longevity. American Journal of Public Health 2002;92(6)
 #'    \item ASH: Action on Smoking and Health (2013). ASH fact sheet on smoking
-#'    statistics, \cr \code{https://ash.org.uk/files/documents/ASH_106.pdf}
+#'    statistics, \cr `https://ash.org.uk/files/documents/ASH_106.pdf`
 #'    \item Flack, S., et al. (2007). Cost-effectiveness of interventions for smoking
 #'    cessation. York Health Economics Consortium, January 2007
 #'    \item McGhan, W.F.D., and Smith, M. (1996). Pharmacoeconomic analysis of

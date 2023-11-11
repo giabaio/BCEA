@@ -1,10 +1,10 @@
 
-#' Summary Method for Objects of Class \code{pairwise}
+#' Summary Method for Objects of Class `pairwise`
 #' 
 #' Produces a table printout with some summary results of the health economic
 #' evaluation.
 #' 
-#' @param object A \code{pairwise} object containing the results of the Bayesian
+#' @param object A `pairwise` object containing the results of the Bayesian
 #'               modelling and the economic evaluation.
 #' @param wtp The value of the willingness to pay threshold used in the
 #'            summary table.
@@ -13,7 +13,7 @@
 #' @return Prints a summary table with some information on the health economic
 #' output and synthetic information on the economic measures (EIB, CEAC, EVPI).
 #' @author Gianluca Baio
-#' @seealso \code{\link{bcea}} \code{\link{multi.ce}}
+#' @seealso [bcea()] [multi.ce()]
 #' @importFrom Rdpack reprompt
 #' 
 #' @references

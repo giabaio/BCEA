@@ -6,8 +6,8 @@
 #' @template args-pos
 #' @template args-graph
 #'    
-#' @return \item{ceac}{If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 
-#'   a plotly object containing the requested plot. Nothing is returned when \code{graph = "base"},
+#' @return \item{ceac}{If `graph = "ggplot2"` a ggplot object, or if `graph = "plotly"` 
+#'   a plotly object containing the requested plot. Nothing is returned when `graph = "base"`,
 #'   the default.} The function produces a plot of the
 #'   cost-effectiveness acceptability curve against the discrete grid of possible
 #'   values for the willingness to pay parameter. Values of the CEAC closer to 1
@@ -16,8 +16,8 @@
 #'   that uncertainty in the cost-effectiveness of the comparator is very low.
 #'   
 #' @author Gianluca Baio, Andrea Berardi
-#' @seealso \code{\link{bcea}},
-#'          \code{\link{plot.bcea}}
+#' @seealso [bcea()],
+#'          [plot.bcea()]
 #' @references
 #' 
 #' \insertRef{Baio2011}{BCEA}
@@ -113,16 +113,16 @@ ceac.plot.bcea <- function(he,
 #' effectively depending on the willingness to pay value \eqn{k}.
 #' 
 #' @template args-he
-#' @param ...  If \code{graph = "ggplot2"} and a named theme object is supplied,
+#' @param ...  If `graph = "ggplot2"` and a named theme object is supplied,
 #'   it will be passed to the ggplot2 object. The usual ggplot2 syntax is used.
 #'   Additional arguments:
 #'  \itemize{
-#'   \item \code{line = list(color)}: specifies the line colour(s) - all graph types.
-#'   \item \code{line = list(type)}: specifies the line type(s) as \code{lty} numeric values - all graph types.
-#'   \item \code{line = list(size)}: specifies the line width(s) as numeric values - all graph types.
-#'   \item \code{currency}: Currency prefix to willingness to pay values - ggplot2 only.
-#'   \item \code{area_include}: logical, include area under the CEAC curves - plotly only.
-#'   \item \code{area_color}: specifies the AUC colour - plotly only.}
+#'   \item `line = list(color)`: specifies the line colour(s) - all graph types.
+#'   \item `line = list(type)`: specifies the line type(s) as `lty` numeric values - all graph types.
+#'   \item `line = list(size)`: specifies the line width(s) as numeric values - all graph types.
+#'   \item `currency`: Currency prefix to willingness to pay values - ggplot2 only.
+#'   \item `area_include`: logical, include area under the CEAC curves - plotly only.
+#'   \item `area_color`: specifies the AUC colour - plotly only.}
 #' @aliases ceac.plot
 #' @export
 #' 

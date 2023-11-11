@@ -5,35 +5,35 @@
 #' Incremental Benefit, the CEAC and the EVPI.
 #' 
 #' The default position of the legend for the cost-effectiveness plane
-#' (produced by \code{\link{ceplane.plot}}) is set to \code{c(1, 1.025)}
-#' overriding its default for \code{pos=FALSE}, since multiple ggplot2 plots
+#' (produced by [ceplane.plot()]) is set to `c(1, 1.025)`
+#' overriding its default for `pos=FALSE`, since multiple ggplot2 plots
 #' are rendered in a slightly different way than single plots.
 #' 
-#' @param x A \code{bcea} object containing the results of the Bayesian
+#' @param x A `bcea` object containing the results of the Bayesian
 #' modelling and the economic evaluation.
 #' @template args-comparison
 #' @param wtp The value of the willingness to pay parameter. It is passed to
-#' \code{\link{ceplane.plot}}.
+#' [ceplane.plot()].
 #' @template args-pos
 #' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the two options \code{"base"} or
-#' \code{"ggplot2"}. Default value is \code{"base"}.
-#' @param ...  Arguments to be passed to the methods \code{\link{ceplane.plot}}
-#' and \code{\link{eib.plot}}. Please see the manual pages for the individual
-#' functions.  Arguments like \code{size}, \code{ICER.size} and \code{plot.cri}
+#' plotting. Should (partial-)match the two options `"base"` or
+#' `"ggplot2"`. Default value is `"base"`.
+#' @param ...  Arguments to be passed to the methods [ceplane.plot()]
+#' and [eib.plot()]. Please see the manual pages for the individual
+#' functions.  Arguments like `size`, `ICER.size` and `plot.cri`
 #' can be supplied to the functions in this way. In addition if
-#' \code{graph="ggplot2"} and the arguments are named theme objects they will
+#' `graph="ggplot2"` and the arguments are named theme objects they will
 #' be added to each plot.
 #' 
 #' @return A plot with four graphical summaries of the health economic evaluation.
 #' 
 #' @author Gianluca Baio, Andrea Berardi
 #' 
-#' @seealso \code{\link{bcea}},
-#'          \code{\link{ceplane.plot}},
-#'          \code{\link{eib.plot}},
-#'          \code{\link{ceac.plot}},
-#'          \code{\link{evi.plot}}
+#' @seealso [bcea()],
+#'          [ceplane.plot()],
+#'          [eib.plot()],
+#'          [ceac.plot()],
+#'          [evi.plot()]
 #' @importFrom Rdpack reprompt
 #' @importFrom purrr map_lgl
 #'          

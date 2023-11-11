@@ -26,7 +26,7 @@ evppi.bcea <- function(he,
                        plot = FALSE,
                        residuals = TRUE,
                        method = NULL, ...) {
-  
+
   comp_ids <- c(he$comp, he$ref)
   outputs <- list(e = he$e[, comp_ids],
                   c = he$c[, comp_ids],

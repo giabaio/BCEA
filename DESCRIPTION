@@ -72,3 +72,4 @@ BugReports: https://github.com/n8thangreen/BCEA/issues/
 Remotes: 
     chjackson/voi
 LazyData: false
+Roxygen: list(markdown = TRUE)

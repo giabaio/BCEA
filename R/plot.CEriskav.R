@@ -6,25 +6,25 @@
 #' Plots the Expected Incremental Benefit and the Expected Value of Perfect Information
 #' when risk aversion is included in the utility function.
 #' 
-#' @param x An object of the class \code{CEriskav}, a subclass of \code{bcea},
+#' @param x An object of the class `CEriskav`, a subclass of `bcea`,
 #' containing the results of the economic analysis performed accounting for a
-#' risk aversion parameter (obtained as output of the function \code{\link{CEriskav}}).
+#' risk aversion parameter (obtained as output of the function [CEriskav()]).
 #' @template args-pos
 #' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the two options \code{"base"} or
-#' \code{"ggplot2"}. Default value is \code{"base"}.
+#' plotting. Should (partial-)match the two options `"base"` or
+#' `"ggplot2"`. Default value is `"base"`.
 #' @param ...  Arguments to be passed to methods, such as graphical parameters
-#' (see \code{\link{par}}).
+#' (see [par()]).
 #' 
 #' @return \item{list(eib,evi)}{A two-elements named list of the ggplot objects
-#' containing the requested plots. Returned only if \code{graph="ggplot2"}.}
+#' containing the requested plots. Returned only if `graph="ggplot2"`.}
 #' The function produces two plots for the risk aversion analysis. The first
 #' one is the EIB as a function of the discrete grid approximation of the
 #' willingness parameter for each of the possible values of the risk aversion
-#' parameter, \code{r}. The second one is a similar plot for the EVPI.
+#' parameter, `r`. The second one is a similar plot for the EVPI.
 #' 
 #' @author Gianluca Baio, Andrea Berardi
-#' @seealso \code{\link{bcea}}, \code{\link{CEriskav}}
+#' @seealso [bcea()], [CEriskav()]
 #' @importFrom Rdpack reprompt
 #' 
 #' @references

@@ -29,5 +29,5 @@ the definition can be re-written as
 \deqn{IB = k\cdot\Delta_e - \Delta_c.}
 }
 \seealso{
-\code{\link{compute_EIB}}
+\code{\link[=compute_EIB]{compute_EIB()}}
 }

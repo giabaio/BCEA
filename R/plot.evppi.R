@@ -2,19 +2,19 @@
 #' Plot Expected Value of Partial Information With Respect to a
 #' Set of Parameters
 #' 
-#' @param x An object in the class \code{evppi},
-#' obtained by the call to the function \code{\link{evppi}}.
+#' @param x An object in the class `evppi`,
+#' obtained by the call to the function [evppi()].
 #' @template args-pos
 #' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-) match the two options \code{"base"} or
-#' \code{"ggplot2"}. Default value is \code{"base"}.
+#' plotting. Should (partial-) match the two options `"base"` or
+#' `"ggplot2"`. Default value is `"base"`.
 #' @param col Sets the colour for the lines depicted in the graph.
 #' @param ...  Arguments to be passed to methods, such as graphical parameters
-#' (see \code{\link{par}}).
+#' (see [par()]).
 #' @return Plot with base R or \pkg{ggplot2}.
 #' 
 #' @author Gianluca Baio, Andrea Berardi
-#' @seealso \code{\link{bcea}}, \code{\link{evppi}}
+#' @seealso [bcea()], [evppi()]
 #' @importFrom Rdpack reprompt
 #' 
 #' @references

@@ -20,11 +20,11 @@ summary table.}
 }
 \value{
 Produces the following elements:
-  \item{table}{A table with simulation statistics from the economic model}
-  \item{names.cols}{A vector of labels to be associated with each column of the table}
-  \item{wtp}{The selected value of the willingness to pay}
-  \item{idx_wtp}{The index associated with the selected value of the willingness
-  to pay threshold in the grid used to run the analysis}
+\item{table}{A table with simulation statistics from the economic model}
+\item{names.cols}{A vector of labels to be associated with each column of the table}
+\item{wtp}{The selected value of the willingness to pay}
+\item{idx_wtp}{The index associated with the selected value of the willingness
+to pay threshold in the grid used to run the analysis}
 }
 \description{
 Using the input in the form of MCMC simulations and after having run the
@@ -60,7 +60,7 @@ sim_table(m,         # uses the results of the economic evaluation
 \insertRef{Baio2013}{BCEA}
 }
 \seealso{
-\code{\link{bcea}}
+\code{\link[=bcea]{bcea()}}
 }
 \author{
 Gianluca Baio

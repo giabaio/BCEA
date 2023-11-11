@@ -19,20 +19,20 @@ plotting. Should (partial-)match the three options \code{"base"},
 
 \item{...}{Additional graphical arguments:
 \itemize{
-  \item \code{line_colors} to specify the EVPI line colour - all graph types.
-  \item \code{line_types} to specify the line type (lty) - all graph types.
-  \item \code{area_include} to specify whether to include the area under the
-  EVPI curve - plotly only.
-  \item \code{area_color} to specify the area under the colour curve - plotly only.}}
+\item \code{line_colors} to specify the EVPI line colour - all graph types.
+\item \code{line_types} to specify the line type (lty) - all graph types.
+\item \code{area_include} to specify whether to include the area under the
+EVPI curve - plotly only.
+\item \code{area_color} to specify the area under the colour curve - plotly only.}}
 }
 \value{
-\item{eib}{ If \code{graph="ggplot2"} a ggplot object, or if \code{graph="plotly"} 
-  a plotly object containing the requested plot. Nothing is returned when \code{graph="base"}, 
-  the default.} The function produces a plot of the
-  Expected Value of Information as a function of the discrete grid
-  approximation of the willingness to pay parameter. The break even point(s)
-  (i.e. the point in which the EIB=0, ie when the optimal decision changes
-  from one intervention to another) is(are) also showed.
+\item{eib}{ If \code{graph="ggplot2"} a ggplot object, or if \code{graph="plotly"}
+a plotly object containing the requested plot. Nothing is returned when \code{graph="base"},
+the default.} The function produces a plot of the
+Expected Value of Information as a function of the discrete grid
+approximation of the willingness to pay parameter. The break even point(s)
+(i.e. the point in which the EIB=0, ie when the optimal decision changes
+from one intervention to another) is(are) also showed.
 }
 \description{
 Plots the Expected Value of Information (EVI) against the willingness to pay.
@@ -67,9 +67,9 @@ evi.plot(m)
 \insertRef{Baio2013}{BCEA}
 }
 \seealso{
-\code{\link{bcea}},
-         \code{\link{ceac.plot}},
-         \code{\link{ceplane.plot}}
+\code{\link[=bcea]{bcea()}},
+\code{\link[=ceac.plot]{ceac.plot()}},
+\code{\link[=ceplane.plot]{ceplane.plot()}}
 }
 \author{
 Gianluca Baio, Andrea Berardi

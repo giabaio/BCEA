@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{An object of the class \code{CEriskav}, a subclass of \code{bcea},
 containing the results of the economic analysis performed accounting for a
-risk aversion parameter (obtained as output of the function \code{\link{CEriskav}}).}
+risk aversion parameter (obtained as output of the function \code{\link[=CEriskav]{CEriskav()}}).}
 
 \item{pos}{Parameter to set the position of the legend (only relevant for
 multiple interventions, ie more than 2 interventions being compared).
@@ -26,7 +26,7 @@ plotting. Should (partial-)match the two options \code{"base"} or
 \code{"ggplot2"}. Default value is \code{"base"}.}
 
 \item{...}{Arguments to be passed to methods, such as graphical parameters
-(see \code{\link{par}}).}
+(see \code{\link[=par]{par()}}).}
 }
 \value{
 \item{list(eib,evi)}{A two-elements named list of the ggplot objects
@@ -88,7 +88,7 @@ r <- c(1e-10, 0.005, 0.020, 0.035)
 \insertRef{Baio2013}{BCEA}
 }
 \seealso{
-\code{\link{bcea}}, \code{\link{CEriskav}}
+\code{\link[=bcea]{bcea()}}, \code{\link[=CEriskav]{CEriskav()}}
 }
 \author{
 Gianluca Baio, Andrea Berardi

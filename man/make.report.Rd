@@ -13,24 +13,24 @@ modelling and the economic evaluation.}
 \item{evppi}{An object obtained as output to a call to \code{evppi}
 (default is NULL, so not essential to producing the report).}
 
-\item{ext}{A string of text to indicate the extension of the 
+\item{ext}{A string of text to indicate the extension of the
 resulting output file. Possible options are \code{"pdf"}, \code{"docx"}.
 This requires the use of pandoc, knitr and rmarkdown.}
 
 \item{echo}{A string (default to \code{FALSE}) to instruct whether
-the report should also include the \code{BCEA} commands used to 
+the report should also include the \code{BCEA} commands used to
 produce the analyses. If the optional argument \code{echo} is set
 to \code{TRUE} (default = \code{FALSE}), then the commands are also
 printed.}
 
 \item{...}{Additional parameters. For example, the user can specify the
 value of the willingness to pay \code{wtp}, which is used in some of
-the resulting analyses (default at the break even point). 
-Another additional parameter that the user can specify is the name 
-of the file to which the report should be written. This can be done 
-by simply passing the optional argument \code{filename="NAME"}. 
-The user can also specify an object including the PSA simulations 
-for all the relevant model parameters. If this is passed to the 
+the resulting analyses (default at the break even point).
+Another additional parameter that the user can specify is the name
+of the file to which the report should be written. This can be done
+by simply passing the optional argument \code{filename="NAME"}.
+The user can also specify an object including the PSA simulations
+for all the relevant model parameters. If this is passed to the
 function (in the object \code{psa_sims}),
 then \code{make.report} will automatically construct an "Info-rank
 plot", which is a probabilistic form of tornado plot, based on the
@@ -57,7 +57,7 @@ Constructs the automated report from the output of the BCEA.
 \insertRef{Baio2013}{BCEA}
 }
 \seealso{
-\code{\link{bcea}}
+\code{\link[=bcea]{bcea()}}
 }
 \author{
 Gianluca Baio

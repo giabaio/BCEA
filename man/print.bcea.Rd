@@ -10,7 +10,7 @@
 \item{x}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
-\item{digits}{Minimal number of significant digits, see \code{\link{print.default}}.}
+\item{digits}{Minimal number of significant digits, see \code{\link[=print.default]{print.default()}}.}
 
 \item{give.attr}{Logical; if TRUE (default), show attributes as sub structures.}
 

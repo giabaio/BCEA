@@ -7,8 +7,8 @@
 #'         of all the monitored parameters}
 #'
 #' @author Gianluca Baio, Anna Heath and Mark Strong
-#' @seealso \code{\link{bcea}},
-#'          \code{\link{evppi}}
+#' @seealso [bcea()],
+#'          [evppi()]
 #' @export
 #'
 createInputs.default <- function(inputs,
@@ -75,17 +75,17 @@ createInputs.default <- function(inputs,
 #' Creates an object containing the matrix with the parameters simulated using
 #' the MCMC procedure (using JAGS, BUGS or Stan) and a vector of parameters
 #' (strings) that can be used to perform the expected value of partial
-#' information analysis. In the process, \code{createInputs} also checks for
+#' information analysis. In the process, `createInputs` also checks for
 #' linear dependency among columns of the PSA samples or columns having
 #' constant values and removes them to only leave the fundamental parameters
 #' (to run VoI analysis). This also deals with simulations stored in a
-#' \code{.csv} or \code{.txt} file (e.g. as obtained using bootstrapping from a
+#' `.csv` or `.txt` file (e.g. as obtained using bootstrapping from a
 #' non-Bayesian model).
 #'
-#' @param inputs A \code{rjags}, \code{bugs} or \code{stanfit} object, containing
-#' the results of a call to either JAGS, (using \code{R2jags}), BUGS
-#' (using \code{R2WinBUGS}, or Stan (using \code{rstan}).
-#' @param print_is_linear_comb Logical indicator. If set to \code{TRUE} (default)
+#' @param inputs A `rjags`, `bugs` or `stanfit` object, containing
+#' the results of a call to either JAGS, (using `R2jags`), BUGS
+#' (using `R2WinBUGS`, or Stan (using `rstan`).
+#' @param print_is_linear_comb Logical indicator. If set to `TRUE` (default)
 #' then prints the output of the procedure trying to assess whether there are
 #' some parameters that are a linear combination of others (in which case
 #' they are removed).
