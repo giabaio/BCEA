@@ -70,5 +70,6 @@ RoxygenNote: 7.2.3.9000
 Encoding: UTF-8
 BugReports: https://github.com/n8thangreen/BCEA/issues/
 Remotes: 
-    chjackson/voi
+    chjackson/voi,
+    dmurdoch/plotrix
 LazyData: false
