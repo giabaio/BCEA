@@ -10,7 +10,6 @@ evppi.default <- function(he, ...) {
 #' @rdname evppi
 #'
 #' @importFrom voi evppi
-#' @importFrom purrr list_cbind map
 #' @examples
 #' data(Vaccine, package = "BCEA")
 #' treats <- c("Status quo", "Vaccination")
@@ -26,7 +25,7 @@ evppi.bcea <- function(he,
                        plot = FALSE,
                        residuals = TRUE,
                        method = NULL, ...) {
-
+  
   comp_ids <- c(he$comp, he$ref)
   outputs <- list(e = he$e[, comp_ids],
                   c = he$c[, comp_ids],
@@ -83,34 +82,11 @@ evppi.bcea <- function(he,
                          collapse = ""), "bs='cr')")
     } else {NULL}
   
-  # fitted values
-  get_fitted_values <- residuals && (method_nm %in% c("inla", "gp", "gam"))
+  has_fitted_values <- residuals && (method_nm %in% c("inla", "gp", "gam"))
   
-  # named differently in different methods
-  fitted_lup <- c(inla = "fitted", gp = "fitted", gam = "fitted.values")
-  
-  if (get_fitted_values) {
-    fitted_txt <- fitted_lup[method_nm]
-    
-    fitted_c_ls <-
-      purrr::map(voi_models[[1]]$c,
-                 ~unname(as.data.frame(.x[[fitted_txt]]))) |>
-      rev()
-    
-    fitted_c <-
-      suppressMessages(purrr::list_cbind(fitted_c_ls)) |> 
-      as.matrix() |> 
-      cbind(0)
-    
-    fitted_e_ls <-
-      purrr::map(voi_models[[1]]$e,
-                 ~unname(as.data.frame(.x[[fitted_txt]]))) |>
-      rev()
-    
-    fitted_e <-
-      suppressMessages(purrr::list_cbind(fitted_e_ls)) |> 
-      as.matrix() |> 
-      cbind(0)
+  if (has_fitted_values) {
+    fitted_c <- get_fitted_("c", voi_methods, voi_models)
+    fitted_e <- get_fitted_("e", voi_methods, voi_models)
   } else {
     fitted_c <- NULL
     fitted_e <- NULL
@@ -141,3 +117,28 @@ evppi.bcea <- function(he,
   structure(out, class = c("evppi", class(out)))
 }
 
+#' Get fitted values from evppi object
+#' 
+#' @importFrom purrr list_cbind map
+#' @keywords internal
+#' @return matrix
+#
+get_fitted_ <- function(val, voi_methods, voi_models) {
+  
+  method_nm <- voi_methods[1]
+  
+  # named differently in different methods
+  fitted_lup <- c(inla = "fitted", gp = "fitted", gam = "fitted.values")
+  
+  fitted_txt <- fitted_lup[method_nm]
+  
+  fitted_ls <-
+    purrr::map(voi_models[[1]][[val]],
+               ~unname(as.data.frame(.x[[fitted_txt]]))) |>
+    rev()
+  
+  suppressMessages(
+    purrr::list_cbind(fitted_ls)) |> 
+    as.matrix() |> 
+    cbind(0)
+}
