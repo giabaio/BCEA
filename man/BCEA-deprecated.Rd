@@ -9,7 +9,7 @@ plot.mixedAn(x, y.limits=NULL, pos=c(0,1), graph=c("base","ggplot2"),...)
 }
 \arguments{
 \item{x}{An object of class \code{mixedAn}, given as output of the call to
-the function \code{\link{mixedAn}}.}
+the function \code{\link[=mixedAn]{mixedAn()}}.}
 
 \item{y.limits}{Range of the y-axis for the graph. The default value is
 \code{NULL}, in which case the maximum range between the optimal and the
@@ -29,7 +29,7 @@ plotting. Should (partial-)match the two options \code{"base"} or
 \code{"ggplot2"}. Default value is \code{"base"}.}
 
 \item{...}{Arguments to be passed to methods, such as graphical parameters
-(see \code{\link{par}}).}
+(see \code{\link[=par]{par()}}).}
 }
 \value{
 \item{evi}{ A ggplot object containing the plot. Returned only if
@@ -40,13 +40,13 @@ strategy one (when more than one intervention is considered in the market).
 }
 \description{
 The functions listed below are deprecated and will be defunct in
-  the near future. When possible, alternative functions with similar
-  functionality are also mentioned. Help pages for deprecated functions are
-  available at \code{help("<function>-deprecated")}.
+the near future. When possible, alternative functions with similar
+functionality are also mentioned. Help pages for deprecated functions are
+available at \code{help("<function>-deprecated")}.
 }
 \section{\code{plot.mixedAn}}{
 
-For \code{plot.mixedAn}, use \code{\link{evi.plot}}.
+For \code{plot.mixedAn}, use \code{\link[=evi.plot]{evi.plot()}}.
 
 Summary plot of the health economic analysis when the mixed analysis is
 considered

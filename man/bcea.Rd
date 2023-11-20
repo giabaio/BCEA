@@ -42,12 +42,12 @@ bcea(
 \item{eff}{An object containing \code{nsim} simulations for the variable of
 clinical effectiveness for each intervention being considered. In general it
 is a matrix with \code{nsim} rows and \code{nint} columns.
-This are partially matched with `e' from previous version of `BCEA` for back-compatibility.}
+This are partially matched with \verb{e' from previous version of }BCEA` for back-compatibility.}
 
 \item{cost}{An object containing \code{nsim} simulations for the variable of
 cost for each intervention being considered. In general it is a matrix with
 \code{nsim} rows and \code{nint} columns.
-This are partially matched with `c' from previous version of `BCEA` for back-compatibility.}
+This are partially matched with \verb{c' from previous version of }BCEA` for back-compatibility.}
 
 \item{ref}{Defines which intervention (columns of \code{eff} or \code{cost}) is
 considered to be the reference strategy. The default value \code{ref = 1}
@@ -66,7 +66,7 @@ together. Any subset of the possible comparisons can be selected (e.g.,
 
 \item{Kmax}{Maximum value of the willingness to pay to be considered.
 Default value is \code{k = 50000}. The willingness to pay is then approximated
-on a discrete grid in the interval \code{[0, Kmax]}. The grid is equal to
+on a discrete grid in the interval \verb{[0, Kmax]}. The grid is equal to
 \code{k} if the parameter is given, or composed of \code{501} elements if
 \code{k = NULL} (the default).}
 
@@ -111,8 +111,8 @@ of the willingness to pay and for each intervention being considered}
 from the Bayesian model and for each value of the grid approximation of the
 willingness to pay}
 \item{Ustar}{An array including the maximum "known-distribution" utility for
- each simulation from the Bayesian model and for each value of the grid
- approximation of the willingness to pay}
+each simulation from the Bayesian model and for each value of the grid
+approximation of the willingness to pay}
 \item{ol}{An array including the opportunity loss for each simulation from
 the Bayesian model and for each value of the grid approximation of the
 willingness to pay}

@@ -13,10 +13,10 @@ modelling and the economic evaluation.}
 }
 \value{
 Original \code{bcea} object (list) of class "pairwise" with additional:
-   \item{p_best_interv}{A matrix including the probability that each
-   intervention is the most cost-effective for all values of the willingness to
-   pay parameter}
-   \item{ceaf}{A vector containing the cost-effectiveness acceptability frontier}
+\item{p_best_interv}{A matrix including the probability that each
+intervention is the most cost-effective for all values of the willingness to
+pay parameter}
+\item{ceaf}{A vector containing the cost-effectiveness acceptability frontier}
 }
 \description{
 Computes and plots the probability that each of the \code{n_int} interventions
@@ -51,8 +51,8 @@ ceaf.plot(mce)
 
 }
 \seealso{
-\code{\link{bcea}},
-         \code{\link{ceaf.plot}}
+\code{\link[=bcea]{bcea()}},
+\code{\link[=ceaf.plot]{ceaf.plot()}}
 }
 \author{
 Gianluca Baio

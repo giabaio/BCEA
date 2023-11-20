@@ -23,5 +23,5 @@ modelling and the economic evaluation.}
 bcea-type object
 }
 \description{
-Alternative way to define `K` statistic.
+Alternative way to define \code{K} statistic.
 }

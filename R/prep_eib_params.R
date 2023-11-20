@@ -58,7 +58,7 @@ prep_eib_params <- function(he, plot.cri, ...) {
 #' Validate EIB parameters
 #' 
 #' @param params Graph parameters
-#' @seealso \code{\link{prep_eib_params}}
+#' @seealso [prep_eib_params()]
 #' @return List of graph parameters
 #' @importFrom cli cli_alert_warning
 #' @keywords internal

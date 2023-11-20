@@ -15,7 +15,7 @@
 #' @param ref Reference intervention (int)
 #'
 #' @return integer representing intervention
-#' @seealso \code{\link{ceac.plot}}
+#' @seealso [ceac.plot()]
 #' 
 #' @export
 #' 
@@ -34,7 +34,7 @@ compute_kstar <- function(k, best, ref) {
 #'
 #' @param ib Incremental benefit
 #' @return Array with dimensions (interv x k)
-#' @seealso \code{\link{ceac.plot}}
+#' @seealso [ceac.plot()]
 #' 
 #' @export
 #' 
@@ -63,7 +63,7 @@ compute_CEAC <- function(ib) {
 #' 
 #' @param ib Incremental benefit
 #' @return Array with dimensions (interv x k)
-#' @seealso \code{\link{ceac.plot}}, \code{\link{compute_CEAC}}, \code{\link{compute_IB}}
+#' @seealso [ceac.plot()], [compute_CEAC()], [compute_IB()]
 #' 
 #' @export
 #'  
@@ -120,7 +120,7 @@ compute_Ustar <- function(U) {
 #' @param U Net monetary benefit (sim x k x interv)
 #'
 #' @return Array with dimensions (sim x k)
-#' @seealso \code{\link{compute_ol}}
+#' @seealso [compute_ol()]
 #' 
 #' @export
 #' 
@@ -166,7 +166,7 @@ compute_vi <- function(Ustar, U) {
 #' @param best Best intervention for given willingness-to-pay (k)
 #'
 #' @return Array with dimensions (sim x k)
-#' @seealso \code{\link{compute_vi}}
+#' @seealso [compute_vi()]
 #' 
 #' @export
 #' 
@@ -253,7 +253,7 @@ compute_U <- function(df_ce, k) {
 #' @return Array with dimensions (k x sim x ints)
 #' 
 #' @export
-#' @seealso \code{\link{compute_EIB}}
+#' @seealso [compute_EIB()]
 #'
 compute_IB <- function(df_ce, k) {
   

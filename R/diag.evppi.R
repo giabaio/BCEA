@@ -24,17 +24,17 @@
 #' distribution (x-coordinate). If the two distributions being compared are
 #' identical, the Q-Q plot follows the 45 degrees line. 
 #' 
-#' @param evppi A \code{evppi} object obtained by running the function \code{evppi}
-#' on a \code{bcea} model.
+#' @param evppi A `evppi` object obtained by running the function `evppi`
+#' on a `bcea` model.
 #' @template args-he
 #' @param plot_type The type of diagnostics to be performed. It can be the 'residual
-#' plot' (\code{residuals}) or the Q-Q (quantile-quantile) plot (\code{qqplot}).
+#' plot' (`residuals`) or the Q-Q (quantile-quantile) plot (`qqplot`).
 #' @param interv Specifies the interventions for which diagnostic tests should be
 #' performed (if there are many options being compared)
 #' @return Plot
 #' 
 #' @author Gianluca Baio, Anna Heath
-#' @seealso \code{\link{bcea}}, \code{\link{evppi}}
+#' @seealso [bcea()], [evppi()]
 #' @importFrom Rdpack reprompt
 #' 
 #' @references

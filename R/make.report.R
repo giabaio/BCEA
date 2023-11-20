@@ -4,34 +4,34 @@
 #' Constructs the automated report from the output of the BCEA.
 #' 
 #' @template args-he
-#' @param evppi An object obtained as output to a call to \code{evppi}
+#' @param evppi An object obtained as output to a call to `evppi`
 #' (default is NULL, so not essential to producing the report).
 #' @param ext A string of text to indicate the extension of the 
-#' resulting output file. Possible options are \code{"pdf"}, \code{"docx"}.
+#' resulting output file. Possible options are `"pdf"`, `"docx"`.
 #' This requires the use of pandoc, knitr and rmarkdown.
-#' @param echo A string (default to \code{FALSE}) to instruct whether
-#' the report should also include the \code{BCEA} commands used to 
-#' produce the analyses. If the optional argument \code{echo} is set
-#' to \code{TRUE} (default = \code{FALSE}), then the commands are also
+#' @param echo A string (default to `FALSE`) to instruct whether
+#' the report should also include the `BCEA` commands used to 
+#' produce the analyses. If the optional argument `echo` is set
+#' to `TRUE` (default = `FALSE`), then the commands are also
 #' printed.
 #' @param ... Additional parameters. For example, the user can specify the
-#' value of the willingness to pay \code{wtp}, which is used in some of
+#' value of the willingness to pay `wtp`, which is used in some of
 #' the resulting analyses (default at the break even point). 
 #' Another additional parameter that the user can specify is the name 
 #' of the file to which the report should be written. This can be done 
-#' by simply passing the optional argument \code{filename="NAME"}. 
+#' by simply passing the optional argument `filename="NAME"`. 
 #' The user can also specify an object including the PSA simulations 
 #' for all the relevant model parameters. If this is passed to the 
-#' function (in the object \code{psa_sims}),
-#' then \code{make.report} will automatically construct an "Info-rank
+#' function (in the object `psa_sims`),
+#' then `make.report` will automatically construct an "Info-rank
 #' plot", which is a probabilistic form of tornado plot, based on the
 #' Expected Value of Partial Information.  The user can also specify
-#' the optional argument \code{show.tab} (default=FALSE); if set to
-#' \code{TRUE}, then a table with the values of the Info-rank is also
+#' the optional argument `show.tab` (default=FALSE); if set to
+#' `TRUE`, then a table with the values of the Info-rank is also
 #' shown.
 #' 
 #' @author Gianluca Baio
-#' @seealso \code{\link{bcea}}
+#' @seealso [bcea()]
 #' @importFrom Rdpack reprompt
 #' 
 #' @references

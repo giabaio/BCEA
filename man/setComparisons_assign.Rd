@@ -26,5 +26,5 @@ bcea-type object
 One of the alternative way to set (e,c) comparison group.
 }
 \seealso{
-\code{\link{setComparisons}}
+\code{\link[=setComparisons]{setComparisons()}}
 }

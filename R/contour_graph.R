@@ -3,7 +3,7 @@
 #'
 #' Choice of base R, \pkg{ggplot2}.
 #' @name contour_graph
-#' @seealso \code{\link{contour}}
+#' @seealso [contour()]
 NULL
 
 

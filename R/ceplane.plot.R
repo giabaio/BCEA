@@ -3,52 +3,52 @@
 #' 
 #' @template args-he
 #' @param comparison Selects the comparator, in case of more than two
-#'   interventions being analysed. Default as \code{NULL} plots all the
+#'   interventions being analysed. Default as `NULL` plots all the
 #'   comparisons together. Any subset of the possible comparisons can be selected
-#'   (e.g., \code{comparison = c(1,3)} or \code{comparison = 2}).
+#'   (e.g., `comparison = c(1,3)` or `comparison = 2`).
 #' @param wtp The value of the willingness to pay parameter. Not used if
-#'   \code{graph = "base"} for multiple comparisons.
+#'   `graph = "base"` for multiple comparisons.
 #' @param pos Parameter to set the position of the legend; for a single
 #'   comparison plot, the ICER legend position. Can be given in form of a string
-#'   \code{(bottom|top)(right|left)} for base graphics and
-#'   \code{bottom|top|left|right} for \pkg{ggplot2}. It can be a two-elements vector,
+#'   `(bottom|top)(right|left)` for base graphics and
+#'   `bottom|top|left|right` for \pkg{ggplot2}. It can be a two-elements vector,
 #'   which specifies the relative position on the x and y axis respectively, or
-#'   alternatively it can be in form of a logical variable, with \code{FALSE}
-#'   indicating to use the default position and \code{TRUE} to place it on the
-#'   bottom of the plot. Default value is \code{c(1,1)}, that is the topright
+#'   alternatively it can be in form of a logical variable, with `FALSE`
+#'   indicating to use the default position and `TRUE` to place it on the
+#'   bottom of the plot. Default value is `c(1,1)`, that is the topright
 #'   corner inside the plot area.
 #' @param graph A string used to select the graphical engine to use for
-#'   plotting. Should (partial-) match the two options \code{"base"} or
-#'   \code{"ggplot2"}. Default value is \code{"base"}.
-#' @param ...  If \code{graph = "ggplot2"} and a named theme object is supplied,
+#'   plotting. Should (partial-) match the two options `"base"` or
+#'   `"ggplot2"`. Default value is `"base"`.
+#' @param ...  If `graph = "ggplot2"` and a named theme object is supplied,
 #'   it will be passed to the \pkg{ggplot2} object. The usual ggplot2 syntax is used.
 #'   Additional graphical arguments:
 #'  \itemize{
-#'   \item \code{label.pos = FALSE}: will place the willingness to pay label in a
+#'   \item `label.pos = FALSE`: will place the willingness to pay label in a
 #'   different  position at the bottom of the graph - base and \pkg{ggplot2} only (no
 #'   label in \pkg{plotly}).
-#'   \item \code{line = list(color)}: a colour specifying the colour of the willingness-to-pay line.
-#'   \item \code{point = list(color)}: a vector of colours specifying the colour(s) associated
+#'   \item `line = list(color)`: a colour specifying the colour of the willingness-to-pay line.
+#'   \item `point = list(color)`: a vector of colours specifying the colour(s) associated
 #'   to the cloud of points. Should be of length 1 or equal to the number of comparisons.
-#'   \item \code{point = list(size)}: a vector of colours specifying the size(s) of the points.
+#'   \item `point = list(size)`: a vector of colours specifying the size(s) of the points.
 #'   Should be of length 1 or equal to the number of comparisons.
-#'   \item \code{point = list(shape)}: a vector of shapes specifying type(s) of the points.
+#'   \item `point = list(shape)`: a vector of shapes specifying type(s) of the points.
 #'   Should be of length 1 or equal to the number of comparisons.
-#'   \item \code{icer = list(color)}: a vector of colours specifying the colour(s) of the ICER
+#'   \item `icer = list(color)`: a vector of colours specifying the colour(s) of the ICER
 #'   points. Should be of length 1 or equal to the number of comparisons.
-#'   \item \code{icer = list(size)}: a vector of colours specifying the size(s) of the ICER
+#'   \item `icer = list(size)`: a vector of colours specifying the size(s) of the ICER
 #'   points. Should be of length 1 or equal to the number of comparisons.
-#'   \item \code{area_include}: logical, include or exclude the cost-effectiveness 
+#'   \item `area_include`: logical, include or exclude the cost-effectiveness 
 #'   acceptability area (default is TRUE).
-#'   \item \code{area = list(color)}: a colour specifying the colour of the cost-effectiveness
+#'   \item `area = list(color)`: a colour specifying the colour of the cost-effectiveness
 #'   acceptability area.
-#'   \item \code{currency}: Currency prefix to cost differential values - \pkg{ggplot2} only.
-#'   \item \code{icer_annot}: Annotate each ICER point with text label - \pkg{ggplot2} only.
+#'   \item `currency`: Currency prefix to cost differential values - \pkg{ggplot2} only.
+#'   \item `icer_annot`: Annotate each ICER point with text label - \pkg{ggplot2} only.
 #'  }
 #'  
-#' @return If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 
+#' @return If `graph = "ggplot2"` a ggplot object, or if `graph = "plotly"` 
 #'   a plotly object containing the requested plot. Nothing is returned when
-#'   \code{graph = "base"}, the default.
+#'   `graph = "base"`, the default.
 #'    
 #'   Grey dots show the simulated values for the joint
 #'   distribution of the effectiveness and cost differentials. The larger red
@@ -59,13 +59,13 @@
 #'   pay. If the comparators are more than 2 and no pairwise comparison is
 #'   specified, all scatterplots are graphed using different colours.
 #'   
-#' @details In the \pkg{plotly} version, \code{point_colors}, \code{ICER_colors} and \code{area_color} can also
-#' be specified as rgba colours using either the \code{[plotly]toRGB}
-#' function or a rgba colour string, e.g. \code{'rgba(1, 1, 1, 1)'}.
+#' @details In the \pkg{plotly} version, `point_colors`, `ICER_colors` and `area_color` can also
+#' be specified as rgba colours using either the `[plotly]toRGB`
+#' function or a rgba colour string, e.g. `'rgba(1, 1, 1, 1)'`.
 #'   
 #' @author Gianluca Baio, Andrea Berardi
-#' @seealso \code{\link{bcea}},
-#'          \code{\link{ceplane_plot_graph}}
+#' @seealso [bcea()],
+#'          [ceplane_plot_graph()]
 #' 
 #' @references
 #' \insertRef{Baio2011}{BCEA}

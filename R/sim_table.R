@@ -24,7 +24,7 @@ sim_table <- function(he, ...) UseMethod("sim_table", he)
 #'   to pay threshold in the grid used to run the analysis}
 #' 
 #' @author Gianluca Baio
-#' @seealso \code{\link{bcea}}
+#' @seealso [bcea()]
 #' @importFrom Rdpack reprompt
 #' 
 #' @references

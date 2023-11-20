@@ -8,7 +8,7 @@
 }
 \arguments{
 \item{he}{An object of class \code{mixedAn}, a subclass of \code{bcea},
-given as output of the call to the function \code{\link{mixedAn}}.}
+given as output of the call to the function \code{\link[=mixedAn]{mixedAn()}}.}
 
 \item{y.limits}{Range of the y-axis for the graph. The default value is
 \code{NULL}, in which case the maximum range between the optimal and the
@@ -29,7 +29,7 @@ plotting. Should (partial-)match the two options \code{"base"} or
 \code{"ggplot2"}. Default value is \code{"base"}.}
 
 \item{...}{Arguments to be passed to methods, such as graphical parameters
-(see \code{\link{par}}).}
+(see \code{\link[=par]{par()}}).}
 }
 \value{
 \item{evi}{ A ggplot object containing the plot. Returned only if
@@ -85,8 +85,8 @@ if (require(ggplot2)) {
 \insertRef{Baio2013}{BCEA}
 }
 \seealso{
-\code{\link{bcea}},
-         \code{\link{mixedAn}}
+\code{\link[=bcea]{bcea()}},
+\code{\link[=mixedAn]{mixedAn()}}
 }
 \author{
 Gianluca Baio, Andrea Berardi

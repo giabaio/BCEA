@@ -53,13 +53,13 @@ info.rank.bcea <- function(he,
 #' parameter in terms of the expected value of information.
 #' 
 #' @template args-he
-#' @param inp Named list from running \code{createInputs()} containing:
+#' @param inp Named list from running `createInputs()` containing:
 #'   \itemize{
-#'   \item \code{parameter} = A vector of parameters for which the individual EVPPI
+#'   \item `parameter` = A vector of parameters for which the individual EVPPI
 #' should be calculated. This can be given as a string (or vector of strings)
 #' of names or a numeric vector, corresponding to the column numbers of
 #' important parameters.
-#'   \item \code{mat} = A matrix containing the simulations for all the parameters
+#'   \item `mat` = A matrix containing the simulations for all the parameters
 #' monitored by the call to JAGS or BUGS. The matrix should have column names
 #' matching the names of the parameters and the values in the vector parameter
 #' should match at least one of those values.
@@ -71,16 +71,16 @@ info.rank.bcea <- function(he,
 #' @param graph A string used to select the graphical engine to use for plotting.
 #' Should (partial-)match one of the two options "base" or "plotly". Default value is "base"
 #' @param rel Logical argument that specifies whether the ratio of
-#' EVPPI to EVPI (\code{rel = TRUE}, default) or the absolute value of the EVPPI
+#' EVPPI to EVPI (`rel = TRUE`, default) or the absolute value of the EVPPI
 #' should be used for the analysis.
 #' @param ... Additional options. These include graphical parameters that the
 #'   user can specify:
 #'   \itemize{
-#'   \item \code{xlim} = limits of the x-axis; ca = font size for the axis
+#'   \item `xlim` = limits of the x-axis; ca = font size for the axis
 #'   label (default = 0.7 of full size).
-#'   \item \code{cn} = font size for the parameter names
+#'   \item `cn` = font size for the parameter names
 #'   vector (default = 0.7 of full size) - base graphics only.
-#'   \item \code{mai} = margins of the graph (default = c(1.36, 1.5, 1,1)) - base graphics only.
+#'   \item `mai` = margins of the graph (default = c(1.36, 1.5, 1,1)) - base graphics only.
 #'   }
 #' @return With base graphics: A data.frame containing the ranking of the parameters
 #'   with the value of the selected summary, for the chosen wtp; with plotly: a plotly object, 
@@ -93,8 +93,8 @@ info.rank.bcea <- function(he,
 #'   how large the expected value of gaining more information is.
 #' 
 #' @author Anna Heath, Gianluca Baio, Andrea Berardi
-#' @seealso \code{\link{bcea}},
-#'          \code{\link{evppi}}
+#' @seealso [bcea()],
+#'          [evppi()]
 #' @importFrom Rdpack reprompt
 #' 
 #' @references

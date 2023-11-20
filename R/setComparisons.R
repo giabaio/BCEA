@@ -7,7 +7,7 @@
 #' 
 #' @template args-he
 #' @template args-comparison 
-#' @seealso \code{\link{setComparisons<-}}
+#' @seealso [setComparisons<-()]
 #' @export
 #' 
 setComparisons <- function(he, comparison) {
@@ -65,7 +65,7 @@ setComparisons <- function(he, comparison) {
 #' @template args-he
 #' @param value Comparison 
 #' @return bcea-type object
-#' @seealso \code{\link{setComparisons}}
+#' @seealso [setComparisons()]
 #' @export
 #'
 'setComparisons<-' <- function(he, value) {

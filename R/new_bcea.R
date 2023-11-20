@@ -8,7 +8,7 @@
 #' @importFrom rlang int
 #'
 #' @return List object of class bcea.
-#' @seealso \code{\link{bcea}}
+#' @seealso [bcea()]
 #' 
 #' @export
 #'

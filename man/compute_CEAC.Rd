@@ -16,5 +16,5 @@ Array with dimensions (interv x k)
 Compute Cost-Effectiveness Acceptability Curve
 }
 \seealso{
-\code{\link{ceac.plot}}
+\code{\link[=ceac.plot]{ceac.plot()}}
 }

@@ -73,3 +73,4 @@ Remotes:
     chjackson/voi,
     plotrix/plotrix
 LazyData: false
+Roxygen: list(markdown = TRUE)

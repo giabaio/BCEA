@@ -61,8 +61,8 @@ the willingness to pay threshold.
 \insertRef{Baio2013}{BCEA}
 }
 \seealso{
-\code{\link{bcea}},
-         \code{\link{ceplane.plot}}
+\code{\link[=bcea]{bcea()}},
+\code{\link[=ceplane.plot]{ceplane.plot()}}
 }
 \author{
 Gianluca Baio, Andrea Berardi

@@ -9,7 +9,7 @@ Set of Parameters}
 }
 \arguments{
 \item{x}{An object in the class \code{evppi},
-obtained by the call to the function \code{\link{evppi}}.}
+obtained by the call to the function \code{\link[=evppi]{evppi()}}.}
 
 \item{pos}{Parameter to set the position of the legend (only relevant for
 multiple interventions, ie more than 2 interventions being compared).
@@ -28,7 +28,7 @@ plotting. Should (partial-) match the two options \code{"base"} or
 \item{col}{Sets the colour for the lines depicted in the graph.}
 
 \item{...}{Arguments to be passed to methods, such as graphical parameters
-(see \code{\link{par}}).}
+(see \code{\link[=par]{par()}}).}
 }
 \value{
 Plot with base R or \pkg{ggplot2}.
@@ -81,7 +81,7 @@ if (FALSE)
 \insertRef{Baio2013}{BCEA}
 }
 \seealso{
-\code{\link{bcea}}, \code{\link{evppi}}
+\code{\link[=bcea]{bcea()}}, \code{\link[=evppi]{evppi()}}
 }
 \author{
 Gianluca Baio, Andrea Berardi
