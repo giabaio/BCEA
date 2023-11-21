@@ -63,7 +63,12 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.4.5" id="bcea-245">BCEA 2.4.5<a class="anchor" aria-label="anchor" href="#bcea-245"></a></h2>
-<p><em>October 2023</em></p>
+<p><em>November 2023</em></p>
+<p>Some cosmetic changes to clean up</p>
+<ul><li>Removed the (by now, unnecessary) appveyor webhook</li>
+<li>Added correct ‘Remotes’ in the ‘DESCRIPTION’ file to point to the correct GitHub repos for ‘voi’ and ‘plotrix’</li>
+<li>Changed the class of the object ‘smoking_output’ to be used in the ‘evppi’ example avoiding the need for ‘rjags’</li>
+</ul><p><em>October 2023</em></p>
 <p>Moved internal EVPPI calculation out of <code>BCEA</code> and now uses <code>voi</code> package instead. Refactoring but retaining same interface and functionality.</p>
 <ul><li>
 <code><a href="../reference/evppi.html">evppi()</a></code> tested against all use cases in BCEA book (1c1457d2)</li>
