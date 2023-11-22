@@ -121,7 +121,7 @@ label(s) are suppressed, with both base graphics and ggplot2.</p></dd>
 <dt>plot.cri</dt>
 <dd><p>Logical value. Should the credible intervals be plotted
 along with the expected incremental benefit? Default as <code>NULL</code> draws
-the 95\<!-- % credible intervals if only one comparison is selected, and does not -->
+the 95% credible intervals if only one comparison is selected, and does not
 include them for multiple comparisons.  Setting <code>plot.cri=TRUE</code> or
 <code>plot.cri=FALSE</code> forces the function to add the intervals or not. The
 level of the intervals can be also set, see ... for more details.</p></dd>
@@ -136,13 +136,13 @@ Not all plotting functions have a <code>"plotly"</code> implementation yet.</p><
 
 <dt>...</dt>
 <dd><p>If <code>graph="ggplot2"</code> and a named theme object is supplied,
-it will be added to the ggplot object. Additional arguments:</p><ul><li><p><code>alpha</code> can be used to set the CrI level when <code>plot.cri=TRUE</code>,
-with a default value of <code>alpha=0.05</code>.</p></li>
+ it will be added to the ggplot object. Additional arguments:</p><ul><li><p><code>alpha</code> can be used to set the CrI level when <code>plot.cri=TRUE</code>,
+ with a default value of <code>alpha=0.05</code>.</p></li>
 <li><p><code>cri.quantile</code> controls the the method of calculation of the credible
-intervals. The default value <code>cri.quantile=TRUE</code> defines the CrI as the
-interval between the <code>alpha/2</code>-th and <code>1-alpha/2</code>-th quantiles of
-the IB distribution. Setting <code>cri.quantile=FALSE</code> will use a normal
-approximation on the IB distribution to calculate the intervals.</p></li>
+ intervals. The default value <code>cri.quantile=TRUE</code> defines the CrI as the
+ interval between the <code>alpha/2</code>-th and <code>1-alpha/2</code>-th quantiles of
+ the IB distribution. Setting <code>cri.quantile=FALSE</code> will use a normal
+ approximation on the IB distribution to calculate the intervals.</p></li>
 <li><p><code>line = list(color)</code>: specifies the line colour(s) - all graph types.</p></li>
 <li><p><code>line = list(type)</code>: specifies the line type(s) as lty numeric values - all graph types.</p></li>
 <li><p><code>area_include</code>: include area under the EIB curve - plotly only.</p></li>
@@ -153,14 +153,14 @@ approximation on the IB distribution to calculate the intervals.</p></li>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <dl><dt>eib</dt>
-<dd><p>If <code>graph="ggplot2"</code> a ggplot object, or if <code>graph="plotly"</code>
-a plotly object containing the requested plot. Nothing is returned when <code>graph="base"</code>,
+<dd><p>If <code>graph="ggplot2"</code> a ggplot object, or if <code>graph="plotly"</code> 
+a plotly object containing the requested plot. Nothing is returned when <code>graph="base"</code>, 
 the default.</p></dd>
 </dl><p>The function produces a plot of the
 Expected Incremental Benefit as a function of the discrete grid
 approximation of the willingness to pay parameter. The break even point
 (i.e. the point in which the EIB = 0, i.e. when the optimal decision changes
-from one intervention to another) is also showed by default. The value <code>k*</code> is
+from one intervention to another) is also showed by default. The value `k*` is
 the discrete grid approximation of the ICER.</p>
     </div>
     <div class="section level2">
@@ -176,9 +176,9 @@ CRC.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="bcea.html">bcea()</a></code>,
-<code><a href="ib.plot.html">ib.plot()</a></code>,
-<code><a href="ceplane.plot.html">ceplane.plot()</a></code></p></div>
+    <div class="dont-index"><p><code><a href="bcea.html">bcea</a></code>,
+         <code><a href="ib.plot.html">ib.plot</a></code>,
+         <code><a href="ceplane.plot.html">ceplane.plot</a></code></p></div>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
