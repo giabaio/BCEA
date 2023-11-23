@@ -136,7 +136,7 @@ ceac_ggplot <- function(he,
   
   ggplot(data_psa, aes(x = .data$k, y = .data$ceac)) +
     geom_line(aes(linetype = .data$comparison,
-                  size = factor(.data$comparison),
+                  linewidth = factor(.data$comparison),
                   colour = factor(.data$comparison))) +
     theme_ceac() + 
     theme_add +                                            # theme
