@@ -21,3 +21,9 @@ comparison label and associated ICER
 \description{
 Calculate Dataset For ICERs From bcea Object
 }
+\examples{
+data("Smoking")
+he <- BCEA::bcea(eff, cost)
+tabulate_means(he)
+
+}

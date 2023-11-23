@@ -49,6 +49,10 @@ ce_table <- function(he,
 #'   comparison label and associated ICER
 #' 
 #' @export
+#' @examples
+#' data("Smoking")
+#' he <- BCEA::bcea(eff, cost)
+#' tabulate_means(he)
 #' 
 tabulate_means <- function(he,
                            comp_label = NULL,
