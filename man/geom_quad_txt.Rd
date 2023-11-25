@@ -10,7 +10,7 @@ geom_quad_txt(he, graph_params)
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
-\item{graph_param}{Plot parameters; list}
+\item{graph_params}{Plot parameters; list}
 }
 \description{
 Geom Quadrant Text
