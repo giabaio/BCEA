@@ -108,6 +108,7 @@ bcea.rjags <- function(eff, ...) {
 
 #' @rdname bcea
 #' @param ... Additional arguments
+#' @importFrom rstan extract
 #' @export
 bcea.rstan <- function(eff, ...) {
   

@@ -22,7 +22,7 @@ Authors@R: c(
 Imports:
     cli (>= 3.3.0),
     dplyr,
-    ggplot2,
+    ggplot2 (>= 3.4.0),
     graphics,
     gridExtra,
     MASS,
@@ -32,8 +32,9 @@ Imports:
     Rdpack,
     reshape2,
     rlang,
+    rstan,
     scales,
-    voi
+    voi (>= 1.0.1)
 Depends:
     R (>= 3.5.0)
 Suggests:
@@ -47,14 +48,12 @@ Suggests:
     RColorBrewer,
     rjags,
     rmarkdown,
-    rstan,
     splancs,
     testthat (>= 2.1.0),
     vdiffr,
     withr
 RdMacros: Rdpack
 VignetteBuilder: knitr
-Additional_repositories: https://inla.r-inla-download.org/R/testing/
 Description: Produces an economic evaluation of a sample of suitable variables of
              cost and effectiveness / utility for two or more interventions,
              e.g. from a Bayesian model in the form of MCMC simulations.
@@ -69,8 +68,6 @@ NeedsCompilation: no
 RoxygenNote: 7.2.3.9000
 Encoding: UTF-8
 BugReports: https://github.com/n8thangreen/BCEA/issues/
-Remotes: 
-    chjackson/voi,
-    plotrix/plotrix
 LazyData: false
 Roxygen: list(markdown = TRUE)
+

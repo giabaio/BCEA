@@ -25,13 +25,22 @@
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso [bcea()],
 #'          [ceplane.plot()]
-#' @importFrom Rdpack reprompt
-#' 
 #' @references
+#' 
 #' \insertRef{Baio2011}{BCEA}
+#' 
 #' \insertRef{Baio2013}{BCEA}
 #' 
+#' @keywords hplot
 #' @export
+#' 
+#' @import ggplot2
+#' @importFrom Rdpack reprompt
+#' 
+#' @examples
+#' data("Vaccine")
+#' he <- BCEA::bcea(eff, cost)
+#' ib.plot(he)
 #' 
 ib.plot.bcea <- function(he,
                          comparison = NULL,

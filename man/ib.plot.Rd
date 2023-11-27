@@ -56,8 +56,15 @@ comparator).
 Plots the distribution of the Incremental Benefit (IB) for a given value of
 the willingness to pay threshold.
 }
+\examples{
+data("Vaccine")
+he <- BCEA::bcea(eff, cost)
+ib.plot(he)
+
+}
 \references{
 \insertRef{Baio2011}{BCEA}
+
 \insertRef{Baio2013}{BCEA}
 }
 \seealso{
@@ -67,3 +74,4 @@ the willingness to pay threshold.
 \author{
 Gianluca Baio, Andrea Berardi
 }
+\keyword{hplot}
