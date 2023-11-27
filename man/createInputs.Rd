@@ -36,9 +36,9 @@ they are removed).}
 }
 \value{
 \item{mat}{Data.frame containing all the simulations
-        for all the monitored parameters}
-        \item{parameters}{Character vectors of the names
-        of all the monitored parameters}
+for all the monitored parameters}
+\item{parameters}{Character vectors of the names
+of all the monitored parameters}
 }
 \description{
 Creates an object containing the matrix with the parameters simulated using
@@ -52,8 +52,8 @@ constant values and removes them to only leave the fundamental parameters
 non-Bayesian model).
 }
 \seealso{
-\code{\link{bcea}},
-         \code{\link{evppi}}
+\code{\link[=bcea]{bcea()}},
+\code{\link[=evppi]{evppi()}}
 }
 \author{
 Gianluca Baio, Anna Heath and Mark Strong

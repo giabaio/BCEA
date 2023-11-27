@@ -50,27 +50,27 @@ contour2.bcea <- function(he,
 #' selected value of the willingness-to-pay threshold).
 #' 
 #' @template args-he
-#' @param comparison The comparison being plotted. Default to \code{NULL}
-#' If \code{graph_type="ggplot2"} the default value will choose all the possible
+#' @param comparison The comparison being plotted. Default to `NULL`
+#' If `graph_type="ggplot2"` the default value will choose all the possible
 #' comparisons. Any subset of the possible comparisons can be selected (e.g.,
-#' \code{comparison=c(1,3)}).
+#' `comparison=c(1,3)`).
 #' @param wtp The selected value of the willingness-to-pay. Default is
-#' \code{25000}.
+#' `25000`.
 #' @template args-graph
 #' @template args-pos
-#' @param ...  Arguments to be passed to \code{\link{ceplane.plot}}. See the
+#' @param ...  Arguments to be passed to [ceplane.plot()]. See the
 #' relative manual page for more details.
 #' 
 #' @return \item{contour}{ A ggplot item containing the requested plot.
-#' Returned only if \code{graph_type="ggplot2"}. } Plots the cost-effectiveness
+#' Returned only if `graph_type="ggplot2"`. } Plots the cost-effectiveness
 #' plane with a scatterplot of all the simulated values from the (posterior)
 #' bivariate distribution of (\eqn{\Delta_e, \Delta_c}), the differentials of
 #' effectiveness and costs; superimposes a contour of the distribution and
 #' prints the value of the ICER, together with the sustainability area.
 #' @author Gianluca Baio, Andrea Berardi
-#' @seealso \code{\link{bcea}},
-#'          \code{\link{ceplane.plot}},
-#'          \code{\link{contour}}
+#' @seealso [bcea()],
+#'          [ceplane.plot()],
+#'          [contour()]
 #'          
 #' @references
 #' \insertRef{Baio2011}{BCEA}

@@ -3,21 +3,21 @@
 #' 
 #' @template args-he
 #' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the three options \code{"base"},
-#' \code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
+#' plotting. Should (partial-)match the three options `"base"`,
+#' `"ggplot2"` or `"plotly"`. Default value is `"base"`.
 #' @param ... Additional parameters
 #' 
-#' @return \item{eib}{ If \code{graph="ggplot2"} a ggplot object, or if \code{graph="plotly"} 
-#'   a plotly object containing the requested plot. Nothing is returned when \code{graph="base"}, 
+#' @return \item{eib}{ If `graph="ggplot2"` a ggplot object, or if `graph="plotly"` 
+#'   a plotly object containing the requested plot. Nothing is returned when `graph="base"`, 
 #'   the default.} The function produces a plot of the
 #'   Expected Value of Information as a function of the discrete grid
 #'   approximation of the willingness to pay parameter. The break even point(s)
 #'   (i.e. the point in which the EIB=0, ie when the optimal decision changes
 #'   from one intervention to another) is(are) also showed.
 #' @author Gianluca Baio, Andrea Berardi
-#' @seealso \code{\link{bcea}},
-#'          \code{\link{ceac.plot}},
-#'          \code{\link{ceplane.plot}}
+#' @seealso [bcea()],
+#'          [ceac.plot()],
+#'          [ceplane.plot()]
 #' @importFrom Rdpack reprompt
 #' 
 #' @references
@@ -135,11 +135,11 @@ evi.plot.bcea <- function(he,
 #' @template args-he
 #' @param ... Additional graphical arguments:
 #'   \itemize{
-#'     \item \code{line_colors} to specify the EVPI line colour - all graph types.
-#'     \item \code{line_types} to specify the line type (lty) - all graph types.
-#'     \item \code{area_include} to specify whether to include the area under the
+#'     \item `line_colors` to specify the EVPI line colour - all graph types.
+#'     \item `line_types` to specify the line type (lty) - all graph types.
+#'     \item `area_include` to specify whether to include the area under the
 #'     EVPI curve - plotly only.
-#'     \item \code{area_color} to specify the area under the colour curve - plotly only.}
+#'     \item `area_color` to specify the area under the colour curve - plotly only.}
 #'     
 #' @export
 #' 

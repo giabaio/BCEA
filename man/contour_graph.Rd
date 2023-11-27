@@ -24,5 +24,5 @@ modelling and the economic evaluation.}
 Choice of base R, \pkg{ggplot2}.
 }
 \seealso{
-\code{\link{contour}}
+\code{\link[=contour]{contour()}}
 }

@@ -16,6 +16,6 @@ List of graph parameters
 Validate EIB parameters
 }
 \seealso{
-\code{\link{prep_eib_params}}
+\code{\link[=prep_eib_params]{prep_eib_params()}}
 }
 \keyword{internal}

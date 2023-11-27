@@ -9,7 +9,7 @@ compute_kstar(k, best, ref)
 \arguments{
 \item{k}{Willingness-to-pay grid approximation of the budget willing to invest (vector)}
 
-\item{best}{Best intervention for each `k` (int)}
+\item{best}{Best intervention for each \code{k} (int)}
 
 \item{ref}{Reference intervention (int)}
 }
@@ -26,5 +26,5 @@ The value of the break-even point corresponds to the ICER and quantifies
 the point at which the decision-maker is indifferent between the two options.
 }
 \seealso{
-\code{\link{ceac.plot}}
+\code{\link[=ceac.plot]{ceac.plot()}}
 }

@@ -40,14 +40,14 @@ together. Any subset of the possible comparisons can be selected (e.g.,
 \code{comparison=c(1,3)} or \code{comparison=2}).}
 
 \item{...}{Additional graphical arguments. The usual ggplot2 syntax is used regardless of graph type.
- \itemize{
-  \item \code{xlim}: The range of the plot along the x-axis. If NULL (default) it is
-            determined by the range of the simulated values for \code{delta_e}
-  \item \code{ylim}: The range of the plot along the y-axis. If NULL (default) it is
-            determined by the range of the simulated values for \code{delta_c}
-  \item \code{scale}: Scales the plot as a function of the observed standard deviation.
-  \item \code{levels}: Numeric vector of levels at which to draw contour lines. Quantiles 0<p<1.
-  \item \code{nlevels}: Number of levels to be plotted in the contour.
+\itemize{
+\item \code{xlim}: The range of the plot along the x-axis. If NULL (default) it is
+determined by the range of the simulated values for \code{delta_e}
+\item \code{ylim}: The range of the plot along the y-axis. If NULL (default) it is
+determined by the range of the simulated values for \code{delta_c}
+\item \code{scale}: Scales the plot as a function of the observed standard deviation.
+\item \code{levels}: Numeric vector of levels at which to draw contour lines. Quantiles 0<p<1.
+\item \code{nlevels}: Number of levels to be plotted in the contour.
 }}
 }
 \value{
@@ -111,9 +111,9 @@ contour(m, graph = "ggplot2")
 \insertRef{Baio2013}{BCEA}
 }
 \seealso{
-\code{\link{bcea}},
-         \code{\link{ceplane.plot}},
-         \code{\link{contour2}}
+\code{\link[=bcea]{bcea()}},
+\code{\link[=ceplane.plot]{ceplane.plot()}},
+\code{\link[=contour2]{contour2()}}
 }
 \author{
 Gianluca Baio, Andrea Berardi

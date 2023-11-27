@@ -96,7 +96,7 @@ CEriskav(m) <- r
 \insertRef{Baio2013}{BCEA}
 }
 \seealso{
-\code{\link{bcea}}
+\code{\link[=bcea]{bcea()}}
 }
 \author{
 Gianluca Baio

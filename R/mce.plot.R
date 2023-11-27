@@ -1,29 +1,29 @@
 #' Plots the probability that each intervention is the most cost-effective
 #' 
-#' This function is deprecated. Use \code{\link{ceac.plot}} instead.
+#' This function is deprecated. Use [ceac.plot()] instead.
 #' Plots the probability that each of the n_int interventions being analysed is
 #' the most cost-effective.
 #' 
-#' @param mce The output of the call to the function \code{\link{multi.ce}}.
+#' @param mce The output of the call to the function [multi.ce()].
 #' @param pos Parameter to set the position of the legend. Can be given in form
-#' of a string \code{(bottom|top)(right|left)} for base graphics and
-#' \code{bottom|top|left|right} for ggplot2. It can be a two-elements vector,
+#' of a string `(bottom|top)(right|left)` for base graphics and
+#' `bottom|top|left|right` for ggplot2. It can be a two-elements vector,
 #' which specifies the relative position on the x and y axis respectively, or
-#' alternatively it can be in form of a logical variable, with \code{TRUE}
-#' indicating to use the first standard and \code{FALSE} to use the second one.
-#' Default value is \code{c(1,0.5)}, that is on the right inside the plot area.
+#' alternatively it can be in form of a logical variable, with `TRUE`
+#' indicating to use the first standard and `FALSE` to use the second one.
+#' Default value is `c(1,0.5)`, that is on the right inside the plot area.
 #' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the two options \code{"base"} or
-#' \code{"ggplot2"}. Default value is \code{"base"}.
+#' plotting. Should (partial-)match the two options `"base"` or
+#' `"ggplot2"`. Default value is `"base"`.
 #' @param ...  Optional arguments. For example, it is possible to specify the
 #' colours to be used in the plot. This is done in a vector
-#' \code{color=c(...)}. The length of the vector colors needs to be the same as
-#' the number of comparators included in the analysis, otherwise \code{BCEA}
+#' `color=c(...)`. The length of the vector colors needs to be the same as
+#' the number of comparators included in the analysis, otherwise `BCEA`
 #' will fall back to the default values (all black, or shades of grey)
 #' @return \item{mceplot}{ A ggplot object containing the plot. Returned only
-#' if \code{graph="ggplot2"}. }
+#' if `graph="ggplot2"`. }
 #' @author Gianluca Baio, Andrea Berardi
-#' @seealso \code{\link{BCEA-deprecated}}
+#' @seealso [BCEA-deprecated()]
 #' @importFrom Rdpack reprompt
 #' 
 #' @references

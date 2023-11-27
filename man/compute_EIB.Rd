@@ -30,5 +30,5 @@ and does not incorporate and describe explicitly the uncertainty in the outcomes
 To overcome this problem the tool of choice is the CEAC.
 }
 \seealso{
-\code{\link{ceac.plot}}, \code{\link{compute_CEAC}}, \code{\link{compute_IB}}
+\code{\link[=ceac.plot]{ceac.plot()}}, \code{\link[=compute_CEAC]{compute_CEAC()}}, \code{\link[=compute_IB]{compute_IB()}}
 }

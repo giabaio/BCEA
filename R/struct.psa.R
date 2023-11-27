@@ -19,26 +19,26 @@
 #' @param cost A list containing the measure of costs computed from the various
 #' models (one matrix with n.sim x n.ints simulations for each model)
 #' @param ref Which intervention is considered to be the reference
-#' strategy. The default value \code{ref=1} means that the intervention
+#' strategy. The default value `ref=1` means that the intervention
 #' appearing first is the reference and the other(s) is(are) the comparator(s)
 #' @param interventions Defines the labels to be associated with each
-#' intervention. By default and if \code{NULL}, assigns labels in the form
+#' intervention. By default and if `NULL`, assigns labels in the form
 #' "Intervention1", ... , "InterventionT"
 #' @param Kmax Maximum value of the willingness to pay to be considered.
-#' Default value is \code{50000}. The willingness to pay is then approximated
-#' on a discrete grid in the interval \code{[0, Kmax]}. The grid is equal to
-#' \code{k} if the parameter is given, or composed of \code{501} elements if
-#' \code{k=NULL} (the default)
+#' Default value is `50000`. The willingness to pay is then approximated
+#' on a discrete grid in the interval `[0, Kmax]`. The grid is equal to
+#' `k` if the parameter is given, or composed of `501` elements if
+#' `k=NULL` (the default)
 #' @param plot A logical value indicating whether the function should produce
 #' the summary plot or not
 #' @param w A vector of weights. By default it's NULL to indicate that the 
 #' function will calculate the model weights based on DIC and the individual
-#' model fit. This behaviour can be overridden by passing a vector \code{w}, 
+#' model fit. This behaviour can be overridden by passing a vector `w`, 
 #' for instance based on expert opinion
 #' 
 #' @return List object of bcea object, model weights and DIC
 #' @author Gianluca Baio
-#' @seealso \code{\link{bcea}}
+#' @seealso [bcea()]
 #' @importFrom Rdpack reprompt
 #' 
 #' @references

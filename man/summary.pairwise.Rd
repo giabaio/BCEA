@@ -36,7 +36,7 @@ summary(he_multi)
 \insertRef{Baio2013}{BCEA}
 }
 \seealso{
-\code{\link{bcea}} \code{\link{multi.ce}}
+\code{\link[=bcea]{bcea()}} \code{\link[=multi.ce]{multi.ce()}}
 }
 \author{
 Gianluca Baio

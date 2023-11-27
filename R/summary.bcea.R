@@ -1,10 +1,10 @@
 
-#' Summary Method for Objects of Class \code{bcea}
+#' Summary Method for Objects of Class `bcea`
 #' 
 #' Produces a table printout with some summary results of the health economic
 #' evaluation.
 #' 
-#' @param object A \code{bcea} object containing the results of the Bayesian
+#' @param object A `bcea` object containing the results of the Bayesian
 #'               modelling and the economic evaluation.
 #' @param wtp The value of the willingness to pay threshold used in the summary table.
 #' @param ...  Additional arguments affecting the summary produced.
@@ -12,7 +12,7 @@
 #' @return Prints a summary table with some information on the health economic
 #' output and synthetic information on the economic measures (EIB, CEAC, EVPI).
 #' @author Gianluca Baio
-#' @seealso \code{\link{bcea}}
+#' @seealso [bcea()]
 #' @importFrom Rdpack reprompt
 #' 
 #' @references

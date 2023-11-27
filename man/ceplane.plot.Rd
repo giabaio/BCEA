@@ -43,44 +43,44 @@ plotting. Should (partial-) match the two options \code{"base"} or
 \code{"ggplot2"}. Default value is \code{"base"}.}
 
 \item{...}{If \code{graph = "ggplot2"} and a named theme object is supplied,
- it will be passed to the \pkg{ggplot2} object. The usual ggplot2 syntax is used.
- Additional graphical arguments:
+it will be passed to the \pkg{ggplot2} object. The usual ggplot2 syntax is used.
+Additional graphical arguments:
 \itemize{
- \item \code{label.pos = FALSE}: will place the willingness to pay label in a
- different  position at the bottom of the graph - base and \pkg{ggplot2} only (no
- label in \pkg{plotly}).
- \item \code{line = list(color)}: a colour specifying the colour of the willingness-to-pay line.
- \item \code{point = list(color)}: a vector of colours specifying the colour(s) associated
- to the cloud of points. Should be of length 1 or equal to the number of comparisons.
- \item \code{point = list(size)}: a vector of colours specifying the size(s) of the points.
- Should be of length 1 or equal to the number of comparisons.
- \item \code{point = list(shape)}: a vector of shapes specifying type(s) of the points.
- Should be of length 1 or equal to the number of comparisons.
- \item \code{icer = list(color)}: a vector of colours specifying the colour(s) of the ICER
- points. Should be of length 1 or equal to the number of comparisons.
- \item \code{icer = list(size)}: a vector of colours specifying the size(s) of the ICER
- points. Should be of length 1 or equal to the number of comparisons.
- \item \code{area_include}: logical, include or exclude the cost-effectiveness 
- acceptability area (default is TRUE).
- \item \code{area = list(color)}: a colour specifying the colour of the cost-effectiveness
- acceptability area.
- \item \code{currency}: Currency prefix to cost differential values - \pkg{ggplot2} only.
- \item \code{icer_annot}: Annotate each ICER point with text label - \pkg{ggplot2} only.
+\item \code{label.pos = FALSE}: will place the willingness to pay label in a
+different  position at the bottom of the graph - base and \pkg{ggplot2} only (no
+label in \pkg{plotly}).
+\item \code{line = list(color)}: a colour specifying the colour of the willingness-to-pay line.
+\item \code{point = list(color)}: a vector of colours specifying the colour(s) associated
+to the cloud of points. Should be of length 1 or equal to the number of comparisons.
+\item \code{point = list(size)}: a vector of colours specifying the size(s) of the points.
+Should be of length 1 or equal to the number of comparisons.
+\item \code{point = list(shape)}: a vector of shapes specifying type(s) of the points.
+Should be of length 1 or equal to the number of comparisons.
+\item \code{icer = list(color)}: a vector of colours specifying the colour(s) of the ICER
+points. Should be of length 1 or equal to the number of comparisons.
+\item \code{icer = list(size)}: a vector of colours specifying the size(s) of the ICER
+points. Should be of length 1 or equal to the number of comparisons.
+\item \code{area_include}: logical, include or exclude the cost-effectiveness
+acceptability area (default is TRUE).
+\item \code{area = list(color)}: a colour specifying the colour of the cost-effectiveness
+acceptability area.
+\item \code{currency}: Currency prefix to cost differential values - \pkg{ggplot2} only.
+\item \code{icer_annot}: Annotate each ICER point with text label - \pkg{ggplot2} only.
 }}
 }
 \value{
-If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"} 
-  a plotly object containing the requested plot. Nothing is returned when
-  \code{graph = "base"}, the default.
-   
-  Grey dots show the simulated values for the joint
-  distribution of the effectiveness and cost differentials. The larger red
-  dot shows the ICER and the grey area identifies the sustainability area,
-  i.e. the part of the plan for which the simulated values are below the
-  willingness to pay threshold. The proportion of points in the sustainability
-  area effectively represents the CEAC for a given value of the willingness to
-  pay. If the comparators are more than 2 and no pairwise comparison is
-  specified, all scatterplots are graphed using different colours.
+If \code{graph = "ggplot2"} a ggplot object, or if \code{graph = "plotly"}
+a plotly object containing the requested plot. Nothing is returned when
+\code{graph = "base"}, the default.
+
+Grey dots show the simulated values for the joint
+distribution of the effectiveness and cost differentials. The larger red
+dot shows the ICER and the grey area identifies the sustainability area,
+i.e. the part of the plan for which the simulated values are below the
+willingness to pay threshold. The proportion of points in the sustainability
+area effectively represents the CEAC for a given value of the willingness to
+pay. If the comparators are more than 2 and no pairwise comparison is
+specified, all scatterplots are graphed using different colours.
 }
 \description{
 Produces a scatter plot of the cost-effectiveness plane,
@@ -89,7 +89,7 @@ the selected willingness to pay threshold.
 }
 \details{
 In the \pkg{plotly} version, \code{point_colors}, \code{ICER_colors} and \code{area_color} can also
-be specified as rgba colours using either the \code{[plotly]toRGB}
+be specified as rgba colours using either the \verb{[plotly]toRGB}
 function or a rgba colour string, e.g. \code{'rgba(1, 1, 1, 1)'}.
 }
 \examples{
@@ -120,8 +120,8 @@ ceplane.plot(m, wtp = 200, comparison = 1, graph = "plotly")
 \insertRef{Baio2013}{BCEA}
 }
 \seealso{
-\code{\link{bcea}},
-         \code{\link{ceplane_plot_graph}}
+\code{\link[=bcea]{bcea()}},
+\code{\link[=ceplane_plot_graph]{ceplane_plot_graph()}}
 }
 \author{
 Gianluca Baio, Andrea Berardi

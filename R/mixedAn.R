@@ -12,7 +12,7 @@
 #' Its size is the same as the number of possible comparators.
 #' By default, assumes uniform distribution for each intervention.
 #' 
-#' @return Creates an object in the class \code{mixedAn}, a subclass of \code{bcea}
+#' @return Creates an object in the class `mixedAn`, a subclass of `bcea`
 #'   which contains the results of the health economic evaluation in the mixed analysis case:
 #'   \item{Ubar}{An array with the simulations of the ''known-distribution''
 #'   mixed utilities, for each value of the discrete grid approximation of the
@@ -27,7 +27,7 @@
 #'   intervention}
 #' 
 #' @author Gianluca Baio
-#' @seealso \code{\link{bcea}}
+#' @seealso [bcea()]
 #' @importFrom Rdpack reprompt
 #' 
 #' @references

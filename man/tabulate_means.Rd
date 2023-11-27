@@ -16,8 +16,14 @@ modelling and the economic evaluation.}
 }
 \value{
 A data.frame object including mean outcomes, comparison identifier,
-  comparison label and associated ICER
+comparison label and associated ICER
 }
 \description{
 Calculate Dataset For ICERs From bcea Object
+}
+\examples{
+data("Smoking")
+he <- BCEA::bcea(eff, cost)
+tabulate_means(he)
+
 }

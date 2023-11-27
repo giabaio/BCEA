@@ -6,36 +6,36 @@
 #' post-processed to give the health economic analysis. The output is stored in
 #' an object of the class "bcea".
 #' 
-#' @param eff An object containing \code{nsim} simulations for the variable of
+#' @param eff An object containing `nsim` simulations for the variable of
 #' clinical effectiveness for each intervention being considered. In general it
-#' is a matrix with \code{nsim} rows and \code{nint} columns.
+#' is a matrix with `nsim` rows and `nint` columns.
 #' This are partially matched with `e' from previous version of `BCEA` for back-compatibility.
-#' @param cost An object containing \code{nsim} simulations for the variable of
+#' @param cost An object containing `nsim` simulations for the variable of
 #' cost for each intervention being considered. In general it is a matrix with
-#' \code{nsim} rows and \code{nint} columns.
+#' `nsim` rows and `nint` columns.
 #' This are partially matched with `c' from previous version of `BCEA` for back-compatibility.
-#' @param ref Defines which intervention (columns of \code{eff} or \code{cost}) is
-#' considered to be the reference strategy. The default value \code{ref = 1}
-#' means that the intervention associated with the first column of \code{eff} or
-#' \code{cost} is the reference and the one(s) associated with the other column(s)
+#' @param ref Defines which intervention (columns of `eff` or `cost`) is
+#' considered to be the reference strategy. The default value `ref = 1`
+#' means that the intervention associated with the first column of `eff` or
+#' `cost` is the reference and the one(s) associated with the other column(s)
 #' is(are) the comparators.
 #' @param interventions Defines the labels to be associated with each
-#' intervention. By default and if \code{NULL}, assigns labels in the form
+#' intervention. By default and if `NULL`, assigns labels in the form
 #' "Intervention1", ... , "InterventionT".
 #' @param .comparison Selects the comparator, in case of more than two
 #' interventions being analysed. Default as NULL plots all the comparisons
 #' together. Any subset of the possible comparisons can be selected (e.g.,
-#' \code{comparison=c(1,3)} or \code{comparison = 2}).
+#' `comparison=c(1,3)` or `comparison = 2`).
 #' @param Kmax Maximum value of the willingness to pay to be considered.
-#' Default value is \code{k = 50000}. The willingness to pay is then approximated
-#' on a discrete grid in the interval \code{[0, Kmax]}. The grid is equal to
-#' \code{k} if the parameter is given, or composed of \code{501} elements if
-#' \code{k = NULL} (the default).
+#' Default value is `k = 50000`. The willingness to pay is then approximated
+#' on a discrete grid in the interval `[0, Kmax]`. The grid is equal to
+#' `k` if the parameter is given, or composed of `501` elements if
+#' `k = NULL` (the default).
 #' @param k A(n optional) vector for the values of the willingness
 #'  to pay grid. Should be of length > 1 otherwise plots will be empty.
 #'  If not specified then BCEA will construct a grid of 501 values
-#'  from 0 to \code{Kmax}. This option is useful when performing intensive
-#'  computations (e.g. for the EVPPI). This was changed from \code{wtp} in previous versions
+#'  from 0 to `Kmax`. This option is useful when performing intensive
+#'  computations (e.g. for the EVPPI). This was changed from `wtp` in previous versions
 #'  for consistency with other functions and so will be deprecated in the future.
 #' @param plot A logical value indicating whether the function should produce
 #' the summary plot or not.
@@ -81,8 +81,8 @@
 #' \item{comp}{The numeric index(es) associated with the intervention(s) used
 #' as comparator(s) in the analysis}
 #' \item{step}{The step size used to form the grid approximation to the willingness to pay}
-#' \item{e}{The \code{eff} matrix used to generate the object (see Arguments)}
-#' \item{c}{The \code{cost} matrix used to generate the object (see Arguments)}
+#' \item{e}{The `eff` matrix used to generate the object (see Arguments)}
+#' \item{c}{The `cost` matrix used to generate the object (see Arguments)}
 #' 
 #' @author Gianluca Baio, Andrea Berardi, Nathan Green
 #' @references

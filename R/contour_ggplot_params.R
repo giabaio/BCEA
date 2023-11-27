@@ -2,7 +2,6 @@
 #' Contour ggplot Parameters
 #' 
 #' @template args-he
-#' @param pos_legend Position of legend
 #' @param graph_params Other graphical parameters
 #' @param ... Additional arguments
 #'

@@ -20,5 +20,5 @@ One of the alternative way to set (e,c) comparison group.
 Simply recompute all comparisons and drop unwanted.
 }
 \seealso{
-\code{\link{setComparisons<-}}
+\code{\link[=setComparisons<-]{setComparisons<-()}}
 }

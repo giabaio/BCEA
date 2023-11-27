@@ -43,7 +43,7 @@ label(s) are suppressed, with both base graphics and ggplot2.}
 
 \item{plot.cri}{Logical value. Should the credible intervals be plotted
 along with the expected incremental benefit? Default as \code{NULL} draws
-the 95\% credible intervals if only one comparison is selected, and does not
+the 95\\% credible intervals if only one comparison is selected, and does not
 include them for multiple comparisons.  Setting \code{plot.cri=TRUE} or
 \code{plot.cri=FALSE} forces the function to add the intervals or not. The
 level of the intervals can be also set, see \ldots{} for more details.}
@@ -54,28 +54,28 @@ plotting. Should (partial-)match the three options \code{"base"},
 Not all plotting functions have a \code{"plotly"} implementation yet.}
 
 \item{...}{If \code{graph="ggplot2"} and a named theme object is supplied,
- it will be added to the ggplot object. Additional arguments:
+it will be added to the ggplot object. Additional arguments:
 \itemize{
- \item \code{alpha} can be used to set the CrI level when \code{plot.cri=TRUE},
- with a default value of \code{alpha=0.05}.
- \item \code{cri.quantile} controls the the method of calculation of the credible
- intervals. The default value \code{cri.quantile=TRUE} defines the CrI as the
- interval between the \code{alpha/2}-th and \code{1-alpha/2}-th quantiles of
- the IB distribution. Setting \code{cri.quantile=FALSE} will use a normal
- approximation on the IB distribution to calculate the intervals.
- \item \code{line = list(color)}: specifies the line colour(s) - all graph types.
- \item \code{line = list(type)}: specifies the line type(s) as lty numeric values - all graph types.
- \item \code{area_include}: include area under the EIB curve - plotly only.
- \item \code{area_color}: specifies the AUC curve - plotly only.}}
+\item \code{alpha} can be used to set the CrI level when \code{plot.cri=TRUE},
+with a default value of \code{alpha=0.05}.
+\item \code{cri.quantile} controls the the method of calculation of the credible
+intervals. The default value \code{cri.quantile=TRUE} defines the CrI as the
+interval between the \code{alpha/2}-th and \code{1-alpha/2}-th quantiles of
+the IB distribution. Setting \code{cri.quantile=FALSE} will use a normal
+approximation on the IB distribution to calculate the intervals.
+\item \code{line = list(color)}: specifies the line colour(s) - all graph types.
+\item \code{line = list(type)}: specifies the line type(s) as lty numeric values - all graph types.
+\item \code{area_include}: include area under the EIB curve - plotly only.
+\item \code{area_color}: specifies the AUC curve - plotly only.}}
 }
 \value{
-\item{eib}{ If \code{graph="ggplot2"} a ggplot object, or if \code{graph="plotly"} 
-a plotly object containing the requested plot. Nothing is returned when \code{graph="base"}, 
+\item{eib}{ If \code{graph="ggplot2"} a ggplot object, or if \code{graph="plotly"}
+a plotly object containing the requested plot. Nothing is returned when \code{graph="base"},
 the default.} The function produces a plot of the
 Expected Incremental Benefit as a function of the discrete grid
 approximation of the willingness to pay parameter. The break even point
 (i.e. the point in which the EIB = 0, i.e. when the optimal decision changes
-from one intervention to another) is also showed by default. The value `k*` is
+from one intervention to another) is also showed by default. The value \verb{k*} is
 the discrete grid approximation of the ICER.
 }
 \description{
@@ -115,9 +115,9 @@ eib.plot(m)
 \insertRef{Baio2013}{BCEA}
 }
 \seealso{
-\code{\link{bcea}},
-         \code{\link{ib.plot}},
-         \code{\link{ceplane.plot}}
+\code{\link[=bcea]{bcea()}},
+\code{\link[=ib.plot]{ib.plot()}},
+\code{\link[=ceplane.plot]{ceplane.plot()}}
 }
 \author{
 Gianluca Baio, Andrea Berardi

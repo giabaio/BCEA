@@ -7,13 +7,13 @@
 #' @template args-comparison
 #' @param ...  Additional graphical arguments. The usual ggplot2 syntax is used regardless of graph type.
 #'  \itemize{
-#'   \item \code{xlim}: The range of the plot along the x-axis. If NULL (default) it is
-#'             determined by the range of the simulated values for \code{delta_e}
-#'   \item \code{ylim}: The range of the plot along the y-axis. If NULL (default) it is
-#'             determined by the range of the simulated values for \code{delta_c}
-#'   \item \code{scale}: Scales the plot as a function of the observed standard deviation.
-#'   \item \code{levels}: Numeric vector of levels at which to draw contour lines. Quantiles 0<p<1.
-#'   \item \code{nlevels}: Number of levels to be plotted in the contour.
+#'   \item `xlim`: The range of the plot along the x-axis. If NULL (default) it is
+#'             determined by the range of the simulated values for `delta_e`
+#'   \item `ylim`: The range of the plot along the y-axis. If NULL (default) it is
+#'             determined by the range of the simulated values for `delta_c`
+#'   \item `scale`: Scales the plot as a function of the observed standard deviation.
+#'   \item `levels`: Numeric vector of levels at which to draw contour lines. Quantiles 0<p<1.
+#'   \item `nlevels`: Number of levels to be plotted in the contour.
 #' }
 #'   
 #' @importFrom stats sd
@@ -46,7 +46,7 @@ contour.bcea <- function(he,
 
 #' @title Contour Plots for the Cost-Effectiveness Plane
 #'
-#' @description Contour method for objects in the class \code{bcea}.
+#' @description Contour method for objects in the class `bcea`.
 #' Produces a scatterplot of the cost-effectiveness plane, with a contour-plot
 #' of the bivariate density of the differentials of cost (y-axis) and
 #' effectiveness (x-axis).
@@ -54,7 +54,7 @@ contour.bcea <- function(he,
 #' @template args-he
 #' 
 #' @return \item{ceplane}{ A ggplot object containing the plot. Returned only
-#' if \code{graph="ggplot2"}. } Plots the cost-effectiveness plane with a
+#' if `graph="ggplot2"`. } Plots the cost-effectiveness plane with a
 #' scatterplot of all the simulated values from the (posterior) bivariate
 #' distribution of (\eqn{\Delta_e, \Delta_c}), the differentials of effectiveness and
 #' costs; superimposes a contour of the distribution and prints the estimated
@@ -67,9 +67,9 @@ contour.bcea <- function(he,
 #' 
 #' \insertRef{Baio2013}{BCEA}
 #' 
-#' @seealso \code{\link{bcea}},
-#'          \code{\link{ceplane.plot}},
-#'          \code{\link{contour2}}
+#' @seealso [bcea()],
+#'          [ceplane.plot()],
+#'          [contour2()]
 #' @keywords hplot
 #' 
 #' @import ggplot2
