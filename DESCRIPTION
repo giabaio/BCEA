@@ -1,18 +1,73 @@
 Package: BCEA
 Type: Package
 Title: Bayesian Cost Effectiveness Analysis
-Version: 2.3-00
-Date: 2018-12-19
-Author: Gianluca Baio, Andrea Berardi, Anna Heath
-Maintainer: Gianluca Baio <gianluca@stats.ucl.ac.uk>
-Suggests: R2jags, R2OpenBUGS, ggplot2, grid, INLA, splancs, mgcv, ldr, shiny, shinythemes, knitr, rmarkdown, plotly
-Imports: MASS, dplyr, rlang
-Additional_repositories: https://inla.r-inla-download.org/R/stable/
-Description: Produces an economic evaluation of a Bayesian model in the form of MCMC simulations. Given suitable variables of cost and effectiveness / utility for two or more interventions, This package computes the most cost-effective alternative and produces graphical summaries and probabilistic sensitivity analysis.
-License: GPL (>=2)
-URL: http://www.statistica.it/gianluca/BCEA,
-        http://www.statistica.it/gianluca
-Depends: R (>= 2.10)
+Version: 2.4.5
+Authors@R: c(
+    person("Gianluca", "Baio",
+            email = "g.baio@ucl.ac.uk",
+            role = c("aut", "cre", "cph"),
+            comment = c(ORCID = "0000-0003-4314-2570")),
+    person("Andrea", "Berardi",
+            email = "a.berardi@ucl.ac.uk",
+            role = c("aut"),
+            comment = c(ORCID = "0000-0002-2906-496X")),
+    person("Anna", "Heath",
+            email = "anna.heath@sickkids.ca",
+            role = c("aut"),
+            comment = c(ORCID = "0000-0002-7263-4251")),
+    person("Nathan", "Green",
+            email = "n.green@ucl.ac.uk",
+            role = c("aut"),
+            comment = c(ORCID = "0000-0003-2745-1736")))
+Imports:
+    cli (>= 3.3.0),
+    dplyr,
+    ggplot2 (>= 3.4.0),
+    graphics,
+    gridExtra,
+    MASS,
+    Matrix,
+    MCMCvis,
+    purrr,
+    Rdpack,
+    reshape2,
+    rlang,
+    rstan,
+    scales,
+    voi (>= 1.0.1)
+Depends:
+    R (>= 3.5.0)
+Suggests:
+    coda,
+    grid,
+    knitr,
+    markdown,
+    mgcv,
+    plotly,
+    plotrix,
+    RColorBrewer,
+    rjags,
+    rmarkdown,
+    splancs,
+    testthat (>= 2.1.0),
+    vdiffr,
+    withr
+RdMacros: Rdpack
+VignetteBuilder: knitr
+Description: Produces an economic evaluation of a sample of suitable variables of
+             cost and effectiveness / utility for two or more interventions,
+             e.g. from a Bayesian model in the form of MCMC simulations.
+             This package computes the most cost-effective alternative and
+             produces graphical summaries and probabilistic sensitivity analysis,
+             see Baio et al (2017) <doi:10.1007/978-3-319-55718-2>.
+License: GPL-3
+URL: https://gianluca.statistica.it/software/bcea/,
+     https://gianluca.statistica.it/,
+     https://github.com/giabaio/BCEA/  
 NeedsCompilation: no
-RoxygenNote: 6.1.1
+RoxygenNote: 7.2.3.9000
 Encoding: UTF-8
+BugReports: https://github.com/n8thangreen/BCEA/issues/
+LazyData: false
+Roxygen: list(markdown = TRUE)
+

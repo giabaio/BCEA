@@ -1,0 +1,194 @@
+---
+title: "Set bcea() Parameters: Constructor and Setters"
+output: rmarkdown::html_vignette
+vignette: >
+ %\VignetteIndexEntry{Set bcea() Parameters: Constructor and Setters}
+ %\VignetteEngine{knitr::knitr}
+ %\VignetteEncoding{UTF-8}
+---
+ 
+ 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+collapse = TRUE,
+comment = "#>",
+fig.width = 6,
+fig.height = 4
+)
+```
+
+```{r setup}
+library(BCEA)
+```
+
+There are several arguments passed to `bcea()` to specify the form of the analysis.
+These are
+
+```{r eval=FALSE}
+bcea(eff, cost,
+     ref = 1,
+     interventions = NULL,
+     .comparison = NULL,
+     Kmax = 50000,
+     wtp = NULL,
+     plot = FALSE)
+```
+
+Those of interest here are:
+
+* `ref` is the reference intervention group to compare against the other groups.
+* `.comparisons` are the groups to compare against `ref`. The default is all of the non-`ref` groups.
+  This is a new argument in the latest release of BCEA to make it more flexible and consistent with other functions.
+  A preceding dot is used to keep it back-compatible with previous versions of BCEA.
+  Argument `c` is partially matched with both `c` and `comparison` otherwise throwing an error.
+* `Kmax` is the maximum value of the willingness-to-pay to calculate statistics for.
+
+During an analysis we may want to explore changing some of these parameters and keeping all of the others the same.
+We can do with with package setter functions.
+
+### Changing Reference Group
+
+Load cost-effectiveness data.
+
+```{r}
+data(Vaccine)
+```
+
+We first create `bcea` object using the constructor function for 2 different reference groups.
+
+```{r}
+he_ref1 <- bcea(eff, cost,
+                ref = 1,           
+                interventions = treats,
+                Kmax = 50000)  
+str(he_ref1)
+
+ceplane.plot(he_ref1)
+```
+
+```{r}
+he_ref2 <- bcea(eff, cost,
+                ref = 2,           
+                interventions = treats,
+                Kmax = 50000)  
+
+str(he_ref2[c("n_comparators", "ICER", "ref", "comp")])
+```
+
+Alternatively, we can do the same by modifying the first output.
+
+```{r}
+setReferenceGroup(he_ref1) <- 2
+
+str(he_ref1[c("n_comparators", "ICER", "ref", "comp")])
+```
+
+### Changing Kmax
+
+In the same way as above we can change `Kmax` in 2 equivalent ways.
+
+```{r}
+he_Kmax1 <- bcea(eff, cost,
+                 ref = 1,           
+                 interventions = treats,
+                 Kmax = 50000)  
+
+str(he_Kmax1[c("n_comparators", "ICER", "ref", "comp", "Kmax")])
+```
+
+```{r}
+he_Kmax2 <- bcea(eff, cost,
+                 ref = 2,           
+                 interventions = treats,
+                 Kmax = 2000)  
+
+str(he_Kmax2[c("n_comparators", "ICER", "ref", "comp", "Kmax")])
+```
+
+```{r}
+setKmax(he_Kmax1) <- 2000
+
+str(he_Kmax1[c("n_comparators", "ICER", "ref", "comp", "Kmax")])
+```
+
+### Change Comparison Groups
+
+Lets load some data with more than two groups.
+
+```{r}
+data(Smoking)
+```
+
+Defaults is all other groups which in this case is 2, 3 and 4.
+
+```{r}
+he_comp234 <- bcea(eff, cost,
+                   ref = 1,           
+                   interventions = treats,
+                   Kmax = 50000)  
+
+str(he_comp234[c("n_comparators", "ICER", "ref", "comp")])
+
+ceplane.plot(he_comp234, wtp = 2000)
+```
+
+Let us compare against only groups 2.
+
+```{r}
+he_comp2 <- bcea(eff, cost,
+                 ref = 1,
+                 .comparison = 2,
+                 interventions = treats,
+                 Kmax = 2000)  
+
+str(he_comp2[c("n_comparators", "ICER", "ref", "comp")])
+
+ceplane.plot(he_comp2, wtp = 2000)
+```
+
+We can achieve the same thing using the appropriate setter.
+
+```{r}
+setComparisons(he_comp234) <- 2
+
+str(he_comp234[c("n_comparators", "ICER", "ref", "comp")])
+
+ceplane.plot(he_comp234, wtp = 2000)
+```
+  
+We can select multiple comparison groups too.
+Let us compare against only groups 2 and 4.
+
+```{r}
+he_comp24 <- bcea(eff, cost,
+                  ref = 1,
+                  .comparison = c(2,4),
+                  interventions = treats,
+                  Kmax = 2000)  
+str(he_comp24[c("n_comparators", "ICER", "ref", "comp")])
+
+ceplane.plot(he_comp24, wtp = 2000)
+```
+
+```{r}
+setComparisons(he_comp234) <- c(2,4)
+
+str(he_comp234[c("n_comparators", "ICER", "ref", "comp")])
+
+ceplane.plot(he_comp24, wtp = 2000)
+```
+
+Further, a `bcea` object with all comparison groups can be passed to other functions such as `ceplane.plot` and `ceac.plot` with a `comparison` argument,
+which will do the modifications using these functions internally instead.
+
+```{r}
+ceplane.plot(he_comp234, comparison = 2, wtp = 2000)
+ceplane.plot(he_comp234, comparison = c(2,4), wtp = 2000)
+```
+
+```{r echo=FALSE}
+# create output docs
+# rmarkdown::render(input = "vignettes/Set_bcea_parameters.Rmd", output_format = "pdf_document", output_dir = "vignettes")
+# rmarkdown::render(input = "vignettes/Set_bcea_parameters.Rmd", output_format = "html_document", output_dir = "vignettes")
+```
+

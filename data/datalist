@@ -1,2 +1,2 @@
-Smoking: c data e life.years pi smoking smoking_output treats
-Vaccine: N N.outcomes N.resources QALYs.adv QALYs.death QALYs.hosp QALYs.inf QALYs.pne c cost.GP cost.hosp cost.otc cost.time.off cost.time.vac cost.travel cost.trt1 cost.trt2 cost.vac e treats
+Smoking: cost data eff life.years pi_post smoking smoking_output treats
+Vaccine: c.pts cost cost.GP cost.hosp cost.otc cost.time.off cost.time.vac cost.travel cost.trt1 cost.trt2 cost.vac e.pts eff N N.outcomes N.resources QALYs.adv QALYs.death QALYs.hosp QALYs.inf QALYs.pne treats vaccine_mat

@@ -2,41 +2,33 @@
 % Please edit documentation in R/BCEA-package.R
 \docType{package}
 \name{BCEA-package}
-\alias{BCEA-package}
 \alias{BCEA}
-\title{BCEA: A package for Bayesian Cost-Effectiveness Analysis}
+\alias{BCEA-package}
+\title{BCEA: Bayesian Cost Effectiveness Analysis}
 \description{
-A package to post-process the results of a Bayesian health economic model
-and produce standardised output for the analysis of the results
-}
-\details{
-\tabular{ll}{ Package: \tab BCEA\cr Type: \tab Package\cr Version: \tab
-2.2-63\cr Date: \tab 2018-12-19\cr License: \tab GPL2 \cr LazyLoad: \tab
-yes\cr } Given the results of a Bayesian model (possibly based on MCMC) in
-the form of simulations from the posterior distributions of suitable
-variables of costs and clinical benefits for two or more interventions,
-produces a health economic evaluation. Compares one of the interventions
-(the "reference") to the others ("comparators"). Produces many summary and
-plots to analyse the results
-}
-\references{
-Baio, G., Dawid, A. P. (2011). Probabilistic Sensitivity
-Analysis in Health Economics.  Statistical Methods in Medical Research
-doi:10.1177/0962280211419832.
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall,
-London
+Produces an economic evaluation of a sample of suitable variables of cost and effectiveness / utility for two or more interventions, e.g. from a Bayesian model in the form of MCMC simulations. This package computes the most cost-effective alternative and produces graphical summaries and probabilistic sensitivity analysis, see Baio et al (2017) \doi{10.1007/978-3-319-55718-2}.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://gianluca.statistica.it/software/bcea/}
+  \item \url{https://gianluca.statistica.it/}
+  \item \url{https://github.com/giabaio/BCEA/}
+  \item Report bugs at \url{https://github.com/n8thangreen/BCEA/issues/}
+}
 
-Baio G., Berardi A., Heath A. (forthcoming). Bayesian Cost Effectiveness
-Analysis with the R package BCEA. Springer
 }
 \author{
-Gianluca Baio, Andrea Berardi, Anna Heath
+\strong{Maintainer}: Gianluca Baio \email{g.baio@ucl.ac.uk} (\href{https://orcid.org/0000-0003-4314-2570}{ORCID}) [copyright holder]
 
-Maintainer: Gianluca Baio <gianluca@stats.ucl.ac.uk>
+Authors:
+\itemize{
+  \item Andrea Berardi \email{a.berardi@ucl.ac.uk} (\href{https://orcid.org/0000-0002-2906-496X}{ORCID})
+  \item Anna Heath \email{anna.heath@sickkids.ca} (\href{https://orcid.org/0000-0002-7263-4251}{ORCID})
+  \item Nathan Green \email{n.green@ucl.ac.uk} (\href{https://orcid.org/0000-0003-2745-1736}{ORCID})
 }
-\keyword{Bayesian}
-\keyword{Health}
-\keyword{economic}
-\keyword{evaluation}
-\keyword{models}
+
+}
+\keyword{internal}

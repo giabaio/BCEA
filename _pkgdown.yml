@@ -1,0 +1,86 @@
+url: https://n8thangreen.github.io/BCEA/
+
+news:
+  cran_dates: false
+  
+template:
+  bootstrap: 5
+  theme: atom-one-light
+  bslib:
+    font_scale: 1.0
+
+navbar:
+  structure:
+    left:  [intro, reference, articles, tutorials, news, cheatsheet]
+    right: [search, github]
+  components:
+    cheatsheet:
+      text: "Cheatsheet"
+      href: "bcea_cheatsheet.pdf"
+    
+reference:
+- title: "Main"
+  contents:
+  - BCEA-package
+  - bcea
+  - new_bcea
+- title: "Setters"
+  desc: "Functions for modifying or extending a `bcea()` analysis."
+  contents:
+  - starts_with("setComparisons")
+  - starts_with("setKmax")
+  - starts_with("setReferenceGroup")
+  - mixedAn<-
+  - CEriskav
+  - multi.ce
+  - struct.psa
+- title: "Plotting"
+  desc: "Functions for plotting a wide variety of cost-effectiveness plots in base R, ggplot2 and plotly."
+  contents:
+  - starts_with("ceac")
+  - starts_with("ceaf")
+  - starts_with("ceef")
+  - starts_with("ceplane")
+  - starts_with("contour")
+  - starts_with("eib.plot")
+  - starts_with("evi.plot")
+  - starts_with("evi_plot_graph")
+  - ib.plot
+  - starts_with("ib_plot")
+  - info.rank
+  - starts_with("info_rank_graph")
+  - plot.bcea
+  - plot.CEriskav
+  - starts_with("CEriskav_plot_graph")
+  - plot.evppi
+  - starts_with("evppi_plot_graph")
+- title: "Statistics"
+  desc: "Lower level functions for computing a range of cost-effectiveness statistics."
+  contents:
+  - best_interv_given_k
+  - starts_with("compute_")
+- title: "Outputs"
+  desc: "Functions for reporting the results of the cost-effectiveness analysis."
+  contents:
+  - make.report
+  - sim_table
+  - tabulate_means
+  - starts_with("summary")
+- title: "Miscellaneous"
+  desc: "Helper functions and other intermediate computations."
+  contents:
+  - starts_with("createInputs")
+  - evppi
+  - is.bcea
+  - print.bcea
+  - select_plot_type
+- title: "Data"
+  contents:
+  - Smoking
+  - Vaccine
+- title: "Deprecated"
+  contents:
+  - mce.plot
+  - plot.mixedAn
+
+

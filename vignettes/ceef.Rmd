@@ -1,0 +1,206 @@
+---
+title: "Cost-Effectiveness Efficiency Frontier"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Cost-Effectiveness Efficiency Frontier}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+  
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+collapse = TRUE,
+comment = "#>",
+fig.width = 6
+)
+```
+
+```{r setup, results='hide', message=FALSE, warning=FALSE, echo=FALSE}
+library(BCEA)
+library(dplyr)
+library(reshape2)
+library(ggplot2)
+library(purrr)
+```
+
+## Introduction
+
+The line connecting successive points on a cost-effectiveness plane which each
+represent the effect and cost associated with different treatment alternatives.
+The gradient of a line segment represents the ICER of the treatment comparison
+between the two alternatives represented by that segment.
+The cost-effectiveness frontier consists of the set of points corresponding to
+treatment alternatives that are considered to be cost-effective at different values
+of the cost-effectiveness threshold. The steeper the gradient between successive
+points on the frontier, the higher is the ICER between these treatment alternatives
+and the more expensive alternative would be considered cost-effective only when a
+high value of the cost-effectiveness threshold is assumed.
+Points not lying on the cost-effectiveness frontier represent treatment alternatives
+that are not considered cost-effective at any value of the cost-effectiveness threshold.
+
+## R code
+
+To create the plots in BCEA we first call the `bcea()` function.
+
+```{r}
+data(Smoking)
+
+treats <- c("No intervention", "Self-help", "Individual counselling", "Group counselling")
+bcea_smoke <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
+```
+
+* base R
+
+```{r}
+# all interventions
+ceef.plot(bcea_smoke)
+
+# subset
+setComparisons(bcea_smoke) <- c(1,3)
+ceef.plot(bcea_smoke)
+
+# check numbering and legend
+setComparisons(bcea_smoke) <- c(3,1)
+ceef.plot(bcea_smoke)
+
+setComparisons(bcea_smoke) <- c(3,2)
+ceef.plot(bcea_smoke)
+
+setComparisons(bcea_smoke) <- 1
+ceef.plot(bcea_smoke)
+
+# add interventions back in
+setComparisons(bcea_smoke) <- c(1,3)
+ceef.plot(bcea_smoke)
+```
+
+* ggplot
+
+```{r error=TRUE}
+bcea_smoke <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
+
+# all interventions
+ceef.plot(bcea_smoke, graph = "ggplot")
+
+# subset
+setComparisons(bcea_smoke) <- c(1,3)
+ceef.plot(bcea_smoke, graph = "ggplot")
+
+# check numbering and legend
+setComparisons(bcea_smoke) <- c(3,1)
+ceef.plot(bcea_smoke, graph = "ggplot")
+
+setComparisons(bcea_smoke) <- c(3,2)
+ceef.plot(bcea_smoke, graph = "ggplot")
+
+setComparisons(bcea_smoke) <- 1
+ceef.plot(bcea_smoke, graph = "ggplot")
+
+# add interventions back in
+setComparisons(bcea_smoke) <- c(1,3)
+ceef.plot(bcea_smoke, graph = "ggplot")
+```
+
+Check legend position argument:
+
+```{r error=TRUE}
+# base R
+ceef.plot(bcea_smoke, pos = c(1,0))
+ceef.plot(bcea_smoke, pos = c(1,1))
+
+ceef.plot(bcea_smoke, pos = TRUE)
+ceef.plot(bcea_smoke, pos = FALSE)
+
+ceef.plot(bcea_smoke, pos = "topleft")
+ceef.plot(bcea_smoke, pos = "topright")
+ceef.plot(bcea_smoke, pos = "bottomleft")
+ceef.plot(bcea_smoke, pos = "bottomright")
+
+# ggplot2
+ceef.plot(bcea_smoke, graph = "ggplot", pos = c(1,0))
+ceef.plot(bcea_smoke, graph = "ggplot", pos = c(1,1))
+
+ceef.plot(bcea_smoke, graph = "ggplot", pos = TRUE)
+ceef.plot(bcea_smoke, graph = "ggplot", pos = FALSE)
+
+ceef.plot(bcea_smoke, graph = "ggplot", pos = "top")
+ceef.plot(bcea_smoke, graph = "ggplot", pos = "bottom")
+ceef.plot(bcea_smoke, graph = "ggplot", pos = "left")
+ceef.plot(bcea_smoke, graph = "ggplot", pos = "right")
+```
+
+### Flipping plot
+
+```{r error=TRUE}
+ceef.plot(bcea_smoke,
+          flip = TRUE,
+          dominance = FALSE,
+          start.from.origins = FALSE,
+          print.summary = FALSE,
+          graph = "base")
+
+ceef.plot(bcea_smoke,
+          dominance = TRUE,
+          start.from.origins = FALSE,
+          pos = TRUE,
+          print.summary = FALSE,
+          graph = "ggplot2")
+```
+
+
+### Start from origin or smallest (e,c).
+
+```{r error=TRUE}
+ceef.plot(bcea_smoke,
+          flip = TRUE,
+          dominance = TRUE,
+          start.from.origins = TRUE,
+          print.summary = FALSE,
+          graph = "base")
+
+ceef.plot(bcea_smoke,
+          dominance = TRUE,
+          start.from.origins = TRUE,
+          pos = TRUE,
+          print.summary = FALSE,
+          graph = "ggplot2")
+```
+
+### Negative cost or effectiveness
+
+```{r error=TRUE}
+data("Smoking")
+
+cost[, 4] <- -cost[, 4]
+bcea_smoke <- bcea(eff, cost, ref = 3, interventions = treats, Kmax = 500)
+
+# all interventions
+ceef.plot(bcea_smoke, graph = "ggplot")
+ceef.plot(bcea_smoke, graph = "base")
+
+ceef.plot(bcea_smoke, start.from.origins = TRUE, graph = "ggplot")
+ceef.plot(bcea_smoke, start.from.origins = TRUE, graph = "base")
+
+setComparisons(bcea_smoke) <- c(1,2)
+ceef.plot(bcea_smoke, graph = "ggplot")
+ceef.plot(bcea_smoke, graph = "base")
+
+eff[, 3] <- -eff[, 3]
+bcea_smoke <- bcea(eff, cost, ref = 3, interventions = treats, Kmax = 500)
+ceef.plot(bcea_smoke, graph = "ggplot")
+ceef.plot(bcea_smoke, graph = "base")
+
+
+data("Smoking")
+eff[, 3] <- -eff[, 3]
+bcea_smoke <- bcea(eff, cost, ref = 3, interventions = treats, Kmax = 500)
+ceef.plot(bcea_smoke, graph = "ggplot")
+ceef.plot(bcea_smoke, graph = "base")
+```
+
+
+```{r eval=FALSE, echo=FALSE}
+# create output docs
+rmarkdown::render(input = "vignettes/ceef.Rmd", output_format = "pdf_document", output_dir = "vignettes")
+rmarkdown::render(input = "vignettes/ceef.Rmd", output_format = "html_document", output_dir = "vignettes")
+```

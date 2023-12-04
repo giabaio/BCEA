@@ -1,0 +1,18 @@
+pandoc: 3.1.1
+pkgdown: 2.0.7
+pkgdown_sha: ~
+articles:
+  bcea: bcea.html
+  ceac: ceac.html
+  ceef: ceef.html
+  ceplane: ceplane.html
+  CEriskav: CEriskav.html
+  contour: contour.html
+  eib: eib.html
+  paired_vs_multiple_comps: paired_vs_multiple_comps.html
+  Set_bcea_parameters: Set_bcea_parameters.html
+last_built: 2023-11-10T16:02Z
+urls:
+  reference: https://n8thangreen.github.io/BCEA/reference
+  article: https://n8thangreen.github.io/BCEA/articles
+
