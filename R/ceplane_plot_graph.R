@@ -238,8 +238,6 @@ ceplane_plot_plotly.bcea <- function(he,
         id.vars = "sim"),
       by = c("sim", "comparison"))
   
-  graph_params$ICER_size <- ifelse(he$n_comparisons == 1, 8, 0)
-  
   if (length(graph_params$point$colors) != length(comp_label))
     graph_params$point$colors <- rep_len(graph_params$point$color, length(comp_label))
   
@@ -305,8 +303,11 @@ ceplane_plot_plotly.bcea <- function(he,
            yes = plotly::toRGB(graph_params$point$colors),
            no = graph_params$point$colors)
   
+  # define point size variable in delta_ce
+  delta_ce$pt_size = graph_params$point$sizes[delta_ce$comparison |> as.numeric()]
+  
   # plot set-up
-  ceplane <- plotly::plot_ly(colors = pt_cols)
+  ceplane <- plotly::plot_ly(colors = pt_cols, sizes = graph_params$point$sizes)
   
   ceplane <-
     ceplane %>% 
@@ -317,6 +318,7 @@ ceplane_plot_plotly.bcea <- function(he,
       y = ~delta_c,
       x = ~delta_e,
       color = ~comparison,
+      size = delta_ce$pt_size,
       hoverinfo = "name+x+y")
   
   if (graph_params$area_include) {
@@ -376,11 +378,11 @@ ceplane_plot_plotly.bcea <- function(he,
         marker = list(
           color = graph_params$ICER$colors[comp],
           size = graph_params$ICER$sizes[comp]),
-        name = ~paste(
+        name = ~paste0(
           ifelse(he$n_comparisons > 1,
                  yes = "",#as.character(label),
                  no = ""),
-          "ICER:",
+          "ICER ", comparison, ": ",
           prettyNum(round(ICER, 2), big.mark = ",")))
     }
   }
