@@ -382,7 +382,7 @@ ceplane_plot_plotly.bcea <- function(he,
           ifelse(he$n_comparisons > 1,
                  yes = "",#as.character(label),
                  no = ""),
-          "ICER ", comparison, ": ",
+          "ICER ", label, ": ",
           prettyNum(round(ICER, 2), big.mark = ",")))
     }
   }

@@ -20,7 +20,7 @@ make_legend_plotly <- function(pos_legend) {
       "left" = list(orientation = "v", x = 0, y = 0.5),
       "bottomleft" = list(orientation = "v", x = 0, y = 0),
       "topleft" = list(orientation = "v", x = 0, y = 1),
-      "right" = list(orientation = "v", x = 0, y = 0.5),
+      "right" = list(orientation = "v", x = 1, y = 0.5),
       "bottomright" = list(orientation = "v", x = 1, y = 0),
       "topright" = list(orientation = "v", x = 1, y = 1),
       "bottom" = list(orientation = "v", xanchor = "center", x = 0.5, y = 0),
