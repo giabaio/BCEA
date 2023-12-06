@@ -144,6 +144,7 @@ ceef_plot_plotly <- function(he,
   )
   
   colour <- frontier_params$colour
+  colour_hex = colour |> sapply(function(x) gsub("gr(a|e)y", "", x) |> as.numeric()/100) |> gray(1)
   pos <- frontier_params$pos
   flip <- frontier_params$flip
   relative <- frontier_params$relative
@@ -155,92 +156,117 @@ ceef_plot_plotly <- function(he,
   
   opt_theme <- purrr::keep(extra_args, is.theme)
   
-  ceplane <- ggplot(ceef.points, aes(x = .data$x, y = .data$y))
+  if (flip) {
+    names(ceef.points) = c(names(ceef.points)[c(2,1)], names(ceef.points)[-c(1,2)])
+    names(scatter.data) = c(names(scatter.data)[c(2,1)], names(scatter.data)[-c(1,2)])
+    names(orig.avg) = c(names(orig.avg)[c(2,1)], names(orig.avg)[-c(1,2)])
+  }
+  
+  ceplane <- plotly::plot_ly()
   
   if (add_dominance_region) {
-    ceplane <-
-      ceplane +
-      geom_rect(data = ceef.points,
-                aes(xmax = .data$x, ymin = .data$y),
-                ymax = 2*max(abs(range(scatter.data$c))),
-                xmin = -2*max(abs(range(scatter.data$e))),
-                alpha = 0.35,
-                fill = "grey75")
+    shapes_list = lapply(
+      1:nrow(ceef.points), function(ndx) {
+        list(
+          type = "rect", fillcolor = "lightgrey", opacity = 0.35,
+          line = list(color = "lightgrey"),
+          x0 = -2*max(abs(range(scatter.data$e))),
+          x1 = ceef.points[ndx, "x"],
+          y0 = ceef.points[ndx, "y"],
+          y1 = 2*max(abs(range(scatter.data$c))),
+          xref = "x", yref = "y"
+        )
+      }
+    )
+    ceplane <- ceplane |>
+      plotly::layout(
+        shapes = shapes_list
+      )
   }
   
-  ceplane <- ceplane +
-    geom_hline(yintercept = 0, colour = "grey") +
-    geom_vline(xintercept = 0,
-               colour = "grey") +
-    geom_point(data = scatter.data,
-               aes(x = .data$e, y = .data$c, colour = .data$intervention),
-               size = 1)
+  # point clouds
+  ceplane <- ceplane |>
+    plotly::add_trace(
+      data = scatter.data,
+      type = "scatter",
+      mode = "markers",
+      y = ~c,
+      x = ~e,
+      color = ~intervention,
+      colors = colour_hex
+    )
   
+  # frontier
   if (add_frontier)
-    ceplane <- ceplane + geom_path()
+    ceplane <- ceplane |>
+    plotly::add_lines(
+      name = "Efficiency frontier",
+      x = ceef.points$x,
+      y = ceef.points$y,
+      line = list(color = "black")
+    )
   
-  xlab <- ifelse(!relative, "Effectiveness", "Incremental effectiveness")
-  ylab <- ifelse(!relative, "Cost", "Incremental cost")
+  # circles
+  ceplane <- ceplane |>
+    plotly::add_trace(
+      name = "Efficient interventions",
+      type = "scatter",
+      mode = "markers+text",
+      data = orig.avg[orig.avg$comp %in% ceef.points$comp,],
+      x = ~e.orig,
+      y = ~c.orig,
+      marker = list(size = 20, fillcolor = "white", color = "white", line = list(width = 1, color = "black")),
+      text = ~comp, 
+      textfont = list(color = "black")
+    ) |>
+    plotly::add_trace(
+      name = "Inefficient interventions",
+      type = "scatter",
+      mode = "markers+text",
+      data = orig.avg[!orig.avg$comp %in% ceef.points$comp,],
+      x = ~e.orig,
+      y = ~c.orig,
+      marker = list(size = 20, fillcolor = "white", color = "white", line = list(width = 1, color = "grey")),
+      text = ~comp,
+      textfont = list(color = "grey")
+    )
   
-  comparators <- sort(c(he$comp, he$ref))
-  interventions <- he$interventions[comparators]
+  legend_params = make_legend_plotly(pos)
   
-  ### add circles
-  ceplane <- ceplane +
-    geom_point(
-      data = orig.avg,
-      aes(x = .data$e.orig, y = .data$c.orig),
-      size = 5.5,
-      colour = "black") +
-    geom_point(
-      data = orig.avg,
-      aes(x = .data$e.orig, y = .data$c.orig),
-      size = 4.5,
-      colour = "white") +
-    scale_colour_manual(
-      "",
-      labels = paste(comparators, ":", interventions),
-      values = colour,
-      na.value = "black") +
-    labs(title = "Cost-effectiveness efficiency frontier",
-         x = xlab, y = ylab) +
-    theme_bw()
+  xaxis_list = list(
+    hoverformat = ".2f",
+    title = ifelse(
+      !flip,
+      ifelse(!relative, "Effectiveness", "Incremental effectiveness"),
+      ifelse(!relative, "Cost", "Incremental cost")
+    ),
+    range = 
+      scatter.data[,ifelse(!flip,1,2)] |> range() |> 
+      (\(x) c(x[1] - abs(x[1] - x[2])*0.15, x[2] + abs(x[1] - x[2])*0.15))()
+  )
   
-  ## add text into circles
-  for (i in seq_len(he$n_comparators)) {
-    ceplane <- ceplane +
-      geom_text(
-        data = orig.avg[i, ],
-        aes(x = .data$e.orig, y = .data$c.orig, label = .data$comp),
-        size = 3.5,
-        colour = ifelse(i %in% ceef.points$comp, "black", "grey60"))
-  }
+  yaxis_list = yaxis = list(
+    hoverformat = ".2f",
+    title = ifelse(
+      !flip,
+      ifelse(!relative, "Cost", "Incremental cost"),
+      ifelse(!relative, "Effectiveness", "Incremental effectiveness")
+    ),
+    range = 
+      scatter.data[,ifelse(!flip,2,1)] |> range() |> 
+      (\(x) c(x[1] - abs(x[1] - x[2])*0.15, x[2] + abs(x[1] - x[2])*0.15))()
+  )
   
-  legend_params <- make_legend_ggplot(he, pos)
+  ceplane <- ceplane |>
+    plotly::layout(
+      title = "Cost-effectiveness efficiency frontier",
+      xaxis = xaxis_list,
+      yaxis = yaxis_list,
+      legend = legend_params
+    ) |>
+    plotly::config(displayModeBar = FALSE)
   
-  ceplane <- ceplane +
-    theme(
-      legend.position = legend_params$legend.position,
-      legend.justification = legend_params$legend.justification,
-      legend.title = element_blank(),
-      legend.background = element_blank(),
-      text = element_text(size = 11),
-      # legend.key.size = grid::unit(0.66, "lines"),
-      # legend.spacing = grid::unit(-1.25, "line"),
-      # panel.grid = element_blank(),
-      # legend.key = element_blank(),
-      # legend.text.align = 0,
-      plot.title = element_text(
-        hjust = 0.5,
-        face = "bold",
-        lineheight = 1.05,
-        size = 14.3)
-      ) +
-    opt_theme
-  
-  if (flip) ceplane <- ceplane + coord_flip()
-  
-  ceplane |> plotly::ggplotly()
+  return(ceplane)
 }
 
 #' @rdname ceef_plot_graph

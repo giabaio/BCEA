@@ -89,7 +89,7 @@
 #' 
 ceef.plot.bcea <- function(he,
                            comparators = NULL,
-                           pos = c(1, 1),
+                           pos = "topright",
                            start.from.origins = TRUE,
                            threshold = NULL,
                            flip = FALSE,
