@@ -16,7 +16,7 @@ contour2.bcea <- function(he,
   
   he <- setComparisons(he, comparison)
   
-  params <- prep_contour_params(he, ...)
+  params <- prep_contour_params(he, graph = graph_type, ...)
   
   if (is_baseplot(graph_type)) {
     

@@ -11,12 +11,13 @@
 #'
 #' @keywords internal
 #' 
-make_legend_ggplot <- function(dat, legend_pos) {
+make_legend_ggplot <- function(dat = NULL, legend_pos) {
   
   legend_just <- NULL  # sets the corner that the legend_pos position refers to
   legend_dir <- NULL
   
-  n_lines <- num_lines(dat)
+  n_lines <- 0
+  if (!is.null(dat)) n_lines <- num_lines(dat)
   
   if (n_lines == 1) {
     

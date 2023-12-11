@@ -1,9 +1,9 @@
 
 #
-prep_contour_params <- function(he, ...) {
+prep_contour_params <- function(he, graph,...) {
   
   contour_params <- list(...)
-  ceplane_params <- prep_ceplane_params(he, wtp = 1e7, ...)
+  ceplane_params <- prep_ceplane_params(he, wtp = 1e7, graph, ...)
   
   default_params <-
     modifyList(ceplane_params,
