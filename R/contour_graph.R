@@ -46,8 +46,8 @@ contour_base <- function(he,
 #' 
 #' @import ggplot2
 #' @importFrom grid unit
-#' @importFrom dplyr mutate
-#' @importFrom reshape2 melt
+# #' @importFrom dplyr mutate
+# #' @importFrom reshape2 melt
 #' 
 contour_ggplot <- function(he,
                            pos_legend,
@@ -68,23 +68,7 @@ contour_ggplot <- function(he,
   
   theme_add <- purrr::keep(list(...), is.theme)
   
-  # single long format for ggplot data
-  delta_ce <-
-    merge(
-      melt(
-        cbind(sim = seq_len(nrow(he$delta_c)),
-              he$delta_c),
-        variable.name = "comparison",
-        value.name = "delta_c",
-        id.vars = "sim"),
-      melt(
-        cbind(sim = seq_len(nrow(he$delta_e)),
-              he$delta_e),
-        variable.name = "comparison",
-        value.name = "delta_e",
-        id.vars = "sim"),
-      by = c("sim", "comparison")) %>% 
-    mutate(comparison = factor(.data$comparison))
+  delta_ce <- prep_delta_ce(he)
   
   ggplot(delta_ce,
          aes(x = .data$delta_e, y = .data$delta_c, group = .data$comparison,
@@ -119,21 +103,7 @@ contour_plotly <- function(he,
   comp_label <-
     paste(he$interventions[he$ref], "vs", he$interventions[he$comp])
   
-  delta_ce <-
-    merge(
-      melt(
-        cbind(sim = seq_len(nrow(he$delta_c)),
-              he$delta_c),
-        variable.name = "comparison",
-        value.name = "delta_c",
-        id.vars = "sim"),
-      melt(
-        cbind(sim = seq_len(nrow(he$delta_e)),
-              he$delta_e),
-        variable.name = "comparison",
-        value.name = "delta_e",
-        id.vars = "sim"),
-      by = c("sim", "comparison"))
+  delta_ce <- prep_delta_ce(he)
   
   if (length(graph_params$point$colors) != length(comp_label))
     graph_params$point$colors <- rep_len(graph_params$point$color, length(comp_label))
@@ -143,21 +113,6 @@ contour_plotly <- function(he,
                         x = graph_params$point$colors),
            yes = plotly::toRGB(graph_params$point$colors),
            no = graph_params$point$colors)
-  
-  density <- lapply(
-    1:ncol(he$delta_e),
-    function(ndx) {
-      MASS::kde2d(
-        delta_ce$delta_e[delta_ce$comparison |> as.numeric() == ndx],
-        delta_ce$delta_c[delta_ce$comparison |> as.numeric() == ndx],
-        n = 300,
-        h = c(sd(he$delta_e[, ndx] |> c())/graph_params$scale,
-              sd(he$delta_c[, ndx] |> c())/graph_params$scale))
-    })
-  for (ii in 1:length(density)) {
-    density[[ii]]$z = density[[ii]]$z/max(density[[ii]]$z)
-    density[[ii]]$comparison = factor(ii, levels = 1:length(density), labels = levels(delta_ce$comparison))
-  }
   
   contour_plot = plotly::plot_ly() |>
     plotly::add_trace(
@@ -170,30 +125,8 @@ contour_plotly <- function(he,
       colors = pt_cols
     )
   
-  for (ndx in 1:length(density)) {
-    # work-around for uneven contour levels: add one trace per contour line
-    for (contour_line in graph_params$levels) {
-      contour_plot = contour_plot |>
-        plotly::add_contour(
-          z = density[[ndx]]$z,
-          x = density[[ndx]]$x,
-          y = density[[ndx]]$y,
-          transpose = TRUE,
-          showlegend = FALSE,
-          showscale = FALSE,
-          autocolorscale = FALSE,
-          contours = list(
-            type = "constraint",
-            showlabels = TRUE,
-            operation = "=",
-            value = contour_line
-          ),
-          line = list(
-            color = pt_cols[ndx]
-          )
-        )
-    }
-  }
+  contour_plot = contour_plot |>
+    contour_plotly_lines(he, delta_ce, graph_params, pt_cols)
   
   legend_params <- make_legend_plotly(pos_legend)
   

@@ -248,7 +248,6 @@ ceplane_plot_plotly.bcea <- function(he,
       length(graph_params$ICER$colors) != length(comp_label))
     graph_params$ICER <- c(graph_params$ICER,
                            list(colors = rep_len("red", length(comp_label))))
-  
   if (!"sizes" %in% names(graph_params$ICER) ||
       length(graph_params$ICER$sizes) != length(comp_label))
     graph_params$ICER$sizes <- rep_len(graph_params$ICER_size, length(comp_label))
