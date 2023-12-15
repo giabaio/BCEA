@@ -321,6 +321,8 @@ ceplane_plot_plotly.bcea <- function(he,
       hoverinfo = "name+x+y")
   
   if (graph_params$area_include) {
+    if (is.null(graph_params$area$line_color))
+      graph_params$area$line_color = "grey30"
     
     ceplane <-
       ceplane %>% 
