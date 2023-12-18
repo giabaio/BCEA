@@ -26,7 +26,7 @@ ceac_plot_ggplot(he, pos_legend, graph_params, ...)
 
 ceac_ggplot(he, pos_legend, graph_params, ceac, ...)
 
-ceac_plot_plotly(he, pos_legend = "left", graph_params)
+ceac_plot_plotly(he, pos_legend = "bottomright", graph_params)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian

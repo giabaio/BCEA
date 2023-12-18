@@ -6,9 +6,9 @@
 \alias{BCEA-package}
 \title{BCEA: Bayesian Cost Effectiveness Analysis}
 \description{
-\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-Produces an economic evaluation of a sample of suitable variables of cost and effectiveness / utility for two or more interventions, e.g. from a Bayesian model in the form of MCMC simulations. This package computes the most cost-effective alternative and produces graphical summaries and probabilistic sensitivity analysis, see Baio et al (2017) \doi{10.1007/978-3-319-55718-2}.
+Produces an economic evaluation of a sample of suitable variables of cost and effectiveness / utility for two or more interventions, e.g. from a Bayesian model in the form of MCMC simulations. This package computes the most cost-effective alternative and produces graphical summaries and probabilistic sensitivity analysis, see Baio et al (2017) <doi:10.1007/978-3-319-55718-2>.
 }
 \seealso{
 Useful links:
