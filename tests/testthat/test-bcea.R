@@ -9,7 +9,7 @@
 
 test_that("input errors", {
   
-  load(test_path("ce.RData"))
+  load(test_path("testdata/ce.RData"))
   
   expect_dims_error <- function(x, y) {
     expect_error(
