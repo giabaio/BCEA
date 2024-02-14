@@ -13,6 +13,14 @@ Patch fixing small bugs from last CRAN release.
 
 _November 2023_
 
+Some cosmetic changes to clean up
+
+* Removed the (by now, unnecessary) appveyor webhook
+* Added correct 'Remotes' in the 'DESCRIPTION' file to point to the correct GitHub repos for 'voi' and 'plotrix'
+* Changed the class of the object 'smoking_output' to be used in the 'evppi' example avoiding the need for 'rjags'
+
+_October 2023_
+
 Moved internal EVPPI calculation out of `BCEA` and now uses `voi` package instead. 
 Refactoring but retaining same interface and functionality.
 
