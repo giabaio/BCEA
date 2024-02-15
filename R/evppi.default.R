@@ -9,7 +9,6 @@ evppi.default <- function(he, ...) {
 
 #' @rdname evppi
 #'
-#' @importFrom voi evppi
 #' @examples
 #' data(Vaccine, package = "BCEA")
 #' treats <- c("Status quo", "Vaccination")
@@ -25,6 +24,13 @@ evppi.bcea <- function(he,
                        plot = FALSE,
                        residuals = TRUE,
                        method = NULL, ...) {
+  
+  if (!requireNamespace("voi", quietly = TRUE)) {
+    stop(
+      "Package \"voi (>= 1.0.1)\" must be installed to use this function.",
+      call. = FALSE
+    )
+  }
   
   comp_ids <- c(he$comp, he$ref)
   outputs <- list(e = he$e[, comp_ids],

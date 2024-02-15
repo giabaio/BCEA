@@ -7,6 +7,12 @@
 # library(BCEA)
 if (interactive()) library(testthat)
 
+if (!requireNamespace("voi", quietly = TRUE)) {
+  stop(
+    "Package \"voi (>= 1.0.1)\" must be installed to use this function.",
+    call. = FALSE
+  )
+}
 
 test_that("GAM regression (default) with vaccine data", {
   
