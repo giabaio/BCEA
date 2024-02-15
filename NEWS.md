@@ -1,4 +1,14 @@
 
+# BCEA 2.4.6
+
+_February 2024_
+
+Patch fixing small bugs from last CRAN release.
+
+* Converted help documentation in `man-roxygen` folder to md (cf858b1)
+* bugfix: line width in CEAC plot. `{ggplot2}` changed in version 3 to `linewidth` from `size` argument and had only changed some of the code. Updated to `scale_linewidth_manual()`. (60bea9c)
+* Using `testdata` folder `{testthat}` unit tests. (cbce0fa)
+
 # BCEA 2.4.5
 
 _November 2023_
@@ -14,6 +24,8 @@ _October 2023_
 Moved internal EVPPI calculation out of `BCEA` and now uses `voi` package instead. 
 Refactoring but retaining same interface and functionality.
 
+* Ensure using latest CRAN release of `{voi}` which has a patch so that BCEA can use it without losing functionality
+  + Latest version of `{voi}` needed when we use `check = TRUE` in `voi::evppi()` in order to access fitting data (6e436b5, 94f5fc5)
 * `evppi()` tested against all use cases in BCEA book (1c1457d2)
 * Select parameters by position (as well as name) in new `evppi()` (f2e4d005)
 * Use single parameter case only like `voi` package for methods `sal` and `so` (#140)
@@ -24,7 +36,7 @@ Refactoring but retaining same interface and functionality.
 # BCEA 2.4.4
 _June 2023_
 
-* Patch to fix a CRAN checks error. Suggested package `MCMCvis` wasn't used conditionally in unit test. Moved to Required packages in `DESCRIPTION`.
+* Patch to fix a CRAN checks error. Suggested package `{MCMCvis}` wasn't used conditionally in unit test. Moved to Required packages in `DESCRIPTION`.
 
 # BCEA 2.4.3
 _May 2023_
