@@ -95,7 +95,7 @@ ceef_plot_ggplot <- function(he,
         data = orig.avg[i, ],
         aes(x = .data$e.orig, y = .data$c.orig, label = .data$comp),
         size = 3.5,
-        colour = ifelse(i %in% ceef.points$comp, "black", "grey60"))
+        colour = ifelse(orig.avg[i,"comp"] %in% ceef.points$comp, "black", "grey60"))
   }
   
   legend_params <- make_legend_ggplot(he, pos)
@@ -380,7 +380,7 @@ ceef_plot_base <- function(he,
   for (i in seq_len(he$n_comparators)) {
     text(orig.avg[i, c("e.orig", "c.orig")],
          labels = orig.avg[i, 3],
-         col = ifelse(i %in% ceef.points$comp, "black", "grey60"),
+         col = ifelse(orig.avg[i, "comp"] %in% ceef.points$comp, "black", "grey60"),
          cex = 0.75)
   }
   
