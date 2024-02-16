@@ -7,7 +7,7 @@
 \usage{
 \method{CEriskav.plot}{CEriskav}(he, pos = "topright", graph = c("base", "ggplot2", "plotly"))
 
-CEriskav.plot(he, ...)
+CEriskav.plot(he, pos, graph)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian

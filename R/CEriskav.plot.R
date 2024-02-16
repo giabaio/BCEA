@@ -40,8 +40,12 @@ CEriskav.plot.CEriskav <- function(he,
 #' Cost-effectiveness Plot Including a Parameter of Risk Aversion (CEriskav)
 #' 
 #' @template args-he
+#' @param pos Legend position
+#' @param graph A string used to select the graphical engine to use for
+#' plotting. Should (partial-)match the options `"base"`,
+#' `"ggplot2"` or `"plotly"`. Default value is `"base"`.
 #' @export
 #' 
-CEriskav.plot <- function(he, ...) {
-  UseMethod('CEriskav.plot', he)
+CEriskav.plot <- function(he, pos, graph) {
+  UseMethod('CEriskav.plot', he, pos, graph)
 }
