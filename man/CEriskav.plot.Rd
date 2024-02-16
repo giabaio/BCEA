@@ -5,12 +5,7 @@
 \alias{CEriskav.plot}
 \title{Cost-effectiveness Plot Including a Parameter of Risk Aversion (CEriskav)}
 \usage{
-\method{CEriskav.plot}{CEriskav}(
-  he,
-  pos = "topright",
-  graph = c("base", "ggplot2", "plotly"),
-  ...
-)
+\method{CEriskav.plot}{CEriskav}(he, pos = "topright", graph = c("base", "ggplot2", "plotly"))
 
 CEriskav.plot(he, ...)
 }
@@ -23,8 +18,6 @@ modelling and the economic evaluation.}
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the options \code{"base"},
 \code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.}
-
-\item{pos_legend}{Legend position}
 }
 \value{
 \item{plot}{ A ggplot or plot_ly object containing the plot. Returned only

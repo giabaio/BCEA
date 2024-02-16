@@ -19,8 +19,8 @@
 #' 
 CEriskav.plot.CEriskav <- function(he,
                            pos = "topright",
-                           graph = c("base", "ggplot2" ,"plotly"),
-                           ...) {
+                           graph = c("base", "ggplot2" ,"plotly")
+                           ) {
   
   graph <- match.arg(graph)
   # extra_args <- list(...)
@@ -40,7 +40,6 @@ CEriskav.plot.CEriskav <- function(he,
 #' Cost-effectiveness Plot Including a Parameter of Risk Aversion (CEriskav)
 #' 
 #' @template args-he
-#' @param pos_legend Legend position
 #' @export
 #' 
 CEriskav.plot <- function(he, ...) {
