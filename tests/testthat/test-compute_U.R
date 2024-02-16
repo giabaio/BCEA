@@ -6,7 +6,7 @@
 
 test_that("compute_U", {
   
-  load(test_path("ce.RData"))
+  load(test_path("testdata", "ce.RData"))
   
   # single wtp
   

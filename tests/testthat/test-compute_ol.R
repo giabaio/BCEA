@@ -8,7 +8,7 @@
 
 test_that("simple data input parameters", {
   
-  load(test_path("ce.RData"))
+  load(test_path("testdata", "ce.RData"))
   
   # only one intervention
   # limiting case
@@ -66,7 +66,7 @@ test_that("simple data input parameters", {
 
 test_that("call via bcea", {
   
-  load(test_path("ce.RData"))
+  load(test_path("testdata", "ce.RData"))
   
   res <- 
     bcea(e = eff,

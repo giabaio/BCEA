@@ -8,7 +8,7 @@
 
 test_that("simple data", {
   
-  load(test_path("ce.RData"))
+  load(test_path("testdata", "ce.RData"))
   
   # only one intervention
   # limiting case
@@ -50,7 +50,7 @@ test_that("simple data", {
 
 test_that("call via bcea", {
   
-  load(test_path("ce.RData"))
+  load(test_path("testdata", "ce.RData"))
   
   res <- 
     bcea(e = eff,
@@ -86,7 +86,7 @@ test_that("errors in dimensions", {
 
 test_that("using sim_table", {
   
-  load(test_path("ce.RData"))
+  load(test_path("testdata", "ce.RData"))
   
   res <- 
     bcea(e = eff,
