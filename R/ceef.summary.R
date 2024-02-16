@@ -15,7 +15,6 @@ ceef.summary <- function(he,
                          frontier_params,
                          include.ICER = FALSE,
                          ...) {
-  
   ceef.points <- frontier_data$ceef.points 
   orig.avg <- frontier_data$orig.avg
   
@@ -55,7 +54,7 @@ ceef.summary <- function(he,
   ## Interventions not included
   if (length(no.ceef) > 0) {
     noceef.points <- data.frame(matrix(NA_real_, ncol = 4, nrow = length(no.ceef)))
-    noceef.points[, 1:2] <- orig.avg[no.ceef, -3]
+    noceef.points[, 1:2] <- orig.avg[orig.avg$comp %in% no.ceef, -3]
     
     if (!include.ICER) {
       noceef.points <- noceef.points[, -3]
