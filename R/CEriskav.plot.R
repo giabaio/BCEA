@@ -1,7 +1,10 @@
 #' @rdname CEriskav.plot
 #' 
 #' @template args-he
-#' @param pos_legend Legend position
+#' @param pos Legend position
+#' @param graph A string used to select the graphical engine to use for
+#' plotting. Should (partial-)match the options `"base"`,
+#' `"ggplot2"` or `"plotly"`. Default value is `"base"`.
 #'
 #' @return \item{plot}{ A ggplot or plot_ly object containing the plot. Returned only
 #' if `graph_type="ggplot2"` or `graph_type="plotly"`.}

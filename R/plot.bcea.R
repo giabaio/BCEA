@@ -95,6 +95,7 @@ plot.bcea <- function(x,
   ##TODO: where should this be used?
   # named_args <- c(as.list(environment()), list(...))
   
+  m <- NULL
   graph <- match.arg(graph)
   extra_args <- list(...)
   

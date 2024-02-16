@@ -18,6 +18,12 @@ CEriskav.plot(he, ...)
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
+\item{pos}{Legend position}
+
+\item{graph}{A string used to select the graphical engine to use for
+plotting. Should (partial-)match the options \code{"base"},
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.}
+
 \item{pos_legend}{Legend position}
 }
 \value{

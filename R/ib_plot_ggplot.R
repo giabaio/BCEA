@@ -142,6 +142,7 @@ ib_plot_plotly <- function(he,
                            n,
                            xlim) {
   comparison <- comparison %||% 1
+  x <- NULL
   
   if (max(he$k) < wtp) {
     wtp <- max(he$k)

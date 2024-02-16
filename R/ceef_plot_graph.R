@@ -129,6 +129,7 @@ ceef_plot_ggplot <- function(he,
 #'
 #' @import ggplot2 plotly
 #' @importFrom grid unit
+#' @importFrom grDevices gray
 #'
 ceef_plot_plotly <- function(he,
                              frontier_data,
@@ -144,7 +145,7 @@ ceef_plot_plotly <- function(he,
   )
   
   colour <- frontier_params$colour
-  colour_hex = colour |> sapply(function(x) gsub("gr(a|e)y", "", x) |> as.numeric()/100) |> gray(1)
+  colour_hex = colour |> sapply(function(x) gsub("gr(a|e)y", "", x) |> as.numeric()/100) |> grDevices::gray(1)
   pos <- frontier_params$pos
   flip <- frontier_params$flip
   relative <- frontier_params$relative
