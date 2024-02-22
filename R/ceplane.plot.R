@@ -120,7 +120,6 @@ ceplane.plot.bcea <- function(he,
   } else if (is_ggplot(graph)) {
     
     ceplane_plot_ggplot(he,
-                        wtp,
                         pos_legend = pos,
                         graph_params, ...)
     
