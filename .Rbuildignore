@@ -25,3 +25,4 @@
 ^CONTRIBUTING\.md$
 ^revdep$
 ^CRAN-SUBMISSION$
+^CITATION\.cff$

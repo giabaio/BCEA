@@ -14,7 +14,7 @@
 #' @keywords internal
 #'
 prep_ceplane_params <- function(he, wtp_params, ...) {
-  
+  browser()
   graph_params <- list(...)
   
   # back compatibility
@@ -35,7 +35,7 @@ prep_ceplane_params <- function(he, wtp_params, ...) {
       ifelse(he$n_comparisons == 1,  #he$change_comp,
              yes = intervs_in_title,
              no = ""))
-  browser()
+  
   axes_lim <- xy_params(he, wtp_params$value, graph_params)
   
   default_params <-

@@ -103,7 +103,7 @@ ceplane.plot.bcea <- function(he,
                               pos = c(0, 1),
                               graph = c("base", "ggplot2", "plotly"),
                               ...) {
-  
+  browser()
   graph <- match.arg(graph)
   
   he <- setComparisons(he, comparison)

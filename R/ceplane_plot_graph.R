@@ -140,6 +140,7 @@ ceplane_plot_base <- function(he, ...) {
 ceplane_plot_ggplot.bcea <- function(he,
                                      pos_legend,
                                      graph_params, ...) {
+  browser()
   # single long format for ggplot data
   delta_ce <-
     merge(
