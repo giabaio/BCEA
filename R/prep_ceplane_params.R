@@ -35,11 +35,7 @@ prep_ceplane_params <- function(he, wtp_params, ...) {
       ifelse(he$n_comparisons == 1,  #he$change_comp,
              yes = intervs_in_title,
              no = ""))
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> 8a7d01f792ceab360cb62155961a028621966b42
   axes_lim <- xy_params(he, wtp_params$value, graph_params)
   
   default_params <-
