@@ -111,6 +111,40 @@ ceplane.plot(he, pos = c(1, 0))
 ceplane.plot(he, pos = c(1, 1))
 ```
 
+### Willingness-to-pay label
+
+For `{ggplot2}`
+
+```{r}
+ceplane.plot(he, graph = "ggplot2")  # default
+ceplane.plot(he, graph = "ggplot2", wtp = 10000)
+ceplane.plot(he, graph = "ggplot2", wtp = list(value = 10000))
+ceplane.plot(he, graph = "ggplot2", wtp = list(value = 10000, colour = "blue"))
+ceplane.plot(he, graph = "ggplot2", wtp = list(colour = "blue"))
+ceplane.plot(he, graph = "ggplot2", wtp = list(y = 8))
+ceplane.plot(he, graph = "ggplot2", wtp = list(size = 5))
+
+# to hide text
+ceplane.plot(he, graph = "ggplot2", wtp = list(size = 0))
+```
+
+For base `R`
+
+```{r}
+ceplane.plot(he)  # default
+
+##TODO: not yet implemented
+# ceplane.plot(he, wtp = 10000)
+# ceplane.plot(he, wtp = list(value = 10000))
+# ceplane.plot(he, wtp = list(value = 10000, colour = "blue"))
+# ceplane.plot(he, wtp = list(colour = "blue"))
+# ceplane.plot(he, wtp = list(y = 8))
+# ceplane.plot(he, wtp = list(size = 5))
+# 
+# # to hide text
+# ceplane.plot(he, wtp = list(size = 0))
+```
+
 <!-- ```{r} -->
 <!-- ceac.plot(he, graph = "ggplot2", pos = c(0, 0)) -->
 <!-- ceac.plot(he, graph = "ggplot2", pos = c(0, 1)) -->

@@ -2,7 +2,6 @@
 #' CE-plane ggplot Parameters
 #' 
 #' @template args-he
-#' @param wtp Willingness to pay
 #' @param pos_legend Position of legend
 #' @param graph_params Other graphical parameters
 #' @param ... Additional arguments
@@ -11,15 +10,14 @@
 #' @keywords internal
 #' 
 ceplane_ggplot_params <- function(he,
-                                  wtp,
                                   pos_legend,
                                   graph_params,
                                   ...) {
-  
+
   ext_params <- ceplane_geom_params(...)
   
   graph_params$area <-
-    modifyList(polygon_params(graph_params, wtp),
+    modifyList(polygon_params(graph_params),
                graph_params$area)
   
   graph_params$legend <- make_legend_ggplot(he, pos_legend)
@@ -33,7 +31,6 @@ ceplane_ggplot_params <- function(he,
         y = graph_params$ylim[1],
         hjust = "inward",
         vjust = "inward",
-        label = paste0("  k = ", format(wtp, digits = 6), "\n"),
         size = convert_pts_to_mm(1),
         colour = "black"),
       icer = list(

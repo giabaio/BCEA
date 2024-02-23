@@ -17,7 +17,9 @@ setup_params <- function(graph_params) {
 
 #' @keywords dplot
 #' 
-polygon_params <- function(graph_params, wtp) {
+polygon_params <- function(graph_params) {
+  
+  wtp <- graph_params$wtp_value
   
   x_max <- graph_params$xlim[2]
   y_min <- graph_params$ylim[1]
