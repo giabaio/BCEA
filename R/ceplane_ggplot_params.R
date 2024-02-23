@@ -13,11 +13,11 @@ ceplane_ggplot_params <- function(he,
                                   pos_legend,
                                   graph_params,
                                   ...) {
-  
+
   ext_params <- ceplane_geom_params(...)
   
   graph_params$area <-
-    modifyList(polygon_params(graph_params, wtp),
+    modifyList(polygon_params(graph_params),
                graph_params$area)
   
   graph_params$legend <- make_legend_ggplot(he, pos_legend)

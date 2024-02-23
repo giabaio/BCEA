@@ -8,7 +8,7 @@ ceplane_base_params <- function(he,
   c(list(
     setup = setup_params(graph_params),
     points = points_params(graph_params),
-    polygon = polygon_params(graph_params, wtp),
+    polygon = polygon_params(graph_params),
     k_txt = k_text(graph_params, wtp),
     wtp = wtp,
     ref_first = graph_params$ref_first),
