@@ -14,7 +14,7 @@
 #' @keywords internal
 #'
 prep_ceplane_params <- function(he, wtp_params, ...) {
-  browser()
+  
   graph_params <- list(...)
   
   # back compatibility
