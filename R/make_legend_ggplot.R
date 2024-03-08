@@ -11,12 +11,13 @@
 #'
 #' @keywords internal
 #' 
-make_legend_ggplot <- function(dat, legend_pos) {
+make_legend_ggplot <- function(dat = NULL, legend_pos) {
   
   legend_just <- NULL  # sets the corner that the legend_pos position refers to
   legend_dir <- NULL
   
-  n_lines <- num_lines(dat)
+  n_lines <- 0
+  if (!is.null(dat)) n_lines <- num_lines(dat)
   
   if (n_lines == 1) {
     
@@ -35,13 +36,21 @@ make_legend_ggplot <- function(dat, legend_pos) {
       legend_just <- legend_pos 
     }
   } else if (is.character(legend_pos)) {
-    
     pos_choices <- c("left", "right", "bottom", "top")
-    legend_pos <- pos_choices[pmatch(legend_pos, pos_choices)]
-    legend_just <- "center"
+    
+    # if legend_pos is a combined string such as "topright" or "bottomleft"
+    if (sapply(pos_choices, function(pattern) grepl(pattern, legend_pos)) |> sum() > 1) {
+      pos = numeric(2)
+      pos[1] = grepl(pos_choices[2], paste0(legend_pos, "$"))
+      pos[2] = grepl(pos_choices[4], paste0("^", legend_pos))
+      legend_pos = pos
+      legend_just = pos
+    } else {
+      legend_pos <- pos_choices[pmatch(legend_pos, pos_choices)]
+      legend_just <- "center"
+    }
   } else if (is.numeric(legend_pos) &&
              length(legend_pos) == 2) {
-    
     legend_just <- legend_pos
   } else {
     # default
@@ -53,4 +62,3 @@ make_legend_ggplot <- function(dat, legend_pos) {
        legend.justification = legend_just,
        legend.position = legend_pos)
 }
-

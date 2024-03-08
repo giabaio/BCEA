@@ -22,8 +22,8 @@
 #' @export
 #' 
 contour.bcea <- function(he,
-                         pos = c(0, 1),
-                         graph = c("base", "ggplot2"),
+                         pos = "topleft",
+                         graph = c("base", "ggplot2", "plotly"),
                          comparison = NULL,
                          ...) {
   
@@ -31,15 +31,14 @@ contour.bcea <- function(he,
   
   he <- setComparisons(he, comparison)
   
-  params <- prep_contour_params(he, ...)
+  params <- prep_contour_params(he, graph_type, ...)
   
   if (is_baseplot(graph_type)) {
-    
     contour_base(he, pos_legend = pos, params, ...)
-    
   } else if (is_ggplot(graph_type)) {
-    
     contour_ggplot(he, pos_legend = pos, params, ...)
+  } else if (is_plotly(graph_type)) {
+    contour_plotly(he, pos_legend = pos, params, ...)
   }
 }
 

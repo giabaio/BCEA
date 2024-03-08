@@ -52,6 +52,7 @@ reference:
   - plot.bcea
   - plot.CEriskav
   - starts_with("CEriskav_plot_graph")
+  - starts_with("CEriskav.plot")
   - plot.evppi
   - starts_with("evppi_plot_graph")
 - title: "Statistics"

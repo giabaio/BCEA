@@ -18,8 +18,8 @@
 #'   bottom of the plot. Default value is `c(1,1)`, that is the topright
 #'   corner inside the plot area.
 #' @param graph A string used to select the graphical engine to use for
-#'   plotting. Should (partial-) match the two options `"base"` or
-#'   `"ggplot2"`. Default value is `"base"`.
+#'   plotting. Should (partial-) match the three options `"base"`,
+#'   `"ggplot2"` or `"plotly"`. Default value is `"base"`.
 #' @param ...  If `graph = "ggplot2"` and a named theme object is supplied,
 #'   it will be passed to the \pkg{ggplot2} object. The usual ggplot2 syntax is used.
 #'   Additional graphical arguments:
@@ -100,7 +100,7 @@
 ceplane.plot.bcea <- function(he,
                               comparison = NULL,
                               wtp = 25000,
-                              pos = c(0, 1),
+                              pos = "topleft",
                               graph = c("base", "ggplot2", "plotly"),
                               ...) {
   
@@ -108,7 +108,7 @@ ceplane.plot.bcea <- function(he,
   
   he <- setComparisons(he, comparison)
   
-  graph_params <- prep_ceplane_params(he, wtp, ...)
+  graph_params <- prep_ceplane_params(he, wtp, graph, ...)
   
   if (is_baseplot(graph)) {
     
@@ -128,8 +128,8 @@ ceplane.plot.bcea <- function(he,
     
     ceplane_plot_plotly(he,
                         wtp,
-                        graph_params,
-                        pos_legend = pos)
+                        pos_legend = pos,
+                        graph_params, ...)
   }
 }
 

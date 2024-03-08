@@ -9,7 +9,7 @@
   comparison = NULL,
   wtp = 25000,
   pos = FALSE,
-  graph = c("base", "ggplot2"),
+  graph = c("base", "ggplot2", "plotly"),
   ...
 )
 }
@@ -36,8 +36,8 @@ indicating to use the default position and \code{TRUE} to place it on the
 bottom of the plot.}
 
 \item{graph}{A string used to select the graphical engine to use for
-plotting. Should (partial-)match the two options \code{"base"} or
-\code{"ggplot2"}. Default value is \code{"base"}.}
+plotting. Should (partial-)match the options \code{"base"},
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.}
 
 \item{...}{Arguments to be passed to the methods \code{\link[=ceplane.plot]{ceplane.plot()}}
 and \code{\link[=eib.plot]{eib.plot()}}. Please see the manual pages for the individual

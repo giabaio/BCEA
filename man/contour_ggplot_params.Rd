@@ -4,11 +4,13 @@
 \alias{contour_ggplot_params}
 \title{Contour ggplot Parameters}
 \usage{
-contour_ggplot_params(he, graph_params, ...)
+contour_ggplot_params(he, pos_legend, graph_params, ...)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
+
+\item{pos_legend}{legend position}
 
 \item{graph_params}{Other graphical parameters}
 

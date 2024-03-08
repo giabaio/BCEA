@@ -6,9 +6,9 @@
 \alias{BCEA-package}
 \title{BCEA: Bayesian Cost Effectiveness Analysis}
 \description{
-\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-Produces an economic evaluation of a sample of suitable variables of cost and effectiveness / utility for two or more interventions, e.g. from a Bayesian model in the form of MCMC simulations. This package computes the most cost-effective alternative and produces graphical summaries and probabilistic sensitivity analysis, see Baio et al (2017) \doi{10.1007/978-3-319-55718-2}.
+Produces an economic evaluation of a sample of suitable variables of cost and effectiveness / utility for two or more interventions, e.g. from a Bayesian model in the form of MCMC simulations. This package computes the most cost-effective alternative and produces graphical summaries and probabilistic sensitivity analysis, see Baio et al (2017) <doi:10.1007/978-3-319-55718-2>.
 }
 \seealso{
 Useful links:
@@ -25,7 +25,7 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Andrea Berardi \email{a.berardi@ucl.ac.uk} (\href{https://orcid.org/0000-0002-2906-496X}{ORCID})
+  \item Andrea Berardi \email{and.be.like@gmail.com} (\href{https://orcid.org/0000-0002-2906-496X}{ORCID})
   \item Anna Heath \email{anna.heath@sickkids.ca} (\href{https://orcid.org/0000-0002-7263-4251}{ORCID})
   \item Nathan Green \email{n.green@ucl.ac.uk} (\href{https://orcid.org/0000-0003-2745-1736}{ORCID})
 }

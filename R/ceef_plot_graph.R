@@ -95,7 +95,7 @@ ceef_plot_ggplot <- function(he,
         data = orig.avg[i, ],
         aes(x = .data$e.orig, y = .data$c.orig, label = .data$comp),
         size = 3.5,
-        colour = ifelse(i %in% ceef.points$comp, "black", "grey60"))
+        colour = ifelse(orig.avg[i,"comp"] %in% ceef.points$comp, "black", "grey60"))
   }
   
   legend_params <- make_legend_ggplot(he, pos)
@@ -122,6 +122,152 @@ ceef_plot_ggplot <- function(he,
   if (flip) ceplane <- ceplane + coord_flip()
   
   ceplane
+}
+
+#' @rdname ceef_plot_graph
+#' @title CEEF plot plotly version
+#'
+#' @import ggplot2 plotly
+#' @importFrom grid unit
+#' @importFrom grDevices gray
+#'
+ceef_plot_plotly <- function(he,
+                             frontier_data,
+                             frontier_params,
+                             ...) {
+  
+  scatter.data <- frontier_data$scatter.data
+  ceef.points <- frontier_data$ceef.points
+  orig.avg <- frontier_data$orig.avg
+  
+  scatter.data$intervention = factor(
+    he$interventions[scatter.data$comp]
+  )
+  
+  colour <- frontier_params$colour
+  colour_hex = colour |> sapply(function(x) gsub("gr(a|e)y", "", x) |> as.numeric()/100) |> grDevices::gray(1)
+  pos <- frontier_params$pos
+  flip <- frontier_params$flip
+  relative <- frontier_params$relative
+  
+  add_dominance_region <- frontier_params$dominance
+  add_frontier <- dim(ceef.points)[1] > 1
+  
+  extra_args <- list(...)
+  
+  opt_theme <- purrr::keep(extra_args, is.theme)
+  
+  if (flip) {
+    names(ceef.points) = c(names(ceef.points)[c(2,1)], names(ceef.points)[-c(1,2)])
+    names(scatter.data) = c(names(scatter.data)[c(2,1)], names(scatter.data)[-c(1,2)])
+    names(orig.avg) = c(names(orig.avg)[c(2,1)], names(orig.avg)[-c(1,2)])
+  }
+  
+  ceplane <- plotly::plot_ly()
+  
+  if (add_dominance_region) {
+    shapes_list = lapply(
+      1:nrow(ceef.points), function(ndx) {
+        list(
+          type = "rect", fillcolor = "lightgrey", opacity = 0.35,
+          line = list(color = "lightgrey"),
+          x0 = -2*max(abs(range(scatter.data$e))),
+          x1 = ceef.points[ndx, "x"],
+          y0 = ceef.points[ndx, "y"],
+          y1 = 2*max(abs(range(scatter.data$c))),
+          xref = "x", yref = "y"
+        )
+      }
+    )
+    ceplane <- ceplane |>
+      plotly::layout(
+        shapes = shapes_list
+      )
+  }
+  
+  # point clouds
+  ceplane <- ceplane |>
+    plotly::add_trace(
+      data = scatter.data,
+      type = "scatter",
+      mode = "markers",
+      y = ~c,
+      x = ~e,
+      color = ~intervention,
+      colors = colour_hex
+    )
+  
+  # frontier
+  if (add_frontier)
+    ceplane <- ceplane |>
+    plotly::add_lines(
+      name = "Efficiency frontier",
+      x = ceef.points$x,
+      y = ceef.points$y,
+      line = list(color = "black")
+    )
+  
+  # circles
+  ceplane <- ceplane |>
+    plotly::add_trace(
+      name = "Efficient interventions",
+      type = "scatter",
+      mode = "markers+text",
+      data = orig.avg[orig.avg$comp %in% ceef.points$comp,],
+      x = ~e.orig,
+      y = ~c.orig,
+      marker = list(size = 20, fillcolor = "white", color = "white", line = list(width = 1, color = "black")),
+      text = ~comp, 
+      textfont = list(color = "black")
+    ) |>
+    plotly::add_trace(
+      name = "Inefficient interventions",
+      type = "scatter",
+      mode = "markers+text",
+      data = orig.avg[!orig.avg$comp %in% ceef.points$comp,],
+      x = ~e.orig,
+      y = ~c.orig,
+      marker = list(size = 20, fillcolor = "white", color = "white", line = list(width = 1, color = "grey")),
+      text = ~comp,
+      textfont = list(color = "grey")
+    )
+  
+  legend_params = make_legend_plotly(pos)
+  
+  xaxis_list = list(
+    hoverformat = ".2f",
+    title = ifelse(
+      !flip,
+      ifelse(!relative, "Effectiveness", "Incremental effectiveness"),
+      ifelse(!relative, "Cost", "Incremental cost")
+    ),
+    range = 
+      scatter.data[,ifelse(!flip,1,2)] |> range() |> 
+      (\(x) c(x[1] - abs(x[1] - x[2])*0.15, x[2] + abs(x[1] - x[2])*0.15))()
+  )
+  
+  yaxis_list = yaxis = list(
+    hoverformat = ".2f",
+    title = ifelse(
+      !flip,
+      ifelse(!relative, "Cost", "Incremental cost"),
+      ifelse(!relative, "Effectiveness", "Incremental effectiveness")
+    ),
+    range = 
+      scatter.data[,ifelse(!flip,2,1)] |> range() |> 
+      (\(x) c(x[1] - abs(x[1] - x[2])*0.15, x[2] + abs(x[1] - x[2])*0.15))()
+  )
+  
+  ceplane <- ceplane |>
+    plotly::layout(
+      title = "Cost-effectiveness efficiency frontier",
+      xaxis = xaxis_list,
+      yaxis = yaxis_list,
+      legend = legend_params
+    ) |>
+    plotly::config(displayModeBar = FALSE)
+  
+  return(ceplane)
 }
 
 #' @rdname ceef_plot_graph
@@ -235,7 +381,7 @@ ceef_plot_base <- function(he,
   for (i in seq_len(he$n_comparators)) {
     text(orig.avg[i, c("e.orig", "c.orig")],
          labels = orig.avg[i, 3],
-         col = ifelse(i %in% ceef.points$comp, "black", "grey60"),
+         col = ifelse(orig.avg[i, "comp"] %in% ceef.points$comp, "black", "grey60"),
          cex = 0.75)
   }
   

@@ -4,11 +4,14 @@
 \alias{CEriskav_plot_graph}
 \alias{CEriskav_plot_base}
 \alias{CEriskav_plot_ggplot}
+\alias{CEriskav_plot_plotly}
 \title{Cost-effectiveness Plot Including a Parameter of Risk Aversion}
 \usage{
 CEriskav_plot_base(he, pos_legend)
 
 CEriskav_plot_ggplot(he, pos_legend)
+
+CEriskav_plot_plotly(he, pos_legend)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
@@ -17,5 +20,5 @@ modelling and the economic evaluation.}
 \item{pos_legend}{Legend position}
 }
 \description{
-Choice of base R, \pkg{ggplot2}.
+Choice of base R, \pkg{ggplot2} or \pkg{plotly}.
 }
