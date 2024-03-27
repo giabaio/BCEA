@@ -54,7 +54,7 @@ ib.plot.bcea <- function(he,
   base.graphics <- all(pmatch(graph, c("base", "ggplot2")) != 2)
   
   if (!is.null(comparison))
-    stopifnot(comparison <= he$n_comparison)
+    stopifnot(comparison <= he$n_comparisons)
   
   if (base.graphics) {
     ib_plot_base(he,
