@@ -39,8 +39,8 @@ prep_ceplane_params <- function(he, wtp, ...) {
     list(xlab = "Incremental effectiveness",
          ylab = "Incremental cost",
          title = plot_title,
-         xlim = axes_lim$x,
-         ylim = axes_lim$y,
+         xlim = axes_lim$xlim,
+         ylim = axes_lim$ylim,
          point = list(
            color = grey.colors(n = he$n_comparisons,
                                end = 0.7,
