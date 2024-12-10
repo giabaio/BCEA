@@ -53,7 +53,7 @@ ib.plot.bcea <- function(he,
   graph <- match.arg(graph)
   
   if (!is.null(comparison))
-    stopifnot(comparison <= he$n_comparison)
+    stopifnot(comparison <= he$n_comparisons)
   
   if (is_baseplot(graph)) {
     ib_plot_base(he,

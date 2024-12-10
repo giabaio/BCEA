@@ -1,7 +1,7 @@
 Package: BCEA
 Type: Package
 Title: Bayesian Cost Effectiveness Analysis
-Version: 2.4.5
+Version: 2.4.6
 Authors@R: c(
     person("Gianluca", "Baio",
             email = "g.baio@ucl.ac.uk",
@@ -35,7 +35,6 @@ Imports:
     rlang,
     rstan,
     scales,
-    voi (>= 1.0.1)
 Depends:
     R (>= 3.5.0)
 Suggests:
@@ -51,6 +50,7 @@ Suggests:
     splancs,
     testthat (>= 2.1.0),
     vdiffr,
+    voi (>= 1.0.1),
     withr
 RdMacros: Rdpack
 VignetteBuilder: knitr
@@ -65,7 +65,7 @@ URL: https://gianluca.statistica.it/software/bcea/,
      https://gianluca.statistica.it/,
      https://github.com/giabaio/BCEA/  
 NeedsCompilation: no
-RoxygenNote: 7.2.3.9000
+RoxygenNote: 7.3.1
 Encoding: UTF-8
 BugReports: https://github.com/n8thangreen/BCEA/issues/
 LazyData: false

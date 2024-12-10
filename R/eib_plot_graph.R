@@ -61,7 +61,7 @@ eib_plot_ggplot <- function(he,
       k = c(he$k),
       eib = c(he$eib), 
       comparison =
-        as.factor(rep(1:he$n_comparison,
+        as.factor(rep(1:he$n_comparisons,
                       each = length(he$k))))
   
   ggplot(data_psa,
