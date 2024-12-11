@@ -53,7 +53,7 @@ prep_ceplane_params <- function(he, wtp, graph, ...) {
          ICER_size = ifelse(graph == "plotly", ifelse(he$n_comparisons == 1, 8, 0), 2),
          area = list(
            # line_color = "black",
-           col = "grey95"),
+           color = "grey95"),
          ref_first = TRUE)
   
   modifyList(default_params, graph_params)

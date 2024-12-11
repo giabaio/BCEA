@@ -27,7 +27,7 @@
 #'   \item `label.pos = FALSE`: will place the willingness to pay label in a
 #'   different  position at the bottom of the graph - base and \pkg{ggplot2} only (no
 #'   label in \pkg{plotly}).
-#'   \item `line = list(color)`: a colour specifying the colour of the willingness-to-pay line.
+#'   \item `line = list(color)`: a colour specifying the colour of the willingness-to-pay line (not available in the \pkg{plotly} version).
 #'   \item `point = list(color)`: a vector of colours specifying the colour(s) associated
 #'   to the cloud of points. Should be of length 1 or equal to the number of comparisons.
 #'   \item `point = list(size)`: a vector of colours specifying the size(s) of the points.
@@ -39,9 +39,9 @@
 #'   \item `icer = list(size)`: a vector of colours specifying the size(s) of the ICER
 #'   points. Should be of length 1 or equal to the number of comparisons.
 #'   \item `area_include`: logical, include or exclude the cost-effectiveness 
-#'   acceptability area (default is TRUE).
+#'   acceptability area; default is TRUE.
 #'   \item `area = list(color)`: a colour specifying the colour of the cost-effectiveness
-#'   acceptability area.
+#'   acceptability area (also available in the \pkg{plotly} version).
 #'   \item `currency`: Currency prefix to cost differential values - \pkg{ggplot2} only.
 #'   \item `icer_annot`: Annotate each ICER point with text label - \pkg{ggplot2} only.
 #'  }
@@ -59,9 +59,9 @@
 #'   pay. If the comparators are more than 2 and no pairwise comparison is
 #'   specified, all scatterplots are graphed using different colours.
 #'   
-#' @details In the \pkg{plotly} version, `point_colors`, `ICER_colors` and `area_color` can also
+#' @details In the \pkg{plotly} version, colors can also
 #' be specified as rgba colours using either the `[plotly]toRGB`
-#' function or a rgba colour string, e.g. `'rgba(1, 1, 1, 1)'`.
+#' function or a rgba colour string, e.g. `'rgb(1, 1, 1, 1)'`.
 #'   
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso [bcea()],

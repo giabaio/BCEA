@@ -49,7 +49,7 @@ Additional graphical arguments:
 \item \code{label.pos = FALSE}: will place the willingness to pay label in a
 different  position at the bottom of the graph - base and \pkg{ggplot2} only (no
 label in \pkg{plotly}).
-\item \code{line = list(color)}: a colour specifying the colour of the willingness-to-pay line.
+\item \code{line = list(color)}: a colour specifying the colour of the willingness-to-pay line (not available in the \pkg{plotly} version).
 \item \code{point = list(color)}: a vector of colours specifying the colour(s) associated
 to the cloud of points. Should be of length 1 or equal to the number of comparisons.
 \item \code{point = list(size)}: a vector of colours specifying the size(s) of the points.
@@ -61,9 +61,9 @@ points. Should be of length 1 or equal to the number of comparisons.
 \item \code{icer = list(size)}: a vector of colours specifying the size(s) of the ICER
 points. Should be of length 1 or equal to the number of comparisons.
 \item \code{area_include}: logical, include or exclude the cost-effectiveness
-acceptability area (default is TRUE).
+acceptability area; default is TRUE.
 \item \code{area = list(color)}: a colour specifying the colour of the cost-effectiveness
-acceptability area.
+acceptability area (also available in the \pkg{plotly} version).
 \item \code{currency}: Currency prefix to cost differential values - \pkg{ggplot2} only.
 \item \code{icer_annot}: Annotate each ICER point with text label - \pkg{ggplot2} only.
 }}
@@ -88,9 +88,9 @@ together with the sustainability area, as a function of
 the selected willingness to pay threshold.
 }
 \details{
-In the \pkg{plotly} version, \code{point_colors}, \code{ICER_colors} and \code{area_color} can also
+In the \pkg{plotly} version, colors can also
 be specified as rgba colours using either the \verb{[plotly]toRGB}
-function or a rgba colour string, e.g. \code{'rgba(1, 1, 1, 1)'}.
+function or a rgba colour string, e.g. \code{'rgb(1, 1, 1, 1)'}.
 }
 \examples{
 ## create the bcea object for the smoking cessation example
