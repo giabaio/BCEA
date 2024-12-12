@@ -16,8 +16,8 @@
 #' [ceplane.plot()].
 #' @template args-pos
 #' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the two options `"base"` or
-#' `"ggplot2"`. Default value is `"base"`.
+#' plotting. Should (partial-)match the options `"base"`,
+#' `"ggplot2"` or `"plotly"`. Default value is `"base"`.
 #' @param ...  Arguments to be passed to the methods [ceplane.plot()]
 #' and [eib.plot()]. Please see the manual pages for the individual
 #' functions.  Arguments like `size`, `ICER.size` and `plot.cri`
@@ -89,14 +89,13 @@ plot.bcea <- function(x,
                       comparison = NULL,
                       wtp = 25000,
                       pos = FALSE,
-                      graph = c("base", "ggplot2"),
+                      graph = c("base", "ggplot2", "plotly"),
                       ...) {
   
   ##TODO: where should this be used?
   # named_args <- c(as.list(environment()), list(...))
   
   graph <- match.arg(graph)
-  use_base_graphics <- pmatch(graph, c("base", "ggplot2")) != 2
   extra_args <- list(...)
   
   # consistent colours across plots
@@ -105,7 +104,7 @@ plot.bcea <- function(x,
       extra_args$line$color <- extra_args$point$color   
     }}
   
-  if (use_base_graphics) {
+  if (is_baseplot(graph)) {
     withr::with_par(list(mfrow = c(2,2)), {
       ceplane.plot(x,
                    comparison = comparison,
@@ -129,7 +128,7 @@ plot.bcea <- function(x,
       evi.plot(x,
                graph = "base", ...)
     })
-  } else {
+  } else if (is_baseplot("ggplot2")) {
     
     is_req_pkgs <- map_lgl(c("ggplot2","grid"), requireNamespace, quietly = TRUE)
     
@@ -211,6 +210,70 @@ plot.bcea <- function(x,
       multiplot(list(ceplane, ceac, eib, evi),
                 cols = 2)
     }
+  } else if (is_plotly(graph)) {
+    extract_plotly_title = function(p) {
+      if (exists("layoutAttrs", p$x)) {
+        return(p$x$layoutAttrs[[1]]$title)
+      } else if (exists("layout", p$x)) {
+        return(p$x$layout$title)
+      } else {
+        message("Plotly title not found in extract_plotly_title()")
+        return("Plotly title not found")
+      }
+    }
+    
+    p1 = ceplane.plot(x, graph = "p", wtp = wtp, ...)
+    p2 = ceac.plot(x, graph = "p", ...)
+    p3 = eib.plot(x, graph = "p", ...)
+    p4 = evi.plot(x, graph = "p", ...)
+    
+    ppp = subplot(
+      p1, p2, p3, p4, nrows = 2,
+      titleX = TRUE, titleY = TRUE, margin = 0.1
+    )
+    
+    annotations = list(
+      list(
+        x = 0.2, y = 1.0,
+        text = extract_plotly_title(p1),
+        xref = "paper",
+        yref = "paper",
+        xanchor = "center",
+        yanchor = "bottom",
+        showarrow = FALSE
+      ),
+      list(
+        x = 0.8, y = 1.0,
+        text = extract_plotly_title(p2),
+        xref = "paper",
+        yref = "paper",
+        xanchor = "center",
+        yanchor = "bottom",
+        showarrow = FALSE
+      ),
+      list(
+        x = 0.2, y = 0.4,
+        text = extract_plotly_title(p3),
+        xref = "paper",
+        yref = "paper",
+        xanchor = "center",
+        yanchor = "bottom",
+        showarrow = FALSE
+      ),
+      list(
+        x = 0.8, y = 0.4,
+        text = extract_plotly_title(p4),
+        xref = "paper",
+        yref = "paper",
+        xanchor = "center",
+        yanchor = "bottom",
+        showarrow = FALSE
+      )
+    )
+    
+    ppp = ppp |>
+      layout(annotations = annotations, title = "")
+    return(ppp)
   }
 }
 

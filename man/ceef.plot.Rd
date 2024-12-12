@@ -8,14 +8,14 @@
 \method{ceef.plot}{bcea}(
   he,
   comparators = NULL,
-  pos = c(1, 1),
+  pos = "topright",
   start.from.origins = TRUE,
   threshold = NULL,
   flip = FALSE,
   dominance = TRUE,
   relative = FALSE,
   print.summary = TRUE,
-  graph = c("base", "ggplot2"),
+  graph = c("base", "ggplot2", "plotly"),
   print.plot = TRUE,
   ...
 )

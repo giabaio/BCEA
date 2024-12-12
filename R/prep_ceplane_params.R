@@ -6,14 +6,17 @@
 #'
 #' @template args-he
 #' @param wtp_params Willingness-to-pay parameters. This can be a single value or a list.
+#' @param graph A string used to select the graphical engine to use for
+#'   plotting. Must match either `"base"`, `"ggplot2"` or `"plotly"`
 #' @param ... Additional arguments
 #' @importFrom grDevices grey.colors
 #'
-#' @return List pf graph parameters
+#' @return List of graph parameters
 #' @export
 #' @keywords internal
 #'
-prep_ceplane_params <- function(he, wtp_params, ...) {
+
+prep_ceplane_params <- function(he, wtp_params, graph, ...) {
   
   graph_params <- list(...)
   
@@ -48,15 +51,15 @@ prep_ceplane_params <- function(he, wtp_params, ...) {
            color = grey.colors(n = he$n_comparisons,
                                end = 0.7,
                                alpha = 1),
-           size = 0.35,
+           size = ifelse(graph == "plotly", 8, 0.35),
            shape = rep(20, he$n_comparisons)),
          wtp = list(
            value = 25000),
          area_include = TRUE,
-         ICER_size = 2,
+         ICER_size = ifelse(graph == "plotly", ifelse(he$n_comparisons == 1, 8, 0), 2),
          area = list(
            # line_color = "black",
-           col = "grey95"),
+           color = "grey95"),
          ref_first = TRUE)
   
   out <- 

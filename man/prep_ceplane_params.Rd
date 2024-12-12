@@ -4,18 +4,21 @@
 \alias{prep_ceplane_params}
 \title{Prepare CE-plane Parameters}
 \usage{
-prep_ceplane_params(he, wtp_params, ...)
+prep_ceplane_params(he, wtp_params, graph, ...)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
-\item{wtp_params}{Willingness-to-pay threshold. This can be a single value or a list.}
+\item{wtp_params}{Willingness-to-pay parameters. This can be a single value or a list.}
+
+\item{graph}{A string used to select the graphical engine to use for
+plotting. Must match either \code{"base"}, \code{"ggplot2"} or \code{"plotly"}}
 
 \item{...}{Additional arguments}
 }
 \value{
-List pf graph parameters
+List of graph parameters
 }
 \description{
 In ggplot format, combine user-supplied

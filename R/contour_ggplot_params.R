@@ -2,6 +2,7 @@
 #' Contour ggplot Parameters
 #' 
 #' @template args-he
+#' @param pos_legend legend position
 #' @param graph_params Other graphical parameters
 #' @param ... Additional arguments
 #'
@@ -9,13 +10,14 @@
 #' @keywords internal
 #' 
 contour_ggplot_params <- function(he,
+                                  pos_legend,
                                   graph_params,
                                   ...) {
   
   ext_params <- ceplane_geom_params(...)
   
   graph_params$legend <-
-    make_legend_ggplot(he, graph_params$pos_legend)
+    make_legend_ggplot(he, pos_legend)
   
   if (!is.null(graph_params$nlevels)) {
     nlevels <- round(graph_params$nlevels)

@@ -136,7 +136,6 @@ ceac_ggplot <- function(he,
 
   ggplot(data_psa, aes(x = .data$k, y = .data$ceac)) +
     geom_line(aes(linetype = .data$comparison,
-                  linewidth = factor(.data$comparison),
                   colour = factor(.data$comparison))) +
     theme_ceac() + 
     theme_add +                                            # theme
@@ -160,21 +159,15 @@ ceac_ggplot <- function(he,
 #' @rdname ceac_plot_graph
 #' 
 ceac_plot_plotly <- function(he,
-                             pos_legend = "left",
+                             pos_legend = "bottomright",
                              graph_params) {
-  
-  comparisons_label <-
-    paste0(he$interventions[he$ref]," vs ",he$interventions[he$comp])
-  
   data.psa <- data.frame(
-    k = he$k,
-    ceac = he$ceac,
-    comparison = as.factor(c(
-      sapply(1:he$n_comparisons, function(x) rep(x, length(he$k)))
-    )),
-    label = as.factor(c(
-      sapply(comparisons_label, function(x) rep(x, length(he$k)))
-    )))
+    k = rep(he$k, he$ceac |> ncol()),
+    ceac = he$ceac |> c(),
+    comparison = he$ceac |> colnames() |> as.factor() |> as.numeric() |> sapply(function(x) rep(x, length(he$k))) |> c(),
+    single_label = he$ceac |> colnames() |> as.factor() |> sapply(function(x) rep(x, length(he$k))) |> c()
+  )
+  data.psa$label = paste0(he$interventions[he$ref], " vs ", data.psa$single_label)
   
   graph_params$line$type <- graph_params$line$type %||% rep_len(1:6, he$n_comparisons)
   
@@ -214,7 +207,8 @@ ceac_plot_plotly <- function(he,
         title = graph_params$annot$y,
         range = c(0, 1.005)),
       showlegend = he$n_comparisons > 1, 
-      legend = legend_params)
+      legend = legend_params) |>
+    plotly::hide_colorbar()
   
   plotly::config(ceac, displayModeBar = FALSE)
 }
