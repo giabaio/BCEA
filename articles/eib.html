@@ -5,7 +5,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="BCEA">
 <title>Expected Incremental Benefit Plot • BCEA</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -15,73 +14,55 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Expected Incremental Benefit Plot">
-<meta property="og:description" content="BCEA">
-<meta property="og:image" content="https://n8thangreen.github.io/BCEA/logo.png">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="../index.html">BCEA</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.6</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/CEriskav.html">Risk Aversion Analysis</a>
-    <a class="dropdown-item" href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a>
-    <a class="dropdown-item" href="../articles/bcea.html">Getting Started</a>
-    <a class="dropdown-item" href="../articles/ceac.html">Cost-Effectiveness Acceptability Curve Plots</a>
-    <a class="dropdown-item" href="../articles/ceef.html">Cost-Effectiveness Efficiency Frontier</a>
-    <a class="dropdown-item" href="../articles/ceplane.html">Cost-effectiveness plane</a>
-    <a class="dropdown-item" href="../articles/contour.html">Contour Plots</a>
-    <a class="dropdown-item" href="../articles/eib.html">Expected Incremental Benefit Plot</a>
-    <a class="dropdown-item" href="../articles/paired_vs_multiple_comps.html">Paired vs Multiple Comparisons</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/bcea.html">Getting Started</a></li>
+    <li><a class="dropdown-item" href="../articles/ceac.html">Cost-Effectiveness Acceptability Curve Plots</a></li>
+    <li><a class="dropdown-item" href="../articles/ceef.html">Cost-Effectiveness Efficiency Frontier</a></li>
+    <li><a class="dropdown-item" href="../articles/ceplane.html">Cost-effectiveness plane</a></li>
+    <li><a class="dropdown-item" href="../articles/CEriskav.html">Risk Aversion Analysis</a></li>
+    <li><a class="dropdown-item" href="../articles/contour.html">Contour Plots</a></li>
+    <li><a class="dropdown-item" href="../articles/eib.html">Expected Incremental Benefit Plot</a></li>
+    <li><a class="dropdown-item" href="../articles/paired_vs_multiple_comps.html">Paired vs Multiple Comparisons</a></li>
+    <li><a class="dropdown-item" href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a></li>
+  </ul>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../news/index.html">Changelog</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../bcea_cheatsheet.pdf">Cheatsheet</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
+<li class="nav-item"><a class="nav-link" href="../bcea_cheatsheet.pdf">Cheatsheet</a></li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/n8thangreen/BCEA/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/n8thangreen/BCEA/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-article">
 
@@ -93,7 +74,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Expected Incremental Benefit Plot</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/n8thangreen/BCEA/blob/HEAD/vignettes/eib.Rmd" class="external-link"><code>vignettes/eib.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/n8thangreen/BCEA/blob/dev/vignettes/eib.Rmd" class="external-link"><code>vignettes/eib.Rmd</code></a></small>
       <div class="d-none name"><code>eib.Rmd</code></div>
     </div>
 
@@ -109,19 +90,29 @@ package.</p>
 <div class="section level2">
 <h2 id="two-interventions-only">Two interventions only<a class="anchor" aria-label="anchor" href="#two-interventions-only"></a>
 </h2>
-<p>This is the simplest case, usually an alternative intervention (<span class="math inline">\(i=1\)</span>) versus status-quo (<span class="math inline">\(i=0\)</span>).</p>
+<p>This is the simplest case, usually an alternative intervention
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">i=1</annotation></semantics></math>)
+versus status-quo
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">i=0</annotation></semantics></math>).</p>
 <p>The plot is based on the incremental benefit as a function of the
-willingness to pay <span class="math inline">\(k\)</span>.</p>
-<p><span class="math display">\[
+willingness to pay
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mi>B</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>k</mi><msub><mi>Δ</mi><mi>e</mi></msub><mo>−</mo><msub><mi>Δ</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">
 IB(\theta) = k \Delta_e - \Delta_c
-\]</span></p>
-<p>Using the set of <span class="math inline">\(S\)</span> posterior
-samples, the EIB is approximated by</p>
-<p><span class="math display">\[
+</annotation></semantics></math></p>
+<p>Using the set of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math>
+posterior samples, the EIB is approximated by</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mi>S</mi></mfrac><munderover><mo>∑</mo><mi>s</mi><mi>S</mi></munderover><mi>I</mi><mi>B</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>θ</mi><mi>s</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
 \frac{1}{S} \sum_s^S IB(\theta_s)
-\]</span></p>
-<p>where <span class="math inline">\(\theta_s\)</span> is the realised
-configuration of the parameters <span class="math inline">\(\theta\)</span> in correspondence of the <span class="math inline">\(s\)</span>-th simulation.</p>
+</annotation></semantics></math></p>
+<p>where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>θ</mi><mi>s</mi></msub><annotation encoding="application/x-tex">\theta_s</annotation></semantics></math>
+is the realised configuration of the parameters
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>θ</mi><annotation encoding="application/x-tex">\theta</annotation></semantics></math>
+in correspondence of the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math>-th
+simulation.</p>
 <div class="section level4">
 <h4 id="r-code">R code<a class="anchor" aria-label="anchor" href="#r-code"></a>
 </h4>
@@ -141,12 +132,12 @@ function.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span><span class="op">)</span></span></code></pre></div>
 <p><img src="eib_files/figure-html/unnamed-chunk-3-1.png" width="576"></p>
 <p>The vertical line represents the break-even value corresponding to
-<span class="math inline">\(k^*\)</span> indicating that above that
-threshold the alternative treatment is more cost-effective than the
-status-quo.</p>
-<p><span class="math display">\[
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>k</mi><mo>*</mo></msup><annotation encoding="application/x-tex">k^*</annotation></semantics></math>
+indicating that above that threshold the alternative treatment is more
+cost-effective than the status-quo.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>k</mi><mo>*</mo></msup><mo>=</mo><mo>min</mo><mo stretchy="false" form="prefix">{</mo><mi>k</mi><mo>:</mo><mtext mathvariant="normal">EIB</mtext><mo>&gt;</mo><mn>0</mn><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">
 k^* = \min\{ k : \mbox{EIB} &gt; 0 \}
-\]</span></p>
+</annotation></semantics></math></p>
 <p>This will be at the point the curve crosses the <em>x</em>-axis.</p>
 <p>The plot defaults to base R plotting. Type of plot can be set
 explicitly using the <code>graph</code> argument.</p>
@@ -184,15 +175,17 @@ simultaneously.</p>
 <p>The curves are for pair-wise comparisons against a status-quo and the
 vertical lines and k* annotation is for simultaneous comparisons.</p>
 <p>Without loss of generality, if we assume status quo intervention
-<span class="math inline">\(i=0\)</span>, then we wish to calculate</p>
-<p><span class="math display">\[
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">i=0</annotation></semantics></math>,
+then we wish to calculate</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mi>S</mi></mfrac><munderover><mo>∑</mo><mi>s</mi><mi>S</mi></munderover><mi>I</mi><mi>B</mi><mrow><mo stretchy="true" form="prefix">(</mo><msubsup><mi>θ</mi><mi>s</mi><mrow><mi>i</mi><mn>0</mn></mrow></msubsup><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.278em"></mspace><mspace width="0.278em"></mspace><mtext mathvariant="normal">for each</mtext><mspace width="0.278em"></mspace><mi>i</mi></mrow><annotation encoding="application/x-tex">
 \frac{1}{S} \sum_s^S IB(\theta^{i0}_s) \;\; \mbox{for each} \; i
-\]</span></p>
+</annotation></semantics></math></p>
 <p>The break-even points represent no preference between the two best
-interventions at <span class="math inline">\(k\)</span>.</p>
-<p><span class="math display">\[
+interventions at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>k</mi><mi>i</mi><mo>*</mo></msubsup><mo>=</mo><mo>min</mo><mo stretchy="false" form="prefix">{</mo><mi>k</mi><mo>:</mo><mtext mathvariant="normal">EIB</mtext><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>θ</mi><mi>i</mi></msup><mo stretchy="true" form="postfix">)</mo></mrow><mo>&gt;</mo><mtext mathvariant="normal">EIB</mtext><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>θ</mi><mi>j</mi></msup><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">
 k^*_i = \min\{ k : \mbox{EIB}(\theta^i) &gt; \mbox{EIB}(\theta^j) \}
-\]</span></p>
+</annotation></semantics></math></p>
 <p>Only the right-most of these will be where the curves cross the
 x-axis.</p>
 <div class="section level4">
@@ -279,28 +272,26 @@ lines.</p>
 </div>
 </div>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p>
-<p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan Green.</p>
+  <p>Developed by Gianluca Baio, Andrea Berardi, Anna Heath, Nathan Green.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>
