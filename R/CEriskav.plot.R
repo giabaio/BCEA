@@ -19,7 +19,7 @@
 #' 
 CEriskav.plot.CEriskav <- function(he,
                            pos = "topright",
-                           graph = c("base", "ggplot2" ,"plotly")
+                           graph = c("base", "ggplot2", "plotly")
                            ) {
   
   graph <- match.arg(graph)

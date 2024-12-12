@@ -95,7 +95,6 @@ plot.bcea <- function(x,
   ##TODO: where should this be used?
   # named_args <- c(as.list(environment()), list(...))
   
-  m <- NULL
   graph <- match.arg(graph)
   extra_args <- list(...)
   
@@ -223,10 +222,10 @@ plot.bcea <- function(x,
       }
     }
     
-    p1 = ceplane.plot(m, graph = "p", wtp = wtp, ...)
-    p2 = ceac.plot(m, graph = "p", ...)
-    p3 = eib.plot(m, graph = "p", ...)
-    p4 = evi.plot(m, graph = "p", ...)
+    p1 = ceplane.plot(x, graph = "p", wtp = wtp, ...)
+    p2 = ceac.plot(x, graph = "p", ...)
+    p3 = eib.plot(x, graph = "p", ...)
+    p4 = evi.plot(x, graph = "p", ...)
     
     ppp = subplot(
       p1, p2, p3, p4, nrows = 2,
