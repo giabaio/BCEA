@@ -63,10 +63,10 @@ points. Should be of length 1 or equal to the number of comparisons.
 points. Should be of length 1 or equal to the number of comparisons.
 \item \code{area_include}: logical, include or exclude the cost-effectiveness
 acceptability area (default is \code{TRUE}).
-\item \code{area = list(color)}: a colour specifying the colour of the cost-effectiveness
-acceptability area.
 \item \code{wtp = list(value)}: equivalent to simply using \code{wtp = value} but for when multiple
 arguments are passed in list form.
+\item \code{area = list(color)}: a colour specifying the colour of the cost-effectiveness
+acceptability area.
 \item \code{wtp = list(color)}: a colour specifying the colour of the willingness-to-pay text
 \item \code{wtp = list(size)}: a value specifying the size of the willingness-to-pay text
 \item \code{wtp = list(x=..., y=...)}: a value specifying the x and y coordinates of the willingness-to-pay text

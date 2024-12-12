@@ -70,6 +70,8 @@ ceplane_plot_base.bcea <- function(he,
                                    wtp = 25000,
                                    pos_legend,
                                    graph_params, ...) {
+  if (is.list(wtp) && exists("value", wtp))
+    wtp = wtp$value
   
   plot_params <-
     ceplane_base_params(he, wtp, graph_params)
@@ -166,7 +168,7 @@ ceplane_plot_ggplot.bcea <- function(he,
       by = c("sim", "comparison"))
   
   plot_params <-
-    ceplane_ggplot_params(he, wtp, pos_legend, graph_params, ...)
+    ceplane_ggplot_params(he, pos_legend = pos_legend, graph_params = graph_params, ...)
   plot_params$area_include <- plot_params$area$include
   plot_params$area$include <- NULL
   
@@ -231,6 +233,8 @@ ceplane_plot_plotly.bcea <- function(he,
   
   comp_label <-
     paste(he$interventions[he$ref], "vs", he$interventions[he$comp])
+  if (is.list(wtp) && exists("value", wtp))
+    wtp = wtp$value
   
   # single long format for plotting data
   delta_ce <-

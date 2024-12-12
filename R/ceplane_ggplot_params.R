@@ -15,7 +15,6 @@ ceplane_ggplot_params <- function(he,
                                   ...) {
 
   ext_params <- ceplane_geom_params(...)
-  
   graph_params$area <-
     modifyList(polygon_params(graph_params),
                graph_params$area)

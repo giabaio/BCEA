@@ -113,25 +113,25 @@ ceplane.plot.bcea <- function(he,
   
   he <- setComparisons(he, comparison)
   
-  graph_params <- prep_ceplane_params(he, wtp, graph, ...)
+  graph_params <- prep_ceplane_params(he, wtp_params = wtp, graph = graph, ...)
   
   if (is_baseplot(graph)) {
     
-    ceplane_plot_base(he,
-                      wtp,
+    ceplane_plot_base(he = he, 
+                      wtp = wtp,
                       pos_legend = pos,
-                      graph_params)
+                      graph_params = graph_params)
     
   } else if (is_ggplot(graph)) {
     
-    ceplane_plot_ggplot(he,
+    ceplane_plot_ggplot(he = he,
                         pos_legend = pos,
-                        graph_params, ...)
+                        graph_params = graph_params, ...)
     
   } else if (is_plotly(graph)) {
     
-    ceplane_plot_plotly(he,
-                        wtp,
+    ceplane_plot_plotly(he = he,
+                        wtp = wtp,
                         pos_legend = pos,
                         graph_params, ...)
   }
