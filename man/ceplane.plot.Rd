@@ -26,7 +26,8 @@ comparisons together. Any subset of the possible comparisons can be selected
 (e.g., \code{comparison = c(1,3)} or \code{comparison = 2}).}
 
 \item{wtp}{The value of the willingness to pay parameter. Not used if
-\code{graph = "base"} for multiple comparisons.}
+\code{graph = "base"} for multiple comparisons. For \pkg{ggplot2} can also provide
+a list of arguments for more options (see below).}
 
 \item{pos}{Parameter to set the position of the legend; for a single
 comparison plot, the ICER legend position. Can be given in form of a string
@@ -58,12 +59,17 @@ Should be of length 1 or equal to the number of comparisons.
 Should be of length 1 or equal to the number of comparisons.
 \item \code{icer = list(color)}: a vector of colours specifying the colour(s) of the ICER
 points. Should be of length 1 or equal to the number of comparisons.
-\item \code{icer = list(size)}: a vector of colours specifying the size(s) of the ICER
+\item \code{icer = list(size)}: a vector of values specifying the size(s) of the ICER
 points. Should be of length 1 or equal to the number of comparisons.
 \item \code{area_include}: logical, include or exclude the cost-effectiveness
-acceptability area; default is TRUE.
+acceptability area (default is \code{TRUE}).
 \item \code{area = list(color)}: a colour specifying the colour of the cost-effectiveness
-acceptability area (also available in the \pkg{plotly} version).
+acceptability area.
+\item \code{wtp = list(value)}: equivalent to simply using \code{wtp = value} but for when multiple
+arguments are passed in list form.
+\item \code{wtp = list(color)}: a colour specifying the colour of the willingness-to-pay text
+\item \code{wtp = list(size)}: a value specifying the size of the willingness-to-pay text
+\item \code{wtp = list(x=..., y=...)}: a value specifying the x and y coordinates of the willingness-to-pay text
 \item \code{currency}: Currency prefix to cost differential values - \pkg{ggplot2} only.
 \item \code{icer_annot}: Annotate each ICER point with text label - \pkg{ggplot2} only.
 }}

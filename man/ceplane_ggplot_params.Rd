@@ -4,13 +4,11 @@
 \alias{ceplane_ggplot_params}
 \title{CE-plane ggplot Parameters}
 \usage{
-ceplane_ggplot_params(he, wtp, pos_legend, graph_params, ...)
+ceplane_ggplot_params(he, pos_legend, graph_params, ...)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
-
-\item{wtp}{Willingness to pay}
 
 \item{pos_legend}{Position of legend}
 

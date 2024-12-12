@@ -139,10 +139,8 @@ ceplane_plot_base <- function(he, ...) {
 #'              theme = ggplot2::theme_linedraw())
 #'              
 ceplane_plot_ggplot.bcea <- function(he,
-                                     wtp = 25000,
                                      pos_legend,
                                      graph_params, ...) {
-  
   comp_label <-
     paste(he$interventions[he$ref], "vs", he$interventions[he$comp])
   if (length(graph_params$point$size) != length(comp_label))
@@ -206,7 +204,7 @@ ceplane_plot_ggplot.bcea <- function(he,
             list(title = plot_params$title,
                  x = plot_params$xlab,
                  y = plot_params$ylab)) +
-    do.call(geom_abline, c(slope = wtp, plot_params$line)) +
+    do.call(geom_abline, c(slope = plot_params$wtp_value, plot_params$line)) +
     do.call(geom_point, plot_params$icer) +
     do.call(annotate, plot_params$wtp) +
     do.call(annotate, plot_params$icer_txt) +

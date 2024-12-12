@@ -14,7 +14,7 @@
 
 ceplane_plot_base(he, ...)
 
-\method{ceplane_plot_ggplot}{bcea}(he, wtp = 25000, pos_legend, graph_params, ...)
+\method{ceplane_plot_ggplot}{bcea}(he, pos_legend, graph_params, ...)
 
 ceplane_plot_ggplot(he, ...)
 

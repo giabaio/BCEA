@@ -5,7 +5,7 @@
 #' parameters with defaults.
 #'
 #' @template args-he
-#' @param wtp Willingness-to-pay
+#' @param wtp_params Willingness-to-pay parameters. This can be a single value or a list.
 #' @param graph A string used to select the graphical engine to use for
 #'   plotting. Must match either `"base"`, `"ggplot2"` or `"plotly"`
 #' @param ... Additional arguments
@@ -15,11 +15,15 @@
 #' @export
 #' @keywords internal
 #'
-prep_ceplane_params <- function(he, wtp, graph, ...) {
+
+prep_ceplane_params <- function(he, wtp_params, graph, ...) {
   
   graph_params <- list(...)
   
-  ##TODO: back-compatibility helper..
+  # back compatibility
+  if (!is.list(wtp_params)) {
+    wtp_params <- list(value = wtp_params)
+  }
   
   intervs_in_title <-
     paste("\n",
@@ -34,8 +38,8 @@ prep_ceplane_params <- function(he, wtp, graph, ...) {
       ifelse(he$n_comparisons == 1,  #he$change_comp,
              yes = intervs_in_title,
              no = ""))
-  
-  axes_lim <- xy_params(he, wtp, graph_params)
+
+  axes_lim <- xy_params(he, wtp_params$value, graph_params)
   
   default_params <-
     list(xlab = "Incremental effectiveness",
@@ -49,6 +53,8 @@ prep_ceplane_params <- function(he, wtp, graph, ...) {
                                alpha = 1),
            size = ifelse(graph == "plotly", 8, 0.35),
            shape = rep(20, he$n_comparisons)),
+         wtp = list(
+           value = 25000),
          area_include = TRUE,
          ICER_size = ifelse(graph == "plotly", ifelse(he$n_comparisons == 1, 8, 0), 2),
          area = list(
@@ -56,6 +62,16 @@ prep_ceplane_params <- function(he, wtp, graph, ...) {
            color = "grey95"),
          ref_first = TRUE)
   
-  modifyList(default_params, graph_params)
+  out <- 
+    modifyList(default_params, graph_params) |> 
+    modifyList(list(wtp = wtp_params))
+  
+  out$wtp$label <- paste0("  k = ", format(out$wtp$value, digits = 6), "\n")
+  
+  # move out of wtp list so can pass straight to geom
+  out$wtp_value <- out$wtp$value
+  out$wtp$value <- NULL
+    
+  out
 }
 

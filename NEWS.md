@@ -1,10 +1,15 @@
 
+# BCEA 2.4.6 (dev)
+
+* In `ceplane.plot()` for `{ggplot2}` version used the ggplot syntax thats already used for other plotting arguments so that we can now pass e.g. `wtp = list(value = 20000, colour = "blue", x = 10, y = 10, size = 4)`. This closes issue #151 so can do something like `wtp = list(size = 0)` to hide the willingness to pay text. (3d8a770)
+
 # BCEA 2.4.6
 
 _February 2024_
 
 Patch fixing small bugs from last CRAN release.
 
+* Moved `{voi}` package to Suggests in DESCRIPTION and added `requireNamespace()` in `evppi()` to avoid error when not installed (e.g. on CRAN) (f3e3e3e)
 * Converted help documentation in `man-roxygen` folder to md (cf858b1)
 * bugfix: line width in CEAC plot. `{ggplot2}` changed in version 3 to `linewidth` from `size` argument and had only changed some of the code. Updated to `scale_linewidth_manual()`. (60bea9c)
 * Using `testdata` folder `{testthat}` unit tests. (cbce0fa)
