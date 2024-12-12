@@ -16,11 +16,9 @@
 <url><loc>https://n8thangreen.github.io/BCEA/articles/paired_vs_multiple_comps.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/authors.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/index.html</loc></url>
-<url><loc>https://n8thangreen.github.io/BCEA/newREADME.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/news/index.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/BCEA-deprecated.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/BCEA-package.html</loc></url>
-<url><loc>https://n8thangreen.github.io/BCEA/reference/CEriskav.plot.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/CEriskav_assign.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/CEriskav_plot_graph.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/GrassmannOptim.html</loc></url>
@@ -61,7 +59,6 @@
 <url><loc>https://n8thangreen.github.io/BCEA/reference/contour2.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/contour_ggplot_params.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/contour_graph.html</loc></url>
-<url><loc>https://n8thangreen.github.io/BCEA/reference/contour_plotly_lines.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/convert_pts_to_mm.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/createInputs.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/diag.evppi.html</loc></url>
@@ -103,7 +100,6 @@
 <url><loc>https://n8thangreen.github.io/BCEA/reference/plot.evppi.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/plot_eib_cri.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/prep_ceplane_params.html</loc></url>
-<url><loc>https://n8thangreen.github.io/BCEA/reference/prep_delta_ce.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/prep_eib_params.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/prep_frontier_data.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/print.bcea.html</loc></url>
