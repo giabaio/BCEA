@@ -111,7 +111,7 @@ ceplane.plot(he, pos = c(1, 0))
 ceplane.plot(he, pos = c(1, 1))
 ```
 
-### Willingness-to-pay
+### Willingness-to-pay label
 
 For `{ggplot2}`
 

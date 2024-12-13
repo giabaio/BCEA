@@ -5,7 +5,7 @@
 #' parameters with defaults.
 #'
 #' @template args-he
-#' @param wtp_params Willingness-to-pay threshold. This can be a single value or a list.
+#' @param wtp_params Willingness-to-pay parameters. This can be a single value or a list.
 #' @param ... Additional arguments
 #' @importFrom grDevices grey.colors
 #'
@@ -35,15 +35,15 @@ prep_ceplane_params <- function(he, wtp_params, ...) {
       ifelse(he$n_comparisons == 1,  #he$change_comp,
              yes = intervs_in_title,
              no = ""))
-  
+
   axes_lim <- xy_params(he, wtp_params$value, graph_params)
   
   default_params <-
     list(xlab = "Incremental effectiveness",
          ylab = "Incremental cost",
          title = plot_title,
-         xlim = axes_lim$x,
-         ylim = axes_lim$y,
+         xlim = axes_lim$xlim,
+         ylim = axes_lim$ylim,
          point = list(
            color = grey.colors(n = he$n_comparisons,
                                end = 0.7,
