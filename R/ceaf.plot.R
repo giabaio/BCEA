@@ -88,11 +88,11 @@ ceaf.plot.pairwise <- function(mce,
          xlab = "Willingness to pay",
          ylab = "Probability of most cost effectiveness",
          main = "Cost-effectiveness acceptability frontier")
-    matplot(x = mce$k,
-            mce$p_best_interv,
-            type = "l",
-            lty = 3,
-            add = TRUE)
+    # matplot(x = mce$k,              # underlying ceac curves
+    #         mce$p_best_interv,
+    #         type = "l",
+    #         lty = 3,
+    #         add = TRUE)
     lines(x = mce$k,
           y = mce$ceaf,
           type = "l",
