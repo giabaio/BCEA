@@ -1,0 +1,1379 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{graphicx} \usepackage{bm}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Auto-generated report from BCEAweb},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Auto-generated report from BCEAweb}
+\author{}
+\date{\vspace{-2.5em}Version: 13 December, 2024}
+
+\begin{document}
+\maketitle
+
+\hypertarget{distributional-assumptions}{%
+\section{Distributional assumptions}\label{distributional-assumptions}}
+
+This sections presents graphical and tabular summaries to check the
+distributional assumptions used for the \(n=56\) parameters included in
+the economic model. For each parameter, a histogram of the distribution
+is presented together with a summary table, reporting some relevant
+statistics.
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-1} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1364}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2879}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1212}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1061}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1212}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2273}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+4384.479 & 2518.102 & 969.425 & 3874.5 & 10740.8 & 79.58956 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-2} \end{center}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Mean & Standard deviation & 2.5\% & Median & 97.5\% & Monte Carlo SE \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1.573 & 1.539169 & 0 & 1 & 5 & 0.0486484 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-3} \end{center}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Mean & Standard deviation & 2.5\% & Median & 97.5\% & Monte Carlo SE \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0.85 & 1.083824 & 0 & 1 & 4 & 0.0342564 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-4} \end{center}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Mean & Standard deviation & 2.5\% & Median & 97.5\% & Monte Carlo SE \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0.248 & 0.5447869 & 0 & 0 & 2 & 0.0172191 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-5} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1364}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2879}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1212}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1061}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1212}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2273}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+2045.987 & 896.964 & 654.925 & 1938.5 & 4092.15 & 28.35031 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-6} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1343}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2836}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1194}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1045}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1343}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2239}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1148.308 & 543.1979 & 340.925 & 1083 & 2435.475 & 17.16883 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-7} \end{center}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Mean & Standard deviation & 2.5\% & Median & 97.5\% & Monte Carlo SE \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+279.658 & 151.5797 & 78 & 249.5 & 658.325 & 4.790975 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-8} \end{center}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Mean & Standard deviation & 2.5\% & Median & 97.5\% & Monte Carlo SE \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0.764 & 0.9587613 & 0 & 1 & 3 & 0.0303035 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-9} \end{center}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Mean & Standard deviation & 2.5\% & Median & 97.5\% & Monte Carlo SE \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0.438 & 0.6975978 & 0 & 0 & 2 & 0.0220489 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-10} \end{center}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Mean & Standard deviation & 2.5\% & Median & 97.5\% & Monte Carlo SE \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0.091 & 0.3013467 & 0 & 0 & 1 & 0.0095247 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-11} \end{center}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Mean & Standard deviation & 2.5\% & Median & 97.5\% & Monte Carlo SE \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+6904.96 & 1850.256 & 3667.9 & 6763 & 10724.17 & 58.48097 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-12} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1324}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2794}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1324}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1029}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1324}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2206}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+3874.547 & 1236.974 & 1789.575 & 3744 & 6573.125 & 39.097 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-13} \end{center}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Mean & Standard deviation & 2.5\% & Median & 97.5\% & Monte Carlo SE \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+944.874 & 378.7866 & 348.875 & 895 & 1772.5 & 11.97229 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-14} \end{center}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Mean & Standard deviation & 2.5\% & Median & 97.5\% & Monte Carlo SE \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+847.747 & 374.6328 & 277.9 & 800 & 1699.1 & 11.841 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-15} \end{center}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Mean & Standard deviation & 2.5\% & Median & 97.5\% & Monte Carlo SE \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+476.486 & 225.2089 & 149.875 & 446 & 993.075 & 7.118168 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-16} \end{center}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Mean & Standard deviation & 2.5\% & Median & 97.5\% & Monte Carlo SE \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+115.59 & 63.15335 & 29 & 102 & 267.05 & 1.996086 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-17} \end{center}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Mean & Standard deviation & 2.5\% & Median & 97.5\% & Monte Carlo SE \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+27.438 & 14.51919 & 6 & 25 & 62.025 & 0.4589076 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-18} \end{center}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Mean & Standard deviation & 2.5\% & Median & 97.5\% & Monte Carlo SE \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+15.353 & 9.095555 & 2 & 14 & 37 & 0.2874829 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-19} \end{center}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Mean & Standard deviation & 2.5\% & Median & 97.5\% & Monte Carlo SE \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+3.672 & 2.859824 & 0 & 3 & 11 & 0.0903904 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-20} \end{center}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Mean & Standard deviation & 2.5\% & Median & 97.5\% & Monte Carlo SE \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+859.031 & 375.9444 & 281 & 816 & 1710.025 & 11.88246 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-21} \end{center}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Mean & Standard deviation & 2.5\% & Median & 97.5\% & Monte Carlo SE \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+689.768 & 303.9169 & 228.875 & 653 & 1384.2 & 9.605891 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-22} \end{center}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Mean & Standard deviation & 2.5\% & Median & 97.5\% & Monte Carlo SE \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+481.877 & 227.604 & 143 & 455 & 1009.075 & 7.19387 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-23} \end{center}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Mean & Standard deviation & 2.5\% & Median & 97.5\% & Monte Carlo SE \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+388.103 & 183.2891 & 118.975 & 364 & 811.05 & 5.793213 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-24} \end{center}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Mean & Standard deviation & 2.5\% & Median & 97.5\% & Monte Carlo SE \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+117.33 & 64.61155 & 30.975 & 105 & 281.025 & 2.042175 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-25} \end{center}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Mean & Standard deviation & 2.5\% & Median & 97.5\% & Monte Carlo SE \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+94.158 & 51.4585 & 22.975 & 83 & 216 & 1.626447 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-26} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2568}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2027}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0.0690728 & 0.0185195 & 0.0367975 & 0.0676216 & 0.1069079 & 0.0005853 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-27} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2568}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2027}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0.2971902 & 0.1047984 & 0.1196443 & 0.2898017 & 0.5211321 & 0.0033124 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-28} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2568}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2027}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0.4010433 & 0.00703 & 0.3875232 & 0.4009802 & 0.4147382 & 0.0002222 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-29} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1250}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2639}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1389}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1389}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1250}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2083}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0.013347 & 0.0029279 & 0.0082679 & 0.0130898 & 0.020119 & 9.25e-05 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-30} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2568}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2027}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0.0003727 & 9.44e-05 & 0.0002194 & 0.0003636 & 0.0005799 & 3e-06 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-31} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2568}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2027}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0.0007564 & 0.0002967 & 0.0003294 & 0.0007006 & 0.0014815 & 9.4e-06 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-32} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2568}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2027}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0.0997926 & 0.051201 & 0.0260358 & 0.0906289 & 0.2241951 & 0.0016183 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-33} \end{center}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Mean & Standard deviation & 2.5\% & Median & 97.5\% & Monte Carlo SE \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+7.004 & 2.643667 & 2 & 7 & 13 & 0.0835583 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-34} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2568}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2027}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0.9001309 & 0.0050356 & 0.8897217 & 0.9002975 & 0.9096117 & 0.0001592 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-35} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2568}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2027}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0.4199825 & 0.0014766 & 0.4169795 & 0.4199816 & 0.4228245 & 4.67e-05 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-36} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1370}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2603}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1370}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1370}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1233}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2055}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0.8141167 & 0.004001 & 0.8063162 & 0.8141551 & 0.822019 & 0.0001265 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-37} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1304}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2754}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1304}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1304}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1159}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2174}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+2.905089 & 1.225704 & 1.211919 & 2.681323 & 5.88241 & 0.0387408 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-38} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1324}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2794}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1324}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1176}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1176}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2206}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+56170.33 & 9860.615 & 36874.55 & 56216.5 & 74843.7 & 311.6641 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-39} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1324}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2794}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1176}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1176}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1324}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2206}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+43829.67 & 9860.615 & 25156.3 & 43783.5 & 63125.45 & 311.6641 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-40} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2568}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2027}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0.4382939 & 0.098694 & 0.2502404 & 0.4381762 & 0.6289504 & 0.0031194 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-41} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2568}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2027}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0.0215133 & 0.0068073 & 0.0102327 & 0.0207813 & 0.0362975 & 0.0002152 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-42} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1304}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2754}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1159}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1304}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1304}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2174}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+20.50602 & 5.086617 & 12.4331 & 20.01152 & 32.00584 & 0.1607725 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-43} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1286}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2714}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1286}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1286}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1286}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2143}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+2661.843 & 684.1538 & 1573.676 & 2583.913 & 4181.041 & 21.62402 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-44} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1304}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2754}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1304}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1159}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1304}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2174}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+7.199515 & 1.83873 & 4.279942 & 6.90417 & 11.67563 & 0.0581167 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-45} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1286}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2714}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1286}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1286}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1286}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2143}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+10.29213 & 2.607787 & 6.143624 & 9.955699 & 16.26332 & 0.0824242 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-46} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1286}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2714}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1286}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1286}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1286}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2143}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+45.91777 & 11.68489 & 27.51898 & 44.53583 & 71.62707 & 0.3693238 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-47} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1286}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2714}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1286}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1286}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1286}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2143}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+3.854695 & 0.9479262 & 2.292722 & 3.755557 & 6.017339 & 0.0299611 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-48} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1268}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2676}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1408}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1268}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1268}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2113}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1.635824 & 0.4130969 & 0.9513184 & 1.591567 & 2.543868 & 0.0130567 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-49} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1370}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2603}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1370}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1370}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1233}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2055}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0.8108407 & 0.2026673 & 0.4901607 & 0.7876551 & 1.262942 & 0.0064057 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-50} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1304}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2754}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1304}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1304}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1159}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2174}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+4.245515 & 1.380328 & 2.133401 & 4.020643 & 7.43128 & 0.043628 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-51} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1304}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2754}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1159}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1304}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1304}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2174}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+6.414003 & 1.640791 & 3.78795 & 6.185502 & 9.942465 & 0.0518604 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-52} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1159}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2754}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1304}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1304}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1304}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2174}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+6.42076 & 1.584056 & 3.850581 & 6.285484 & 9.924699 & 0.0500672 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-53} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1304}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2754}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1159}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1304}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1304}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2174}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+15.48614 & 3.549163 & 9.37079 & 15.09543 & 23.70509 & 0.1121783 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-54} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1370}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2603}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1370}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1233}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1370}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2055}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0.5424171 & 0.1463549 & 0.3095674 & 0.528529 & 0.8712211 & 0.0046258 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-55} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2568}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2027}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0.6888042 & 0.0496164 & 0.5954323 & 0.6872181 & 0.7924515 & 0.0015682 \\
+\end{longtable}
+
+\begin{center}\includegraphics{report_files/figure-latex/unnamed-chunk-27-56} \end{center}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2568}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1351}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.2027}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Standard deviation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+97.5\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Monte Carlo SE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0.9500773 & 0.0049722 & 0.9400008 & 0.9502989 & 0.9588729 & 0.0001572 \\
+\end{longtable}
+
+\end{document}
