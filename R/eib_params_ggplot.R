@@ -18,7 +18,7 @@ eib_params_ggplot <- function(he,
   
   default_params <- 
     list(
-      size = rel(3.5),
+      size = ggplot2::rel(3.5),
       kstar = list(
         geom = "text",
         label = paste0("k* = ", format(he$kstar, digits = 6)),
