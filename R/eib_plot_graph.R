@@ -166,16 +166,16 @@ eib_plot_plotly <- function(he,
   
   n_comp <- length(comparison)
   
-  graph_params$line$types <- graph_params$line$type %||% rep(1:6, ceiling(he$n_comparisons/6))[1:he$n_comparisons]
+  graph_params$line$type <- graph_params$line$type %||% rep(1:6, ceiling(he$n_comparisons/6))[1:he$n_comparisons]
   
   comparisons.label <-
     paste0(he$interventions[he$ref], " vs ", he$interventions[he$comp])
   
-  if (length(graph_params$line$types) < n_comp)
-    graph_params$line$types <- rep_len(graph_params$line$types, n_comp)
+  if (length(graph_params$line$type) < n_comp)
+    graph_params$line$type <- rep_len(graph_params$line$type[1], n_comp)
   
   if (length(graph_params$line$color) < n_comp)
-    graph_params$line$colors <- rep_len(graph_params$line$color, n_comp)
+    graph_params$line$color <- rep_len(graph_params$line$color[1], n_comp)
   
   # opacities
   graph_params$line$cri_colors <-
@@ -213,9 +213,9 @@ eib_plot_plotly <- function(he,
       name = ~label,
       fillcolor = graph_params$area$color,
       color = ~comparison,
-      colors = graph_params$line$colors,
+      colors = graph_params$line$color,
       linetype = ~comparison,
-      linetypes = graph_params$line$types,
+      linetypes = graph_params$line$type,
       legendgroup = ~comparison)
   
   # decision change points not included
@@ -240,7 +240,7 @@ eib_plot_plotly <- function(he,
         legendgroup = ~comparison,
         fillcolor = "rgba(1, 1, 1, 0)",
         linetype = ~comparison,
-        linetypes = graph_params$line$types,
+        linetypes = graph_params$line$type,
         showlegend = FALSE)
     }
   }

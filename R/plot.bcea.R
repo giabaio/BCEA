@@ -128,7 +128,7 @@ plot.bcea <- function(x,
       evi.plot(x,
                graph = "base", ...)
     })
-  } else if (is_baseplot("ggplot2")) {
+  } else if (is_ggplot(graph)) {
     
     is_req_pkgs <- map_lgl(c("ggplot2","grid"), requireNamespace, quietly = TRUE)
     
