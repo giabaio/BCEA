@@ -9,7 +9,7 @@
 
 test_that("input errors", {
   
-  load(test_path("ce.RData"))
+  load(test_path("testdata/ce.RData"))
   
   expect_dims_error <- function(x, y) {
     expect_error(
@@ -60,7 +60,7 @@ test_that("input errors", {
 
 test_that("basic return", {
   
-  load(test_path("ce.RData"))
+  load(test_path("testdata", "ce.RData"))
   
   res <- 
     bcea(e = eff,
@@ -187,7 +187,7 @@ test_that("jags, bugs, stan methods", {
 
 test_that("k and wtp arguments", {
   
-  load(test_path("ce.RData"))
+  load(test_path("testdata", "ce.RData"))
   
   m <- bcea(eff, cost, plot = FALSE)
   
@@ -205,7 +205,7 @@ test_that("k and wtp arguments", {
 
 test_that("using e and c still works", {
   
-  load(test_path("ce.RData"))
+  load(test_path("testdata", "ce.RData"))
   
   e <- eff
   c <- cost
@@ -218,7 +218,7 @@ test_that("using e and c still works", {
 
 test_that("named reference", {
   
-  load(test_path("ce.RData"))
+  load(test_path("testdata", "ce.RData"))
   
   expect_equal(bcea(eff, cost, ref = 1, interventions = c("a", "b")),
                bcea(eff, cost, ref = "a", interventions = c("a", "b")))

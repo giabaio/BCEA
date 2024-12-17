@@ -133,10 +133,10 @@ ceac_ggplot <- function(he,
   graph_params <- helper_ggplot_params(he, graph_params)
   legend_params <- make_legend_ggplot(he, pos_legend)
   theme_add <- purrr::keep(extra_params, is.theme)
-  
+
   ggplot(data_psa, aes(x = .data$k, y = .data$ceac)) +
     geom_line(aes(linetype = .data$comparison,
-                  size = factor(.data$comparison),
+                  linewidth = factor(.data$comparison),
                   colour = factor(.data$comparison))) +
     theme_ceac() + 
     theme_add +                                            # theme
@@ -151,9 +151,9 @@ ceac_ggplot <- function(he,
     scale_color_manual("",
                        labels = graph_params$labels,
                        values = graph_params$line$color) +
-    scale_size_manual("",
-                      labels = graph_params$labels,
-                      values = graph_params$line$size)
+    scale_linewidth_manual("",
+                           labels = graph_params$labels,
+                           values = graph_params$line$size)
 }
 
 

@@ -13,8 +13,6 @@ modelling and the economic evaluation.}
 \item{graph_params}{Other graphical parameters}
 
 \item{...}{Additional arguments}
-
-\item{pos_legend}{Position of legend}
 }
 \description{
 Contour ggplot Parameters

@@ -7,6 +7,12 @@
 # library(BCEA)
 if (interactive()) library(testthat)
 
+if (!requireNamespace("voi", quietly = TRUE)) {
+  stop(
+    "Package \"voi (>= 1.0.1)\" must be installed to use this function.",
+    call. = FALSE
+  )
+}
 
 test_that("GAM regression (default) with vaccine data", {
   
@@ -27,6 +33,7 @@ test_that("GAM regression (default) with vaccine data", {
   load(file = test_path("testdata", "EVPPI_GAM_default.RData"))
   
   EVPPI_voi <- evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
+  
   EVPPI_voi_orig <- voi::evppi(bcea_vacc[c("e","c","k")],
                                inputs = inp$mat,
                                pars = c("beta.1.", "beta.2."),
