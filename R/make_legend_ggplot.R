@@ -37,7 +37,15 @@ make_legend_ggplot <- function(dat, legend_pos) {
   } else if (is.character(legend_pos)) {
     
     pos_choices <- c("left", "right", "bottom", "top")
-    legend_pos <- pos_choices[pmatch(legend_pos, pos_choices)]
+    dir_choices <- c("horizontal", "vertical")
+    
+    legend_pos <- pos_choices[sapply(pos_choices, function(t) grepl(t, legend_pos))]
+    legend_dir <- dir_choices[sapply(dir_choices, function(t) grepl(t, legend_pos))]
+    
+    if (length(legend_dir) == 0) {
+      legend_dir <- NULL  # default
+    }
+    
     legend_just <- "center"
   } else if (is.numeric(legend_pos) &&
              length(legend_pos) == 2) {
