@@ -65,9 +65,8 @@ URL: https://gianluca.statistica.it/software/bcea/,
      https://gianluca.statistica.it/,
      https://github.com/giabaio/BCEA/  
 NeedsCompilation: no
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Encoding: UTF-8
 BugReports: https://github.com/n8thangreen/BCEA/issues/
 LazyData: false
 Roxygen: list(markdown = TRUE)
-
