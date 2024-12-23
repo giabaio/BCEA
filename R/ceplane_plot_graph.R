@@ -200,8 +200,7 @@ ceplane_plot_ggplot.bcea <- function(he,
       axis.text = element_text(size = graph_params$text$size),
       axis.title.x = element_text(size = graph_params$text$size),
       axis.title.y = element_text(size = graph_params$text$size))) +
-    do.call(theme, plot_params$legend) +
-    do.call(theme, plot_params$text)
+    do.call(theme, plot_params$legend)
 }
 
 

@@ -85,18 +85,27 @@ he <- bcea(eff, cost, ref = 4)
 # str(he)
 ```
 
+Basic plots with defaults.
+
 ```{r}
 ceplane.plot(he)
 ceplane.plot(he, graph = "ggplot2")
-
-ceplane.plot(he, size = rel(3.5))  ##TODO: get rel size to work
-
-# ceplane.plot(he, graph = "ggplot2", text = list(size = 20))  ##TODO: implement
-ceplane.plot(he, graph = "ggplot2", theme = theme(axis.text = element_text(size = 18), axis.title.x = element_text(size = 20), axis.title.y = element_text(size = 20)))
-
-ceplane.plot(he, graph = "ggplot2") + theme(axis.text = element_text(size = 18), axis.title.x = element_text(size = 20), axis.title.y = element_text(size = 20))
 ```
 
+The font size can be adjusted using the `text` argument.
+
+```{r}
+ceplane.plot(he, graph = "ggplot2", text = list(size = 20))
+ceplane.plot(he, graph = "ggplot2", text = list(size = rel(2)))  # relative scaling, double size
+
+# equivalent but more flexible and direct
+ceplane.plot(he, graph = "ggplot2") +
+  theme(axis.text = element_text(size = 18),
+        axis.title.x = element_text(size = 20),
+        axis.title.y = element_text(size = 20))
+```
+
+Numerous different styling arguments can be provided.
 
 ```{r}
 ceplane.plot(he,
@@ -107,8 +116,7 @@ ceplane.plot(he,
              icer = list(color = c("red", "orange", "black"), size = 5))
 ```
 
-
-Reposition legend.
+There are various different ways to reposition the legend.
 
 ```{r}
 ceplane.plot(he, pos = FALSE) # bottom right

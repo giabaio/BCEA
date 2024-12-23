@@ -145,6 +145,10 @@ ceac_ggplot <- function(he,
       labels = scales::label_dollar(prefix = graph_params$currency)) +
     do.call(labs, graph_params$annot) +                    # text
     do.call(theme, legend_params) +                        # legend
+    do.call(theme, list(
+      axis.text = element_text(size = graph_params$text$size),
+      axis.title.x = element_text(size = graph_params$text$size),
+      axis.title.y = element_text(size = graph_params$text$size))) +  # text size
     scale_linetype_manual("",                              # lines
                           labels = graph_params$labels,
                           values = graph_params$line$type) +
