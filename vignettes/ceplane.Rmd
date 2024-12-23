@@ -88,6 +88,13 @@ he <- bcea(eff, cost, ref = 4)
 ```{r}
 ceplane.plot(he)
 ceplane.plot(he, graph = "ggplot2")
+
+ceplane.plot(he, size = rel(3.5))  ##TODO: get rel size to work
+
+# ceplane.plot(he, graph = "ggplot2", text = list(size = 20))  ##TODO: implement
+ceplane.plot(he, graph = "ggplot2", theme = theme(axis.text = element_text(size = 18), axis.title.x = element_text(size = 20), axis.title.y = element_text(size = 20)))
+
+ceplane.plot(he, graph = "ggplot2") + theme(axis.text = element_text(size = 18), axis.title.x = element_text(size = 20), axis.title.y = element_text(size = 20))
 ```
 
 

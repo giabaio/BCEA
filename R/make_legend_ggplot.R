@@ -50,6 +50,7 @@ make_legend_ggplot <- function(dat, pos_legend) {
   } else if (is.numeric(pos_legend) &&
              length(pos_legend) == 2) {
     
+    legend_pos <- pos_legend
     legend_just <- pos_legend
   } else {
     # default

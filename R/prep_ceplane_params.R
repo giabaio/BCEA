@@ -54,6 +54,8 @@ prep_ceplane_params <- function(he, wtp_params, ...) {
            value = 25000),
          area_include = TRUE,
          ICER_size = 2,
+         text = list(
+           size = 11),
          area = list(
            # line_color = "black",
            col = "grey95"),

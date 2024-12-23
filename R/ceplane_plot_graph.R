@@ -196,7 +196,12 @@ ceplane_plot_ggplot.bcea <- function(he,
     do.call(geom_point, plot_params$icer) +
     do.call(annotate, plot_params$wtp) +
     do.call(annotate, plot_params$icer_txt) +
-    do.call(theme, plot_params$legend)
+    do.call(theme, list(
+      axis.text = element_text(size = graph_params$text$size),
+      axis.title.x = element_text(size = graph_params$text$size),
+      axis.title.y = element_text(size = graph_params$text$size))) +
+    do.call(theme, plot_params$legend) +
+    do.call(theme, plot_params$text)
 }
 
 

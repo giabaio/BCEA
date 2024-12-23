@@ -59,6 +59,14 @@ ceplane_ggplot_params <- function(he,
         size = 4),
       line = list(
         color = "black"),
+      text = list(
+        size =
+          if (is.rel(graph_params$text$size)) {
+            11 * unclass(graph_params$text$size)  # theme_get()$text$size
+          } else {
+            graph_params$text$size
+          }
+      ),
       area = list(
         # geom = "polygon",
         fill = graph_params$area$col,
