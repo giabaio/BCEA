@@ -102,6 +102,11 @@ evi.plot.bcea <- function(he,
   if (!plot_annotations$exist$ylab)
     plot_annotations$ylab <- "EVPI"
   
+  # fonts
+  default_params <- list(text = list(size = 11))
+  graph_params <- modifyList(default_params, extra_args)
+  plot_annotations$text <- graph_params$text
+  
   data.psa <- data.frame(k = c(he$k),
                          evi = c(he$evi))
   
