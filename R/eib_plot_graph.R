@@ -72,6 +72,10 @@ eib_plot_ggplot <- function(he,
     theme_eib() +
     theme_add +
     do.call(theme, legend_params) +
+    do.call(theme, list(
+      axis.text = element_text(size = graph_params$text$size),
+      axis.title.x = element_text(size = graph_params$text$size),
+      axis.title.y = element_text(size = graph_params$text$size))) +
     do.call(labs,
             list(title = graph_params$main,
                  x = graph_params$xlab,

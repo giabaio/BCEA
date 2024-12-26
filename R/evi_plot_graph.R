@@ -19,7 +19,6 @@ evi_plot_base <- function(he,
                           data.psa,
                           plot_aes,
                           plot_annotations) {
-  
   plot(
     x = data.psa$k, y = data.psa$evi,
     type = "l",

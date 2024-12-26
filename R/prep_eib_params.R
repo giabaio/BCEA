@@ -13,12 +13,6 @@ prep_eib_params <- function(he, plot.cri, ...) {
   
   graph_params <- list(...)
   
-    ##TODO: what is this?...
-  # # if existing, read and store graphical options
-  # aes_cat <- strsplit(aes_arg, "_")[[1]][1]
-  # aes_name <- paste0(strsplit(aes_arg, "_")[[1]][-1], collapse = "_")
-  # plot_aes[[aes_cat]][[aes_name]] <- exArgs[[aes_arg]]
-  
   default_params <- 
     list(
       xlab = "Willingness to pay",
@@ -28,6 +22,8 @@ prep_eib_params <- function(he, plot.cri, ...) {
       area = list(include = FALSE,
                   color = "grey"),
       labels = line_labels(he),
+      text = list(
+        size = 11),
       line = list(
         type = rep_len(1:6, he$n_comparisons),
         lwd = ifelse(he$n_comparisons > 6, 1.5, 1),
