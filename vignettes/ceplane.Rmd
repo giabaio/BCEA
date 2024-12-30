@@ -182,9 +182,22 @@ For base `R`
 
 ```{r}
 ceplane.plot(he)  # default
+```
 
+```{r}
+ceplane.plot(he, wtp = 1000, xlim = c(-0.0005, 0.0015))
+ceplane.plot(he, wtp = 10000, xlim = c(-0.0005, 0.0015))
+ceplane.plot(he, wtp = 25000, xlim = c(-0.0005, 0.0015))
+ceplane.plot(he, wtp = 50000, xlim = c(-0.0005, 0.0015))
+```
+
+```{r}
+ceplane.plot(he, wtp = 1000, xlim = c(-0.0005, 0.0015), label.pos = TRUE)
+ceplane.plot(he, wtp = 1000, xlim = c(-0.0005, 0.0015), label.pos = FALSE)
+```
+
+```{r}
 ##TODO: not yet implemented
-# ceplane.plot(he, wtp = 10000)
 # ceplane.plot(he, wtp = list(value = 10000))
 # ceplane.plot(he, wtp = list(value = 10000, colour = "blue"))
 # ceplane.plot(he, wtp = list(colour = "blue"))
