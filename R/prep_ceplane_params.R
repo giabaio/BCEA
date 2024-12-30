@@ -44,6 +44,7 @@ prep_ceplane_params <- function(he, wtp_params, ...) {
          title = plot_title,
          xlim = axes_lim$xlim,
          ylim = axes_lim$ylim,
+         label.pos = TRUE,
          point = list(
            color = grey.colors(n = he$n_comparisons,
                                end = 0.7,

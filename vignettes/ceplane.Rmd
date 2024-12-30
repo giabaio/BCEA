@@ -128,19 +128,54 @@ ceplane.plot(he, pos = c(1, 1))
 
 ### Willingness-to-pay label
 
-For `{ggplot2}`
+For `{ggplot2}` we can modify the willingness-to-pay label e.g. "k = 25000".
 
+The default is
 ```{r}
-ceplane.plot(he, graph = "ggplot2")  # default
+ceplane.plot(he, graph = "ggplot2")
+```
+
+The simplest argument is to set the value of the willingness-to-pay threshold using `wtp`.
+```{r}
 ceplane.plot(he, graph = "ggplot2", wtp = 10000)
+```
+
+Alternatively, we can pass a list of arguments to `wtp` to modify the appearance of the label.
+```{r}
 ceplane.plot(he, graph = "ggplot2", wtp = list(value = 10000))
 ceplane.plot(he, graph = "ggplot2", wtp = list(value = 10000, colour = "blue"))
 ceplane.plot(he, graph = "ggplot2", wtp = list(colour = "blue"))
-ceplane.plot(he, graph = "ggplot2", wtp = list(y = 8))
 ceplane.plot(he, graph = "ggplot2", wtp = list(size = 5))
+```
 
-# to hide text
+To hide the text assign `size = 0`.
+```{r}
 ceplane.plot(he, graph = "ggplot2", wtp = list(size = 0))
+```
+
+The label is placed at the left hand side of the plot next to the willingness-to-pay line by default. When this would mean the label is off the bottom of the plot it is positioned at the bottom left corner.
+
+```{r}
+data("Vaccine")
+he <- bcea(eff, cost, ref=2)
+
+ceplane.plot(he, graph = "ggplot2")
+ceplane.plot(he, graph = "ggplot2", wtp = 1000, xlim = c(-0.0005, 0.0015))
+ceplane.plot(he, graph = "ggplot2", wtp = 10000, xlim = c(-0.0005, 0.0015))
+ceplane.plot(he, graph = "ggplot2", wtp = 25000, xlim = c(-0.0005, 0.0015))
+ceplane.plot(he, graph = "ggplot2", wtp = 50000, xlim = c(-0.0005, 0.0015))
+```
+
+The position of the label can be adjusted using the `label.pos` argument and a logical value.
+ 
+```{r}
+ceplane.plot(he, graph = "ggplot2", wtp = 1000, xlim = c(-0.0005, 0.0015), label.pos = TRUE)
+ceplane.plot(he, graph = "ggplot2", wtp = 1000, xlim = c(-0.0005, 0.0015), label.pos = FALSE)
+```
+
+A direct way of specifying the position of the label is to use the `wtp` argument and set the `y` value in a list.
+```{r}
+ceplane.plot(he, graph = "ggplot2", wtp = list(y = 8))
 ```
 
 For base `R`
