@@ -63,7 +63,7 @@ ceplane_ggplot_params <- function(he,
         color = "black"),
       text = list(
         size =
-          if (ggplot2:::is.rel(graph_params$text$size)) {
+          if (is.rel(graph_params$text$size)) {
             11 * unclass(graph_params$text$size)  # theme_get()$text$size
           } else {
             graph_params$text$size

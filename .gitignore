@@ -8,3 +8,5 @@ inst/doc
 renv/
 revdep/
 BCEA_book.pdf - Shortcut
+docs/*/
+docs/

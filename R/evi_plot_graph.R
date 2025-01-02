@@ -82,7 +82,7 @@ evi_plot_ggplot <- function(he,
                             plot_annotations) {
   text_params <- list(
     size =
-      if (ggplot2:::is.rel(plot_annotations$text$size)) {
+      if (is.rel(plot_annotations$text$size)) {
         11 * unclass(plot_annotations$text$size)  # theme_get()$text$size
       } else {
         plot_annotations$text$size
