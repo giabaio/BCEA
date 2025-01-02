@@ -112,6 +112,7 @@ ceac_plot_ggplot.bcea <- function(he,
 #' @param ceac ceac index in `he`
 #' @importFrom scales label_dollar
 #' @importFrom purrr keep
+#' @import ggplot2
 #' @keywords internal hplot
 #' @md
 ceac_ggplot <- function(he,
