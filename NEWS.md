@@ -2,6 +2,12 @@
 # BCEA 2.4.6 (dev)
 
 * In `ceplane.plot()` for `{ggplot2}` version used the ggplot syntax thats already used for other plotting arguments so that we can now pass e.g. `wtp = list(value = 20000, colour = "blue", x = 10, y = 10, size = 4)`. This closes issue #151 so can do something like `wtp = list(size = 0)` to hide the willingness to pay text. (3d8a770)
+* Small features added which were missing for the new edition of the BCEA book:
+  - Extended `ggplot` version legend to take a vertical or horizontal part to the `pos` argument (85ba87f)
+  - Relative font size argument `rel` for ceplane and ceac plot (8d1586f)
+  - Added text size `ggplot` argument to `eib_plot` (1e32788) and `evi_plot` (84aaa2f)
+  - `label.pos` logical argument fixed in `ceplane.plot` for `ggplot` (92e9eb0) and base `R` (c7351e4)
+
 
 # BCEA 2.4.6
 
