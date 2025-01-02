@@ -219,7 +219,7 @@ evi.plot.mixedAn <- function(he,
           legend.justification = jus,
           legend.title = element_blank(),
           legend.background = element_blank(),
-          legend.text.align = 0,
+          legend.text = element_text(hjust = 0),
           plot.title = element_text(
             lineheight = 1.05,
             face = "bold",

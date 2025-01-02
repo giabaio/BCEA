@@ -22,7 +22,7 @@ Authors@R: c(
 Imports:
     cli (>= 3.3.0),
     dplyr,
-    ggplot2 (>= 3.4.0),
+    ggplot2 (>= 3.5.0),
     graphics,
     gridExtra,
     MASS,
@@ -33,7 +33,7 @@ Imports:
     reshape2,
     rlang,
     rstan,
-    scales,
+    scales
 Depends:
     R (>= 3.5.0)
 Suggests:

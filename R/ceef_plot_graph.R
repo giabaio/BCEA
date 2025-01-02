@@ -111,7 +111,7 @@ ceef_plot_ggplot <- function(he,
       legend.spacing = grid::unit(-1.25, "line"),
       panel.grid = element_blank(),
       legend.key = element_blank(),
-      legend.text.align = 0,
+      legend.text = element_text(hjust = 0),
       plot.title = element_text(
         hjust = 0.5,
         face = "bold",
