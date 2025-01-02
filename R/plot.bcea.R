@@ -35,7 +35,6 @@
 #'          [ceac.plot()],
 #'          [evi.plot()]
 #' @importFrom Rdpack reprompt
-#' @importFrom purrr map_lgl
 #'          
 #' @references
 #' 
@@ -130,7 +129,8 @@ plot.bcea <- function(x,
     })
   } else {
     
-    is_req_pkgs <- map_lgl(c("ggplot2","grid"), requireNamespace, quietly = TRUE)
+    is_req_pkgs <- unname(sapply(c("ggplot2", "grid"),
+                                 requireNamespace, quietly = TRUE))
     
     if (!all(is_req_pkgs)) {
       message("falling back to base graphics\n")
