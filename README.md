@@ -43,8 +43,8 @@ The stable version (which can be updated more quickly) can be installed using th
 
 ```r
 pkgs <- c("MASS", "Rtools", "remotes")
-repos <- c("https://cran.rstudio.com", "https://inla.r-inla-download.org/R/stable/") 
-install.packages(pkgs, repos=repos, dependencies = "Depends")
+repos <- "https://cran.rstudio.com"
+install.packages(pkgs, repos = repos, dependencies = "Depends")
 ```
 before installing the package using `remotes`:
 

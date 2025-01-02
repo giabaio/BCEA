@@ -2,11 +2,15 @@
 .Rhistory
 .RData
 .Ruserdata
-BCEA.Rcheck/
+*.html
+*.xml
+*.js
 *.Rproj
+BCEA.Rcheck/
 inst/doc
 renv/
 revdep/
 BCEA_book.pdf - Shortcut
 docs/*/
 docs/
+docs/**
