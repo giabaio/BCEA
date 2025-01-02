@@ -87,11 +87,11 @@ plot(he, graph = "base")
 if(require(ggplot2)){
 plot(he, graph = "ggplot2")
 
-##### Example of a customized plot.bcea with ggplot2
+# Example of a customized plot.bcea with ggplot2
 plot(he,
-  graph = "ggplot2",                                      # use ggplot2
-  ICER_size = 1.5,                                        # extra options modifies the mean point size
-  text = list(size=rel(1.25))                             # modifies the text size
+  graph = "ggplot2",          # use ggplot2
+  ICER_size = 1.5,            # extra options modifies the mean point size
+  text = list(size=rel(1.25)) # modifies the text size
   )                                                       
 }
 
