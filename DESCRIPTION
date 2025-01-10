@@ -64,7 +64,7 @@ License: GPL-3
 URL: https://gianluca.statistica.it/software/bcea/,
      https://gianluca.statistica.it/,
      https://github.com/giabaio/BCEA/,
-     https://n8thangreen.github.io/BCEA
+     https://n8thangreen.github.io/BCEA/
 NeedsCompilation: no
 RoxygenNote: 7.3.2
 Encoding: UTF-8

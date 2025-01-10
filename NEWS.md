@@ -5,7 +5,7 @@
 
 _January 2025_
 
-* In `ceplane.plot()` for `{ggplot2}` version used the ggplot syntax thats already used for other plotting arguments so that we can now pass e.g. `wtp = list(value = 20000, colour = "blue", x = 10, y = 10, size = 4)`. This closes issue #151 so can do something like `wtp = list(size = 0)` to hide the willingness to pay text. (3d8a770)
+* In `ceplane.plot()` for `{ggplot2}` version used the ggplot syntax thats already used for other plotting arguments so that we can now pass, e.g. `wtp = list(value = 20000, colour = "blue", x = 10, y = 10, size = 4)`. This closes issue #151 so can do something like `wtp = list(size = 0)` to hide the willingness to pay text. (3d8a770)
 * Small features added which were missing for the new edition of the BCEA book:
   - Extended `ggplot` version legend to take a vertical or horizontal part to the `pos` argument (85ba87f)
   - Relative font size argument `rel` for ceplane and ceac plot (8d1586f)
@@ -28,11 +28,11 @@ Patch fixing small bugs from last CRAN release.
 
 _November 2023_
 
-Some cosmetic changes to clean up
+Some cosmetic changes to clean up.
 
 * Removed the (by now, unnecessary) appveyor webhook
-* Added correct 'Remotes' in the 'DESCRIPTION' file to point to the correct GitHub repos for 'voi' and 'plotrix'
-* Changed the class of the object 'smoking_output' to be used in the 'evppi' example avoiding the need for 'rjags'
+* Added correct `Remotes` in the `DESCRIPTION` file to point to the correct GitHub repos for `voi` and `plotrix`
+* Changed the class of the object `smoking_output` to be used in the `evppi` example avoiding the need for `rjags`
 
 _October 2023_
 
