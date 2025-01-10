@@ -160,7 +160,7 @@ ceplane_plot_ggplot.bcea <- function(he,
   plot_params <-
     ceplane_ggplot_params(he, pos_legend, graph_params, ...)
   
-  theme_add <- purrr::keep(list(...), is.theme)
+  theme_add <- Filter(f = \(val) ggplot2::is.theme(val), x = list(...))
   
   ggplot(delta_ce,
          aes(x = .data$delta_e, y = .data$delta_c,

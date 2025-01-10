@@ -168,9 +168,9 @@ plot.bcea <- function(x,
                    extra_params,
                    keep.null = TRUE)
       
-      theme_add <- purrr::keep(extra_args, is.theme)
+      theme_add <- Filter(f = \(val) ggplot2::is.theme(val), x = extra_args)
       
-   ceplane.pos <- ifelse(pos, pos, c(1, 1.025))
+      ceplane.pos <- ifelse(pos, pos, c(1, 1.025))
       
       ##TODO: warnings...
       ceplane <-

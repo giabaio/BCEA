@@ -52,7 +52,8 @@ eib_plot_ggplot <- function(he,
   ##TODO: can we move this up a level?
   cri_params <- eib_params_cri(he, graph_params)
   
-  theme_add <- purrr::keep(extra_params, is.theme)
+  theme_add <- Filter(f = \(val) ggplot2::is.theme(val), x = extra_params)
+  
   legend_params <- make_legend_ggplot(he, graph_params$pos)
   graph_params <- eib_params_ggplot(he, graph_params, cri_params)
   
