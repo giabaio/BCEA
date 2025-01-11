@@ -26,3 +26,4 @@
 ^revdep$
 ^CRAN-SUBMISSION$
 ^CITATION\.cff$
+^CITATION.cff

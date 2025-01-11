@@ -14,6 +14,8 @@
 
 :rocket: **Version 2.4.7 in development now!** [Check out the release notes here](https://github.com/n8thangreen/BCEA/releases).
 
+This is the development version of the `R` package `BCEA`.
+
 ## Contents
 
 - [Overview](#introduction)
