@@ -2,21 +2,21 @@
 #' @name multi.ce
 #' @title Cost-effectiveness Analysis With Multiple Comparison
 #' 
-#' @description Computes and plots the probability that each of the \code{n_int} interventions
+#' @description Computes and plots the probability that each of the `n_int` interventions
 #' being analysed is the most cost-effective and the cost-effectiveness
 #' acceptability frontier.
 #' 
 #' @template args-he
 #' 
-#' @return Original \code{bcea} object (list) of class "pairwise" with additional:
+#' @return Original `bcea` object (list) of class "pairwise" with additional:
 #'    \item{p_best_interv}{A matrix including the probability that each
 #'    intervention is the most cost-effective for all values of the willingness to
 #'    pay parameter}
 #'    \item{ceaf}{A vector containing the cost-effectiveness acceptability frontier}
 #' 
 #' @author Gianluca Baio
-#' @seealso \code{\link{bcea}},
-#'          \code{\link{ceaf.plot}}
+#' @seealso [bcea()],
+#'          [ceaf.plot()]
 #' @keywords hplot dplot
 #' 
 #' @examples

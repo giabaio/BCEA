@@ -3,7 +3,7 @@
 #'
 #' Choice of base R, \pkg{ggplot2}.
 #' @name contour_graph
-#' @seealso \code{\link{contour}}
+#' @seealso [contour()]
 NULL
 
 
@@ -58,7 +58,7 @@ contour_ggplot <- function(he,
   plot_params <-
     contour_ggplot_params(he, graph_params, ...)
   
-  theme_add <- purrr::keep(list(...), is.theme)
+  theme_add <- Filter(f = \(val) ggplot2::is.theme(val), x = list(...))
   
   # single long format for ggplot data
   delta_ce <-

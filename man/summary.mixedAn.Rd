@@ -8,7 +8,7 @@
 }
 \arguments{
 \item{object}{An object of the class \code{mixedAn}, which is the results of
-the function \code{\link{mixedAn}}, generating the economic evaluation of a
+the function \code{\link[=mixedAn]{mixedAn()}}, generating the economic evaluation of a
 set of interventions, considering given market shares for each option.}
 
 \item{wtp}{The value of the willingness to pay chosen to present the analysis.}
@@ -65,8 +65,8 @@ summary(m,         # uses the results of the mixed strategy analysis
 \insertRef{Baio2013}{BCEA}
 }
 \seealso{
-\code{\link{bcea}},
-         \code{\link{mixedAn}}
+\code{\link[=bcea]{bcea()}},
+\code{\link[=mixedAn]{mixedAn()}}
 }
 \author{
 Gianluca Baio

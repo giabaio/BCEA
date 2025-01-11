@@ -112,7 +112,7 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
       legend.direction = legend_params$legend_direction,
       legend.title = element_blank(),
       legend.background = element_blank(),
-      legend.text.align = 0,
+      legend.text = element_text(hjust = 0),
       plot.title = element_text(
         lineheight = 1.05,
         face = "bold",
@@ -146,7 +146,7 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
       legend.direction = legend_params$legend.direction,
       legend.title = element_blank(),
       legend.background = element_blank(),
-      legend.text.align = 0,
+      legend.text = element_text(hjust = 0),
       plot.title = element_text(
         lineheight = 1.05,
         face = "bold",

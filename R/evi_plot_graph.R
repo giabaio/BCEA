@@ -19,7 +19,6 @@ evi_plot_base <- function(he,
                           data.psa,
                           plot_aes,
                           plot_annotations) {
-  
   plot(
     x = data.psa$k, y = data.psa$evi,
     type = "l",
@@ -67,7 +66,6 @@ evi_plot_base <- function(he,
 }
 
 
-
 #' EVI plot ggplot version
 #' @rdname evi_plot_graph
 #' 
@@ -82,7 +80,15 @@ evi_plot_ggplot <- function(he,
                             data.psa,
                             plot_aes,
                             plot_annotations) {
+  text_params <- list(
+    size =
+      if (is.rel(plot_annotations$text$size)) {
+        11 * unclass(plot_annotations$text$size)  # theme_get()$text$size
+      } else {
+        plot_annotations$text$size
+      })
   
+  # core plot
   evi <-
     ggplot(data.psa, aes(.data$k, .data$evi)) +
     geom_line(
@@ -91,7 +97,11 @@ evi_plot_ggplot <- function(he,
     theme_bw() +
     labs(title = plot_annotations$title,
          x = plot_annotations$xlab,
-         y = plot_annotations$ylab)
+         y = plot_annotations$ylab) +
+    do.call(theme, list(
+      axis.text = element_text(size = text_params$size),
+      axis.title.x = element_text(size = text_params$size),
+      axis.title.y = element_text(size = text_params$size))) 
   
   if (length(he$kstar) != 0) {
     kstars <- length(he$kstar)

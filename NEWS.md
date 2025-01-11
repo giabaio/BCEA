@@ -1,11 +1,46 @@
 
+# BCEA 2.4.7 (dev)
+
+# BCEA 2.4.7
+
+_January 2025_
+
+* In `ceplane.plot()` for `{ggplot2}` version used the ggplot syntax thats already used for other plotting arguments so that we can now pass, e.g. `wtp = list(value = 20000, colour = "blue", x = 10, y = 10, size = 4)`. This closes issue #151 so can do something like `wtp = list(size = 0)` to hide the willingness to pay text. (3d8a770)
+* Small features added which were missing for the new edition of the BCEA book:
+  - Extended `ggplot` version legend to take a vertical or horizontal part to the `pos` argument (85ba87f)
+  - Relative font size argument `rel` for ceplane and ceac plot (8d1586f)
+  - Added text size `ggplot` argument to `eib_plot` (1e32788) and `evi_plot` (84aaa2f)
+  - `label.pos` logical argument fixed in `ceplane.plot` for `ggplot` (92e9eb0) and base `R` (c7351e4)
+
+
+# BCEA 2.4.6
+
+_February 2024_
+
+Patch fixing small bugs from last CRAN release.
+
+* Moved `{voi}` package to Suggests in DESCRIPTION and added `requireNamespace()` in `evppi()` to avoid error when not installed (e.g. on CRAN) (f3e3e3e)
+* Converted help documentation in `man-roxygen` folder to md (cf858b1)
+* bugfix: line width in CEAC plot. `{ggplot2}` changed in version 3 to `linewidth` from `size` argument and had only changed some of the code. Updated to `scale_linewidth_manual()`. (60bea9c)
+* Using `testdata` folder `{testthat}` unit tests. (cbce0fa)
+
 # BCEA 2.4.5
+
+_November 2023_
+
+Some cosmetic changes to clean up.
+
+* Removed the (by now, unnecessary) appveyor webhook
+* Added correct `Remotes` in the `DESCRIPTION` file to point to the correct GitHub repos for `voi` and `plotrix`
+* Changed the class of the object `smoking_output` to be used in the `evppi` example avoiding the need for `rjags`
 
 _October 2023_
 
 Moved internal EVPPI calculation out of `BCEA` and now uses `voi` package instead. 
 Refactoring but retaining same interface and functionality.
 
+* Ensure using latest CRAN release of `{voi}` which has a patch so that BCEA can use it without losing functionality
+  + Latest version of `{voi}` needed when we use `check = TRUE` in `voi::evppi()` in order to access fitting data (6e436b5, 94f5fc5)
 * `evppi()` tested against all use cases in BCEA book (1c1457d2)
 * Select parameters by position (as well as name) in new `evppi()` (f2e4d005)
 * Use single parameter case only like `voi` package for methods `sal` and `so` (#140)
@@ -16,7 +51,7 @@ Refactoring but retaining same interface and functionality.
 # BCEA 2.4.4
 _June 2023_
 
-* Patch to fix a CRAN checks error. Suggested package `MCMCvis` wasn't used conditionally in unit test. Moved to Required packages in `DESCRIPTION`.
+* Patch to fix a CRAN checks error. Suggested package `{MCMCvis}` wasn't used conditionally in unit test. Moved to Required packages in `DESCRIPTION`.
 
 # BCEA 2.4.3
 _May 2023_

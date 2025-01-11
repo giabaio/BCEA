@@ -103,6 +103,8 @@ he <- bcea(eff, cost, ref = 4)
 # str(he)
 ```
 
+Basic plots.
+
 ```{r}
 ceac.plot(he)
 
@@ -119,7 +121,20 @@ ceac.plot(he,
           line = list(color = "green"))
 ```
 
-Reposition legend.
+The font size can be adjusted using the `text` argument.
+
+```{r}
+ceac.plot(he, graph = "ggplot2", text = list(size = 20))
+ceac.plot(he, graph = "ggplot2", text = list(size = rel(2)))  # relative scaling, double size
+
+# equivalent but more flexible and direct
+ceac.plot(he, graph = "ggplot2") +
+  theme(axis.text = element_text(size = 18),
+        axis.title.x = element_text(size = 20),
+        axis.title.y = element_text(size = 20))
+```
+
+We can reposition the legend.
 
 ```{r}
 ceac.plot(he, pos = FALSE) # bottom right

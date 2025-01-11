@@ -10,7 +10,7 @@
 ceaf.plot(mce, ...)
 }
 \arguments{
-\item{mce}{The output of the call to the function \code{\link{multi.ce}}}
+\item{mce}{The output of the call to the function \code{\link[=multi.ce]{multi.ce()}}}
 
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-) match the two options \code{"base"} or
@@ -76,8 +76,8 @@ ceaf.plot(mce)
 \insertRef{Baio2013}{BCEA}
 }
 \seealso{
-\code{\link{bcea}},
-         \code{\link{multi.ce}}
+\code{\link[=bcea]{bcea()}},
+\code{\link[=multi.ce]{multi.ce()}}
 }
 \author{
 Gianluca Baio, Andrea Berardi

@@ -124,7 +124,7 @@ the value given to the \code{flip} argument.
 If the argument \code{relative} is set to \code{TRUE}, the graph will not
 display the absolute measures of costs and benefits. Instead the axes will
 represent differential costs and benefits compared to the reference
-intervention (indexed by \code{ref} in the \code{\link{bcea}} function).
+intervention (indexed by \code{ref} in the \code{\link[=bcea]{bcea()}} function).
 }
 \examples{
 
@@ -163,7 +163,7 @@ ceef.plot(m,
 \insertRef{IQWIG2009}{BCEA}
 }
 \seealso{
-\code{\link{bcea}}
+\code{\link[=bcea]{bcea()}}
 }
 \author{
 Andrea Berardi, Gianluca Baio

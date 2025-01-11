@@ -31,5 +31,5 @@ among all comparators and \eqn{\mathcal{U}^*(\theta)} the expected utility
 gained by the adoption of the cost-effective intervention.
 }
 \seealso{
-\code{\link{compute_ol}}
+\code{\link[=compute_ol]{compute_ol()}}
 }

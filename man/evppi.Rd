@@ -240,8 +240,8 @@ evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
 \insertRef{Heath2016}{BCEA}
 }
 \seealso{
-\code{\link{bcea}},
-\code{\link{plot.evppi}}
+\code{\link[=bcea]{bcea()}},
+\code{\link[=plot.evppi]{plot.evppi()}}
 }
 \author{
 Anna Heath, Gianluca Baio

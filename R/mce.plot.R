@@ -1,29 +1,29 @@
 #' Plots the probability that each intervention is the most cost-effective
 #' 
-#' This function is deprecated. Use \code{\link{ceac.plot}} instead.
+#' This function is deprecated. Use [ceac.plot()] instead.
 #' Plots the probability that each of the n_int interventions being analysed is
 #' the most cost-effective.
 #' 
-#' @param mce The output of the call to the function \code{\link{multi.ce}}.
+#' @param mce The output of the call to the function [multi.ce()].
 #' @param pos Parameter to set the position of the legend. Can be given in form
-#' of a string \code{(bottom|top)(right|left)} for base graphics and
-#' \code{bottom|top|left|right} for ggplot2. It can be a two-elements vector,
+#' of a string `(bottom|top)(right|left)` for base graphics and
+#' `bottom|top|left|right` for ggplot2. It can be a two-elements vector,
 #' which specifies the relative position on the x and y axis respectively, or
-#' alternatively it can be in form of a logical variable, with \code{TRUE}
-#' indicating to use the first standard and \code{FALSE} to use the second one.
-#' Default value is \code{c(1,0.5)}, that is on the right inside the plot area.
+#' alternatively it can be in form of a logical variable, with `TRUE`
+#' indicating to use the first standard and `FALSE` to use the second one.
+#' Default value is `c(1,0.5)`, that is on the right inside the plot area.
 #' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the two options \code{"base"} or
-#' \code{"ggplot2"}. Default value is \code{"base"}.
+#' plotting. Should (partial-)match the two options `"base"` or
+#' `"ggplot2"`. Default value is `"base"`.
 #' @param ...  Optional arguments. For example, it is possible to specify the
 #' colours to be used in the plot. This is done in a vector
-#' \code{color=c(...)}. The length of the vector colors needs to be the same as
-#' the number of comparators included in the analysis, otherwise \code{BCEA}
+#' `color=c(...)`. The length of the vector colors needs to be the same as
+#' the number of comparators included in the analysis, otherwise `BCEA`
 #' will fall back to the default values (all black, or shades of grey)
 #' @return \item{mceplot}{ A ggplot object containing the plot. Returned only
-#' if \code{graph="ggplot2"}. }
+#' if `graph="ggplot2"`. }
 #' @author Gianluca Baio, Andrea Berardi
-#' @seealso \code{\link{BCEA-deprecated}}
+#' @seealso [BCEA-deprecated()]
 #' @importFrom Rdpack reprompt
 #' 
 #' @references
@@ -135,18 +135,18 @@ mce.plot <- function(mce,
          ylab="Probability of most cost effectiveness",ylim=c(0,1),
          main="Cost-effectiveness acceptability curve \nfor multiple comparisons")
     for (i in 2:mce$n_comparators) {
-      points(mce$k,mce$m.ce[,i],t="l",col=color[i],lwd=lwd,lty=i)
+      points(x = mce$k, y = mce$m.ce[,i], type="l", col=color[i], lwd=lwd, lty=i)
     }
-    legend(alt.legend,mce$interventions,col=color,cex=.7,bty="n",lty=1:mce$n_comparators)
+    legend(alt.legend, mce$interventions, col=color, cex=.7, bty="n", lty=1:mce$n_comparators)
   } # base graphics
   else{
-    if(!isTRUE(requireNamespace("ggplot2",quietly=TRUE)&requireNamespace("grid",quietly=TRUE))) {
+    if(!isTRUE(requireNamespace("ggplot2", quietly=TRUE)&requireNamespace("grid", quietly=TRUE))) {
       message("Falling back to base graphics\n")
-      mce.plot(mce,pos=pos,graph="base")
+      mce.plot(mce, pos=pos, graph="base")
       return(invisible(NULL))
     }
     
-    if(isTRUE(requireNamespace("ggplot2",quietly=TRUE)&requireNamespace("grid",quietly=TRUE))) {
+    if(isTRUE(requireNamespace("ggplot2", quietly=TRUE)&requireNamespace("grid", quietly=TRUE))) {
       # no visible bindings note
       ceplane <- k <- ce <- comp <- NA_real_
       
@@ -154,16 +154,19 @@ mce.plot <- function(mce,
       lty <- rep(1:6,ceiling(mce$n_comparators/6))[1:mce$n_comparators]
       label <- paste0(mce$interventions)
       
-      df <- cbind("k"=rep(mce$k,mce$n_comparators),"ce"=c(mce$m.ce))
-      df <- data.frame(df,"comp"=as.factor(sort(rep(1:mce$n_comparators,length(mce$k)))))
+      df <- cbind("k" = rep(mce$k,mce$n_comparators),
+                  "ce" = c(mce$m.ce))
+      df <- data.frame(df,
+                       "comp" = as.factor(sort(rep(1:mce$n_comparators, length(mce$k)))))
       names(df) <- c("k","ce","comp")
       
       mceplot <-
-        ggplot2::ggplot(df, ggplot2::aes(x = k, y = ce)) + ggplot2::theme_bw() +
+        ggplot2::ggplot(df, ggplot2::aes(x = k, y = ce)) +
+        ggplot2::theme_bw() +
         ggplot2::geom_line(ggplot2::aes(linetype = comp)) +
         ggplot2::scale_linetype_manual("", labels = label, values = lty) +
-        ggplot2::labs(title = "Cost-effectiveness acceptability curve\nfor multiple comparisons", x =
-                        "Willingness to pay", y = "Probability of most cost effectiveness") +
+        ggplot2::labs(title = "Cost-effectiveness acceptability curve\nfor multiple comparisons",
+                      x = "Willingness to pay", y = "Probability of most cost effectiveness") +
         ggplot2::theme(
           text = ggplot2::element_text(size = 11),
           legend.key.size = grid::unit(.66, "lines"),
@@ -174,7 +177,7 @@ mce.plot <- function(mce,
       jus <- NULL
       if(isTRUE(alt.legend)) {
         alt.legend <- "bottom"
-        mceplot <- mceplot + ggplot2::theme(legend.direction="vertical")
+        mceplot <- mceplot + ggplot2::theme(legend.direction = "vertical")
       }
       else{
         if(is.character(alt.legend)) {
@@ -184,9 +187,9 @@ mce.plot <- function(mce,
           if(is.na(alt.legend))
             alt.legend <- FALSE
         }
-        if(length(alt.legend)>1)
+        if(length(alt.legend) > 1)
           jus <- alt.legend
-        if(length(alt.legend)==1 & !is.character(alt.legend)) {
+        if(length(alt.legend)==1 && !is.character(alt.legend)) {
           alt.legend <- c(1,0.5)
           jus <- alt.legend
         }
@@ -199,13 +202,12 @@ mce.plot <- function(mce,
           legend.justification = jus,
           legend.title = ggplot2::element_blank(),
           legend.background = ggplot2::element_blank(),
-          legend.text.align = 0,
+          legend.text = element_text(hjust = 0),
           plot.title = ggplot2::element_text(
             lineheight = 1.05,
             face = "bold",
             size = 14.3,
-            hjust = 0.5
-          )
+            hjust = 0.5)
         )
       return(mceplot)
     }

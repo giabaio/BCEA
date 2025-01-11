@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Baio"
+  given-names: "Gianluca"
+  orcid: "https://orcid.org/0000-0003-4314-2570"
+- family-names: "Berardi"
+  given-names: "Andrea"
+  orcid: https://orcid.org/0000-0002-2906-496X
+- family-names: "Heath"
+  given-names: "Anna"
+  orcid: https://orcid.org/0000-0002-7263-4251
+- family-names: "Green"
+  given-names: "Nathan"
+  orcid: https://orcid.org/0000-0003-2745-1736
+title: "BCEA: Bayesian Cost-Effectiveness Analysis"
+version: 2.4.6
+doi: 10.1007/978-3-319-55718-2
+date-released: 2023-11-20
+url: "https://gianluca.statistica.it/software/bcea/"

@@ -2,7 +2,6 @@
 #' CE-plane ggplot Parameters
 #' 
 #' @template args-he
-#' @param wtp Willingness to pay
 #' @param pos_legend Position of legend
 #' @param graph_params Other graphical parameters
 #' @param ... Additional arguments
@@ -11,15 +10,14 @@
 #' @keywords internal
 #' 
 ceplane_ggplot_params <- function(he,
-                                  wtp,
                                   pos_legend,
                                   graph_params,
                                   ...) {
-  
+
   ext_params <- ceplane_geom_params(...)
   
   graph_params$area <-
-    modifyList(polygon_params(graph_params, wtp),
+    modifyList(polygon_params(graph_params),
                graph_params$area)
   
   graph_params$legend <- make_legend_ggplot(he, pos_legend)
@@ -30,10 +28,11 @@ ceplane_ggplot_params <- function(he,
       wtp = list(
         geom = "text",
         x = graph_params$xlim[1],
-        y = graph_params$ylim[1],
+        y = ifelse(graph_params$label.pos,
+                   max(graph_params$xlim[1] * graph_params$wtp_value, graph_params$ylim[1]),
+                   graph_params$ylim[1]),
         hjust = "inward",
         vjust = "inward",
-        label = paste0("  k = ", format(wtp, digits = 6), "\n"),
         size = convert_pts_to_mm(1),
         colour = "black"),
       icer = list(
@@ -62,6 +61,14 @@ ceplane_ggplot_params <- function(he,
         size = 4),
       line = list(
         color = "black"),
+      text = list(
+        size =
+          if (is.rel(graph_params$text$size)) {
+            11 * unclass(graph_params$text$size)  # theme_get()$text$size
+          } else {
+            graph_params$text$size
+          }
+      ),
       area = list(
         # geom = "polygon",
         fill = graph_params$area$col,

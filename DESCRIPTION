@@ -1,7 +1,7 @@
 Package: BCEA
 Type: Package
 Title: Bayesian Cost Effectiveness Analysis
-Version: 2.4.5
+Version: 2.4.7
 Authors@R: c(
     person("Gianluca", "Baio",
             email = "g.baio@ucl.ac.uk",
@@ -22,7 +22,7 @@ Authors@R: c(
 Imports:
     cli (>= 3.3.0),
     dplyr,
-    ggplot2,
+    ggplot2 (>= 3.5.0),
     graphics,
     gridExtra,
     MASS,
@@ -32,8 +32,8 @@ Imports:
     Rdpack,
     reshape2,
     rlang,
-    scales,
-    voi
+    rstan,
+    scales
 Depends:
     R (>= 3.5.0)
 Suggests:
@@ -47,14 +47,13 @@ Suggests:
     RColorBrewer,
     rjags,
     rmarkdown,
-    rstan,
     splancs,
     testthat (>= 2.1.0),
     vdiffr,
+    voi (>= 1.0.1),
     withr
 RdMacros: Rdpack
 VignetteBuilder: knitr
-Additional_repositories: https://inla.r-inla-download.org/R/testing/
 Description: Produces an economic evaluation of a sample of suitable variables of
              cost and effectiveness / utility for two or more interventions,
              e.g. from a Bayesian model in the form of MCMC simulations.
@@ -64,11 +63,11 @@ Description: Produces an economic evaluation of a sample of suitable variables o
 License: GPL-3
 URL: https://gianluca.statistica.it/software/bcea/,
      https://gianluca.statistica.it/,
-     https://github.com/giabaio/BCEA/  
+     https://github.com/giabaio/BCEA/,
+     https://n8thangreen.github.io/BCEA/
 NeedsCompilation: no
-RoxygenNote: 7.2.3.9000
+RoxygenNote: 7.3.2
 Encoding: UTF-8
 BugReports: https://github.com/n8thangreen/BCEA/issues/
-Remotes: 
-    chjackson/voi
 LazyData: false
+Roxygen: list(markdown = TRUE)

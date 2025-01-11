@@ -43,7 +43,7 @@ alternatively it can be in form of a logical variable, with \code{FALSE}
 indicating to use the default position and \code{TRUE} to place it on the
 bottom of the plot.}
 
-\item{...}{Arguments to be passed to \code{\link{ceplane.plot}}. See the
+\item{...}{Arguments to be passed to \code{\link[=ceplane.plot]{ceplane.plot()}}. See the
 relative manual page for more details.}
 }
 \value{
@@ -92,9 +92,9 @@ contour2(m, wtp = 100)
 \insertRef{Baio2013}{BCEA}
 }
 \seealso{
-\code{\link{bcea}},
-         \code{\link{ceplane.plot}},
-         \code{\link{contour}}
+\code{\link[=bcea]{bcea()}},
+\code{\link[=ceplane.plot]{ceplane.plot()}},
+\code{\link[=contour]{contour()}}
 }
 \author{
 Gianluca Baio, Andrea Berardi

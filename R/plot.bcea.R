@@ -5,37 +5,36 @@
 #' Incremental Benefit, the CEAC and the EVPI.
 #' 
 #' The default position of the legend for the cost-effectiveness plane
-#' (produced by \code{\link{ceplane.plot}}) is set to \code{c(1, 1.025)}
-#' overriding its default for \code{pos=FALSE}, since multiple ggplot2 plots
+#' (produced by [ceplane.plot()]) is set to `c(1, 1.025)`
+#' overriding its default for `pos=FALSE`, since multiple ggplot2 plots
 #' are rendered in a slightly different way than single plots.
 #' 
-#' @param x A \code{bcea} object containing the results of the Bayesian
+#' @param x A `bcea` object containing the results of the Bayesian
 #' modelling and the economic evaluation.
 #' @template args-comparison
 #' @param wtp The value of the willingness to pay parameter. It is passed to
-#' \code{\link{ceplane.plot}}.
+#' [ceplane.plot()].
 #' @template args-pos
 #' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the two options \code{"base"} or
-#' \code{"ggplot2"}. Default value is \code{"base"}.
-#' @param ...  Arguments to be passed to the methods \code{\link{ceplane.plot}}
-#' and \code{\link{eib.plot}}. Please see the manual pages for the individual
-#' functions.  Arguments like \code{size}, \code{ICER.size} and \code{plot.cri}
+#' plotting. Should (partial-)match the two options `"base"` or
+#' `"ggplot2"`. Default value is `"base"`.
+#' @param ...  Arguments to be passed to the methods [ceplane.plot()]
+#' and [eib.plot()]. Please see the manual pages for the individual
+#' functions.  Arguments like `size`, `ICER.size` and `plot.cri`
 #' can be supplied to the functions in this way. In addition if
-#' \code{graph="ggplot2"} and the arguments are named theme objects they will
+#' `graph="ggplot2"` and the arguments are named theme objects they will
 #' be added to each plot.
 #' 
 #' @return A plot with four graphical summaries of the health economic evaluation.
 #' 
 #' @author Gianluca Baio, Andrea Berardi
 #' 
-#' @seealso \code{\link{bcea}},
-#'          \code{\link{ceplane.plot}},
-#'          \code{\link{eib.plot}},
-#'          \code{\link{ceac.plot}},
-#'          \code{\link{evi.plot}}
+#' @seealso [bcea()],
+#'          [ceplane.plot()],
+#'          [eib.plot()],
+#'          [ceac.plot()],
+#'          [evi.plot()]
 #' @importFrom Rdpack reprompt
-#' @importFrom purrr map_lgl
 #'          
 #' @references
 #' 
@@ -73,13 +72,12 @@
 #' if(require(ggplot2)){
 #' plot(he, graph = "ggplot2")
 #' 
-#' ##### Example of a customized plot.bcea with ggplot2
+#' # Example of a customized plot.bcea with ggplot2
 #' plot(he,
-#'   graph = "ggplot2",                                      # use ggplot2
-#'   theme = theme(plot.title=element_text(size=rel(1.25))), # theme elements must have a name
-#'   ICER_size = 1.5,                                        # hidden option in ceplane.plot
-#'   size = rel(2.5)                                         # modifies the size of k = labels
-#'   )                                                       # in ceplane.plot and eib.plot
+#'   graph = "ggplot2",          # use ggplot2
+#'   ICER_size = 1.5,            # extra options modifies the mean point size
+#'   text = list(size=rel(1.25)) # modifies the text size
+#'   )                                                       
 #' }
 #' 
 #' @import ggplot2
@@ -131,7 +129,8 @@ plot.bcea <- function(x,
     })
   } else {
     
-    is_req_pkgs <- map_lgl(c("ggplot2","grid"), requireNamespace, quietly = TRUE)
+    is_req_pkgs <- unname(sapply(c("ggplot2", "grid"),
+                                 requireNamespace, quietly = TRUE))
     
     if (!all(is_req_pkgs)) {
       message("falling back to base graphics\n")
@@ -169,9 +168,9 @@ plot.bcea <- function(x,
                    extra_params,
                    keep.null = TRUE)
       
-      theme_add <- purrr::keep(extra_args, is.theme)
+      theme_add <- Filter(f = \(val) ggplot2::is.theme(val), x = extra_args)
       
-   ceplane.pos <- ifelse(pos, pos, c(1, 1.025))
+      ceplane.pos <- ifelse(pos, pos, c(1, 1.025))
       
       ##TODO: warnings...
       ceplane <-

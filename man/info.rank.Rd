@@ -22,12 +22,12 @@ info.rank(he, ...)
 modelling and the economic evaluation.}
 
 \item{inp}{Named list from running \code{createInputs()} containing:
-  \itemize{
-  \item \code{parameter} = A vector of parameters for which the individual EVPPI
+\itemize{
+\item \code{parameter} = A vector of parameters for which the individual EVPPI
 should be calculated. This can be given as a string (or vector of strings)
 of names or a numeric vector, corresponding to the column numbers of
 important parameters.
-  \item \code{mat} = A matrix containing the simulations for all the parameters
+\item \code{mat} = A matrix containing the simulations for all the parameters
 monitored by the call to JAGS or BUGS. The matrix should have column names
 matching the names of the parameters and the values in the vector parameter
 should match at least one of those values.
@@ -36,7 +36,7 @@ should match at least one of those values.
 \item{wtp}{A value of the wtp for which the analysis should be performed. If
 not specified then the break-even point for the current model will be used.}
 
-\item{howManyPars}{Optional maximum number of parameters to be included in the bar plot. 
+\item{howManyPars}{Optional maximum number of parameters to be included in the bar plot.
 Includes all parameters by default.}
 
 \item{graph}{A string used to select the graphical engine to use for plotting.
@@ -58,14 +58,14 @@ vector (default = 0.7 of full size) - base graphics only.
 }
 \value{
 With base graphics: A data.frame containing the ranking of the parameters
-  with the value of the selected summary, for the chosen wtp; with plotly: a plotly object, 
-  incorporating in the $rank element the data.frame as above.
-  The function produces a 'Info-rank' plot. This is an extension of standard 'Tornado
-  plots' and presents a ranking of the model parameters in terms of their
-  impact on the expected value of information. For each parameter, the
-  specific individual EVPPI is computed and used to measure the impact of
-  uncertainty in that parameter over the decision-making process, in terms of
-  how large the expected value of gaining more information is.
+with the value of the selected summary, for the chosen wtp; with plotly: a plotly object,
+incorporating in the $rank element the data.frame as above.
+The function produces a 'Info-rank' plot. This is an extension of standard 'Tornado
+plots' and presents a ranking of the model parameters in terms of their
+impact on the expected value of information. For each parameter, the
+specific individual EVPPI is computed and used to measure the impact of
+uncertainty in that parameter over the decision-making process, in terms of
+how large the expected value of gaining more information is.
 }
 \description{
 Produces a plot similar to a tornado plot, but based on the analysis of the
@@ -97,8 +97,8 @@ info.rank(m, inp, graph = "ggplot2")
 \insertRef{Baio2013}{BCEA}
 }
 \seealso{
-\code{\link{bcea}},
-         \code{\link{evppi}}
+\code{\link[=bcea]{bcea()}},
+\code{\link[=evppi]{evppi()}}
 }
 \author{
 Anna Heath, Gianluca Baio, Andrea Berardi

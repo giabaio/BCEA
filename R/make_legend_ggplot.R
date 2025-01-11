@@ -7,11 +7,11 @@
 #'  inside the plotting area
 #' 
 #' @param dat data
-#' @param legend_pos Legend position
+#' @param pos_legend Legend position
 #'
 #' @keywords internal
 #' 
-make_legend_ggplot <- function(dat, legend_pos) {
+make_legend_ggplot <- function(dat, pos_legend) {
   
   legend_just <- NULL  # sets the corner that the legend_pos position refers to
   legend_dir <- NULL
@@ -22,27 +22,36 @@ make_legend_ggplot <- function(dat, legend_pos) {
     
     legend_pos <- "none"
     
-  } else if (any(is.na(legend_pos))) {
+  } else if (any(is.na(pos_legend))) {
     
     legend_pos <- "none"
     
-  } else if (is.logical(legend_pos)) {
+  } else if (is.logical(pos_legend)) {
     
-    if (isTRUE(legend_pos)) {
+    if (isTRUE(pos_legend)) {
       legend_pos <- "bottom"
     } else {
       legend_pos <- c(1, 0)
       legend_just <- legend_pos 
     }
-  } else if (is.character(legend_pos)) {
+  } else if (is.character(pos_legend)) {
     
     pos_choices <- c("left", "right", "bottom", "top")
-    legend_pos <- pos_choices[pmatch(legend_pos, pos_choices)]
-    legend_just <- "center"
-  } else if (is.numeric(legend_pos) &&
-             length(legend_pos) == 2) {
+    dir_choices <- c("horizontal", "vertical")
     
-    legend_just <- legend_pos
+    legend_pos <- pos_choices[sapply(pos_choices, function(t) grepl(t, pos_legend))]
+    legend_dir <- dir_choices[sapply(dir_choices, function(t) grepl(t, pos_legend))]
+    
+    if (length(legend_dir) == 0) {
+      legend_dir <- NULL  # default
+    }
+    
+    legend_just <- "center"
+  } else if (is.numeric(pos_legend) &&
+             length(pos_legend) == 2) {
+    
+    legend_pos <- pos_legend
+    legend_just <- pos_legend
   } else {
     # default
     legend_pos <- c(1, 0)

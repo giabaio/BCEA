@@ -138,10 +138,8 @@ ceplane_plot_base <- function(he, ...) {
 #'              theme = ggplot2::theme_linedraw())
 #'              
 ceplane_plot_ggplot.bcea <- function(he,
-                                     wtp = 25000,
                                      pos_legend,
                                      graph_params, ...) {
-  
   # single long format for ggplot data
   delta_ce <-
     merge(
@@ -160,9 +158,9 @@ ceplane_plot_ggplot.bcea <- function(he,
       by = c("sim", "comparison"))
   
   plot_params <-
-    ceplane_ggplot_params(he, wtp, pos_legend, graph_params, ...)
+    ceplane_ggplot_params(he, pos_legend, graph_params, ...)
   
-  theme_add <- purrr::keep(list(...), is.theme)
+  theme_add <- Filter(f = \(val) ggplot2::is.theme(val), x = list(...))
   
   ggplot(delta_ce,
          aes(x = .data$delta_e, y = .data$delta_c,
@@ -194,10 +192,14 @@ ceplane_plot_ggplot.bcea <- function(he,
             list(title = plot_params$title,
                  x = plot_params$xlab,
                  y = plot_params$ylab)) +
-    do.call(geom_abline, c(slope = wtp, plot_params$line)) +
+    do.call(geom_abline, c(slope = plot_params$wtp_value, plot_params$line)) +
     do.call(geom_point, plot_params$icer) +
     do.call(annotate, plot_params$wtp) +
     do.call(annotate, plot_params$icer_txt) +
+    do.call(theme, list(
+      axis.text = element_text(size = graph_params$text$size),
+      axis.title.x = element_text(size = graph_params$text$size),
+      axis.title.y = element_text(size = graph_params$text$size))) +
     do.call(theme, plot_params$legend)
 }
 

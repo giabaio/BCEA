@@ -42,7 +42,7 @@ add_contour_quadrants <- function(he, params) {
 #' Geom Quadrant Text
 #' 
 #' @template args-he
-#' @template args-graph
+#' @param graph_params Plot parameters; list
 #' @keywords internal aplot
 #' 
 geom_quad_txt <- function(he, graph_params) {
