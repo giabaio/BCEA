@@ -12,9 +12,9 @@
 
 > Perform Bayesian Cost-Effectiveness Analysis in R.
 
-:rocket: **Version 2.4.7 in development now!** [Check out the release notes here](https://github.com/n8thangreen/BCEA/releases).
+This is the **official (CRAN) version of the `R` package `BCEA`**. It is now release 2.4-7.
 
-This is the development version of the `R` package `BCEA`.
+:rocket: **Version 2.4-8 in development now!** [Check out the release notes here](https://github.com/n8thangreen/BCEA/releases).
 
 ## Contents
 
