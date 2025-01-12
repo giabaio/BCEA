@@ -1,7 +1,7 @@
 Package: BCEA
 Type: Package
 Title: Bayesian Cost Effectiveness Analysis
-Version: 2.4.6
+Version: 2.4.7
 Authors@R: c(
     person("Gianluca", "Baio",
             email = "g.baio@ucl.ac.uk",
@@ -22,7 +22,7 @@ Authors@R: c(
 Imports:
     cli (>= 3.3.0),
     dplyr,
-    ggplot2 (>= 3.4.0),
+    ggplot2 (>= 3.5.0),
     graphics,
     gridExtra,
     MASS,
@@ -33,7 +33,7 @@ Imports:
     reshape2,
     rlang,
     rstan,
-    scales,
+    scales
 Depends:
     R (>= 3.5.0)
 Suggests:
@@ -63,11 +63,11 @@ Description: Produces an economic evaluation of a sample of suitable variables o
 License: GPL-3
 URL: https://gianluca.statistica.it/software/bcea/,
      https://gianluca.statistica.it/,
-     https://github.com/giabaio/BCEA/  
+     https://github.com/giabaio/BCEA/,
+     https://n8thangreen.github.io/BCEA/
 NeedsCompilation: no
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Encoding: UTF-8
 BugReports: https://github.com/n8thangreen/BCEA/issues/
 LazyData: false
 Roxygen: list(markdown = TRUE)
-

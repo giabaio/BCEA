@@ -4,13 +4,13 @@
 \alias{prep_ceplane_params}
 \title{Prepare CE-plane Parameters}
 \usage{
-prep_ceplane_params(he, wtp, ...)
+prep_ceplane_params(he, wtp_params, ...)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
-\item{wtp}{Willingness-to-pay}
+\item{wtp_params}{Willingness-to-pay parameters. This can be a single value or a list.}
 
 \item{...}{Additional arguments}
 }

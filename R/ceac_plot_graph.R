@@ -111,6 +111,8 @@ ceac_plot_ggplot.bcea <- function(he,
 #' @rdname ceac_plot_graph
 #' @param ceac ceac index in `he`
 #' @importFrom scales label_dollar
+#' @importFrom purrr keep
+#' @import ggplot2
 #' @keywords internal hplot
 #' @md
 ceac_ggplot <- function(he,
@@ -132,7 +134,7 @@ ceac_ggplot <- function(he,
   
   graph_params <- helper_ggplot_params(he, graph_params)
   legend_params <- make_legend_ggplot(he, pos_legend)
-  theme_add <- purrr::keep(extra_params, is.theme)
+  theme_add <- Filter(f = \(val) ggplot2::is.theme(val), x = extra_params)
 
   ggplot(data_psa, aes(x = .data$k, y = .data$ceac)) +
     geom_line(aes(linetype = .data$comparison,
@@ -145,6 +147,10 @@ ceac_ggplot <- function(he,
       labels = scales::label_dollar(prefix = graph_params$currency)) +
     do.call(labs, graph_params$annot) +                    # text
     do.call(theme, legend_params) +                        # legend
+    do.call(theme, list(
+      axis.text = element_text(size = graph_params$text$size),
+      axis.title.x = element_text(size = graph_params$text$size),
+      axis.title.y = element_text(size = graph_params$text$size))) +  # text size
     scale_linetype_manual("",                              # lines
                           labels = graph_params$labels,
                           values = graph_params$line$type) +

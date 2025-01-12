@@ -97,7 +97,7 @@ m <- bcea(
       Kmax=50000,           # maximum value possible for the willingness 
                             #  to pay threshold; implies that k is chosen 
                             #  in a grid from the interval (0, Kmax)
-      plot=FALSE             # plots the results
+      plot=FALSE            # plots the results
 )
 eib.plot(m)
 eib.plot(m, graph = "ggplot2") + ggplot2::theme_linedraw()

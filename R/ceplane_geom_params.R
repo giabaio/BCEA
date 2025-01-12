@@ -25,14 +25,14 @@ ceplane_geom_params <- function(...) {
       names(extra_params) %in% c("area_include", "area_color")]
   names(polygon_params) <- gsub("area_", "", names(polygon_params))
   
-  wtp_params <-
+  label.pos <-
     extra_params[
       names(extra_params) %in% "label.pos"]
   
   modifyList(
     list(
       area_include = TRUE,
-      wtp_label.pos = wtp_params),
+      label.pos = label.pos),
     list(
       icer = icer_params,
       point = point_params,

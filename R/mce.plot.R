@@ -135,18 +135,18 @@ mce.plot <- function(mce,
          ylab="Probability of most cost effectiveness",ylim=c(0,1),
          main="Cost-effectiveness acceptability curve \nfor multiple comparisons")
     for (i in 2:mce$n_comparators) {
-      points(mce$k,mce$m.ce[,i],t="l",col=color[i],lwd=lwd,lty=i)
+      points(x = mce$k, y = mce$m.ce[,i], type="l", col=color[i], lwd=lwd, lty=i)
     }
-    legend(alt.legend,mce$interventions,col=color,cex=.7,bty="n",lty=1:mce$n_comparators)
+    legend(alt.legend, mce$interventions, col=color, cex=.7, bty="n", lty=1:mce$n_comparators)
   } # base graphics
   else{
-    if(!isTRUE(requireNamespace("ggplot2",quietly=TRUE)&requireNamespace("grid",quietly=TRUE))) {
+    if(!isTRUE(requireNamespace("ggplot2", quietly=TRUE)&requireNamespace("grid", quietly=TRUE))) {
       message("Falling back to base graphics\n")
-      mce.plot(mce,pos=pos,graph="base")
+      mce.plot(mce, pos=pos, graph="base")
       return(invisible(NULL))
     }
     
-    if(isTRUE(requireNamespace("ggplot2",quietly=TRUE)&requireNamespace("grid",quietly=TRUE))) {
+    if(isTRUE(requireNamespace("ggplot2", quietly=TRUE)&requireNamespace("grid", quietly=TRUE))) {
       # no visible bindings note
       ceplane <- k <- ce <- comp <- NA_real_
       
@@ -154,16 +154,19 @@ mce.plot <- function(mce,
       lty <- rep(1:6,ceiling(mce$n_comparators/6))[1:mce$n_comparators]
       label <- paste0(mce$interventions)
       
-      df <- cbind("k"=rep(mce$k,mce$n_comparators),"ce"=c(mce$m.ce))
-      df <- data.frame(df,"comp"=as.factor(sort(rep(1:mce$n_comparators,length(mce$k)))))
+      df <- cbind("k" = rep(mce$k,mce$n_comparators),
+                  "ce" = c(mce$m.ce))
+      df <- data.frame(df,
+                       "comp" = as.factor(sort(rep(1:mce$n_comparators, length(mce$k)))))
       names(df) <- c("k","ce","comp")
       
       mceplot <-
-        ggplot2::ggplot(df, ggplot2::aes(x = k, y = ce)) + ggplot2::theme_bw() +
+        ggplot2::ggplot(df, ggplot2::aes(x = k, y = ce)) +
+        ggplot2::theme_bw() +
         ggplot2::geom_line(ggplot2::aes(linetype = comp)) +
         ggplot2::scale_linetype_manual("", labels = label, values = lty) +
-        ggplot2::labs(title = "Cost-effectiveness acceptability curve\nfor multiple comparisons", x =
-                        "Willingness to pay", y = "Probability of most cost effectiveness") +
+        ggplot2::labs(title = "Cost-effectiveness acceptability curve\nfor multiple comparisons",
+                      x = "Willingness to pay", y = "Probability of most cost effectiveness") +
         ggplot2::theme(
           text = ggplot2::element_text(size = 11),
           legend.key.size = grid::unit(.66, "lines"),
@@ -174,7 +177,7 @@ mce.plot <- function(mce,
       jus <- NULL
       if(isTRUE(alt.legend)) {
         alt.legend <- "bottom"
-        mceplot <- mceplot + ggplot2::theme(legend.direction="vertical")
+        mceplot <- mceplot + ggplot2::theme(legend.direction = "vertical")
       }
       else{
         if(is.character(alt.legend)) {
@@ -184,9 +187,9 @@ mce.plot <- function(mce,
           if(is.na(alt.legend))
             alt.legend <- FALSE
         }
-        if(length(alt.legend)>1)
+        if(length(alt.legend) > 1)
           jus <- alt.legend
-        if(length(alt.legend)==1 & !is.character(alt.legend)) {
+        if(length(alt.legend)==1 && !is.character(alt.legend)) {
           alt.legend <- c(1,0.5)
           jus <- alt.legend
         }
@@ -199,13 +202,12 @@ mce.plot <- function(mce,
           legend.justification = jus,
           legend.title = ggplot2::element_blank(),
           legend.background = ggplot2::element_blank(),
-          legend.text.align = 0,
+          legend.text = element_text(hjust = 0),
           plot.title = ggplot2::element_text(
             lineheight = 1.05,
             face = "bold",
             size = 14.3,
-            hjust = 0.5
-          )
+            hjust = 0.5)
         )
       return(mceplot)
     }

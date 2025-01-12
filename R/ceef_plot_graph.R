@@ -36,8 +36,7 @@ ceef_plot_ggplot <- function(he,
   
   extra_args <- list(...)
   
-  opt_theme <- purrr::keep(extra_args, is.theme)
-  
+  opt_theme <- Filter(f = \(val) ggplot2::is.theme(val), x = extra_args)
   ceplane <- ggplot(ceef.points, aes(x = .data$x, y = .data$y))
   
   if (add_dominance_region) {
@@ -111,7 +110,7 @@ ceef_plot_ggplot <- function(he,
       legend.spacing = grid::unit(-1.25, "line"),
       panel.grid = element_blank(),
       legend.key = element_blank(),
-      legend.text.align = 0,
+      legend.text = element_text(hjust = 0),
       plot.title = element_text(
         hjust = 0.5,
         face = "bold",

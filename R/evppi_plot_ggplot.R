@@ -27,7 +27,8 @@ evppi_plot_ggplot <- function(evppi_obj,
                                    evppi_obj$parameters),
                              "EVPI"))
   
-  theme_add <- purrr::keep(extra_args, is.theme)
+  theme_add <- Filter(f = \(val) ggplot2::is.theme(val), x = extra_args)
+  
   size <- purrr::pluck(extra_args, "size", .default = c(1, 0.5))
   
   legend_params <- make_legend_ggplot(evppi_obj, pos_legend)

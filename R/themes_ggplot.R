@@ -14,7 +14,7 @@ theme_default <- function() {
           legend.spacing = grid::unit(-1.25, "line"),
           panel.grid = element_blank(),
           legend.key = element_blank(),
-          legend.text.align = 0,
+          legend.text = element_text(hjust = 0),
           plot.title = element_text(
             lineheight = 1.05,
             face = "bold",
