@@ -180,26 +180,27 @@ m <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
 # Compute the EVPPI for a bunch of parameters
 inp <- createInputs(vaccine_mat)
 
-EVPPI <- evppi(m, c("beta.1." , "beta.2."), inp$mat)
+# explicitly use BCEA package namespace to avoid voi package conflict
+EVPPI <- BCEA::evppi(m, c("beta.1." , "beta.2."), inp$mat)
 
 plot(EVPPI)
 
 # deprecated (single parameter) methods
-EVPPI.so <- evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "so", n.blocks = 50)
-EVPPI.sad <- evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps = 1)
+EVPPI.so <- BCEA::evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "so", n.blocks = 50)
+EVPPI.sad <- BCEA::evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps = 1)
 
 plot(EVPPI.so)
 plot(EVPPI.sad)
  
 # Compute the EVPPI using INLA/SPDE
 if (require("INLA"))
-  x_inla <- evppi(he = m, 39:40, input = inp$mat)
+  x_inla <- BCEA::evppi(he = m, 39:40, input = inp$mat)
 
 # using GAM regression
-x_gam <- evppi(he = m, 39:40, input = inp$mat, method = "GAM")
+x_gam <- BCEA::evppi(he = m, 39:40, input = inp$mat, method = "GAM")
 
 # using Strong et al GP regression
-x_gp <- evppi(he = m, 39:40, input = inp$mat, method = "GP")
+x_gp <- BCEA::evppi(he = m, 39:40, input = inp$mat, method = "GP")
 
 # plot results
 if (require("INLA")) plot(x_inla)
@@ -218,7 +219,7 @@ treats <- c("No intervention", "Self-help",
 "Individual counselling", "Group counselling")
 m <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 inp <- createInputs(smoking_output)
-EVPPI <- evppi(m, c(2,3), inp$mat, h.value = 0.0000005)
+EVPPI <- BCEA::evppi(m, c(2,3), inp$mat, h.value = 0.0000005)
 plot(EVPPI)
 }
 
@@ -226,7 +227,8 @@ data(Vaccine, package = "BCEA")
 treats <- c("Status quo", "Vaccination")
 bcea_vacc <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
 inp <- createInputs(vaccine_mat)
-evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
+BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
+
 }
 \references{
 \insertRef{Strong2014}{BCEA}
