@@ -160,7 +160,7 @@ ceplane_plot_ggplot.bcea <- function(he,
   plot_params <-
     ceplane_ggplot_params(he, pos_legend, graph_params, ...)
   
-  theme_add <- purrr::keep(list(...), is.theme)
+  theme_add <- Filter(f = \(val) ggplot2::is.theme(val), x = list(...))
   
   ggplot(delta_ce,
          aes(x = .data$delta_e, y = .data$delta_c,
@@ -196,6 +196,10 @@ ceplane_plot_ggplot.bcea <- function(he,
     do.call(geom_point, plot_params$icer) +
     do.call(annotate, plot_params$wtp) +
     do.call(annotate, plot_params$icer_txt) +
+    do.call(theme, list(
+      axis.text = element_text(size = graph_params$text$size),
+      axis.title.x = element_text(size = graph_params$text$size),
+      axis.title.y = element_text(size = graph_params$text$size))) +
     do.call(theme, plot_params$legend)
 }
 

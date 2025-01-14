@@ -6,7 +6,6 @@
 #' @param graph Type names; string
 #' @return Plot ID integer 1:base R; 2:ggplot2; 3:plotly
 #' @importFrom cli cli_alert_warning
-#' @importFrom purrr map_lgl
 #' @keywords dplot internal
 #' 
 select_plot_type <- function(graph) {
@@ -16,8 +15,8 @@ select_plot_type <- function(graph) {
   graph_lup <- c(base = 1, ggplot2 = 2, plotly =3)
   graph_type <- graph_lup[graph]
   
-  is_req_pkgs <- purrr::map_lgl(c("ggplot2", "grid"),
-                                requireNamespace, quietly = TRUE)
+  is_req_pkgs <- unname(sapply(c("ggplot2", "grid"),
+                               requireNamespace, quietly = TRUE))
   
   if (graph_type == 2 && !all(is_req_pkgs)) {
     cli::cli_alert_warning(

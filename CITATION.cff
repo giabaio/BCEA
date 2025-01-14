@@ -14,7 +14,7 @@ authors:
   given-names: "Nathan"
   orcid: https://orcid.org/0000-0003-2745-1736
 title: "BCEA: Bayesian Cost-Effectiveness Analysis"
-version: 2.4-5
+version: 2.4.6
 doi: 10.1007/978-3-319-55718-2
 date-released: 2023-11-20
 url: "https://gianluca.statistica.it/software/bcea/"

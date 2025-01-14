@@ -67,17 +67,22 @@ info_rank_base <- function(he, params) {
 #' @importFrom stats reorder
 #' 
 info_rank_ggplot <- function(he, params) {
-  
-  ggplot(data = params$res,
-         aes(x = reorder(.data$parameter, .data$info), y = .data$info)) +
-    geom_bar(stat = "identity") +
+  data.frame(
+    params$res,
+    col = as.factor(rep(c("red", "blue"),            # alternate fill by row number
+                        length.out = nrow(params$res)))) |> 
+  ggplot(aes(x = reorder(.data$parameter, .data$info), y = .data$info)) +
+    geom_bar(stat = "identity", aes(fill = col)) +  
     coord_flip() +
     theme_default() +
-    scale_fill_manual(rep(c("red","blue"), nrow(params$res))) +
     ylab(params$xlab) +
     xlab("") +
-    ggtitle(params$tit)
+    ggtitle(params$tit) +
+    theme(
+      plot.title = element_text(margin = margin(b = 20)), # adjust margin below title
+      legend.position = "none")
 }
+
 
 
 

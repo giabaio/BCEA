@@ -87,13 +87,12 @@ plot(he, graph = "base")
 if(require(ggplot2)){
 plot(he, graph = "ggplot2")
 
-##### Example of a customized plot.bcea with ggplot2
+# Example of a customized plot.bcea with ggplot2
 plot(he,
-  graph = "ggplot2",                                      # use ggplot2
-  theme = theme(plot.title=element_text(size=rel(1.25))), # theme elements must have a name
-  ICER_size = 1.5,                                        # hidden option in ceplane.plot
-  size = rel(2.5)                                         # modifies the size of k = labels
-  )                                                       # in ceplane.plot and eib.plot
+  graph = "ggplot2",          # use ggplot2
+  ICER_size = 1.5,            # extra options modifies the mean point size
+  text = list(size=rel(1.25)) # modifies the text size
+  )                                                       
 }
 
 }

@@ -53,7 +53,9 @@ points_params <- function(graph_params) {
 k_text <- function(graph_params, wtp) {
   
   x_k <- graph_params$xlim[1]
-  y_k <- max(x_k*wtp, graph_params$ylim[1])
+  y_k <- ifelse(graph_params$label.pos,
+                max(x_k*wtp, graph_params$ylim[1]),
+                    graph_params$ylim[1])
   
   x_adj <- diff(graph_params$xlim)*0.04
   y_adj <- diff(graph_params$ylim)*0.04

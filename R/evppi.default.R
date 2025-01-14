@@ -14,7 +14,8 @@ evppi.default <- function(he, ...) {
 #' treats <- c("Status quo", "Vaccination")
 #' bcea_vacc <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
 #' inp <- createInputs(vaccine_mat)
-#' evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
+#' BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
+#' 
 #' @export
 #' 
 evppi.bcea <- function(he,

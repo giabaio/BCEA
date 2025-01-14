@@ -35,7 +35,6 @@
 #'          [ceac.plot()],
 #'          [evi.plot()]
 #' @importFrom Rdpack reprompt
-#' @importFrom purrr map_lgl
 #'          
 #' @references
 #' 
@@ -73,13 +72,12 @@
 #' if(require(ggplot2)){
 #' plot(he, graph = "ggplot2")
 #' 
-#' ##### Example of a customized plot.bcea with ggplot2
+#' # Example of a customized plot.bcea with ggplot2
 #' plot(he,
-#'   graph = "ggplot2",                                      # use ggplot2
-#'   theme = theme(plot.title=element_text(size=rel(1.25))), # theme elements must have a name
-#'   ICER_size = 1.5,                                        # hidden option in ceplane.plot
-#'   size = rel(2.5)                                         # modifies the size of k = labels
-#'   )                                                       # in ceplane.plot and eib.plot
+#'   graph = "ggplot2",          # use ggplot2
+#'   ICER_size = 1.5,            # extra options modifies the mean point size
+#'   text = list(size=rel(1.25)) # modifies the text size
+#'   )                                                       
 #' }
 #' 
 #' @import ggplot2
@@ -131,7 +129,8 @@ plot.bcea <- function(x,
     })
   } else {
     
-    is_req_pkgs <- map_lgl(c("ggplot2","grid"), requireNamespace, quietly = TRUE)
+    is_req_pkgs <- unname(sapply(c("ggplot2", "grid"),
+                                 requireNamespace, quietly = TRUE))
     
     if (!all(is_req_pkgs)) {
       message("falling back to base graphics\n")
@@ -169,9 +168,9 @@ plot.bcea <- function(x,
                    extra_params,
                    keep.null = TRUE)
       
-      theme_add <- purrr::keep(extra_args, is.theme)
+      theme_add <- Filter(f = \(val) ggplot2::is.theme(val), x = extra_args)
       
-   ceplane.pos <- ifelse(pos, pos, c(1, 1.025))
+      ceplane.pos <- ifelse(pos, pos, c(1, 1.025))
       
       ##TODO: warnings...
       ceplane <-

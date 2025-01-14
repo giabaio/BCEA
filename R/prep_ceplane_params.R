@@ -44,6 +44,7 @@ prep_ceplane_params <- function(he, wtp_params, ...) {
          title = plot_title,
          xlim = axes_lim$xlim,
          ylim = axes_lim$ylim,
+         label.pos = TRUE,
          point = list(
            color = grey.colors(n = he$n_comparisons,
                                end = 0.7,
@@ -54,6 +55,8 @@ prep_ceplane_params <- function(he, wtp_params, ...) {
            value = 25000),
          area_include = TRUE,
          ICER_size = 2,
+         text = list(
+           size = 11),
          area = list(
            # line_color = "black",
            col = "grey95"),

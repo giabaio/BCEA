@@ -19,6 +19,14 @@ eib_params_ggplot <- function(he,
   default_params <- 
     list(
       size = rel(3.5),
+      text = list(
+        size =
+          if (is.rel(graph_params$text$size)) {
+            11 * unclass(graph_params$text$size)  # theme_get()$text$size
+          } else {
+            graph_params$text$size
+          }
+      ),
       kstar = list(
         geom = "text",
         label = paste0("k* = ", format(he$kstar, digits = 6)),

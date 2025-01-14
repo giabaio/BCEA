@@ -51,11 +51,11 @@ inp <- createInputs(vaccine_mat)
 
 # Compute the EVPPI using INLA/SPDE
 if (require("INLA")) {
-  x0 <- evppi(m, c("beta.1." , "beta.2."), input = inp$mat)
+  x0 <- BCEA::evppi(m, c("beta.1." , "beta.2."), input = inp$mat)
   
   plot(x0, pos = c(0,1))
 
-  x1 <- evppi(m, c(32,48,49), input = inp$mat)
+  x1 <- BCEA::evppi(m, c(32,48,49), input = inp$mat)
   plot(x1, pos = "topright")
 
   plot(x0, col = c("black", "red"), pos = "topright")
