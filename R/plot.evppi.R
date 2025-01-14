@@ -16,6 +16,7 @@
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso [bcea()], [evppi()]
 #' @importFrom Rdpack reprompt
+#' @import voi
 #' 
 #' @references
 #' 

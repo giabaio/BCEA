@@ -125,6 +125,7 @@
 #' @seealso [bcea()],
 #'          [plot.evppi()]
 #' @importFrom Rdpack reprompt
+#' @import voi
 #' 
 #' @references
 #' 

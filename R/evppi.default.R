@@ -8,7 +8,8 @@ evppi.default <- function(he, ...) {
 
 
 #' @rdname evppi
-#'
+#' @import voi
+#' 
 #' @examples
 #' data(Vaccine, package = "BCEA")
 #' treats <- c("Status quo", "Vaccination")
