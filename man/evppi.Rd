@@ -222,12 +222,6 @@ EVPPI <- BCEA::evppi(m, c(2,3), inp$mat, h.value = 0.0000005)
 plot(EVPPI)
 }
 
-data(Vaccine, package = "BCEA")
-treats <- c("Status quo", "Vaccination")
-bcea_vacc <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
-inp <- createInputs(vaccine_mat)
-BCEA::evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
-
 }
 \references{
 \insertRef{Strong2014}{BCEA}
