@@ -106,22 +106,20 @@
 #' By default, when no method is specified by the user, `evppi` will
 #' use GAM if the number of parameters is <5 and INLA otherwise.
 #' 
-#' @return Object of class `evppi`:
-#' \item{evppi}{The computed values of evppi for all values of the
-#'  parameter of willingness to pay.}
-#' \item{index}{A numerical vector with the index associated with the
-#'  parameters for which the EVPPI was calculated.}
-#' \item{k}{The vector of values for the willingness to pay.}
-#' \item{evi}{The vector of values for the overall EVPPI.}
-#' \item{fitted.costs}{The fitted values for the costs.}
-#' \item{fitted.effects}{The fitted values for the effects.}
-#' \item{parameters}{A single string containing the names of the
-#' parameters for which the EVPPI was calculated, used for plotting the EVPPI.}
-#' \item{time}{Computational time (in seconds).}
-#' \item{fit.c}{The object produced by the model fit for the costs.}
-#' \item{fit.e}{The object produced by the model fit for the effects.}
-#' \item{formula}{The formula used to fit the model.}
-#' \item{method}{A string indicating the method used to estimate the EVPPI.}
+#' @return An object of class `evppi`, containing the following components:
+#' 
+#' - **evppi**: The computed values of `evppi` for all values of the parameter of willingness to pay.
+#' - **index**: A numerical vector with the indices of the parameters for which the EVPPI was calculated.
+#' - **k**: A vector of values for the willingness to pay.
+#' - **evi**: A vector of values for the overall EVPPI.
+#' - **fitted.costs**: The fitted values for the costs.
+#' - **fitted.effects**: The fitted values for the effects.
+#' - **parameters**: A single string containing the names of the parameters for which the EVPPI was calculated (used for plotting).
+#' - **time**: The computational time (in seconds).
+#' - **fit.c**: The object produced by the model fit for the costs.
+#' - **fit.e**: The object produced by the model fit for the effects.
+#' - **formula**: The formula used to fit the model.
+#' - **method**: A string indicating the method used to estimate the EVPPI.
 #' 
 #' @author Anna Heath, Gianluca Baio
 #' @seealso [bcea()],

@@ -40,49 +40,32 @@
 #' @param plot A logical value indicating whether the function should produce
 #' the summary plot or not.
 #' 
-#' @return An object of the class "bcea" containing the following elements
-#' \item{n_sim}{Number of simulations produced by the Bayesian model}
-#' \item{n_comparators}{Number of interventions being analysed}
-#' \item{n_comparisons}{Number of possible pairwise comparisons}
-#' \item{delta.e}{For each possible comparison, the differential in the
-#' effectiveness measure}
-#' \item{delta.c}{For each possible comparison, the differential in the cost measure}
-#' \item{ICER}{The value of the Incremental Cost-Effectiveness Ratio}
-#' \item{Kmax}{The maximum value assumed for the willingness to pay threshold}
-#' \item{k}{The vector of values for the grid approximation of the willingness
-#' to pay}
-#' \item{ceac}{The value for the Cost-Effectiveness Acceptability Curve,
-#' as a function of the willingness to pay}
-#' \item{ib}{The distribution of the Incremental Benefit, for a given
-#' willingness to pay}
-#' \item{eib}{The value for the Expected Incremental Benefit, as a function of
-#' the willingness to pay}
-#' \item{kstar}{The grid approximation of the break-even point(s)}
-#' \item{best}{A vector containing the numeric label of the intervention that
-#' is the most cost-effective for each value of the willingness to pay in the
-#' selected grid approximation}
-#' \item{U}{An array including the value of the expected utility for each
-#' simulation from the Bayesian model, for each value of the grid approximation
-#' of the willingness to pay and for each intervention being considered}
-#' \item{vi}{An array including the value of information for each simulation
-#' from the Bayesian model and for each value of the grid approximation of the
-#' willingness to pay}
-#' \item{Ustar}{An array including the maximum "known-distribution" utility for
-#'  each simulation from the Bayesian model and for each value of the grid
-#'  approximation of the willingness to pay}
-#' \item{ol}{An array including the opportunity loss for each simulation from
-#' the Bayesian model and for each value of the grid approximation of the
-#' willingness to pay}
-#' \item{evi}{The vector of values for the Expected Value of Information, as
-#' a function of the willingness to pay}
-#' \item{interventions}{A vector of labels for all the interventions considered}
-#' \item{ref}{The numeric index associated with the intervention used as
-#' reference in the analysis}
-#' \item{comp}{The numeric index(es) associated with the intervention(s) used
-#' as comparator(s) in the analysis}
-#' \item{step}{The step size used to form the grid approximation to the willingness to pay}
-#' \item{e}{The `eff` matrix used to generate the object (see Arguments)}
-#' \item{c}{The `cost` matrix used to generate the object (see Arguments)}
+#' @return An object of the class `bcea` containing the following elements:
+#' 
+#' - **n_sim**: Number of simulations produced by the Bayesian model.
+#' - **n_comparators**: Number of interventions being analyzed.
+#' - **n_comparisons**: Number of possible pairwise comparisons.
+#' - **delta.e**: For each possible comparison, the differential in the effectiveness measure.
+#' - **delta.c**: For each possible comparison, the differential in the cost measure.
+#' - **ICER**: The value of the Incremental Cost-Effectiveness Ratio.
+#' - **Kmax**: The maximum value assumed for the willingness to pay threshold.
+#' - **k**: The vector of values for the grid approximation of the willingness to pay.
+#' - **ceac**: The value for the Cost-Effectiveness Acceptability Curve, as a function of the willingness to pay.
+#' - **ib**: The distribution of the Incremental Benefit, for a given willingness to pay.
+#' - **eib**: The value for the Expected Incremental Benefit, as a function of the willingness to pay.
+#' - **kstar**: The grid approximation of the break-even point(s).
+#' - **best**: A vector containing the numeric label of the intervention that is the most cost-effective for each value of the willingness to pay in the selected grid approximation.
+#' - **U**: An array including the value of the expected utility for each simulation from the Bayesian model, for each value of the grid approximation of the willingness to pay, and for each intervention being considered.
+#' - **vi**: An array including the value of information for each simulation from the Bayesian model and for each value of the grid approximation of the willingness to pay.
+#' - **Ustar**: An array including the maximum "known-distribution" utility for each simulation from the Bayesian model and for each value of the grid approximation of the willingness to pay.
+#' - **ol**: An array including the opportunity loss for each simulation from the Bayesian model and for each value of the grid approximation of the willingness to pay.
+#' - **evi**: The vector of values for the Expected Value of Information, as a function of the willingness to pay.
+#' - **interventions**: A vector of labels for all the interventions considered.
+#' - **ref**: The numeric index associated with the intervention used as reference in the analysis.
+#' - **comp**: The numeric index(es) associated with the intervention(s) used as comparator(s) in the analysis.
+#' - **step**: The step size used to form the grid approximation to the willingness to pay.
+#' - **e**: The `eff` matrix used to generate the object (see Arguments).
+#' - **c**: The `cost` matrix used to generate the object (see Arguments).
 #' 
 #' @author Gianluca Baio, Andrea Berardi, Nathan Green
 #' @references
