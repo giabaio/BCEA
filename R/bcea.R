@@ -9,11 +9,11 @@
 #' @param eff An object containing `nsim` simulations for the variable of
 #' clinical effectiveness for each intervention being considered. In general it
 #' is a matrix with `nsim` rows and `nint` columns.
-#' This are partially matched with `e' from previous version of `BCEA` for back-compatibility.
+#' This is partially matched with `e` from previous version of `BCEA` for back-compatibility.
 #' @param cost An object containing `nsim` simulations for the variable of
 #' cost for each intervention being considered. In general it is a matrix with
 #' `nsim` rows and `nint` columns.
-#' This are partially matched with `c' from previous version of `BCEA` for back-compatibility.
+#' This is partially matched with `c` from previous version of `BCEA` for back-compatibility.
 #' @param ref Defines which intervention (columns of `eff` or `cost`) is
 #' considered to be the reference strategy. The default value `ref = 1`
 #' means that the intervention associated with the first column of `eff` or

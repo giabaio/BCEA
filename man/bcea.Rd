@@ -42,12 +42,12 @@ bcea(
 \item{eff}{An object containing \code{nsim} simulations for the variable of
 clinical effectiveness for each intervention being considered. In general it
 is a matrix with \code{nsim} rows and \code{nint} columns.
-This are partially matched with \verb{e' from previous version of }BCEA` for back-compatibility.}
+This is partially matched with \code{e} from previous version of \code{BCEA} for back-compatibility.}
 
 \item{cost}{An object containing \code{nsim} simulations for the variable of
 cost for each intervention being considered. In general it is a matrix with
 \code{nsim} rows and \code{nint} columns.
-This are partially matched with \verb{c' from previous version of }BCEA` for back-compatibility.}
+This is partially matched with \code{c} from previous version of \code{BCEA} for back-compatibility.}
 
 \item{ref}{Defines which intervention (columns of \code{eff} or \code{cost}) is
 considered to be the reference strategy. The default value \code{ref = 1}
