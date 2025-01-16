@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">BCEA</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.6</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,19 +45,8 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="2.4.7" id="bcea-247-dev">BCEA 2.4.7 (dev)<a class="anchor" aria-label="anchor" href="#bcea-247-dev"></a></h2>
-</div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="2.4.7" id="bcea-247">BCEA 2.4.7<a class="anchor" aria-label="anchor" href="#bcea-247"></a></h2>
-<p><em>January 2025</em></p>
-<ul><li>In <code><a href="../reference/ceplane.plot.html">ceplane.plot()</a></code> for <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> version used the ggplot syntax thats already used for other plotting arguments so that we can now pass, e.g. <code>wtp = list(value = 20000, colour = "blue", x = 10, y = 10, size = 4)</code>. This closes issue <a href="https://github.com/n8thangreen/BCEA/issues/151" class="external-link">#151</a> so can do something like <code>wtp = list(size = 0)</code> to hide the willingness to pay text. (3d8a770)</li>
-<li>Small features added which were missing for the new edition of the BCEA book:
-<ul><li>Extended <code>ggplot</code> version legend to take a vertical or horizontal part to the <code>pos</code> argument (85ba87f)</li>
-<li>Relative font size argument <code>rel</code> for ceplane and ceac plot (8d1586f)</li>
-<li>Added text size <code>ggplot</code> argument to <code>eib_plot</code> (1e32788) and <code>evi_plot</code> (84aaa2f)</li>
-<li>
-<code>label.pos</code> logical argument fixed in <code>ceplane.plot</code> for <code>ggplot</code> (92e9eb0) and base <code>R</code> (c7351e4)</li>
-</ul></li>
+<h2 class="pkg-version" data-toc-text="2.4.6" id="bcea-246-dev">BCEA 2.4.6 (dev)<a class="anchor" aria-label="anchor" href="#bcea-246-dev"></a></h2>
+<ul><li>In <code><a href="../reference/ceplane.plot.html">ceplane.plot()</a></code> for <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> version used the ggplot syntax thats already used for other plotting arguments so that we can now pass e.g. <code>wtp = list(value = 20000, colour = "blue", x = 10, y = 10, size = 4)</code>. This closes issue <a href="https://github.com/n8thangreen/BCEA/issues/151" class="external-link">#151</a> so can do something like <code>wtp = list(size = 0)</code> to hide the willingness to pay text. (3d8a770)</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.4.6" id="bcea-246">BCEA 2.4.6<a class="anchor" aria-label="anchor" href="#bcea-246"></a></h2>
@@ -71,12 +60,10 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.4.5" id="bcea-245">BCEA 2.4.5<a class="anchor" aria-label="anchor" href="#bcea-245"></a></h2>
 <p><em>November 2023</em></p>
-<p>Some cosmetic changes to clean up.</p>
+<p>Some cosmetic changes to clean up</p>
 <ul><li>Removed the (by now, unnecessary) appveyor webhook</li>
-<li>Added correct <code>Remotes</code> in the <code>DESCRIPTION</code> file to point to the correct GitHub repos for <code>voi</code> and <code>plotrix</code>
-</li>
-<li>Changed the class of the object <code>smoking_output</code> to be used in the <code>evppi</code> example avoiding the need for <code>rjags</code>
-</li>
+<li>Added correct ‘Remotes’ in the ‘DESCRIPTION’ file to point to the correct GitHub repos for ‘voi’ and ‘plotrix’</li>
+<li>Changed the class of the object ‘smoking_output’ to be used in the ‘evppi’ example avoiding the need for ‘rjags’</li>
 </ul><p><em>October 2023</em></p>
 <p>Moved internal EVPPI calculation out of <code>BCEA</code> and now uses <code>voi</code> package instead. Refactoring but retaining same interface and functionality.</p>
 <ul><li>Ensure using latest CRAN release of <a href="https://chjackson.github.io/voi/" class="external-link">voi</a> which has a patch so that BCEA can use it without losing functionality
