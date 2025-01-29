@@ -19,8 +19,8 @@
 #'   bottom of the plot. Default value is `c(1,1)`, that is the topright
 #'   corner inside the plot area.
 #' @param graph A string used to select the graphical engine to use for
-#'   plotting. Should (partial-) match the two options `"base"` or
-#'   `"ggplot2"`. Default value is `"base"`.
+#'   plotting. Should (partial-) match the three options `"base"`,
+#'   `"ggplot2"` or `"plotly"`. Default value is `"base"`.
 #' @param ...  If `graph = "ggplot2"` and a named theme object is supplied,
 #'   it will be passed to the \pkg{ggplot2} object. The usual ggplot2 syntax is used.
 #'   Additional graphical arguments:
@@ -29,7 +29,7 @@
 #'   different position at the bottom of the graph. Applies to base and 
 #'   \pkg{ggplot2} only (no label in \pkg{plotly}).
 #' - `line = list(color)`: A colour specifying the colour of the 
-#'   willingness-to-pay line.
+#'   willingness-to-pay line (not available in the \pkg{plotly} version).
 #' - `point = list(color)`: A vector of colours specifying the colour(s) 
 #'   associated with the cloud of points. Should be of length 1 or equal 
 #'   to the number of comparisons.
@@ -71,9 +71,9 @@
 #'   pay. If the comparators are more than 2 and no pairwise comparison is
 #'   specified, all scatterplots are graphed using different colours.
 #'   
-#' @details In the \pkg{plotly} version, `point_colors`, `ICER_colors` and `area_color` can also
+#' @details In the \pkg{plotly} version, colors can also
 #' be specified as rgba colours using either the `[plotly]toRGB`
-#' function or a rgba colour string, e.g. `'rgba(1, 1, 1, 1)'`.
+#' function or a rgba colour string, e.g. `'rgb(1, 1, 1, 1)'`.
 #'   
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso [bcea()],
@@ -112,7 +112,7 @@
 ceplane.plot.bcea <- function(he,
                               comparison = NULL,
                               wtp = 25000,
-                              pos = c(0, 1),
+                              pos = "topleft",
                               graph = c("base", "ggplot2", "plotly"),
                               ...) {
   graph <- match.arg(graph)
@@ -123,23 +123,23 @@ ceplane.plot.bcea <- function(he,
   
   if (is_baseplot(graph)) {
     
-    ceplane_plot_base(he,
-                      wtp,
+    ceplane_plot_base(he, 
+                      wtp = wtp,
                       pos_legend = pos,
-                      graph_params)
+                      graph_params = graph_params)
     
   } else if (is_ggplot(graph)) {
     
     ceplane_plot_ggplot(he,
                         pos_legend = pos,
-                        graph_params, ...)
+                        graph_params = graph_params, ...)
     
   } else if (is_plotly(graph)) {
     
     ceplane_plot_plotly(he,
-                        wtp,
-                        graph_params,
-                        pos_legend = pos)
+                        wtp = wtp,
+                        pos_legend = pos,
+                        graph_params, ...)
   }
 }
 

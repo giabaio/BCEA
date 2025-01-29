@@ -15,11 +15,14 @@ ceplane_ggplot_params <- function(he,
                                   ...) {
 
   ext_params <- ceplane_geom_params(...)
-  
   graph_params$area <-
     modifyList(polygon_params(graph_params),
                graph_params$area)
   
+  ##TODO: what does this mean?
+  # if (exists("col", graph_params$area) & exists("color", graph_params$area))
+  #   graph_params$area$col = NULL
+
   graph_params$legend <- make_legend_ggplot(he, pos_legend)
   
   default_params <-
@@ -34,7 +37,7 @@ ceplane_ggplot_params <- function(he,
         hjust = "inward",
         vjust = "inward",
         size = convert_pts_to_mm(1),
-        colour = "black"),
+        color = "black"),
       icer = list(
         data = data.frame(x = colMeans(he$delta_e),
                           y = colMeans(he$delta_c)),
@@ -72,7 +75,10 @@ ceplane_ggplot_params <- function(he,
       area = list(
         # geom = "polygon",
         fill = graph_params$area$col,
+        ##TODO: why was this replaced?
         alpha = ifelse(ext_params$area_include, 1, 0),
+        # include = TRUE,
+        # # alpha = 1,
         data = data.frame(x = graph_params$area$x,
                           y = graph_params$area$y),
         mapping = aes(x = .data$x, y = .data$y),

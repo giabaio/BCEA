@@ -9,10 +9,11 @@
 #' @param ... Additional arguments
 #' @importFrom grDevices grey.colors
 #'
-#' @return List pf graph parameters
+#' @return List of graph parameters
 #' @export
 #' @keywords internal
 #'
+
 prep_ceplane_params <- function(he, wtp_params, ...) {
   
   graph_params <- list(...)
@@ -49,17 +50,24 @@ prep_ceplane_params <- function(he, wtp_params, ...) {
            color = grey.colors(n = he$n_comparisons,
                                end = 0.7,
                                alpha = 1),
+           ##TODO: move to plotly prep function
+           # size = ifelse(graph == "plotly", 8, 0.35),
            size = 0.35,
            shape = rep(20, he$n_comparisons)),
          wtp = list(
            value = 25000),
          area_include = TRUE,
+         ##TODO: graph should be used later to make the parameters specific to graph type
+         ##      this function is for general parameters
+         ##      this makes the code modular exactly so dont have to change this function
+         ##      when adding new graph types
+         # ICER_size = ifelse(graph == "plotly", ifelse(he$n_comparisons == 1, 8, 0), 2),
          ICER_size = 2,
          text = list(
            size = 11),
          area = list(
            # line_color = "black",
-           col = "grey95"),
+           color = "grey95"),
          ref_first = TRUE)
   
   out <- 

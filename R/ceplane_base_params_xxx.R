@@ -83,8 +83,12 @@ icer_params <- function(graph_params, he) {
               y = graph_params$ylim[2] - y_adj),
        icer_points =
          list(pch = 20,
-              col = "red",
-              cex = 1))
+              col = ifelse(is.null(graph_params$icer$color),
+                           yes = "red",
+                           no = graph_params$icer$color),
+              cex = ifelse(is.null(graph_params$icer$size),
+                           yes = 1,
+                           no = graph_params$icer$size)))
 }
 
 

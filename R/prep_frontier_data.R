@@ -45,17 +45,20 @@ prep_frontier_data <- function(he,
   e.neg <- ec_min["mean_e"] < 0
   c.neg <- any(means_c < 0)
   
-  if (e.neg && !c.neg && start.origin) {
-    message("Benefits are negative, the frontier will not start from the origins")
-    start.origin <- FALSE
-  }
-  if (!e.neg && c.neg && start.origin) {
-    message("Costs are negative, the frontier will not start from the origins")
-    start.origin <- FALSE
-  }
-  if (e.neg && c.neg && start.origin) {
-    message("Costs and benefits are negative, the frontier will not start from the origins")
-    start.origin <- FALSE
+  if (start.origin) {
+    if (e.neg && !c.neg) {
+      message("Benefits are negative, the frontier will not start from the origins")
+      start.origin <- FALSE
+    } else if (!e.neg && c.neg) {
+      message("Costs are negative, the frontier will not start from the origins")
+      start.origin <- FALSE
+    } else if (e.neg && c.neg) {
+      message("Costs and benefits are negative, the frontier will not start from the origins")
+      start.origin <- FALSE
+    } else if (min(means_c) != ec_min[2]) {
+      message("Least effective intervention is not the cheapest, the frontier will not start from the origins")
+      start.origin <- FALSE
+    }
   }
   
   # frontier calculation

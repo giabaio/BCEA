@@ -17,6 +17,10 @@ make_legend_ggplot <- function(dat, pos_legend) {
   legend_dir <- NULL
   
   n_lines <- num_lines(dat)
+
+  ##TODO: why would it be NULL?  
+  # n_lines <- 0
+  # if (!is.null(dat)) n_lines <- num_lines(dat)
   
   if (n_lines == 1) {
     
@@ -52,6 +56,7 @@ make_legend_ggplot <- function(dat, pos_legend) {
     
     legend_pos <- pos_legend
     legend_just <- pos_legend
+
   } else {
     # default
     legend_pos <- c(1, 0)
@@ -62,4 +67,3 @@ make_legend_ggplot <- function(dat, pos_legend) {
        legend.justification = legend_just,
        legend.position = legend_pos)
 }
-

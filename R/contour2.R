@@ -8,15 +8,15 @@
 contour2.bcea <- function(he,
                           comparison = NULL,
                           wtp = 25000,
-                          graph = c("base", "ggplot2"),
-                          pos = c(0, 1),
+                          graph = c("base", "ggplot2", "plotly"),
+                          pos = "topleft",
                           ...) {
   
   graph_type <- match.arg(graph)
   
   he <- setComparisons(he, comparison)
   
-  params <- prep_contour_params(he, ...)
+  graph_params <- prep_contour_params(he, ...)
   
   if (is_baseplot(graph_type)) {
     
@@ -26,7 +26,7 @@ contour2.bcea <- function(he,
     pdf.options(encoding = "CP1250")
     
     plot_params <-
-      contour_base_params(he, params)
+      contour_base_params(he, graph_params)
     
     ceplane.plot(he, comparison = NULL, wtp = wtp, pos = pos, graph = "base", ...)
     add_contours(he, plot_params)
@@ -34,10 +34,30 @@ contour2.bcea <- function(he,
   } else if (is_ggplot(graph_type)) {
     
     plot_params <-
-      contour_ggplot_params(he, params, ...)
+      contour_ggplot_params(he, pos, graph_params, ...)
     
     ceplane.plot(he, comparison = NULL, wtp = wtp, pos = pos, graph = "ggplot2", ...) +
-      do.call(geom_density_2d, plot_params$contour)     
+      do.call(geom_density_2d, plot_params$contour)
+    
+  } else if (is_plotly(graph_type)) {
+    
+    ##TODO: move all this to a prep function so its outside of the plotting function
+    delta_ce <- prep_delta_ce(he)
+    
+    comp_label <- paste(he$interventions[he$ref], "vs", he$interventions[he$comp])
+    
+    if (length(graph_params$point$colors) != length(comp_label))
+      graph_params$point$colors <- rep_len(graph_params$point$color, length(comp_label))
+    
+    pt_cols <-
+      ifelse(test = grepl(pattern = "^rgba\\(",
+                          x = graph_params$point$colors),
+             yes = plotly::toRGB(graph_params$point$colors),
+             no = graph_params$point$colors)
+    
+    ##TODO changed from using ceplane_plot_plotly() directly
+    ceplane.plot(he, wtp = wtp, pos = pos, graph = "plotly", graph_params = graph_params, ...) |>
+      contour_plotly_lines(he, delta_ce, graph_params, pt_cols)
   }
 }
 
