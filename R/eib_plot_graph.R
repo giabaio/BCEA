@@ -61,7 +61,7 @@ eib_plot_ggplot <- function(he,
       k = c(he$k),
       eib = c(he$eib), 
       comparison =
-        as.factor(rep(1:he$n_comparison,
+        as.factor(rep(1:he$n_comparisons,
                       each = length(he$k))))
   
   ggplot(data_psa,
@@ -166,25 +166,25 @@ eib_plot_plotly <- function(he,
   
   n_comp <- length(comparison)
   
-  plot_aes$line$types <- plot_aes$line$types %||% rep(1:6, ceiling(he$n_comparisons/6))[1:he$n_comparisons]
+  graph_params$line$type <- graph_params$line$type %||% rep(1:6, ceiling(he$n_comparisons/6))[1:he$n_comparisons]
   
   comparisons.label <-
     paste0(he$interventions[he$ref], " vs ", he$interventions[he$comp])
   
-  if (length(plot_aes$line$types) < n_comp)
-    plot_aes$line$types <- rep_len(plot_aes$line$types, n_comp)
+  if (length(graph_params$line$type) < n_comp)
+    graph_params$line$type <- rep_len(graph_params$line$type[1], n_comp)
   
-  if (length(plot_aes$line$colors) < n_comp)
-    plot_aes$line$colors <- rep_len(plot_aes$line$colors, n_comp)
+  if (length(graph_params$line$color) < n_comp)
+    graph_params$line$color <- rep_len(graph_params$line$color[1], n_comp)
   
   # opacities
-  plot_aes$line$cri_colors <-
-    sapply(plot_aes$line$cri_colors,
+  graph_params$line$cri_colors <-
+    sapply(graph_params$line$cri_col,
            function(x) 
              ifelse(grepl(pattern = "^rgba\\(", x = x), x, plotly::toRGB(x, 0.4)))
   
-  plot_aes$area$color <-
-    sapply(plot_aes$area$color,
+  graph_params$area$color <-
+    sapply(graph_params$area$color,
            function(x)
              ifelse(grepl(pattern = "^rgba\\(", x = x), x, plotly::toRGB(x, 0.4)))
   
@@ -209,13 +209,13 @@ eib_plot_plotly <- function(he,
       y = ~eib,
       type = "scatter",
       mode = "lines",
-      fill = ifelse(plot_aes$area$include, "tozeroy", "none"),
+      fill = ifelse(graph_params$area$include, "tozeroy", "none"),
       name = ~label,
-      fillcolor = plot_aes$area$color,
+      fillcolor = graph_params$area$color,
       color = ~comparison,
-      colors = plot_aes$line$colors,
+      colors = graph_params$line$color,
       linetype = ~comparison,
-      linetypes = plot_aes$line$types,
+      linetypes = graph_params$line$type,
       legendgroup = ~comparison)
   
   # decision change points not included
@@ -228,19 +228,19 @@ eib_plot_plotly <- function(he,
         ymin = ~low,
         ymax = ~upp,
         color = NA,
-        fillcolor = ~plot_aes$line$cri_colors[comparison])
+        fillcolor = ~graph_params$line$cri_colors[comparison])
     } else {
       eib <- plotly::add_ribbons(
         eib,
         name = ~label,
         ymin = ~low,
         ymax = ~upp,
-        line = list(color = plot_aes$line$cri_colors[1]),
+        line = list(color = graph_params$line$cri_colors[1]),
         # for transparency, use plotly::toRGB("blue", alpha = 0.5)
         legendgroup = ~comparison,
         fillcolor = "rgba(1, 1, 1, 0)",
         linetype = ~comparison,
-        linetypes = plot_aes$line$types,
+        linetypes = graph_params$line$type,
         showlegend = FALSE)
     }
   }

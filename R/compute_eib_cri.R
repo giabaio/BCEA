@@ -15,7 +15,7 @@ compute_eib_cri <- function(he,
                             alpha_cri = 0.05,
                             cri.quantile = TRUE) {
   
-  if (he$n_comparison > 1) {
+  if (he$n_comparisons > 1) {
     margin <- c(1, 3)
   } else {
     margin <- 1
@@ -39,7 +39,7 @@ compute_eib_cri <- function(he,
       c(apply(he$ib, margin, FUN = compute_cri, low = FALSE)),
     comp =
       as.factor(
-        rep(1:he$n_comparison, each = length(he$k))),
+        rep(1:he$n_comparisons, each = length(he$k))),
     k = he$k)
   
   return(cri)

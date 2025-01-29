@@ -136,7 +136,6 @@ ceac_ggplot <- function(he,
 
   ggplot(data_psa, aes(x = .data$k, y = .data$ceac)) +
     geom_line(aes(linetype = .data$comparison,
-                  linewidth = factor(.data$comparison),
                   colour = factor(.data$comparison))) +
     theme_ceac() + 
     theme_add +                                            # theme
@@ -159,24 +158,69 @@ ceac_ggplot <- function(he,
 
 #' @rdname ceac_plot_graph
 #' 
+#' @keywords hplot
+#' 
 ceac_plot_plotly <- function(he,
-                             pos_legend = "left",
-                             graph_params) {
+                             pos_legend,
+                             graph_params, ...)
+  UseMethod("ceac_plot_plotly", he)
+
+
+#' @rdname ceac_plot_graph
+#' @keywords hplot
+#' 
+ceac_plot_plotly.pairwise <- function(he,
+                                      pos_legend,
+                                      graph_params, ...) {
+  ceac_plotly(he,
+              pos_legend,
+              graph_params,
+              "p_best_interv", ...)
+}
+
+#' @rdname ceac_plot_graph
+#' @keywords hplot
+#' 
+ceac_plot_plotly.bcea <- function(he,
+                                  pos_legend,
+                                  graph_params, ...) {
+  ceac_plotly(he,
+              pos_legend,
+              graph_params,
+              "ceac", ...)
+}
+
+#' @rdname ceac_plot_graph
+#' @param ceac ceac index in `he`
+#' @importFrom scales label_dollar
+#' @keywords internal hplot
+#' @md
+ceac_plotly <- function(he,
+                        pos_legend = "bottomright",
+                        graph_params, 
+                        ceac, ...) {
   
-  comparisons_label <-
-    paste0(he$interventions[he$ref]," vs ",he$interventions[he$comp])
+  complabs = if(ncol(he[[ceac]]) == length(he$interventions)) {
+    he$interventions |> unique() 
+  } else {
+    he$ceac |> colnames()
+  }
   
   data.psa <- data.frame(
-    k = he$k,
-    ceac = he$ceac,
-    comparison = as.factor(c(
-      sapply(1:he$n_comparisons, function(x) rep(x, length(he$k)))
-    )),
-    label = as.factor(c(
-      sapply(comparisons_label, function(x) rep(x, length(he$k)))
-    )))
+    k = rep(he$k, he[[ceac]] |> ncol()),
+    ceac = he[[ceac]] |> c(),
+    comparison = complabs |> as.factor() |> as.numeric() |> sapply(function(x) rep(x, length(he$k))) |> c(),
+    single_label = complabs |> as.factor() |> sapply(function(x) rep(x, length(he$k))) |> c()
+  )
   
-  graph_params$line$type <- graph_params$line$type %||% rep_len(1:6, he$n_comparisons)
+  if (length(complabs) != length(he$interventions)) {
+    data.psa$label = paste0(he$interventions[he$ref], " vs ", data.psa$single_label)
+  } else {
+    data.psa$label = he$interventions[data.psa$comparison]
+  }
+  # graph_params$line$type <- graph_params$line$type %||% rep_len(1:6, length(complabs))# he$n_comparisons)
+  if (length(graph_params$line$type) != length(complabs))
+    graph_params$line$type = rep(graph_params$line$type[1], length(complabs))
   
   # opacities
   if (!is.null(graph_params$area$color))
@@ -186,10 +230,10 @@ ceac_plot_plotly <- function(he,
              yes = x,
              no = plotly::toRGB(x, 0.4)))
   
-  ceac <- plotly::plot_ly(data.psa, x = ~k)
-  ceac <-
+  ceac_plot <- plotly::plot_ly(data.psa, x = ~k)
+  ceac_plot <-
     plotly::add_trace(
-      ceac,
+      ceac_plot,
       y = ~ ceac,
       type = "scatter",
       mode = "lines",
@@ -203,9 +247,9 @@ ceac_plot_plotly <- function(he,
   
   legend_params <- make_legend_plotly(pos_legend)
   
-  ceac <-
+  ceac_plot <-
     plotly::layout(
-      ceac,
+      ceac_plot,
       title = graph_params$annot$title,
       xaxis = list(
         hoverformat = ".2f",
@@ -214,8 +258,9 @@ ceac_plot_plotly <- function(he,
         title = graph_params$annot$y,
         range = c(0, 1.005)),
       showlegend = he$n_comparisons > 1, 
-      legend = legend_params)
+      legend = legend_params) |>
+    plotly::hide_colorbar()
   
-  plotly::config(ceac, displayModeBar = FALSE)
+  plotly::config(ceac_plot, displayModeBar = FALSE)
 }
 
