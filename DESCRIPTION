@@ -36,7 +36,7 @@ Imports:
     scales,
     voi (>= 1.0.1)
 Depends:
-    R (>= 3.5.0)
+    R (>= 4.1.0)
 Suggests:
     coda,
     grid,
