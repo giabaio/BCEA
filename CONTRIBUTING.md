@@ -29,6 +29,11 @@ Before you start:
 -   Run **all** the tests to assure nothing else was accidentally broken, also keep an eye on the test coverage metric.
 -   Commit to git, and then create a PR by running `usethis::pr_push()`, and following the prompts in your browser
 
+## Style guide
+
+The style used throughout follows the [Tidyverse style guide](https://style.tidyverse.org/). This may not be applied 100% of the time but this is the aspiration.
+
+
 ## Copyright issues
 
 -   On submission, it is crucial your PR includes the following statement:
