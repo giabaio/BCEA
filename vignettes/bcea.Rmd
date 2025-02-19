@@ -51,6 +51,8 @@ library(ggplot2)
 library(purrr)
 
 plot(bcea_smoke)
+plot(bcea_smoke, graph = "ggplot2")
+plot(bcea_smoke, graph = "ggplot2", pos = "bottomvertical")
 ```
 
 Individual plots can be plotting using their own functions.
