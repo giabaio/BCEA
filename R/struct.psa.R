@@ -51,8 +51,8 @@
 #' 
 #' \dontrun{
 #' # load sample jags output
-#' load(system.file("extdata", "statins_base.RData", package = "BCEA"))
-#' load(system.file("extdata", "statins_HC.RData", package = "BCEA"))
+#' data("statins_base")
+#' data("statins_HC")
 #' 
 #' interventions <- c("Atorvastatin", "Fluvastatin",
 #'                    "Lovastatin", "Pravastatin",
