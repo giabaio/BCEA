@@ -78,6 +78,8 @@ reference:
   contents:
   - Smoking
   - Vaccine
+  - statins_base
+  - statins_HC
 - title: "Deprecated"
   contents:
   - mce.plot
