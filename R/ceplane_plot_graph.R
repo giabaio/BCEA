@@ -70,8 +70,6 @@ ceplane_plot_base.bcea <- function(he,
                                    wtp = 25000,
                                    pos_legend,
                                    graph_params, ...) {
-  if (is.list(wtp) && exists("value", wtp))
-    wtp = wtp$value
   
   plot_params <-
     ceplane_base_params(he, wtp, graph_params)
@@ -80,8 +78,7 @@ ceplane_plot_base.bcea <- function(he,
     ceplane_legend_base(he, pos_legend, plot_params)
   
   add_ceplane_setup(plot_params)
-  if (graph_params$area_include)
-    add_ceplane_polygon(plot_params)
+  add_ceplane_polygon(plot_params)
   add_ceplane_points(he, plot_params)
   add_axes()
   add_ceplane_icer(he, plot_params)
@@ -143,13 +140,6 @@ ceplane_plot_base <- function(he, ...) {
 ceplane_plot_ggplot.bcea <- function(he,
                                      pos_legend,
                                      graph_params, ...) {
-  comp_label <-
-    paste(he$interventions[he$ref], "vs", he$interventions[he$comp])
-  if (length(graph_params$point$size) != length(comp_label))
-    graph_params$point$size = rep(graph_params$point$size[1], length(comp_label))
-  if (length(graph_params$point$color) != length(comp_label))
-    graph_params$point$color = rep(graph_params$point$color[1], length(comp_label))
-  
   # single long format for ggplot data
   delta_ce <-
     merge(
@@ -168,26 +158,22 @@ ceplane_plot_ggplot.bcea <- function(he,
       by = c("sim", "comparison"))
   
   plot_params <-
-    ceplane_ggplot_params(he, pos_legend = pos_legend, graph_params = graph_params, ...)
-  plot_params$area_include <- plot_params$area$include
-  plot_params$area$include <- NULL
+    ceplane_ggplot_params(he, pos_legend, graph_params, ...)
   
-  theme_add <- purrr::keep(list(...), is.theme)
+  theme_add <- Filter(f = \(val) ggplot2::is.theme(val), x = list(...))
   
-  return_plot <- ggplot(delta_ce,
+  ggplot(delta_ce,
          aes(x = .data$delta_e, y = .data$delta_c,
              group = factor(.data$comparison),
              col = factor(.data$comparison),
-             shape = factor(.data$comparison)))
-  if (plot_params$area_include)
-    return_plot <- return_plot + do.call(geom_polygon, plot_params$area)
-  return_plot <- return_plot +
+             shape = factor(.data$comparison))) +
+    do.call(geom_polygon, plot_params$area) +
     theme_ceplane() +
     theme_add +
-    geom_point(size = plot_params$point$size[delta_ce$comparison]) +
+    geom_point(size = plot_params$point$size) +
     ceplane_legend_manual(he, plot_params) +
-    geom_hline(yintercept = 0, color = "grey") +
-    geom_vline(xintercept = 0, color = "grey") +
+    geom_hline(yintercept = 0, colour = "grey") +
+    geom_vline(xintercept = 0, colour = "grey") +
     geom_text(data = data.frame(x = colMeans(he$delta_e),
                                 y = colMeans(he$delta_c)),
               aes(x = .data$x, y = .data$y, 
@@ -210,8 +196,11 @@ ceplane_plot_ggplot.bcea <- function(he,
     do.call(geom_point, plot_params$icer) +
     do.call(annotate, plot_params$wtp) +
     do.call(annotate, plot_params$icer_txt) +
+    do.call(theme, list(
+      axis.text = element_text(size = graph_params$text$size),
+      axis.title.x = element_text(size = graph_params$text$size),
+      axis.title.y = element_text(size = graph_params$text$size))) +
     do.call(theme, plot_params$legend)
-  return(return_plot)
 }
 
 
@@ -233,8 +222,6 @@ ceplane_plot_plotly.bcea <- function(he,
   
   comp_label <-
     paste(he$interventions[he$ref], "vs", he$interventions[he$comp])
-  if (is.list(wtp) && exists("value", wtp))
-    wtp = wtp$value
   
   # single long format for plotting data
   delta_ce <-
@@ -253,23 +240,22 @@ ceplane_plot_plotly.bcea <- function(he,
         id.vars = "sim"),
       by = c("sim", "comparison"))
   
-  if (length(graph_params$point$color) != length(comp_label))
-    graph_params$point$color <- rep_len(graph_params$point$color[1], length(comp_label))
+  graph_params$ICER_size <- ifelse(he$n_comparisons == 1, 8, 0)
   
-  if (length(graph_params$point$size) != length(comp_label))
-    graph_params$point$size <- rep_len(graph_params$point$size[1], length(comp_label))
+  if (length(graph_params$point$colors) != length(comp_label))
+    graph_params$point$colors <- rep_len(graph_params$point$color, length(comp_label))
   
-  if (!exists("icer", graph_params))
-    graph_params$icer = list()
-  if (!"color" %in% names(graph_params$icer))
-    graph_params$icer$color = "red"
-  if (!"size" %in% names(graph_params$icer))
-    graph_params$icer$size = graph_params$ICER_size
+  if (length(graph_params$point$sizes) != length(comp_label))
+    graph_params$point$sizes <- rep_len(graph_params$point$size, length(comp_label))
   
-  if (length(graph_params$icer$color) != length(comp_label))
-    graph_params$icer$color <- rep_len(graph_params$icer$color[1], length(comp_label))
-  if (length(graph_params$icer$size) != length(comp_label))
-    graph_params$icer$size <- rep_len(graph_params$icer$size[1], length(comp_label))
+  if (!"colors" %in% names(graph_params$ICER) ||
+      length(graph_params$ICER$colors) != length(comp_label))
+    graph_params$ICER <- c(graph_params$ICER,
+                           list(colors = rep_len("red", length(comp_label))))
+  
+  if (!"sizes" %in% names(graph_params$ICER) ||
+      length(graph_params$ICER$sizes) != length(comp_label))
+    graph_params$ICER$sizes <- rep_len(graph_params$ICER_size, length(comp_label))
   
   # plot limits
   range.e <- range(delta_ce$delta_e)
@@ -317,12 +303,9 @@ ceplane_plot_plotly.bcea <- function(he,
   
   pt_cols <-
     ifelse(test = grepl(pattern = "^rgba\\(",
-                        x = graph_params$point$color),
-           yes = plotly::toRGB(graph_params$point$color),
-           no = graph_params$point$color)
-  
-  # define point size variable in delta_ce
-  delta_ce$pt_size = graph_params$point$size[delta_ce$comparison |> as.numeric()]
+                        x = graph_params$point$colors),
+           yes = plotly::toRGB(graph_params$point$colors),
+           no = graph_params$point$colors)
   
   # plot set-up
   ceplane <- plotly::plot_ly(colors = pt_cols)
@@ -336,12 +319,9 @@ ceplane_plot_plotly.bcea <- function(he,
       y = ~delta_c,
       x = ~delta_e,
       color = ~comparison,
-      size = delta_ce$pt_size,
       hoverinfo = "name+x+y")
   
   if (graph_params$area_include) {
-    if (is.null(graph_params$area$line_color))
-      graph_params$area$line_color = "grey30"
     
     ceplane <-
       ceplane %>% 
@@ -359,11 +339,13 @@ ceplane_plot_plotly.bcea <- function(he,
         showlegend = FALSE,
         inherit = FALSE)
     
+    graph_params$area$col <- "grey"
+    
     poly_col <-
       ifelse(
         grepl(pattern = "^rgba\\(",
               x = graph_params$area$col),
-        graph_params$area$col,
+        graph_params$area$color,
         plotly::toRGB(graph_params$area$col, 0.5))
     
     ceplane <-
@@ -382,7 +364,7 @@ ceplane_plot_plotly.bcea <- function(he,
   }
   
   # ICER
-  if (!all(graph_params$icer$size <= 0)) {
+  if (!all(graph_params$ICER$sizes <= 0)) {
     means_table <- tabulate_means(he, comp_label)
     
     for (comp in seq_len(he$n_comparisons)) {
@@ -394,13 +376,13 @@ ceplane_plot_plotly.bcea <- function(he,
         x = ~lambda.e,
         y = ~lambda.c,
         marker = list(
-          color = graph_params$icer$color[comp],
-          size = graph_params$icer$size[comp]),
-        name = ~paste0(
+          color = graph_params$ICER$colors[comp],
+          size = graph_params$ICER$sizes[comp]),
+        name = ~paste(
           ifelse(he$n_comparisons > 1,
                  yes = "",#as.character(label),
                  no = ""),
-          "ICER ", label, ": ",
+          "ICER:",
           prettyNum(round(ICER, 2), big.mark = ",")))
     }
   }

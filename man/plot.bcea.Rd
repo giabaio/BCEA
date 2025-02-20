@@ -9,7 +9,7 @@
   comparison = NULL,
   wtp = 25000,
   pos = FALSE,
-  graph = c("base", "ggplot2", "plotly"),
+  graph = c("base", "ggplot2"),
   ...
 )
 }
@@ -36,8 +36,8 @@ indicating to use the default position and \code{TRUE} to place it on the
 bottom of the plot.}
 
 \item{graph}{A string used to select the graphical engine to use for
-plotting. Should (partial-)match the options \code{"base"},
-\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.}
+plotting. Should (partial-)match the two options \code{"base"} or
+\code{"ggplot2"}. Default value is \code{"base"}.}
 
 \item{...}{Arguments to be passed to the methods \code{\link[=ceplane.plot]{ceplane.plot()}}
 and \code{\link[=eib.plot]{eib.plot()}}. Please see the manual pages for the individual
@@ -87,13 +87,12 @@ plot(he, graph = "base")
 if(require(ggplot2)){
 plot(he, graph = "ggplot2")
 
-##### Example of a customized plot.bcea with ggplot2
+# Example of a customized plot.bcea with ggplot2
 plot(he,
-  graph = "ggplot2",                                      # use ggplot2
-  theme = theme(plot.title=element_text(size=rel(1.25))), # theme elements must have a name
-  ICER_size = 1.5,                                        # hidden option in ceplane.plot
-  size = rel(2.5)                                         # modifies the size of k = labels
-  )                                                       # in ceplane.plot and eib.plot
+  graph = "ggplot2",          # use ggplot2
+  ICER_size = 1.5,            # extra options modifies the mean point size
+  text = list(size=rel(1.25)) # modifies the text size
+  )                                                       
 }
 
 }

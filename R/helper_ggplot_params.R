@@ -8,13 +8,23 @@ helper_ggplot_params <- function(he,
   
   n_lines <- num_lines(he)
   
+  text_default <- list(
+    size =
+      if (is.rel(graph_params$text$size)) {
+        11 * unclass(graph_params$text$size)  # theme_get()$text$size
+      } else {
+        graph_params$text$size
+      })
+  
   if (n_lines == 1) {
     default_params <-
       list(labels = NULL,
            line =
              list(type = 1,
                   color = 1,
-                  size = 1))
+                  size = 1),
+           text = text_default)
+    
     graph_params <-
       modifyList(default_params, graph_params)
   }
@@ -25,7 +35,8 @@ helper_ggplot_params <- function(he,
            line =
              list(type = rep_len(1:6, n_lines),
                   color = 1,
-                  size = rep_len(1, n_lines)))
+                  size = rep_len(1, n_lines)),
+           text = text_default)
     
     graph_params <- modifyList(default_params, graph_params)
     

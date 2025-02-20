@@ -7,8 +7,8 @@
 \usage{
 \method{contour}{bcea}(
   he,
-  pos = "topleft",
-  graph = c("base", "ggplot2", "plotly"),
+  pos = c(0, 1),
+  graph = c("base", "ggplot2"),
   comparison = NULL,
   ...
 )

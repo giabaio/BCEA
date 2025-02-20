@@ -89,14 +89,14 @@
 #' 
 ceef.plot.bcea <- function(he,
                            comparators = NULL,
-                           pos = "topright",
+                           pos = c(1, 1),
                            start.from.origins = TRUE,
                            threshold = NULL,
                            flip = FALSE,
                            dominance = TRUE,
                            relative = FALSE,
                            print.summary = TRUE,
-                           graph = c("base", "ggplot2" ,"plotly"),
+                           graph = c("base", "ggplot2"),
                            print.plot = TRUE,
                            ...) {
    
@@ -140,31 +140,30 @@ ceef.plot.bcea <- function(he,
            dominance = dominance)
            
    if (print.summary)
-     ceef.summary(he,
-                  frontier_data,
-                  frontier_params,
-                  ...)
+      ceef.summary(he,
+                   frontier_data,
+                   frontier_params,
+                   ...)
    
    if (is_baseplot(graph)) {
-     if (print.plot) {
-       ceef_plot_base(he,
-                      frontier_data,
-                      frontier_params)
-     }
+      if (print.plot) {
+         ceef_plot_base(he,
+                        frontier_data,
+                        frontier_params)
+      }
    } else if (is_ggplot(graph)) {
-     if (print.plot) {
-       ceef_plot_ggplot(he,
-                        frontier_data,
-                        frontier_params,
-                        ...)
-     }
+      if (print.plot) {
+         ceef_plot_ggplot(he,
+                          frontier_data,
+                          frontier_params,
+                          ...)
+      }
    } else if (is_plotly(graph)) {
-     if (print.plot) {
-       ceef_plot_plotly(he,
-                        frontier_data,
-                        frontier_params,
-                        ...)
-     }
+      ##TODO:
+      # ceef_plot_plotly(he,
+      #                  frontier_data,
+      #                  frontier_params,
+      #                  ...)
    }
 }
 

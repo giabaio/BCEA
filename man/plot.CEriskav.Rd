@@ -4,10 +4,10 @@
 \alias{plot.CEriskav}
 \title{Plots EIB and EVPI for the Risk Aversion Case}
 \usage{
-\method{plot}{CEriskav}(he, pos = "topright", graph = c("base", "ggplot2", "plotly"))
+\method{plot}{CEriskav}(x, pos = c(0, 1), graph = c("base", "ggplot2"), ...)
 }
 \arguments{
-\item{he}{An object of the class \code{CEriskav}, a subclass of \code{bcea},
+\item{x}{An object of the class \code{CEriskav}, a subclass of \code{bcea},
 containing the results of the economic analysis performed accounting for a
 risk aversion parameter (obtained as output of the function \code{\link[=CEriskav]{CEriskav()}}).}
 
@@ -22,8 +22,8 @@ indicating to use the default position and \code{TRUE} to place it on the
 bottom of the plot.}
 
 \item{graph}{A string used to select the graphical engine to use for
-plotting. Should (partial-)match the options \code{"base"},
-\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.}
+plotting. Should (partial-)match the two options \code{"base"} or
+\code{"ggplot2"}. Default value is \code{"base"}.}
 
 \item{...}{Arguments to be passed to methods, such as graphical parameters
 (see \code{\link[=par]{par()}}).}

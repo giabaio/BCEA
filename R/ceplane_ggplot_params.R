@@ -15,12 +15,11 @@ ceplane_ggplot_params <- function(he,
                                   ...) {
 
   ext_params <- ceplane_geom_params(...)
+  
   graph_params$area <-
     modifyList(polygon_params(graph_params),
                graph_params$area)
-  if (exists("col", graph_params$area) & exists("color", graph_params$area))
-    graph_params$area$col = NULL
-
+  
   graph_params$legend <- make_legend_ggplot(he, pos_legend)
   
   default_params <-
@@ -29,11 +28,13 @@ ceplane_ggplot_params <- function(he,
       wtp = list(
         geom = "text",
         x = graph_params$xlim[1],
-        y = graph_params$ylim[1],
+        y = ifelse(graph_params$label.pos,
+                   max(graph_params$xlim[1] * graph_params$wtp_value, graph_params$ylim[1]),
+                   graph_params$ylim[1]),
         hjust = "inward",
         vjust = "inward",
         size = convert_pts_to_mm(1),
-        color = "black"),
+        colour = "black"),
       icer = list(
         data = data.frame(x = colMeans(he$delta_e),
                           y = colMeans(he$delta_c)),
@@ -60,12 +61,18 @@ ceplane_ggplot_params <- function(he,
         size = 4),
       line = list(
         color = "black"),
-      # area_include = TRUE,
+      text = list(
+        size =
+          if (is.rel(graph_params$text$size)) {
+            11 * unclass(graph_params$text$size)  # theme_get()$text$size
+          } else {
+            graph_params$text$size
+          }
+      ),
       area = list(
         # geom = "polygon",
         fill = graph_params$area$col,
-        include = TRUE,
-        # alpha = 1,
+        alpha = ifelse(ext_params$area_include, 1, 0),
         data = data.frame(x = graph_params$area$x,
                           y = graph_params$area$y),
         mapping = aes(x = .data$x, y = .data$y),

@@ -122,4 +122,47 @@ NULL
 #' @keywords datasets
 NULL
 
- 
+#' Data set for the Bayesian model for the evidence-synthesis of statins
+#' (base model)
+#' 
+#' This data set contains the results of the Bayesian analysis used to model
+#' the effectiveness of various statins. The analysis is based on the simplest
+#' model, using vague priors.
+#' 
+#' @name statins_base
+#' @docType data
+#' @aliases Statins base model
+#' @format A BUGS object containing the simulations for the evidence synthesis
+#' model
+#' \describe{
+#' \item{list("statins_base")}{a BUGS object}
+#' @references Baio G. (2012). Bayesian Methods in Health Economics. 
+#' CRC/Chapman Hall, London
+#' 
+#' @source A systematic review and economic evaluation of statins for the 
+#' prevention of coronary events. Ward 2007.
+#' @keywords datasets
+NULL
+
+#' Data set for the Bayesian model for the evidence-synthesis of statins
+#' (robust model using Half Cauchy priors for the structured effects standard
+#' deviations)
+#' 
+#' This data set contains the results of the Bayesian analysis used to model
+#' the effectiveness of various statins. The analysis is based on the simplest
+#' model, using robust priors.
+#' 
+#' @name statins_HC
+#' @docType data
+#' @aliases Statins robust model
+#' @format A BUGS object containing the simulations for the evidence synthesis
+#' model
+#' \describe{
+#' \item{list("statins_HC")}{a BUGS object}
+#' @references Baio G. (2012). Bayesian Methods in Health Economics. 
+#' CRC/Chapman Hall, London
+#' 
+#' @source A systematic review and economic evaluation of statins for the 
+#' prevention of coronary events. Ward 2007.
+#' @keywords datasets
+NULL

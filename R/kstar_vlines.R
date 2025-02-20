@@ -14,7 +14,6 @@ kstar_vlines <- function(he, plot_params) {
     
     text(x = he$kstar,
          y = min(plot_params$ylim),
-         cex = ifelse(is.null(plot_params$kstar$size), 1, plot_params$kstar$size),
          paste("k* = ", he$kstar , sep = ""))
   }
 }

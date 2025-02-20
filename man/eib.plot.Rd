@@ -8,7 +8,7 @@
 \method{eib.plot}{bcea}(
   he,
   comparison = NULL,
-  pos = "bottomright",
+  pos = c(1, 0),
   size = NULL,
   plot.cri = NULL,
   graph = c("base", "ggplot2", "plotly"),
@@ -97,7 +97,7 @@ m <- bcea(
       Kmax=50000,           # maximum value possible for the willingness 
                             #  to pay threshold; implies that k is chosen 
                             #  in a grid from the interval (0, Kmax)
-      plot=FALSE             # plots the results
+      plot=FALSE            # plots the results
 )
 eib.plot(m)
 eib.plot(m, graph = "ggplot2") + ggplot2::theme_linedraw()

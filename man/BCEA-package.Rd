@@ -16,6 +16,7 @@ Useful links:
   \item \url{https://gianluca.statistica.it/software/bcea/}
   \item \url{https://gianluca.statistica.it/}
   \item \url{https://github.com/giabaio/BCEA/}
+  \item \url{https://n8thangreen.github.io/BCEA/}
   \item Report bugs at \url{https://github.com/n8thangreen/BCEA/issues/}
 }
 
@@ -25,7 +26,7 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Andrea Berardi \email{and.be.like@gmail.com} (\href{https://orcid.org/0000-0002-2906-496X}{ORCID})
+  \item Andrea Berardi \email{a.berardi@ucl.ac.uk} (\href{https://orcid.org/0000-0002-2906-496X}{ORCID})
   \item Anna Heath \email{anna.heath@sickkids.ca} (\href{https://orcid.org/0000-0002-7263-4251}{ORCID})
   \item Nathan Green \email{n.green@ucl.ac.uk} (\href{https://orcid.org/0000-0003-2745-1736}{ORCID})
 }

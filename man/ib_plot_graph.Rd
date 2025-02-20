@@ -4,14 +4,11 @@
 \alias{ib_plot_base}
 \alias{ib_plot_graph}
 \alias{ib_plot_ggplot}
-\alias{ib_plot_plotly}
 \title{IB plot base R version}
 \usage{
 ib_plot_base(he, comparison, wtp, bw, n, xlim)
 
 ib_plot_ggplot(he, comparison, wtp, bw, n, xlim)
-
-ib_plot_plotly(he, comparison, wtp, bw, n, xlim)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
@@ -28,5 +25,5 @@ modelling and the economic evaluation.}
 \item{xlim}{x-axis limits}
 }
 \description{
-Choice of base R, ggplot2, plotly
+Choice of base R, ggplot2
 }

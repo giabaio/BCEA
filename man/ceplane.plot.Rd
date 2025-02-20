@@ -9,7 +9,7 @@
   he,
   comparison = NULL,
   wtp = 25000,
-  pos = "topleft",
+  pos = c(0, 1),
   graph = c("base", "ggplot2", "plotly"),
   ...
 )
@@ -40,8 +40,8 @@ bottom of the plot. Default value is \code{c(1,1)}, that is the topright
 corner inside the plot area.}
 
 \item{graph}{A string used to select the graphical engine to use for
-plotting. Should (partial-) match the three options \code{"base"},
-\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.}
+plotting. Should (partial-) match the two options \code{"base"} or
+\code{"ggplot2"}. Default value is \code{"base"}.}
 
 \item{...}{If \code{graph = "ggplot2"} and a named theme object is supplied,
 it will be passed to the \pkg{ggplot2} object. The usual ggplot2 syntax is used.
@@ -50,7 +50,7 @@ Additional graphical arguments:
 \item \code{label.pos = FALSE}: will place the willingness to pay label in a
 different  position at the bottom of the graph - base and \pkg{ggplot2} only (no
 label in \pkg{plotly}).
-\item \code{line = list(color)}: a colour specifying the colour of the willingness-to-pay line (not available in the \pkg{plotly} version).
+\item \code{line = list(color)}: a colour specifying the colour of the willingness-to-pay line.
 \item \code{point = list(color)}: a vector of colours specifying the colour(s) associated
 to the cloud of points. Should be of length 1 or equal to the number of comparisons.
 \item \code{point = list(size)}: a vector of colours specifying the size(s) of the points.
@@ -94,9 +94,9 @@ together with the sustainability area, as a function of
 the selected willingness to pay threshold.
 }
 \details{
-In the \pkg{plotly} version, colors can also
+In the \pkg{plotly} version, \code{point_colors}, \code{ICER_colors} and \code{area_color} can also
 be specified as rgba colours using either the \verb{[plotly]toRGB}
-function or a rgba colour string, e.g. \code{'rgb(1, 1, 1, 1)'}.
+function or a rgba colour string, e.g. \code{'rgba(1, 1, 1, 1)'}.
 }
 \examples{
 ## create the bcea object for the smoking cessation example

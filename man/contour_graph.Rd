@@ -4,14 +4,11 @@
 \alias{contour_graph}
 \alias{contour_base}
 \alias{contour_ggplot}
-\alias{contour_plotly}
 \title{Contour Cost-Effectiveness Plane}
 \usage{
 contour_base(he, pos_legend, graph_params, ...)
 
 contour_ggplot(he, pos_legend, graph_params, ...)
-
-contour_plotly(he, pos_legend, graph_params, ...)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
@@ -22,9 +19,6 @@ modelling and the economic evaluation.}
 \item{graph_params}{Plot parameters; list}
 
 \item{...}{Additional arguments}
-}
-\value{
-For \pkg{plotly} returns a plot in the Viewer
 }
 \description{
 Choice of base R, \pkg{ggplot2}.

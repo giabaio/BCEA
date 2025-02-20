@@ -69,10 +69,11 @@
 #' @export
 #' 
 ceaf.plot.pairwise <- function(mce,
-                               graph = c("base", "ggplot2", "plotly"),
+                               graph = c("base", "ggplot2"),
                                ...) {
   
   graph <- match.arg(graph)
+  base_graphics <- all(pmatch(graph, c("base", "ggplot2")) != 2)
   
   if (!(requireNamespace("ggplot2", quietly = TRUE) &&
         requireNamespace("grid", quietly = TRUE))) {
@@ -80,24 +81,24 @@ ceaf.plot.pairwise <- function(mce,
     base_graphics <- TRUE
   }
   
-  if (is_baseplot(graph)) {
+  if (base_graphics) {
     plot(NULL,
          ylim = c(0, 1),
          xlim = c(0, max(mce$k)),
          xlab = "Willingness to pay",
          ylab = "Probability of most cost effectiveness",
          main = "Cost-effectiveness acceptability frontier")
-    matplot(x = mce$k,
-            mce$p_best_interv,
-            type = "l",
-            lty = 3,
-            add = TRUE)
+    # matplot(x = mce$k,              # underlying ceac curves
+    #         mce$p_best_interv,
+    #         type = "l",
+    #         lty = 3,
+    #         add = TRUE)
     lines(x = mce$k,
           y = mce$ceaf,
           type = "l",
           lty = 1,
           lwd = 4)
-  } else if (is_ggplot(graph)) {
+  } else {
     df <- data.frame(k = mce$k,
                      ceaf = mce$ceaf)
 
@@ -118,26 +119,6 @@ ceaf.plot.pairwise <- function(mce,
               face = "bold",
               size = 14.3,
               hjust = 0.5))
-  } else if (is_plotly(graph)) {
-    df <- data.frame(k = mce$k, ceaf = mce$ceaf)
-    
-    ceaf_plot <- plotly::plot_ly(df, x = ~k, y = ~ceaf)
-    ceaf_plot <-
-      plotly::add_lines(ceaf_plot)
-    
-    ceaf_plot <-
-      plotly::layout(
-        ceaf_plot,
-        title = "Cost-effectiveness acceptability frontier",
-        xaxis = list(
-          hoverformat = ".2f",
-          title = "Willingness to pay"),
-        yaxis = list(
-          title = "Probability of most cost-effectiveness",
-          range = c(0, 1.005))) |>
-      plotly::hide_colorbar()
-    
-    plotly::config(ceaf_plot, displayModeBar = FALSE)
   }
 }
 

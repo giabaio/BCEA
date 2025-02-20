@@ -6,13 +6,13 @@
 #' Plots the Expected Incremental Benefit and the Expected Value of Perfect Information
 #' when risk aversion is included in the utility function.
 #' 
-#' @param he An object of the class `CEriskav`, a subclass of `bcea`,
+#' @param x An object of the class `CEriskav`, a subclass of `bcea`,
 #' containing the results of the economic analysis performed accounting for a
 #' risk aversion parameter (obtained as output of the function [CEriskav()]).
 #' @template args-pos
 #' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the options `"base"`,
-#' `"ggplot2"` or `"plotly"`. Default value is `"base"`.
+#' plotting. Should (partial-)match the two options `"base"` or
+#' `"ggplot2"`. Default value is `"base"`.
 #' @param ...  Arguments to be passed to methods, such as graphical parameters
 #' (see [par()]).
 #' 
@@ -79,9 +79,10 @@
 #' 
 #' @export
 #' 
-plot.CEriskav <- function(he,
-                          pos = "topright",
-                          graph = c("base", "ggplot2", "plotly")) {
+plot.CEriskav <- function(x,
+                          pos = c(0, 1),
+                          graph = c("base", "ggplot2"),
+                          ...) {
   
   graph <- match.arg(graph)
   
@@ -89,14 +90,12 @@ plot.CEriskav <- function(he,
   # graph_params <- prep_CEriskav_params(...)
   
   if (is_baseplot(graph)) {
-    CEriskav_plot_base(he,
-                       pos_legend = pos)
-  } else if (is_ggplot(graph)) {
-    CEriskav_plot_ggplot(he,
-                         pos_legend = pos)
-  } else if (is_plotly(graph)) {
-    CEriskav_plot_plotly(he,
-                         pos_legend = pos)
+    
+    CEriskav_plot_base(x, pos)
+    
+  } else {
+    
+    CEriskav_plot_ggplot(x, pos)
   }
 }
 

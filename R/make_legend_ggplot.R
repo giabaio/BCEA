@@ -7,51 +7,51 @@
 #'  inside the plotting area
 #' 
 #' @param dat data
-#' @param legend_pos Legend position
+#' @param pos_legend Legend position
 #'
 #' @keywords internal
 #' 
-make_legend_ggplot <- function(dat = NULL, legend_pos) {
+make_legend_ggplot <- function(dat, pos_legend) {
   
   legend_just <- NULL  # sets the corner that the legend_pos position refers to
   legend_dir <- NULL
   
-  n_lines <- 0
-  if (!is.null(dat)) n_lines <- num_lines(dat)
+  n_lines <- num_lines(dat)
   
   if (n_lines == 1) {
     
     legend_pos <- "none"
     
-  } else if (any(is.na(legend_pos))) {
+  } else if (any(is.na(pos_legend))) {
     
     legend_pos <- "none"
     
-  } else if (is.logical(legend_pos)) {
+  } else if (is.logical(pos_legend)) {
     
-    if (isTRUE(legend_pos)) {
+    if (isTRUE(pos_legend)) {
       legend_pos <- "bottom"
     } else {
       legend_pos <- c(1, 0)
       legend_just <- legend_pos 
     }
-  } else if (is.character(legend_pos)) {
-    pos_choices <- c("left", "right", "bottom", "top")
+  } else if (is.character(pos_legend)) {
     
-    # if legend_pos is a combined string such as "topright" or "bottomleft"
-    if (sapply(pos_choices, function(pattern) grepl(pattern, legend_pos)) |> sum() > 1) {
-      pos = numeric(2)
-      pos[1] = grepl(pos_choices[2], paste0(legend_pos, "$"))
-      pos[2] = grepl(pos_choices[4], paste0("^", legend_pos))
-      legend_pos = pos
-      legend_just = pos
-    } else {
-      legend_pos <- pos_choices[pmatch(legend_pos, pos_choices)]
-      legend_just <- "center"
+    pos_choices <- c("left", "right", "bottom", "top")
+    dir_choices <- c("horizontal", "vertical")
+    
+    legend_pos <- pos_choices[sapply(pos_choices, function(t) grepl(t, pos_legend))]
+    legend_dir <- dir_choices[sapply(dir_choices, function(t) grepl(t, pos_legend))]
+    
+    if (length(legend_dir) == 0) {
+      legend_dir <- NULL  # default
     }
-  } else if (is.numeric(legend_pos) &&
-             length(legend_pos) == 2) {
-    legend_just <- legend_pos
+    
+    legend_just <- "center"
+  } else if (is.numeric(pos_legend) &&
+             length(pos_legend) == 2) {
+    
+    legend_pos <- pos_legend
+    legend_just <- pos_legend
   } else {
     # default
     legend_pos <- c(1, 0)
@@ -62,3 +62,4 @@ make_legend_ggplot <- function(dat = NULL, legend_pos) {
        legend.justification = legend_just,
        legend.position = legend_pos)
 }
+
