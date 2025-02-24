@@ -9,7 +9,7 @@ order to perform structural PSA."><meta property="og:image" content="https://n8t
 
     <a class="navbar-brand me-2" href="../index.html">BCEA</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.7</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,7 +43,7 @@ order to perform structural PSA."><meta property="og:image" content="https://n8t
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Structural Probability Sensitivity Analysis</h1>
-      <small class="dont-index">Source: <a href="https://github.com/n8thangreen/BCEA/blob/dev/R/struct.psa.R" class="external-link"><code>R/struct.psa.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/n8thangreen/BCEA/blob/main/R/struct.psa.R" class="external-link"><code>R/struct.psa.R</code></a></small>
       <div class="d-none name"><code>struct.psa.Rd</code></div>
     </div>
 
@@ -149,8 +149,8 @@ models (one matrix with n_sim x n_ints simulations for each model).</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="co"># load sample jags output</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"statins_base.RData"</span>, package <span class="op">=</span> <span class="st">"BCEA"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"statins_HC.RData"</span>, package <span class="op">=</span> <span class="st">"BCEA"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="Smoking.html">data</a></span><span class="op">(</span><span class="st">"statins_base"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="Smoking.html">data</a></span><span class="op">(</span><span class="st">"statins_HC"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">interventions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Atorvastatin"</span>, <span class="st">"Fluvastatin"</span>,</span></span>
 <span class="r-in"><span>                   <span class="st">"Lovastatin"</span>, <span class="st">"Pravastatin"</span>,</span></span>
