@@ -71,8 +71,9 @@ order to perform structural PSA.</p>
 
 
 <dl><dt id="arg-models">models<a class="anchor" aria-label="anchor" href="#arg-models"></a></dt>
-<dd><p>A list containing the output from either R2jags or
-R2WinBUGS for all the models that need to be combined in the model average</p></dd>
+<dd><p>A (possibly named) list containing the output from either
+R2jags or R2WinBUGS for all the models that need to be combined in the model
+average</p></dd>
 
 
 <dt id="arg-effect">effect<a class="anchor" aria-label="anchor" href="#arg-effect"></a></dt>
@@ -164,7 +165,7 @@ models (one matrix with n_sim x n_ints simulations for each model).</p>
 <span class="r-in"><span>           cost <span class="op">=</span> <span class="va">statins_HC</span><span class="op">$</span><span class="va">sims.list</span><span class="op">$</span><span class="va">cost.tot</span>,</span></span>
 <span class="r-in"><span>           ref <span class="op">=</span> <span class="fl">1</span>, interventions <span class="op">=</span> <span class="va">interventions</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">statins_base</span>, <span class="va">statins_HC</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"Base"</span><span class="op">=</span><span class="va">statins_base</span>, <span class="st">"Half Cauchy"</span><span class="op">=</span><span class="va">statins_HC</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">effects</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">statins_base</span><span class="op">$</span><span class="va">sims.list</span><span class="op">$</span><span class="va">effect</span>,</span></span>
 <span class="r-in"><span>                <span class="va">statins_HC</span><span class="op">$</span><span class="va">sims.list</span><span class="op">$</span><span class="va">effect</span><span class="op">)</span></span></span>
