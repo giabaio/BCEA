@@ -16,8 +16,9 @@ struct.psa(
 )
 }
 \arguments{
-\item{models}{A list containing the output from either R2jags or
-R2WinBUGS for all the models that need to be combined in the model average}
+\item{models}{A (possibly named) list containing the output from either
+R2jags or R2WinBUGS for all the models that need to be combined in the model
+average}
 
 \item{effect}{A list containing the measure of effectiveness computed from
 the various models (one matrix with n.sim x n.ints simulations for each
@@ -82,7 +83,7 @@ m2 <- bcea(eff = statins_HC$sims.list$effect,
            cost = statins_HC$sims.list$cost.tot,
            ref = 1, interventions = interventions)
 
-models <- list(statins_base, statins_HC)
+models <- list("Base"=statins_base, "Half Cauchy"=statins_HC)
 
 effects <- list(statins_base$sims.list$effect,
                 statins_HC$sims.list$effect)
