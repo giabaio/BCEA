@@ -3,8 +3,10 @@ title: "Cost-effectiveness plane"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Cost-effectiveness plane}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r, include = FALSE}
@@ -112,15 +114,72 @@ ceplane.plot(he,
              icer = list(color = c("red", "orange", "black"), size = 5))
 ```
 
+### Reposition the legend
+
 There are various different ways to reposition the legend.
 
 ```{r}
+#| fig.width: 7
+#| fig.height: 5
+#| out.width: 90%
+
 ceplane.plot(he, pos = FALSE) # bottom right
+ceplane.plot(he, pos = TRUE)  # bottom left
+```
+
+
+With numeric coordinates we can move the legend within the plot area.
+```{r}
+#| fig.width: 7
+#| fig.height: 5
+#| out.width: 90%
+
 ceplane.plot(he, pos = c(0, 0))
 ceplane.plot(he, pos = c(0, 1))
 ceplane.plot(he, pos = c(1, 0))
 ceplane.plot(he, pos = c(1, 1))
+
+ceplane.plot(he, graph = "ggplot2", pos = c(0, 0))
+ceplane.plot(he, graph = "ggplot2", pos = c(0, 1))
+ceplane.plot(he, graph = "ggplot2", pos = c(1, 0))
+ceplane.plot(he, graph = "ggplot2", pos = c(1, 1))
 ```
+
+Using key words for the corners of the plot area for base R.
+```{r}
+#| fig.width: 7
+#| fig.height: 5
+#| out.width: 90%
+
+ceplane.plot(he, pos = "bottomright")
+ceplane.plot(he, pos = "topright")
+ceplane.plot(he, pos = "topleft")
+ceplane.plot(he, pos = "bottomleft")
+```
+
+and for ggplot2 this is outside of the plot area on each side.
+```{r}
+#| fig.width: 7
+#| fig.height: 5
+#| out.width: 90%
+
+ceplane.plot(he, graph = "ggplot2", pos = "right")
+ceplane.plot(he, graph = "ggplot2", pos = "top")
+ceplane.plot(he, graph = "ggplot2", pos = "left")
+ceplane.plot(he, graph = "ggplot2", pos = "bottom")
+```
+
+We can also adjust the layout of the ggplot2 legend to a single line (horizontal) or stacked (vertical). If using this then you also need to give a location as follows.
+```{r}
+#| fig.width: 7
+#| fig.height: 5
+#| out.width: 90%
+
+ceplane.plot(he, graph = "ggplot2", pos = "verticaltop")
+ceplane.plot(he, graph = "ggplot2", pos = "horizontalbottom")
+ceplane.plot(he, graph = "ggplot2", pos = "verticalbottom")
+```
+
 
 ### Willingness-to-pay label
 
@@ -153,7 +212,7 @@ To hide the text assign `size = 0`.
 ceplane.plot(he, graph = "ggplot2", wtp = list(size = 0))
 ```
 
-The label is placed at the left hand side of the plot next to the willingness-to-pay line by default. When this would mean the label is off the bottom of the plot it is positioned at the bottom left corner.
+The wtp label is placed at the left hand side of the plot next to the willingness-to-pay line by default. When this would mean the label is off the bottom of the plot it is positioned at the bottom left corner.
 
 ```{r}
 data("Vaccine")
@@ -166,7 +225,7 @@ ceplane.plot(he, graph = "ggplot2", wtp = 25000, xlim = c(-0.0005, 0.0015))
 ceplane.plot(he, graph = "ggplot2", wtp = 50000, xlim = c(-0.0005, 0.0015))
 ```
 
-The position of the label can be adjusted using the `label.pos` argument and a logical value.
+The position of the willingness to pay label can be adjusted using the `label.pos` argument and a logical value.
 
 ```{r}
 ceplane.plot(he, graph = "ggplot2", wtp = 1000, xlim = c(-0.0005, 0.0015), label.pos = TRUE)

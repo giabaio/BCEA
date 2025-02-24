@@ -170,13 +170,10 @@ plot.bcea <- function(x,
       
       theme_add <- Filter(f = \(val) ggplot2::is.theme(val), x = extra_args)
       
-      ceplane.pos <- ifelse(pos, pos, c(1, 1.025))
-      
-      ##TODO: warnings...
       ceplane <-
         ceplane.plot(x,
                      wtp = wtp,
-                     pos = ceplane.pos,
+                     pos = pos,
                      comparison = comparison,
                      graph = "ggplot2", ...) +
         do.call(theme, global_params) +

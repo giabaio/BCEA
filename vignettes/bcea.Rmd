@@ -3,8 +3,10 @@ title: "Getting Started"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Getting Started}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r, include = FALSE}
@@ -41,15 +43,25 @@ bcea_smoke <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 We can easily create a grid of the most common plots
 
 ```{r fig.width=10, fig.height=10}
+#| fig.width: 12
+#| fig.height: 11
+#| out.width: 95%
+
 library(ggplot2)
 library(purrr)
 
 plot(bcea_smoke)
+plot(bcea_smoke, graph = "ggplot2")
+plot(bcea_smoke, graph = "ggplot2", pos = "bottomvertical")
 ```
 
 Individual plots can be plotting using their own functions.
 
 ```{r}
+#| fig.width: 7
+#| fig.height: 5
+#| out.width: 95%
+
 ceplane.plot(bcea_smoke, comparison = 2, wtp = 250)
 
 eib.plot(bcea_smoke)
@@ -64,6 +76,10 @@ ib.plot(bcea_smoke)
 More on this in the other vignettes but you can change the default plotting style, such as follows.
 
 ```{r}
+#| fig.width: 12
+#| fig.height: 11
+#| out.width: 95%
+
 plot(bcea_smoke,
      graph = "ggplot2",
      wtp = 250,
