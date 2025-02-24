@@ -110,7 +110,6 @@ struct.psa <- function(models,
     }
     
     # 2. saves the DIC in vector d
-    mdl[[i]] <- models[[i]]
     d[i] <- mdl[[i]]$DIC
   }
   
