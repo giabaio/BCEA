@@ -106,27 +106,26 @@
 #' By default, when no method is specified by the user, `evppi` will
 #' use GAM if the number of parameters is <5 and INLA otherwise.
 #' 
-#' @return Object of class `evppi`:
-#' \item{evppi}{The computed values of evppi for all values of the
-#'  parameter of willingness to pay.}
-#' \item{index}{A numerical vector with the index associated with the
-#'  parameters for which the EVPPI was calculated.}
-#' \item{k}{The vector of values for the willingness to pay.}
-#' \item{evi}{The vector of values for the overall EVPPI.}
-#' \item{fitted.costs}{The fitted values for the costs.}
-#' \item{fitted.effects}{The fitted values for the effects.}
-#' \item{parameters}{A single string containing the names of the
-#' parameters for which the EVPPI was calculated, used for plotting the EVPPI.}
-#' \item{time}{Computational time (in seconds).}
-#' \item{fit.c}{The object produced by the model fit for the costs.}
-#' \item{fit.e}{The object produced by the model fit for the effects.}
-#' \item{formula}{The formula used to fit the model.}
-#' \item{method}{A string indicating the method used to estimate the EVPPI.}
+#' @return An object of class `evppi`, containing the following components:
+#' 
+#' - **evppi**: The computed values of `evppi` for all values of the parameter of willingness to pay.
+#' - **index**: A numerical vector with the indices of the parameters for which the EVPPI was calculated.
+#' - **k**: A vector of values for the willingness to pay.
+#' - **evi**: A vector of values for the overall EVPPI.
+#' - **fitted.costs**: The fitted values for the costs.
+#' - **fitted.effects**: The fitted values for the effects.
+#' - **parameters**: A single string containing the names of the parameters for which the EVPPI was calculated (used for plotting).
+#' - **time**: The computational time (in seconds).
+#' - **fit.c**: The object produced by the model fit for the costs.
+#' - **fit.e**: The object produced by the model fit for the effects.
+#' - **formula**: The formula used to fit the model.
+#' - **method**: A string indicating the method used to estimate the EVPPI.
 #' 
 #' @author Anna Heath, Gianluca Baio
 #' @seealso [bcea()],
 #'          [plot.evppi()]
 #' @importFrom Rdpack reprompt
+#' @import voi
 #' 
 #' @references
 #' 
@@ -161,26 +160,27 @@
 #' # Compute the EVPPI for a bunch of parameters
 #' inp <- createInputs(vaccine_mat)
 #' 
-#' EVPPI <- evppi(m, c("beta.1." , "beta.2."), inp$mat)
+#' # explicitly use BCEA package namespace to avoid voi package conflict
+#' EVPPI <- BCEA::evppi(m, c("beta.1." , "beta.2."), inp$mat)
 #' 
 #' plot(EVPPI)
 #' 
 #' # deprecated (single parameter) methods
-#' EVPPI.so <- evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "so", n.blocks = 50)
-#' EVPPI.sad <- evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps = 1)
+#' EVPPI.so <- BCEA::evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "so", n.blocks = 50)
+#' EVPPI.sad <- BCEA::evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps = 1)
 #' 
 #' plot(EVPPI.so)
 #' plot(EVPPI.sad)
 #'  
 #' # Compute the EVPPI using INLA/SPDE
 #' if (require("INLA"))
-#'   x_inla <- evppi(he = m, 39:40, input = inp$mat)
+#'   x_inla <- BCEA::evppi(he = m, 39:40, input = inp$mat)
 #' 
 #' # using GAM regression
-#' x_gam <- evppi(he = m, 39:40, input = inp$mat, method = "GAM")
+#' x_gam <- BCEA::evppi(he = m, 39:40, input = inp$mat, method = "GAM")
 #' 
 #' # using Strong et al GP regression
-#' x_gp <- evppi(he = m, 39:40, input = inp$mat, method = "GP")
+#' x_gp <- BCEA::evppi(he = m, 39:40, input = inp$mat, method = "GP")
 #' 
 #' # plot results
 #' if (require("INLA")) plot(x_inla)
@@ -199,7 +199,7 @@
 #' "Individual counselling", "Group counselling")
 #' m <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 #' inp <- createInputs(smoking_output)
-#' EVPPI <- evppi(m, c(2,3), inp$mat, h.value = 0.0000005)
+#' EVPPI <- BCEA::evppi(m, c(2,3), inp$mat, h.value = 0.0000005)
 #' plot(EVPPI)
 #' }
 #' 

@@ -11,31 +11,28 @@
 #' @param value A vector of values for the risk aversion parameter. If `NULL`,
 #' default values are assigned by R. The first (smallest) value (`r` -> 0)
 #' produces the standard analysis with no risk aversion.
-#' @return An object of the class `CEriskav` containing the following
-#' elements:
-#' \item{Ur}{An array containing the simulated values for all the
-#' ''known-distribution'' utilities for all interventions, all the values of
-#' the willingness to pay parameter and for all the possible values of
-#' `r`}
-#' \item{Urstar}{ An array containing the simulated values for the
-#' maximum ''known-distribution'' expected utility for all the values of the
-#' willingness to pay parameter and for all the possible values of `r`}
-#' \item{IBr}{ An array containing the simulated values for the distribution of
-#' the Incremental Benefit for all the values of the willingness to pay and for
-#' all the possible values of `r`}
-#' \item{eibr}{ An array containing the Expected Incremental Benefit for each
-#' value of the willingness to pay parameter and for all the possible values of
-#' `r`}
-#' \item{vir}{ An array containing all the simulations for the Value of
-#' Information for each value of the willingness to pay parameter and for all
-#' the possible values of `r`}
-#' \item{evir}{ An array containing the Expected Value of Information
-#' for each value of the willingness to pay parameter and for all the possible
-#' values of `r`}
-#' \item{R}{ The number of possible values for the parameter of risk aversion
-#' `r`}
-#' \item{r}{ The vector containing all the possible values for the parameter of
-#' risk aversion `r`}
+#' 
+#' @return An object of the class `CEriskav` containing the following elements:
+#' 
+#' - **Ur**: An array containing the simulated values for all the 
+#'   "known-distribution" utilities for all interventions, all the values of 
+#'   the willingness to pay parameter, and for all the possible values of `r`.
+#' - **Urstar**: An array containing the simulated values for the 
+#'   maximum "known-distribution" expected utility for all the values of the 
+#'   willingness to pay parameter and for all the possible values of `r`.
+#' - **IBr**: An array containing the simulated values for the distribution of 
+#'   the Incremental Benefit for all the values of the willingness to pay 
+#'   parameter and for all the possible values of `r`.
+#' - **eibr**: An array containing the Expected Incremental Benefit for each 
+#'   value of the willingness to pay parameter and for all the possible values of `r`.
+#' - **vir**: An array containing all the simulations for the Value of 
+#'   Information for each value of the willingness to pay parameter and for all 
+#'   the possible values of `r`.
+#' - **evir**: An array containing the Expected Value of Information for each 
+#'   value of the willingness to pay parameter and for all the possible values of `r`.
+#' - **R**: The number of possible values for the parameter of risk aversion `r`.
+#' - **r**: A vector containing all the possible values for the parameter of 
+#'   risk aversion `r`.
 #' 
 #' @author Gianluca Baio
 #' @seealso [bcea()]

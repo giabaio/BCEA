@@ -77,10 +77,10 @@ inforank_params <- function(he,
   for (i in seq_along(chk2)) {
     x[[i]] <-
       quiet(
-        evppi(he = m,
-              param_idx = chk2[i],
-              input = input,
-              N = N))
+        BCEA::evppi(he = m,
+                    param_idx = chk2[i],
+                    input = input,
+                    N = N))
   }
   
   scores <- 

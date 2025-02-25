@@ -47,31 +47,38 @@ plotting. Should (partial-) match the two options \code{"base"} or
 it will be passed to the \pkg{ggplot2} object. The usual ggplot2 syntax is used.
 Additional graphical arguments:
 \itemize{
-\item \code{label.pos = FALSE}: will place the willingness to pay label in a
-different  position at the bottom of the graph - base and \pkg{ggplot2} only (no
-label in \pkg{plotly}).
-\item \code{line = list(color)}: a colour specifying the colour of the willingness-to-pay line.
-\item \code{point = list(color)}: a vector of colours specifying the colour(s) associated
-to the cloud of points. Should be of length 1 or equal to the number of comparisons.
-\item \code{point = list(size)}: a vector of colours specifying the size(s) of the points.
+\item \code{label.pos = FALSE}: Places the willingness-to-pay label in a
+different position at the bottom of the graph. Applies to base and
+\pkg{ggplot2} only (no label in \pkg{plotly}).
+\item \code{line = list(color)}: A colour specifying the colour of the
+willingness-to-pay line.
+\item \code{point = list(color)}: A vector of colours specifying the colour(s)
+associated with the cloud of points. Should be of length 1 or equal
+to the number of comparisons.
+\item \code{point = list(size)}: A vector specifying the size(s) of the points.
 Should be of length 1 or equal to the number of comparisons.
-\item \code{point = list(shape)}: a vector of shapes specifying type(s) of the points.
+\item \code{point = list(shape)}: A vector specifying the shape(s) of the points.
 Should be of length 1 or equal to the number of comparisons.
-\item \code{icer = list(color)}: a vector of colours specifying the colour(s) of the ICER
-points. Should be of length 1 or equal to the number of comparisons.
-\item \code{icer = list(size)}: a vector of values specifying the size(s) of the ICER
-points. Should be of length 1 or equal to the number of comparisons.
-\item \code{area_include}: logical, include or exclude the cost-effectiveness
+\item \code{icer = list(color)}: A vector of colours specifying the colour(s) of
+the ICER points. Should be of length 1 or equal to the number of comparisons.
+\item \code{icer = list(size)}: A vector specifying the size(s) of the ICER points.
+Should be of length 1 or equal to the number of comparisons.
+\item \code{area_include}: Logical. Include or exclude the cost-effectiveness
 acceptability area (default is \code{TRUE}).
-\item \code{wtp = list(value)}: equivalent to simply using \code{wtp = value} but for when multiple
-arguments are passed in list form.
-\item \code{area = list(color)}: a colour specifying the colour of the cost-effectiveness
-acceptability area.
-\item \code{wtp = list(color)}: a colour specifying the colour of the willingness-to-pay text
-\item \code{wtp = list(size)}: a value specifying the size of the willingness-to-pay text
-\item \code{wtp = list(x=..., y=...)}: a value specifying the x and y coordinates of the willingness-to-pay text
-\item \code{currency}: Currency prefix to cost differential values - \pkg{ggplot2} only.
-\item \code{icer_annot}: Annotate each ICER point with text label - \pkg{ggplot2} only.
+\item \code{wtp = list(value)}: Equivalent to using \code{wtp = value} but for when
+multiple arguments are passed in list form.
+\item \code{area = list(color)}: A colour specifying the colour of the
+cost-effectiveness acceptability area.
+\item \code{wtp = list(color)}: A colour specifying the colour of the
+willingness-to-pay text.
+\item \code{wtp = list(size)}: A value specifying the size of the
+willingness-to-pay text.
+\item \code{wtp = list(x=..., y=...)}: Values specifying the x and y coordinates
+of the willingness-to-pay text.
+\item \code{currency}: Currency prefix to cost differential values. Applies to
+\pkg{ggplot2} only.
+\item \code{icer_annot}: Annotates each ICER point with a text label. Applies to
+\pkg{ggplot2} only.
 }}
 }
 \value{
