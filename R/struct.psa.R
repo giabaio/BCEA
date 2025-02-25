@@ -11,8 +11,9 @@
 #' cost is a list containing the measure of costs computed from the various
 #' models (one matrix with n_sim x n_ints simulations for each model).
 #' 
-#' @param models A list containing the output from either R2jags or
-#' R2WinBUGS for all the models that need to be combined in the model average
+#' @param models A (possibly named) list containing the output from either 
+#' R2jags or R2WinBUGS for all the models that need to be combined in the model 
+#' average 
 #' @param effect A list containing the measure of effectiveness computed from
 #' the various models (one matrix with n.sim x n.ints simulations for each
 #' model)
@@ -51,8 +52,8 @@
 #' 
 #' \dontrun{
 #' # load sample jags output
-#' load(system.file("extdata", "statins_base.RData", package = "BCEA"))
-#' load(system.file("extdata", "statins_HC.RData", package = "BCEA"))
+#' data("statins_base")
+#' data("statins_HC")
 #' 
 #' interventions <- c("Atorvastatin", "Fluvastatin",
 #'                    "Lovastatin", "Pravastatin",
@@ -66,7 +67,7 @@
 #'            cost = statins_HC$sims.list$cost.tot,
 #'            ref = 1, interventions = interventions)
 #' 
-#' models <- list(statins_base, statins_HC)
+#' models <- list("Base"=statins_base, "Half Cauchy"=statins_HC)
 #' 
 #' effects <- list(statins_base$sims.list$effect,
 #'                 statins_HC$sims.list$effect)
@@ -110,7 +111,6 @@ struct.psa <- function(models,
     }
     
     # 2. saves the DIC in vector d
-    mdl[[i]] <- models[[i]]
     d[i] <- mdl[[i]]$DIC
   }
   
@@ -145,6 +145,9 @@ struct.psa <- function(models,
          interventions = interventions,
          Kmax = Kmax,
          plot = plot)
+  
+  # Gives names to objects (if not available, does nothing...)
+  names(w)=names(d)=names(models)
   
   res <- 
     c(he, list(w = w, DIC = d))
