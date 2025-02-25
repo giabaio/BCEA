@@ -33,8 +33,8 @@
 #'  meta-analysis model based on the data contained in the `smoking` object}
 #' \item{list("treats")}{a vector of labels associated with the four strategies}
 #' }
-#' @references Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
-#' 
+#' @references Baio G. (2012). Bayesian Methods in Health Economics. 
+#' CRC/Chapman Hall, London
 #' @source Effectiveness data adapted from Hasselblad V. (1998). Meta-analysis
 #' of Multitreatment Studies. Medical Decision Making 1998;18:37-43.
 #' Cost and population characteristics data adapted from various sources:
@@ -135,10 +135,10 @@ NULL
 #' @format A BUGS object containing the simulations for the evidence synthesis
 #' model
 #' \describe{
-#' \item{list("statins_base")}{a BUGS object}
+#'   \item{list("statins_base")}{a BUGS object}
+#'  }
 #' @references Baio G. (2012). Bayesian Methods in Health Economics. 
 #' CRC/Chapman Hall, London
-#' 
 #' @source A systematic review and economic evaluation of statins for the 
 #' prevention of coronary events. Ward 2007.
 #' @keywords datasets
@@ -158,10 +158,10 @@ NULL
 #' @format A BUGS object containing the simulations for the evidence synthesis
 #' model
 #' \describe{
-#' \item{list("statins_HC")}{a BUGS object}
+#'   \item{list("statins_HC")}{a BUGS object}
+#' }
 #' @references Baio G. (2012). Bayesian Methods in Health Economics. 
 #' CRC/Chapman Hall, London
-#' 
 #' @source A systematic review and economic evaluation of statins for the 
 #' prevention of coronary events. Ward 2007.
 #' @keywords datasets

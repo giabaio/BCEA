@@ -15,6 +15,7 @@ model
 \describe{
 \item{list("statins_HC")}{a BUGS object}
 }
+}
 \source{
 A systematic review and economic evaluation of statins for the
 prevention of coronary events. Ward 2007.

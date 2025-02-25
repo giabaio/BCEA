@@ -60,6 +60,7 @@ the clinical output and the costs associated with the health economic
 evaluation of four different smoking cessation interventions.
 }
 \references{
-Baio G. (2012). Bayesian Methods in Health Economics. CRC/Chapman Hall, London
+Baio G. (2012). Bayesian Methods in Health Economics.
+CRC/Chapman Hall, London
 }
 \keyword{datasets}
