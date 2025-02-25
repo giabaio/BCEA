@@ -7,18 +7,18 @@
 #' The model is a list containing the output from either R2jags or
 #' R2WinBUGS for all the models that need to be combined in the model average
 #' effect is a list containing the measure of effectiveness computed from the 
-#' various models (one matrix with n_sim x n_ints simulations for each model)
+#' various models (one matrix with `n_sim` x `n_ints` simulations for each model)
 #' cost is a list containing the measure of costs computed from the various
-#' models (one matrix with n_sim x n_ints simulations for each model).
+#' models (one matrix with `n_sim` x `n_ints` simulations for each model).
 #' 
 #' @param models A (possibly named) list containing the output from either 
 #' R2jags or R2WinBUGS for all the models that need to be combined in the model 
 #' average 
 #' @param effect A list containing the measure of effectiveness computed from
-#' the various models (one matrix with n.sim x n.ints simulations for each
+#' the various models (one matrix with `n_sim` x `n_ints` simulations for each
 #' model)
 #' @param cost A list containing the measure of costs computed from the various
-#' models (one matrix with n.sim x n.ints simulations for each model)
+#' models (one matrix with `n_sim` x `n_ints` simulations for each model)
 #' @param ref Which intervention is considered to be the reference
 #' strategy. The default value `ref=1` means that the intervention
 #' appearing first is the reference and the other(s) is(are) the comparator(s)
@@ -32,7 +32,7 @@
 #' `k=NULL` (the default)
 #' @param plot A logical value indicating whether the function should produce
 #' the summary plot or not
-#' @param w A vector of weights. By default it's NULL to indicate that the 
+#' @param w A vector of weights. By default it's `NULL` to indicate that the 
 #' function will calculate the model weights based on DIC and the individual
 #' model fit. This behaviour can be overridden by passing a vector `w`, 
 #' for instance based on expert opinion
@@ -85,7 +85,7 @@ struct.psa <- function(models,
                        interventions = NULL,
                        Kmax = 50000,
                        plot = FALSE,
-                       w=NULL) {
+                       w = NULL) {
   
   if (is.null(ref)) {
     ref <- 1
@@ -116,12 +116,14 @@ struct.psa <- function(models,
   
   dmin <- min(d)   # minimum value to re-scale DICs
   delta_dic <- abs(dmin - d)
+  
   # Only compute w using DIC if the user hasn't passed a suitable value 
   if (is.null(w)) {
     w <- exp(-0.5*(delta_dic))/sum(exp(-0.5*(delta_dic))) # model weights (cfr BMHE)
   } 
-  if ((!is.null(w) & length(w) != n_models)) {
-    stop("If you are considering user-defined weights, you must pass a vector whose length is the same as the number of models to average!")
+  if ((!is.null(w) && length(w) != n_models)) {
+    stop("If you are considering user-defined weights, you must pass a vector whose
+         length is the same as the number of models to average!")
   }
   
   # weights the simulations for the variables of effectiveness and costs in each model
@@ -147,7 +149,7 @@ struct.psa <- function(models,
          plot = plot)
   
   # Gives names to objects (if not available, does nothing...)
-  names(w)=names(d)=names(models)
+  names(w) <- names(d) <- names(models)
   
   res <- 
     c(he, list(w = w, DIC = d))
