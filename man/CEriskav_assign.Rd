@@ -24,31 +24,28 @@ default values are assigned by R. The first (smallest) value (\code{r} -> 0)
 produces the standard analysis with no risk aversion.}
 }
 \value{
-An object of the class \code{CEriskav} containing the following
-elements:
-\item{Ur}{An array containing the simulated values for all the
-''known-distribution'' utilities for all interventions, all the values of
-the willingness to pay parameter and for all the possible values of
-\code{r}}
-\item{Urstar}{ An array containing the simulated values for the
-maximum ''known-distribution'' expected utility for all the values of the
-willingness to pay parameter and for all the possible values of \code{r}}
-\item{IBr}{ An array containing the simulated values for the distribution of
-the Incremental Benefit for all the values of the willingness to pay and for
-all the possible values of \code{r}}
-\item{eibr}{ An array containing the Expected Incremental Benefit for each
-value of the willingness to pay parameter and for all the possible values of
-\code{r}}
-\item{vir}{ An array containing all the simulations for the Value of
+An object of the class \code{CEriskav} containing the following elements:
+\itemize{
+\item \strong{Ur}: An array containing the simulated values for all the
+"known-distribution" utilities for all interventions, all the values of
+the willingness to pay parameter, and for all the possible values of \code{r}.
+\item \strong{Urstar}: An array containing the simulated values for the
+maximum "known-distribution" expected utility for all the values of the
+willingness to pay parameter and for all the possible values of \code{r}.
+\item \strong{IBr}: An array containing the simulated values for the distribution of
+the Incremental Benefit for all the values of the willingness to pay
+parameter and for all the possible values of \code{r}.
+\item \strong{eibr}: An array containing the Expected Incremental Benefit for each
+value of the willingness to pay parameter and for all the possible values of \code{r}.
+\item \strong{vir}: An array containing all the simulations for the Value of
 Information for each value of the willingness to pay parameter and for all
-the possible values of \code{r}}
-\item{evir}{ An array containing the Expected Value of Information
-for each value of the willingness to pay parameter and for all the possible
-values of \code{r}}
-\item{R}{ The number of possible values for the parameter of risk aversion
-\code{r}}
-\item{r}{ The vector containing all the possible values for the parameter of
-risk aversion \code{r}}
+the possible values of \code{r}.
+\item \strong{evir}: An array containing the Expected Value of Information for each
+value of the willingness to pay parameter and for all the possible values of \code{r}.
+\item \strong{R}: The number of possible values for the parameter of risk aversion \code{r}.
+\item \strong{r}: A vector containing all the possible values for the parameter of
+risk aversion \code{r}.
+}
 }
 \description{
 Extends the standard cost-effectiveness analysis to modify the utility

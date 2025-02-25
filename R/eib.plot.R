@@ -20,19 +20,22 @@
 #' @template args-graph
 #' @param ...  If `graph="ggplot2"` and a named theme object is supplied,
 #'   it will be added to the ggplot object. Additional arguments:
-#'  \itemize{
-#'   \item `alpha` can be used to set the CrI level when `plot.cri=TRUE`,
+#'   
+#' - `alpha`: Can be used to set the CrI level when `plot.cri=TRUE`, 
 #'   with a default value of `alpha=0.05`.
-#'   \item `cri.quantile` controls the the method of calculation of the credible
-#'   intervals. The default value `cri.quantile=TRUE` defines the CrI as the
-#'   interval between the `alpha/2`-th and `1-alpha/2`-th quantiles of
-#'   the IB distribution. Setting `cri.quantile=FALSE` will use a normal
+#' - `cri.quantile`: Controls the method of calculation of the credible 
+#'   intervals. The default value, `cri.quantile=TRUE`, defines the CrI as the 
+#'   interval between the `alpha/2`-th and `1-alpha/2`-th quantiles of 
+#'   the IB distribution. Setting `cri.quantile=FALSE` will use a normal 
 #'   approximation on the IB distribution to calculate the intervals.
-#'   \item `currency`: Currency prefix to willingness to pay values - ggplot2 only.
-#'   \item `line_colors`: specifies the line colour(s) - all graph types.
-#'   \item `line_types`: specifies the line type(s) as lty numeric values - all graph types.
-#'   \item `area_include`: include area under the EIB curve - plotly only.
-#'   \item `area_color`: specifies the AUC curve - plotly only.}
+#' - `currency`: Currency prefix to willingness-to-pay values (applies to 
+#'   \pkg{ggplot2} only).
+#' - `line_colors`: Specifies the line colour(s) (applies to all graph types).
+#' - `line_types`: Specifies the line type(s) as `lty` numeric values 
+#'   (applies to all graph types).
+#' - `area_include`: Includes the area under the EIB curve (applies to 
+#'   \pkg{plotly} only).
+#' - `area_color`: Specifies the AUC curve colour (applies to \pkg{plotly} only).
 #'   
 #' @export
 #' 

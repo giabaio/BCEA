@@ -33,7 +33,8 @@ Imports:
     reshape2,
     rlang,
     rstan,
-    scales
+    scales,
+    voi (>= 1.0.1)
 Depends:
     R (>= 3.5.0)
 Suggests:
@@ -50,7 +51,6 @@ Suggests:
     splancs,
     testthat (>= 2.1.0),
     vdiffr,
-    voi (>= 1.0.1),
     withr
 RdMacros: Rdpack
 VignetteBuilder: knitr

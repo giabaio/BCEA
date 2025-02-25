@@ -36,6 +36,7 @@
 #' @author Gianluca Baio, Anna Heath
 #' @seealso [bcea()], [evppi()]
 #' @importFrom Rdpack reprompt
+#' @import voi
 #' 
 #' @references
 #' \insertRef{Baio2011}{BCEA}
