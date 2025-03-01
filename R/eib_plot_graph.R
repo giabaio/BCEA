@@ -68,7 +68,7 @@ eib_plot_ggplot <- function(he,
   ggplot(data_psa,
          aes(x = .data$k, y = .data$eib,
              group = .data$comparison)) + 
-    geom_line(aes(colour = .data$comparison,
+    geom_line(aes(color = .data$comparison,
                   linetype = .data$comparison)) +
     theme_eib() +
     theme_add +
@@ -82,7 +82,7 @@ eib_plot_ggplot <- function(he,
                  x = graph_params$xlab,
                  y = graph_params$ylab)) +
     geom_hline(aes(yintercept = 0),
-               colour = "grey",
+               color = "grey",
                linetype = 1) + 
     geom_cri(graph_params$plot.cri, cri_params) +
     do.call(annotate, graph_params$kstar) +
@@ -91,14 +91,14 @@ eib_plot_ggplot <- function(he,
     geom_vline(
       aes(xintercept = .data$kstar),
       data = data.frame("kstar" = he$kstar),
-      colour = "grey50",
+      color = "grey50",
       linetype = 2,
       linewidth = 0.5) +
     scale_linetype_manual(
       "",
       labels = graph_params$labels,
       values = graph_params$line$type) +
-    scale_colour_manual(
+    scale_color_manual(
       "",
       labels = graph_params$labels,
       values = graph_params$line$color)
@@ -118,7 +118,7 @@ eib_plot_plotly <- function(he,
   
   cri_params <- eib_params_cri(he, graph_params)
   
-  alt.legend <- graph_params$alt.legend
+  alt.legend <- graph_params$pos
   plot_aes <- graph_params$plot_aes
   plot_annotations <- graph_params$plot_annotations
   plot.cri <- graph_params$plot.cri
@@ -132,7 +132,6 @@ eib_plot_plotly <- function(he,
   ylab <- graph_params$ylab
   low <- cri_params$data$low
   upp <- cri_params$data$upp
-  
   
   if (!is.null(size) && !is.na(size)) {
     message("Option size will be ignored using plotly.")
@@ -250,17 +249,7 @@ eib_plot_plotly <- function(he,
     }
   }
   
-  # legend positioning not great
-  # must be customized case by case
-  legend_list <- list(orientation = "h", xanchor = "center", x = 0.5)
-  
-  if (is.character(alt.legend))
-    legend_list <- switch(
-      alt.legend,
-      "left" = list(orientation = "v", x = 0, y = 0.5),
-      "right" = list(orientation = "v", x = 0, y = 0.5),
-      "bottom" = list(orienation = "h", x = 0.5, y = 0, xanchor = "center"),
-      "top" = list(orientation = "h", x = 0.5, y = 100, xanchor = "center"))
+  legend_list = make_legend_plotly(alt.legend)
   
   xaxis <- 
     list(

@@ -16,9 +16,5 @@ prep_contour_params <- function(he, ...) {
                list(scale = 0.5,
                     nlevels = NULL,
                     levels = c(0.25, 0.5, 0.75, 0.95)))
-  
-  ##TODO: this doesnt go here. should go in the plotly prep function
-  # if (graph == "plotly") default_params$ICER_size = 8
-  
   modifyList(default_params, contour_params)
 }

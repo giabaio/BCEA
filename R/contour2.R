@@ -55,7 +55,6 @@ contour2.bcea <- function(he,
              yes = plotly::toRGB(graph_params$point$colors),
              no = graph_params$point$colors)
     
-    ##TODO changed from using ceplane_plot_plotly() directly
     ceplane.plot(he, wtp = wtp, pos = pos, graph = "plotly", graph_params = graph_params, ...) |>
       contour_plotly_lines(he, delta_ce, graph_params, pt_cols)
   }

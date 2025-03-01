@@ -29,12 +29,16 @@ polygon_params <- function(graph_params) {
   polygon_x <- c(y_min/wtp, x_max, x_max)
   polygon_y <- c(y_min, x_max*wtp, y_min)
   
+  col <- "grey95"
+  if (!graph_params$area$color |> is.null())
+    col <- graph_params$area$color
+  if (isFALSE(graph_params$area$include) | isFALSE(graph_params$area_include))
+    col <- NA
+  
   list(x = polygon_x,
        y = polygon_y,
        # border = graph_params$area$line_color,
-       col = ifelse(is.null(graph_params$area$color),
-                    "grey95",
-                    graph_params$area$color))
+       col = col)
 }
 
 

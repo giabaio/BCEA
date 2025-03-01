@@ -222,11 +222,11 @@ plot.bcea <- function(x,
     }
     
     p1 = ceplane.plot(x, graph = "p", wtp = wtp, ...)
-    p2 = ceac.plot(x, graph = "p", ...)
-    p3 = eib.plot(x, graph = "p", ...)
+    p2 = eib.plot(x, graph = "p", ...)
+    p3 = ceac.plot(x, graph = "p", ...)
     p4 = evi.plot(x, graph = "p", ...)
     
-    ppp = subplot(
+    ppp = plotly::subplot(
       p1, p2, p3, p4, nrows = 2,
       titleX = TRUE, titleY = TRUE, margin = 0.1
     )

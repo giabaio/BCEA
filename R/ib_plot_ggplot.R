@@ -80,10 +80,10 @@ ib_plot_ggplot <- function(he,
     ggplot(df, aes(.data$x, .data$y)) +
     theme_bw() +
     geom_vline(xintercept = 0,
-               colour = "grey50",
+               color = "grey50",
                size = 0.5) +
     geom_hline(yintercept = 0,
-               colour = "grey50",
+               color = "grey50",
                size = 0.5) +
     geom_ribbon(
       data = dplyr::filter(df, .data$x > 0),

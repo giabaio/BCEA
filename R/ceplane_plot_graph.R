@@ -67,19 +67,14 @@ NULL
 #' @keywords hplot
 #' 
 ceplane_plot_base.bcea <- function(he,
-                                   wtp = 25000,
                                    pos_legend,
                                    graph_params, ...) {
   plot_params <-
-    ceplane_base_params(he, wtp, graph_params)
+    ceplane_base_params(he, graph_params)
   
   legend_params <-
     ceplane_legend_base(he, pos_legend, plot_params)
-  
   add_ceplane_setup(plot_params)
-  ##TODO: the condition is already handled in the prep e.g. empty text or NULL
-  ##      it doesnt go here
-  # if (graph_params$area_include)
   add_ceplane_polygon(plot_params)
   add_ceplane_points(he, plot_params)
   add_axes()
@@ -88,13 +83,11 @@ ceplane_plot_base.bcea <- function(he,
   add_ceplane_legend(legend_params)
 }
 
-
 #' @rdname ceplane_plot_graph
 #' 
 ceplane_plot_base <- function(he, ...) {
   UseMethod('ceplane_plot_base', he)
 }
-
 
 #' @rdname ceplane_plot_graph
 #'
@@ -171,7 +164,6 @@ ceplane_plot_ggplot.bcea <- function(he,
   plot_params$area$include <- NULL
   
   theme_add <- Filter(f = \(val) ggplot2::is.theme(val), x = list(...))
-  
   return_plot <- ggplot(delta_ce,
          aes(x = .data$delta_e, y = .data$delta_c,
              group = factor(.data$comparison),
@@ -216,13 +208,11 @@ ceplane_plot_ggplot.bcea <- function(he,
   return(return_plot)
 }
 
-
 #' @rdname ceplane_plot_graph
 #' 
 ceplane_plot_ggplot <- function(he, ...) {
   UseMethod('ceplane_plot_ggplot', he)
 }
-
 
 #' @rdname ceplane_plot_graph
 #'  
@@ -235,8 +225,8 @@ ceplane_plot_plotly.bcea <- function(he,
   
   comp_label <-
     paste(he$interventions[he$ref], "vs", he$interventions[he$comp])
-  if (is.list(wtp) && exists("value", wtp))
-    wtp = wtp$value
+  # if (is.list(wtp) && exists("value", wtp))
+    wtp = graph_params$wtp_value
   
   # single long format for plotting data
   delta_ce <-
@@ -262,11 +252,11 @@ ceplane_plot_plotly.bcea <- function(he,
     graph_params$point$size <- rep_len(graph_params$point$size[1], length(comp_label))
   
   if (!exists("icer", graph_params))
-    graph_params$icer = list()
+    graph_params$icer <- list()
   if (!"color" %in% names(graph_params$icer))
-    graph_params$icer$color = "red"
+    graph_params$icer$color <- "red"
   if (!"size" %in% names(graph_params$icer))
-    graph_params$icer$size = graph_params$ICER_size
+    graph_params$icer$size <- ifelse(he$n_comparisons == 1, 8, 0) #graph_params$ICER_size
   
   if (length(graph_params$icer$color) != length(comp_label))
     graph_params$icer$color <- rep_len(graph_params$icer$color[1], length(comp_label))
@@ -324,7 +314,7 @@ ceplane_plot_plotly.bcea <- function(he,
            no = graph_params$point$color)
   
   # define point size variable in delta_ce
-  delta_ce$pt_size = graph_params$point$size[delta_ce$comparison |> as.numeric()]
+  delta_ce$pt_size <- graph_params$point$size[delta_ce$comparison |> as.numeric()]
   
   # plot set-up
   ceplane <- plotly::plot_ly(colors = pt_cols)
@@ -342,8 +332,12 @@ ceplane_plot_plotly.bcea <- function(he,
       hoverinfo = "name+x+y")
   
   if (graph_params$area_include) {
-    if (is.null(graph_params$area$line_color))
-      graph_params$area$line_color = "grey30"
+    if (is.null(graph_params$line$color)) {
+      if (is.null(graph_params$area$line_color))
+        graph_params$area$line_color = "grey20"
+    } else {
+      graph_params$area$line_color = graph_params$line$color
+    }
     
     ceplane <-
       ceplane %>% 
@@ -364,9 +358,9 @@ ceplane_plot_plotly.bcea <- function(he,
     poly_col <-
       ifelse(
         grepl(pattern = "^rgba\\(",
-              x = graph_params$area$col),
-        graph_params$area$col,
-        plotly::toRGB(graph_params$area$col, 0.5))
+              x = graph_params$area$color),
+        graph_params$area$color,
+        plotly::toRGB(graph_params$area$color))
     
     ceplane <-
       ceplane %>% 
@@ -426,7 +420,6 @@ ceplane_plot_plotly.bcea <- function(he,
   plotly::config(ceplane, displayModeBar = FALSE)
 }
 
-
 #' @rdname ceplane_plot_graph
 #' @template args-he
 #' @param ... Additional arguments
@@ -434,7 +427,3 @@ ceplane_plot_plotly.bcea <- function(he,
 ceplane_plot_plotly <- function(he, ...) {
   UseMethod('ceplane_plot_plotly', he)
 }
-
-
-
-

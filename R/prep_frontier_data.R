@@ -12,7 +12,6 @@
 prep_frontier_data <- function(he,
                                threshold = NULL,
                                start.origin = TRUE) {
-  
   ## if threshold is NULL, then bound to pi/2, which is atan(Inf)
   ## else if positive, bound to the increase angle given the slope
   if (is.null(threshold)) {
@@ -175,7 +174,8 @@ prep_frontier_data <- function(he,
     e = c(he$e) - ifelse(!start.origin, 0, ec_min["mean_e"]),
     c = c(he$c) - ifelse(!start.origin, 0, ec_min["mean_c"]),
     comp = as.factor(rep(c(he$comp, he$ref), each = he$n_sim)))
-  
+  compLabels <- he$interventions[scatter.data$comp |> unique() |> sort()]
+    
   ## re-adjustment of data sets
   ceef.points[, "x"] <- ceef.points[, "x"] #+ ifelse(!e.neg, 0, ec_min["mean_e"])
   ceef.points[, "y"] <- ceef.points[, "y"] #+ ifelse(!e.neg, 0, ec_min["mean_c"])
@@ -185,6 +185,7 @@ prep_frontier_data <- function(he,
   
   list(scatter.data = scatter.data,
        ceef.points = ceef.points,
-       orig.avg = orig.avg)
+       orig.avg = orig.avg,
+       compLabels = compLabels)
 }
 

@@ -32,7 +32,7 @@ contour_ggplot_params <- function(he,
       quadrant = quadrant_params(he, graph_params),
       size = rel(3.5),
       contour = list(
-        aes_string(colour = "comparison"),
+        aes_string(color = "comparison"),
         contour_var = "ndensity",
         adjust = 2,
         size = 1,
