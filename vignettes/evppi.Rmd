@@ -2,7 +2,7 @@
 title: "EVPPI plots"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Expected Incremental Benefit Plot}
+  %\VignetteIndexEntry{EVPPI plots}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

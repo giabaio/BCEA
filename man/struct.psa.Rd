@@ -21,11 +21,11 @@ R2jags or R2WinBUGS for all the models that need to be combined in the model
 average}
 
 \item{effect}{A list containing the measure of effectiveness computed from
-the various models (one matrix with n.sim x n.ints simulations for each
+the various models (one matrix with \code{n_sim} x \code{n_ints} simulations for each
 model)}
 
 \item{cost}{A list containing the measure of costs computed from the various
-models (one matrix with n.sim x n.ints simulations for each model)}
+models (one matrix with \code{n_sim} x \code{n_ints} simulations for each model)}
 
 \item{ref}{Which intervention is considered to be the reference
 strategy. The default value \code{ref=1} means that the intervention
@@ -44,7 +44,7 @@ on a discrete grid in the interval \verb{[0, Kmax]}. The grid is equal to
 \item{plot}{A logical value indicating whether the function should produce
 the summary plot or not}
 
-\item{w}{A vector of weights. By default it's NULL to indicate that the
+\item{w}{A vector of weights. By default it's \code{NULL} to indicate that the
 function will calculate the model weights based on DIC and the individual
 model fit. This behaviour can be overridden by passing a vector \code{w},
 for instance based on expert opinion}
@@ -60,9 +60,9 @@ order to perform structural PSA.
 The model is a list containing the output from either R2jags or
 R2WinBUGS for all the models that need to be combined in the model average
 effect is a list containing the measure of effectiveness computed from the
-various models (one matrix with n_sim x n_ints simulations for each model)
+various models (one matrix with \code{n_sim} x \code{n_ints} simulations for each model)
 cost is a list containing the measure of costs computed from the various
-models (one matrix with n_sim x n_ints simulations for each model).
+models (one matrix with \code{n_sim} x \code{n_ints} simulations for each model).
 }
 \examples{
 

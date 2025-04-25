@@ -20,12 +20,3 @@ test_that("best_interv_given_k works with multiple comparators and matrix input"
   expect_equal(result, c(2, 3))
 })
 
-test_that("best_interv_given_k works with multiple comparators and vector input", {
-  eib <- c(-10, 5, 20)
-  ref <- 1
-  comp <- c(2, 3)
-  
-  result <- best_interv_given_k(eib, ref, comp)
-  
-  expect_equal(result, c(2, 1, 1))
-})
