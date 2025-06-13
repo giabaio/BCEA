@@ -50,11 +50,11 @@
 #' 
 #' @examples
 #' 
-#' \dontrun{
 #' # load sample jags output
 #' data("statins_base")
 #' data("statins_HC")
 #' 
+#' \dontrun{
 #' interventions <- c("Atorvastatin", "Fluvastatin",
 #'                    "Lovastatin", "Pravastatin",
 #'                    "Rosuvastatin", "Simvastatin")

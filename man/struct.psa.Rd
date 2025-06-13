@@ -66,11 +66,11 @@ models (one matrix with \code{n_sim} x \code{n_ints} simulations for each model)
 }
 \examples{
 
-\dontrun{
 # load sample jags output
 data("statins_base")
 data("statins_HC")
 
+\dontrun{
 interventions <- c("Atorvastatin", "Fluvastatin",
                    "Lovastatin", "Pravastatin",
                    "Rosuvastatin", "Simvastatin")
