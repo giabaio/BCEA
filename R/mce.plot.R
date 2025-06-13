@@ -72,8 +72,6 @@ mce.plot <- function(mce,
                      pos = c(1, 0.5),
                      graph = c("base", "ggplot2"),
                      ...) {
-  
-  
   # lifecycle::deprecate_warn("2.4.1", "mce.plot()", "ceac.plot()")
   .Deprecated(new = "ceac.plot", old = "mce.plot")
   

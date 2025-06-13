@@ -51,27 +51,3 @@ is_plotly <- function(graph) {
   
   select_plot_type(graph) == 3
 }
-
-
-##TODO: this is from eib.plot()
-##      do we need to change anything?
-##
-# # choose graphical engine
-# if (any(is.null(graph)) || any(is.na(graph))) graph <- "base"
-# 
-# graph_choice <- pmatch(graph[1], c("base", "ggplot2", "plotly"), nomatch = 1)
-# 
-# if (graph_choice == 2 &&
-#     !requireNamespace("ggplot2", quietly = TRUE) &
-#     requireNamespace("grid", quietly = TRUE)) {
-#   warning("Package ggplot2 and grid not found;
-#             eib.plot will be rendered using base graphics.")
-#   graph_choice <- 1
-# }
-# if (graph_choice == 3 &&
-#     !requireNamespace("plotly", quietly = TRUE)) {
-#   warning("Package plotly not found;
-#             eib.plot will be rendered using base graphics.")
-#   graph_choice <- 1
-# }
-

@@ -13,16 +13,13 @@ ceplane_ggplot_params <- function(he,
                                   pos_legend,
                                   graph_params,
                                   ...) {
-
   ext_params <- ceplane_geom_params(...)
-  graph_params$area <-
-    modifyList(polygon_params(graph_params),
-               graph_params$area)
+  poly_params <- polygon_params(graph_params)
+  # use color instead of col with ggplot vs base plot
+  poly_params$color <- poly_params$col
+  poly_params$col <- NULL
   
-  ##TODO: what does this mean?
-  # if (exists("col", graph_params$area) & exists("color", graph_params$area))
-  #   graph_params$area$col = NULL
-
+  graph_params$area <- modifyList(poly_params, graph_params$area)
   graph_params$legend <- make_legend_ggplot(he, pos_legend)
   
   default_params <-
@@ -73,12 +70,8 @@ ceplane_ggplot_params <- function(he,
           }
       ),
       area = list(
-        # geom = "polygon",
         fill = graph_params$area$col,
-        ##TODO: why was this replaced?
-        alpha = ifelse(ext_params$area_include, 1, 0),
-        # include = TRUE,
-        # # alpha = 1,
+        include = ext_params$area_include,
         data = data.frame(x = graph_params$area$x,
                           y = graph_params$area$y),
         mapping = aes(x = .data$x, y = .data$y),
@@ -86,8 +79,7 @@ ceplane_ggplot_params <- function(he,
       currency = "",
       icer_annot = FALSE)
   
-  modifyList(default_params,
-             graph_params) %>% 
+  modifyList(default_params, graph_params) |>
     modifyList(ext_params)
 }
 

@@ -9,7 +9,7 @@
   he,
   comparison = NULL,
   wtp = 25000,
-  pos = c(0, 1),
+  pos = "topleft",
   graph = c("base", "ggplot2", "plotly"),
   ...
 )
@@ -26,7 +26,7 @@ comparisons together. Any subset of the possible comparisons can be selected
 (e.g., \code{comparison = c(1,3)} or \code{comparison = 2}).}
 
 \item{wtp}{The value of the willingness to pay parameter. Not used if
-\code{graph = "base"} for multiple comparisons. For \pkg{ggplot2} can also provide
+\code{graph = "base"} for multiple comparisons. For \pkg{ggplot2} and \pkg{plotly} can also provide
 a list of arguments for more options (see below).}
 
 \item{pos}{Parameter to set the position of the legend; for a single
@@ -40,8 +40,8 @@ bottom of the plot. Default value is \code{c(1,1)}, that is the topright
 corner inside the plot area.}
 
 \item{graph}{A string used to select the graphical engine to use for
-plotting. Should (partial-) match the two options \code{"base"} or
-\code{"ggplot2"}. Default value is \code{"base"}.}
+plotting. Should (partial-) match the three options \code{"base"},
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.}
 
 \item{...}{If \code{graph = "ggplot2"} and a named theme object is supplied,
 it will be passed to the \pkg{ggplot2} object. The usual ggplot2 syntax is used.
@@ -51,7 +51,7 @@ Additional graphical arguments:
 different position at the bottom of the graph. Applies to base and
 \pkg{ggplot2} only (no label in \pkg{plotly}).
 \item \code{line = list(color)}: A colour specifying the colour of the
-willingness-to-pay line.
+willingness-to-pay line (not available in the \pkg{plotly} version).
 \item \code{point = list(color)}: A vector of colours specifying the colour(s)
 associated with the cloud of points. Should be of length 1 or equal
 to the number of comparisons.
@@ -74,7 +74,7 @@ willingness-to-pay text.
 \item \code{wtp = list(size)}: A value specifying the size of the
 willingness-to-pay text.
 \item \code{wtp = list(x=..., y=...)}: Values specifying the x and y coordinates
-of the willingness-to-pay text.
+of the willingness-to-pay text (not displayed in the \pkg{plotly} version).
 \item \code{currency}: Currency prefix to cost differential values. Applies to
 \pkg{ggplot2} only.
 \item \code{icer_annot}: Annotates each ICER point with a text label. Applies to
@@ -101,9 +101,9 @@ together with the sustainability area, as a function of
 the selected willingness to pay threshold.
 }
 \details{
-In the \pkg{plotly} version, \code{point_colors}, \code{ICER_colors} and \code{area_color} can also
+In the \pkg{plotly} version, colors can also
 be specified as rgba colours using either the \verb{[plotly]toRGB}
-function or a rgba colour string, e.g. \code{'rgba(1, 1, 1, 1)'}.
+function or a rgba colour string, e.g. \code{'rgb(1, 1, 1, 1)'}.
 }
 \examples{
 ## create the bcea object for the smoking cessation example

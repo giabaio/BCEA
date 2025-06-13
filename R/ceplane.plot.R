@@ -7,7 +7,7 @@
 #'   comparisons together. Any subset of the possible comparisons can be selected
 #'   (e.g., `comparison = c(1,3)` or `comparison = 2`).
 #' @param wtp The value of the willingness to pay parameter. Not used if
-#'   `graph = "base"` for multiple comparisons. For \pkg{ggplot2} can also provide
+#'   `graph = "base"` for multiple comparisons. For \pkg{ggplot2} and \pkg{plotly} can also provide
 #'   a list of arguments for more options (see below).
 #' @param pos Parameter to set the position of the legend; for a single
 #'   comparison plot, the ICER legend position. Can be given in form of a string
@@ -52,7 +52,7 @@
 #' - `wtp = list(size)`: A value specifying the size of the 
 #'   willingness-to-pay text.
 #' - `wtp = list(x=..., y=...)`: Values specifying the x and y coordinates 
-#'   of the willingness-to-pay text.
+#'   of the willingness-to-pay text (not displayed in the \pkg{plotly} version).
 #' - `currency`: Currency prefix to cost differential values. Applies to 
 #'   \pkg{ggplot2} only.
 #' - `icer_annot`: Annotates each ICER point with a text label. Applies to 
@@ -123,8 +123,7 @@ ceplane.plot.bcea <- function(he,
   
   if (is_baseplot(graph)) {
     
-    ceplane_plot_base(he, 
-                      wtp = wtp,
+    ceplane_plot_base(he,
                       pos_legend = pos,
                       graph_params = graph_params)
     

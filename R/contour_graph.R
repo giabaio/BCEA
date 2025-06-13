@@ -81,8 +81,8 @@ contour_ggplot <- function(he,
     geom_point(size = plot_params$point$size) +
     do.call(geom_density_2d, plot_params$contour) +
     geom_quad_txt(he, plot_params) +
-    geom_hline(yintercept = 0, colour = "grey") +
-    geom_vline(xintercept = 0, colour = "grey") +
+    geom_hline(yintercept = 0, color = "grey") +
+    geom_vline(xintercept = 0, color = "grey") +
     ceplane_legend_manual(he, plot_params) +
     coord_cartesian(xlim = plot_params$xlim,
                     ylim = plot_params$ylim,

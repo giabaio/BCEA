@@ -35,7 +35,7 @@ evppi_plot_ggplot <- function(evppi_obj,
   
   ggplot(plot_dat,
          aes(x = .data$k, y = .data$value,
-             group = .data$variable, size = .data$variable, colour = .data$variable)) +
+             group = .data$variable, size = .data$variable, color = .data$variable)) +
     geom_line() +
     theme_default() +
     theme_add +

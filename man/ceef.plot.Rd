@@ -8,14 +8,13 @@
 \method{ceef.plot}{bcea}(
   he,
   comparators = NULL,
-  pos = c(1, 1),
+  pos = "topright",
   start.from.origins = TRUE,
   threshold = NULL,
   flip = FALSE,
   dominance = TRUE,
-  relative = FALSE,
   print.summary = TRUE,
-  graph = c("base", "ggplot2"),
+  graph = c("base", "ggplot2", "plotly"),
   print.plot = TRUE,
   ...
 )
@@ -55,10 +54,6 @@ specified threshold value. A negative value will be ignored with a warning.}
 
 \item{dominance}{Logical. Should the dominance regions be included in the
 plot?}
-
-\item{relative}{Logical. Should the plot display the absolute measures (the
-default as \code{FALSE}) or the differential outcomes versus the reference
-comparator?}
 
 \item{print.summary}{Logical. Should the efficiency frontier summary be
 printed along with the graph?  See Details for additional information.}
@@ -120,11 +115,6 @@ increment in the costs for a unit increment in the benefits even if
 \code{flip = TRUE} for consistency with the ICER definition. The angle of
 increase is in radians and depends on the definition of the axes, i.e. on
 the value given to the \code{flip} argument.
-
-If the argument \code{relative} is set to \code{TRUE}, the graph will not
-display the absolute measures of costs and benefits. Instead the axes will
-represent differential costs and benefits compared to the reference
-intervention (indexed by \code{ref} in the \code{\link[=bcea]{bcea()}} function).
 }
 \examples{
 
