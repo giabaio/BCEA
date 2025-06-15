@@ -67,10 +67,9 @@ models (one matrix with \code{n_sim} x \code{n_ints} simulations for each model)
 \examples{
 
 # load sample jags output
-data("statins_base")
-data("statins_HC")
+data(statins_base)
+data(statins_HC)
 
-\dontrun{
 interventions <- c("Atorvastatin", "Fluvastatin",
                    "Lovastatin", "Pravastatin",
                    "Rosuvastatin", "Simvastatin")
@@ -90,6 +89,7 @@ effects <- list(statins_base$sims.list$effect,
 costs <- list(statins_base$sims.list$cost.tot,
               statins_HC$sims.list$cost.tot)
 
+\dontrun{
 m3 <- struct.psa(models, effects, costs,
                  ref = 1, interventions = interventions)
 }

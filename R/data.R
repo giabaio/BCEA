@@ -87,9 +87,10 @@ NULL
 #' @keywords datasets
 NULL
 
-#' Statins Evidence-Synthesis Data (Base Model)
-#'
-#' This data set contains the results of a Bayesian analysis used to model
+#' @title Statins Evidence-Synthesis Data (Base Model)
+#' @name statins_base
+#' 
+#' @description This data set contains the results of a Bayesian analysis used to model
 #' the effectiveness of various statins. The analysis is based on the simplest
 #' model, using vague priors.
 #'
@@ -98,15 +99,17 @@ NULL
 #' @source A systematic review and economic evaluation of statins for the
 #'   prevention of coronary events. Ward 2007.
 #' @keywords datasets
+#' @aliases statins_base
 #' @examples
 #' data(statins_base)
-#' lapply(statins_HC$sims.list, summary)
-"statins_base"
+#' lapply(statins_base$sims.list, summary)
+NULL
 
 
-#' Statins Evidence-Synthesis Data (Robust Model)
-#'
-#' This data set contains the results of a Bayesian analysis used to model
+#' @title Statins Evidence-Synthesis Data (Robust Model)
+#' @name statins_HC
+#' 
+#' @description This data set contains the results of a Bayesian analysis used to model
 #' the effectiveness of various statins. The analysis uses robust Half-Cauchy
 #' priors for the structured effects standard deviations.
 #'
@@ -115,7 +118,8 @@ NULL
 #' @source A systematic review and economic evaluation of statins for the
 #'   prevention of coronary events. Ward 2007.
 #' @keywords datasets
+#' @aliases statins_HC
 #' @examples
 #' data(statins_HC)
 #' lapply(statins_HC$sims.list, summary)
-"statins_HC"
+NULL

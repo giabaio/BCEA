@@ -51,10 +51,9 @@
 #' @examples
 #' 
 #' # load sample jags output
-#' data("statins_base")
-#' data("statins_HC")
+#' data(statins_base)
+#' data(statins_HC)
 #' 
-#' \dontrun{
 #' interventions <- c("Atorvastatin", "Fluvastatin",
 #'                    "Lovastatin", "Pravastatin",
 #'                    "Rosuvastatin", "Simvastatin")
@@ -74,6 +73,7 @@
 #' costs <- list(statins_base$sims.list$cost.tot,
 #'               statins_HC$sims.list$cost.tot)
 #' 
+#' \dontrun{
 #' m3 <- struct.psa(models, effects, costs,
 #'                  ref = 1, interventions = interventions)
 #' }
