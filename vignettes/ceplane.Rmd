@@ -201,8 +201,8 @@ Alternatively, we can pass a list of arguments to `wtp` to modify the appearance
 
 ```{r}
 ceplane.plot(he, graph = "ggplot2", wtp = list(value = 10000))
-ceplane.plot(he, graph = "ggplot2", wtp = list(value = 10000, colour = "blue"))
-ceplane.plot(he, graph = "ggplot2", wtp = list(colour = "blue"))
+ceplane.plot(he, graph = "ggplot2", wtp = list(value = 10000, color = "blue"))
+ceplane.plot(he, graph = "ggplot2", wtp = list(color = "blue"))
 ceplane.plot(he, graph = "ggplot2", wtp = list(size = 5))
 ```
 
@@ -259,9 +259,7 @@ ceplane.plot(he, wtp = 1000, xlim = c(-0.0005, 0.0015), label.pos = FALSE)
 ```{r}
 ##TODO: not yet implemented ggplot syntax for base R
 
-# ceplane.plot(he, wtp = list(value = 10000))
-# ceplane.plot(he, wtp = list(value = 10000, colour = "blue"))
-# ceplane.plot(he, wtp = list(colour = "blue"))
+# ceplane.plot(he, wtp = list(color = "blue"))
 # ceplane.plot(he, wtp = list(y = 8))
 # ceplane.plot(he, wtp = list(size = 5))
 # 

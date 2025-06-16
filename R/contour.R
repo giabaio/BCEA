@@ -22,8 +22,8 @@
 #' @export
 #' 
 contour.bcea <- function(he,
-                         pos = c(0, 1),
-                         graph = c("base", "ggplot2"),
+                         pos = "topleft",
+                         graph = c("base", "ggplot2", "plotly"),
                          comparison = NULL,
                          ...) {
   
@@ -34,12 +34,11 @@ contour.bcea <- function(he,
   params <- prep_contour_params(he, ...)
   
   if (is_baseplot(graph_type)) {
-    
     contour_base(he, pos_legend = pos, params, ...)
-    
   } else if (is_ggplot(graph_type)) {
-    
     contour_ggplot(he, pos_legend = pos, params, ...)
+  } else if (is_plotly(graph_type)) {
+    contour_plotly(he, pos_legend = pos, params, ...)
   }
 }
 
@@ -72,9 +71,6 @@ contour.bcea <- function(he,
 #'          [contour2()]
 #' @keywords hplot
 #' 
-#' @import ggplot2
-#' @importFrom MASS kde2d
-#' @importFrom grid unit
 #' @importFrom Rdpack reprompt
 #'  
 #' @examples

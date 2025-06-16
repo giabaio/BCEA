@@ -27,7 +27,8 @@ prep_eib_params <- function(he, plot.cri, ...) {
       line = list(
         type = rep_len(1:6, he$n_comparisons),
         lwd = ifelse(he$n_comparisons > 6, 1.5, 1),
-        color = 1, #1:he$n_comparisons,
+        # color = 1, #1:he$n_comparisons,
+        color = "black",
         cri_col = "grey50",
         cri_lty = 2),
       plot.cri = ifelse((is.null(plot.cri) && he$n_comparisons == 1) ||

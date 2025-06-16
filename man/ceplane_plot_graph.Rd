@@ -10,7 +10,7 @@
 \alias{ceplane_plot_plotly}
 \title{Cost-Effectiveness Plane Plot By Graph Device}
 \usage{
-\method{ceplane_plot_base}{bcea}(he, wtp = 25000, pos_legend, graph_params, ...)
+\method{ceplane_plot_base}{bcea}(he, pos_legend, graph_params, ...)
 
 ceplane_plot_base(he, ...)
 
@@ -26,13 +26,13 @@ ceplane_plot_plotly(he, ...)
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
 
-\item{wtp}{Willingness to pay threshold; default 25,000}
-
 \item{pos_legend}{Legend position}
 
 \item{graph_params}{Graph parameters in \pkg{ggplot2} format}
 
 \item{...}{Additional arguments}
+
+\item{wtp}{Willingness to pay threshold; default 25,000}
 }
 \value{
 For base R returns a plot

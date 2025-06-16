@@ -12,7 +12,7 @@
   bw = "bcv",
   n = 512,
   xlim = NULL,
-  graph = c("base", "ggplot2"),
+  graph = c("base", "ggplot2", "plotly"),
   ...
 )
 

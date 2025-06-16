@@ -21,7 +21,7 @@
 #' @param ...  If `graph="ggplot2"` and a named theme object is supplied,
 #'   it will be added to the ggplot object. Additional arguments:
 #'   
-#' - `alpha`: Can be used to set the CrI level when `plot.cri=TRUE`, 
+#' - `alpha_cri`: Can be used to set the CrI level when `plot.cri=TRUE`, 
 #'   with a default value of `alpha=0.05`.
 #' - `cri.quantile`: Controls the method of calculation of the credible 
 #'   intervals. The default value, `cri.quantile=TRUE`, defines the CrI as the 
@@ -41,7 +41,7 @@
 #' 
 eib.plot.bcea <- function(he,
                           comparison = NULL,
-                          pos = c(1, 0),
+                          pos = "bottomright",
                           size = NULL,
                           plot.cri = NULL,
                           graph = c("base", "ggplot2", "plotly"),

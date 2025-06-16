@@ -27,7 +27,6 @@
 #' @keywords hplot
 #' @export
 #' 
-#' @import ggplot2
 #' @importFrom Rdpack reprompt
 #' 
 #' @examples 
@@ -61,7 +60,7 @@
 #'
 ceac.plot.bcea <- function(he,
                            comparison = NULL,
-                           pos = c(1, 0),
+                           pos = "bottomright",
                            graph = c("base", "ggplot2", "plotly"),
                            ...) {
   graph <- match.arg(graph)
