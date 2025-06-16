@@ -4,6 +4,7 @@
 <url><loc>https://n8thangreen.github.io/BCEA/CONTRIBUTING.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/ISSUE_TEMPLATE.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/LICENSE.html</loc></url>
+<url><loc>https://n8thangreen.github.io/BCEA/PULL_REQUEST_TEMPLATE.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/articles/CEriskav.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/articles/Set_bcea_parameters.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/articles/bcea.html</loc></url>
@@ -12,6 +13,7 @@
 <url><loc>https://n8thangreen.github.io/BCEA/articles/ceplane.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/articles/contour.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/articles/eib.html</loc></url>
+<url><loc>https://n8thangreen.github.io/BCEA/articles/evppi.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/articles/index.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/articles/paired_vs_multiple_comps.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/authors.html</loc></url>
@@ -19,6 +21,7 @@
 <url><loc>https://n8thangreen.github.io/BCEA/news/index.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/BCEA-deprecated.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/BCEA-package.html</loc></url>
+<url><loc>https://n8thangreen.github.io/BCEA/reference/CEriskav.plot.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/CEriskav_assign.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/CEriskav_plot_graph.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/GrassmannOptim.html</loc></url>
@@ -54,11 +57,13 @@
 <url><loc>https://n8thangreen.github.io/BCEA/reference/compute_kstar.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/compute_ol.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/compute_p_best_interv.html</loc></url>
+<url><loc>https://n8thangreen.github.io/BCEA/reference/compute_p_optimal_best.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/compute_vi.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/contour.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/contour2.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/contour_ggplot_params.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/contour_graph.html</loc></url>
+<url><loc>https://n8thangreen.github.io/BCEA/reference/contour_plotly_lines.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/convert_pts_to_mm.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/createInputs.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/diag.evppi.html</loc></url>
@@ -102,6 +107,7 @@
 <url><loc>https://n8thangreen.github.io/BCEA/reference/plot_eib_cri.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/prep_ceplane_params.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/prep_contour_params.html</loc></url>
+<url><loc>https://n8thangreen.github.io/BCEA/reference/prep_delta_ce.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/prep_eib_params.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/prep_frontier_data.html</loc></url>
 <url><loc>https://n8thangreen.github.io/BCEA/reference/print.bcea.html</loc></url>
