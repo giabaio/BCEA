@@ -74,4 +74,3 @@
 'CEriskav<-.default' <- function(he, value) {
   stop("No available method.", call. = FALSE)
 }
-
