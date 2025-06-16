@@ -9,10 +9,11 @@
 #' @param ... Additional arguments
 #' @importFrom grDevices grey.colors
 #'
-#' @return List pf graph parameters
+#' @return List of graph parameters
 #' @export
 #' @keywords internal
 #'
+
 prep_ceplane_params <- function(he, wtp_params, ...) {
   
   graph_params <- list(...)
@@ -59,7 +60,7 @@ prep_ceplane_params <- function(he, wtp_params, ...) {
            size = 11),
          area = list(
            # line_color = "black",
-           col = "grey95"),
+           color = "grey95"),
          ref_first = TRUE)
   
   out <- 

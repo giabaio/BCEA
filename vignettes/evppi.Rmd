@@ -1,0 +1,100 @@
+---
+title: "EVPPI plots"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{EVPPI plots}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 6,
+  fig.height = 6
+)
+```
+
+```{r setup, results='hide', message=FALSE, warning=FALSE, echo=FALSE}
+library(BCEA)
+library(dplyr)
+library(reshape2)
+library(ggplot2)
+library(purrr)
+```
+
+
+## Introduction
+
+## R code
+
+```{r warning=FALSE, message=FALSE, results=FALSE}
+data(Vaccine, package = "BCEA")
+treats <- c("Status quo", "Vaccination")
+
+# Run the health economic evaluation using BCEA
+m <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
+
+# Compute the EVPPI for a bunch of parameters
+inp <- createInputs(vaccine_mat)
+
+# explicitly use BCEA package namespace to avoid voi package conflict
+EVPPI <- BCEA::evppi(m, c("beta.1." , "beta.2."), inp$mat)
+```
+
+```{r}
+plot(EVPPI)
+```
+
+
+```{r eval=FALSE}
+# deprecated (single parameter) methods
+EVPPI.so <- BCEA::evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "so", n.blocks = 50)
+EVPPI.sad <- BCEA::evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps = 1)
+
+plot(EVPPI.so)
+plot(EVPPI.sad)
+```
+
+```{r}
+# Compute the EVPPI using INLA/SPDE
+x_inla <- BCEA::evppi(he = m, 39:40, input = inp$mat)
+
+# using GAM regression
+x_gam <- BCEA::evppi(he = m, 39:40, input = inp$mat, method = "GAM")
+
+# using Strong et al GP regression
+x_gp <- BCEA::evppi(he = m, 39:40, input = inp$mat, method = "GP")
+
+plot(x_inla)
+lines(x_inla$k, x_inla$evppi, lwd = 2, lty = 2)
+lines(x_gam$k, x_gam$evppi, col = "red")
+lines(x_gp$k, x_gp$evppi, col = "blue")
+
+# zoom in
+plot(x_inla$k, x_inla$evppi, type = "l", lwd = 2, lty = 2)
+lines(x_gam$k, x_gam$evppi, col = "red")
+lines(x_gp$k, x_gp$evppi, col = "blue")
+```
+
+```{r}
+data(Smoking)
+treats <- c("No intervention", "Self-help",
+            "Individual counselling", "Group counselling")
+
+m <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
+
+inp <- createInputs(smoking_output)
+
+EVPPI <- BCEA::evppi(m, c(2,3), inp$mat, h.value = 0.0000005)
+
+plot(EVPPI)
+```
+
+
+```{r echo=FALSE}
+# # create output docs
+# rmarkdown::render(input = "vignettes/evppi.Rmd", output_format = "pdf_document", output_dir = "vignettes")
+# rmarkdown::render(input = "vignettes/evppi.Rmd", output_format = "html_document", output_dir = "vignettes")
+```

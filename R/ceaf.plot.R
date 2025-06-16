@@ -69,11 +69,10 @@
 #' @export
 #' 
 ceaf.plot.pairwise <- function(mce,
-                               graph = c("base", "ggplot2"),
+                               graph = c("base", "ggplot2", "plotly"),
                                ...) {
   
   graph <- match.arg(graph)
-  base_graphics <- all(pmatch(graph, c("base", "ggplot2")) != 2)
   
   if (!(requireNamespace("ggplot2", quietly = TRUE) &&
         requireNamespace("grid", quietly = TRUE))) {
@@ -81,7 +80,7 @@ ceaf.plot.pairwise <- function(mce,
     base_graphics <- TRUE
   }
   
-  if (base_graphics) {
+  if (is_baseplot(graph)) {
     plot(NULL,
          ylim = c(0, 1),
          xlim = c(0, max(mce$k)),
@@ -98,7 +97,7 @@ ceaf.plot.pairwise <- function(mce,
           type = "l",
           lty = 1,
           lwd = 4)
-  } else {
+  } else if (is_ggplot(graph)) {
     df <- data.frame(k = mce$k,
                      ceaf = mce$ceaf)
 
@@ -119,6 +118,26 @@ ceaf.plot.pairwise <- function(mce,
               face = "bold",
               size = 14.3,
               hjust = 0.5))
+  } else if (is_plotly(graph)) {
+    df <- data.frame(k = mce$k, ceaf = mce$ceaf)
+    
+    ceaf_plot <- plotly::plot_ly(df, x = ~k, y = ~ceaf)
+    ceaf_plot <-
+      plotly::add_lines(ceaf_plot)
+    
+    ceaf_plot <-
+      plotly::layout(
+        ceaf_plot,
+        title = "Cost-effectiveness acceptability frontier",
+        xaxis = list(
+          hoverformat = ".2f",
+          title = "Willingness to pay"),
+        yaxis = list(
+          title = "Probability of most cost-effectiveness",
+          range = c(0, 1.005))) |>
+      plotly::hide_colorbar()
+    
+    plotly::config(ceaf_plot, displayModeBar = FALSE)
   }
 }
 

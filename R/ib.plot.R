@@ -48,23 +48,29 @@ ib.plot.bcea <- function(he,
                          bw = "bcv",  ##TODO: what was nbw? previous was bigger/smoother
                          n = 512,
                          xlim = NULL,
-                         graph = c("base", "ggplot2"),
+                         graph = c("base", "ggplot2", "plotly"),
                          ...) {
-  
-  base.graphics <- all(pmatch(graph, c("base", "ggplot2")) != 2)
+  graph <- match.arg(graph)
   
   if (!is.null(comparison))
     stopifnot(comparison <= he$n_comparisons)
   
-  if (base.graphics) {
+  if (is_baseplot(graph)) {
     ib_plot_base(he,
                  comparison,
                  wtp,
                  bw,
                  n,
                  xlim)
-  } else {
+  } else if (is_ggplot(graph)) {
     ib_plot_ggplot(he,
+                   comparison,
+                   wtp,
+                   bw,
+                   n,
+                   xlim)
+  } else if (is_plotly(graph)) {
+    ib_plot_plotly(he,
                    comparison,
                    wtp,
                    bw,

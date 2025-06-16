@@ -12,11 +12,14 @@
 #' @keywords internal
 #' 
 make_legend_ggplot <- function(dat, pos_legend) {
-  
   legend_just <- NULL  # sets the corner that the legend_pos position refers to
   legend_dir <- NULL
   
   n_lines <- num_lines(dat)
+
+  ##TODO: why would it be NULL?  
+  # n_lines <- 0
+  # if (!is.null(dat)) n_lines <- num_lines(dat)
   
   if (n_lines == 1) {
     
@@ -34,7 +37,7 @@ make_legend_ggplot <- function(dat, pos_legend) {
       legend_pos <- c(1, 0)
       legend_just <- legend_pos 
     }
-  } else if (is.character(pos_legend)) {
+  } else if (is.character(pos_legend) && pos_legend != "") {
     
     pos_choices <- c("left", "right", "bottom", "top")
     dir_choices <- c("horizontal", "vertical")
@@ -49,17 +52,15 @@ make_legend_ggplot <- function(dat, pos_legend) {
     legend_just <- "center"
   } else if (is.numeric(pos_legend) &&
              length(pos_legend) == 2) {
-    
     legend_pos <- pos_legend
     legend_just <- pos_legend
+
   } else {
     # default
     legend_pos <- c(1, 0)
     legend_just <- legend_pos
   } 
-  
   list(legend.direction = legend_dir,
        legend.justification = legend_just,
        legend.position = legend_pos)
 }
-

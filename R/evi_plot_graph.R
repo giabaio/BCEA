@@ -92,7 +92,7 @@ evi_plot_ggplot <- function(he,
   evi <-
     ggplot(data.psa, aes(.data$k, .data$evi)) +
     geom_line(
-      colour = plot_aes$line$colors,
+      color = plot_aes$line$colors,
       lty = ifelse(is.null(plot_aes$line$types), 1, plot_aes$line$type)) +
     theme_bw() +
     labs(title = plot_annotations$title,
@@ -120,7 +120,7 @@ evi_plot_ggplot <- function(he,
           y = evi.at.kstar[i],
           yend = -Inf,
           linetype = 2,
-          colour = "grey50") +
+          color = "grey50") +
         annotate(
           "segment",
           x = he$kstar[i],
@@ -128,7 +128,7 @@ evi_plot_ggplot <- function(he,
           y = evi.at.kstar[i],
           yend = evi.at.kstar[i],
           linetype = 2,
-          colour = "grey50")
+          color = "grey50")
     }
   }
   

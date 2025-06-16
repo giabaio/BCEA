@@ -49,7 +49,8 @@
 #' 
 multi.ce.bcea <- function(he) {
   
-  p_best_interv <- compute_p_best_interv(he)
+  # p_best_interv <- compute_p_best_interv(he)
+  p_best_interv <- compute_p_optimal_best(he)
   ceaf <- compute_ceaf(p_best_interv)
   
   res <- c(he,

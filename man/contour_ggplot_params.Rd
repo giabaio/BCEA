@@ -2,19 +2,21 @@
 % Please edit documentation in R/contour_ggplot_params.R
 \name{contour_ggplot_params}
 \alias{contour_ggplot_params}
-\title{Contour ggplot Parameters}
+\title{Contour ggplot2 Parameters}
 \usage{
-contour_ggplot_params(he, graph_params, ...)
+contour_ggplot_params(he, pos_legend, graph_params, ...)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian
 modelling and the economic evaluation.}
+
+\item{pos_legend}{legend position}
 
 \item{graph_params}{Other graphical parameters}
 
 \item{...}{Additional arguments}
 }
 \description{
-Contour ggplot Parameters
+Contour ggplot2 Parameters
 }
 \keyword{internal}

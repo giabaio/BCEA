@@ -24,7 +24,7 @@ library(BCEA)
 
 Load the data.
 
-```{r}
+```{r load-data}
 data(Smoking)
 ```
 
@@ -36,13 +36,13 @@ treats <- c("No intervention", "Self-help", "Individual counselling", "Group cou
 
 Setting the reference group (`ref`) to _Group counselling_ and the maximum willingness to pay (`Kmax`) as 500.
 
-```{r}
+```{r bcea-call}
 bcea_smoke <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 ```
 
 We can easily create a grid of the most common plots
 
-```{r fig.width=10, fig.height=10}
+```{r grid-plot}
 #| fig.width: 12
 #| fig.height: 11
 #| out.width: 95%
@@ -53,11 +53,12 @@ library(purrr)
 plot(bcea_smoke)
 plot(bcea_smoke, graph = "ggplot2")
 plot(bcea_smoke, graph = "ggplot2", pos = "bottomvertical")
+plot(bcea_smoke, graph = "ggplot2", pos = "bottomhorizontal")
 ```
 
 Individual plots can be plotting using their own functions.
 
-```{r}
+```{r separate-plots}
 #| fig.width: 7
 #| fig.height: 5
 #| out.width: 95%
@@ -75,7 +76,7 @@ ib.plot(bcea_smoke)
 
 More on this in the other vignettes but you can change the default plotting style, such as follows.
 
-```{r}
+```{r colour-plot}
 #| fig.width: 12
 #| fig.height: 11
 #| out.width: 95%

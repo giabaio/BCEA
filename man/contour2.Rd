@@ -9,8 +9,8 @@
   he,
   comparison = NULL,
   wtp = 25000,
-  graph = c("base", "ggplot2"),
-  pos = c(0, 1),
+  graph = c("base", "ggplot2", "plotly"),
+  pos = "topleft",
   ...
 )
 
