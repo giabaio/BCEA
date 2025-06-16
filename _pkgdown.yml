@@ -24,6 +24,7 @@ reference:
   - BCEA-package
   - bcea
   - new_bcea
+  - CEriskav.plot.CEriskav
 - title: "Setters"
   desc: "Functions for modifying or extending a `bcea()` analysis."
   contents:
