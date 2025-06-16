@@ -167,7 +167,7 @@ plot.bcea <- function(x,
                    extra_params,
                    keep.null = TRUE)
       
-      theme_add <- Filter(f = \(val) ggplot2::is.theme(val), x = extra_args)
+      theme_add <- Filter(f = \(val) ggplot2::is_theme(val), x = extra_args)
       
       ceplane.pos <- ifelse(pos, pos, c(1, 1.025))
       

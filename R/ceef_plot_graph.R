@@ -35,7 +35,7 @@ ceef_plot_ggplot <- function(he,
   
   extra_args <- list(...)
   
-  opt_theme <- Filter(f = \(val) ggplot2::is.theme(val), x = extra_args)
+  opt_theme <- Filter(f = \(val) ggplot2::is_theme(val), x = extra_args)
   ceplane <- ggplot(ceef.points, aes(x = .data$x, y = .data$y))
   
   if (add_dominance_region) {
@@ -125,7 +125,8 @@ ceef_plot_ggplot <- function(he,
 #' @rdname ceef_plot_graph
 #' @title CEEF plot plotly version
 #'
-#' @import ggplot2 plotly
+#' @import ggplot2
+#' @importFrom plotly add_trace layout plot_ly add_lines config
 #' @importFrom grid unit
 #' @importFrom grDevices gray
 #'
@@ -157,7 +158,7 @@ ceef_plot_plotly <- function(he,
   
   extra_args <- list(...)
   
-  opt_theme <- purrr::keep(extra_args, is.theme)
+  opt_theme <- purrr::keep(extra_args, is_theme)
   
   if (flip) {
     names(ceef.points) = c(names(ceef.points)[c(2,1)], names(ceef.points)[-c(1,2)])
@@ -215,10 +216,11 @@ ceef_plot_plotly <- function(he,
       name = "Efficient interventions",
       type = "scatter",
       mode = "markers+text",
-      data = orig.avg[orig.avg$comp %in% ceef.points$comp,],
+      data = orig.avg[orig.avg$comp %in% ceef.points$comp, ],
       x = ~e.orig,
       y = ~c.orig,
-      marker = list(size = 20, fillcolor = "white", color = "white", line = list(width = 1, color = "black")),
+      marker = list(size = 20, fillcolor = "white", color = "white",
+                    line = list(width = 1, color = "black")),
       text = ~comp, 
       textfont = list(color = "black")
     ) |>
@@ -226,10 +228,11 @@ ceef_plot_plotly <- function(he,
       name = "Inefficient interventions",
       type = "scatter",
       mode = "markers+text",
-      data = orig.avg[!orig.avg$comp %in% ceef.points$comp,],
+      data = orig.avg[!orig.avg$comp %in% ceef.points$comp, ],
       x = ~e.orig,
       y = ~c.orig,
-      marker = list(size = 20, fillcolor = "white", color = "white", line = list(width = 1, color = "grey")),
+      marker = list(size = 20, fillcolor = "white", color = "white",
+                    line = list(width = 1, color = "grey")),
       text = ~comp,
       textfont = list(color = "grey")
     )

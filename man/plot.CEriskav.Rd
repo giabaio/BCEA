@@ -4,10 +4,10 @@
 \alias{plot.CEriskav}
 \title{Plots EIB and EVPI for the Risk Aversion Case}
 \usage{
-\method{plot}{CEriskav}(he, pos = "topright", graph = c("base", "ggplot2", "plotly"))
+\method{plot}{CEriskav}(x, pos = "topright", graph = c("base", "ggplot2", "plotly"), ...)
 }
 \arguments{
-\item{he}{An object of the class \code{CEriskav}, a subclass of \code{bcea},
+\item{x}{An object of the class \code{CEriskav}, a subclass of \code{bcea},
 containing the results of the economic analysis performed accounting for a
 risk aversion parameter (obtained as output of the function \code{\link[=CEriskav]{CEriskav()}}).}
 
@@ -47,10 +47,10 @@ when risk aversion is included in the utility function.
 
 # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 # Bayesian model and economic problem
-#
+
 # Load the processed results of the MCMC simulation model
 data(Vaccine)
-# 
+
 # Runs the health economic evaluation using BCEA
 m <- bcea(e=eff, c=cost,    # defines the variables of 
                             #  effectiveness and cost
@@ -63,15 +63,15 @@ m <- bcea(e=eff, c=cost,    # defines the variables of
                             #  in a grid from the interval (0,Kmax)
       plot=FALSE            # inhibits graphical output
 )
-#
-# Define the vector of values for the risk aversion parameter, r, eg:
+
+# Define the vector of values for the risk aversion parameter, r, e.g.:
 r <- c(1e-10, 0.005, 0.020, 0.035) 
-#
+
 # Run the cost-effectiveness analysis accounting for risk aversion
 \donttest{
    CEriskav(m) <- r
 }
-#
+
 # produce the plots
 \donttest{
    plot(m)

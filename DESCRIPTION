@@ -28,6 +28,7 @@ Imports:
     MASS,
     Matrix,
     MCMCvis,
+    plotly,
     purrr,
     Rdpack,
     reshape2,
@@ -43,7 +44,6 @@ Suggests:
     knitr,
     markdown,
     mgcv,
-    plotly,
     plotrix,
     RColorBrewer,
     rjags,
@@ -66,7 +66,7 @@ URL: https://gianluca.statistica.it/software/bcea/,
      https://github.com/giabaio/BCEA/,
      https://n8thangreen.github.io/BCEA/
 NeedsCompilation: no
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.2.9000
 Encoding: UTF-8
 BugReports: https://github.com/n8thangreen/BCEA/issues/
 LazyData: false

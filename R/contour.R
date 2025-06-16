@@ -71,9 +71,6 @@ contour.bcea <- function(he,
 #'          [contour2()]
 #' @keywords hplot
 #' 
-#' @import ggplot2
-#' @importFrom MASS kde2d
-#' @importFrom grid unit
 #' @importFrom Rdpack reprompt
 #'  
 #' @examples

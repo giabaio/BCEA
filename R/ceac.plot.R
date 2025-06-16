@@ -27,7 +27,6 @@
 #' @keywords hplot
 #' @export
 #' 
-#' @import ggplot2
 #' @importFrom Rdpack reprompt
 #' 
 #' @examples 

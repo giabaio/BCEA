@@ -2,6 +2,7 @@
 #' @rdname contour2
 #' @importFrom stats sd
 #' @importFrom graphics par contour
+#' @importFrom grDevices ps.options pdf.options
 #' 
 #' @export
 #' 
@@ -22,8 +23,8 @@ contour2.bcea <- function(he,
     
     # encode characters so that the graph can
     # be saved as postscript or pdf
-    ps.options(encoding = "CP1250")
-    pdf.options(encoding = "CP1250")
+    grDevices::ps.options(encoding = "CP1250")
+    grDevices::pdf.options(encoding = "CP1250")
     
     plot_params <-
       contour_base_params(he, graph_params)
@@ -46,8 +47,10 @@ contour2.bcea <- function(he,
     
     comp_label <- paste(he$interventions[he$ref], "vs", he$interventions[he$comp])
     
-    if (length(graph_params$point$colors) != length(comp_label))
-      graph_params$point$colors <- rep_len(graph_params$point$color, length(comp_label))
+    if (length(graph_params$point$colors) != length(comp_label)) {
+      graph_params$point$colors <-
+        rep_len(graph_params$point$color, length(comp_label))
+    }
     
     pt_cols <-
       ifelse(test = grepl(pattern = "^rgba\\(",
@@ -55,7 +58,9 @@ contour2.bcea <- function(he,
              yes = plotly::toRGB(graph_params$point$colors),
              no = graph_params$point$colors)
     
-    ceplane.plot(he, wtp = wtp, pos = pos, graph = "plotly", graph_params = graph_params, ...) |>
+    ceplane.plot(he, wtp = wtp, pos = pos,
+                 graph = "plotly",
+                 graph_params = graph_params, ...) |>
       contour_plotly_lines(he, delta_ce, graph_params, pt_cols)
   }
 }
@@ -97,9 +102,6 @@ contour2.bcea <- function(he,
 #' \insertRef{Baio2013}{BCEA}
 #' 
 #' @keywords hplot
-#' @import ggplot2
-#' @importFrom grDevices ps.options pdf.options
-#' @importFrom MASS kde2d
 #' @importFrom Rdpack reprompt
 #'  
 #' @examples

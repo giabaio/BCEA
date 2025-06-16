@@ -69,7 +69,7 @@ contour_ggplot <- function(he,
   if (!is.null(plot_params$legend$legend.direction))
     th_contour = th_contour + ggplot2::theme(legend.direction = plot_params$legend$legend.direction)
   
-  theme_add <- Filter(f = \(val) ggplot2::is.theme(val), x = list(...))
+  theme_add <- Filter(f = \(val) ggplot2::is_theme(val), x = list(...))
   
   ##TODO: rename as something more descriptive? eg to_long_ce_data() 
   # single long format for ggplot data

@@ -132,7 +132,7 @@ ib_plot_ggplot <- function(he,
 #' @param n Number
 #' @param xlim x-axis limits
 #' 
-#' @import plotly
+#' @importFrom plotly plot_ly add_lines TeX toRGB layout config
 #' @importFrom dplyr filter
 #' 
 ib_plot_plotly <- function(he,
@@ -224,5 +224,6 @@ ib_plot_plotly <- function(he,
       )
     )
   
-  ib |> plotly::config(mathjax = "cdn", displayModeBar = FALSE)
+  plotly::config(ib, mathjax = "cdn",
+                 displayModeBar = FALSE)
 }
