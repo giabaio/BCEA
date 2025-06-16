@@ -10,6 +10,9 @@
 \alias{ceac_plot_ggplot.bcea}
 \alias{ceac_ggplot}
 \alias{ceac_plot_plotly}
+\alias{ceac_plot_plotly.pairwise}
+\alias{ceac_plot_plotly.bcea}
+\alias{ceac_plotly}
 \title{Cost-Effectiveness Acceptability Curve (CEAC) Plot By Graph Device}
 \usage{
 ceac_plot_base(he, pos_legend, graph_params, ...)
@@ -26,7 +29,13 @@ ceac_plot_ggplot(he, pos_legend, graph_params, ...)
 
 ceac_ggplot(he, pos_legend, graph_params, ceac, ...)
 
-ceac_plot_plotly(he, pos_legend = "left", graph_params)
+ceac_plot_plotly(he, pos_legend, graph_params, ...)
+
+\method{ceac_plot_plotly}{pairwise}(he, pos_legend, graph_params, ...)
+
+\method{ceac_plot_plotly}{bcea}(he, pos_legend, graph_params, ...)
+
+ceac_plotly(he, pos_legend = "bottomright", graph_params, ceac, ...)
 }
 \arguments{
 \item{he}{A \code{bcea} object containing the results of the Bayesian

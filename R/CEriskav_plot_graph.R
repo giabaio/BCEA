@@ -7,7 +7,7 @@
 #' @name CEriskav_plot_graph
 #' @title Cost-effectiveness Plot Including a Parameter of Risk Aversion
 #'
-#' @description Choice of base R, \pkg{ggplot2}.
+#' @description Choice of base R, \pkg{ggplot2} or \pkg{plotly}.
 #'
 #' @template args-he
 #' @param pos_legend Legend position
@@ -95,7 +95,7 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
   eibr_plot <-
     ggplot(eib_dat, aes(x = .data$k, y = .data$eibr, linetype = .data$r)) +
     geom_line() +
-    geom_hline(yintercept = 0, linetype = 1, colour = "grey50") +
+    geom_hline(yintercept = 0, linetype = 1, color = "grey50") +
     scale_linetype_manual("", labels = text, values = linetypes) +
     theme_bw() +
     labs(title = "EIB as a function of the risk aversion parameter",
@@ -128,7 +128,7 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
 
   evir_plot <-
     ggplot(evi_dat, aes(x = .data$k, y = .data$evir, linetype = .data$r)) +
-    geom_hline(yintercept = 0, linetype = 1, colour = "grey50")+
+    geom_hline(yintercept = 0, linetype = 1, color = "grey50")+
     geom_line() +
     scale_linetype_manual("", labels = text, values =linetypes) +
     theme_bw() +
@@ -156,6 +156,78 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
   plot(eibr_plot)
   plot(evir_plot)
 
+  invisible(list(eib = eibr_plot,
+                 evi = evir_plot))
+}
+
+#' @rdname CEriskav_plot_graph
+#' @title CEriskav plotly version
+#'
+CEriskav_plot_plotly <- function(he, pos_legend) {
+  default_comp <- 1
+  linetypes <- rep(c(1,2,3,4,5,6), ceiling(he$R/6))[1:he$R]
+  
+  # labels
+  text <- paste0("r = ", he$r)
+  
+  # if the first value for r is small enough,
+  # consider close to 0 and print label accordingly
+  if (he$r[1] < 1e-8) text[1] <- paste("r","\U2B62","0")
+  
+  legend_params <- make_legend_plotly(pos_legend)
+  
+  eib_dat <-
+    melt(he$eibr[, default_comp, , drop = FALSE],
+         value.name = "eibr") |>
+    dplyr::rename(k = "Var1", r = "Var3") |>
+    dplyr::mutate(r = factor(.data$r, labels = text))
+  
+  evi_dat <-
+    melt(he$evir,
+         value.name = "evir") |>
+    dplyr::rename(r = "Var2", k = "Var1") |>
+    dplyr::mutate(r = factor(.data$r, labels = text))
+  
+  eibr_plot <-
+    plotly::plot_ly(data = eib_dat, linetype = ~r, x = ~k) |>
+    plotly::add_trace(
+      y = ~eibr,
+      type = "scatter",
+      mode = "lines",
+      linetypes = linetypes,
+      line = list(
+        color = "black"
+      )
+    ) |>
+    plotly::layout(
+      title = "EIB as a function of the risk aversion parameter",
+      xaxis = list(title = "Willingness to pay"),
+      yaxis = list(title = "EIB"),
+      legend = list(title = list(text = "Risk aversion"))
+    ) |>
+    plotly::config(displayModeBar = FALSE)
+  
+  evir_plot <-
+    plotly::plot_ly(data = evi_dat, linetype = ~r, x = ~k) |>
+    plotly::add_trace(
+      y = ~evir,
+      type = "scatter",
+      mode = "lines",
+      linetypes = linetypes,
+      line = list(
+        color = "black"
+      )
+    ) |>
+    plotly::layout(
+      title = "EVI as a function of the risk aversion parameter",
+      xaxis = list(title = "Willingness to pay"),
+      yaxis = list(title = "EVI"),
+      legend = list(title = list(text = "Risk aversion"))
+    ) |>
+    plotly::config(displayModeBar = FALSE)
+  
+  print(list(eibr_plot, evir_plot))
+  
   invisible(list(eib = eibr_plot,
                  evi = evir_plot))
 }

@@ -4,7 +4,7 @@
 \alias{plot.CEriskav}
 \title{Plots EIB and EVPI for the Risk Aversion Case}
 \usage{
-\method{plot}{CEriskav}(x, pos = c(0, 1), graph = c("base", "ggplot2"), ...)
+\method{plot}{CEriskav}(x, pos = "topright", graph = c("base", "ggplot2", "plotly"), ...)
 }
 \arguments{
 \item{x}{An object of the class \code{CEriskav}, a subclass of \code{bcea},
@@ -22,8 +22,8 @@ indicating to use the default position and \code{TRUE} to place it on the
 bottom of the plot.}
 
 \item{graph}{A string used to select the graphical engine to use for
-plotting. Should (partial-)match the two options \code{"base"} or
-\code{"ggplot2"}. Default value is \code{"base"}.}
+plotting. Should (partial-)match the options \code{"base"},
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.}
 
 \item{...}{Arguments to be passed to methods, such as graphical parameters
 (see \code{\link[=par]{par()}}).}
@@ -47,10 +47,10 @@ when risk aversion is included in the utility function.
 
 # See Baio G., Dawid A.P. (2011) for a detailed description of the 
 # Bayesian model and economic problem
-#
+
 # Load the processed results of the MCMC simulation model
 data(Vaccine)
-# 
+
 # Runs the health economic evaluation using BCEA
 m <- bcea(e=eff, c=cost,    # defines the variables of 
                             #  effectiveness and cost
@@ -63,15 +63,15 @@ m <- bcea(e=eff, c=cost,    # defines the variables of
                             #  in a grid from the interval (0,Kmax)
       plot=FALSE            # inhibits graphical output
 )
-#
-# Define the vector of values for the risk aversion parameter, r, eg:
+
+# Define the vector of values for the risk aversion parameter, r, e.g.:
 r <- c(1e-10, 0.005, 0.020, 0.035) 
-#
+
 # Run the cost-effectiveness analysis accounting for risk aversion
 \donttest{
    CEriskav(m) <- r
 }
-#
+
 # produce the plots
 \donttest{
    plot(m)

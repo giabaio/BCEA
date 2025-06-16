@@ -8,7 +8,7 @@
 \method{ceac.plot}{bcea}(
   he,
   comparison = NULL,
-  pos = c(1, 0),
+  pos = "bottomright",
   graph = c("base", "ggplot2", "plotly"),
   ...
 )

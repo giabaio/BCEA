@@ -1,6 +1,10 @@
 
 # BCEA 2.4.7 (dev)
 
+* In `bcea()` the probability of an intervention being 'best' was the most cost-effective one calculated using `compute_p_optimal_best()`. However, this is not actually how this is defined in the literature
+for the cost-effectiveness acceptability frontier (CEAF). Is should be calculated as the probability that the best intervention is the 'optimal' one, that is the one on average using the mean cost and mean effectiveness. We're replaced
+this internal with `compute_p_optimal_best()`. In most cases this will make very little difference but when the cost or effectiveness are (highly) skewed they may deviate. 
+
 # BCEA 2.4.7
 
 _January 2025_

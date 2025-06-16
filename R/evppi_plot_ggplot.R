@@ -27,7 +27,7 @@ evppi_plot_ggplot <- function(evppi_obj,
                                    evppi_obj$parameters),
                              "EVPI"))
   
-  theme_add <- Filter(f = \(val) ggplot2::is.theme(val), x = extra_args)
+  theme_add <- Filter(f = \(val) ggplot2::is_theme(val), x = extra_args)
   
   size <- purrr::pluck(extra_args, "size", .default = c(1, 0.5))
   
@@ -35,7 +35,7 @@ evppi_plot_ggplot <- function(evppi_obj,
   
   ggplot(plot_dat,
          aes(x = .data$k, y = .data$value,
-             group = .data$variable, size = .data$variable, colour = .data$variable)) +
+             group = .data$variable, size = .data$variable, color = .data$variable)) +
     geom_line() +
     theme_default() +
     theme_add +

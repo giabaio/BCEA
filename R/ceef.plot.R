@@ -18,9 +18,6 @@
 #' @param flip Logical. Should the axes of the plane be inverted?
 #' @param dominance Logical. Should the dominance regions be included in the
 #'  plot?
-#' @param relative Logical. Should the plot display the absolute measures (the
-#'  default as `FALSE`) or the differential outcomes versus the reference
-#'  comparator?
 #' @param print.summary Logical. Should the efficiency frontier summary be
 #'  printed along with the graph?  See Details for additional information.
 #' @param graph A string used to select the graphical engine to use for
@@ -89,81 +86,67 @@
 #' 
 ceef.plot.bcea <- function(he,
                            comparators = NULL,
-                           pos = c(1, 1),
+                           pos = "topright",
                            start.from.origins = TRUE,
                            threshold = NULL,
                            flip = FALSE,
                            dominance = TRUE,
-                           relative = FALSE,
                            print.summary = TRUE,
-                           graph = c("base", "ggplot2"),
+                           graph = c("base", "ggplot2" ,"plotly"),
                            print.plot = TRUE,
                            ...) {
    
    graph <- match.arg(graph)
    
-   # extra_args <- list(...)
-   
-   ##TODO: this function uses comparators not comparisons
-   ##      thing is he$e,c have all interventions because can modify
-   ##      
    if (!is.null(comparators)) {
-      he$ref <- rank(unique(he$ref, comparators))[1]
-      he$comp <- rank(unique(he$ref, comparators))[-1]
-      he$n_comparators <- length(comparators)
-      he$n_comparisons <- length(comparators) - 1
-      he$interventions <- he$interventions[comparators]
-   }
-   
-   # if incremental analysis (relative to the reference) required
-   # needs to modify the bcea object
-   if (relative) {
-      temp <- he
-      temp$e <- temp$c <- matrix(NA, he$n_sim, he$n_comparators)
-      temp$e[, he$ref] <- temp$c[, he$ref] <- rep(0, he$n_sim)
-      temp$e[, -he$ref] <- -he$delta.e
-      temp$c[, -he$ref] <- -he$delta.c
-      he <- temp
+     stopifnot(length(comparators) >= 2)
+     if (!he$ref %in% comparators)
+       he$ref <- comparators[1]
+     he$comp <- comparators[which(comparators != he$ref)]
+     he$n_comparators <- length(comparators)
+     he$n_comparisons <- length(comparators) - 1
+     he$interventions <- he$interventions[comparators]
    }
   
    frontier_data <-
       prep_frontier_data(he,
                          threshold,
                          start.from.origins)
+   
    frontier_params <-
-      list(colour =
-              colours()[
+      list(color =
+              colors()[
                  floor(seq(262, 340, length.out = he$n_comparators))], # grey scale
            pos = pos,
            flip = flip,
-           relative = relative,
            dominance = dominance)
            
    if (print.summary)
-      ceef.summary(he,
-                   frontier_data,
-                   frontier_params,
-                   ...)
+     ceef.summary(he,
+                  frontier_data,
+                  frontier_params,
+                  ...)
    
    if (is_baseplot(graph)) {
-      if (print.plot) {
-         ceef_plot_base(he,
-                        frontier_data,
-                        frontier_params)
-      }
+     if (print.plot) {
+       ceef_plot_base(he,
+                      frontier_data,
+                      frontier_params)
+     }
    } else if (is_ggplot(graph)) {
-      if (print.plot) {
-         ceef_plot_ggplot(he,
-                          frontier_data,
-                          frontier_params,
-                          ...)
-      }
+     if (print.plot) {
+       ceef_plot_ggplot(he,
+                        frontier_data,
+                        frontier_params,
+                        ...)
+     }
    } else if (is_plotly(graph)) {
-      ##TODO:
-      # ceef_plot_plotly(he,
-      #                  frontier_data,
-      #                  frontier_params,
-      #                  ...)
+     if (print.plot) {
+       ceef_plot_plotly(he,
+                        frontier_data,
+                        frontier_params,
+                        ...)
+     }
    }
 }
 
@@ -202,10 +185,6 @@ ceef.plot.bcea <- function(he,
 #' increase is in radians and depends on the definition of the axes, i.e. on
 #' the value given to the `flip` argument.
 #' 
-#' If the argument `relative` is set to `TRUE`, the graph will not
-#' display the absolute measures of costs and benefits. Instead the axes will
-#' represent differential costs and benefits compared to the reference
-#' intervention (indexed by `ref` in the [bcea()] function).
 #' 
 #' @template args-he
 #' @export
