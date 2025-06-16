@@ -100,4 +100,3 @@ plot.CEriskav <- function(x,
                          pos_legend = pos)
   }
 }
-
