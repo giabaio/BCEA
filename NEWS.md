@@ -5,6 +5,10 @@
 for the cost-effectiveness acceptability frontier (CEAF). Is should be calculated as the probability that the best intervention is the 'optimal' one, that is the one on average using the mean cost and mean effectiveness. We're replaced
 this internal with `compute_p_optimal_best()`. In most cases this will make very little difference but when the cost or effectiveness are (highly) skewed they may deviate. 
 
+* Many changes to the `plotly` infrastracture, which are helpful for `BCEAweb`.
+
+* Reformatting of the example datasets.
+
 # BCEA 2.4.7
 
 _January 2025_
