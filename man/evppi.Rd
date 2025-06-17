@@ -69,22 +69,21 @@ Note that the multi-parameter version for this method has been deprecated.
 However, it is possible (mainly for backward compatibility) to use different methods.}
 }
 \value{
-Object of class \code{evppi}:
-\item{evppi}{The computed values of evppi for all values of the
-parameter of willingness to pay.}
-\item{index}{A numerical vector with the index associated with the
-parameters for which the EVPPI was calculated.}
-\item{k}{The vector of values for the willingness to pay.}
-\item{evi}{The vector of values for the overall EVPPI.}
-\item{fitted.costs}{The fitted values for the costs.}
-\item{fitted.effects}{The fitted values for the effects.}
-\item{parameters}{A single string containing the names of the
-parameters for which the EVPPI was calculated, used for plotting the EVPPI.}
-\item{time}{Computational time (in seconds).}
-\item{fit.c}{The object produced by the model fit for the costs.}
-\item{fit.e}{The object produced by the model fit for the effects.}
-\item{formula}{The formula used to fit the model.}
-\item{method}{A string indicating the method used to estimate the EVPPI.}
+An object of class \code{evppi}, containing the following components:
+\itemize{
+\item \strong{evppi}: The computed values of \code{evppi} for all values of the parameter of willingness to pay.
+\item \strong{index}: A numerical vector with the indices of the parameters for which the EVPPI was calculated.
+\item \strong{k}: A vector of values for the willingness to pay.
+\item \strong{evi}: A vector of values for the overall EVPPI.
+\item \strong{fitted.costs}: The fitted values for the costs.
+\item \strong{fitted.effects}: The fitted values for the effects.
+\item \strong{parameters}: A single string containing the names of the parameters for which the EVPPI was calculated (used for plotting).
+\item \strong{time}: The computational time (in seconds).
+\item \strong{fit.c}: The object produced by the model fit for the costs.
+\item \strong{fit.e}: The object produced by the model fit for the effects.
+\item \strong{formula}: The formula used to fit the model.
+\item \strong{method}: A string indicating the method used to estimate the EVPPI.
+}
 }
 \description{
 Calculates the Expected Value of Perfect Partial Information (EVPPI) for
@@ -180,26 +179,27 @@ m <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
 # Compute the EVPPI for a bunch of parameters
 inp <- createInputs(vaccine_mat)
 
-EVPPI <- evppi(m, c("beta.1." , "beta.2."), inp$mat)
+# explicitly use BCEA package namespace to avoid voi package conflict
+EVPPI <- BCEA::evppi(m, c("beta.1." , "beta.2."), inp$mat)
 
 plot(EVPPI)
 
 # deprecated (single parameter) methods
-EVPPI.so <- evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "so", n.blocks = 50)
-EVPPI.sad <- evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps = 1)
+EVPPI.so <- BCEA::evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "so", n.blocks = 50)
+EVPPI.sad <- BCEA::evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps = 1)
 
 plot(EVPPI.so)
 plot(EVPPI.sad)
  
 # Compute the EVPPI using INLA/SPDE
 if (require("INLA"))
-  x_inla <- evppi(he = m, 39:40, input = inp$mat)
+  x_inla <- BCEA::evppi(he = m, 39:40, input = inp$mat)
 
 # using GAM regression
-x_gam <- evppi(he = m, 39:40, input = inp$mat, method = "GAM")
+x_gam <- BCEA::evppi(he = m, 39:40, input = inp$mat, method = "GAM")
 
 # using Strong et al GP regression
-x_gp <- evppi(he = m, 39:40, input = inp$mat, method = "GP")
+x_gp <- BCEA::evppi(he = m, 39:40, input = inp$mat, method = "GP")
 
 # plot results
 if (require("INLA")) plot(x_inla)
@@ -218,15 +218,10 @@ treats <- c("No intervention", "Self-help",
 "Individual counselling", "Group counselling")
 m <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 inp <- createInputs(smoking_output)
-EVPPI <- evppi(m, c(2,3), inp$mat, h.value = 0.0000005)
+EVPPI <- BCEA::evppi(m, c(2,3), inp$mat, h.value = 0.0000005)
 plot(EVPPI)
 }
 
-data(Vaccine, package = "BCEA")
-treats <- c("Status quo", "Vaccination")
-bcea_vacc <- bcea(e.pts, c.pts, ref = 2, interventions = treats)
-inp <- createInputs(vaccine_mat)
-evppi(bcea_vacc, c("beta.1.", "beta.2."), inp$mat)
 }
 \references{
 \insertRef{Strong2014}{BCEA}

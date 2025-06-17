@@ -94,8 +94,9 @@ where_legend_always <- function(he,
       return("bottomright")
   }
   
-  if (grepl("(bottom|top)(left|right)", pos_legend))
-      return(pos_legend)
+  if (pos_legend != "")
+   if (grepl("^(bottom|top)*(left|right)*$", pos_legend))
+     return(pos_legend)
   
   message("Legend position not recognised.")
   return(NA)

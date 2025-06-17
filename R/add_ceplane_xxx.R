@@ -13,7 +13,6 @@ add_ceplane_setup <- function(plot_params) {
 #' @importFrom graphics polygon
 #' 
 add_ceplane_polygon <- function(plot_params) {
-  
   do.call("polygon",
           plot_params$polygon,
           quote = TRUE)

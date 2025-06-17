@@ -5,7 +5,7 @@
 \alias{ceaf.plot}
 \title{Cost-Effectiveness Acceptability Frontier (CEAF) plot}
 \usage{
-\method{ceaf.plot}{pairwise}(mce, graph = c("base", "ggplot2"), ...)
+\method{ceaf.plot}{pairwise}(mce, graph = c("base", "ggplot2", "plotly"), ...)
 
 ceaf.plot(mce, ...)
 }

@@ -3,10 +3,13 @@
 \name{ceef_plot_graph}
 \alias{ceef_plot_graph}
 \alias{ceef_plot_ggplot}
+\alias{ceef_plot_plotly}
 \alias{ceef_plot_base}
 \title{Cost-effectiveness Efficiency Frontier Plot By Graph Device}
 \usage{
 ceef_plot_ggplot(he, frontier_data, frontier_params, ...)
+
+ceef_plot_plotly(he, frontier_data, frontier_params, ...)
 
 ceef_plot_base(he, frontier_data, frontier_params)
 }

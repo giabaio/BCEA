@@ -370,6 +370,39 @@ compute_p_best_interv <- function(he) {
 }
 
 
+#' Compute Probability Optimal Intervention Best
+#' @template args-he
+#' 
+compute_p_optimal_best <- function(he) {
+  
+  n_int <- he$n_comparators
+  n_k <- length(he$k)
+  n_s <- he$n_sim
+  
+  best_bar <- numeric()
+  mean_U <- matrix(ncol = n_int, nrow = n_k)
+  best_by_sample <- matrix(, ncol = n_s, nrow = n_k)
+  p_best <- matrix(, nrow = n_k, ncol = 1)
+  
+  for (k in 1:n_k) {
+    
+    mean_U[k,] <- apply(he$U[, k, ], 2, mean)
+    
+    # intervention that is best on average at WTP k
+    best_bar[k] <- which.max(mean_U[k,])
+    
+    best_by_sample[k,] <- max.col(he$U[, k, ], ties.method = "first")
+    
+    # proportion of simulations where the intervention deemed best in
+    # specific simulation happens to be the same as the 
+    # intervention deemed best on average
+    p_best[k, 1] <- mean(best_by_sample[k,] == best_bar[k])
+  }
+  
+  p_best
+}
+
+
 #' Compute NB for mixture of interventions
 #' 
 #' @template args-he

@@ -78,7 +78,6 @@ evi.plot.mixedAn <- function(he,
                              pos = c(0, 1),
                              graph = c("base", "ggplot2"),
                              ...) {
-  
   alt_legend <- pos
   base.graphics <- all(pmatch(graph, c("base", "ggplot2")) != 2)
   
@@ -163,7 +162,7 @@ evi.plot.mixedAn <- function(he,
           paste0("Mixed strategy:",
                  paste0("\n   ",he$interventions,"=",
                         format(100*he$mkt.shares, digits = 3, nsmall = 2), "%", collapse = "")))
-      colours <- c("black","red")
+      colors <- c("black","red")
       
       df <- data.frame("k" = he$k,
                        "evi" = he$evi,
@@ -172,14 +171,14 @@ evi.plot.mixedAn <- function(he,
       evi <- ggplot(df, aes(x = .data$k)) +
         theme_bw() +
         geom_ribbon(aes(x = .data$k, ymin = .data$evi, ymax = .data$evi.star),
-                    colour = "lightgrey",
+                    color = "lightgrey",
                     alpha = 0.2) +
         geom_line(aes(x = .data$k, y = .data$evi,
-                      colour = as.factor(1))) +
+                      color = as.factor(1))) +
         geom_line(aes(x = .data$k, y = .data$evi.star,
-                      colour = as.factor(2))) +
+                      color = as.factor(2))) +
         coord_cartesian(ylim = y.limits, xlim = c(0, max(df$k))) +
-        scale_colour_manual("", labels = txt, values = colours) +
+        scale_color_manual("", labels = txt, values = colors) +
         labs(title = "Expected Value of Information",
              x = "Willingness to pay",
              y = "EVPI") +
