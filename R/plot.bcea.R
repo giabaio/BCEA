@@ -1,4 +1,70 @@
 
+#' A Custom ggplot2 Theme for BCEA
+#'
+#' This theme is designed for use with plots created using the `BCEA` package. 
+#' It builds on `theme_bw()` and customizes axis text, titles, 
+#' plot background, and legend styling.
+#'
+#' @return A ggplot2 theme object that can be added to a ggplot.
+#' @examples
+#' library(ggplot2)
+#' library(BCEA)
+#' ggplot(mtcars, aes(wt, mpg)) +
+#'  geom_point() +
+#'  theme_BCEA() 
+#' @export
+#' 
+theme_BCEA <- function() {
+  theme_bw() +
+    theme(
+      text = element_text(size = 9),
+      legend.key.size = grid::unit(0.5, "lines"),
+      legend.spacing = grid::unit(-1.25, "line"),
+      panel.grid = element_blank(),
+      legend.key = element_blank(),
+      plot.title = element_text(
+        lineheight = 1,
+        face = "bold",
+        size = 11.5,
+        hjust = 0.5
+      )
+    )
+}
+
+#' Utility function to modify simply the `ggplot` `theme_BCEA()` theme
+#' using inputs inside the call to `plot.bcea`
+#'
+#' @noRd
+#' @keywords internal
+#' 
+process_element_arg <- function(arg, constructor) {
+  
+  # Define a safe resolve_rel_size() helper
+  resolve_rel_size <- function(size, base = 9) {
+    if (inherits(size, "rel") && !is.null(attr(size, "val"))) {
+      return(attr(size, "val") * base)
+    } else if (is.numeric(size)) {
+      return(size)
+    } else {
+      stop("Invalid size value: must be numeric or rel().")
+    }
+  }
+  
+  if (inherits(arg, class(constructor()))) {
+    return(arg)
+  } else if (is.list(arg)) {
+    if ("size" %in% names(arg)) {
+      arg$size <- resolve_rel_size(arg$size, base = base_size)
+    }
+    return(do.call(constructor, arg))
+  } else if (is.null(arg)) {
+    return(NULL)
+  } else {
+    stop("Invalid theme element.")
+  }
+}
+
+
 #' Summary Plot of the Health Economic Analysis
 #' 
 #' Plots in a single graph the Cost-Effectiveness plane, the Expected
@@ -90,8 +156,6 @@ plot.bcea <- function(x,
                       graph = c("base", "ggplot2", "plotly"),
                       ...) {
   
-  ##TODO: where should this be used?
-  # named_args <- c(as.list(environment()), list(...))
   
   graph <- match.arg(graph)
   extra_args <- list(...)
@@ -145,38 +209,39 @@ plot.bcea <- function(x,
     
     if (all(is_req_pkgs)) {
       
-      default_params <- 
-        list(text = element_text(size = 9),
-             legend.key.size = grid::unit(0.5, "lines"),
-             legend.spacing = grid::unit(-1.25, "line"),
-             panel.grid = element_blank(),
-             legend.key = element_blank(),
-             plot.title = element_text(
-               lineheight = 1,
-               face = "bold",
-               size = 11.5,
-               hjust = 0.5))
+      # Map theme element names to their constructors
+      element_constructors <- list(
+        text = ggplot2::element_text,
+        axis.text = ggplot2::element_text,
+        axis.title = ggplot2::element_text,
+        legend.title = ggplot2::element_text,
+        legend.text = ggplot2::element_text,
+        plot.title = ggplot2::element_text,
+        strip.text = ggplot2::element_text,
+        line = ggplot2::element_line,
+        axis.line = ggplot2::element_line,
+        rect = ggplot2::element_rect,
+        panel.background = ggplot2::element_rect
+        # Add more as needed
+      )
       
-      keep_param <-
-        names(default_params)[names(default_params) %in% names(extra_args)]
-      
-      extra_params <- extra_args[keep_param]
-      
-      global_params <-
-        modifyList(default_params,
-                   extra_params,
-                   keep.null = TRUE)
-      
-      theme_add <- Filter(f = \(val) ggplot2::is_theme(val), x = extra_args)
+      # Process only matching theme elements
+      for (nm in names(extra_args)) {
+        if (nm %in% names(element_constructors)) {
+          constructor <- element_constructors[[nm]]
+          update_theme_args[[nm]] <- process_element_arg(
+            extra_args[[nm]], constructor
+          )
+        }
+      }
       
       ceplane <-
         ceplane.plot(x,
                      wtp = wtp,
                      pos = pos,
                      comparison = comparison,
-                     graph = "ggplot2", ...) +
-        do.call(theme, global_params) +
-        theme_add
+                     graph = "ggplot2", ...) + theme_BCEA() +
+        do.call(ggplot2::theme, update_theme_args)
       
       eib <-
         do.call(eib.plot,
@@ -184,9 +249,10 @@ plot.bcea <- function(x,
                   pos = pos,
                   comparison = comparison,
                   graph = "ggplot2",
-                  extra_args)) +
-        do.call(theme, global_params) +
-        theme_add
+                  extra_args))
+      # +
+      #   do.call(theme, global_params) +
+      #   theme_add
       
       ceac <-
         do.call(ceac.plot,
@@ -194,14 +260,16 @@ plot.bcea <- function(x,
                   pos = pos,
                   comparison = comparison,
                   graph = "ggplot2",
-                  extra_args)) +
-        do.call(theme, global_params) +
-        theme_add
+                  extra_args)) 
+      # +
+      #   do.call(theme, global_params) +
+      #   theme_add
       
       evi <-
-        evi.plot(x, graph = "ggplot2", ...) +
-        do.call(theme, global_params) +
-        theme_add
+        evi.plot(x, graph = "ggplot2", ...) 
+      # +
+      #   do.call(theme, global_params) +
+      #   theme_add
       
       multiplot(list(ceplane, ceac, eib, evi),
                 cols = 2)
