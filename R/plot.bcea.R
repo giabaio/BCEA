@@ -1,36 +1,4 @@
 
-#' A Custom ggplot2 Theme for BCEA
-#'
-#' This theme is designed for use with plots created using the `BCEA` package. 
-#' It builds on `theme_bw()` and customizes axis text, titles, 
-#' plot background, and legend styling.
-#'
-#' @return A ggplot2 theme object that can be added to a ggplot.
-#' @examples
-#' library(ggplot2)
-#' library(BCEA)
-#' ggplot(mtcars, aes(wt, mpg)) +
-#'  geom_point() +
-#'  theme_BCEA() 
-#' @export
-#' 
-theme_BCEA <- function() {
-  theme_bw() +
-    theme(
-      text = element_text(size = 13),
-      legend.key.size = grid::unit(0.5, "lines"),
-      legend.spacing = grid::unit(-1.25, "line"),
-      panel.grid = element_blank(),
-      legend.key = element_blank(),
-      plot.title = element_text(
-        lineheight = 1,
-        face = "bold",
-        size = 11.5,
-        hjust = 0.5
-      )
-    )
-}
-
 #' Utility function to modify simply the `ggplot` `theme_BCEA()` theme
 #' using inputs inside the call to `plot.bcea`
 #'
