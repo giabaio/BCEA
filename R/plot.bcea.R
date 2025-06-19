@@ -17,7 +17,7 @@
 theme_BCEA <- function() {
   theme_bw() +
     theme(
-      text = element_text(size = 9),
+      text = element_text(size = 13),
       legend.key.size = grid::unit(0.5, "lines"),
       legend.spacing = grid::unit(-1.25, "line"),
       panel.grid = element_blank(),
@@ -226,6 +226,7 @@ plot.bcea <- function(x,
       )
       
       # Process only matching theme elements
+      update_theme_args <- list()
       for (nm in names(extra_args)) {
         if (nm %in% names(element_constructors)) {
           constructor <- element_constructors[[nm]]
@@ -240,7 +241,7 @@ plot.bcea <- function(x,
                      wtp = wtp,
                      pos = pos,
                      comparison = comparison,
-                     graph = "ggplot2", ...) + theme_BCEA() +
+                     graph = "ggplot2", ...) + 
         do.call(ggplot2::theme, update_theme_args)
       
       eib <-
@@ -249,10 +250,8 @@ plot.bcea <- function(x,
                   pos = pos,
                   comparison = comparison,
                   graph = "ggplot2",
-                  extra_args))
-      # +
-      #   do.call(theme, global_params) +
-      #   theme_add
+                  extra_args)) +
+        do.call(ggplot2::theme, update_theme_args)
       
       ceac <-
         do.call(ceac.plot,
@@ -260,16 +259,12 @@ plot.bcea <- function(x,
                   pos = pos,
                   comparison = comparison,
                   graph = "ggplot2",
-                  extra_args)) 
-      # +
-      #   do.call(theme, global_params) +
-      #   theme_add
+                  extra_args)) + 
+        do.call(ggplot2::theme, update_theme_args)
       
       evi <-
-        evi.plot(x, graph = "ggplot2", ...) 
-      # +
-      #   do.call(theme, global_params) +
-      #   theme_add
+        evi.plot(x, graph = "ggplot2", ...) + 
+        do.call(ggplot2::theme, update_theme_args)
       
       multiplot(list(ceplane, ceac, eib, evi),
                 cols = 2)
