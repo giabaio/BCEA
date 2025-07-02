@@ -1,38 +1,4 @@
 
-#' Utility function to modify simply the `ggplot` `theme_BCEA()` theme
-#' using inputs inside the call to `plot.bcea`
-#'
-#' @noRd
-#' @keywords internal
-#' 
-process_element_arg <- function(arg, constructor) {
-  
-  # Define a safe resolve_rel_size() helper
-  resolve_rel_size <- function(size, base = 9) {
-    if (inherits(size, "rel") && !is.null(attr(size, "val"))) {
-      return(attr(size, "val") * base)
-    } else if (is.numeric(size)) {
-      return(size)
-    } else {
-      stop("Invalid size value: must be numeric or rel().")
-    }
-  }
-  
-  if (inherits(arg, class(constructor()))) {
-    return(arg)
-  } else if (is.list(arg)) {
-    if ("size" %in% names(arg)) {
-      arg$size <- resolve_rel_size(arg$size, base = base_size)
-    }
-    return(do.call(constructor, arg))
-  } else if (is.null(arg)) {
-    return(NULL)
-  } else {
-    stop("Invalid theme element.")
-  }
-}
-
-
 #' Summary Plot of the Health Economic Analysis
 #' 
 #' Plots in a single graph the Cost-Effectiveness plane, the Expected
@@ -177,32 +143,7 @@ plot.bcea <- function(x,
     
     if (all(is_req_pkgs)) {
       
-      # Map theme element names to their constructors
-      element_constructors <- list(
-        text = ggplot2::element_text,
-        axis.text = ggplot2::element_text,
-        axis.title = ggplot2::element_text,
-        legend.title = ggplot2::element_text,
-        legend.text = ggplot2::element_text,
-        plot.title = ggplot2::element_text,
-        strip.text = ggplot2::element_text,
-        line = ggplot2::element_line,
-        axis.line = ggplot2::element_line,
-        rect = ggplot2::element_rect,
-        panel.background = ggplot2::element_rect
-        # Add more as needed
-      )
-      
-      # Process only matching theme elements
-      update_theme_args <- list()
-      for (nm in names(extra_args)) {
-        if (nm %in% names(element_constructors)) {
-          constructor <- element_constructors[[nm]]
-          update_theme_args[[nm]] <- process_element_arg(
-            extra_args[[nm]], constructor
-          )
-        }
-      }
+      updated_args <- update_theme_args(extra_args)
       
       ceplane <-
         ceplane.plot(x,
@@ -210,7 +151,7 @@ plot.bcea <- function(x,
                      pos = pos,
                      comparison = comparison,
                      graph = "ggplot2", ...) + 
-        do.call(ggplot2::theme, update_theme_args)
+        do.call(ggplot2::theme, updated_args)
       
       eib <-
         do.call(eib.plot,
@@ -219,7 +160,7 @@ plot.bcea <- function(x,
                   comparison = comparison,
                   graph = "ggplot2",
                   extra_args)) +
-        do.call(ggplot2::theme, update_theme_args)
+        do.call(ggplot2::theme, updated_args)
       
       ceac <-
         do.call(ceac.plot,
@@ -228,16 +169,17 @@ plot.bcea <- function(x,
                   comparison = comparison,
                   graph = "ggplot2",
                   extra_args)) + 
-        do.call(ggplot2::theme, update_theme_args)
+        do.call(ggplot2::theme, updated_args)
       
       evi <-
         evi.plot(x, graph = "ggplot2", ...) + 
-        do.call(ggplot2::theme, update_theme_args)
+        do.call(ggplot2::theme, updated_args)
       
       multiplot(list(ceplane, ceac, eib, evi),
                 cols = 2)
     }
   } else if (is_plotly(graph)) {
+    
     extract_plotly_title = function(p) {
       if (exists("layoutAttrs", p$x)) {
         return(p$x$layoutAttrs[[1]]$title)
@@ -249,17 +191,16 @@ plot.bcea <- function(x,
       }
     }
     
-    p1 = ceplane.plot(x, graph = "p", wtp = wtp, ...)
-    p2 = eib.plot(x, graph = "p", ...)
-    p3 = ceac.plot(x, graph = "p", ...)
-    p4 = evi.plot(x, graph = "p", ...)
+    p1 <- ceplane.plot(x, graph = "plotly", wtp = wtp, ...)
+    p2 <- eib.plot(x, graph = "plotly", ...)
+    p3 <- ceac.plot(x, graph = "plotly", ...)
+    p4 <- evi.plot(x, graph = "plotly", ...)
     
-    ppp = plotly::subplot(
+    ppp <- plotly::subplot(
       p1, p2, p3, p4, nrows = 2,
-      titleX = TRUE, titleY = TRUE, margin = 0.1
-    )
+      titleX = TRUE, titleY = TRUE, margin = 0.1)
     
-    annotations = list(
+    annotations <- list(
       list(
         x = 0.2, y = 1.0,
         text = extract_plotly_title(p1),
@@ -298,8 +239,9 @@ plot.bcea <- function(x,
       )
     )
     
-    ppp = ppp |>
-      layout(annotations = annotations, title = "")
+    ppp <-
+      layout(ppp, annotations = annotations, title = "")
+    
     return(ppp)
   }
 }
