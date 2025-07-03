@@ -46,4 +46,3 @@ theme_eib <- function() {
 theme_contour <- function() {
   theme_default()
 }
-

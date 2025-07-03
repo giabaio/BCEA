@@ -90,8 +90,6 @@ plot.bcea <- function(x,
                       graph = c("base", "ggplot2", "plotly"),
                       ...) {
   
-  ##TODO: where should this be used?
-  # named_args <- c(as.list(environment()), list(...))
   
   graph <- match.arg(graph)
   extra_args <- list(...)
@@ -145,38 +143,15 @@ plot.bcea <- function(x,
     
     if (all(is_req_pkgs)) {
       
-      default_params <- 
-        list(text = element_text(size = 9),
-             legend.key.size = grid::unit(0.5, "lines"),
-             legend.spacing = grid::unit(-1.25, "line"),
-             panel.grid = element_blank(),
-             legend.key = element_blank(),
-             plot.title = element_text(
-               lineheight = 1,
-               face = "bold",
-               size = 11.5,
-               hjust = 0.5))
-      
-      keep_param <-
-        names(default_params)[names(default_params) %in% names(extra_args)]
-      
-      extra_params <- extra_args[keep_param]
-      
-      global_params <-
-        modifyList(default_params,
-                   extra_params,
-                   keep.null = TRUE)
-      
-      theme_add <- Filter(f = \(val) ggplot2::is_theme(val), x = extra_args)
+      updated_args <- update_theme_args(extra_args)
       
       ceplane <-
         ceplane.plot(x,
                      wtp = wtp,
                      pos = pos,
                      comparison = comparison,
-                     graph = "ggplot2", ...) +
-        do.call(theme, global_params) +
-        theme_add
+                     graph = "ggplot2", ...) + 
+        do.call(ggplot2::theme, updated_args)
       
       eib <-
         do.call(eib.plot,
@@ -185,8 +160,7 @@ plot.bcea <- function(x,
                   comparison = comparison,
                   graph = "ggplot2",
                   extra_args)) +
-        do.call(theme, global_params) +
-        theme_add
+        do.call(ggplot2::theme, updated_args)
       
       ceac <-
         do.call(ceac.plot,
@@ -194,19 +168,18 @@ plot.bcea <- function(x,
                   pos = pos,
                   comparison = comparison,
                   graph = "ggplot2",
-                  extra_args)) +
-        do.call(theme, global_params) +
-        theme_add
+                  extra_args)) + 
+        do.call(ggplot2::theme, updated_args)
       
       evi <-
-        evi.plot(x, graph = "ggplot2", ...) +
-        do.call(theme, global_params) +
-        theme_add
+        evi.plot(x, graph = "ggplot2", ...) + 
+        do.call(ggplot2::theme, updated_args)
       
       multiplot(list(ceplane, ceac, eib, evi),
                 cols = 2)
     }
   } else if (is_plotly(graph)) {
+    
     extract_plotly_title = function(p) {
       if (exists("layoutAttrs", p$x)) {
         return(p$x$layoutAttrs[[1]]$title)
@@ -218,17 +191,16 @@ plot.bcea <- function(x,
       }
     }
     
-    p1 = ceplane.plot(x, graph = "p", wtp = wtp, ...)
-    p2 = eib.plot(x, graph = "p", ...)
-    p3 = ceac.plot(x, graph = "p", ...)
-    p4 = evi.plot(x, graph = "p", ...)
+    p1 <- ceplane.plot(x, graph = "plotly", wtp = wtp, ...)
+    p2 <- eib.plot(x, graph = "plotly", ...)
+    p3 <- ceac.plot(x, graph = "plotly", ...)
+    p4 <- evi.plot(x, graph = "plotly", ...)
     
-    ppp = plotly::subplot(
+    ppp <- plotly::subplot(
       p1, p2, p3, p4, nrows = 2,
-      titleX = TRUE, titleY = TRUE, margin = 0.1
-    )
+      titleX = TRUE, titleY = TRUE, margin = 0.1)
     
-    annotations = list(
+    annotations <- list(
       list(
         x = 0.2, y = 1.0,
         text = extract_plotly_title(p1),
@@ -267,8 +239,9 @@ plot.bcea <- function(x,
       )
     )
     
-    ppp = ppp |>
-      layout(annotations = annotations, title = "")
+    ppp <-
+      layout(ppp, annotations = annotations, title = "")
+    
     return(ppp)
   }
 }
