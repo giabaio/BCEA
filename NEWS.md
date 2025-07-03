@@ -1,5 +1,7 @@
 # BCEA 2.4.8 (dev)
 
+# BCEA 2.4.8 
+
 _June 2025_
 
 * In `bcea()` the probability of an intervention being 'best' was the most cost-effective one calculated using `compute_p_optimal_best()`. However, this is not actually how this is defined in the literature
