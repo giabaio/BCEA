@@ -14,7 +14,7 @@
 
 This is the **official (CRAN) version of the `R` package `BCEA`**. It is now release 2.4-8.
 
-:rocket: **Version 2.4-8 also in development now!** [Check out the release notes here](https://github.com/n8thangreen/BCEA/releases).
+:rocket: [**Version 2.4-8 also in development now!**](https://github.com/giabaio/BCEA/tree/dev) [Check out the release notes here](https://github.com/n8thangreen/BCEA/releases).
 
 ## Contents
 
