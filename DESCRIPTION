@@ -54,6 +54,7 @@ Suggests:
     withr
 RdMacros: Rdpack
 VignetteBuilder: knitr
+BuildVignettes: false
 Description: Produces an economic evaluation of a sample of suitable variables of
              cost and effectiveness / utility for two or more interventions,
              e.g. from a Bayesian model in the form of MCMC simulations.
