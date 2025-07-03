@@ -7,6 +7,7 @@
 ^LICENSE\.md$
 ^_pkgdown\.yml$
 ^docs$
+^doc$
 ^pkgdown$
 ^\.httr-oauth$
 ^CONDUCT\.md$
@@ -16,10 +17,7 @@
 ^cran-comments\.md$
 ^README_dev\.md$
 ^\.github$
-^inst/extdata/vaccine_jags\.RData$
-^inst/extdata/statins_base\.RData$
-^inst/extdata/statins_HC\.RData$
-^inst/extdata/smoking_output\.RData$
+^inst/extdata$
 ^paper\.bib$
 ^paper\.md$
 ^CONTRIBUTING\.md$
@@ -27,3 +25,13 @@
 ^CRAN-SUBMISSION$
 ^CITATION\.cff$
 ^CITATION.cff
+# Skips vignettes so that no large files are created and the package is only <5Mb.
+# The examples/vignettes are still created for github and then pkgdown
+^vignettes$
+# Skips large tests
+^tests/testthat/testdata/stanfit\.RData$
+^tests/testthat/testdata/statins_base\.RData$
+^tests/testthat/testdata/statins_HC\.RData$
+^tests/testthat/create_ce_mock\.R$
+^tests/testthat/test-structpsa\.R$
+
