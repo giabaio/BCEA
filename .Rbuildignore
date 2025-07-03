@@ -25,4 +25,13 @@
 ^CRAN-SUBMISSION$
 ^CITATION\.cff$
 ^CITATION.cff
-^tests/testthat/testdata$
+# Skips vignettes so that no large files are created and the package is only <5Mb.
+# The examples/vignettes are still created for github and then pkgdown
+^vignettes$
+# Skips large tests
+^tests/testthat/testdata/stanfit\.RData$
+^tests/testthat/testdata/statins_base\.RData$
+^tests/testthat/testdata/statins_HC\.RData$
+^tests/testthat/create_ce_mock\.R$
+^tests/testthat/test-structpsa\.R$
+
