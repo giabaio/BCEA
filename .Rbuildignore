@@ -27,7 +27,17 @@
 ^CITATION.cff
 # Skips vignettes so that no large files are created and the package is only <5Mb.
 # The examples/vignettes are still created for github and then pkgdown
-^vignettes$
+#^vignettes$
+^vignettes/ceac\.Rmd$
+^vignettes/ceef\.Rmd$
+^vignettes/ceplane\.Rmd$
+^vignettes/CEriskav\.Rmd$
+^vignettes/contour\.Rmd$
+^vignettes/eib\.Rmd$
+^vignettes/evppi\.Rmd$
+^vignettes/paired_vs_multiple_comps\.Rmd$
+^vignettes/Set_bcea_parameters\.md$
+^vignettes/Set_bcea_parameters\.Rmd$
 # Skips large tests
 ^tests/testthat/testdata/stanfit\.RData$
 ^tests/testthat/testdata/statins_base\.RData$
