@@ -1,0 +1,16 @@
+---
+title: "Bayesian Cost-Effectiveness Analysis"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{BCEA}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+For more extensive documentation on the package `BCEA`, please refer to the following resources.
+
+1. The `BCEA` book --- see [https://gianluca.statistica.it/books/bcea/](https://gianluca.statistica.it/books/bcea/)
+2. Specific examples are also available here: [https://gianluca.statistica.it/software/bcea/](https://gianluca.statistica.it/software/bcea/)
+3. A full Vignette-style documentation is also here: [https://n8thangreen.github.io/BCEA/](https://n8thangreen.github.io/BCEA/).

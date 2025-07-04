@@ -110,7 +110,7 @@ info.rank.bcea <- function(he,
 #' \dontrun{
 #' # Load the post-processed results of the MCMC simulation model
 #' # original JAGS output is can be downloaded from here
-#' # https://gianluca.statistica.it/book/bcea/code/vaccine.RData
+#' # https://gianluca.statistica.it/books/bcea/code/vaccine.RData
 #' 
 #' data("Vaccine")
 #' m <- bcea(eff, cost)
