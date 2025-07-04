@@ -22,7 +22,8 @@ parameter EVPPI and the SPDE-INLA method for larger parameter subsets."><meta pr
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/bcea.html">Getting Started</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/BCEA_package.html">Bayesian Cost-Effectiveness Analysis</a></li>
+    <li><a class="dropdown-item" href="../articles/bcea.html">Getting Started</a></li>
     <li><a class="dropdown-item" href="../articles/ceac.html">Cost-Effectiveness Acceptability Curve Plots</a></li>
     <li><a class="dropdown-item" href="../articles/ceef.html">Cost-Effectiveness Efficiency Frontier</a></li>
     <li><a class="dropdown-item" href="../articles/ceplane.html">Cost-effectiveness plane</a></li>
@@ -46,7 +47,7 @@ parameter EVPPI and the SPDE-INLA method for larger parameter subsets."><meta pr
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Expected Value of Perfect Partial Information (EVPPI) for Selected Parameters</h1>
-      <small class="dont-index">Source: <a href="https://github.com/n8thangreen/BCEA/blob/dev/R/evppi.R" class="external-link"><code>R/evppi.R</code></a>, <a href="https://github.com/n8thangreen/BCEA/blob/dev/R/evppi.default.R" class="external-link"><code>R/evppi.default.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/n8thangreen/BCEA/blob/main/R/evppi.R" class="external-link"><code>R/evppi.R</code></a>, <a href="https://github.com/n8thangreen/BCEA/blob/main/R/evppi.default.R" class="external-link"><code>R/evppi.default.R</code></a></small>
       <div class="d-none name"><code>evppi.Rd</code></div>
     </div>
 
@@ -266,7 +267,7 @@ ISSN 0277-6715, <a href="https://doi.org/10.1002/sim.6983" class="external-link"
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="co"># Load the post-processed results of the MCMC simulation model</span></span></span>
 <span class="r-in"><span><span class="co"># original JAGS output is can be downloaded from here</span></span></span>
-<span class="r-in"><span><span class="co"># https://gianluca.statistica.it/book/bcea/code/vaccine.RData</span></span></span>
+<span class="r-in"><span><span class="co"># https://gianluca.statistica.it/books/bcea/code/vaccine.RData</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="Smoking.html">data</a></span><span class="op">(</span><span class="va">Vaccine</span>, package <span class="op">=</span> <span class="st">"BCEA"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">treats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Status quo"</span>, <span class="st">"Vaccination"</span><span class="op">)</span></span></span>
