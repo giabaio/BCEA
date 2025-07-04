@@ -149,7 +149,7 @@
 #' \dontrun{
 #' # Load the post-processed results of the MCMC simulation model
 #' # original JAGS output is can be downloaded from here
-#' # https://gianluca.statistica.it/book/bcea/code/vaccine.RData
+#' # https://gianluca.statistica.it/books/bcea/code/vaccine.RData
 #' 
 #' data(Vaccine, package = "BCEA")
 #' treats <- c("Status quo", "Vaccination")

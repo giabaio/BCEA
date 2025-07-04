@@ -7,14 +7,12 @@
 ^LICENSE\.md$
 ^_pkgdown\.yml$
 ^docs$
-^doc$
 ^pkgdown$
 ^\.httr-oauth$
 ^CONDUCT\.md$
 ^man-roxygen$
 ^.git
 ^.gitignore
-^cran-comments\.md$
 ^README_dev\.md$
 ^\.github$
 ^inst/extdata$
@@ -22,12 +20,11 @@
 ^paper\.md$
 ^CONTRIBUTING\.md$
 ^revdep$
-^CRAN-SUBMISSION$
 ^CITATION\.cff$
 ^CITATION.cff
 # Skips vignettes so that no large files are created and the package is only <5Mb.
 # The examples/vignettes are still created for github and then pkgdown
-#^vignettes$
+^vignettes/bcea\.Rmd$
 ^vignettes/ceac\.Rmd$
 ^vignettes/ceef\.Rmd$
 ^vignettes/ceplane\.Rmd$
@@ -44,4 +41,5 @@
 ^tests/testthat/testdata/statins_HC\.RData$
 ^tests/testthat/create_ce_mock\.R$
 ^tests/testthat/test-structpsa\.R$
+^README\.md$
 
