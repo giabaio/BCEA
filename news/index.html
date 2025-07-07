@@ -43,9 +43,14 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/n8thangreen/BCEA/blob/v2.4-8/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/n8thangreen/BCEA/blob/dev/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.4.8" id="bcea-248-dev">BCEA 2.4.8 (dev)<a class="anchor" aria-label="anchor" href="#bcea-248-dev"></a></h2>
+<p><em>July 2025</em></p>
+<ul><li>Fix a small issue in <code>multi.ce</code>. The CRAN version has removed the use of <code>BCEA:::compute_p_best_interv</code>, which computes the probability that each intervention is the most cost-effective, for each value of the willingness to pay. The output of that call must be passed as input to <code>BCEA:::ceac_plot_XXXX.pairwise</code> in order for <code>ceac.plot</code> to produce the individual probability of cost-effectiveness</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.4.8" id="bcea-248">BCEA 2.4.8<a class="anchor" aria-label="anchor" href="#bcea-248"></a></h2>
 <p><em>June 2025</em></p>
