@@ -12,7 +12,7 @@
 
 > Perform Bayesian Cost-Effectiveness Analysis in R.
 
-This is the **development version** of the `R` package `BCEA`. The stable version is now release 2.4-8, on CRAN.
+This is the **development version** of the `R` package `BCEA`. The stable version is now release 2.4-8, on [CRAN](https://cran.r-project.org/web/packages/BCEA/index.html).
 
 ## Contents
 
@@ -39,24 +39,31 @@ Install the [released version from CRAN](https://cran.r-project.org/package=BCEA
 install.packages("BCEA")
 ```
 
-The stable version (which can be updated more quickly) can be installed using this GitHub repository. On Windows machines, you need to install a few dependencies, including [Rtools](https://cran.r-project.org/bin/windows/Rtools/) first, e.g. by running
+The development version (in this repo, which can be updated more quickly and more often than the stable one) can be installed from `r-universe.dev`, using the following command
+
+```r
+install.packages(
+  'BCEA', 
+  repos = c('https://giabaio.r-universe.dev', 'https://cloud.r-project.org')
+)
+```
+
+Alternatively, you can intall the development version using `remotes`, with the following command.
+```r
+install.packages("remotes")
+remotes::install_github("giabaio/BCEA")
+```
+
+**NB**: On Windows machines, you need to install a few dependencies, including [Rtools](https://cran.r-project.org/bin/windows/Rtools/) first, e.g. by running
 
 ```r
 pkgs <- c("MASS", "Rtools", "remotes")
 repos <- "https://cran.rstudio.com"
 install.packages(pkgs, repos = repos, dependencies = "Depends")
 ```
-before installing the package using `remotes`:
 
-```r
-remotes::install_github("giabaio/BCEA")
-```
-Under Linux or MacOS, it is sufficient to install the package via `remotes`:
+before installing the package using `remotes`.
 
-```r
-install.packages("remotes")
-remotes::install_github("giabaio/BCEA")
-```
 
 ## Articles
 Examples of using specific functions and their different arguments are given in [these articles](https://n8thangreen.github.io/BCEA/articles/index.html):
