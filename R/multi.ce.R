@@ -55,6 +55,7 @@ multi.ce.bcea <- function(he) {
   
   res <- c(he,
            list(p_best_interv = p_best_interv,
+                p_best_overall = compute_p_best_interv(he),
                 ceaf = ceaf))
   
   structure(res, class = c("pairwise", class(he)))

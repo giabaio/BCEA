@@ -1,5 +1,12 @@
+# BCEA 2.4.8 (dev)
 
-# BCEA 2.4.8
+_July 2025_
+
+* Fix a small issue in `multi.ce`. The CRAN version has removed the use of `BCEA:::compute_p_best_interv`, which computes the probability that each intervention is the 
+most cost-effective, for each value of the willingness to pay. The output of that call must be passed as input to `BCEA:::ceac_plot_XXXX.pairwise` in order for
+`ceac.plot` to produce the individual probability of cost-effectiveness
+
+# BCEA 2.4.8 
 
 _June 2025_
 

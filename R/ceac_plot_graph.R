@@ -31,7 +31,7 @@ ceac_plot_base.pairwise <- function(he,
   ceac_matplot(he,
                pos_legend,
                graph_params,
-               "p_best_interv")
+               "p_best_overall")
 }
 
 #' @rdname ceac_plot_graph
@@ -93,7 +93,7 @@ ceac_plot_ggplot.pairwise <- function(he,
   ceac_ggplot(he,
               pos_legend,
               graph_params,
-              "p_best_interv", ...)
+              "p_best_overall", ...)
 }
 
 #' @rdname ceac_plot_graph
