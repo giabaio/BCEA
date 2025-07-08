@@ -348,23 +348,40 @@ compute_ceaf <- function(p_best_interv) {
 #' Compute Probability Best Intervention
 #' @template args-he
 #' 
+# compute_p_best_interv <- function(he) {
+#   
+#   intervs <- c(he$comp, he$ref)
+#   p_best_interv <- array(NA,
+#                          c(length(he$k),
+#                            length(intervs)))
+#   
+#   for (i in seq_along(intervs)) {
+#     for (k in seq_along(he$k)) {
+#       
+#       is_interv_best <- he$U[, k, ] <= he$U[, k, intervs[i]]
+#       
+#       rank <- apply(!is_interv_best, 1, sum)
+#       
+#       p_best_interv[k, i] <- mean(rank == 0)
+#     }
+#   }
+#   
+#   p_best_interv
+# }
+# This is much more efficient and quick to run!
 compute_p_best_interv <- function(he) {
+  dims <- dim(he$U)  
   
-  intervs <- c(he$comp, he$ref)
-  p_best_interv <- array(NA,
-                         c(length(he$k),
-                           length(intervs)))
+  # Find which column is max along 3rd dimension for each (i,j)
+  max_idx <- max.col(matrix(he$U, ncol = dims[3]), ties.method = "first")
+  max_idx <- matrix(max_idx, nrow = dims[1], ncol = dims[2])
   
-  for (i in seq_along(intervs)) {
-    for (k in seq_along(he$k)) {
-      
-      is_interv_best <- he$U[, k, ] <= he$U[, k, intervs[i]]
-      
-      rank <- apply(!is_interv_best, 1, sum)
-      
-      p_best_interv[k, i] <- mean(rank == 0)
-    }
+  # Tabulate frequencies: vectorized
+  p_best_interv <- matrix(0, nrow = dims[2], ncol = dims[3])
+  for (k in 1:dims[3]) {
+    p_best_interv[,k] <- colSums(max_idx == k) / dims[1]  # relative frequencies
   }
+  colnames(p_best_interv) <- he$interventions
   
   p_best_interv
 }
