@@ -25,5 +25,5 @@
 #' @return NULL
 #' @noRd
 .onAttach <- function(libname, pkgname) {
-  packageStartupMessage("The BCEA version loaded is: ", utils::packageVersion("BCEA"))
+  packageStartupMessage("The BCEA version loaded is: ", utils::packageVersion("BCEA"), " (development version)")
 }
