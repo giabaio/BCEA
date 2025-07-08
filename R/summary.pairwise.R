@@ -73,13 +73,13 @@ summary.pairwise <- function(object,
   ##TODO: where is p_best_interv in this order??
   row_idx <- c(he$comp, he$ref)
   
-  EU_tab <- matrix(NA, he$n_comparators, 4)
+  EU_tab <- matrix(NA, he$n_comparators, 2)
   EU_tab[row_idx, 1] <-
     unlist(Table[he$n_sim + 1, paste0("U", 1:he$n_comparators)])
-  colnames(EU_tab) <- c("Expected net benefit", "EIB", "CEAC", "ICER")
+  colnames(EU_tab) <- c("Expected net benefit", "CEAC")
   rownames(EU_tab) <- he$interventions[row_idx]
   
-  EU_tab[, 3] <- he$p_best_interv[he$k == wtp, ]
+  EU_tab[, 2] <- he$p_best_overall[he$k == wtp, ]
   
   evpi_tab <- matrix(NA, 1, 1)
   evpi_tab[, 1] <- Table[he$n_sim + 1, "VI"]

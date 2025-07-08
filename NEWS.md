@@ -6,6 +6,8 @@ _July 2025_
 most cost-effective, for each value of the willingness to pay. The output of that call must be passed as input to `BCEA:::ceac_plot_XXXX.pairwise` in order for
 `ceac.plot` to produce the individual probability of cost-effectiveness
 
+* Fix the function `summary.pairwise` to comply with the changes in `multi.ce`
+
 # BCEA 2.4.8 
 
 _June 2025_
