@@ -5,7 +5,7 @@ Version: 2.4.81
 Authors@R: c(
     person("Gianluca", "Baio",
             email = "g.baio@ucl.ac.uk",
-            role = c("aut", "cre", "cph"),
+            role = c("aut", "cre", "cph", "maintainer"),
             comment = c(ORCID = "0000-0003-4314-2570")),
     person("Andrea", "Berardi",
             email = "a.berardi@ucl.ac.uk",
@@ -63,11 +63,11 @@ Description: Produces an economic evaluation of a sample of suitable variables o
 License: GPL-3
 URL: https://gianluca.statistica.it/software/bcea/,
      https://gianluca.statistica.it/,
-     https://github.com/giabaio/BCEA/,
-     https://n8thangreen.github.io/BCEA/
+     https://n8thangreen.github.io/BCEA/,
+     https://github.com/giabaio/BCEA/
 NeedsCompilation: no
 RoxygenNote: 7.3.2.9000
 Encoding: UTF-8
-BugReports: https://github.com/n8thangreen/BCEA/issues/
+BugReports: https://github.com/giabaio/BCEA/issues/
 LazyData: false
 Roxygen: list(markdown = TRUE)
