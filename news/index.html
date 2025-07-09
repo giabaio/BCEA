@@ -34,7 +34,7 @@
 <li class="nav-item"><a class="nav-link" href="../bcea_cheatsheet.pdf">Cheatsheet</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/n8thangreen/BCEA/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/giabaio/BCEA/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -43,7 +43,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/n8thangreen/BCEA/blob/dev/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/giabaio/BCEA/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
@@ -63,7 +63,7 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.4.7" id="bcea-247">BCEA 2.4.7<a class="anchor" aria-label="anchor" href="#bcea-247"></a></h2>
 <p><em>January 2025</em></p>
-<ul><li>In <code><a href="../reference/ceplane.plot.html">ceplane.plot()</a></code> for <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> version used the ggplot syntax thats already used for other plotting arguments so that we can now pass, e.g. <code>wtp = list(value = 20000, colour = "blue", x = 10, y = 10, size = 4)</code>. This closes issue <a href="https://github.com/n8thangreen/BCEA/issues/151" class="external-link">#151</a> so can do something like <code>wtp = list(size = 0)</code> to hide the willingness to pay text. (3d8a770)</li>
+<ul><li>In <code><a href="../reference/ceplane.plot.html">ceplane.plot()</a></code> for <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> version used the ggplot syntax thats already used for other plotting arguments so that we can now pass, e.g. <code>wtp = list(value = 20000, colour = "blue", x = 10, y = 10, size = 4)</code>. This closes issue <a href="https://github.com/giabaio/BCEA/issues/151" class="external-link">#151</a> so can do something like <code>wtp = list(size = 0)</code> to hide the willingness to pay text. (3d8a770)</li>
 <li>Small features added which were missing for the new edition of the BCEA book:
 <ul><li>Extended <code>ggplot</code> version legend to take a vertical or horizontal part to the <code>pos</code> argument (85ba87f).</li>
 <li>
@@ -100,7 +100,7 @@
 <li>
 <code><a href="../reference/evppi.html">evppi()</a></code> tested against all use cases in BCEA book (1c1457d2)</li>
 <li>Select parameters by position (as well as name) in new <code><a href="../reference/evppi.html">evppi()</a></code> (f2e4d005)</li>
-<li>Use single parameter case only like <code>voi</code> package for methods <code>sal</code> and <code>so</code> (<a href="https://github.com/n8thangreen/BCEA/issues/140" class="external-link">#140</a>)</li>
+<li>Use single parameter case only like <code>voi</code> package for methods <code>sal</code> and <code>so</code> (<a href="https://github.com/giabaio/BCEA/issues/140" class="external-link">#140</a>)</li>
 <li>New <code><a href="../reference/evppi.html">evppi()</a></code> matching output of old <code><a href="../reference/evppi.html">evppi()</a></code> (1e2c5e7)</li>
 <li>Latest development version of <code>voi</code> needed when we use <code>check = TRUE</code> in <code><a href="https://chjackson.github.io/voi/reference/evppi.html" class="external-link">voi::evppi()</a></code> in order to access fitting data (6e436b5, 94f5fc5)</li>
 <li>No longer require <code>INLA</code> package to be available inside of <code>BCEA</code> so can remove direct dependency. This helps with passing CRAN checks and GitHub Actions ()</li>
@@ -120,7 +120,7 @@
 <code><a href="../reference/make.report.html">make.report()</a></code> change variable name (f940f2e)</li>
 <li>Fixed issue with summary table where names of interventions in the wrong order (6a006e3)</li>
 <li>
-<code><a href="../reference/summary.bcea.html">summary.bcea()</a></code> now only prints results for chosen comparisons and not always all of them. <code>kstar</code> and <code>best</code> in <code><a href="../reference/bcea.html">bcea()</a></code> object were not updated with subset of interventions (<a href="https://github.com/n8thangreen/BCEA/issues/125" class="external-link">#125</a>)</li>
+<code><a href="../reference/summary.bcea.html">summary.bcea()</a></code> now only prints results for chosen comparisons and not always all of them. <code>kstar</code> and <code>best</code> in <code><a href="../reference/bcea.html">bcea()</a></code> object were not updated with subset of interventions (<a href="https://github.com/giabaio/BCEA/issues/125" class="external-link">#125</a>)</li>
 </ul></div>
 <div class="section level3">
 <h3 id="refactoring-2-4-3">Refactoring<a class="anchor" aria-label="anchor" href="#refactoring-2-4-3"></a></h3>
@@ -185,8 +185,8 @@
 <li>Typo fixed in dropping dimension in <code><a href="../reference/compute_vi.html">compute_vi()</a></code>
 </li>
 <li>
-<code>setReferenceGroup()</code> for CEAC plot legend error; doesn’t use supplied names but generic intervention 1, intervention 2, … (<a href="https://github.com/n8thangreen/BCEA/issues/82" class="external-link">#82</a>)</li>
-<li>Missing <code><a href="../reference/multi.ce.html">multi.ce()</a></code> line for reference group (<a href="https://github.com/n8thangreen/BCEA/issues/80" class="external-link">#80</a>)</li>
+<code>setReferenceGroup()</code> for CEAC plot legend error; doesn’t use supplied names but generic intervention 1, intervention 2, … (<a href="https://github.com/giabaio/BCEA/issues/82" class="external-link">#82</a>)</li>
+<li>Missing <code><a href="../reference/multi.ce.html">multi.ce()</a></code> line for reference group (<a href="https://github.com/giabaio/BCEA/issues/80" class="external-link">#80</a>)</li>
 </ul></div>
 <div class="section level3">
 <h3 id="miscellaneous-2-4-1-2">Miscellaneous<a class="anchor" aria-label="anchor" href="#miscellaneous-2-4-1-2"></a></h3>
@@ -205,7 +205,7 @@
 <ul><li>line length, <code><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len()</a></code>, remove <code>;</code>
 </li>
 </ul></li>
-<li>Contributor guidelines (<a href="https://github.com/n8thangreen/BCEA/issues/93" class="external-link">#93</a>)</li>
+<li>Contributor guidelines (<a href="https://github.com/giabaio/BCEA/issues/93" class="external-link">#93</a>)</li>
 <li>Deprecated functions document</li>
 <li>
 <code><a href="../reference/contour2.html">contour2()</a></code> changed so <code>xlim</code>, <code>ylim</code> arguments are optional; the same as <code><a href="../reference/ceplane.plot.html">ceplane.plot()</a></code> since they are passes to it</li>
@@ -243,7 +243,7 @@
 <li>
 <code><a href="../reference/multi.ce.html">multi.ce()</a></code> and <code>CEriskAv()</code> also now work similarly. They operate by modifying the <code>bcea</code> object, rather than creating new one (think decorator pattern).</li>
 <li>
-<code><a href="../reference/bcea.html">bcea()</a></code> methods for JAGS, WinBUGS, Stan (<a href="https://github.com/n8thangreen/BCEA/issues/76" class="external-link">#76</a>)</li>
+<code><a href="../reference/bcea.html">bcea()</a></code> methods for JAGS, WinBUGS, Stan (<a href="https://github.com/giabaio/BCEA/issues/76" class="external-link">#76</a>)</li>
 </ul></div>
 <div class="section level3">
 <h3 id="miscellaneous-2-4-1-1">Miscellaneous<a class="anchor" aria-label="anchor" href="#miscellaneous-2-4-1-1"></a></h3>
@@ -253,8 +253,8 @@
 <li>Added a <code>NEWS.md</code> file to track changes to the package. Details about previous releases, such as dates, versions, fixes and enhancements obtained from CRAN and code comments so a little patchy.</li>
 <li>
 <code>pkgdown</code> GitHub site made.</li>
-<li>Cheatsheet written and published on RStudio site (<a href="https://github.com/n8thangreen/BCEA/issues/22" class="external-link">#22</a>).</li>
-<li>Dependency package <strong>ldr</strong> removed from <strong>BCEA</strong> because it was removed from CRAN (<a href="https://github.com/n8thangreen/BCEA/issues/74" class="external-link">#74</a>)</li>
+<li>Cheatsheet written and published on RStudio site (<a href="https://github.com/giabaio/BCEA/issues/22" class="external-link">#22</a>).</li>
+<li>Dependency package <strong>ldr</strong> removed from <strong>BCEA</strong> because it was removed from CRAN (<a href="https://github.com/giabaio/BCEA/issues/74" class="external-link">#74</a>)</li>
 </ul></div>
 </div>
     <div class="section level2">
