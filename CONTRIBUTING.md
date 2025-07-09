@@ -9,12 +9,12 @@ Before you start:
 
 ## Did you find a bug?
 
--   Make sure the bug was not already reported in the Github [Issues](https://github.com/n8thangreen/BCEA/issues).
--   [Open an issue](https://github.com/n8thangreen/BCEA/issues/new) and clearly describe the issue with as much information as possible. A code sample or an executable test case are recommended.
+-   Make sure the bug was not already reported in the Github [Issues](https://github.com/giabaio/BCEA/issues).
+-   [Open an issue](https://github.com/giabaio/BCEA/issues/new) and clearly describe the issue with as much information as possible. A code sample or an executable test case are recommended.
 
 ## Did you plan to write a patch that fixes a bug?
 
--   [Open an issue](https://github.com/n8thangreen/BCEA/issues/new) and clearly describe the problem and discuss how your solution will affect `BCEA`.
+-   [Open an issue](https://github.com/giabaio/BCEA/issues/new) and clearly describe the problem and discuss how your solution will affect `BCEA`.
 -   Fork the repository on GitHub to work on the patch.
 -   Get in touch with the maintainer to refine and prioritize your issue.
 
