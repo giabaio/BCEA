@@ -20,7 +20,7 @@ Before you start:
 
 ## Making changes and Pull requests
 
--   Start your work on your fork of the repository. If you haven't done this before, try using `usethis::create_from_github("n8thangreen/BCEA", fork = TRUE)`.
+-   Start your work on your fork of the repository. If you haven't done this before, try using `usethis::create_from_github("giabaio/BCEA", fork = TRUE)`.
 -   Install all development dependencies with `devtools::install_dev_deps()`, and then make sure the package passes R CMD check by running `devtools::check()`.
 -   Create a Git branch for your pull request (PR). You may want to use `usethis::pr_init("brief-description-of-change")`.
 -   Check for unnecessary whitespace with `git diff --check` and format code.

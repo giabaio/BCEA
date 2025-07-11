@@ -41,5 +41,6 @@
 ^tests/testthat/testdata/statins_HC\.RData$
 ^tests/testthat/create_ce_mock\.R$
 ^tests/testthat/test-structpsa\.R$
+^README\.Rmd$
 ^README\.md$
 
