@@ -15,9 +15,9 @@ Useful links:
 \itemize{
   \item \url{https://gianluca.statistica.it/software/bcea/}
   \item \url{https://gianluca.statistica.it/}
-  \item \url{https://github.com/giabaio/BCEA/}
   \item \url{https://n8thangreen.github.io/BCEA/}
-  \item Report bugs at \url{https://github.com/n8thangreen/BCEA/issues/}
+  \item \url{https://github.com/giabaio/BCEA/}
+  \item Report bugs at \url{https://github.com/giabaio/BCEA/issues/}
 }
 
 }
