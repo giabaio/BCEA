@@ -78,7 +78,14 @@ bcea.default <- function(eff,
            delta_c = .data$cost0 - .data$cost1)
   
   df_ce$interv_names <- factor(interv_names[df_ce$ints],
-                               levels = interv_names)
+                               levels = interv_names) 
+  
+  # Arranges the dataset so that it can be operated upon using pivot_wider
+  # NB: Needs to arrange by both sim and interv_names to ensure that
+  #     the resulting data are in the same order when changing the 
+  #     reference intervention using one of the setters. Needs to be
+  #     explicit in defining the variables by which to sort!
+  df_ce <- df_ce |> arrange(.data$sim, .data$ints) 
   
   he <- new_bcea(df_ce, k)
   

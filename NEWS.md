@@ -2,7 +2,9 @@
 
 _July 2025_
 
-* The helper function `line_labels` would mess up with the labels in the `multi.ce` plot. Fixed now (INSERT_COMMIT_HERE).
+* Removes the dependence to the deprecated `reshape2` and move code to use `tidyr` (dfbd68b).
+
+* The helper function `line_labels` would mess up with the labels in the `multi.ce` plot. Fixed now (37bd270).
 
 # BCEA 2.4.81
 

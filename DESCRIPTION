@@ -31,7 +31,7 @@ Imports:
     plotly,
     purrr,
     Rdpack,
-    reshape2,
+    tidyr,
     rlang,
     rstan,
     scales,
