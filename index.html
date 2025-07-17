@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="index.html">BCEA</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.81</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.82</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,7 +75,7 @@
 <blockquote>
 <p>Perform Bayesian Cost-Effectiveness Analysis in R.</p>
 </blockquote>
-<p><span class="emoji" data-emoji="rocket">🚀</span> This is the <strong>stable version</strong> of the <code>R</code> package <code>BCEA</code>, which is on release 2.4.81 and available from <a href="https://cran.r-project.org/web/packages/BCEA/index.html" class="external-link">CRAN</a>. The development version is available from <a href="https://giabaio.r-universe.dev/BCEA" class="external-link"><code>r-universe.dev</code></a>.</p>
+<p><span class="emoji" data-emoji="rocket">🚀</span> This is the <strong>development version</strong> of the <code>R</code> package <code>BCEA</code> (currently on version 2.4.82). The stable version is now release 2.4.81, on <a href="https://cran.r-project.org/web/packages/BCEA/index.html" class="external-link">CRAN</a>.</p>
 <div class="section level2">
 <h2 id="contents">Contents<a class="anchor" aria-label="anchor" href="#contents"></a>
 </h2>
@@ -105,15 +105,25 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>Install the <a href="https://cran.r-project.org/package=BCEA" class="external-link">stable version from CRAN</a> with</p>
+<p>Install the <a href="https://cran.r-project.org/package=BCEA" class="external-link">released version from CRAN</a> with</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BCEA"</span><span class="op">)</span></span></code></pre></div>
-<p>The development version (in the <a href="https://github.com/giabaio/BCEA" class="external-link"><code>main</code></a> branch of this repository) can be installed from <code>r-universe.dev</code>, using the following command</p>
+<p>The development version (in this repo, which can be updated more quickly and more often than the stable one) can be installed from <code>r-universe.dev</code>, using the following command</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span></span>
 <span>  <span class="st">'BCEA'</span>, </span>
 <span>  repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'https://giabaio.r-universe.dev'</span>, <span class="st">'https://cloud.r-project.org'</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
+<p>Alternatively, you can intall the development version using <code>remotes</code>, with the following command.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"giabaio/BCEA"</span><span class="op">)</span></span></code></pre></div>
+<p><strong>NB</strong>: On Windows machines, you need to install a few dependencies, including <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a> first, e.g. by running</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pkgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MASS"</span>, <span class="st">"Rtools"</span>, <span class="st">"remotes"</span><span class="op">)</span></span>
+<span><span class="va">repos</span> <span class="op">&lt;-</span> <span class="st">"https://cran.rstudio.com"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="va">pkgs</span>, repos <span class="op">=</span> <span class="va">repos</span>, dependencies <span class="op">=</span> <span class="st">"Depends"</span><span class="op">)</span></span></code></pre></div>
+<p>before installing the package using <code>remotes</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="articles">Articles<a class="anchor" aria-label="anchor" href="#articles"></a>
