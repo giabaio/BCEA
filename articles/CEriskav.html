@@ -75,7 +75,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Risk Aversion Analysis</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/main/vignettes/CEriskav.Rmd" class="external-link"><code>vignettes/CEriskav.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/dev/vignettes/CEriskav.Rmd" class="external-link"><code>vignettes/CEriskav.Rmd</code></a></small>
       <div class="d-none name"><code>CEriskav.Rmd</code></div>
     </div>
 
@@ -96,7 +96,17 @@ ggplot2 versions of plots.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-3-1.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-3-2.png" width="576"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span>
+<span><span class="co">#&gt; Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if</span></span>
+<span><span class="co">#&gt; `.name_repair` is omitted as of tibble 2.0.0.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Using compatibility `.name_repair`.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">BCEA</span> package.</span></span>
+<span><span class="co">#&gt;   Please report the issue at <span style="color: #0000BB; font-style: italic;">&lt;https://github.com/giabaio/BCEA/issues/&gt;</span>.</span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-3-3.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-3-4.png" width="576"></p>
 <p>Notice that the first value is asymptotically zero but the function
 handles that for us. Previously, you had to use something like 1e-10
@@ -114,7 +124,9 @@ same.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-5-1.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-5-2.png" width="576"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-5-3.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-5-4.png" width="576"></p>
 <p>What happens when we only have one risk adjustment value? Set it to
 zero so this should be exactly the same as the baseline
@@ -127,7 +139,9 @@ zero so this should be exactly the same as the baseline
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-6-1.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-6-2.png" width="576"></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-6-3.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-6-4.png" width="576"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
@@ -169,7 +183,9 @@ interventions from the analysis above.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-9-1.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-9-2.png" width="576"></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-9-3.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-9-4.png" width="576"></p>
 <p>The previous version of <code><a href="../reference/CEriskav_assign.html">CEriskav()</a></code> had a
 <code>comparison</code> argument where you could specify the single
@@ -210,30 +226,46 @@ function.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># ggplot2</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-17.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-18.png" width="576"></p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-19.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-20.png" width="576"></p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-21.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-22.png" width="576"></p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-23.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-24.png" width="576"></p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-25.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-26.png" width="576"></p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-27.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-28.png" width="576"></p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-29.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-30.png" width="576"></p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span>, pos <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span>
+<span><span class="co">#&gt; Warning in f(names[[col]]): NAs introduced by coercion</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-31.png" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-32.png" width="576"></p>
   </main>
 </div>
