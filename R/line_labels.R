@@ -30,6 +30,6 @@ line_labels.default <- function(he, ref_first = TRUE, ...) {
 #' @export
 #' 
 line_labels.pairwise <- function(he, ...) {
-  he$interventions[c(he$comp, he$ref)]
+  he$interventions
 }
 

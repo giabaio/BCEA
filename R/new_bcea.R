@@ -92,4 +92,3 @@ new_bcea <- function(df_ce, k) {
   
   structure(he, class = c("bcea", class(he)))
 }
-

@@ -131,7 +131,7 @@ ceac_ggplot <- function(he,
                    times = n_lines),
            ceac = c(ceac_dat),
            comparison = as.factor(rep(1:n_lines, each = len_k)))
-  
+
   graph_params <- helper_ggplot_params(he, graph_params)
   legend_params <- make_legend_ggplot(he, pos_legend)
   theme_add <- Filter(f = \(val) ggplot2::is_theme(val), x = extra_params)

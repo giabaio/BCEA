@@ -3,7 +3,7 @@
 #' @param he a BCEA object of interest
 #'
 #' @return a data.frame, displaying the BCEA object information in long format
-#' 
+#'
 #' @importFrom dplyr mutate
 #' @importFrom reshape2 melt
 #'
