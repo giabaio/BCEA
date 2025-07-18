@@ -2,7 +2,7 @@
 
 _July 2025_
 
-* Removes the folder `inst/jags`, which contains an old `Rmd` example, that is not used any more (8cb5e78).
+* Removes the folder `inst/jags`, which contains an old `Rmd` example, that is not used any more (6edb41c).
 
 * Removes the folder `inst/rmarkdown/report`, which is a left-over from when `BCEAweb` was part of the main `BCEA` (a41aec6).
 
