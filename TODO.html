@@ -50,7 +50,8 @@
 
 <div class="section level2">
 <h2 id="july-2025">July 2025<a class="anchor" aria-label="anchor" href="#july-2025"></a></h2>
-<ul><li><p>Check the code all-round to see where we can find bottlenecks in computation and make things quicker.</p></li>
+<ul><li><p>There’s a <code>make.report.R</code> file, which defines a few functions used to run <code>BCEA</code> in the background and save the output onto a <code>pdf</code> report. I <em>think</em> these are legacy from when <code>BCEAweb</code> was just a function in <code>BCEA</code> (rather than a package itself), so probably OK to remove this file as well as the <code>Suggest</code> to <code>rmarkdown</code> and <code>markdown</code>?</p></li>
+<li><p>Check the code all-round to see where we can find bottlenecks in computation and make things quicker.</p></li>
 <li><p>Do we <em>need</em> to make <code>rstan</code> a full <code>Import</code>? We use it in a couple of places — <code>CreateInputs</code> and <code>bcea.rstan</code>, but in the former, the method defined does not really use any <code>rstan</code>-specific functions… Seems a bit of a bummer to make a strong dependence on a heavy package for a relatively marginal facility?…</p></li>
 <li><p>Similarly, <code>vdiffr</code> (which is only a <code>Suggest</code>) is only used in one of the tests… Could we actually remove it?</p></li>
 <li><p>Do we <strong>need</strong> to have <code>Rdpack</code> as an <code>Import</code>? We use it in various places as <code>#' @importFrom Rdpack reprompt</code> but I wonder whether we really do anything with it, given that it doesn’t seem to be called directly by any function??</p></li>
