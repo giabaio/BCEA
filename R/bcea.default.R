@@ -86,7 +86,7 @@ bcea.default <- function(eff,
   #     reference intervention using one of the setters. Needs to be
   #     explicit in defining the variables by which to sort!
   df_ce <- df_ce |> arrange(.data$sim, .data$ints) 
-  
+
   he <- new_bcea(df_ce, k)
   
   he <- setComparisons(he, .comparison)

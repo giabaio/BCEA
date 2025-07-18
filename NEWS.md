@@ -2,13 +2,13 @@
 
 _July 2025_
 
-* Removes the folder `inst/rmarkdown/report`, which is a left-over from when `BCEAweb` was part of the main `BCEA` (2210507).
+* Removes the folder `inst/rmarkdown/report`, which is a left-over from when `BCEAweb` was part of the main `BCEA` (a41aec6).
 
-* Simplifies documentation of `contour` (2210507).
+* Simplifies documentation of `contour` (a41aec6).
 
-* Removes the Suggest for `vdiffr`, which is not really used (dddd31a).
+* Removes the Suggest for `vdiffr`, which is not really used (6e3ef67).
 
-* Updates documentation for `CEriskav` (3b3ff313).
+* Updates documentation for `CEriskav` (40b0183).
 
 * Removes the dependence to the deprecated `reshape2` and move code to use `tidyr` (dfbd68b).
 
