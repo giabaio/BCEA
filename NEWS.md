@@ -2,6 +2,8 @@
 
 _July 2025_
 
+* Removes the Suggest for `vdiffr`, which is not really used (dddd31a).
+
 * Updates documentation for `CEriskav` (3b3ff313).
 
 * Removes the dependence to the deprecated `reshape2` and move code to use `tidyr` (dfbd68b).

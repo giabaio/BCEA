@@ -31,10 +31,10 @@ Imports:
     plotly,
     purrr,
     Rdpack,
-    tidyr,
     rlang,
     rstan,
     scales,
+    tidyr,
     voi (>= 1.0.1)
 Depends:
     R (>= 4.1.0)
@@ -50,7 +50,6 @@ Suggests:
     rmarkdown,
     splancs,
     testthat (>= 2.1.0),
-    vdiffr,
     withr
 RdMacros: Rdpack
 VignetteBuilder: knitr
