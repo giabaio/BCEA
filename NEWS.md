@@ -2,6 +2,10 @@
 
 _July 2025_
 
+* Removes the folder `inst/rmarkdown/report`, which is a left-over from when `BCEAweb` was part of the main `BCEA` (2210507).
+
+* Simplifies documentation of `contour` (2210507).
+
 * Removes the Suggest for `vdiffr`, which is not really used (dddd31a).
 
 * Updates documentation for `CEriskav` (3b3ff313).

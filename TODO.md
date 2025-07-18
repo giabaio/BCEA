@@ -16,4 +16,6 @@ to make a strong dependence on a heavy package for a relatively marginal facilit
    ```
    but I wonder whether we really do anything with it, given that it doesn't seem to be called directly by any function??
    
-* 
+* Should we make `ggplot` the default for graphs (instead of base)?
+
+* The folder `revdep` is outdated. Should we just remove? Or write a script that keeps it up-to-date?
