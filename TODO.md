@@ -2,6 +2,10 @@
 
 ## July 2025
 
+* There's a `make.report.R` file, which defines a few functions used to run `BCEA` in the background and save the output
+onto a `pdf` report. I *think* these are legacy from when `BCEAweb` was just a function in `BCEA` (rather than a package itself),
+so probably OK to remove this file as well as the `Suggest` to `rmarkdown` and `markdown`?
+
 * Check the code all-round to see where we can find bottlenecks in computation and make things quicker.
 
 * Do we *need* to make `rstan` a full `Import`? We use it in a couple of places --- `CreateInputs` and `bcea.rstan`, 
