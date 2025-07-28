@@ -4,7 +4,9 @@
 
 * There's a `make.report.R` file, which defines a few functions used to run `BCEA` in the background and save the output
 onto a `pdf` report. I *think* these are legacy from when `BCEAweb` was just a function in `BCEA` (rather than a package itself),
-so probably OK to remove this file as well as the `Suggest` to `rmarkdown` and `markdown`?
+so probably OK to remove this file as well as the `Suggest` to `rmarkdown` and `markdown`? This is related to the files in
+the folder `inst/rmarkdown/report`. If we remove `make.report()` and the utility function `openPDF()` (also stored in `make.report.R`)
+then we should also remove the full folder in `inst/rmarkdown/report`. 
 
 * Check the code all-round to see where we can find bottlenecks in computation and make things quicker.
 

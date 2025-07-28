@@ -134,4 +134,3 @@ bcea.bugs <- function(eff, ...) {
   eff <- eff$sims.list$eff
   bcea.default(eff, cost, ...)
 }
-
