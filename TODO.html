@@ -43,15 +43,19 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="logo.png" class="logo" alt=""><h1>TO-DO list</h1>
-      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/main/TODO.md" class="external-link"><code>TODO.md</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/dev/TODO.md" class="external-link"><code>TODO.md</code></a></small>
     </div>
 
 <div id="to-do-list" class="section level1">
 
 <div class="section level2">
 <h2 id="july-2025">July 2025<a class="anchor" aria-label="anchor" href="#july-2025"></a></h2>
-<ul><li><p>Check whether we can remove all the dependencies/instances of use of <code>reshape2</code>; it seems like this is a deprecated package and could be easily replaced with <code>tidyr</code> for reshaping datasets.</p></li>
+<ul><li><p>There’s a <code>make.report.R</code> file, which defines a few functions used to run <code>BCEA</code> in the background and save the output onto a <code>pdf</code> report. I <em>think</em> these are legacy from when <code>BCEAweb</code> was just a function in <code>BCEA</code> (rather than a package itself), so probably OK to remove this file as well as the <code>Suggest</code> to <code>rmarkdown</code> and <code>markdown</code>? This is related to the files in the folder <code>inst/rmarkdown/report</code>. If we remove <code><a href="reference/make.report.html">make.report()</a></code> and the utility function <code><a href="reference/openPDF.html">openPDF()</a></code> (also stored in <code>make.report.R</code>) then we should also remove the full folder in <code>inst/rmarkdown/report</code>.</p></li>
 <li><p>Check the code all-round to see where we can find bottlenecks in computation and make things quicker.</p></li>
+<li><p>Do we <em>need</em> to make <code>rstan</code> a full <code>Import</code>? We use it in a couple of places — <code>CreateInputs</code> and <code>bcea.rstan</code>, but in the former, the method defined does not really use any <code>rstan</code>-specific functions… Seems a bit of a bummer to make a strong dependence on a heavy package for a relatively marginal facility?…</p></li>
+<li><p>Do we <strong>need</strong> to have <code>Rdpack</code> as an <code>Import</code>? We use it in various places as <code>#' @importFrom Rdpack reprompt</code> but I wonder whether we really do anything with it, given that it doesn’t seem to be called directly by any function??</p></li>
+<li><p>Should we make <code>ggplot</code> the default for graphs (instead of base)?</p></li>
+<li><p>The folder <code>revdep</code> is outdated. Should we just remove? Or write a script that keeps it up-to-date?</p></li>
 </ul></div>
 </div>
 
