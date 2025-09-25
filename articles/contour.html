@@ -75,7 +75,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Contour Plots</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/dev/vignettes/contour.Rmd" class="external-link"><code>vignettes/contour.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/main/vignettes/contour.Rmd" class="external-link"><code>vignettes/contour.Rmd</code></a></small>
       <div class="d-none name"><code>contour.Rmd</code></div>
     </div>
 
@@ -101,7 +101,22 @@ explicitly using the <code>graph</code> argument.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/contour.html">contour</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="contour_files/figure-html/unnamed-chunk-3-1.png" width="576"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/contour.html">contour</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/contour.html">contour</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: `aes_string()` was deprecated in ggplot2 3.0.0.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please use tidy evaluation idioms with `aes()`.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> See also `vignette("ggplot2-in-packages")` for more information.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">BCEA</span> package.</span></span>
+<span><span class="co">#&gt;   Please report the issue at <span style="color: #0000BB; font-style: italic;">&lt;https://github.com/giabaio/BCEA/issues/&gt;</span>.</span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span>
+<span><span class="co">#&gt; Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please use `linewidth` instead.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">BCEA</span> package.</span></span>
+<span><span class="co">#&gt;   Please report the issue at <span style="color: #0000BB; font-style: italic;">&lt;https://github.com/giabaio/BCEA/issues/&gt;</span>.</span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span></code></pre></div>
 <p><img src="contour_files/figure-html/unnamed-chunk-3-2.png" width="576"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># ceac.plot(he, graph = "plotly")</span></span></code></pre></div>
@@ -139,9 +154,7 @@ lines.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/contour2.html">contour2</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="contour_files/figure-html/unnamed-chunk-7-1.png" width="576"></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/contour2.html">contour2</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 1000 rows containing missing values or values outside the scale range</span></span>
-<span><span class="co">#&gt; (`geom_point()`).</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/contour2.html">contour2</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="contour_files/figure-html/unnamed-chunk-7-2.png" width="576"></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># ceac.plot(he, graph = "plotly")</span></span></code></pre></div>
@@ -152,9 +165,7 @@ above.</p>
 <span>         graph <span class="op">=</span> <span class="st">"ggplot2"</span>,</span>
 <span>         title <span class="op">=</span> <span class="st">"my title"</span>,</span>
 <span>         point <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"blue"</span>, shape <span class="op">=</span> <span class="fl">10</span>, size <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>,</span>
-<span>         contour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 1000 rows containing missing values or values outside the scale range</span></span>
-<span><span class="co">#&gt; (`geom_point()`).</span></span></code></pre></div>
+<span>         contour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="contour_files/figure-html/unnamed-chunk-8-1.png" width="576"></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/contour2.html">contour2</a></span><span class="op">(</span><span class="va">he</span>,</span>
@@ -230,9 +241,7 @@ plot too.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/contour2.html">contour2</a></span><span class="op">(</span><span class="va">he</span>, wtp <span class="op">=</span> <span class="fl">250</span><span class="op">)</span></span></code></pre></div>
 <p><img src="contour_files/figure-html/unnamed-chunk-17-1.png" width="576"></p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/contour2.html">contour2</a></span><span class="op">(</span><span class="va">he</span>, wtp <span class="op">=</span> <span class="fl">250</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 1500 rows containing missing values or values outside the scale range</span></span>
-<span><span class="co">#&gt; (`geom_point()`).</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/contour2.html">contour2</a></span><span class="op">(</span><span class="va">he</span>, wtp <span class="op">=</span> <span class="fl">250</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="contour_files/figure-html/unnamed-chunk-17-2.png" width="576"></p>
 <p>The styling of the plot for multiple comparisons can specifically
 change the colour and point type for each comparison.</p>
@@ -243,9 +252,7 @@ change the colour and point type for each comparison.</p>
 <span>         line <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
 <span>         point <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"plum"</span>, <span class="st">"tomato"</span>, <span class="st">"springgreen"</span><span class="op">)</span>, shape <span class="op">=</span> <span class="fl">3</span><span class="op">:</span><span class="fl">5</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
 <span>         icer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"orange"</span>, <span class="st">"black"</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>,</span>
-<span>         contour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 1500 rows containing missing values or values outside the scale range</span></span>
-<span><span class="co">#&gt; (`geom_point()`).</span></span></code></pre></div>
+<span>         contour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="contour_files/figure-html/unnamed-chunk-18-1.png" width="576"></p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/contour2.html">contour2</a></span><span class="op">(</span><span class="va">he</span>, wtp <span class="op">=</span> <span class="fl">250</span>,</span>
