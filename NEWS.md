@@ -1,5 +1,11 @@
 # BCEA 2.4.82 (dev)
 
+_September 2025_
+
+* Fix documentation and order of the arguments in `evppi.R`.
+
+
+
 _July 2025_
 
 * The helper function `line_labels` would mess up with the labels in the `multi.ce` plot. Fixed now (INSERT_COMMIT_HERE).
