@@ -49,7 +49,7 @@ effectiveness (x-axis)."><meta property="og:image" content="https://n8thangreen.
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Contour Plots for the Cost-Effectiveness Plane</h1>
-      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/dev/R/contour.R" class="external-link"><code>R/contour.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/main/R/contour.R" class="external-link"><code>R/contour.R</code></a></small>
       <div class="d-none name"><code>contour.Rd</code></div>
     </div>
 
@@ -193,6 +193,14 @@ CRC.</p>
 <span class="r-in"><span>      graph<span class="op">=</span><span class="st">"base"</span>  <span class="co"># uses base graphics to produce the plot</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="contour-4.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># use the smoking cessation dataset</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="Smoking.html">data</a></span><span class="op">(</span><span class="va">Smoking</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="bcea.html">bcea</a></span><span class="op">(</span><span class="va">eff</span>, <span class="va">cost</span>, ref <span class="op">=</span> <span class="fl">4</span>, intervention <span class="op">=</span> <span class="va">treats</span>, Kmax <span class="op">=</span> <span class="fl">500</span>, plot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">contour</span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="contour-5.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="fu">contour</span><span class="op">(</span><span class="va">m</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="contour-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
