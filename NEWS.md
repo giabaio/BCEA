@@ -1,5 +1,9 @@
 # BCEA 2.4.82 (dev)
 
+_Sept 2025_
+
+* Fix documentation and order of the arguments in `evppi.R`.
+
 _July 2025_
 
 * Fix the code in the vignettes to remove dependency on `reshape2` (6279bb6).
