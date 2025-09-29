@@ -115,13 +115,23 @@ bcea.rjags <- function(eff, ...) {
 
 #' @rdname bcea
 #' @param ... Additional arguments
-#' @importFrom rstan extract
 #' @export
 bcea.rstan <- function(eff, ...) {
   
-  cost <- rstan::extract(eff, "cost")
-  eff <- rstan::extract(eff, "eff")
-  bcea.default(as.matrix(eff[[1]]), as.matrix(cost[[1]]), ...)
+  # check if rstan installed
+  if (!requireNamespace("rstan", quietly = TRUE)) {
+    stop(
+      "The 'rstan' package is required to process stanfit objects.\n",
+      "Please install it with: install.packages('rstan')",
+      call. = FALSE
+    )
+  }
+  
+  # if installed
+  cost_list <- rstan::extract(eff, "cost")
+  eff_list <- rstan::extract(eff, "eff")
+  
+  bcea.default(as.matrix(eff_list[[1]]), as.matrix(cost_list[[1]]), ...)
 }
 
 
