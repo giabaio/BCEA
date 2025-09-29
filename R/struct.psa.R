@@ -128,9 +128,6 @@ struct.psa <- function(models,
   
   # weights the simulations for the variables of effectiveness and costs in each model
   # using the respective weights, to produce the economic analysis for the average model
-  e <- c <- matrix(NA,
-                   nrow = dim(effect[[1]])[1],
-                   ncol = dim(effect[[1]])[2])
   e <- w[1]*effect[[1]]
   c <- w[1]*cost[[1]]
   
