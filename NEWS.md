@@ -4,6 +4,12 @@ _Sept 2025_
 
 * Fix documentation and order of the arguments in `evppi.R`.
 
+* Move `rstan` to `Suggests`
+
+* Removes the `make.report` function, which is now completely left to `BCEAweb`. Automatic creation of a pdf/docx report is still possible, but can be done calling `BCEAweb`.
+
+* Removes `revdep` as it was a left-over of an older version.
+
 _July 2025_
 
 * Fix the code in the vignettes to remove dependency on `reshape2` (6279bb6).
