@@ -43,7 +43,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Cost-Effectiveness Plane Plot By Graph Device</h1>
-      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/main/R/ceplane_plot_graph.R" class="external-link"><code>R/ceplane_plot_graph.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/dev/R/ceplane_plot_graph.R" class="external-link"><code>R/ceplane_plot_graph.R</code></a></small>
       <div class="d-none name"><code>ceplane_plot_graph.Rd</code></div>
     </div>
 
@@ -158,17 +158,23 @@ modelling and the economic evaluation.</p></dd>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> No reference selected. Defaulting to first intervention.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 1000 rows containing missing values or values outside the scale range</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> (`geom_point()`).</span>
 <span class="r-plt img"><img src="ceplane_plot_graph-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he</span>, wtp<span class="op">=</span><span class="fl">10000</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span>,</span></span>
 <span class="r-in"><span>             point <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>colors <span class="op">=</span> <span class="st">"blue"</span>, sizes <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>             area <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"springgreen3"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Duplicated aesthetics after name standardisation: <span style="color: #00BB00;">colour</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 1000 rows containing missing values or values outside the scale range</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> (`geom_point()`).</span>
 <span class="r-plt img"><img src="ceplane_plot_graph-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="Smoking.html">data</a></span><span class="op">(</span><span class="va">Smoking</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">he</span> <span class="op">&lt;-</span> <span class="fu"><a href="bcea.html">bcea</a></span><span class="op">(</span><span class="va">eff</span>, <span class="va">cost</span>, ref <span class="op">=</span> <span class="fl">4</span>, Kmax <span class="op">=</span> <span class="fl">500</span>, interventions <span class="op">=</span> <span class="va">treats</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 1500 rows containing missing values or values outside the scale range</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> (`geom_point()`).</span>
 <span class="r-plt img"><img src="ceplane_plot_graph-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he</span>,</span></span>
@@ -176,18 +182,24 @@ modelling and the economic evaluation.</p></dd>
 <span class="r-in"><span>             pos <span class="op">=</span> <span class="st">"right"</span>,</span></span>
 <span class="r-in"><span>             ICER_size <span class="op">=</span> <span class="fl">2</span>,</span></span>
 <span class="r-in"><span>             graph <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 1500 rows containing missing values or values outside the scale range</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> (`geom_point()`).</span>
 <span class="r-plt img"><img src="ceplane_plot_graph-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span>   </span></span>
 <span class="r-in"><span><span class="fu"><a href="ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he</span>,</span></span>
 <span class="r-in"><span>             wtp <span class="op">=</span> <span class="fl">200</span>,</span></span>
 <span class="r-in"><span>             pos <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>             graph <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 1500 rows containing missing values or values outside the scale range</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> (`geom_point()`).</span>
 <span class="r-plt img"><img src="ceplane_plot_graph-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he</span>,</span></span>
 <span class="r-in"><span>             graph <span class="op">=</span> <span class="st">"ggplot2"</span>,</span></span>
 <span class="r-in"><span>             wtp<span class="op">=</span><span class="fl">200</span>,</span></span>
 <span class="r-in"><span>             theme <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_linedraw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 1500 rows containing missing values or values outside the scale range</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> (`geom_point()`).</span>
 <span class="r-plt img"><img src="ceplane_plot_graph-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span>             </span></span>
 </code></pre></div>

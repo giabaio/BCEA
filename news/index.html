@@ -43,15 +43,24 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/giabaio/BCEA/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/giabaio/BCEA/blob/dev/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.4.82" id="bcea-2482-dev">BCEA 2.4.82 (dev)<a class="anchor" aria-label="anchor" href="#bcea-2482-dev"></a></h2>
-<p><em>September 2025</em></p>
-<ul><li>Fix documentation and order of the arguments in <code>evppi.R</code>.</li>
+<p><em>Sept 2025</em></p>
+<ul><li><p>Fix documentation and order of the arguments in <code>evppi.R</code>.</p></li>
+<li><p>Move <code>rstan</code> to <code>Suggests</code></p></li>
+<li><p>Removes the <code>make.report</code> function, which is now completely left to <code>BCEAweb</code>. Automatic creation of a pdf/docx report is still possible, but can be done calling <code>BCEAweb</code>.</p></li>
+<li><p>Removes <code>revdep</code> as it was a left-over of an older version.</p></li>
 </ul><p><em>July 2025</em></p>
-<ul><li>The helper function <code>line_labels</code> would mess up with the labels in the <code>multi.ce</code> plot. Fixed now (INSERT_COMMIT_HERE).</li>
+<ul><li><p>Fix the code in the vignettes to remove dependency on <code>reshape2</code> (6279bb6).</p></li>
+<li><p>Removes the folder <code>inst/jags</code>, which contains an old <code>Rmd</code> example, that is not used any more (6edb41c).</p></li>
+<li><p>Simplifies documentation of <code>contour</code> (a41aec6).</p></li>
+<li><p>Removes the Suggest for <code>vdiffr</code>, which is not really used (6e3ef67).</p></li>
+<li><p>Updates documentation for <code>CEriskav</code> (40b0183).</p></li>
+<li><p>Removes the dependence to the deprecated <code>reshape2</code> and move code to use <code>tidyr</code> (dfbd68b).</p></li>
+<li><p>The helper function <code>line_labels</code> would mess up with the labels in the <code>multi.ce</code> plot. Fixed now (37bd270).</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.4.81" id="bcea-2481">BCEA 2.4.81<a class="anchor" aria-label="anchor" href="#bcea-2481"></a></h2>
@@ -124,7 +133,7 @@
 <h3 id="bug-fixes-2-4-3">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-4-3"></a></h3>
 <ul><li>Consistent colours across plots for each intervention for grid of plots in <code><a href="../reference/plot.bcea.html">plot.bcea()</a></code> (cf1ee43)</li>
 <li>
-<code><a href="../reference/make.report.html">make.report()</a></code> change variable name (f940f2e)</li>
+<code>make.report()</code> change variable name (f940f2e)</li>
 <li>Fixed issue with summary table where names of interventions in the wrong order (6a006e3)</li>
 <li>
 <code><a href="../reference/summary.bcea.html">summary.bcea()</a></code> now only prints results for chosen comparisons and not always all of them. <code>kstar</code> and <code>best</code> in <code><a href="../reference/bcea.html">bcea()</a></code> object were not updated with subset of interventions (<a href="https://github.com/giabaio/BCEA/issues/125" class="external-link">#125</a>)</li>
@@ -241,7 +250,7 @@
 <li>
 <code><a href="../reference/createInputs.html">createInputs()</a></code> used for EVPI calculation now dispatches S3 methods by JAGS, BUGS, Stan and other R data types.</li>
 <li>
-<code><a href="../reference/make.report.html">make.report()</a></code> rewritten to have separate section files.</li>
+<code>make.report()</code> rewritten to have separate section files.</li>
 </ul></div>
 <div class="section level3">
 <h3 id="new-features-2-4-1-1">New features<a class="anchor" aria-label="anchor" href="#new-features-2-4-1-1"></a></h3>
