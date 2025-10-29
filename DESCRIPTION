@@ -33,7 +33,6 @@ Imports:
     gridExtra,
     MASS,
     Matrix,
-    MCMCvis,
     plotly,
     purrr,
     Rdpack,
@@ -51,9 +50,6 @@ Suggests:
     mgcv,
     plotrix,
     RColorBrewer,
-    rjags,
-    rmarkdown,
-    rstan,
     splancs,
     testthat (>= 2.1.0),
     withr
