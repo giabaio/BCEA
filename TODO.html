@@ -43,11 +43,16 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="logo.png" class="logo" alt=""><h1>TO-DO list</h1>
-      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/main/TODO.md" class="external-link"><code>TODO.md</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/dev/TODO.md" class="external-link"><code>TODO.md</code></a></small>
     </div>
 
 <div id="to-do-list" class="section level1">
 
+<div class="section level2">
+<h2 id="october-2025">October 2025<a class="anchor" aria-label="anchor" href="#october-2025"></a></h2>
+<ul><li><p>In <code>bcea.default.R</code>, check whether we <em>need</em> to keep the methods specific to <code>bugs</code>, <code>rstan</code> and <code>rjags</code>. Do we even <strong>really</strong> need them? And if we can get rid of them, can the dependencies on <code>rstan</code>, <code>R2jags</code> and <code>R2OpenBUGS</code> be simply removed?</p></li>
+<li><p>In <code>CreateInputs.R</code>, is the idea that the user <strong>must</strong> pass as input a matrix? If so, that’s fine (which means we probably do not need to worry about the methods specific to <code>stan</code> or <code>jags/bugs</code>). BUT: we should explain in the help function that the inputs must come as a reformatting of the original objects and be a matrix?</p></li>
+</ul></div>
 <div class="section level2">
 <h2 id="september-2025">September 2025<a class="anchor" aria-label="anchor" href="#september-2025"></a></h2>
 <ul><li><p>Check the code all-round to see where we can find bottlenecks in computation and make things quicker.</p></li>
@@ -55,7 +60,8 @@
 </ul></div>
 </div>
 
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
