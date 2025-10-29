@@ -62,7 +62,6 @@ reference:
 - title: "Outputs"
   desc: "Functions for reporting the results of the cost-effectiveness analysis."
   contents:
-  - make.report
   - sim_table
   - tabulate_means
   - starts_with("summary")

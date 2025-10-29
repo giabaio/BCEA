@@ -11,8 +11,8 @@
 ^\.httr-oauth$
 ^CONDUCT\.md$
 ^man-roxygen$
-^.git
-^.gitignore
+^\.git
+^\.gitignore
 ^README_dev\.md$
 ^\.github$
 ^inst/extdata$
@@ -43,4 +43,5 @@
 ^tests/testthat/test-structpsa\.R$
 ^README\.Rmd$
 ^README\.md$
+^TODO\.md$
 

@@ -78,8 +78,15 @@ bcea.default <- function(eff,
            delta_c = .data$cost0 - .data$cost1)
   
   df_ce$interv_names <- factor(interv_names[df_ce$ints],
-                               levels = interv_names)
+                               levels = interv_names) 
   
+  # Arranges the dataset so that it can be operated upon using pivot_wider
+  # NB: Needs to arrange by both sim and interv_names to ensure that
+  #     the resulting data are in the same order when changing the 
+  #     reference intervention using one of the setters. Needs to be
+  #     explicit in defining the variables by which to sort!
+  df_ce <- df_ce |> arrange(.data$sim, .data$ints) 
+
   he <- new_bcea(df_ce, k)
   
   he <- setComparisons(he, .comparison)
@@ -108,13 +115,23 @@ bcea.rjags <- function(eff, ...) {
 
 #' @rdname bcea
 #' @param ... Additional arguments
-#' @importFrom rstan extract
 #' @export
 bcea.rstan <- function(eff, ...) {
   
-  cost <- rstan::extract(eff, "cost")
-  eff <- rstan::extract(eff, "eff")
-  bcea.default(as.matrix(eff[[1]]), as.matrix(cost[[1]]), ...)
+  # check if rstan installed
+  if (!requireNamespace("rstan", quietly = TRUE)) {
+    stop(
+      "The 'rstan' package is required to process stanfit objects.\n",
+      "Please install it with: install.packages('rstan')",
+      call. = FALSE
+    )
+  }
+  
+  # if installed
+  cost_list <- rstan::extract(eff, "cost")
+  eff_list <- rstan::extract(eff, "eff")
+  
+  bcea.default(as.matrix(eff_list[[1]]), as.matrix(cost_list[[1]]), ...)
 }
 
 
@@ -127,4 +144,3 @@ bcea.bugs <- function(eff, ...) {
   eff <- eff$sims.list$eff
   bcea.default(eff, cost, ...)
 }
-

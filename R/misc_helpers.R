@@ -10,3 +10,13 @@
 #' @param x An object to test
 #' @keywords internal
 is.rel <- function(x) inherits(x, "rel")
+
+#' Allow disabling of the cat messages
+#' @param x Object to quietly return
+#' @keywords internal
+#' 
+quiet <- function(x) { 
+  sink(tempfile()) 
+  on.exit(sink()) 
+  invisible(force(x)) 
+}

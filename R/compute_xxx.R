@@ -39,7 +39,6 @@ compute_kstar <- function(k, best, ref) {
 #' @export
 #' 
 compute_CEAC <- function(ib) {
-  
   apply(ib > 0, c(1,3), mean)
 }
 

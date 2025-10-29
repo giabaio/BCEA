@@ -98,12 +98,6 @@ contour(m,          # uses the results of the economic evaluation
       graph="base"  # uses base graphics to produce the plot
 )
 
-# use the smoking cessation dataset
-data(Smoking)
-m <- bcea(eff, cost, ref = 4, intervention = treats, Kmax = 500, plot = FALSE)
-contour(m)
-contour(m, graph = "ggplot2")
-
 }
 \references{
 \insertRef{Baio2011}{BCEA}

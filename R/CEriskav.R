@@ -73,6 +73,9 @@
 #' #  pairwise comparison
 #' 
 #' CEriskav(m) <- r
+#' 
+#' # Can plot the resulting output using
+#' plot(m)
 #' }
 #' 
 #' @export

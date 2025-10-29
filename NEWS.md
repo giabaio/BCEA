@@ -1,14 +1,30 @@
 # BCEA 2.4.82 (dev)
 
-_September 2025_
+_Sept 2025_
 
 * Fix documentation and order of the arguments in `evppi.R`.
 
+* Move `rstan` to `Suggests`
 
+* Removes the `make.report` function, which is now completely left to `BCEAweb`. Automatic creation of a pdf/docx report is still possible, but can be done calling `BCEAweb`.
+
+* Removes `revdep` as it was a left-over of an older version.
 
 _July 2025_
 
-* The helper function `line_labels` would mess up with the labels in the `multi.ce` plot. Fixed now (INSERT_COMMIT_HERE).
+* Fix the code in the vignettes to remove dependency on `reshape2` (6279bb6).
+
+* Removes the folder `inst/jags`, which contains an old `Rmd` example, that is not used any more (6edb41c).
+
+* Simplifies documentation of `contour` (a41aec6).
+
+* Removes the Suggest for `vdiffr`, which is not really used (6e3ef67).
+
+* Updates documentation for `CEriskav` (40b0183).
+
+* Removes the dependence to the deprecated `reshape2` and move code to use `tidyr` (dfbd68b).
+
+* The helper function `line_labels` would mess up with the labels in the `multi.ce` plot. Fixed now (37bd270).
 
 # BCEA 2.4.81
 
