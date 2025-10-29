@@ -103,9 +103,15 @@ non-Bayesian model).</p>
 
 
 <dl><dt id="arg-inputs">inputs<a class="anchor" aria-label="anchor" href="#arg-inputs"></a></dt>
-<dd><p>A <code>rjags</code>, <code>bugs</code> or <code>stanfit</code> object, containing
-the results of a call to either JAGS, (using <code>R2jags</code>), BUGS
-(using <code>R2WinBUGS</code>, or Stan (using <code>rstan</code>).</p></dd>
+<dd><p>An object containing suitable simulations for the model
+parameters. It can be a <code>rjags</code> or <code>bugs</code> object (obtained directly by
+running <code>R2jags</code>, <code>rjags</code>, <code>R2OpenBUGS</code> or <code>R2WinBUGS</code>). If the user has
+run their model using <code>rstan</code>, then they should pre-process the output using
+the <code><a href="https://mc-stan.org/rstan/reference/stanfit-method-extract.html" class="external-link">rstan::extract()</a></code> function; so if <code>rstan</code> is used to run a Bayesian
+model and save the results to the object <code>fit</code>, then the user should create
+another object <code>tmp=rstan::extract(fit) |&gt; as.data.frame()</code>, which can be
+then passed onto <code>createInputs</code>. Finally, this function handles inputs from
+data-frames of vectors directly.</p></dd>
 
 
 <dt id="arg-print-is-linear-comb">print_is_linear_comb<a class="anchor" aria-label="anchor" href="#arg-print-is-linear-comb"></a></dt>
