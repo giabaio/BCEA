@@ -45,12 +45,14 @@
 #'
 #' ## more interventions
 #' he2 <- BCEA::bcea(cbind(eff, eff - 0.0002), cbind(cost, cost + 5))
-#' mypalette <- RColorBrewer::brewer.pal(3, "Accent")
-#' ceac.plot(he2, graph = "ggplot2",
-#'           title = "my title",
-#'           theme = ggplot2::theme_dark(),
-#'           pos = TRUE,
-#'           line = list(color = mypalette))
+#' ## could also construct a palette using RColorBrewer, e.g.
+#' ## mypalette <- RColorBrewer::brewer.pal(3, "Accent")
+#' ## and then call
+#' ## ceac.plot(he2, graph = "ggplot2",
+#' ##          title = "my title",
+#' ##          theme = ggplot2::theme_dark(),
+#' ##          pos = TRUE,
+#' ##          line = list(color = mypalette))
 #
 #' ceac.plot(he, graph = "base", title = "my title", line = list(color = "green"))
 #
