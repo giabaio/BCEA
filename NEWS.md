@@ -1,5 +1,7 @@
 # BCEA 2.4.83 (dev)
 
+# BCEA 2.4.82
+
 _October 2025_
 
 * In `bcea.default.R`, removes the methods specific to `bugs`, `rstan` and `rjags`, since we didn't really need them? This streamlines the package is it removes the dependencies on `rstan` and `rjags`. (34efe54).
