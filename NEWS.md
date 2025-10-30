@@ -2,23 +2,23 @@
 
 _October 2025_
 
-* In `bcea.default.R`, removes the methods specific to `bugs`, `rstan` and `rjags`, since we didn't really need them? This streamlines the package is it removes the dependencies on `rstan` and `rjags`.
+* In `bcea.default.R`, removes the methods specific to `bugs`, `rstan` and `rjags`, since we didn't really need them? This streamlines the package is it removes the dependencies on `rstan` and `rjags`. (34efe54).
 
-* Updates the help for `CreateInputs.R` to clarify the nature of the `inputs` object.
+* Updates the help for `CreateInputs.R` to clarify the nature of the `inputs` object. (34efe54).
 
-* Updates the tests according to the changes in `bcea.default.R`.
+* Updates the tests according to the changes in `bcea.default.R`. (34efe54).
 
-* Removes a few (now) unnecessary dependencies: `MCMCvis`, `rstan`, `rjags`, `rmarkdown`. Installation should be quicker now.
+* Removes a few (now) unnecessary dependencies: `MCMCvis`, `reshape2`, `rlang`, `rstan`. Also removes the suggested packages, `coda`, `plotrix`, `RColorBrewer`, `rjags`, `rmarkdown`, `splancs` and `vdiffr`. Installation should be quicker now. (34efe54).
 
 _September 2025_
 
-* Fix documentation and order of the arguments in `evppi.R`.
+* Fix documentation and order of the arguments in `evppi.R`. (ded3dc8).
 
-* Move `rstan` to `Suggests`
+* Move `rstan` to `Suggests`. (ded3dc8).
 
-* Removes the `make.report` function, which is now completely left to `BCEAweb`. Automatic creation of a pdf/docx report is still possible, but can be done calling `BCEAweb`.
+* Removes the `make.report` function, which is now completely left to `BCEAweb`. Automatic creation of a pdf/docx report is still possible, but can be done calling `BCEAweb`. (ded3dc8).
 
-* Removes `revdep` as it was a left-over of an older version.
+* Removes `revdep` as it was a left-over of an older version. (ded3dc8).
 
 _July 2025_
 

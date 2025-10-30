@@ -36,21 +36,15 @@ Imports:
     plotly,
     purrr,
     Rdpack,
-    rlang,
     scales,
     tidyr,
     voi (>= 1.0.1)
 Depends:
     R (>= 4.1.0)
 Suggests:
-    coda,
     grid,
     knitr,
-    markdown,
     mgcv,
-    plotrix,
-    RColorBrewer,
-    splancs,
     testthat (>= 2.1.0),
     withr
 RdMacros: Rdpack

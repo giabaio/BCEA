@@ -58,6 +58,8 @@ info_rank_base <- function(he, params) {
 }
 
 
+# Avoid a note at checking, but allows to remove dependency on `rlang`
+utils::globalVariables(c("parameter", "info"))
 
 #' Info rank plot ggplot2 version
 #' @rdname info_rank_graph
@@ -67,11 +69,12 @@ info_rank_base <- function(he, params) {
 #' @importFrom stats reorder
 #' 
 info_rank_ggplot <- function(he, params) {
-  data.frame(
+  df=data.frame(
     params$res,
     col = as.factor(rep(c("red", "blue"),            # alternate fill by row number
-                        length.out = nrow(params$res)))) |> 
-  ggplot(aes(x = reorder(.data$parameter, .data$info), y = .data$info)) +
+                        length.out = nrow(params$res)))) 
+##  ggplot(aes(x = reorder(.data$parameter, .data$info), y = .data$info)) +
+  ggplot(df, aes(x = reorder(parameter, info), y = info, fill = col)) +
     geom_bar(stat = "identity", aes(fill = col)) +  
     coord_flip() +
     theme_default() +
