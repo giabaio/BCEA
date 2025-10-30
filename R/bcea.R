@@ -9,11 +9,13 @@
 #' @param eff An object containing `nsim` simulations for the variable of
 #' clinical effectiveness for each intervention being considered. In general it
 #' is a matrix with `nsim` rows and `nint` columns.
-#' This is partially matched with `e` from previous version of `BCEA` for back-compatibility.
+#' This is partially matched with `e` from previous version of `BCEA` for 
+#' back-compatibility.
 #' @param cost An object containing `nsim` simulations for the variable of
 #' cost for each intervention being considered. In general it is a matrix with
 #' `nsim` rows and `nint` columns.
-#' This is partially matched with `c` from previous version of `BCEA` for back-compatibility.
+#' This is partially matched with `c` from previous version of `BCEA` for 
+#' back-compatibility.
 #' @param ref Defines which intervention (columns of `eff` or `cost`) is
 #' considered to be the reference strategy. The default value `ref = 1`
 #' means that the intervention associated with the first column of `eff` or
@@ -35,10 +37,12 @@
 #'  to pay grid. Should be of length > 1 otherwise plots will be empty.
 #'  If not specified then BCEA will construct a grid of 501 values
 #'  from 0 to `Kmax`. This option is useful when performing intensive
-#'  computations (e.g. for the EVPPI). This was changed from `wtp` in previous versions
-#'  for consistency with other functions and so will be deprecated in the future.
+#'  computations (e.g. for the EVPPI). This was changed from `wtp` in previous 
+#'  versions for consistency with other functions and so will be deprecated in 
+#'  the future.
 #' @param plot A logical value indicating whether the function should produce
 #' the summary plot or not.
+#' @param \dots Additional (optional) parameters
 #' 
 #' @return An object of the class `bcea` containing the following elements:
 #' 

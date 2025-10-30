@@ -84,6 +84,9 @@ r <- c(1e-10, 0.005, 0.020, 0.035)
 #  pairwise comparison
 
 CEriskav(m) <- r
+
+# Can plot the resulting output using
+plot(m)
 }
 
 }

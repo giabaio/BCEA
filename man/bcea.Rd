@@ -3,9 +3,6 @@
 \name{bcea}
 \alias{bcea}
 \alias{bcea.default}
-\alias{bcea.rjags}
-\alias{bcea.rstan}
-\alias{bcea.bugs}
 \title{Create Bayesian Cost-Effectiveness Analysis Object}
 \usage{
 bcea(
@@ -31,23 +28,19 @@ bcea(
   plot = FALSE,
   ...
 )
-
-\method{bcea}{rjags}(eff, ...)
-
-\method{bcea}{rstan}(eff, ...)
-
-\method{bcea}{bugs}(eff, ...)
 }
 \arguments{
 \item{eff}{An object containing \code{nsim} simulations for the variable of
 clinical effectiveness for each intervention being considered. In general it
 is a matrix with \code{nsim} rows and \code{nint} columns.
-This is partially matched with \code{e} from previous version of \code{BCEA} for back-compatibility.}
+This is partially matched with \code{e} from previous version of \code{BCEA} for
+back-compatibility.}
 
 \item{cost}{An object containing \code{nsim} simulations for the variable of
 cost for each intervention being considered. In general it is a matrix with
 \code{nsim} rows and \code{nint} columns.
-This is partially matched with \code{c} from previous version of \code{BCEA} for back-compatibility.}
+This is partially matched with \code{c} from previous version of \code{BCEA} for
+back-compatibility.}
 
 \item{ref}{Defines which intervention (columns of \code{eff} or \code{cost}) is
 considered to be the reference strategy. The default value \code{ref = 1}
@@ -74,13 +67,14 @@ on a discrete grid in the interval \verb{[0, Kmax]}. The grid is equal to
 to pay grid. Should be of length > 1 otherwise plots will be empty.
 If not specified then BCEA will construct a grid of 501 values
 from 0 to \code{Kmax}. This option is useful when performing intensive
-computations (e.g. for the EVPPI). This was changed from \code{wtp} in previous versions
-for consistency with other functions and so will be deprecated in the future.}
+computations (e.g. for the EVPPI). This was changed from \code{wtp} in previous
+versions for consistency with other functions and so will be deprecated in
+the future.}
 
 \item{plot}{A logical value indicating whether the function should produce
 the summary plot or not.}
 
-\item{...}{Additional arguments}
+\item{\dots}{Additional (optional) parameters}
 }
 \value{
 An object of the class \code{bcea} containing the following elements:

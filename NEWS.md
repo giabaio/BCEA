@@ -1,3 +1,41 @@
+# BCEA 2.4.82
+
+_October 2025_
+
+* In `bcea.default.R`, removes the methods specific to `bugs`, `rstan` and `rjags`, since we didn't really need them? This streamlines the package is it removes the dependencies on `rstan` and `rjags`. (34efe54).
+
+* Updates the help for `CreateInputs.R` to clarify the nature of the `inputs` object. (34efe54).
+
+* Updates the tests according to the changes in `bcea.default.R`. (34efe54).
+
+* Removes a few (now) unnecessary dependencies: `MCMCvis`, `reshape2`, `rlang`, `rstan`. Also removes the suggested packages, `coda`, `plotrix`, `RColorBrewer`, `rjags`, `rmarkdown`, `splancs` and `vdiffr`. Installation should be quicker now. (34efe54).
+
+_September 2025_
+
+* Fix documentation and order of the arguments in `evppi.R`. (ded3dc8).
+
+* Move `rstan` to `Suggests`. (ded3dc8).
+
+* Removes the `make.report` function, which is now completely left to `BCEAweb`. Automatic creation of a pdf/docx report is still possible, but can be done calling `BCEAweb`. (ded3dc8).
+
+* Removes `revdep` as it was a left-over of an older version. (ded3dc8).
+
+_July 2025_
+
+* Fix the code in the vignettes to remove dependency on `reshape2` (6279bb6).
+
+* Removes the folder `inst/jags`, which contains an old `Rmd` example, that is not used any more (6edb41c).
+
+* Simplifies documentation of `contour` (a41aec6).
+
+* Removes the Suggest for `vdiffr`, which is not really used (6e3ef67).
+
+* Updates documentation for `CEriskav` (40b0183).
+
+* Removes the dependence to the deprecated `reshape2` and move code to use `tidyr` (dfbd68b).
+
+* The helper function `line_labels` would mess up with the labels in the `multi.ce` plot. Fixed now (37bd270).
+
 # BCEA 2.4.81
 
 _July 2025_

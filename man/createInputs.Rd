@@ -25,9 +25,17 @@ createInputs(inputs, print_is_linear_comb = TRUE)
 \method{createInputs}{numeric}(inputs, print_is_linear_comb = TRUE)
 }
 \arguments{
-\item{inputs}{A \code{rjags}, \code{bugs} or \code{stanfit} object, containing
-the results of a call to either JAGS, (using \code{R2jags}), BUGS
-(using \code{R2WinBUGS}, or Stan (using \code{rstan}).}
+\item{inputs}{An object containing suitable simulations for the model
+parameters. It can be a \code{rjags} or \code{bugs} object (obtained directly by
+running \code{R2jags}, \code{rjags}, \code{R2OpenBUGS} or \code{R2WinBUGS}). For those objects,
+which are in the class \code{rjags} or \code{bugs}, the user can simply pass them to
+\code{createInputs()}, which will now how to process them. If the user has
+run their model using \code{rstan}, then they should pre-process the output using
+the \code{rstan::extract()} function; so if \code{rstan} is used to run a Bayesian
+model and save the results to, say, the object \code{fit}, then the user should
+first create another object \code{tmp=rstan::extract(fit) |> as.data.frame()}
+and then pass this onto \code{createInputs()}. Finally, this function handles
+inputs from data-frames of vectors directly.}
 
 \item{print_is_linear_comb}{Logical indicator. If set to \code{TRUE} (default)
 then prints the output of the procedure trying to assess whether there are

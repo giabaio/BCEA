@@ -46,8 +46,6 @@ contour_base <- function(he,
 #' 
 #' @import ggplot2
 #' @importFrom grid unit
-# #' @importFrom dplyr mutate
-# #' @importFrom reshape2 melt
 #' 
 contour_ggplot <- function(he,
                            pos_legend,

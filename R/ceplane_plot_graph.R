@@ -134,29 +134,34 @@ ceplane_plot_base <- function(he, ...) {
 ceplane_plot_ggplot.bcea <- function(he,
                                      pos_legend,
                                      graph_params, ...) {
-  comp_label <-
-    paste(he$interventions[he$ref], "vs", he$interventions[he$comp])
-  if (length(graph_params$point$size) != length(comp_label))
-    graph_params$point$size = rep(graph_params$point$size[1], length(comp_label))
-  if (length(graph_params$point$color) != length(comp_label))
-    graph_params$point$color = rep(graph_params$point$color[1], length(comp_label))
+  comp_label <- paste(he$interventions[he$ref], "vs", he$interventions[he$comp])
+  if (length(graph_params$point$size) != length(comp_label)) {
+    graph_params$point$size <- rep(graph_params$point$size[1], length(comp_label))
+  }
+  if (length(graph_params$point$color) != length(comp_label)) {
+    graph_params$point$color <- rep(graph_params$point$color[1], length(comp_label))
+  }
   
   # single long format for ggplot data
-  delta_ce <-
-    merge(
-      melt(
-        cbind(sim = seq_len(nrow(he$delta_c)),
-              he$delta_c),
-        variable.name = "comparison",
-        value.name = "delta_c",
-        id.vars = "sim"),
-      melt(
-        cbind(sim = seq_len(nrow(he$delta_e)),
-              he$delta_e),
-        variable.name = "comparison",
-        value.name = "delta_e",
-        id.vars = "sim"),
-      by = c("sim", "comparison"))
+  delta_c <- he$delta_c |>
+    as_tibble() |>
+    mutate(sim = row_number()) |>
+    pivot_longer(
+      cols = -"sim",
+      names_to = "comparison",
+      values_to = "delta_c"
+    )
+  
+  delta_e <- he$delta_e |>
+    as_tibble() |>
+    mutate(sim = row_number()) |>
+    pivot_longer(
+      cols = -"sim",
+      names_to = "comparison",
+      values_to = "delta_e"
+    )
+  
+  delta_ce <- left_join(delta_c, delta_e, by = c("sim", "comparison"))
   
   plot_params <-
     ceplane_ggplot_params(he, pos_legend = pos_legend, graph_params = graph_params, ...)
@@ -164,13 +169,18 @@ ceplane_plot_ggplot.bcea <- function(he,
   plot_params$area$include <- NULL
   
   theme_add <- Filter(f = \(val) ggplot2::is_theme(val), x = list(...))
+  
   return_plot <- ggplot(delta_ce,
-         aes(x = .data$delta_e, y = .data$delta_c,
-             group = factor(.data$comparison),
-             col = factor(.data$comparison),
-             shape = factor(.data$comparison)))
-  if (plot_params$area_include)
+                        aes(x = .data$delta_e, y = .data$delta_c,
+                            group = factor(.data$comparison),
+                            col = factor(.data$comparison),
+                            shape = factor(.data$comparison))
+  )
+  
+  if (plot_params$area_include) {
     return_plot <- return_plot + do.call(geom_polygon, plot_params$area)
+  }
+  
   return_plot <- return_plot +
     theme_ceplane() +
     theme_add +
@@ -178,17 +188,17 @@ ceplane_plot_ggplot.bcea <- function(he,
     ceplane_legend_manual(he, plot_params) +
     geom_hline(yintercept = 0, color = "grey") +
     geom_vline(xintercept = 0, color = "grey") +
-    geom_text(data = data.frame(x = colMeans(he$delta_e),
-                                y = colMeans(he$delta_c)),
-              aes(x = .data$x, y = .data$y, 
-                  label = if (plot_params$icer_annot) {
-                    line_labels.default(
-                      he, ref_first = graph_params$ref_first)
-                  } else {""}),
-              inherit.aes = FALSE, show.legend = FALSE,
-              hjust = 0, vjust = 0) +
-    scale_y_continuous(
-      labels = scales::label_dollar(prefix = plot_params$currency)) +
+    geom_text(
+      data = data.frame(x = colMeans(he$delta_e),
+                        y = colMeans(he$delta_c)),
+      aes(x = .data$x, y = .data$y,
+          label = if (plot_params$icer_annot) {
+            line_labels.default(he, ref_first = graph_params$ref_first)
+          } else {""}),
+      inherit.aes = FALSE, show.legend = FALSE,
+      hjust = 0, vjust = 0
+    ) +
+    scale_y_continuous(labels = scales::label_dollar(prefix = plot_params$currency)) +
     coord_cartesian(xlim = plot_params$xlim,
                     ylim = plot_params$ylim,
                     expand = FALSE) +
@@ -205,6 +215,7 @@ ceplane_plot_ggplot.bcea <- function(he,
       axis.title.x = element_text(size = graph_params$text$size),
       axis.title.y = element_text(size = graph_params$text$size))) +
     do.call(theme, plot_params$legend)
+  
   return(return_plot)
 }
 
@@ -223,104 +234,109 @@ ceplane_plot_plotly.bcea <- function(he,
                                      pos_legend,
                                      graph_params, ...) {
   
-  comp_label <-
-    paste(he$interventions[he$ref], "vs", he$interventions[he$comp])
-  # if (is.list(wtp) && exists("value", wtp))
-    wtp = graph_params$wtp_value
+  comp_label <- paste(he$interventions[he$ref], "vs", he$interventions[he$comp])
+  
+  # Set wtp from graph_params if supplied
+  wtp <- graph_params$wtp_value
   
   # single long format for plotting data
-  delta_ce <-
-    merge(
-      melt(
-        cbind(sim = seq_len(nrow(he$delta_c)),
-              he$delta_c),
-        variable.name = "comparison",
-        value.name = "delta_c",
-        id.vars = "sim"),
-      melt(
-        cbind(sim = seq_len(nrow(he$delta_e)),
-              he$delta_e),
-        variable.name = "comparison",
-        value.name = "delta_e",
-        id.vars = "sim"),
-      by = c("sim", "comparison"))
+  delta_c <- he$delta_c |>
+    as_tibble() |>
+    mutate(sim = row_number()) |>
+    pivot_longer(
+      cols = -"sim",
+      names_to = "comparison",
+      values_to = "delta_c"
+    )
   
-  if (length(graph_params$point$color) != length(comp_label))
+  delta_e <- he$delta_e |>
+    as_tibble() |>
+    mutate(sim = row_number()) |>
+    pivot_longer(
+      cols = -"sim",
+      names_to = "comparison",
+      values_to = "delta_e"
+    )
+  
+  delta_ce <- left_join(delta_c, delta_e, by = c("sim", "comparison"))
+  
+  # Adjust graph parameters
+  if (length(graph_params$point$color) != length(comp_label)) {
     graph_params$point$color <- rep_len(graph_params$point$color[1], length(comp_label))
-  
-  if (length(graph_params$point$size) != length(comp_label))
+  }
+  if (length(graph_params$point$size) != length(comp_label)) {
     graph_params$point$size <- rep_len(graph_params$point$size[1], length(comp_label))
-  
-  if (!exists("icer", graph_params))
-    graph_params$icer <- list()
-  if (!"color" %in% names(graph_params$icer))
-    graph_params$icer$color <- "red"
-  if (!"size" %in% names(graph_params$icer))
-    graph_params$icer$size <- ifelse(he$n_comparisons == 1, 8, 0) #graph_params$ICER_size
-  
-  if (length(graph_params$icer$color) != length(comp_label))
+  }
+  if (!exists("icer", graph_params)) graph_params$icer <- list()
+  if (!"color" %in% names(graph_params$icer)) graph_params$icer$color <- "red"
+  if (!"size" %in% names(graph_params$icer)) {
+    graph_params$icer$size <- ifelse(he$n_comparisons == 1, 8, 0)
+  }
+  if (length(graph_params$icer$color) != length(comp_label)) {
     graph_params$icer$color <- rep_len(graph_params$icer$color[1], length(comp_label))
-  if (length(graph_params$icer$size) != length(comp_label))
+  }
+  if (length(graph_params$icer$size) != length(comp_label)) {
     graph_params$icer$size <- rep_len(graph_params$icer$size[1], length(comp_label))
+  }
   
   # plot limits
   range.e <- range(delta_ce$delta_e)
   range.c <- range(delta_ce$delta_c)
-  range.e[1] <- ifelse(range.e[1] < 0,
-                       yes = range.e[1],
-                       no = -range.e[1])
-  range.c[1] <- ifelse(range.c[1] < 0,
-                       yes = range.c[1],
-                       no = -range.c[1])
+  range.e[1] <- ifelse(range.e[1] < 0, range.e[1], -range.e[1])
+  range.c[1] <- ifelse(range.c[1] < 0, range.c[1], -range.c[1])
   
   # ce plane data
-  x1 <- range.e[1] - 2*abs(diff(range.e))
-  x2 <- range.e[2] + 2*abs(diff(range.e))
+  x1 <- range.e[1] - 2 * abs(diff(range.e))
+  x2 <- range.e[2] + 2 * abs(diff(range.e))
   x <- c(x1, x2, x2)
-  y <- c(x1*wtp, x2*wtp, x1*wtp)
+  y <- c(x1 * wtp, x2 * wtp, x1 * wtp)
   plane <- data.frame(x = x, y = y)
   
-  # build a trapezoidal plane instead of a triangle if
-  # the y value is less than the minimum difference on costs
-  if (y[1] > 1.2*range.c[1])
-    plane <- rbind(plane,
-                   c(x2, 2*range.c[1]), #new bottom-right vertex
-                   c(x1, 2*range.c[1])) #new bottom-left vertex
+  # build a trapezoidal plane if needed
+  if (y[1] > 1.2 * range.c[1]) {
+    plane <- rbind(
+      plane,
+      c(x2, 2 * range.c[1]), # new bottom-right vertex
+      c(x1, 2 * range.c[1])  # new bottom-left vertex
+    )
+  }
   
-  xrng <- c(ifelse(prod(range.e) < 0,
-                   range.e[1]*1.1,
-                   ifelse(range.e[1] < 0,
-                          range.e[1]*1.1,
-                          -(range.e[2] - range.e[1])*0.1)),
-            ifelse(prod(range.e) < 0, range.e[2]*1.1,
-                   ifelse(range.e[2] > 0,
-                          range.e[2]*1.1,
-                          (range.e[2] - range.e[1])*0.1)))
-  yrng <- c(ifelse(prod(range.c) < 0,
-                   range.c[1]*1.1,
-                   ifelse(range.c[1] < 0,
-                          range.c[1]*1.1,
-                          -(range.c[2] - range.c[1])*0.1)),
-            ifelse(prod(range.c) < 0,
-                   range.c[2]*1.1,
-                   ifelse(range.c[2] > 0,
-                          range.c[2]*1.1,
-                          (range.c[2] - range.c[1])*0.1)))
+  xrng <- c(
+    ifelse(prod(range.e) < 0,
+           range.e[1] * 1.1,
+           ifelse(range.e[1] < 0,
+                  range.e[1] * 1.1,
+                  -(range.e[2] - range.e[1]) * 0.1)),
+    ifelse(prod(range.e) < 0, range.e[2] * 1.1,
+           ifelse(range.e[2] > 0,
+                  range.e[2] * 1.1,
+                  (range.e[2] - range.e[1]) * 0.1))
+  )
   
-  pt_cols <-
-    ifelse(test = grepl(pattern = "^rgba\\(",
-                        x = graph_params$point$color),
-           yes = plotly::toRGB(graph_params$point$color),
-           no = graph_params$point$color)
+  yrng <- c(
+    ifelse(prod(range.c) < 0,
+           range.c[1] * 1.1,
+           ifelse(range.c[1] < 0,
+                  range.c[1] * 1.1,
+                  -(range.c[2] - range.c[1]) * 0.1)),
+    ifelse(prod(range.c) < 0,
+           range.c[2] * 1.1,
+           ifelse(range.c[2] > 0,
+                  range.c[2] * 1.1,
+                  (range.c[2] - range.c[1]) * 0.1))
+  )
+  
+  pt_cols <- ifelse(
+    grepl("^rgba\\(", graph_params$point$color),
+    plotly::toRGB(graph_params$point$color),
+    graph_params$point$color
+  )
   
   # define point size variable in delta_ce
-  delta_ce$pt_size <- graph_params$point$size[delta_ce$comparison |> as.numeric()]
+  delta_ce$pt_size <- graph_params$point$size[as.numeric(delta_ce$comparison)]
   
   # plot set-up
-  ceplane <- plotly::plot_ly(colors = pt_cols)
-  
-  ceplane <-
-    ceplane %>% 
+  ceplane <- plotly::plot_ly(colors = pt_cols) %>%
     plotly::add_trace(
       type = "scatter",
       mode = "markers",
@@ -329,18 +345,18 @@ ceplane_plot_plotly.bcea <- function(he,
       x = ~delta_e,
       color = ~comparison,
       size = delta_ce$pt_size,
-      hoverinfo = "name+x+y")
+      hoverinfo = "name+x+y"
+    )
   
   if (graph_params$area_include) {
     if (is.null(graph_params$line$color)) {
       if (is.null(graph_params$area$line_color))
-        graph_params$area$line_color = "grey20"
+        graph_params$area$line_color <- "grey20"
     } else {
-      graph_params$area$line_color = graph_params$line$color
+      graph_params$area$line_color <- graph_params$line$color
     }
     
-    ceplane <-
-      ceplane %>% 
+    ceplane <- ceplane %>%
       plotly::add_trace(
         type = "scatter",
         mode = "lines",
@@ -348,33 +364,32 @@ ceplane_plot_plotly.bcea <- function(he,
         x = ~x,
         y = ~y,
         line = list(color = ifelse(
-          grepl(pattern = "^rgba\\(",
-                x = graph_params$area$line_color),
+          grepl("^rgba\\(", graph_params$area$line_color),
           graph_params$area$line_color,
           plotly::toRGB(graph_params$area$line_color, 1))),
         showlegend = FALSE,
-        inherit = FALSE)
+        inherit = FALSE
+      )
     
-    poly_col <-
-      ifelse(
-        grepl(pattern = "^rgba\\(",
-              x = graph_params$area$color),
-        graph_params$area$color,
-        plotly::toRGB(graph_params$area$color))
+    poly_col <- ifelse(
+      grepl("^rgba\\(", graph_params$area$color),
+      graph_params$area$color,
+      plotly::toRGB(graph_params$area$color)
+    )
     
-    ceplane <-
-      ceplane %>% 
+    ceplane <- ceplane %>%
       plotly::add_polygons(
         data = plane,
         x = ~x,
         y = ~y,
         fillcolor = poly_col,
-        line = list(color = 'transparent'),
+        line = list(color = "transparent"),
         opacity = 0.3,
         name = "CEA area",
         hoveron = "points",
         showlegend = FALSE,
-        inherit = FALSE)
+        inherit = FALSE
+      )
   }
   
   # ICER
@@ -391,13 +406,14 @@ ceplane_plot_plotly.bcea <- function(he,
         y = ~lambda.c,
         marker = list(
           color = graph_params$icer$color[comp],
-          size = graph_params$icer$size[comp]),
+          size = graph_params$icer$size[comp]
+        ),
         name = ~paste0(
-          ifelse(he$n_comparisons > 1,
-                 yes = "",#as.character(label),
-                 no = ""),
+          ifelse(he$n_comparisons > 1, "", ""),
           "ICER ", label, ": ",
-          prettyNum(round(ICER, 2), big.mark = ",")))
+          prettyNum(round(ICER, 2), big.mark = ",")
+        )
+      )
     }
   }
   
@@ -409,13 +425,16 @@ ceplane_plot_plotly.bcea <- function(he,
     xaxis = list(
       hoverformat = ".2f",
       range = xrng,
-      title = graph_params$xlab),
+      title = graph_params$xlab
+    ),
     yaxis = list(
       hoverformat = ".2f",
       range = yrng,
-      title = graph_params$ylab),
+      title = graph_params$ylab
+    ),
     showlegend = TRUE,
-    legend = legend_params)
+    legend = legend_params
+  )
   
   plotly::config(ceplane, displayModeBar = FALSE)
 }

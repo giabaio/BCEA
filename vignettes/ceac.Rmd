@@ -18,7 +18,7 @@ fig.width = 6
 ```{r setup, results='hide', message=FALSE, warning=FALSE, echo=FALSE}
 library(BCEA)
 library(dplyr)
-library(reshape2)
+#library(reshape2)
 library(ggplot2)
 library(purrr)
 ```

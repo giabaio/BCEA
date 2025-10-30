@@ -2,7 +2,6 @@
 #' @rdname info.rank
 #' @title Information-Rank Plot for bcea Class
 #' 
-#' @importFrom rlang .data
 #' @importFrom dplyr slice desc
 #' @importFrom graphics barplot
 #' @import ggplot2

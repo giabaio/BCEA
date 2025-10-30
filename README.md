@@ -14,7 +14,7 @@ Status](https://app.travis-ci.com/n8thangreen/BCEA.svg?branch=dev)](https://app.
 > Perform Bayesian Cost-Effectiveness Analysis in R.
 
 :rocket: This is the **stable version** of the `R` package `BCEA`, which
-is on release 2.4.81 and available from
+is on release 2.4.82 and available from
 [CRAN](https://cran.r-project.org/web/packages/BCEA/index.html). The
 development version is available from
 [`r-universe.dev`](https://giabaio.r-universe.dev/BCEA).
