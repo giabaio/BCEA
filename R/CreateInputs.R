@@ -82,9 +82,15 @@ createInputs.default <- function(inputs,
 #' `.csv` or `.txt` file (e.g. as obtained using bootstrapping from a
 #' non-Bayesian model).
 #'
-#' @param inputs A `rjags`, `bugs` or `stanfit` object, containing
-#' the results of a call to either JAGS, (using `R2jags`), BUGS
-#' (using `R2WinBUGS`, or Stan (using `rstan`).
+#' @param inputs An object containing suitable simulations for the model 
+#' parameters. It can be a `rjags` or `bugs` object (obtained directly by 
+#' running `R2jags`, `rjags`, `R2OpenBUGS` or `R2WinBUGS`). If the user has 
+#' run their model using `rstan`, then they should pre-process the output using
+#' the `rstan::extract()` function; so if `rstan` is used to run a Bayesian
+#' model and save the results to the object `fit`, then the user should create
+#' another object `tmp=rstan::extract(fit) |> as.data.frame()`, which can be
+#' then passed onto `createInputs`. Finally, this function handles inputs from
+#' data-frames of vectors directly. 
 #' @param print_is_linear_comb Logical indicator. If set to `TRUE` (default)
 #' then prints the output of the procedure trying to assess whether there are
 #' some parameters that are a linear combination of others (in which case

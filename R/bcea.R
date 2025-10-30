@@ -39,6 +39,7 @@
 #'  for consistency with other functions and so will be deprecated in the future.
 #' @param plot A logical value indicating whether the function should produce
 #' the summary plot or not.
+#' @param \dots Additional (optional) parameters
 #' 
 #' @return An object of the class `bcea` containing the following elements:
 #' 

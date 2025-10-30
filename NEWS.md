@@ -1,6 +1,16 @@
 # BCEA 2.4.82 (dev)
 
-_Sept 2025_
+_October 2025_
+
+* In `bcea.default.R`, removes the methods specific to `bugs`, `rstan` and `rjags`, since we didn't really need them? This streamlines the package is it removes the dependencies on `rstan` and `rjags`.
+
+* Updates the help for `CreateInputs.R` to clarify the nature of the `inputs` object.
+
+* Updates the tests according to the changes in `bcea.default.R`.
+
+* Removes a few (now) unnecessary dependencies: `MCMCvis`, `rstan`, `rjags`, `rmarkdown`. Installation should be quicker now.
+
+_September 2025_
 
 * Fix documentation and order of the arguments in `evppi.R`.
 

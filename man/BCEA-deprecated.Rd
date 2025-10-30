@@ -2,12 +2,18 @@
 % Please edit documentation in R/BCEA-deprecated.R, R/plot.mixedAn.R
 \name{BCEA-deprecated}
 \alias{BCEA-deprecated}
+\alias{make.report}
 \alias{plot.mixedAn}
 \title{Deprecated functions in package \pkg{BCEA}.}
 \usage{
+make.report(...)
+
 plot.mixedAn(x, y.limits=NULL, pos=c(0,1), graph=c("base","ggplot2"),...)
 }
 \arguments{
+\item{...}{Arguments to be passed to methods, such as graphical parameters
+(see \code{\link[=par]{par()}}).}
+
 \item{x}{An object of class \code{mixedAn}, given as output of the call to
 the function \code{\link[=mixedAn]{mixedAn()}}.}
 
@@ -27,9 +33,6 @@ corner inside the plot area.}
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the two options \code{"base"} or
 \code{"ggplot2"}. Default value is \code{"base"}.}
-
-\item{...}{Arguments to be passed to methods, such as graphical parameters
-(see \code{\link[=par]{par()}}).}
 }
 \value{
 \item{evi}{ A ggplot object containing the plot. Returned only if

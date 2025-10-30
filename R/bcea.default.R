@@ -98,49 +98,49 @@ bcea.default <- function(eff,
   return(he)
 }
 
-
-#' @rdname bcea
-#' @param ... Additional arguments
-#' @importFrom MCMCvis MCMCchains
-#' @export
-bcea.rjags <- function(eff, ...) {
-  
-  cost <-
-    MCMCvis::MCMCchains(eff, params = "cost")
-  eff <- 
-    MCMCvis::MCMCchains(eff, params = "eff")
-  bcea.default(eff, cost, ...)
-}
-
-
-#' @rdname bcea
-#' @param ... Additional arguments
-#' @export
-bcea.rstan <- function(eff, ...) {
-  
-  # check if rstan installed
-  if (!requireNamespace("rstan", quietly = TRUE)) {
-    stop(
-      "The 'rstan' package is required to process stanfit objects.\n",
-      "Please install it with: install.packages('rstan')",
-      call. = FALSE
-    )
-  }
-  
-  # if installed
-  cost_list <- rstan::extract(eff, "cost")
-  eff_list <- rstan::extract(eff, "eff")
-  
-  bcea.default(as.matrix(eff_list[[1]]), as.matrix(cost_list[[1]]), ...)
-}
-
-
-#' @rdname bcea
-#' @param ... Additional arguments
-#' @export
-bcea.bugs <- function(eff, ...) {
-  
-  cost <- eff$sims.list$cost
-  eff <- eff$sims.list$eff
-  bcea.default(eff, cost, ...)
-}
+### These methods are removed because they imply dependencies on `rstan` and `rjags`, which can be expensive and not very helpful...
+# #' @rdname bcea
+# #' @param ... Additional arguments
+# #' @importFrom MCMCvis MCMCchains
+# #' @export
+# bcea.rjags <- function(eff, ...) {
+#   
+#   cost <-
+#     MCMCvis::MCMCchains(eff, params = "cost")
+#   eff <- 
+#     MCMCvis::MCMCchains(eff, params = "eff")
+#   bcea.default(eff, cost, ...)
+# }
+# 
+# 
+# #' @rdname bcea
+# #' @param ... Additional arguments
+# #' @export
+# bcea.rstan <- function(eff, ...) {
+#   
+#   # check if rstan installed
+#   if (!requireNamespace("rstan", quietly = TRUE)) {
+#     stop(
+#       "The 'rstan' package is required to process stanfit objects.\n",
+#       "Please install it with: install.packages('rstan')",
+#       call. = FALSE
+#     )
+#   }
+#   
+#   # if installed
+#   cost_list <- rstan::extract(eff, "cost")
+#   eff_list <- rstan::extract(eff, "eff")
+#   
+#   bcea.default(as.matrix(eff_list[[1]]), as.matrix(cost_list[[1]]), ...)
+# }
+# 
+# 
+# #' @rdname bcea
+# #' @param ... Additional arguments
+# #' @export
+# bcea.bugs <- function(eff, ...) {
+#   
+#   cost <- eff$sims.list$cost
+#   eff <- eff$sims.list$eff
+#   bcea.default(eff, cost, ...)
+# }
