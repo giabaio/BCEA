@@ -161,7 +161,8 @@ ceplane_plot_ggplot.bcea <- function(he,
       values_to = "delta_e"
     )
   
-  delta_ce <- left_join(delta_c, delta_e, by = c("sim", "comparison"))
+  delta_ce <- left_join(delta_c, delta_e, by = c("sim", "comparison")) |>
+    mutate(comparison=factor(comparison))
   
   plot_params <-
     ceplane_ggplot_params(he, pos_legend = pos_legend, graph_params = graph_params, ...)
@@ -184,7 +185,7 @@ ceplane_plot_ggplot.bcea <- function(he,
   return_plot <- return_plot +
     theme_ceplane() +
     theme_add +
-    geom_point(size = plot_params$point$size[delta_ce$comparison]) +
+    geom_point(size = plot_params$point$size[delta_ce$comparison]) + 
     ceplane_legend_manual(he, plot_params) +
     geom_hline(yintercept = 0, color = "grey") +
     geom_vline(xintercept = 0, color = "grey") +
@@ -258,7 +259,8 @@ ceplane_plot_plotly.bcea <- function(he,
       values_to = "delta_e"
     )
   
-  delta_ce <- left_join(delta_c, delta_e, by = c("sim", "comparison"))
+  delta_ce <- left_join(delta_c, delta_e, by = c("sim", "comparison")) |>
+    mutate(comparison=factor(comparison))
   
   # Adjust graph parameters
   if (length(graph_params$point$color) != length(comp_label)) {

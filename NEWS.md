@@ -1,5 +1,9 @@
 # BCEA 2.4.83 (dev)
 
+_November 2025_
+
+* Fixes a nasty bug in `ceplane_plot_graph.R` -- now that we're not using `reshape2`, we must enforce the column `comparison` created in the object `delta_ce` to be a factor.
+
 # BCEA 2.4.82
 
 _October 2025_
