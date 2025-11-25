@@ -1,0 +1,606 @@
+# Changelog
+
+## BCEA 2.4.83 (dev)
+
+*November 2025*
+
+- Fixes a nasty bug in `ceplane_plot_graph.R` – now that we’re not using
+  `reshape2`, we must enforce the column `comparison` created in the
+  object `delta_ce` to be a factor.
+
+- Updates code in `contour_ggplot_params.R` to avoid `ggplot2` warnings
+  about
+  [`aes_string()`](https://ggplot2.tidyverse.org/reference/aes_.html)
+  and the use of `size` instead of `linewidth` (both now deprecated).
+
+## BCEA 2.4.82
+
+*October 2025*
+
+- In `bcea.default.R`, removes the methods specific to `bugs`, `rstan`
+  and `rjags`, since we didn’t really need them? This streamlines the
+  package is it removes the dependencies on `rstan` and `rjags`.
+  (34efe54).
+
+- Updates the help for `CreateInputs.R` to clarify the nature of the
+  `inputs` object. (34efe54).
+
+- Updates the tests according to the changes in `bcea.default.R`.
+  (34efe54).
+
+- Removes a few (now) unnecessary dependencies: `MCMCvis`, `reshape2`,
+  `rlang`, `rstan`. Also removes the suggested packages, `coda`,
+  `plotrix`, `RColorBrewer`, `rjags`, `rmarkdown`, `splancs` and
+  `vdiffr`. Installation should be quicker now. (34efe54).
+
+*September 2025*
+
+- Fix documentation and order of the arguments in `evppi.R`. (ded3dc8).
+
+- Move `rstan` to `Suggests`. (ded3dc8).
+
+- Removes the `make.report` function, which is now completely left to
+  `BCEAweb`. Automatic creation of a pdf/docx report is still possible,
+  but can be done calling `BCEAweb`. (ded3dc8).
+
+- Removes `revdep` as it was a left-over of an older version. (ded3dc8).
+
+*July 2025*
+
+- Fix the code in the vignettes to remove dependency on `reshape2`
+  (6279bb6).
+
+- Removes the folder `inst/jags`, which contains an old `Rmd` example,
+  that is not used any more (6edb41c).
+
+- Simplifies documentation of `contour` (a41aec6).
+
+- Removes the Suggest for `vdiffr`, which is not really used (6e3ef67).
+
+- Updates documentation for `CEriskav` (40b0183).
+
+- Removes the dependence to the deprecated `reshape2` and move code to
+  use `tidyr` (dfbd68b).
+
+- The helper function `line_labels` would mess up with the labels in the
+  `multi.ce` plot. Fixed now (37bd270).
+
+## BCEA 2.4.81
+
+*July 2025*
+
+- Fix a small issue in `multi.ce`. The CRAN version has removed the use
+  of `BCEA:::compute_p_best_interv`, which computes the probability that
+  each intervention is the most cost-effective, for each value of the
+  willingness to pay. The output of that call must be passed as input to
+  `BCEA:::ceac_plot_XXXX.pairwise` in order for `ceac.plot` to produce
+  the individual probability of cost-effectiveness
+
+- Fix the function `summary.pairwise` to comply with the changes in
+  `multi.ce`
+
+## BCEA 2.4.8
+
+*June 2025*
+
+- In [`bcea()`](https://n8thangreen.github.io/BCEA/reference/bcea.md)
+  the probability of an intervention being ‘best’ was the most
+  cost-effective one calculated using
+  [`compute_p_optimal_best()`](https://n8thangreen.github.io/BCEA/reference/compute_p_optimal_best.md).
+  However, this is not actually how this is defined in the literature
+  for the cost-effectiveness acceptability frontier (CEAF). Is should be
+  calculated as the probability that the best intervention is the
+  ‘optimal’ one, that is the one on average using the mean cost and mean
+  effectiveness. We’re replaced this internal with
+  [`compute_p_optimal_best()`](https://n8thangreen.github.io/BCEA/reference/compute_p_optimal_best.md).
+  In most cases this will make very little difference but when the cost
+  or effectiveness are (highly) skewed they may deviate (a0b9ed6).
+
+- Many changes to the `plotly` infrastracture, which are helpful for
+  `BCEAweb` (a565620).
+
+- Reformatting of the example datasets (daa2494).
+
+- Aligns examples and code with newer version of `ggplot2` (c1e0aac).
+
+## BCEA 2.4.7
+
+*January 2025*
+
+- In
+  [`ceplane.plot()`](https://n8thangreen.github.io/BCEA/reference/ceplane.plot.md)
+  for [ggplot2](https://ggplot2.tidyverse.org) version used the ggplot
+  syntax thats already used for other plotting arguments so that we can
+  now pass,
+  e.g. `wtp = list(value = 20000, colour = "blue", x = 10, y = 10, size = 4)`.
+  This closes issue [\#151](https://github.com/giabaio/BCEA/issues/151)
+  so can do something like `wtp = list(size = 0)` to hide the
+  willingness to pay text. (3d8a770)
+- Small features added which were missing for the new edition of the
+  BCEA book:
+  - Extended `ggplot` version legend to take a vertical or horizontal
+    part to the `pos` argument (85ba87f).
+  - [`ceplane.plot()`](https://n8thangreen.github.io/BCEA/reference/ceplane.plot.md)
+    and `ceac plot` relative font size argument `rel` fixed (8d1586f).
+  - `eib_plot` and `evi_plot` text size `ggplot` argument added
+    (1e32788) and (84aaa2f).
+  - [`ceplane.plot()`](https://n8thangreen.github.io/BCEA/reference/ceplane.plot.md)
+    now has`label.pos` logical argument fixed for `ggplot` (92e9eb0) and
+    base `R` (c7351e4).
+
+## BCEA 2.4.6
+
+*February 2024*
+
+Patch fixing small bugs from last CRAN release.
+
+- Moved [voi](https://chjackson.github.io/voi/) package to Suggests in
+  DESCRIPTION and added
+  [`requireNamespace()`](https://rdrr.io/r/base/ns-load.html) in
+  [`evppi()`](https://n8thangreen.github.io/BCEA/reference/evppi.md) to
+  avoid error when not installed (e.g. on CRAN) (f3e3e3e)
+- Converted help documentation in `man-roxygen` folder to md (cf858b1)
+- bugfix: line width in CEAC plot.
+  [ggplot2](https://ggplot2.tidyverse.org) changed in version 3 to
+  `linewidth` from `size` argument and had only changed some of the
+  code. Updated to
+  [`scale_linewidth_manual()`](https://ggplot2.tidyverse.org/reference/scale_manual.html).
+  (60bea9c)
+- Using `testdata` folder [testthat](https://testthat.r-lib.org) unit
+  tests. (cbce0fa)
+
+## BCEA 2.4.5
+
+*November 2023*
+
+Some cosmetic changes to clean up.
+
+- Removed the (by now, unnecessary) appveyor webhook
+- Added correct `Remotes` in the `DESCRIPTION` file to point to the
+  correct GitHub repos for `voi` and `plotrix`
+- Changed the class of the object `smoking_output` to be used in the
+  `evppi` example avoiding the need for `rjags`
+
+*October 2023*
+
+Moved internal EVPPI calculation out of `BCEA` and now uses `voi`
+package instead. Refactoring but retaining same interface and
+functionality.
+
+- Ensure using latest CRAN release of
+  [voi](https://chjackson.github.io/voi/) which has a patch so that BCEA
+  can use it without losing functionality
+  - Latest version of [voi](https://chjackson.github.io/voi/) needed
+    when we use `check = TRUE` in
+    [`voi::evppi()`](https://chjackson.github.io/voi/reference/evppi.html)
+    in order to access fitting data (6e436b5, 94f5fc5)
+- [`evppi()`](https://n8thangreen.github.io/BCEA/reference/evppi.md)
+  tested against all use cases in BCEA book (1c1457d2)
+- Select parameters by position (as well as name) in new
+  [`evppi()`](https://n8thangreen.github.io/BCEA/reference/evppi.md)
+  (f2e4d005)
+- Use single parameter case only like `voi` package for methods `sal`
+  and `so` ([\#140](https://github.com/giabaio/BCEA/issues/140))
+- New [`evppi()`](https://n8thangreen.github.io/BCEA/reference/evppi.md)
+  matching output of old
+  [`evppi()`](https://n8thangreen.github.io/BCEA/reference/evppi.md)
+  (1e2c5e7)
+- Latest development version of `voi` needed when we use `check = TRUE`
+  in
+  [`voi::evppi()`](https://chjackson.github.io/voi/reference/evppi.html)
+  in order to access fitting data (6e436b5, 94f5fc5)
+- No longer require `INLA` package to be available inside of `BCEA` so
+  can remove direct dependency. This helps with passing CRAN checks and
+  GitHub Actions ()
+
+## BCEA 2.4.4
+
+*June 2023*
+
+- Patch to fix a CRAN checks error. Suggested package
+  [MCMCvis](https://github.com/caseyyoungflesh/MCMCvis) wasn’t used
+  conditionally in unit test. Moved to Required packages in
+  `DESCRIPTION`.
+
+## BCEA 2.4.3
+
+*May 2023*
+
+### Bug fixes
+
+- Consistent colours across plots for each intervention for grid of
+  plots in
+  [`plot.bcea()`](https://n8thangreen.github.io/BCEA/reference/plot.bcea.md)
+  (cf1ee43)
+- [`make.report()`](https://n8thangreen.github.io/BCEA/reference/BCEA-deprecated.md)
+  change variable name (f940f2e)
+- Fixed issue with summary table where names of interventions in the
+  wrong order (6a006e3)
+- [`summary.bcea()`](https://n8thangreen.github.io/BCEA/reference/summary.bcea.md)
+  now only prints results for chosen comparisons and not always all of
+  them. `kstar` and `best` in
+  [`bcea()`](https://n8thangreen.github.io/BCEA/reference/bcea.md)
+  object were not updated with subset of interventions
+  ([\#125](https://github.com/giabaio/BCEA/issues/125))
+
+### Refactoring
+
+- [`withr::with_par()`](https://withr.r-lib.org/reference/with_par.html)
+  used in plotting function
+  [`plot.bcea()`](https://n8thangreen.github.io/BCEA/reference/plot.bcea.md)
+  to only temporarily change graphics parameters. (725c536)
+- Using `@md` and markdown syntax in function documentation
+- Update `psa.struct()` to add the absolute value in the formula to
+  compute the weights (1cea278)
+- Use `dplyr` piping new syntax from `.data$*` to simply using speech
+  marks `"*"` (2b280ad)
+
+### Miscellaneous
+
+- Template added for GitHub Issues (0ea59fa)
+
+## BCEA 2.4.2
+
+*August 2022*
+
+### Bug fixes
+
+- [`summary.bcea()`](https://n8thangreen.github.io/BCEA/reference/summary.bcea.md)
+  wasn’t passing `wtp` argument to
+  [`sim_table()`](https://n8thangreen.github.io/BCEA/reference/sim_table.md)
+  internally (5440eb3)
+- [`summary()`](https://rdrr.io/r/base/summary.html) was the same for
+  basic `bcea` and `multi.ce` objects. Now has own
+  [`summary.pairwise()`](https://n8thangreen.github.io/BCEA/reference/summary.pairwise.md)
+  method. (88ade51)
+- [`struct.psa()`](https://n8thangreen.github.io/BCEA/reference/struct.psa.md)
+  output now works with
+  [`summary()`](https://rdrr.io/r/base/summary.html) and plots all still
+  work without having to use \$ to get at `bcea` object as before.
+  (b014c83)
+- Changed `wtp` argument in
+  [`bcea()`](https://n8thangreen.github.io/BCEA/reference/bcea.md) to
+  `k` because `wtp` in the plotting functions refers to the wtp line and
+  so is a scalar whereas `k` is a grid of points. Added an error message
+  to use new argument. (b014c83)
+- [`bcea()`](https://n8thangreen.github.io/BCEA/reference/bcea.md) still
+  allows a scalar `k` but added a warning that this will give empty
+  plots.
+- Updated GitHub Actions for checking the package to use `r-lib/Actions`
+  version 2. There was an error with not finding INLA but this was
+  solved by Gabor at RStudio (see thread here
+  <https://community.rstudio.com/t/not-finding-inla-package-not-on-cran-in-actions/141398>)
+- GrassmannOptim package r-release-macos-x86_64 isn’t available
+  resulting in a CRAN check error and doesn’t appear to be maintained.
+  Tried emailing the author but bounced. Removed dependency and copied
+  [`GrassmannOptim()`](https://n8thangreen.github.io/BCEA/reference/GrassmannOptim.md)
+  function inside of package with acknowledgement.
+
+### Refactoring
+
+- Now uses `Rdpack` for bibliography in documentation (229c96d)
+- The cost and health values in the `Smoking` and `Vaccine` data sets
+  have been renamed from `c` and `e` to `cost` and `eff`. This is to
+  avoid any conflict with the [`c()`](https://rdrr.io/r/base/c.html)
+  function.
+- Changed the axes labels in the cost-effectiveness planes from
+  “differential” to “incremental”. (688d98b)
+
+### New features
+
+- Can now specify what order the interventions labels are in the legend
+  for ce plane (and contour plots) for base R and ggplot2 i.e. reference
+  first or second with optional `ref_first` argument (cc38f07)
+- Can specify currency for axes in
+  [`ceplane.plot()`](https://n8thangreen.github.io/BCEA/reference/ceplane.plot.md)
+  and
+  [`ceac.plot()`](https://n8thangreen.github.io/BCEA/reference/ceac.plot.md)
+  `ggplot2` versions (6808aa6)
+- Argument added to
+  [`ceplane.plot()`](https://n8thangreen.github.io/BCEA/reference/ceplane.plot.md)
+  of `icer_annot` to annotate each of the ICER points with the text
+  label of the intervention name. Only for `ggplot2` at the moment.
+  (a7b4beb)
+- Added `pos` argument to
+  [`contour2()`](https://n8thangreen.github.io/BCEA/reference/contour2.md)
+  so that its consistent with
+  [`contour()`](https://n8thangreen.github.io/BCEA/reference/contour.md)
+  and
+  [`ceplane.plot()`](https://n8thangreen.github.io/BCEA/reference/ceplane.plot.md).
+  (50f8f8b)
+- Allow passing `ref` argument by name as well as index in
+  [`bcea()`](https://n8thangreen.github.io/BCEA/reference/bcea.md).
+  (9eab459)
+
+## BCEA 2.4.1.2
+
+*April 2022*
+
+### Bug fixes
+
+- `ceplane_ggplot()` missing legend
+- Legend bug in
+  [`evppi()`](https://n8thangreen.github.io/BCEA/reference/evppi.md)
+- Arguments in consistent same order as
+  [`ceplane.plot()`](https://n8thangreen.github.io/BCEA/reference/ceplane.plot.md)
+- [`ceplane_plot_base()`](https://n8thangreen.github.io/BCEA/reference/ceplane_plot_graph.md)
+  wasn’t showing grey area. Fixed by removing `alpha` transparency
+- [`ceac.plot()`](https://n8thangreen.github.io/BCEA/reference/ceac.plot.md)
+  wasn’t showing confidence interval by default for one comparison
+- Typo fixed in dropping dimension in
+  [`compute_vi()`](https://n8thangreen.github.io/BCEA/reference/compute_vi.md)
+- `setReferenceGroup()` for CEAC plot legend error; doesn’t use supplied
+  names but generic intervention 1, intervention 2, …
+  ([\#82](https://github.com/giabaio/BCEA/issues/82))
+- Missing
+  [`multi.ce()`](https://n8thangreen.github.io/BCEA/reference/multi.ce.md)
+  line for reference group
+  ([\#80](https://github.com/giabaio/BCEA/issues/80))
+
+### Miscellaneous
+
+- Use `cli` package for warning messages
+- Clean [@keywords](https://github.com/keywords) in Roxygen
+  - Removed all the internal helper functions from the Manual by using
+    [@keyword](https://github.com/keyword) internal
+- Refactor contour plots
+- Plot functions take more standard `ggplot2` format style arguments
+  e.g. as list
+  - Extend some function
+    ([`ceac.plot()`](https://n8thangreen.github.io/BCEA/reference/ceac.plot.md))
+    to take more style arguments than before for e.g. colour of lines,
+    types of points and line thickness.
+  - Resuse
+    [`ceplane.plot()`](https://n8thangreen.github.io/BCEA/reference/ceplane.plot.md)
+    code in
+    [`contour()`](https://n8thangreen.github.io/BCEA/reference/contour.md)
+- `goodpractice` package suggested changes
+  - line length, [`seq_len()`](https://rdrr.io/r/base/seq.html), remove
+    `;`
+- Contributor guidelines
+  ([\#93](https://github.com/giabaio/BCEA/issues/93))
+- Deprecated functions document
+- [`contour2()`](https://n8thangreen.github.io/BCEA/reference/contour2.md)
+  changed so `xlim`, `ylim` arguments are optional; the same as
+  [`ceplane.plot()`](https://n8thangreen.github.io/BCEA/reference/ceplane.plot.md)
+  since they are passes to it
+- [`contour()`](https://n8thangreen.github.io/BCEA/reference/contour.md)
+  and
+  [`ceplane.plot()`](https://n8thangreen.github.io/BCEA/reference/ceplane.plot.md)
+  vignettes written
+
+## BCEA 2.4.1.1
+
+*Oct 2021*
+
+### Major refactoring
+
+- Code base improved robustness and extensibility.
+- [`bcea()`](https://n8thangreen.github.io/BCEA/reference/bcea.md) is
+  now a helper function which calls the constructor
+  [`new_bcea()`](https://n8thangreen.github.io/BCEA/reference/new_bcea.md),
+  separating concerns.
+- [`new_bcea()`](https://n8thangreen.github.io/BCEA/reference/new_bcea.md)
+  composed of smaller HEE statistics functions with names starting with
+  `compute_*`
+  e.g. [`compute_CEAC()`](https://n8thangreen.github.io/BCEA/reference/compute_CEAC.md),
+  [`compute_EIB()`](https://n8thangreen.github.io/BCEA/reference/compute_EIB.md),….
+  This allows us to call and test them individually. It also allows more
+  flexibility in changing or adding functionality to
+  [`new_bcea()`](https://n8thangreen.github.io/BCEA/reference/new_bcea.md).
+- Plotting functions have been rewritten. These functions now simply
+  dispatch to the base R, ggplot2 or plotly versions (think strategy
+  pattern). Internally, these functions,
+  e.g.[`ceplane_plot_ggplot()`](https://n8thangreen.github.io/BCEA/reference/ceplane_plot_graph.md),
+  are also split into parameter and data setting and plotting
+  components. This modulisation allows us to add new layers to plots or
+  modify existing parameter sets and defaults. We could also return the
+  data without the plotting step as in
+  e.g. [`ggplot2::autoplot()`](https://ggplot2.tidyverse.org/reference/autoplot.html).
+  It also means we can reuse some functionality across plots such as
+  axes and legend setting e.g. `BCEA:::where_legend()`.
+- `ceac_plot()` changes
+  - Deprecated
+    [`mce.plot()`](https://n8thangreen.github.io/BCEA/reference/mce.plot.md).
+    Now dispatched on
+    [`ceac.plot()`](https://n8thangreen.github.io/BCEA/reference/ceac.plot.md)
+    for both
+    [`multi.ce()`](https://n8thangreen.github.io/BCEA/reference/multi.ce.md)
+    and [`bcea()`](https://n8thangreen.github.io/BCEA/reference/bcea.md)
+    outputs.
+  - For a multiple comparison the plot for pairwise comparison over all
+    interventions is returned by default. The alternative version of
+    each comparison against the reference group is still available.
+  - Plots and tables using S3 methods for `bcea` type object.
+- Tables updated. Duplication in
+  [`summary()`](https://rdrr.io/r/base/summary.html) and
+  [`sim_table()`](https://n8thangreen.github.io/BCEA/reference/sim_table.md)
+  removed.
+- [`createInputs()`](https://n8thangreen.github.io/BCEA/reference/createInputs.md)
+  used for EVPI calculation now dispatches S3 methods by JAGS, BUGS,
+  Stan and other R data types.
+- [`make.report()`](https://n8thangreen.github.io/BCEA/reference/BCEA-deprecated.md)
+  rewritten to have separate section files.
+
+### New features
+
+- Extend ways to set comparison interventions. Subsets of comparison can
+  still be set in a call to a plotting function as before. Now subsets
+  can be set in both the original
+  [`bcea()`](https://n8thangreen.github.io/BCEA/reference/bcea.md)
+  construction or separately using a setter functions
+  [`setComparisons()`](https://n8thangreen.github.io/BCEA/reference/setComparisons.md).
+- Similarly, maximum willingness to pay and the reference group can be
+  set with `setKmax()` and `setReferenceGroup()`, respectively.
+- [`multi.ce()`](https://n8thangreen.github.io/BCEA/reference/multi.ce.md)
+  and `CEriskAv()` also now work similarly. They operate by modifying
+  the `bcea` object, rather than creating new one (think decorator
+  pattern).
+- [`bcea()`](https://n8thangreen.github.io/BCEA/reference/bcea.md)
+  methods for JAGS, WinBUGS, Stan
+  ([\#76](https://github.com/giabaio/BCEA/issues/76))
+
+### Miscellaneous
+
+- Additional help documentation and examples.
+- New vignettes about plotting and comparison intervention setting.
+- Testing suite started. This is not comprehensive as of yet.
+- Added a `NEWS.md` file to track changes to the package. Details about
+  previous releases, such as dates, versions, fixes and enhancements
+  obtained from CRAN and code comments so a little patchy.
+- `pkgdown` GitHub site made.
+- Cheatsheet written and published on RStudio site
+  ([\#22](https://github.com/giabaio/BCEA/issues/22)).
+- Dependency package **ldr** removed from **BCEA** because it was
+  removed from CRAN ([\#74](https://github.com/giabaio/BCEA/issues/74))
+
+## BCEA 2.3-1.1
+
+26 Aug 2019
+
+## BCEA 2.3-1
+
+5 Aug 2019
+
+## BCEA 2.2-6
+
+11 July 2018
+
+- Fix in `evppi` to allow `N` to be selected in all methods
+- Fix `diag.evppi`
+
+## BCEA 2.2-5
+
+18 Nov 2016
+
+- Some changes to EVPPI
+
+## BCEA 2.2.4
+
+Nov 2016
+
+- Fixes for new ggplot2 version (`legend.spacing()` and `plot.title`
+  `hjust` argument)
+
+## BCEA 2.2-3
+
+22 May 2016
+
+- Major update for the EVPPI to include PFC
+- Fixed issues with `info.rank`
+
+## BCEA 2.2-2
+
+25 Jan 2016
+
+- Minor change to `ceef.plot` to align with ggplot2 v2.0.0
+
+## BCEA 2.2.1
+
+Oct 2015
+
+- Adds the info-rank plot
+
+## BCEA 2.2
+
+Oct 2015
+
+- Cleaned up and aligned with R’s settings
+- `EVPPI` function polished up
+
+## BCEA 2.1-1
+
+6 May 2015 2015
+
+- New function for EVPPI using SPDE-INLA
+- Modifications to the EVPPI functions
+- Documentation updated
+- Allows `xlim` & `ylim` in the
+  [`ceplane.plot()`](https://n8thangreen.github.io/BCEA/reference/ceplane.plot.md),
+  [`contour()`](https://n8thangreen.github.io/BCEA/reference/contour.md)
+  and
+  [`contour2()`](https://n8thangreen.github.io/BCEA/reference/contour2.md)
+  functions
+- It is now possible to run `bcea` for a scalar wtp
+- Old [`evppi()`](https://n8thangreen.github.io/BCEA/reference/evppi.md)
+  function and method has been renamed `evppi0`, which means there’s
+  also a new `plot.evppi0` method
+
+## BCEA 2.1-0
+
+13 Jan 2015
+
+- Migrated from `if (require())` to
+  `if (requireNamespace(,quietly=TRUE))`
+- Documentation updated
+- Added threshold argument to `ceef.plot` function
+
+## BCEA 2.1.0-pre2
+
+Oct 2014
+
+- modifications to `ceef.plot`, `createInputs`, `struct.psa`
+
+## BCEA 2.1-0-pre1
+
+13 Jan 2015
+
+- Documentation updated
+- Smoking dataset and `ceef.plot` function included, additional
+  modifications
+
+## BCEA 2.0-2c
+
+2 Dec 2013
+
+## BCEA v2.0-2b
+
+2 Dec 2013
+
+- `ceac.plot` and `eib.plot`: option comparison included for base
+  graphics
+
+## BCEA 2.0-2
+
+2 Dec 2013
+
+## BCEA 2.0-1
+
+31 July 2013
+
+## BCEA 2.0
+
+30 July 2013
+
+### Feature updates
+
+- Implements two quick and general methods to compute the EVPPI
+- Function `CreateInputs()`, which takes as input an object in the class
+  rjags or bugs
+- Compute the EVPPI for one or more parameters calling the function
+  [`evppi()`](https://n8thangreen.github.io/BCEA/reference/evppi.md)
+- Results can be visualised using the specific method plot for the class
+  `evppi` and show the overall EVPI with the EVPPI for the selected
+  parameter(s)
+
+## BCEA 1.3-1
+
+## BCEA 1.3-0
+
+3 July 2013
+
+## BCEA 1.2
+
+17 September 2012
+
+## BCEA 1.1.1
+
+22 Feb 2013
+
+## BCEA 1.1
+
+15 Sept 2012
+
+## BCEA 1.0
+
+13 May 2012

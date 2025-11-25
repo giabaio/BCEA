@@ -43,12 +43,15 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/giabaio/BCEA/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/giabaio/BCEA/blob/dev/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.4.83" id="bcea-2483-dev">BCEA 2.4.83 (dev)<a class="anchor" aria-label="anchor" href="#bcea-2483-dev"></a></h2>
-</div>
+<p><em>November 2025</em></p>
+<ul><li><p>Fixes a nasty bug in <code>ceplane_plot_graph.R</code> – now that we’re not using <code>reshape2</code>, we must enforce the column <code>comparison</code> created in the object <code>delta_ce</code> to be a factor.</p></li>
+<li><p>Updates code in <code>contour_ggplot_params.R</code> to avoid <code>ggplot2</code> warnings about <code><a href="https://ggplot2.tidyverse.org/reference/aes_.html" class="external-link">aes_string()</a></code> and the use of <code>size</code> instead of <code>linewidth</code> (both now deprecated).</p></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.4.82" id="bcea-2482">BCEA 2.4.82<a class="anchor" aria-label="anchor" href="#bcea-2482"></a></h2>
 <p><em>October 2025</em></p>
@@ -422,7 +425,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>
