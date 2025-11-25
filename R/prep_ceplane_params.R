@@ -50,7 +50,7 @@ prep_ceplane_params <- function(he, wtp_params, ...) {
            color = grey.colors(n = he$n_comparisons,
                                end = 0.7,
                                alpha = 1),
-           size = rep(0.35, he$n_comparisons), ###0.35,
+           size = 0.35,
            shape = rep(20, he$n_comparisons)),
          wtp = list(
            value = 25000),
