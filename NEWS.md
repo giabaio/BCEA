@@ -4,6 +4,8 @@ _November 2025_
 
 * Fixes a nasty bug in `ceplane_plot_graph.R` -- now that we're not using `reshape2`, we must enforce the column `comparison` created in the object `delta_ce` to be a factor.
 
+* Updates code in `contour_ggplot_params.R` to avoid `ggplot2` warnings about `aes_string()` and the use of `size` instead of `linewidth` (both now deprecated).
+
 # BCEA 2.4.82
 
 _October 2025_
