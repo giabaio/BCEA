@@ -1,5 +1,7 @@
 # Changelog
 
+## BCEA 2.4.84 (dev)
+
 ## BCEA 2.4.83
 
 *November 2025*
