@@ -26,6 +26,7 @@
 #' @author Gianluca Baio, Andrea Berardi
 #' @seealso [BCEA-deprecated()]
 #' @importFrom Rdpack reprompt
+#' @rdname BCEA-deprecated
 #' 
 #' @references
 #' 
