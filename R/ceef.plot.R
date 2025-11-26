@@ -20,9 +20,7 @@
 #'  plot?
 #' @param print.summary Logical. Should the efficiency frontier summary be
 #'  printed along with the graph?  See Details for additional information.
-#' @param graph A string used to select the graphical engine to use for
-#'  plotting. Should (partial-)match the two options `"base"` or
-#'  `"ggplot2"`. Default value is `"base"`.
+#' @template args-graph
 #' @param print.plot Logical. Should the efficiency frontier be plotted?
 #' @param ... If `graph_type="ggplot2"` and a named theme object is supplied,
 #'  it will be added to the ggplot object. Ignored if `graph_type="base"`.
@@ -92,11 +90,11 @@ ceef.plot.bcea <- function(he,
                            flip = FALSE,
                            dominance = TRUE,
                            print.summary = TRUE,
-                           graph = c("base", "ggplot2" ,"plotly"),
+                           graph = options("bcea.graph"),
                            print.plot = TRUE,
                            ...) {
    
-   graph <- match.arg(graph)
+   graph <- unlist(graph)
    
    if (!is.null(comparators)) {
      stopifnot(length(comparators) >= 2)

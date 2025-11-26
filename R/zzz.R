@@ -5,12 +5,19 @@
 #' @return invisible
 #' @noRd
 .onLoad <- function(libname, pkgname) {
+  # Can reset existing, standard options
   op <- options()
   op.bcea <- list(
     scipen = 10)
-  toset <- !(names(op.bcea) %in% names(op))
+  toset <- (names(op.bcea) %in% names(op))
   if (any(toset)) options(op.bcea[toset])
-
+  
+  # But also *specifically* set the default graphical engine
+  if (is.null(getOption("bcea.graph"))) {
+    options("bcea.graph"="base")
+  }
+  
+  # Other graphical options
   grDevices::ps.options(encoding = "CP1250")
   grDevices::pdf.options(encoding = "CP1250")
   

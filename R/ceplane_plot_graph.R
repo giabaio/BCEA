@@ -143,25 +143,28 @@ ceplane_plot_ggplot.bcea <- function(he,
   }
   
   # single long format for ggplot data
-  delta_c <- he$delta_c |>
-    as_tibble() |>
-    mutate(sim = row_number()) |>
-    pivot_longer(
-      cols = -"sim",
-      names_to = "comparison",
-      values_to = "delta_c"
-    )
+  # delta_c <- he$delta_c |>
+  #   as_tibble() |>
+  #   mutate(sim = row_number()) |>
+  #   pivot_longer(
+  #     cols = -"sim",
+  #     names_to = "comparison",
+  #     values_to = "delta_c"
+  #   )
+  # 
+  # delta_e <- he$delta_e |>
+  #   as_tibble() |>
+  #   mutate(sim = row_number()) |>
+  #   pivot_longer(
+  #     cols = -"sim",
+  #     names_to = "comparison",
+  #     values_to = "delta_e"
+  #   )
+  # 
+  # delta_ce <- left_join(delta_c, delta_e, by = c("sim", "comparison")) |>
+  #   mutate(comparison=factor(comparison))
   
-  delta_e <- he$delta_e |>
-    as_tibble() |>
-    mutate(sim = row_number()) |>
-    pivot_longer(
-      cols = -"sim",
-      names_to = "comparison",
-      values_to = "delta_e"
-    )
-  
-  delta_ce <- left_join(delta_c, delta_e, by = c("sim", "comparison"))
+  delta_ce <- prep_delta_ce(he)
   
   plot_params <-
     ceplane_ggplot_params(he, pos_legend = pos_legend, graph_params = graph_params, ...)
@@ -184,7 +187,7 @@ ceplane_plot_ggplot.bcea <- function(he,
   return_plot <- return_plot +
     theme_ceplane() +
     theme_add +
-    geom_point(size = plot_params$point$size[delta_ce$comparison]) +
+    geom_point(size = plot_params$point$size[delta_ce$comparison]) + 
     ceplane_legend_manual(he, plot_params) +
     geom_hline(yintercept = 0, color = "grey") +
     geom_vline(xintercept = 0, color = "grey") +
@@ -240,25 +243,28 @@ ceplane_plot_plotly.bcea <- function(he,
   wtp <- graph_params$wtp_value
   
   # single long format for plotting data
-  delta_c <- he$delta_c |>
-    as_tibble() |>
-    mutate(sim = row_number()) |>
-    pivot_longer(
-      cols = -"sim",
-      names_to = "comparison",
-      values_to = "delta_c"
-    )
+  # delta_c <- he$delta_c |>
+  #   as_tibble() |>
+  #   mutate(sim = row_number()) |>
+  #   pivot_longer(
+  #     cols = -"sim",
+  #     names_to = "comparison",
+  #     values_to = "delta_c"
+  #   )
+  # 
+  # delta_e <- he$delta_e |>
+  #   as_tibble() |>
+  #   mutate(sim = row_number()) |>
+  #   pivot_longer(
+  #     cols = -"sim",
+  #     names_to = "comparison",
+  #     values_to = "delta_e"
+  #   )
+  # 
+  # delta_ce <- left_join(delta_c, delta_e, by = c("sim", "comparison")) |>
+  #   mutate(comparison=factor(comparison))
   
-  delta_e <- he$delta_e |>
-    as_tibble() |>
-    mutate(sim = row_number()) |>
-    pivot_longer(
-      cols = -"sim",
-      names_to = "comparison",
-      values_to = "delta_e"
-    )
-  
-  delta_ce <- left_join(delta_c, delta_e, by = c("sim", "comparison"))
+  delta_ce <- prep_delta_ce(he)
   
   # Adjust graph parameters
   if (length(graph_params$point$color) != length(comp_label)) {

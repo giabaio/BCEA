@@ -10,7 +10,7 @@
   comparison = NULL,
   wtp = 25000,
   pos = "topleft",
-  graph = c("base", "ggplot2", "plotly"),
+  graph = options("bcea.graph"),
   ...
 )
 
@@ -41,7 +41,11 @@ corner inside the plot area.}
 
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-) match the three options \code{"base"},
-\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.}
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}. This is set globally
+upon loading \code{BCEA} and can be modified for instance by using
+\code{options("bcea.graph"="gg")}, or \verb{options("bcea.graph="plotly")}. Partial
+matching still applies (so \code{gg} or \code{pl} also work). Not all plotting
+functions have a \code{"plotly"} implementation, yet -- see help for the specifics.}
 
 \item{...}{If \code{graph = "ggplot2"} and a named theme object is supplied,
 it will be passed to the \pkg{ggplot2} object. The usual ggplot2 syntax is used.

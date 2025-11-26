@@ -11,7 +11,7 @@
   pos = "bottomright",
   size = NULL,
   plot.cri = NULL,
-  graph = c("base", "ggplot2", "plotly"),
+  graph = options("bcea.graph"),
   ...
 )
 
@@ -49,9 +49,12 @@ include them for multiple comparisons.  Setting \code{plot.cri=TRUE} or
 level of the intervals can be also set, see \ldots{} for more details.}
 
 \item{graph}{A string used to select the graphical engine to use for
-plotting. Should (partial-)match the three options \code{"base"},
-\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
-Not all plotting functions have a \code{"plotly"} implementation yet.}
+plotting. Should (partial-) match the three options \code{"base"},
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}. This is set globally
+upon loading \code{BCEA} and can be modified for instance by using
+\code{options("bcea.graph"="gg")}, or \verb{options("bcea.graph="plotly")}. Partial
+matching still applies (so \code{gg} or \code{pl} also work). Not all plotting
+functions have a \code{"plotly"} implementation, yet -- see help for the specifics.}
 
 \item{...}{If \code{graph="ggplot2"} and a named theme object is supplied,
 it will be added to the ggplot object. Additional arguments:

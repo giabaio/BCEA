@@ -12,11 +12,11 @@ info.rank.bcea <- function(he,
                            inp,
                            wtp = NULL,
                            howManyPars = NA,
-                           graph = c("base", "ggplot2", "plotly"),
+                           graph = options("bcea.graph"),
                            rel = TRUE,
                            ...) {
 
-  graph <- match.arg(graph)
+  graph <- unlist(graph)
   
   extra_args <- list(...)
   
@@ -67,8 +67,7 @@ info.rank.bcea <- function(he,
 #' not specified then the break-even point for the current model will be used.
 #' @param howManyPars Optional maximum number of parameters to be included in the bar plot. 
 #' Includes all parameters by default. 
-#' @param graph A string used to select the graphical engine to use for plotting.
-#' Should (partial-)match one of the two options "base" or "plotly". Default value is "base"
+#' @template args-graph
 #' @param rel Logical argument that specifies whether the ratio of
 #' EVPPI to EVPI (`rel = TRUE`, default) or the absolute value of the EVPPI
 #' should be used for the analysis.
