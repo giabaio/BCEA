@@ -32,10 +32,14 @@ contour_ggplot_params <- function(he,
       quadrant = quadrant_params(he, graph_params),
       size = rel(3.5),
       contour = list(
-        aes_string(color = "comparison"),
+# Replaces this to avoid a warning from the newer version of ggplot
+#        aes_string(color = "comparison"),
+        aes(colour=.data$comparison),
         contour_var = "ndensity",
         adjust = 2,
-        size = 1,
+# Replaces this to avoid a warning from the newer version of ggplot
+#        size = 1,
+        linewidth = 1,
         bins = 5),
       icer = list(
         data = data.frame(x = colMeans(he$delta_e),

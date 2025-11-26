@@ -10,9 +10,7 @@
 #' containing the results of the economic analysis performed accounting for a
 #' risk aversion parameter (obtained as output of the function [CEriskav()]).
 #' @template args-pos
-#' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the options `"base"`,
-#' `"ggplot2"` or `"plotly"`. Default value is `"base"`.
+#' @template args-graph
 #' @param ... Arguments to be passed to methods, such as graphical parameters
 #' (see [par()]).
 #' 
@@ -81,10 +79,10 @@
 #' 
 plot.CEriskav <- function(x,
                           pos = "topright",
-                          graph = c("base", "ggplot2", "plotly"),
+                          graph = options("bcea.graph"),
                           ...) {
   
-  graph <- match.arg(graph)
+  graph <- unlist(graph)
   
   ##TODO:
   # graph_params <- prep_CEriskav_params(...)

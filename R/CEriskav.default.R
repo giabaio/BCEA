@@ -35,10 +35,11 @@
   }
   
   IBr <- array(NA, c(he$n_sim, K, he$n_comparisons, R))
-  
+
   for (i in seq_len(he$n_comparisons)) {
     IBr[,, i,] <- Ur[, , he$ref, , drop = FALSE] - Ur[, , he$comp[i], , drop = FALSE]
   }
+
 
   eibr <- apply(IBr, c(2,3,4), mean)
   

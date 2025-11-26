@@ -15,9 +15,7 @@
 #' @param wtp The value of the willingness to pay parameter. It is passed to
 #' [ceplane.plot()].
 #' @template args-pos
-#' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the options `"base"`,
-#' `"ggplot2"` or `"plotly"`. Default value is `"base"`.
+#' @template args-graph
 #' @param ...  Arguments to be passed to the methods [ceplane.plot()]
 #' and [eib.plot()]. Please see the manual pages for the individual
 #' functions.  Arguments like `size`, `ICER.size` and `plot.cri`
@@ -87,11 +85,11 @@ plot.bcea <- function(x,
                       comparison = NULL,
                       wtp = 25000,
                       pos = FALSE,
-                      graph = c("base", "ggplot2", "plotly"),
+                      graph = options("bcea.graph"),
                       ...) {
   
   
-  graph <- match.arg(graph)
+  graph <- unlist(graph)
   extra_args <- list(...)
   
   # consistent colours across plots

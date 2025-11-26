@@ -14,7 +14,7 @@
   flip = FALSE,
   dominance = TRUE,
   print.summary = TRUE,
-  graph = c("base", "ggplot2", "plotly"),
+  graph = options("bcea.graph"),
   print.plot = TRUE,
   ...
 )
@@ -59,8 +59,12 @@ plot?}
 printed along with the graph?  See Details for additional information.}
 
 \item{graph}{A string used to select the graphical engine to use for
-plotting. Should (partial-)match the two options \code{"base"} or
-\code{"ggplot2"}. Default value is \code{"base"}.}
+plotting. Should (partial-) match the three options \code{"base"},
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}. This is set globally
+upon loading \code{BCEA} and can be modified for instance by using
+\code{options("bcea.graph"="gg")}, or \verb{options("bcea.graph="plotly")}. Partial
+matching still applies (so \code{gg} or \code{pl} also work). Not all plotting
+functions have a \code{"plotly"} implementation, yet -- see help for the specifics.}
 
 \item{print.plot}{Logical. Should the efficiency frontier be plotted?}
 

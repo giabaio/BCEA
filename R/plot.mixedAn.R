@@ -23,7 +23,8 @@
 #' corner inside the plot area.
 #' @param graph A string used to select the graphical engine to use for
 #' plotting. Should (partial-)match the two options `"base"` or
-#' `"ggplot2"`. Default value is `"base"`.
+#' `"ggplot2"`. Default value is `"base"`. The `"plotly"` option is not 
+#' implemented for this particular graph.
 #' @param ...  Arguments to be passed to methods, such as graphical parameters
 #' (see [par()]).
 #' @return \item{evi}{ A ggplot object containing the plot. Returned only if
@@ -33,11 +34,12 @@
 #' strategy one (when more than one intervention is considered in the market).
 #' @author Gianluca Baio, Andrea Berardi
 #' @usage plot.mixedAn(x, y.limits=NULL, pos=c(0,1), graph=c("base","ggplot2"),...)
-#'
+#' 
 #' @export
 #' 
 plot.mixedAn <- function(x, y.limits = NULL, pos = c(0,1),
                          graph = c("base","ggplot2"), ...) {
   .Deprecated(new = "evi.plot")
+  evi.plot(`mixedAn<-`(x),y.limits=NULL, pos=c(0,1),graph=graph,...)
 }
 

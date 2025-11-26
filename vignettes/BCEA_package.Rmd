@@ -9,6 +9,11 @@ editor_options:
   chunk_output_type: console
 ---
 
+```{r setup, include=FALSE}
+# Needed because the title is different than the vignette entry
+options(rmarkdown.html_vignette.check_title = FALSE)
+```
+
 For more extensive documentation on the package `BCEA`, please refer to the following resources.
 
 1. The `BCEA` book --- see [https://gianluca.statistica.it/books/bcea/](https://gianluca.statistica.it/books/bcea/)
