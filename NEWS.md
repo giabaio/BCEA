@@ -1,4 +1,4 @@
-# BCEA 2.4.83 (dev)
+# BCEA 2.4.83
 
 _November 2025_
 
