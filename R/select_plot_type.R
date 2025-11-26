@@ -12,8 +12,8 @@ select_plot_type <- function(graph) {
   
   if (missing(graph)) graph <- "base"
   
-  # Accounts for partial matching with the names
-  graph_lup <- c(base = 1, ggplot2 = 2, plotly =3, gg = 2, pl = 3)
+  # Accounts for partial matching with the names, including by using only the initial
+  graph_lup <- c(base = 1, ggplot2 = 2, plotly =3, gg = 2, pl = 3, b = 1, g = 2, p = 3, ggplot = 2)
   graph_type <- graph_lup[graph]
   
   is_req_pkgs <- unname(sapply(c("ggplot2", "grid"),
