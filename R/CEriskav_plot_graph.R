@@ -83,7 +83,7 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
   
   ## Reshape eibr data
   eib_dat <- he$eibr[, default_comp, , drop = FALSE] |>
-    as_tibble() |>
+    as_tibble(.name_repair = ~ as.character(1:he$R)) |>
     mutate(k = row_number()) |>
     pivot_longer(
       cols = -"k",
@@ -126,7 +126,7 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
   
   ## Reshape evir data
   evi_dat <- he$evir |>
-    as_tibble() |>
+    as_tibble(.name_repair = ~ as.character(1:he$R)) |>
     mutate(k = row_number()) |>
     pivot_longer(
       cols = -"k",
@@ -191,7 +191,7 @@ CEriskav_plot_plotly <- function(he, pos_legend) {
   
   ## Reshape eibr data
   eib_dat <- he$eibr[, default_comp, , drop = FALSE] |>
-    as_tibble() |>
+    as_tibble(.name_repair = ~ as.character(1:he$R)) |>
     mutate(k = row_number()) |>
     pivot_longer(
       cols = -"k",
@@ -203,7 +203,7 @@ CEriskav_plot_plotly <- function(he, pos_legend) {
   
   ## Reshape evir data
   evi_dat <- he$evir |>
-    as_tibble() |>
+    as_tibble(.name_repair = ~ as.character(1:he$R)) |>
     mutate(k = row_number()) |>
     pivot_longer(
       cols = -"k",

@@ -2,6 +2,8 @@
 
 _November 2025_
 
+* Updates the code for `CEriskav` and its `plot` method to work with the `ggplot` version.
+
 * Allows to set the graphical engine globally. Still defaults at `base`, but can set `options(bcea.graph="gg")` to change the behaviour for the session.
 
 * Fixes a nasty bug in `ceplane_plot_graph.R` -- now that we're not using `reshape2`, we must enforce the column `comparison` created in the object `delta_ce` to be a factor.
