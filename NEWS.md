@@ -10,6 +10,7 @@ _November 2025_
 
 * Updates code in `contour_ggplot_params.R` to avoid `ggplot2` warnings about `aes_string()` and the use of `size` instead of `linewidth` (both now deprecated). Also updates code in other functions to remove warnings about `ggplot2` deprecation.
 
+
 # BCEA 2.4.82
 
 _October 2025_
