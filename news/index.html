@@ -49,8 +49,10 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.4.83" id="bcea-2483-dev">BCEA 2.4.83 (dev)<a class="anchor" aria-label="anchor" href="#bcea-2483-dev"></a></h2>
 <p><em>November 2025</em></p>
-<ul><li><p>Fixes a nasty bug in <code>ceplane_plot_graph.R</code> – now that we’re not using <code>reshape2</code>, we must enforce the column <code>comparison</code> created in the object <code>delta_ce</code> to be a factor.</p></li>
-<li><p>Updates code in <code>contour_ggplot_params.R</code> to avoid <code>ggplot2</code> warnings about <code><a href="https://ggplot2.tidyverse.org/reference/aes_.html" class="external-link">aes_string()</a></code> and the use of <code>size</code> instead of <code>linewidth</code> (both now deprecated).</p></li>
+<ul><li><p>Updates the code for <code>CEriskav</code> and its <code>plot</code> method to work with the <code>ggplot</code> version.</p></li>
+<li><p>Allows to set the graphical engine globally. Still defaults at <code>base</code>, but can set <code>options(bcea.graph="gg")</code> to change the behaviour for the session.</p></li>
+<li><p>Fixes a nasty bug in <code>ceplane_plot_graph.R</code> – now that we’re not using <code>reshape2</code>, we must enforce the column <code>comparison</code> created in the object <code>delta_ce</code> to be a factor.</p></li>
+<li><p>Updates code in <code>contour_ggplot_params.R</code> to avoid <code>ggplot2</code> warnings about <code><a href="https://ggplot2.tidyverse.org/reference/aes_.html" class="external-link">aes_string()</a></code> and the use of <code>size</code> instead of <code>linewidth</code> (both now deprecated). Also updates code in other functions to remove warnings about <code>ggplot2</code> deprecation.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.4.82" id="bcea-2482">BCEA 2.4.82<a class="anchor" aria-label="anchor" href="#bcea-2482"></a></h2>
@@ -253,7 +255,7 @@
 <li>Plotting functions have been rewritten. These functions now simply dispatch to the base R, ggplot2 or plotly versions (think strategy pattern). Internally, these functions, e.g.<code><a href="../reference/ceplane_plot_graph.html">ceplane_plot_ggplot()</a></code>, are also split into parameter and data setting and plotting components. This modulisation allows us to add new layers to plots or modify existing parameter sets and defaults. We could also return the data without the plotting step as in e.g. <code><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">ggplot2::autoplot()</a></code>. It also means we can reuse some functionality across plots such as axes and legend setting e.g. <code>BCEA:::where_legend()</code>.</li>
 <li>
 <code>ceac_plot()</code> changes
-<ul><li>Deprecated <code><a href="../reference/mce.plot.html">mce.plot()</a></code>. Now dispatched on <code><a href="../reference/ceac.plot.html">ceac.plot()</a></code> for both <code><a href="../reference/multi.ce.html">multi.ce()</a></code> and <code><a href="../reference/bcea.html">bcea()</a></code> outputs.</li>
+<ul><li>Deprecated <code><a href="../reference/BCEA-deprecated.html">mce.plot()</a></code>. Now dispatched on <code><a href="../reference/ceac.plot.html">ceac.plot()</a></code> for both <code><a href="../reference/multi.ce.html">multi.ce()</a></code> and <code><a href="../reference/bcea.html">bcea()</a></code> outputs.</li>
 <li>For a multiple comparison the plot for pairwise comparison over all interventions is returned by default. The alternative version of each comparison against the reference group is still available.</li>
 <li>Plots and tables using S3 methods for <code>bcea</code> type object.</li>
 </ul></li>

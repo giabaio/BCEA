@@ -225,11 +225,8 @@ Helper functions and other intermediate computations.
 
 ## Deprecated
 
-- [`mce.plot()`](https://n8thangreen.github.io/BCEA/reference/mce.plot.md)
-  : Plots the probability that each intervention is the most
-  cost-effective
-
 - [`make.report()`](https://n8thangreen.github.io/BCEA/reference/BCEA-deprecated.md)
+  [`mce.plot()`](https://n8thangreen.github.io/BCEA/reference/BCEA-deprecated.md)
   [`plot.mixedAn()`](https://n8thangreen.github.io/BCEA/reference/BCEA-deprecated.md)
   :
 

@@ -63,7 +63,7 @@ the willingness to pay.</p>
 <span>  pos <span class="op">=</span> <span class="st">"bottomright"</span>,</span>
 <span>  size <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  plot.cri <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  graph <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"base"</span>, <span class="st">"ggplot2"</span>, <span class="st">"plotly"</span><span class="op">)</span>,</span>
+<span>  graph <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="st">"bcea.graph"</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -116,9 +116,12 @@ level of the intervals can be also set, see ... for more details.</p></dd>
 
 <dt id="arg-graph">graph<a class="anchor" aria-label="anchor" href="#arg-graph"></a></dt>
 <dd><p>A string used to select the graphical engine to use for
-plotting. Should (partial-)match the three options <code>"base"</code>,
-<code>"ggplot2"</code> or <code>"plotly"</code>. Default value is <code>"base"</code>.
-Not all plotting functions have a <code>"plotly"</code> implementation yet.</p></dd>
+plotting. Should (partial-) match the three options <code>"base"</code>,
+<code>"ggplot2"</code> or <code>"plotly"</code>. Default value is <code>"base"</code>. This is set globally
+upon loading <code>BCEA</code> and can be modified for instance by using
+<code>options("bcea.graph"="gg")</code>, or <code>options("bcea.graph="plotly")</code>. Partial
+matching still applies (so <code>gg</code> or <code>pl</code> also work). Not all plotting
+functions have a <code>"plotly"</code> implementation, yet – see help for the specifics.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>

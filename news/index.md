@@ -4,6 +4,13 @@
 
 *November 2025*
 
+- Updates the code for `CEriskav` and its `plot` method to work with the
+  `ggplot` version.
+
+- Allows to set the graphical engine globally. Still defaults at `base`,
+  but can set `options(bcea.graph="gg")` to change the behaviour for the
+  session.
+
 - Fixes a nasty bug in `ceplane_plot_graph.R` – now that we’re not using
   `reshape2`, we must enforce the column `comparison` created in the
   object `delta_ce` to be a factor.
@@ -12,6 +19,8 @@
   about
   [`aes_string()`](https://ggplot2.tidyverse.org/reference/aes_.html)
   and the use of `size` instead of `linewidth` (both now deprecated).
+  Also updates code in other functions to remove warnings about
+  `ggplot2` deprecation.
 
 ## BCEA 2.4.82
 
@@ -401,7 +410,7 @@ functionality.
   axes and legend setting e.g. `BCEA:::where_legend()`.
 - `ceac_plot()` changes
   - Deprecated
-    [`mce.plot()`](https://n8thangreen.github.io/BCEA/reference/mce.plot.md).
+    [`mce.plot()`](https://n8thangreen.github.io/BCEA/reference/BCEA-deprecated.md).
     Now dispatched on
     [`ceac.plot()`](https://n8thangreen.github.io/BCEA/reference/ceac.plot.md)
     for both

@@ -32,7 +32,8 @@ plot(x, pos = c(0, 0.8), graph = c("base", "ggplot2"), col = c(1, 1), ...)
 
   A string used to select the graphical engine to use for plotting.
   Should (partial-) match the two options `"base"` or `"ggplot2"`.
-  Default value is `"base"`.
+  Default value is `"base"`. The `"plotly"` option is not implemented
+  for this particular graph.
 
 - col:
 
