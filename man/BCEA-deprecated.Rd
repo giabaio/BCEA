@@ -9,6 +9,27 @@
 make.report(...)
 
 plot.mixedAn(x, y.limits=NULL, pos=c(0,1), graph=c("base","ggplot2"),...)
+
+\dontrun{
+# Load the processed results of the MCMC simulation model
+data(Vaccine)
+# 
+# Runs the health economic evaluation using BCEA
+m <- bcea(e=eff, c=cost,    # defines the variables of 
+                            #  effectiveness and cost
+      ref=2,                # selects the 2nd row of (e,c) 
+                            #  as containing the reference intervention
+      interventions=treats, # defines the labels to be associated 
+                            #  with each intervention
+      Kmax=50000,           # maximum value possible for the willingness 
+                            #  to pay threshold; implies that k is chosen 
+                            #  in a grid from the interval (0,Kmax)
+      plot=FALSE            # inhibits graphical output
+)
+# Runs the mixed Analysis and plots the results
+x=`mixedAn<-`(m)            # Creates the 'mixedAn' object
+plot(x)                     # And plots the results
+}
 }
 \arguments{
 \item{...}{Arguments to be passed to methods, such as graphical parameters
@@ -32,7 +53,8 @@ corner inside the plot area.}
 
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the two options \code{"base"} or
-\code{"ggplot2"}. Default value is \code{"base"}.}
+\code{"ggplot2"}. Default value is \code{"base"}. The \code{"plotly"} option is not
+implemented for this particular graph.}
 }
 \value{
 \item{evi}{ A ggplot object containing the plot. Returned only if

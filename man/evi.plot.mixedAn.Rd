@@ -26,7 +26,8 @@ bottom of the plot.}
 
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the two options \code{"base"} or
-\code{"ggplot2"}. Default value is \code{"base"}.}
+\code{"ggplot2"}. Default value is \code{"base"}. The \code{"plotly"} option is not
+implemented for this particular graph.}
 
 \item{...}{Arguments to be passed to methods, such as graphical parameters
 (see \code{\link[=par]{par()}}).}

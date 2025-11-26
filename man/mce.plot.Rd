@@ -19,7 +19,8 @@ Default value is \code{c(1,0.5)}, that is on the right inside the plot area.}
 
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-)match the two options \code{"base"} or
-\code{"ggplot2"}. Default value is \code{"base"}.}
+\code{"ggplot2"}. Default value is \code{"base"}. The \code{"plotly"} option is not
+implemented for this particular graph.}
 
 \item{...}{Optional arguments. For example, it is possible to specify the
 colours to be used in the plot. This is done in a vector

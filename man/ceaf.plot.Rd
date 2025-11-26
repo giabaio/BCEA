@@ -5,7 +5,7 @@
 \alias{ceaf.plot}
 \title{Cost-Effectiveness Acceptability Frontier (CEAF) plot}
 \usage{
-\method{ceaf.plot}{pairwise}(mce, graph = c("base", "ggplot2", "plotly"), ...)
+\method{ceaf.plot}{pairwise}(mce, graph = options("bcea.graph"), ...)
 
 ceaf.plot(mce, ...)
 }
@@ -13,8 +13,12 @@ ceaf.plot(mce, ...)
 \item{mce}{The output of the call to the function \code{\link[=multi.ce]{multi.ce()}}}
 
 \item{graph}{A string used to select the graphical engine to use for
-plotting. Should (partial-) match the two options \code{"base"} or
-\code{"ggplot2"}. Default value is \code{"base"}.}
+plotting. Should (partial-) match the three options \code{"base"},
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}. This is set globally
+upon loading \code{BCEA} and can be modified for instance by using
+\code{options("bcea.graph"="gg")}, or \verb{options("bcea.graph="plotly")}. Partial
+matching still applies (so \code{gg} or \code{pl} also work). Not all plotting
+functions have a \code{"plotly"} implementation, yet -- see help for the specifics.}
 
 \item{...}{Additional arguments}
 }

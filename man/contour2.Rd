@@ -9,7 +9,7 @@
   he,
   comparison = NULL,
   wtp = 25000,
-  graph = c("base", "ggplot2", "plotly"),
+  graph = options("bcea.graph"),
   pos = "topleft",
   ...
 )
@@ -29,9 +29,12 @@ comparisons. Any subset of the possible comparisons can be selected (e.g.,
 \code{25000}.}
 
 \item{graph}{A string used to select the graphical engine to use for
-plotting. Should (partial-)match the three options \code{"base"},
-\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
-Not all plotting functions have a \code{"plotly"} implementation yet.}
+plotting. Should (partial-) match the three options \code{"base"},
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}. This is set globally
+upon loading \code{BCEA} and can be modified for instance by using
+\code{options("bcea.graph"="gg")}, or \verb{options("bcea.graph="plotly")}. Partial
+matching still applies (so \code{gg} or \code{pl} also work). Not all plotting
+functions have a \code{"plotly"} implementation, yet -- see help for the specifics.}
 
 \item{pos}{Parameter to set the position of the legend (only relevant for
 multiple interventions, ie more than 2 interventions being compared).

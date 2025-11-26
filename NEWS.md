@@ -2,9 +2,11 @@
 
 _November 2025_
 
+* Allows to set the graphical engine globally. Still defaults at `base`, but can set `options(bcea.graph="gg")` to change the behaviour for the session.
+
 * Fixes a nasty bug in `ceplane_plot_graph.R` -- now that we're not using `reshape2`, we must enforce the column `comparison` created in the object `delta_ce` to be a factor.
 
-* Updates code in `contour_ggplot_params.R` to avoid `ggplot2` warnings about `aes_string()` and the use of `size` instead of `linewidth` (both now deprecated).
+* Updates code in `contour_ggplot_params.R` to avoid `ggplot2` warnings about `aes_string()` and the use of `size` instead of `linewidth` (both now deprecated). Also updates code in other functions to remove warnings about `ggplot2` deprecation.
 
 # BCEA 2.4.82
 

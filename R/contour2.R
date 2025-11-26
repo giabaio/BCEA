@@ -9,11 +9,11 @@
 contour2.bcea <- function(he,
                           comparison = NULL,
                           wtp = 25000,
-                          graph = c("base", "ggplot2", "plotly"),
+                          graph = options("bcea.graph"),
                           pos = "topleft",
                           ...) {
   
-  graph_type <- match.arg(graph)
+  graph_type <- unlist(graph)
   
   he <- setComparisons(he, comparison)
   

@@ -7,7 +7,8 @@
 #' @template args-pos
 #' @param graph A string used to select the graphical engine to use for
 #' plotting. Should (partial-) match the two options `"base"` or
-#' `"ggplot2"`. Default value is `"base"`.
+#' `"ggplot2"`. Default value is `"base"`. The `"plotly"` option is not 
+#' implemented for this particular graph.
 #' @param col Sets the colour for the lines depicted in the graph.
 #' @param ...  Arguments to be passed to methods, such as graphical parameters
 #' (see [par()]).
@@ -70,7 +71,15 @@ plot.evppi <- function (x,
                         col = c(1, 1),
                         ...) {
   
-  graph <- match.arg(graph)
+  # Matches to the possible options, but if there's an error defaults to "base"
+  # graph <- match.arg(graph)
+  graph = tryCatch(
+    match.arg(graph),
+    error = function(e) {
+      message("The 'plotly' graph is not implemented yet. Defaulting to 'base'")
+      "base"
+    }
+  )
   
   if (is_baseplot(graph)) {
     
