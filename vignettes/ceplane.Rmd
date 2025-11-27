@@ -71,6 +71,15 @@ ceplane.plot(he,
              icer = list(size = 5))
 ```
 
+In the default `ggplo2` version, the formatting of the axes can be easily modify using `ggplot2` facilities, like so.
+
+```{r}
+ceplane.plot(he) +
+  scale_y_continuous(labels=scales::dollar_format(prefix="£")) 
+```
+
+The $x-$ or $y-$ axes can be modified separately using `scale_x_continuous` or `scale_y_continuous`, respectively. See `help(dollar_format)` from the package `scales` for more information.
+
 ## Multiple interventions
 
 This situation is when there are more than two interventions to consider.
@@ -87,8 +96,8 @@ he <- bcea(eff, cost, ref = 4)
 Basic plots with defaults.
 
 ```{r}
+ceplane.plot(he)
 ceplane.plot(he, graph="base")
-ceplane.plot(he, graph)
 ```
 
 The font size can be adjusted using the `text` argument.
