@@ -14,7 +14,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/giabaio/BCEA/blob/dev/inst/CITATION)
+[`inst/CITATION`](https://github.com/giabaio/BCEA/blob/v2.4.83/inst/CITATION)
 
 Baio et al (2017). Bayesian Cost Effectiveness Analysis with the R
 package BCEA. Springer, New York, NY. doi: 10.1007/978-3-319-55718-2,

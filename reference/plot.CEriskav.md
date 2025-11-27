@@ -65,7 +65,7 @@ Information when risk aversion is included in the utility function.
 
 ## References
 
-Baio G, Dawid AP (2011). “Probabilistic sensitivity analysis in health
+Baio G, Dawid aP (2011). “Probabilistic sensitivity analysis in health
 economics.” *Stat. Methods Med. Res.*, 1–20. ISSN 1477-0334,
 [doi:10.1177/0962280211419832](https://doi.org/10.1177/0962280211419832)
 , <https://pubmed.ncbi.nlm.nih.gov/21930515/>.

@@ -5,7 +5,8 @@ library(BCEA)
 #> Registered S3 method overwritten by 'BCEA':
 #>   method     from
 #>   plot.evppi voi
-#> The BCEA version loaded is: 2.4.84 (development version)
+#> The BCEA version loaded is: 2.4.83 (stable version)
+#> A development version is available at https://giabaio.r-universe.dev/BCEA
 #> 
 #> Attaching package: 'BCEA'
 #> The following object is masked from 'package:graphics':

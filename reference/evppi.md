@@ -216,9 +216,10 @@ expected value of partial perfect information.” *Value Heal.*,
 
 Baio G (2013). *Bayesian Methods in Health Economics*. CRC.
 
-Baio G, Berardi AaHA, Gree N (2025). *Bayesian Cost-Effectiveness
-Analysis with the R package BCEA, 2nd edition*. Springer International
-Publishing. <https://link.springer.com/book/10.1007/978-3-319-55718-2>.
+Baio, Gianluca, Berardi, Andrea, Heath A (2017). *Bayesian
+Cost-Effectiveness Analysis with the R package BCEA*. Springer
+International Publishing.
+<https://link.springer.com/book/10.1007/978-3-319-55718-2>.
 
 Heath A, Manolopoulou I, Baio G (2016). “Estimating the expected value
 of partial perfect information in health economic evaluations using

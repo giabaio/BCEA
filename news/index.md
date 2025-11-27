@@ -1,13 +1,5 @@
 # Changelog
 
-## BCEA 2.4.84 (dev)
-
-*November 2025*
-
-- Fixes `evi.plot` to use the graphical engine defined globally.
-
-- Format relevant axes for all plots using scales, when suitable.
-
 ## BCEA 2.4.83
 
 *November 2025*
