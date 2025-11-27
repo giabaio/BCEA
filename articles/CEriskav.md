@@ -22,7 +22,7 @@ plot(bcea_smoke)
 ![](CEriskav_files/figure-html/unnamed-chunk-3-1.png)![](CEriskav_files/figure-html/unnamed-chunk-3-2.png)
 
 ``` r
-plot(bcea_smoke, graph = "ggplot")
+plot(bcea_smoke, graph = "base")
 ```
 
 ![](CEriskav_files/figure-html/unnamed-chunk-3-3.png)![](CEriskav_files/figure-html/unnamed-chunk-3-4.png)
@@ -130,7 +130,7 @@ setComparisons(bcea_smoke) <- c(3,1)
 r <- c(0, 0.005, 0.020, 0.035)
 CEriskav(bcea_smoke) <- r
 
-plot(bcea_smoke)
+plot(bcea_smoke, graph="base")
 ```
 
 ![](CEriskav_files/figure-html/unnamed-chunk-9-1.png)![](CEriskav_files/figure-html/unnamed-chunk-9-2.png)
@@ -156,6 +156,7 @@ Check legend position argument:
 
 ``` r
 # base R
+options(bcea.graph = "base")
 plot(bcea_smoke, pos = c(1,0))
 ```
 

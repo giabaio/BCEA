@@ -1,5 +1,12 @@
 # Changelog
 
+## BCEA 2.4.84
+
+*November 2025*
+
+- Make `ggplot2` the default graphical engine. Need to fix the vignettes
+  to account for this.
+
 ## BCEA 2.4.83
 
 *November 2025*

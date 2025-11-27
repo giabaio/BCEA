@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">BCEA</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.83</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.84</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,7 +75,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Risk Aversion Analysis</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/v2.4.83/vignettes/CEriskav.Rmd" class="external-link"><code>vignettes/CEriskav.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/dev/vignettes/CEriskav.Rmd" class="external-link"><code>vignettes/CEriskav.Rmd</code></a></small>
       <div class="d-none name"><code>CEriskav.Rmd</code></div>
     </div>
 
@@ -96,7 +96,7 @@ ggplot2 versions of plots.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-3-2.png" class="r-plt" width="576"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-3-3.png" class="r-plt" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-3-4.png" class="r-plt" width="576"></p>
 <p>Notice that the first value is asymptotically zero but the function
 handles that for us. Previously, you had to use something like 1e-10
@@ -166,7 +166,7 @@ interventions from the analysis above.</p>
 <code class="sourceCode R"><span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.005</span>, <span class="fl">0.020</span>, <span class="fl">0.035</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/CEriskav_assign.html">CEriskav</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">r</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph<span class="op">=</span><span class="st">"base"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-9-1.png" class="r-plt" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-9-2.png" class="r-plt" width="576"></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, graph <span class="op">=</span> <span class="st">"ggplot"</span><span class="op">)</span></span></code></pre></div>
@@ -182,6 +182,7 @@ function.</p>
 <p>Check legend position argument:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># base R</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>bcea.graph <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bcea_smoke</span>, pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="CEriskav_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" width="576"><img src="CEriskav_files/figure-html/unnamed-chunk-10-2.png" class="r-plt" width="576"></p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">

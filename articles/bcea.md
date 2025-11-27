@@ -33,19 +33,21 @@ We can easily create a grid of the most common plots
 library(ggplot2)
 library(purrr)
 
+# Default graphical engine is "ggplot2"
 plot(bcea_smoke)
 ```
 
 ![](bcea_files/figure-html/grid-plot-1.png)
 
 ``` r
-plot(bcea_smoke, graph = "ggplot2")
+# But can be changed by adding the argument "graph"
+plot(bcea_smoke, graph = "base")
 ```
 
 ![](bcea_files/figure-html/grid-plot-2.png)
 
 ``` r
-plot(bcea_smoke, graph = "ggplot2", pos = "bottomvertical")
+plot(bcea_smoke, pos = "bottomvertical")
 ```
 
 ![](bcea_files/figure-html/grid-plot-3.png)
@@ -87,8 +89,16 @@ ceac.plot(bcea_smoke)
 
 ``` r
 
-ib.plot(bcea_smoke)
+# Can customise like any other ggplot objects
+ib.plot(bcea_smoke) + scale_x_continuous(labels=scales::label_dollar(prefix="£"))
 #> NB: k (wtp) is defined in the interval [0 - 500]
+#> Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+#> ℹ Please use `linewidth` instead.
+#> ℹ The deprecated feature was likely used in the BCEA package.
+#>   Please report the issue at <https://github.com/giabaio/BCEA/issues/>.
+#> This warning is displayed once every 8 hours.
+#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+#> generated.
 ```
 
 ![](bcea_files/figure-html/separate-plots-5.png)
@@ -105,13 +115,6 @@ plot(bcea_smoke,
      icer = list(color = c("red", "orange", "black"), size = 5))
 #> Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
 #> ℹ Please use the `linewidth` argument instead.
-#> ℹ The deprecated feature was likely used in the BCEA package.
-#>   Please report the issue at <https://github.com/giabaio/BCEA/issues/>.
-#> This warning is displayed once every 8 hours.
-#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-#> generated.
-#> Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-#> ℹ Please use `linewidth` instead.
 #> ℹ The deprecated feature was likely used in the BCEA package.
 #>   Please report the issue at <https://github.com/giabaio/BCEA/issues/>.
 #> This warning is displayed once every 8 hours.

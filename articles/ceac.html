@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">BCEA</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.83</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.4.84</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,7 +75,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Cost-Effectiveness Acceptability Curve Plots</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/v2.4.83/vignettes/ceac.Rmd" class="external-link"><code>vignettes/ceac.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/dev/vignettes/ceac.Rmd" class="external-link"><code>vignettes/ceac.Rmd</code></a></small>
       <div class="d-none name"><code>ceac.Rmd</code></div>
     </div>
 
@@ -121,8 +121,15 @@ function.</p>
 <span></span>
 <span><span class="fu"><a href="../reference/ceac.plot.html">ceac.plot</a></span><span class="op">(</span><span class="va">he</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ceac_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" width="576"></p>
-<p>The plot defaults to base R plotting. Type of plot can be set
-explicitly using the <code>graph</code> argument.</p>
+<p>The plot defaults to <code>ggplot2</code> R plotting. Type of plot
+can be set explicitly using the <code>graph</code> argument. In fact,
+the default graphical engine is set upon loading <code>BCEA</code> and
+can be modified globally using the command
+<code>options(bcea.graph="...")</code>. Choices are
+<code>ggplot2</code>, <code>base</code> or <code>plotly</code>. Partial
+matching is also available, so that <code>gg</code>, <code>g</code>,
+<code>pl</code> or <code>p</code> are recognised alteratives to
+<code>ggplot2</code> or <code>plotly</code>, respectively.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ceac.plot.html">ceac.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ceac_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" width="576"></p>
