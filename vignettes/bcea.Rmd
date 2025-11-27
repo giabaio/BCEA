@@ -50,9 +50,11 @@ We can easily create a grid of the most common plots
 library(ggplot2)
 library(purrr)
 
+# Default graphical engine is "ggplot2"
 plot(bcea_smoke)
-plot(bcea_smoke, graph = "ggplot2")
-plot(bcea_smoke, graph = "ggplot2", pos = "bottomvertical")
+# But can be changed by adding the argument "graph"
+plot(bcea_smoke, graph = "base")
+plot(bcea_smoke, pos = "bottomvertical")
 plot(bcea_smoke, graph = "ggplot2", pos = "bottomhorizontal")
 ```
 
@@ -71,7 +73,8 @@ contour(bcea_smoke)
 
 ceac.plot(bcea_smoke)
 
-ib.plot(bcea_smoke)
+# Can customise like any other ggplot objects
+ib.plot(bcea_smoke) + scale_x_continuous(labels=scales::label_dollar(prefix="£"))
 ```
 
 More on this in the other vignettes but you can change the default plotting style, such as follows.

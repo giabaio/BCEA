@@ -14,7 +14,7 @@
 
   # But also *specifically* set the default graphical engine
   if (is.null(getOption("bcea.graph"))) {
-    options("bcea.graph"="base")
+    options("bcea.graph"="ggplot2")
   }
   
   # Other graphical options

@@ -40,7 +40,8 @@ data("Vaccine")
 he <- bcea(eff, cost)
 ```
 
-The plot defaults to base R plotting. Type of plot can be set explicitly using the `graph` argument.
+The plot defaults to `ggplot2` R plotting. Type of plot can be set explicitly using the `graph` argument. In fact, the default graphical engine is set upon loading `BCEA` and can be modified globally using the command `options(bcea.graph="...")`. Choices are `ggplot2`, `base` or `plotly`. Partial matching is also available, so that `gg`, `g`, `pl` or `p` are recognised alteratives to `ggplot2` or `plotly`, respectively.
+
 
 ```{r}
 ceplane.plot(he, graph = "base")
@@ -86,8 +87,8 @@ he <- bcea(eff, cost, ref = 4)
 Basic plots with defaults.
 
 ```{r}
-ceplane.plot(he)
-ceplane.plot(he, graph = "ggplot2")
+ceplane.plot(he, graph="base")
+ceplane.plot(he, graph)
 ```
 
 The font size can be adjusted using the `text` argument.
@@ -149,6 +150,7 @@ Using key words for the corners of the plot area for base R.
 #| fig.height: 5
 #| out.width: 90%
 
+options(bcea.graph="base")
 ceplane.plot(he, pos = "bottomright")
 ceplane.plot(he, pos = "topright")
 ceplane.plot(he, pos = "topleft")
@@ -239,6 +241,7 @@ ceplane.plot(he, graph = "ggplot2", wtp = list(y = 8))
 For base `R`
 
 ```{r}
+options(bcea.graph = "base")
 ceplane.plot(he)  # default
 ```
 

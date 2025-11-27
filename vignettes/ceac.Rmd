@@ -56,7 +56,8 @@ he <- bcea(eff, cost)
 ceac.plot(he)
 ```
 
-The plot defaults to base R plotting. Type of plot can be set explicitly using the `graph` argument.
+The plot defaults to `ggplot2` R plotting. Type of plot can be set explicitly using the `graph` argument. In fact, the default graphical engine is set upon loading `BCEA` and can be modified globally using the command `options(bcea.graph="...")`. Choices are `ggplot2`, `base` or `plotly`. Partial matching is also available, so that `gg`, `g`, `pl` or `p` are recognised alteratives to `ggplot2` or `plotly`, respectively.
+
 
 ```{r}
 ceac.plot(he, graph = "base")

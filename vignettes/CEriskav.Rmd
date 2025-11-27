@@ -42,7 +42,7 @@ r <- c(0, 0.005, 0.020, 0.035)
 CEriskav(bcea_smoke) <- r
 
 plot(bcea_smoke)
-plot(bcea_smoke, graph = "ggplot")
+plot(bcea_smoke, graph = "base")
 ```
 
 Notice that the first value is asymptotically zero but the function handles that for us.
@@ -109,7 +109,7 @@ setComparisons(bcea_smoke) <- c(3,1)
 r <- c(0, 0.005, 0.020, 0.035)
 CEriskav(bcea_smoke) <- r
 
-plot(bcea_smoke)
+plot(bcea_smoke, graph="base")
 plot(bcea_smoke, graph = "ggplot")
 ```
 
@@ -120,6 +120,7 @@ Check legend position argument:
 
 ```{r}
 # base R
+options(bcea.graph = "base")
 plot(bcea_smoke, pos = c(1,0))
 plot(bcea_smoke, pos = c(1,1))
 

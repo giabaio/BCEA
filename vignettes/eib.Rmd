@@ -63,7 +63,7 @@ he <-
        plot = FALSE)
 ```
 
-The default EIB plot gives a single diagonal line using base R.
+The plot defaults to `ggplot2` R plotting. Type of plot can be set explicitly using the `graph` argument. In fact, the default graphical engine is set upon loading `BCEA` and can be modified globally using the command `options(bcea.graph="...")`. Choices are `ggplot2`, `base` or `plotly`. Partial matching is also available, so that `gg`, `g`, `pl` or `p` are recognised alteratives to `ggplot2` or `plotly`, respectively.
 
 ```{r}
 eib.plot(he)
@@ -76,8 +76,6 @@ k^* = \min\{ k : \mbox{EIB} > 0 \}
 $$
 
 This will be at the point the curve crosses the _x_-axis.
-
-The plot defaults to base R plotting. Type of plot can be set explicitly using the `graph` argument.
 
 ```{r}
 eib.plot(he, graph = "base")
@@ -101,6 +99,15 @@ Credible interval can also be plotted using the `plot.cri` logical argument.
 eib.plot(he, plot.cri = FALSE)
 ```
 
+In the `ggplot2` implementation, it is possible to modify the formatting of the numerical labels in the $x-$ and $y-$ axis using `ggplot2` failities, such as in the following code.
+
+```{r}
+# Resets the formatting on the x-axis to simple numbers 
+eib.plot(he) + scale_x_continuous()
+
+# Uses currency style with £ symbol
+eib.plot(he) + scale_y_continuous(labels=scales::dollar_format(prefix="£"))
+```
 
 ## Multiple interventions
 
@@ -164,11 +171,11 @@ eib.plot(he, plot.cri = TRUE)
 For base R,
 
 ```{r}
-eib.plot(he, pos = FALSE) # bottom right
-eib.plot(he, pos = c(0, 0))
-eib.plot(he, pos = c(0, 1))
-eib.plot(he, pos = c(1, 0))
-eib.plot(he, pos = c(1, 1))
+eib.plot(he, pos = FALSE, graph = "base") # bottom right
+eib.plot(he, pos = c(0, 0), graph = "base")
+eib.plot(he, pos = c(0, 1), graph = "base")
+eib.plot(he, pos = c(1, 0), graph = "base")
+eib.plot(he, pos = c(1, 1), graph = "base")
 ```
 
 For `ggplot2`,
