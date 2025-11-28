@@ -58,7 +58,7 @@
 #'                             #  in a grid from the interval (0, Kmax)
 #'       plot=FALSE)           # inhibits graphical output
 #'
-#' mixedAn(m) <- NULL      # uses the results of the mixed strategy 
+#' mixedAn(m) <- c(.1,.9)  # uses the results of the mixed strategy 
 #'                         #  analysis (a "mixedAn" object)
 #'                         # the vector of market shares can be defined 
 #'                         #  externally. If NULL, then each of the T 

@@ -75,3 +75,57 @@
 'CEriskav<-.default' <- function(he, value) {
   stop("No available method.", call. = FALSE)
 }
+
+
+#' Resets a modified `bcea` object 
+#' 
+#' Useful to return to a standard `bcea` object, after having applied the
+#' setters for `mixedAn` or `CEriskav`
+#' 
+#' @param he A modified `bcea` object, which now is also in the class `mixedAn`,
+#' or `CEriskav` or both.
+#' returns The original `bcea` object, stripped of extra elements (created by
+#' `mixedAn` or `CEriskav` or both), so that the original methods apply 
+#' @author Gianluca Baio
+#' @seealso [bcea()],
+#'          [mixedAn()],
+#'          [CEriskav()]
+#' @importFrom Rdpack reprompt
+#' 
+#' @references
+#' 
+#' \insertRef{Baio2011}{BCEA}
+#' 
+#' \insertRef{Baio2013}{BCEA}
+#' 
+#' @export
+#' 
+#' @examples
+#' data(Vaccine)
+#' # Creates the "standard" BCEA object
+#' m <- bcea(eff, cost, ref=2, interventions=treats)
+#' class(m)
+#' 
+#' # Applies analysis for risk aversion
+#' CEriskav(m) <- c(0.001, 0.002, 0.003)
+#' # Now m has changed nature
+#' class(m)
+#' # The default method for plot will be the specialised `CEriskav`, but can 
+#' # also specifically request a method, like
+#' # plot.bcea(m)
+#' 
+#' # More simply, we can revert to the original object
+#' m <- reset_bcea(m)
+#' class(m)
+#' 
+reset_bcea = function(he) {
+  if("CEriskav" %in% class(he)) {
+    he[names(he) %in% c("Ur","Urstar","IBr","eibr","vir","evir","R","r")] = NULL
+    class(he) = setdiff(class(he), "CEriskav")
+  }
+  if("mixedAn" %in% class(he)) {
+    he[names(he) %in% c("Ubar","OL.star","evi.star","mkt.shares")] = NULL
+    class(he) = setdiff(class(he), "mixedAn")
+  }
+  he
+}

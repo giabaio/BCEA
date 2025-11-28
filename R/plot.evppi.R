@@ -5,10 +5,7 @@
 #' @param x An object in the class `evppi`,
 #' obtained by the call to the function [evppi()].
 #' @template args-pos
-#' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-) match the two options `"base"` or
-#' `"ggplot2"`. Default value is `"base"`. The `"plotly"` option is not 
-#' implemented for this particular graph.
+#' @template args-graph
 #' @param col Sets the colour for the lines depicted in the graph.
 #' @param ...  Arguments to be passed to methods, such as graphical parameters
 #' (see [par()]).
@@ -67,19 +64,12 @@
 #' 
 plot.evppi <- function (x,
                         pos = c(0, 0.8),
-                        graph = c("base", "ggplot2"),
+                        graph = options("bcea.graph"),
                         col = c(1, 1),
                         ...) {
   
   # Matches to the possible options, but if there's an error defaults to "base"
-  # graph <- match.arg(graph)
-  graph = tryCatch(
-    match.arg(graph),
-    error = function(e) {
-      message("The 'plotly' graph is not implemented yet. Defaulting to 'base'")
-      "base"
-    }
-  )
+  graph = unlist(graph)
   
   if (is_baseplot(graph)) {
     
@@ -96,6 +86,12 @@ plot.evppi <- function (x,
                       ...)
   
   } else if (is_plotly(graph)) {
+    
+    message("The 'plotly' graph is not implemented yet. Defaulting to 'base'")
+    evppi_plot_base(x,
+                    pos_legend = pos,
+                    col = col,
+                    ...)
   
   ##TODO
   #  evppi_plot_plotly(x,

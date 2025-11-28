@@ -9,10 +9,7 @@
 #' `NULL`, in which case the maximum range between the optimal and the
 #' mixed analysis scenarios is considered.
 #' @template args-pos
-#' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the two options `"base"` or
-#' `"ggplot2"`. Default value is `"base"`. The `"plotly"` option is not 
-#' implemented for this particular graph.
+#' @template args-graph
 #' @param ...  Arguments to be passed to methods, such as graphical parameters
 #' (see [par()]).
 #' 
@@ -77,10 +74,20 @@
 evi.plot.mixedAn <- function(he,
                              y.limits = NULL,
                              pos = c(0, 1),
-                             graph = c("base", "ggplot2"),
+                             graph = options()$bcea.graph,
                              ...) {
   alt_legend <- pos
-  base.graphics <- all(pmatch(graph, c("base", "ggplot2")) != 2)
+  graph <- unlist(graph)
+  if (graph == "base") {
+    base.graphics <- TRUE
+  }
+  if (graph %in% c("ggplot2","gg","g")) {
+    base.graphics <- FALSE
+  }
+  if (graph %in% c("plotly","pl","p")) {
+    message("The 'plotly' graph is not implemented yet. Defaulting to 'base'")
+    base.graphics <- TRUE
+  }
   
   y.limits <- y.limits %||% range(he$evi, he$evi.star)
   
@@ -141,7 +148,7 @@ evi.plot.mixedAn <- function(he,
       bty = "n",
       lty = 1)
   } else {
-    # base.graphics
+    # ggplot.graphics
     if (!isTRUE(requireNamespace("ggplot2", quietly = TRUE) &&
                 requireNamespace("grid", quietly = TRUE))) {
       message("Falling back to base graphics\n")

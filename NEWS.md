@@ -4,6 +4,13 @@ _November 2025_
 
 * Make `ggplot2` the default graphical engine. Need to fix the vignettes to account for this.
 
+* Fixes `plot.evppi` to use `linewidth` instead of deprecated `size` command in the `ggplot2` version.
+
+* Updates `mce.plot` and `plot.mixedAn` (which are in fact deprecated) as well as `plot.evppi` to use the global option for graphical engine
+
+* In fact, there was a problem with how `mixedAn` handled the market shares. Now fixed. Also handles `plot.mixedAn` if the request is for a `plotly` graph, which isn't implemented.
+
+* Adds a new function `reset_bcea`, which can reset a `BCEA` objects modified by either or `CEriskav`/`mixedAn` to its original status. Also adds documentation and a vignette for the `pkgdown` site. 
 
 # BCEA 2.4.83
 

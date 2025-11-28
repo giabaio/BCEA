@@ -2,9 +2,7 @@
 #' @rdname evi.plot
 #' 
 #' @template args-he
-#' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the three options `"base"`,
-#' `"ggplot2"` or `"plotly"`. Default value is `"base"`.
+#' @template args-graph
 #' @param ... Additional parameters
 #' 
 #' @return \item{eib}{ If `graph="ggplot2"` a ggplot object, or if `graph="plotly"` 
@@ -53,10 +51,10 @@
 #' evi.plot(m)
 #' 
 evi.plot.bcea <- function(he,
-                          graph = c("base", "ggplot2", "plotly"),
+                          graph = options("bcea.graph"), 
                           ...) {
   
-  graph <- match.arg(graph)
+  graph <- unlist(graph)
   
   extra_args <- list(...)
   
