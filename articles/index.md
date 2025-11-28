@@ -21,5 +21,7 @@
 - [EVPPI plots](https://n8thangreen.github.io/BCEA/articles/evppi.md):
 - [Paired vs Multiple
   Comparisons](https://n8thangreen.github.io/BCEA/articles/paired_vs_multiple_comps.md):
+- [Reset a BCEA
+  object](https://n8thangreen.github.io/BCEA/articles/reset_bcea.md):
 - [Set bcea() Parameters: Constructor and
   Setters](https://n8thangreen.github.io/BCEA/articles/Set_bcea_parameters.md):

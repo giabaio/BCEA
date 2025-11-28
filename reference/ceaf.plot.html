@@ -30,6 +30,7 @@ against the willingness to pay threshold."><meta property="og:image" content="ht
     <li><a class="dropdown-item" href="../articles/eib.html">Expected Incremental Benefit Plot</a></li>
     <li><a class="dropdown-item" href="../articles/evppi.html">EVPPI plots</a></li>
     <li><a class="dropdown-item" href="../articles/paired_vs_multiple_comps.html">Paired vs Multiple Comparisons</a></li>
+    <li><a class="dropdown-item" href="../articles/reset_bcea.html">Reset a BCEA object</a></li>
     <li><a class="dropdown-item" href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -73,11 +74,12 @@ against the willingness to pay threshold.</p>
 <dt id="arg-graph">graph<a class="anchor" aria-label="anchor" href="#arg-graph"></a></dt>
 <dd><p>A string used to select the graphical engine to use for
 plotting. Should (partial-) match the three options <code>"base"</code>,
-<code>"ggplot2"</code> or <code>"plotly"</code>. Default value is <code>"base"</code>. This is set globally
-upon loading <code>BCEA</code> and can be modified for instance by using
-<code>options("bcea.graph"="gg")</code>, or <code>options("bcea.graph="plotly")</code>. Partial
-matching still applies (so <code>gg</code> or <code>pl</code> also work). Not all plotting
-functions have a <code>"plotly"</code> implementation, yet – see help for the specifics.</p></dd>
+<code>"ggplot2"</code> or <code>"plotly"</code>. Default value is <code>"ggplot2"</code>. This is set
+globally upon loading <code>BCEA</code> and can be modified for instance by using
+<code>options("bcea.graph"="base")</code>, or <code>options("bcea.graph="plotly")</code>. Partial
+matching still applies (so <code>gg</code>, or <code>g</code>, or <code>pl</code>, or <code>p</code> also work). Not
+all plotting functions have a <code>"plotly"</code> implementation, yet – see the
+help for the specific functions.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>

@@ -30,6 +30,7 @@ than one intervention is present on the market."><meta property="og:image" conte
     <li><a class="dropdown-item" href="../articles/eib.html">Expected Incremental Benefit Plot</a></li>
     <li><a class="dropdown-item" href="../articles/evppi.html">EVPPI plots</a></li>
     <li><a class="dropdown-item" href="../articles/paired_vs_multiple_comps.html">Paired vs Multiple Comparisons</a></li>
+    <li><a class="dropdown-item" href="../articles/reset_bcea.html">Reset a BCEA object</a></li>
     <li><a class="dropdown-item" href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -144,7 +145,7 @@ CRC.</p>
 <span class="r-in"><span>                            <span class="co">#  in a grid from the interval (0, Kmax)</span></span></span>
 <span class="r-in"><span>      plot<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>           <span class="co"># inhibits graphical output</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">mixedAn</span><span class="op">(</span><span class="va">m</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NULL</span>      <span class="co"># uses the results of the mixed strategy </span></span></span>
+<span class="r-in"><span><span class="fu">mixedAn</span><span class="op">(</span><span class="va">m</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.1</span>,<span class="fl">.9</span><span class="op">)</span>  <span class="co"># uses the results of the mixed strategy </span></span></span>
 <span class="r-in"><span>                        <span class="co">#  analysis (a "mixedAn" object)</span></span></span>
 <span class="r-in"><span>                        <span class="co"># the vector of market shares can be defined </span></span></span>
 <span class="r-in"><span>                        <span class="co">#  externally. If NULL, then each of the T </span></span></span>

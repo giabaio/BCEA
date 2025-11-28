@@ -6,7 +6,7 @@ Compares the optimal scenario to the mixed case in terms of the EVPI.
 
 ``` r
 # S3 method for class 'mixedAn'
-evi.plot(he, y.limits = NULL, pos = c(0, 1), graph = c("base", "ggplot2"), ...)
+evi.plot(he, y.limits = NULL, pos = c(0, 1), graph = options()$bcea.graph, ...)
 ```
 
 ## Arguments
@@ -37,9 +37,13 @@ evi.plot(he, y.limits = NULL, pos = c(0, 1), graph = c("base", "ggplot2"), ...)
 - graph:
 
   A string used to select the graphical engine to use for plotting.
-  Should (partial-)match the two options `"base"` or `"ggplot2"`.
-  Default value is `"base"`. The `"plotly"` option is not implemented
-  for this particular graph.
+  Should (partial-) match the three options `"base"`, `"ggplot2"` or
+  `"plotly"`. Default value is `"ggplot2"`. This is set globally upon
+  loading `BCEA` and can be modified for instance by using
+  `options("bcea.graph"="base")`, or `options("bcea.graph="plotly")`.
+  Partial matching still applies (so `gg`, or `g`, or `pl`, or `p` also
+  work). Not all plotting functions have a `"plotly"` implementation,
+  yet – see the help for the specific functions.
 
 - ...:
 

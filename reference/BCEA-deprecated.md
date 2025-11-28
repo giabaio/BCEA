@@ -15,9 +15,9 @@ being analysed is the most cost-effective.
 ``` r
 make.report(...)
 
-mce.plot(mce, pos = c(1, 0.5), graph = c("base", "ggplot2"), ...)
+mce.plot(mce, pos = c(1, 0.5), graph = options("bcea.graph"), ...)
 
-plot.mixedAn(x, y.limits=NULL, pos=c(0,1), graph=c("base","ggplot2"),...)
+plot.mixedAn(x, y.limits=NULL, pos=c(0,1), graph=options("bcea.graph"),...)
 ```
 
 ## Arguments
@@ -46,9 +46,13 @@ plot.mixedAn(x, y.limits=NULL, pos=c(0,1), graph=c("base","ggplot2"),...)
 - graph:
 
   A string used to select the graphical engine to use for plotting.
-  Should (partial-)match the two options `"base"` or `"ggplot2"`.
-  Default value is `"base"`. The `"plotly"` option is not implemented
-  for this particular graph.
+  Should (partial-) match the three options `"base"`, `"ggplot2"` or
+  `"plotly"`. Default value is `"ggplot2"`. This is set globally upon
+  loading `BCEA` and can be modified for instance by using
+  `options("bcea.graph"="base")`, or `options("bcea.graph="plotly")`.
+  Partial matching still applies (so `gg`, or `g`, or `pl`, or `p` also
+  work). Not all plotting functions have a `"plotly"` implementation,
+  yet – see the help for the specific functions.
 
 - x:
 

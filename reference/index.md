@@ -18,21 +18,33 @@ analysis.
 
 - [`setComparisons()`](https://n8thangreen.github.io/BCEA/reference/setComparisons.md)
   : Set Comparisons Group
+
 - [`` `setComparisons<-`() ``](https://n8thangreen.github.io/BCEA/reference/setComparisons_assign.md)
   : Set Comparison Group
+
 - [`` `setKmax<-`() ``](https://n8thangreen.github.io/BCEA/reference/setKmax_assign.md)
   : Set Maximum Willingness to Pay
+
 - [`` `setReferenceGroup<-`() ``](https://n8thangreen.github.io/BCEA/reference/setReferenceGroup_assign.md)
   : Set Reference Group
+
 - [`` `mixedAn<-`() ``](https://n8thangreen.github.io/BCEA/reference/mixedAn-set.md)
   : Cost-Effectiveness Analysis When Multiple (Possibly
   Non-Cost-Effective) Interventions are Present on the Market
+
 - [`` `CEriskav<-`() ``](https://n8thangreen.github.io/BCEA/reference/CEriskav_assign.md)
   : Cost-effectiveness Analysis Including a Parameter of Risk Aversion
+
 - [`multi.ce(`*`<bcea>`*`)`](https://n8thangreen.github.io/BCEA/reference/multi.ce.md)
   : Cost-effectiveness Analysis With Multiple Comparison
+
 - [`struct.psa()`](https://n8thangreen.github.io/BCEA/reference/struct.psa.md)
   : Structural Probability Sensitivity Analysis
+
+- [`reset_bcea()`](https://n8thangreen.github.io/BCEA/reference/reset_bcea.md)
+  :
+
+  Resets a modified `bcea` object
 
 ## Plotting
 

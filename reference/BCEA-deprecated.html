@@ -40,6 +40,7 @@ the most cost-effective.'><meta property="og:image" content="https://n8thangreen
     <li><a class="dropdown-item" href="../articles/eib.html">Expected Incremental Benefit Plot</a></li>
     <li><a class="dropdown-item" href="../articles/evppi.html">EVPPI plots</a></li>
     <li><a class="dropdown-item" href="../articles/paired_vs_multiple_comps.html">Paired vs Multiple Comparisons</a></li>
+    <li><a class="dropdown-item" href="../articles/reset_bcea.html">Reset a BCEA object</a></li>
     <li><a class="dropdown-item" href="../articles/Set_bcea_parameters.html">Set bcea() Parameters: Constructor and Setters</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -73,9 +74,9 @@ the most cost-effective.</p>
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make.report</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">mce.plot</span><span class="op">(</span><span class="va">mce</span>, pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.5</span><span class="op">)</span>, graph <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"base"</span>, <span class="st">"ggplot2"</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu">mce.plot</span><span class="op">(</span><span class="va">mce</span>, pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.5</span><span class="op">)</span>, graph <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="st">"bcea.graph"</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">plot.mixedAn</span><span class="op">(</span><span class="va">x</span>, y.limits<span class="op">=</span><span class="cn">NULL</span>, pos<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, graph<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"base"</span>,<span class="st">"ggplot2"</span><span class="op">)</span>,<span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">plot.mixedAn</span><span class="op">(</span><span class="va">x</span>, y.limits<span class="op">=</span><span class="cn">NULL</span>, pos<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, graph<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="st">"bcea.graph"</span><span class="op">)</span>,<span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -104,9 +105,13 @@ corner inside the plot area.</p></dd>
 
 <dt id="arg-graph">graph<a class="anchor" aria-label="anchor" href="#arg-graph"></a></dt>
 <dd><p>A string used to select the graphical engine to use for
-plotting. Should (partial-)match the two options <code>"base"</code> or
-<code>"ggplot2"</code>. Default value is <code>"base"</code>. The <code>"plotly"</code> option is not
-implemented for this particular graph.</p></dd>
+plotting. Should (partial-) match the three options <code>"base"</code>,
+<code>"ggplot2"</code> or <code>"plotly"</code>. Default value is <code>"ggplot2"</code>. This is set
+globally upon loading <code>BCEA</code> and can be modified for instance by using
+<code>options("bcea.graph"="base")</code>, or <code>options("bcea.graph="plotly")</code>. Partial
+matching still applies (so <code>gg</code>, or <code>g</code>, or <code>pl</code>, or <code>p</code> also work). Not
+all plotting functions have a <code>"plotly"</code> implementation, yet – see the
+help for the specific functions.</p></dd>
 
 
 <dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
