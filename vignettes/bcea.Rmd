@@ -87,7 +87,7 @@ More on this in the other vignettes but you can change the default plotting styl
 plot(bcea_smoke,
      graph = "ggplot2",
      wtp = 250,
-     line = list(color = "red", size = 1),
+     line = list(color = "red", linewidth = 1),
      point = list(color = c("plum", "tomato", "springgreen"), shape = 3:5, size = 2),
      icer = list(color = c("red", "orange", "black"), size = 5))
 ```

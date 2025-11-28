@@ -37,6 +37,7 @@ We may want to run advanced analyses on this object. For instance, we may consid
 mixedAn(m)=c(.25,.75)
 class(m)
 ```
+
 --- in this case, we assume that intervention $t=1$ has 25% of the market and intervetion $t=2$ has the remaining 75%.
 
 This operation changes the nature of the `m` object, to which we add relevant quantities/variables and an additional class `mixedAn`. This unlocks new plotting methods. For instance, when we do
@@ -44,6 +45,7 @@ This operation changes the nature of the `m` object, to which we add relevant qu
 ```{r}
 plot(m)
 ```
+
 we get a specialised graph, describing the Expected Value of Information comparing the mixed with the optimal strategy (in which we allocate all the shares to the intervention that is most cost-effective, given current evidence). The gray area represent the loss due to "market inefficiency".
 
 Interestingly, because we do not remove the class `bcea` from the object `m`, we can still use the original methods calling them specifically. For instance
@@ -51,6 +53,7 @@ Interestingly, because we do not remove the class `bcea` from the object `m`, we
 ```{r}
 BCEA:::plot.bcea(m)
 ```
+
 now returns the "standard" graphical summary of the basic economic evaluation performed by `bcea()`. 
 
 In addition, methods for which a `mixedAn` option is not available (e.g. `ceac.plot`) can be used directly -- after all, `m` is still an object of the class `bcea` too and so if we try
@@ -58,6 +61,7 @@ In addition, methods for which a `mixedAn` option is not available (e.g. `ceac.p
 ```{r}
 ceac.plot(m)
 ```
+
 `R` will understand to apply the method `ceac.plot.bcea()` in the background.
 
 Similar reasoning applies if we use the `CEriskav` class, which we can do by calling
@@ -66,16 +70,19 @@ Similar reasoning applies if we use the `CEriskav` class, which we can do by cal
 CEriskav(m)=c(.001,.002,.003)
 class(m)
 ```
+
 This adds another class to the object `m` and unlocks other `plot` methods. Now `CEriskav` becomes the default class and so 
 
 ```{r}
 plot(m)
 ```
+
 generates the specific graph to perform the analysis including risk aversion. But 
 
 ```{r}
 BCEA:::plot.mixedAn(m)
 ```
+
 applies the specific method to do the mixed analysis.
 
 **IF** we want to return to the original status and remove the extra credentials generated when calling `mixedAn` and/or `CEriskav`, we can simply use the `reset_bcea()` function.

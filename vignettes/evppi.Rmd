@@ -73,7 +73,7 @@ lines(x_gam$k, x_gam$evppi, col = "red")
 lines(x_gp$k, x_gp$evppi, col = "blue")
 
 # zoom in
-plot(x_inla$k, x_inla$evppi, type = "l", lwd = 2, lty = 2, graph = "base")
+plot(x_inla$k, x_inla$evppi, type = "l", lwd = 2, lty = 2)
 lines(x_gam$k, x_gam$evppi, col = "red")
 lines(x_gp$k, x_gp$evppi, col = "blue")
 ```

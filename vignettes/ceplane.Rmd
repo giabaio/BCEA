@@ -55,7 +55,7 @@ Other plotting arguments can be specified such as title, line colours and theme.
 ceplane.plot(he,
              graph = "ggplot2",
              title = "my title",
-             line = list(color = "green", size = 3),
+             line = list(color = "green", linewidth = 3),
              point = list(color = "blue", shape = 10, size = 5),
              icer = list(color = "orange", size = 5),
              area = list(fill = "grey"),

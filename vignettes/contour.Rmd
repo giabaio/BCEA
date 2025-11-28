@@ -63,7 +63,7 @@ contour(he,
         graph = "ggplot2",
         title = "my title",
         point = list(color = "blue", shape = 2, size = 5),
-        contour = list(size = 2))
+        contour = list(linewidth = 2))
 ```
 
 ```{r}
@@ -71,7 +71,7 @@ contour(he,
         graph = "base",
         title = "my title",
         point = list(color = "blue", shape = 2, size = 2),
-        contour = list(size = 2))
+        contour = list(linewidth = 2))
 ```
 
 Alternatively, the `contour2()` function is essentially a wrapper for `ceplane.plot()` with the addition of contour lines.
@@ -89,7 +89,7 @@ contour2(he,
          graph = "ggplot2",
          title = "my title",
          point = list(color = "blue", shape = 10, size = 5),
-         contour = list(size = 2))
+         contour = list(linewidth = 2))
 ```
 
 ```{r}
@@ -97,7 +97,7 @@ contour2(he,
          graph = "base",
          title = "my title",
          point = list(color = "blue", shape = 2, size = 3),
-         contour = list(size = 4))
+         contour = list(linewidth = 4))
 ```
 
 
@@ -146,7 +146,7 @@ contour(he,
         line = list(color = "red", size = 1),
         point = list(color = c("plum", "tomato", "springgreen"), shape = 3:5, size = 2),
         icer = list(color = c("red", "orange", "black"), size = 5),
-        contour = list(size = 2))
+        contour = list(linewidth = 2))
 ```
 
 ```{r}
@@ -156,7 +156,7 @@ contour(he,
         line = list(color = "red", size = 1),
         point = list(color = c("plum", "tomato", "springgreen"), shape = 3:5, size = 2),
         icer = list(color = c("red", "orange", "black"), size = 5),
-        contour = list(size = 4))
+        contour = list(linewidth))
 ```
 
 Again, this applies to the `contour2()` version of contour plot too.
@@ -175,7 +175,7 @@ contour2(he, wtp = 250,
          line = list(color = "red", size = 1),
          point = list(color = c("plum", "tomato", "springgreen"), shape = 3:5, size = 2),
          icer = list(color = c("red", "orange", "black"), size = 5),
-         contour = list(size = 2))
+         contour = list(linewidth = 2))
 ```
 
 ```{r}
@@ -185,7 +185,7 @@ contour2(he, wtp = 250,
          line = list(color = "red", size = 1),
          point = list(color = c("plum", "tomato", "springgreen"), shape = 3:5, size = 2),
          icer = list(color = c("red", "orange", "black"), size = 5),
-         contour = list(size = 4))
+         contour = list(linewidth = 4))
 ```
 
 Reposition legend.
