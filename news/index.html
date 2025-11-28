@@ -51,7 +51,7 @@
 <h2 class="pkg-version" data-toc-text="2.4.84" id="bcea-2484">BCEA 2.4.84<a class="anchor" aria-label="anchor" href="#bcea-2484"></a></h2>
 <p><em>November 2025</em></p>
 <ul><li><p>Make <code>ggplot2</code> the default graphical engine. Need to fix the vignettes to account for this.</p></li>
-<li><p>Fixes <code>plot.evppi</code> to use <code>linewidth</code> instead of deprecated <code>size</code> command in the <code>ggplot2</code> version.</p></li>
+<li><p>Fixes <code>plot.evppi</code> and <code>ib.plot</code> to use <code>linewidth</code> instead of deprecated <code>size</code> command in the <code>ggplot2</code> version.</p></li>
 <li><p>Updates <code>mce.plot</code> and <code>plot.mixedAn</code> (which are in fact deprecated) as well as <code>plot.evppi</code> to use the global option for graphical engine</p></li>
 <li><p>In fact, there was a problem with how <code>mixedAn</code> handled the market shares. Now fixed. Also handles <code>plot.mixedAn</code> if the request is for a <code>plotly</code> graph, which isn’t implemented.</p></li>
 <li><p>Adds a new function <code>reset_bcea</code>, which can reset a <code>BCEA</code> objects modified by either or <code>CEriskav</code>/<code>mixedAn</code> to its original status. Also adds documentation and a vignette for the <code>pkgdown</code> site.</p></li>

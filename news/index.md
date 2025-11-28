@@ -7,8 +7,8 @@
 - Make `ggplot2` the default graphical engine. Need to fix the vignettes
   to account for this.
 
-- Fixes `plot.evppi` to use `linewidth` instead of deprecated `size`
-  command in the `ggplot2` version.
+- Fixes `plot.evppi` and `ib.plot` to use `linewidth` instead of
+  deprecated `size` command in the `ggplot2` version.
 
 - Updates `mce.plot` and `plot.mixedAn` (which are in fact deprecated)
   as well as `plot.evppi` to use the global option for graphical engine

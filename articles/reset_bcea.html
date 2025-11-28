@@ -113,19 +113,19 @@ when we do</p>
 <span><span class="co">#&gt; Warning in plot.mixedAn(m): 'plot.mixedAn' is deprecated.</span></span>
 <span><span class="co">#&gt; Use 'evi.plot' instead.</span></span>
 <span><span class="co">#&gt; See help("Deprecated")</span></span></code></pre></div>
-<p><img src="reset_bcea_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" width="576">
-we get a specialised graph, describing the Expected Value of Information
-comparing the mixed with the optimal strategy (in which we allocate all
-the shares to the intervention that is most cost-effective, given
-current evidence). The gray area represent the loss due to “market
+<p><img src="reset_bcea_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" width="576"></p>
+<p>we get a specialised graph, describing the Expected Value of
+Information comparing the mixed with the optimal strategy (in which we
+allocate all the shares to the intervention that is most cost-effective,
+given current evidence). The gray area represent the loss due to “market
 inefficiency”.</p>
 <p>Interestingly, because we do not remove the class <code>bcea</code>
 from the object <code>m</code>, we can still use the original methods
 calling them specifically. For instance</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">BCEA</span><span class="fu">:::</span><span class="fu"><a href="../reference/plot.bcea.html">plot.bcea</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reset_bcea_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" width="576">
-now returns the “standard” graphical summary of the basic economic
+<p><img src="reset_bcea_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" width="576"></p>
+<p>now returns the “standard” graphical summary of the basic economic
 evaluation performed by <code><a href="../reference/bcea.html">bcea()</a></code>.</p>
 <p>In addition, methods for which a <code>mixedAn</code> option is not
 available (e.g. <code>ceac.plot</code>) can be used directly – after
@@ -133,7 +133,8 @@ all, <code>m</code> is still an object of the class <code>bcea</code>
 too and so if we try</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ceac.plot.html">ceac.plot</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reset_bcea_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" width="576"><code>R</code> will understand to apply the method
+<p><img src="reset_bcea_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" width="576"></p>
+<p><code>R</code> will understand to apply the method
 <code><a href="../reference/ceac.plot.html">ceac.plot.bcea()</a></code> in the background.</p>
 <p>Similar reasoning applies if we use the <code>CEriskav</code> class,
 which we can do by calling</p>
@@ -146,16 +147,16 @@ other <code>plot</code> methods. Now <code>CEriskav</code> becomes the
 default class and so</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reset_bcea_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" width="576"><img src="reset_bcea_files/figure-html/unnamed-chunk-8-2.png" class="r-plt" width="576">
-generates the specific graph to perform the analysis including risk
+<p><img src="reset_bcea_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" width="576"><img src="reset_bcea_files/figure-html/unnamed-chunk-8-2.png" class="r-plt" width="576"></p>
+<p>generates the specific graph to perform the analysis including risk
 aversion. But</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">BCEA</span><span class="fu">:::</span><span class="fu"><a href="../reference/BCEA-deprecated.html">plot.mixedAn</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning in BCEA:::plot.mixedAn(m): 'BCEA:::plot.mixedAn' is deprecated.</span></span>
 <span><span class="co">#&gt; Use 'evi.plot' instead.</span></span>
 <span><span class="co">#&gt; See help("Deprecated")</span></span></code></pre></div>
-<p><img src="reset_bcea_files/figure-html/unnamed-chunk-9-1.png" class="r-plt" width="576">
-applies the specific method to do the mixed analysis.</p>
+<p><img src="reset_bcea_files/figure-html/unnamed-chunk-9-1.png" class="r-plt" width="576"></p>
+<p>applies the specific method to do the mixed analysis.</p>
 <p><strong>IF</strong> we want to return to the original status and
 remove the extra credentials generated when calling <code>mixedAn</code>
 and/or <code>CEriskav</code>, we can simply use the

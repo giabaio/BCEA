@@ -54,15 +54,7 @@ lines(x_gp$k, x_gp$evppi, col = "blue")
 ``` r
 
 # zoom in
-plot(x_inla$k, x_inla$evppi, type = "l", lwd = 2, lty = 2, graph = "base")
-#> Warning in plot.window(...): "graph" is not a graphical parameter
-#> Warning in plot.xy(xy, type, ...): "graph" is not a graphical parameter
-#> Warning in axis(side = side, at = at, labels = labels, ...): "graph" is not a
-#> graphical parameter
-#> Warning in axis(side = side, at = at, labels = labels, ...): "graph" is not a
-#> graphical parameter
-#> Warning in box(...): "graph" is not a graphical parameter
-#> Warning in title(...): "graph" is not a graphical parameter
+plot(x_inla$k, x_inla$evppi, type = "l", lwd = 2, lty = 2)
 lines(x_gam$k, x_gam$evppi, col = "red")
 lines(x_gp$k, x_gp$evppi, col = "blue")
 ```

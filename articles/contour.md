@@ -68,14 +68,7 @@ contour(he,
         graph = "ggplot2",
         title = "my title",
         point = list(color = "blue", shape = 2, size = 5),
-        contour = list(size = 2))
-#> Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-#> ℹ Please use `linewidth` instead.
-#> ℹ The deprecated feature was likely used in the BCEA package.
-#>   Please report the issue at <https://github.com/giabaio/BCEA/issues/>.
-#> This warning is displayed once every 8 hours.
-#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-#> generated.
+        contour = list(linewidth = 2))
 ```
 
 ![](contour_files/figure-html/unnamed-chunk-5-1.png)
@@ -85,7 +78,7 @@ contour(he,
         graph = "base",
         title = "my title",
         point = list(color = "blue", shape = 2, size = 2),
-        contour = list(size = 2))
+        contour = list(linewidth = 2))
 ```
 
 ![](contour_files/figure-html/unnamed-chunk-6-1.png)
@@ -120,7 +113,7 @@ contour2(he,
          graph = "ggplot2",
          title = "my title",
          point = list(color = "blue", shape = 10, size = 5),
-         contour = list(size = 2))
+         contour = list(linewidth = 2))
 ```
 
 ![](contour_files/figure-html/unnamed-chunk-8-1.png)
@@ -130,7 +123,7 @@ contour2(he,
          graph = "base",
          title = "my title",
          point = list(color = "blue", shape = 2, size = 3),
-         contour = list(size = 4))
+         contour = list(linewidth = 4))
 ```
 
 ![](contour_files/figure-html/unnamed-chunk-9-1.png)
@@ -210,7 +203,7 @@ contour(he,
         line = list(color = "red", size = 1),
         point = list(color = c("plum", "tomato", "springgreen"), shape = 3:5, size = 2),
         icer = list(color = c("red", "orange", "black"), size = 5),
-        contour = list(size = 2))
+        contour = list(linewidth = 2))
 ```
 
 ![](contour_files/figure-html/unnamed-chunk-15-1.png)
@@ -222,7 +215,7 @@ contour(he,
         line = list(color = "red", size = 1),
         point = list(color = c("plum", "tomato", "springgreen"), shape = 3:5, size = 2),
         icer = list(color = c("red", "orange", "black"), size = 5),
-        contour = list(size = 4))
+        contour = list(size=2))
 ```
 
 ![](contour_files/figure-html/unnamed-chunk-16-1.png)
@@ -253,7 +246,14 @@ contour2(he, wtp = 250,
          line = list(color = "red", size = 1),
          point = list(color = c("plum", "tomato", "springgreen"), shape = 3:5, size = 2),
          icer = list(color = c("red", "orange", "black"), size = 5),
-         contour = list(size = 2))
+         contour = list(linewidth = 2))
+#> Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+#> ℹ Please use `linewidth` instead.
+#> ℹ The deprecated feature was likely used in the BCEA package.
+#>   Please report the issue at <https://github.com/giabaio/BCEA/issues/>.
+#> This warning is displayed once every 8 hours.
+#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+#> generated.
 ```
 
 ![](contour_files/figure-html/unnamed-chunk-18-1.png)
@@ -265,7 +265,7 @@ contour2(he, wtp = 250,
          line = list(color = "red", size = 1),
          point = list(color = c("plum", "tomato", "springgreen"), shape = 3:5, size = 2),
          icer = list(color = c("red", "orange", "black"), size = 5),
-         contour = list(size = 4))
+         contour = list(linewidth = 4))
 ```
 
 ![](contour_files/figure-html/unnamed-chunk-19-1.png)

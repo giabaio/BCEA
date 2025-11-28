@@ -92,13 +92,6 @@ ceac.plot(bcea_smoke)
 # Can customise like any other ggplot objects
 ib.plot(bcea_smoke) + scale_x_continuous(labels=scales::label_dollar(prefix="£"))
 #> NB: k (wtp) is defined in the interval [0 - 500]
-#> Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-#> ℹ Please use `linewidth` instead.
-#> ℹ The deprecated feature was likely used in the BCEA package.
-#>   Please report the issue at <https://github.com/giabaio/BCEA/issues/>.
-#> This warning is displayed once every 8 hours.
-#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-#> generated.
 ```
 
 ![](bcea_files/figure-html/separate-plots-5.png)
@@ -110,16 +103,9 @@ plotting style, such as follows.
 plot(bcea_smoke,
      graph = "ggplot2",
      wtp = 250,
-     line = list(color = "red", size = 1),
+     line = list(color = "red", linewidth = 1),
      point = list(color = c("plum", "tomato", "springgreen"), shape = 3:5, size = 2),
      icer = list(color = c("red", "orange", "black"), size = 5))
-#> Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
-#> ℹ Please use the `linewidth` argument instead.
-#> ℹ The deprecated feature was likely used in the BCEA package.
-#>   Please report the issue at <https://github.com/giabaio/BCEA/issues/>.
-#> This warning is displayed once every 8 hours.
-#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-#> generated.
 ```
 
 ![](bcea_files/figure-html/colour-plot-1.png)

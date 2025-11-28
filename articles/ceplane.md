@@ -48,18 +48,11 @@ and theme.
 ceplane.plot(he,
              graph = "ggplot2",
              title = "my title",
-             line = list(color = "green", size = 3),
+             line = list(color = "green", linewidth = 3),
              point = list(color = "blue", shape = 10, size = 5),
              icer = list(color = "orange", size = 5),
              area = list(fill = "grey"),
              theme = theme_linedraw())
-#> Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-#> ℹ Please use `linewidth` instead.
-#> ℹ The deprecated feature was likely used in the BCEA package.
-#>   Please report the issue at <https://github.com/giabaio/BCEA/issues/>.
-#> This warning is displayed once every 8 hours.
-#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-#> generated.
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-4-1.png)
@@ -156,6 +149,13 @@ ceplane.plot(he,
              line = list(color = "red", size = 1),
              point = list(color = c("plum", "tomato", "springgreen"), shape = 3:5, size = 2),
              icer = list(color = c("red", "orange", "black"), size = 5))
+#> Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+#> ℹ Please use `linewidth` instead.
+#> ℹ The deprecated feature was likely used in the BCEA package.
+#>   Please report the issue at <https://github.com/giabaio/BCEA/issues/>.
+#> This warning is displayed once every 8 hours.
+#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+#> generated.
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-10-1.png)

@@ -36,8 +36,9 @@ plot(m)
 #> See help("Deprecated")
 ```
 
-![](reset_bcea_files/figure-html/unnamed-chunk-4-1.png) we get a
-specialised graph, describing the Expected Value of Information
+![](reset_bcea_files/figure-html/unnamed-chunk-4-1.png)
+
+we get a specialised graph, describing the Expected Value of Information
 comparing the mixed with the optimal strategy (in which we allocate all
 the shares to the intervention that is most cost-effective, given
 current evidence). The gray area represent the loss due to “market
@@ -51,9 +52,11 @@ For instance
 BCEA:::plot.bcea(m)
 ```
 
-![](reset_bcea_files/figure-html/unnamed-chunk-5-1.png) now returns the
-“standard” graphical summary of the basic economic evaluation performed
-by [`bcea()`](https://n8thangreen.github.io/BCEA/reference/bcea.md).
+![](reset_bcea_files/figure-html/unnamed-chunk-5-1.png)
+
+now returns the “standard” graphical summary of the basic economic
+evaluation performed by
+[`bcea()`](https://n8thangreen.github.io/BCEA/reference/bcea.md).
 
 In addition, methods for which a `mixedAn` option is not available
 (e.g. `ceac.plot`) can be used directly – after all, `m` is still an
@@ -63,8 +66,9 @@ object of the class `bcea` too and so if we try
 ceac.plot(m)
 ```
 
-![](reset_bcea_files/figure-html/unnamed-chunk-6-1.png)`R` will
-understand to apply the method
+![](reset_bcea_files/figure-html/unnamed-chunk-6-1.png)
+
+`R` will understand to apply the method
 [`ceac.plot.bcea()`](https://n8thangreen.github.io/BCEA/reference/ceac.plot.md)
 in the background.
 
@@ -85,6 +89,7 @@ plot(m)
 ```
 
 ![](reset_bcea_files/figure-html/unnamed-chunk-8-1.png)![](reset_bcea_files/figure-html/unnamed-chunk-8-2.png)
+
 generates the specific graph to perform the analysis including risk
 aversion. But
 
@@ -95,8 +100,9 @@ BCEA:::plot.mixedAn(m)
 #> See help("Deprecated")
 ```
 
-![](reset_bcea_files/figure-html/unnamed-chunk-9-1.png) applies the
-specific method to do the mixed analysis.
+![](reset_bcea_files/figure-html/unnamed-chunk-9-1.png)
+
+applies the specific method to do the mixed analysis.
 
 **IF** we want to return to the original status and remove the extra
 credentials generated when calling `mixedAn` and/or `CEriskav`, we can
