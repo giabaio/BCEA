@@ -1,6 +1,5 @@
-BCEA: Bayesian cost-effectiveness analysis
+# BCEA: Bayesian cost-effectiveness analysis
 <img src="man/figures/logo.png" align="right" />
-================
 
 [![Build
 Status](https://app.travis-ci.com/n8thangreen/BCEA.svg?branch=dev)](https://app.travis-ci.com/n8thangreen/BCEA)
