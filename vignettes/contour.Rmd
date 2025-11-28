@@ -156,7 +156,7 @@ contour(he,
         line = list(color = "red", size = 1),
         point = list(color = c("plum", "tomato", "springgreen"), shape = 3:5, size = 2),
         icer = list(color = c("red", "orange", "black"), size = 5),
-        contour = list(linewidth))
+        contour = list(size=2))
 ```
 
 Again, this applies to the `contour2()` version of contour plot too.
