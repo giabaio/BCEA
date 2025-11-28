@@ -34,6 +34,7 @@ reference:
   - CEriskav
   - multi.ce
   - struct.psa
+  - reset_bcea
 - title: "Plotting"
   desc: "Functions for plotting a wide variety of cost-effectiveness plots in base R, ggplot2 and plotly."
   contents:
