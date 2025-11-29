@@ -9,8 +9,11 @@
 #' 
 #' @template args-he
 #' @param value A vector of market shares associated with the interventions.
-#' Its size is the same as the number of possible comparators.
-#' By default, assumes uniform distribution for each intervention.
+#' Its size is the same as the number of possible comparators. By default, 
+#' assumes uniform distribution for each intervention. Can be passed as a 
+#' vector (of length equal to the number of interventions being compared) of
+#' proportions, or numbers - if the vector's elements do not sum to 1 they are
+#' automatically normalised.
 #' 
 #' @return Creates an object in the class `mixedAn`, a subclass of `bcea`
 #'   which contains the results of the health economic evaluation in the mixed analysis case:
@@ -66,6 +69,9 @@
 #'                         # produces the plots
 #' evi.plot(m)
 #' 
+#' # Can also apply the setter to a new object
+#' m0 <- `mixedAn<-`(m,c(2,5))
+#' class(m0)
 #' @export
 #' 
 'mixedAn<-' <- function(he, value)

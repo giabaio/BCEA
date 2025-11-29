@@ -12,6 +12,10 @@ _November 2025_
 
 * Adds a new function `reset_bcea`, which can reset a `BCEA` objects modified by either or `CEriskav`/`mixedAn` to its original status. Also adds documentation and a vignette for the `pkgdown` site. 
 
+* Modifies the graphical output of `CEriskav` if `graph="base"`. Now the object can be saved with name and the two graphs called separately.
+
+* Adds automatic normalisation of the vector of market shares in `mixedAn.R` + fix the deprecated plot + add some more description in the help.
+
 # BCEA 2.4.83
 
 _November 2025_

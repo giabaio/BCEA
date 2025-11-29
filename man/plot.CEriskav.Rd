@@ -81,10 +81,15 @@ r <- c(1e-10, 0.005, 0.020, 0.035)
 \donttest{
    plot(m)
 }
-## Alternative options, using ggplot2
+# Alternative options, using base
 \donttest{
-   plot(m, graph = "ggplot2")
+   plot(m, graph = "base")
 }
+# Can also save the plots to an object
+p=plot(m)
+# And plot them separately
+p$eib
+p$evi
 
 }
 \references{

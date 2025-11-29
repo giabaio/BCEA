@@ -34,10 +34,10 @@
 #' 
 #' @export
 #' 
-plot.mixedAn <- function(x, y.limits = NULL, pos = c(0,1),
+plot.mixedAn <- function(x,y.limits = NULL, pos = c(0,1),
                          graph = options("bcea.graph"), ...) {
   .Deprecated(new = "evi.plot")
   graph=unlist(graph) 
-  evi.plot(`mixedAn<-`(x),y.limits=NULL, pos=c(0,1),graph=graph,...)
+  # `mixedAn<-`(x,mkt.shares)
+  evi.plot(x,y.limits=NULL, pos=c(0,1),graph=graph,...)
 }
-
