@@ -71,8 +71,11 @@ modelling and the economic evaluation.</p></dd>
 
 <dt id="arg-value">value<a class="anchor" aria-label="anchor" href="#arg-value"></a></dt>
 <dd><p>A vector of market shares associated with the interventions.
-Its size is the same as the number of possible comparators.
-By default, assumes uniform distribution for each intervention.</p></dd>
+Its size is the same as the number of possible comparators. By default,
+assumes uniform distribution for each intervention. Can be passed as a
+vector (of length equal to the number of interventions being compared) of
+proportions, or numbers - if the vector's elements do not sum to 1 they are
+automatically normalised.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -154,6 +157,10 @@ CRC.</p>
 <span class="r-in"><span><span class="fu"><a href="evi.plot.html">evi.plot</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="mixedAn-set-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Can also apply the setter to a new object</span></span></span>
+<span class="r-in"><span><span class="va">m0</span> <span class="op">&lt;-</span> <span class="fu">`mixedAn&lt;-`</span><span class="op">(</span><span class="va">m</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">m0</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "mixedAn" "mixedAn" "bcea"    "list"   </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

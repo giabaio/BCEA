@@ -55,6 +55,8 @@
 <li><p>Updates <code>mce.plot</code> and <code>plot.mixedAn</code> (which are in fact deprecated) as well as <code>plot.evppi</code> to use the global option for graphical engine</p></li>
 <li><p>In fact, there was a problem with how <code>mixedAn</code> handled the market shares. Now fixed. Also handles <code>plot.mixedAn</code> if the request is for a <code>plotly</code> graph, which isn’t implemented.</p></li>
 <li><p>Adds a new function <code>reset_bcea</code>, which can reset a <code>BCEA</code> objects modified by either or <code>CEriskav</code>/<code>mixedAn</code> to its original status. Also adds documentation and a vignette for the <code>pkgdown</code> site.</p></li>
+<li><p>Modifies the graphical output of <code>CEriskav</code> if <code>graph="base"</code>. Now the object can be saved with name and the two graphs called separately.</p></li>
+<li><p>Adds automatic normalisation of the vector of market shares in <code>mixedAn.R</code> + fix the deprecated plot + add some more description in the help.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.4.83" id="bcea-2483">BCEA 2.4.83<a class="anchor" aria-label="anchor" href="#bcea-2483"></a></h2>
