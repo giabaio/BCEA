@@ -51,7 +51,7 @@ plot(bcea_smoke)
 ![](CEriskav_files/figure-html/unnamed-chunk-5-1.png)![](CEriskav_files/figure-html/unnamed-chunk-5-2.png)
 
 ``` r
-plot(bcea_smoke, graph = "ggplot")
+plot(bcea_smoke, graph = "base")
 ```
 
 ![](CEriskav_files/figure-html/unnamed-chunk-5-3.png)![](CEriskav_files/figure-html/unnamed-chunk-5-4.png)
@@ -70,7 +70,7 @@ plot(bcea_smoke)
 
 ``` r
 
-plot(bcea_smoke, graph = "ggplot")
+plot(bcea_smoke, graph = "b")
 ```
 
 ![](CEriskav_files/figure-html/unnamed-chunk-6-3.png)![](CEriskav_files/figure-html/unnamed-chunk-6-4.png)

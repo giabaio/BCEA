@@ -16,6 +16,9 @@ num_lines(dat)
 # S3 method for class 'evppi'
 num_lines(dat)
 
+# S3 method for class 'CEriskav'
+num_lines(dat)
+
 # Default S3 method
 num_lines(dat)
 ```

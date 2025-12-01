@@ -28,6 +28,9 @@
   `mixedAn.R` + fix the deprecated plot + add some more description in
   the help.
 
+- Adds a method to the `make_legend_ggplot.R` function to deal with
+  `CEriskav` objects.
+
 ## BCEA 2.4.83
 
 *November 2025*
