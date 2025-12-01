@@ -4,7 +4,7 @@
 \alias{plot.CEriskav}
 \title{Plots EIB and EVPI for the Risk Aversion Case}
 \usage{
-\method{plot}{CEriskav}(x, pos = "topright", graph = options("bcea.graph"), ...)
+\method{plot}{CEriskav}(x, pos = c(1, 1), graph = options("bcea.graph"), ...)
 }
 \arguments{
 \item{x}{An object of the class \code{CEriskav}, a subclass of \code{bcea},
