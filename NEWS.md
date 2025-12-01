@@ -16,7 +16,7 @@ _November 2025_
 
 * Adds automatic normalisation of the vector of market shares in `mixedAn.R` + fix the deprecated plot + add some more description in the help.
 
-* Adds a method to the `make_legend_ggplot.R` function to deal with `CEriskav` objects. Also fixes the legend position for `plot.CEriskav` in `ggplot2`.
+* Adds a method to the `make_legend_ggplot.R` function to deal with `CEriskav` objects.
 
 # BCEA 2.4.83
 

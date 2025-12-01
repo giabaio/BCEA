@@ -75,6 +75,7 @@ CEriskav_plot_base <- function(he, pos_legend) {
 #' @title CEriskav ggplot2 version
 #'
 CEriskav_plot_ggplot <- function(he, pos_legend) {
+  
   default_comp <- 1
   linetypes <- rep(c(1, 2, 3, 4, 5, 6), ceiling(he$R / 6))[1:he$R]
   
@@ -85,11 +86,7 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
   }
   
   legend_params <- make_legend_ggplot(he, pos_legend)
-  # Recodes as a numeric argument to pass onto the graph
-  legend_params$legend.position <- legend_params$legend.position |>
-    recode(right = .95, left = 0, top = .95, bottom = 0) |>
-    as.numeric()
-  
+
   ## Reshape eibr data
   eib_dat <- he$eibr[, default_comp, , drop = FALSE] |>
     as_tibble(.name_repair = ~ as.character(1:he$R)) |>
