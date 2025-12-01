@@ -5,6 +5,7 @@
 \alias{num_lines.pairwise}
 \alias{num_lines.bcea}
 \alias{num_lines.evppi}
+\alias{num_lines.CEriskav}
 \alias{num_lines.default}
 \title{Get number of lines}
 \usage{
@@ -15,6 +16,8 @@ num_lines(dat)
 \method{num_lines}{bcea}(dat)
 
 \method{num_lines}{evppi}(dat)
+
+\method{num_lines}{CEriskav}(dat)
 
 \method{num_lines}{default}(dat)
 }
