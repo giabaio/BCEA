@@ -31,6 +31,12 @@ num_lines.evppi <- function(dat) {
 
 #' @rdname num_lines
 #' 
+num_lines.CEriskav <- function(dat) {
+  dat$n_comparators
+}
+
+#' @rdname num_lines
+#' 
 num_lines.default <- function(dat) {
   dat$n_comparisons
 }

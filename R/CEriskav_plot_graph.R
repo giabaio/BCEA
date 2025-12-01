@@ -85,6 +85,10 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
   }
   
   legend_params <- make_legend_ggplot(he, pos_legend)
+  # Recodes as a numeric argument to pass onto the graph
+  legend_params$legend.position <- legend_params$legend.position |>
+    recode(right = .95, left = 0, top = .95, bottom = 0) |>
+    as.numeric()
   
   ## Reshape eibr data
   eib_dat <- he$eibr[, default_comp, , drop = FALSE] |>
