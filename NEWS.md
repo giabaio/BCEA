@@ -2,7 +2,7 @@
 
 _November 2025_
 
-* Make `ggplot2` the default graphical engine. Need to fix the vignettes to account for this.
+* Make `ggplot2` the default graphical engine. Vignettes fixed to account for this.
 
 * Fixes `plot.evppi` and `ib.plot` to use `linewidth` instead of deprecated `size` command in the `ggplot2` version.
 
