@@ -7,7 +7,7 @@ included.
 
 ``` r
 # S3 method for class 'CEriskav'
-plot(x, pos = "topright", graph = options("bcea.graph"), ...)
+plot(x, pos = c(1, 1), graph = options("bcea.graph"), ...)
 ```
 
 ## Arguments
