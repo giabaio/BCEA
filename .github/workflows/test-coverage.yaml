@@ -40,8 +40,8 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
+          dependencies: '"all"'
           extra-packages: any::covr, any::xml2
-          needs: coverage
 
       - name: Test coverage
         run: |
@@ -52,5 +52,6 @@ jobs:
         uses: codecov/codecov-action@v4
         with:
           file: ./coverage.xml
+          use_oidc: true
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: false
