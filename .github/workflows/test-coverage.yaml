@@ -1,5 +1,4 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
-# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
     branches: [dev, main, master, cran]
@@ -12,6 +11,10 @@ name: test-coverage
 jobs:
   test-coverage:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
@@ -42,5 +45,12 @@ jobs:
 
       - name: Test coverage
         run: |
-          covr::codecov(quiet = FALSE)
+          covr::to_cobertura(covr::package_coverage(), "coverage.xml")
         shell: Rscript {0}
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          file: ./coverage.xml
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
