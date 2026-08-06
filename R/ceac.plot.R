@@ -63,9 +63,9 @@
 ceac.plot.bcea <- function(he,
                            comparison = NULL,
                            pos = "bottomright",
-                           graph = c("base", "ggplot2", "plotly"),
+                           graph = options("bcea.graph"),
                            ...) {
-  graph <- match.arg(graph)
+  graph <- unlist(graph)
   
   he <- setComparisons(he, comparison)
   

@@ -44,13 +44,13 @@ evppi_plot_ggplot <- function(evppi_obj,
   ggplot(plot_dat,
          aes(x = .data$k, y = .data$value,
              group = .data$variable,
-             size = .data$variable,
+             linewidth = .data$variable,
              color = .data$variable)) +
     geom_line() +
     theme_default() +
     theme_add +
     scale_color_manual(values = col) +
-    scale_size_manual(values = size) +
+    scale_linewidth_manual(values = size) +
     do.call(theme, legend_params) +
     ggtitle("Expected Value of Perfect Partial Information") +
     xlab("Willingness to pay") +

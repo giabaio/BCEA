@@ -10,7 +10,7 @@
 NULL
 
 #' @rdname BCEA-deprecated
-make.report <- function(...) {
+make.report <- function(...) { 
   .Deprecated(package = "BCEA",
               msg = "'make.report()' is deprecated. Please use 'BCEAweb::make.report()' instead.")
   

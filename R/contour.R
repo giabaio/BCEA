@@ -23,11 +23,11 @@
 #' 
 contour.bcea <- function(he,
                          pos = "topleft",
-                         graph = c("base", "ggplot2", "plotly"),
+                         graph = options("bcea.graph"),
                          comparison = NULL,
                          ...) {
   
-  graph_type <- match.arg(graph)
+  graph_type <- unlist(graph)
   
   he <- setComparisons(he, comparison)
   

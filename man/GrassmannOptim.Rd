@@ -11,9 +11,9 @@ GrassmannOptim(
   temp_init = 20,
   cooling_rate = 2,
   max_iter_sa = 100,
-  eps_conv = 1e-05,
+  eps_conv = 0.00001,
   max_iter = 100,
-  eps_grad = 1e-05,
+  eps_grad = 0.00001,
   eps_f = .Machine$double.eps,
   verbose = FALSE
 )

@@ -44,10 +44,10 @@ eib.plot.bcea <- function(he,
                           pos = "bottomright",
                           size = NULL,
                           plot.cri = NULL,
-                          graph = c("base", "ggplot2", "plotly"),
+                          graph = options("bcea.graph"),
                           ...) {
 
-  graph <- match.arg(graph)
+  graph <- unlist(graph)
   
   he <- setComparisons(he, comparison)
   

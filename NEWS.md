@@ -1,10 +1,35 @@
-# BCEA 2.4.83 (dev)
+# BCEA 2.4.84
 
 _November 2025_
 
+* Make `ggplot2` the default graphical engine. Vignettes fixed to account for this.
+
+* Fixes `plot.evppi` and `ib.plot` to use `linewidth` instead of deprecated `size` command in the `ggplot2` version.
+
+* Updates `mce.plot` and `plot.mixedAn` (which are in fact deprecated) as well as `plot.evppi` to use the global option for graphical engine
+
+* In fact, there was a problem with how `mixedAn` handled the market shares. Now fixed. Also handles `plot.mixedAn` if the request is for a `plotly` graph, which isn't implemented.
+
+* Adds a new function `reset_bcea`, which can reset a `BCEA` objects modified by either or `CEriskav`/`mixedAn` to its original status. Also adds documentation and a vignette for the `pkgdown` site. 
+
+* Modifies the graphical output of `CEriskav` if `graph="base"`. Now the object can be saved with name and the two graphs called separately.
+
+* Adds automatic normalisation of the vector of market shares in `mixedAn.R` + fix the deprecated plot + add some more description in the help.
+
+* Adds a method to the `make_legend_ggplot.R` function to deal with `CEriskav` objects.
+
+# BCEA 2.4.83
+
+_November 2025_
+
+* Updates the code for `CEriskav` and its `plot` method to work with the `ggplot` version.
+
+* Allows to set the graphical engine globally. Still defaults at `base`, but can set `options(bcea.graph="gg")` to change the behaviour for the session.
+
 * Fixes a nasty bug in `ceplane_plot_graph.R` -- now that we're not using `reshape2`, we must enforce the column `comparison` created in the object `delta_ce` to be a factor.
 
-* Updates code in `contour_ggplot_params.R` to avoid `ggplot2` warnings about `aes_string()` and the use of `size` instead of `linewidth` (both now deprecated).
+* Updates code in `contour_ggplot_params.R` to avoid `ggplot2` warnings about `aes_string()` and the use of `size` instead of `linewidth` (both now deprecated). Also updates code in other functions to remove warnings about `ggplot2` deprecation.
+
 
 # BCEA 2.4.82
 

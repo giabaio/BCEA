@@ -12,9 +12,7 @@
 #' @param n The number of equally spaced points at which the density is to be
 #' estimated.
 #' @param xlim The limits of the plot on the x-axis.
-#' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-) match the two options `"base"` or
-#' `"ggplot2"`. Default value is `"base"`.
+#' @template args-graph
 #' 
 #' @return \item{ib}{ A ggplot object containing the requested plot. Returned
 #' only if `graph="ggplot2"`. } The function produces a plot of the
@@ -48,9 +46,9 @@ ib.plot.bcea <- function(he,
                          bw = "bcv",  ##TODO: what was nbw? previous was bigger/smoother
                          n = 512,
                          xlim = NULL,
-                         graph = c("base", "ggplot2", "plotly"),
+                         graph = options("bcea.graph"),
                          ...) {
-  graph <- match.arg(graph)
+  graph <- unlist(graph)
   
   if (!is.null(comparison))
     stopifnot(comparison <= he$n_comparisons)

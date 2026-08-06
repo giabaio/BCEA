@@ -21,9 +21,7 @@
 #' indicating to use the default position and `TRUE` to place it on the
 #' bottom of the plot. Default value is `c(0,1)`, that is in the topleft
 #' corner inside the plot area.
-#' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the two options `"base"` or
-#' `"ggplot2"`. Default value is `"base"`.
+#' @template args-graph
 #' @param ...  Arguments to be passed to methods, such as graphical parameters
 #' (see [par()]).
 #' @return \item{evi}{ A ggplot object containing the plot. Returned only if
@@ -32,12 +30,14 @@
 #' cost-effective intervention is included in the market) and the mixed
 #' strategy one (when more than one intervention is considered in the market).
 #' @author Gianluca Baio, Andrea Berardi
-#' @usage plot.mixedAn(x, y.limits=NULL, pos=c(0,1), graph=c("base","ggplot2"),...)
-#'
+#' @usage plot.mixedAn(x, y.limits=NULL, pos=c(0,1), graph=options("bcea.graph"),...)
+#' 
 #' @export
 #' 
-plot.mixedAn <- function(x, y.limits = NULL, pos = c(0,1),
-                         graph = c("base","ggplot2"), ...) {
+plot.mixedAn <- function(x,y.limits = NULL, pos = c(0,1),
+                         graph = options("bcea.graph"), ...) {
   .Deprecated(new = "evi.plot")
+  graph=unlist(graph) 
+  # `mixedAn<-`(x,mkt.shares)
+  evi.plot(x,y.limits=NULL, pos=c(0,1),graph=graph,...)
 }
-

@@ -5,7 +5,7 @@
 \alias{evi.plot}
 \title{Expected Value of Information (EVI) Plot}
 \usage{
-\method{evi.plot}{bcea}(he, graph = c("base", "ggplot2", "plotly"), ...)
+\method{evi.plot}{bcea}(he, graph = options("bcea.graph"), ...)
 
 evi.plot(he, ...)
 }
@@ -14,8 +14,13 @@ evi.plot(he, ...)
 modelling and the economic evaluation.}
 
 \item{graph}{A string used to select the graphical engine to use for
-plotting. Should (partial-)match the three options \code{"base"},
-\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.}
+plotting. Should (partial-) match the three options \code{"base"},
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"ggplot2"}. This is set
+globally upon loading \code{BCEA} and can be modified for instance by using
+\code{options("bcea.graph"="base")}, or \verb{options("bcea.graph="plotly")}. Partial
+matching still applies (so \code{gg}, or \code{g}, or \code{pl}, or \code{p} also work). Not
+all plotting functions have a \code{"plotly"} implementation, yet -- see the
+help for the specific functions.}
 
 \item{...}{Additional graphical arguments:
 \itemize{

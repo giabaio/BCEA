@@ -9,7 +9,7 @@
   he,
   comparison = NULL,
   pos = "bottomright",
-  graph = c("base", "ggplot2", "plotly"),
+  graph = options("bcea.graph"),
   ...
 )
 
@@ -35,9 +35,13 @@ indicating to use the default position and \code{TRUE} to place it on the
 bottom of the plot.}
 
 \item{graph}{A string used to select the graphical engine to use for
-plotting. Should (partial-)match the three options \code{"base"},
-\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}.
-Not all plotting functions have a \code{"plotly"} implementation yet.}
+plotting. Should (partial-) match the three options \code{"base"},
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"ggplot2"}. This is set
+globally upon loading \code{BCEA} and can be modified for instance by using
+\code{options("bcea.graph"="base")}, or \verb{options("bcea.graph="plotly")}. Partial
+matching still applies (so \code{gg}, or \code{g}, or \code{pl}, or \code{p} also work). Not
+all plotting functions have a \code{"plotly"} implementation, yet -- see the
+help for the specific functions.}
 
 \item{...}{If \code{graph = "ggplot2"} and a named theme object is supplied,
 it will be passed to the ggplot2 object. The usual ggplot2 syntax is used.

@@ -10,7 +10,7 @@
   inp,
   wtp = NULL,
   howManyPars = NA,
-  graph = c("base", "ggplot2", "plotly"),
+  graph = options("bcea.graph"),
   rel = TRUE,
   ...
 )
@@ -39,8 +39,14 @@ not specified then the break-even point for the current model will be used.}
 \item{howManyPars}{Optional maximum number of parameters to be included in the bar plot.
 Includes all parameters by default.}
 
-\item{graph}{A string used to select the graphical engine to use for plotting.
-Should (partial-)match one of the two options "base" or "plotly". Default value is "base"}
+\item{graph}{A string used to select the graphical engine to use for
+plotting. Should (partial-) match the three options \code{"base"},
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"ggplot2"}. This is set
+globally upon loading \code{BCEA} and can be modified for instance by using
+\code{options("bcea.graph"="base")}, or \verb{options("bcea.graph="plotly")}. Partial
+matching still applies (so \code{gg}, or \code{g}, or \code{pl}, or \code{p} also work). Not
+all plotting functions have a \code{"plotly"} implementation, yet -- see the
+help for the specific functions.}
 
 \item{rel}{Logical argument that specifies whether the ratio of
 EVPPI to EVPI (\code{rel = TRUE}, default) or the absolute value of the EVPPI
