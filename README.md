@@ -1,9 +1,12 @@
-# BCEA: Bayesian cost-effectiveness analysis
+BCEA: Bayesian cost-effectiveness analysis
 <img src="man/figures/logo.png" align="right" />
+================
 
 [![Build
 Status](https://app.travis-ci.com/n8thangreen/BCEA.svg?branch=dev)](https://app.travis-ci.com/n8thangreen/BCEA)
 [![R-CMD-check](https://github.com/n8thangreen/BCEA/actions/workflows/check-standard.yaml/badge.svg?branch=dev)](https://github.com/n8thangreen/BCEA/actions/workflows/check-standard.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/n8thangreen/BCEA/branch/dev/graph/badge.svg)](https://app.codecov.io/gh/n8thangreen/BCEA)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/BCEA)](https://cran.r-project.org/package=BCEA)
 [![CRAN_Download_Badge](https://cranlogs.r-pkg.org/badges/BCEA)](https://cran.r-project.org/package=BCEA)
 [![CRAN_Download_Badge](https://cranlogs.r-pkg.org/badges/grand-total/BCEA?color=orange)](https://cran.r-project.org/package=BCEA)
