@@ -2,6 +2,10 @@
 
 ## BCEA 2.4.84
 
+*August 2026*
+
+- Adds unit tests + coverage action + badges”
+
 *November 2025*
 
 - Make `ggplot2` the default graphical engine. Vignettes fixed to
