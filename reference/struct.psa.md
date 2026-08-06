@@ -98,6 +98,7 @@ Gianluca Baio
 ## Examples
 
 ``` r
+
 # load sample jags output
 data("statins_base")
 data("statins_HC")

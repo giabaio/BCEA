@@ -12,8 +12,8 @@
 <link rel="icon" sizes="any" href="../favicon.ico">
 <link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Expected Incremental Benefit Plot">
@@ -99,13 +99,13 @@ versus status-quo
 <p>The plot is based on the incremental benefit as a function of the
 willingness to pay
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>.</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mi>B</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>k</mi><msub><mi>Δ</mi><mi>e</mi></msub><mo>−</mo><msub><mi>Δ</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mi>B</mi><mo stretchy="false" form="prefix">(</mo><mi>θ</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>k</mi><msub><mi mathvariant="normal">Δ</mi><mi>e</mi></msub><mo>−</mo><msub><mi mathvariant="normal">Δ</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">
 IB(\theta) = k \Delta_e - \Delta_c
 </annotation></semantics></math></p>
 <p>Using the set of
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math>
 posterior samples, the EIB is approximated by</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mi>S</mi></mfrac><munderover><mo>∑</mo><mi>s</mi><mi>S</mi></munderover><mi>I</mi><mi>B</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>θ</mi><mi>s</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mi>S</mi></mfrac><munderover><mo>∑</mo><mi>s</mi><mi>S</mi></munderover><mi>I</mi><mi>B</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>θ</mi><mi>s</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">
 \frac{1}{S} \sum_s^S IB(\theta_s)
 </annotation></semantics></math></p>
 <p>where
@@ -140,21 +140,21 @@ matching is also available, so that <code>gg</code>, <code>g</code>,
 <code>ggplot2</code> or <code>plotly</code>, respectively.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span><span class="op">)</span></span></code></pre></div>
-<p><img src="eib_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" width="576"></p>
+<p><img src="eib_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="" width="576"></p>
 <p>The vertical line represents the break-even value corresponding to
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>k</mi><mo>*</mo></msup><annotation encoding="application/x-tex">k^*</annotation></semantics></math>
 indicating that above that threshold the alternative treatment is more
 cost-effective than the status-quo.</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>k</mi><mo>*</mo></msup><mo>=</mo><mo>min</mo><mo stretchy="false" form="prefix">{</mo><mi>k</mi><mo>:</mo><mtext mathvariant="normal">EIB</mtext><mo>&gt;</mo><mn>0</mn><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>k</mi><mo>*</mo></msup><mo>=</mo><mrow><mi mathvariant="normal">min</mi><mo>⁡</mo></mrow><mo stretchy="false" form="prefix">{</mo><mi>k</mi><mo>:</mo><mtext mathvariant="normal">EIB</mtext><mo>&gt;</mo><mn>0</mn><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">
 k^* = \min\{ k : \mbox{EIB} &gt; 0 \}
 </annotation></semantics></math></p>
 <p>This will be at the point the curve crosses the <em>x</em>-axis.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="eib_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" width="576"></p>
+<p><img src="eib_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="576"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="eib_files/figure-html/unnamed-chunk-4-2.png" class="r-plt" width="576"></p>
+<p><img src="eib_files/figure-html/unnamed-chunk-4-2.png" class="r-plt" alt="" width="576"></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># ceac.plot(he, graph = "plotly")</span></span></code></pre></div>
 <p>Other plotting arguments can be specified such as title, line colours
@@ -165,12 +165,12 @@ and theme.</p>
 <span>         main <span class="op">=</span> <span class="st">"my title"</span>,</span>
 <span>         line <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"green"</span><span class="op">)</span>,</span>
 <span>         theme <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_dark</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="eib_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" width="576"></p>
+<p><img src="eib_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="" width="576"></p>
 <p>Credible interval can also be plotted using the <code>plot.cri</code>
 logical argument.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, plot.cri <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="eib_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" width="576"></p>
+<p><img src="eib_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="" width="576"></p>
 <p>In the <code>ggplot2</code> implementation, it is possible to modify
 the formatting of the numerical labels in the
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>−</mo></mrow><annotation encoding="application/x-tex">x-</annotation></semantics></math>
@@ -183,12 +183,12 @@ code.</p>
 <span><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Scale for <span style="color: #00BB00;">x</span> is already present.</span></span>
 <span><span class="co">#&gt; Adding another scale for <span style="color: #00BB00;">x</span>, which will replace the existing scale.</span></span></code></pre></div>
-<p><img src="eib_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" width="576"></p>
+<p><img src="eib_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="" width="576"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># Uses currency style with £ symbol</span></span>
 <span><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>labels<span class="op">=</span><span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/dollar_format.html" class="external-link">dollar_format</a></span><span class="op">(</span>prefix<span class="op">=</span><span class="st">"£"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="eib_files/figure-html/unnamed-chunk-7-2.png" class="r-plt" width="576"></p>
+<p><img src="eib_files/figure-html/unnamed-chunk-7-2.png" class="r-plt" alt="" width="576"></p>
 </div>
 </div>
 <div class="section level2">
@@ -203,13 +203,13 @@ vertical lines and k* annotation is for simultaneous comparisons.</p>
 <p>Without loss of generality, if we assume status quo intervention
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">i=0</annotation></semantics></math>,
 then we wish to calculate</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mi>S</mi></mfrac><munderover><mo>∑</mo><mi>s</mi><mi>S</mi></munderover><mi>I</mi><mi>B</mi><mrow><mo stretchy="true" form="prefix">(</mo><msubsup><mi>θ</mi><mi>s</mi><mrow><mi>i</mi><mn>0</mn></mrow></msubsup><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.278em"></mspace><mspace width="0.278em"></mspace><mtext mathvariant="normal">for each</mtext><mspace width="0.278em"></mspace><mi>i</mi></mrow><annotation encoding="application/x-tex">
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mi>S</mi></mfrac><munderover><mo>∑</mo><mi>s</mi><mi>S</mi></munderover><mi>I</mi><mi>B</mi><mo stretchy="false" form="prefix">(</mo><msubsup><mi>θ</mi><mi>s</mi><mrow><mi>i</mi><mn>0</mn></mrow></msubsup><mo stretchy="false" form="postfix">)</mo><mspace width="0.278em"></mspace><mspace width="0.278em"></mspace><mtext mathvariant="normal">for each</mtext><mspace width="0.278em"></mspace><mi>i</mi></mrow><annotation encoding="application/x-tex">
 \frac{1}{S} \sum_s^S IB(\theta^{i0}_s) \;\; \mbox{for each} \; i
 </annotation></semantics></math></p>
 <p>The break-even points represent no preference between the two best
 interventions at
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>.</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>k</mi><mi>i</mi><mo>*</mo></msubsup><mo>=</mo><mo>min</mo><mo stretchy="false" form="prefix">{</mo><mi>k</mi><mo>:</mo><mtext mathvariant="normal">EIB</mtext><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>θ</mi><mi>i</mi></msup><mo stretchy="true" form="postfix">)</mo></mrow><mo>&gt;</mo><mtext mathvariant="normal">EIB</mtext><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>θ</mi><mi>j</mi></msup><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>k</mi><mi>i</mi><mo>*</mo></msubsup><mo>=</mo><mrow><mi mathvariant="normal">min</mi><mo>⁡</mo></mrow><mo stretchy="false" form="prefix">{</mo><mi>k</mi><mo>:</mo><mtext mathvariant="normal">EIB</mtext><mo stretchy="false" form="prefix">(</mo><msup><mi>θ</mi><mi>i</mi></msup><mo stretchy="false" form="postfix">)</mo><mo>&gt;</mo><mtext mathvariant="normal">EIB</mtext><mo stretchy="false" form="prefix">(</mo><msup><mi>θ</mi><mi>j</mi></msup><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">
 k^*_i = \min\{ k : \mbox{EIB}(\theta^i) &gt; \mbox{EIB}(\theta^j) \}
 </annotation></semantics></math></p>
 <p>Only the right-most of these will be where the curves cross the
@@ -227,7 +227,7 @@ follow the same steps as above with the new data set.</p>
 <span><span class="va">he</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">eff</span>, <span class="va">cost</span>, ref <span class="op">=</span> <span class="fl">4</span>, interventions <span class="op">=</span> <span class="va">treats</span>, Kmax <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span><span class="op">)</span></span></code></pre></div>
-<p><img src="eib_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" width="576"></p>
+<p><img src="eib_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="" width="576"></p>
 <p>For example, we can change the main title and the EIB line colours to
 green.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
@@ -235,52 +235,52 @@ green.</p>
 <span>         graph <span class="op">=</span> <span class="st">"base"</span>,</span>
 <span>         main <span class="op">=</span> <span class="st">"my title"</span>,</span>
 <span>         line <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"green"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="eib_files/figure-html/unnamed-chunk-9-1.png" class="r-plt" width="576"></p>
+<p><img src="eib_files/figure-html/unnamed-chunk-9-1.png" class="r-plt" alt="" width="576"></p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>,</span>
 <span>         graph <span class="op">=</span> <span class="st">"ggplot2"</span>,</span>
 <span>         main <span class="op">=</span> <span class="st">"my title"</span>,</span>
 <span>         line <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"green"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="eib_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" width="576"></p>
+<p><img src="eib_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" alt="" width="576"></p>
 <p>Credible interval can also be plotted as before. This isn’t
 recommended in this case since its hard to understand with so many
 lines.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, plot.cri <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="eib_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" width="576"></p>
+<p><img src="eib_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" alt="" width="576"></p>
 <div class="section level5">
 <h5 id="repositioning-the-legend-">Repositioning the legend.<a class="anchor" aria-label="anchor" href="#repositioning-the-legend-"></a>
 </h5>
 <p>For base R,</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, pos <span class="op">=</span> <span class="cn">FALSE</span>, graph <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span> <span class="co"># bottom right</span></span></code></pre></div>
-<p><img src="eib_files/figure-html/unnamed-chunk-12-1.png" class="r-plt" width="576"></p>
+<p><img src="eib_files/figure-html/unnamed-chunk-12-1.png" class="r-plt" alt="" width="576"></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, graph <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="eib_files/figure-html/unnamed-chunk-12-2.png" class="r-plt" width="576"></p>
+<p><img src="eib_files/figure-html/unnamed-chunk-12-2.png" class="r-plt" alt="" width="576"></p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, graph <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="eib_files/figure-html/unnamed-chunk-12-3.png" class="r-plt" width="576"></p>
+<p><img src="eib_files/figure-html/unnamed-chunk-12-3.png" class="r-plt" alt="" width="576"></p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>, graph <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="eib_files/figure-html/unnamed-chunk-12-4.png" class="r-plt" width="576"></p>
+<p><img src="eib_files/figure-html/unnamed-chunk-12-4.png" class="r-plt" alt="" width="576"></p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, graph <span class="op">=</span> <span class="st">"base"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="eib_files/figure-html/unnamed-chunk-12-5.png" class="r-plt" width="576"></p>
+<p><img src="eib_files/figure-html/unnamed-chunk-12-5.png" class="r-plt" alt="" width="576"></p>
 <p>For <code>ggplot2</code>,</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">##TODO:</span></span>
 <span><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span>, pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="eib_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" width="576"></p>
+<p><img src="eib_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" alt="" width="576"></p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span>, pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="eib_files/figure-html/unnamed-chunk-13-2.png" class="r-plt" width="576"></p>
+<p><img src="eib_files/figure-html/unnamed-chunk-13-2.png" class="r-plt" alt="" width="576"></p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span>, pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="eib_files/figure-html/unnamed-chunk-13-3.png" class="r-plt" width="576"></p>
+<p><img src="eib_files/figure-html/unnamed-chunk-13-3.png" class="r-plt" alt="" width="576"></p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>, graph <span class="op">=</span> <span class="st">"ggplot2"</span>, pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="eib_files/figure-html/unnamed-chunk-13-4.png" class="r-plt" width="576"></p>
+<p><img src="eib_files/figure-html/unnamed-chunk-13-4.png" class="r-plt" alt="" width="576"></p>
 <p>Define colour palette for different colour for each EIB line.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mypalette</span> <span class="op">&lt;-</span> <span class="fu">RColorBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html" class="external-link">brewer.pal</a></span><span class="op">(</span><span class="fl">3</span>, <span class="st">"Accent"</span><span class="op">)</span></span>
@@ -288,13 +288,13 @@ lines.</p>
 <span><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>,</span>
 <span>         graph <span class="op">=</span> <span class="st">"base"</span>,</span>
 <span>         line <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">mypalette</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="eib_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" width="576"></p>
+<p><img src="eib_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" alt="" width="576"></p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="../reference/eib.plot.html">eib.plot</a></span><span class="op">(</span><span class="va">he</span>,</span>
 <span>         graph <span class="op">=</span> <span class="st">"ggplot2"</span>,</span>
 <span>         line <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">mypalette</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="eib_files/figure-html/unnamed-chunk-14-2.png" class="r-plt" width="576"></p>
+<p><img src="eib_files/figure-html/unnamed-chunk-14-2.png" class="r-plt" alt="" width="576"></p>
 </div>
 </div>
 </div>
@@ -309,7 +309,7 @@ lines.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

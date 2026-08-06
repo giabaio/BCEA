@@ -68,6 +68,7 @@ Gianluca Baio, Andrea Berardi
 ## Examples
 
 ``` r
+
 if (FALSE) { # \dontrun{
 data(Vaccine, package = "BCEA")
 treats <- c("Status quo", "Vaccination")

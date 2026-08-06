@@ -210,9 +210,9 @@ Sensitivity Analysis Sample : A Nonparametric Regression Approach.”
 Sadatsafavi M, Bansback N, Zafari Z, Najafzadeh M, Marra C (2013). “Need
 for speed: An efficient algorithm for calculation of single-parameter
 expected value of partial perfect information.” *Value Heal.*,
-**16**(2), 438–448. ISSN 10983015,
+**16**(2), 438–448. ISSN 10983015.
 [doi:10.1016/j.jval.2012.10.018](https://doi.org/10.1016/j.jval.2012.10.018)
-, <http://dx.doi.org/10.1016/j.jval.2012.10.018>.
+. <http://dx.doi.org/10.1016/j.jval.2012.10.018>.
 
 Baio G (2013). *Bayesian Methods in Health Economics*. CRC.
 
@@ -223,8 +223,8 @@ Publishing. <https://link.springer.com/book/10.1007/978-3-319-55718-2>.
 Heath A, Manolopoulou I, Baio G (2016). “Estimating the expected value
 of partial perfect information in health economic evaluations using
 integrated nested Laplace approximation.” *Stat. Med.*, **35**(23),
-4264–4280. ISSN 0277-6715,
-[doi:10.1002/sim.6983](https://doi.org/10.1002/sim.6983) , 1504.05436,
+4264–4280. ISSN 0277-6715.
+[doi:10.1002/sim.6983](https://doi.org/10.1002/sim.6983) . 1504.05436,
 <https://pubmed.ncbi.nlm.nih.gov/27189534/>.
 
 ## See also

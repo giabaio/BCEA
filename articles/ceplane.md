@@ -12,6 +12,7 @@ To calculate these in BCEA we use the
 function.
 
 ``` r
+
 data("Vaccine")
 
 he <- bcea(eff, cost)
@@ -26,18 +27,21 @@ command `options(bcea.graph="...")`. Choices are `ggplot2`, `base` or
 `p` are recognised alteratives to `ggplot2` or `plotly`, respectively.
 
 ``` r
+
 ceplane.plot(he, graph = "base")
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-3-1.png)
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2")
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-3-2.png)
 
 ``` r
+
 # ceac.plot(he, graph = "plotly")
 ```
 
@@ -45,6 +49,7 @@ Other plotting arguments can be specified such as title, line colours
 and theme.
 
 ``` r
+
 ceplane.plot(he,
              graph = "ggplot2",
              title = "my title",
@@ -61,6 +66,7 @@ If you only what the mean point then you can suppress the sample points
 by passing size `NA`.
 
 ``` r
+
 ceplane.plot(he,
              graph = "ggplot2",
              point = list(size = NA),
@@ -75,6 +81,7 @@ In the default `ggplo2` version, the formatting of the axes can be
 easily modify using `ggplot2` facilities, like so.
 
 ``` r
+
 ceplane.plot(he) +
   scale_y_continuous(labels=scales::dollar_format(prefix="£")) 
 #> Scale for y is already present.
@@ -83,7 +90,7 @@ ceplane.plot(he) +
 
 ![](ceplane_files/figure-html/unnamed-chunk-6-1.png)
 
-The $x -$ or $y -$ axes can be modified separately using
+The $`x-`$ or $`y-`$ axes can be modified separately using
 `scale_x_continuous` or `scale_y_continuous`, respectively. See
 `help(dollar_format)` from the package `scales` for more information.
 
@@ -95,6 +102,7 @@ consider.
 #### R code
 
 ``` r
+
 data("Smoking")
 
 he <- bcea(eff, cost, ref = 4)
@@ -104,12 +112,14 @@ he <- bcea(eff, cost, ref = 4)
 Basic plots with defaults.
 
 ``` r
+
 ceplane.plot(he)
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-8-1.png)
 
 ``` r
+
 ceplane.plot(he, graph="base")
 ```
 
@@ -118,18 +128,21 @@ ceplane.plot(he, graph="base")
 The font size can be adjusted using the `text` argument.
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", text = list(size = 20))
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-9-1.png)
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", text = list(size = rel(2)))  # relative scaling, double size
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-9-2.png)
 
 ``` r
+
 
 # equivalent but more flexible and direct
 ceplane.plot(he, graph = "ggplot2") +
@@ -143,6 +156,7 @@ ceplane.plot(he, graph = "ggplot2") +
 Numerous different styling arguments can be provided.
 
 ``` r
+
 ceplane.plot(he,
              graph = "ggplot2",
              title = "my title",
@@ -153,7 +167,7 @@ ceplane.plot(he,
 #> ℹ Please use `linewidth` instead.
 #> ℹ The deprecated feature was likely used in the BCEA package.
 #>   Please report the issue at <https://github.com/giabaio/BCEA/issues/>.
-#> This warning is displayed once every 8 hours.
+#> This warning is displayed once per session.
 #> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
 #> generated.
 ```
@@ -163,12 +177,14 @@ ceplane.plot(he,
 There are various different ways to reposition the legend.
 
 ``` r
+
 ceplane.plot(he, pos = FALSE) # bottom right
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-11-1.png)
 
 ``` r
+
 ceplane.plot(he, pos = TRUE)  # bottom left
 ```
 
@@ -177,24 +193,28 @@ ceplane.plot(he, pos = TRUE)  # bottom left
 With numeric coordinates we can move the legend within the plot area.
 
 ``` r
+
 ceplane.plot(he, pos = c(0, 0))
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-12-1.png)
 
 ``` r
+
 ceplane.plot(he, pos = c(0, 1))
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-12-2.png)
 
 ``` r
+
 ceplane.plot(he, pos = c(1, 0))
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-12-3.png)
 
 ``` r
+
 ceplane.plot(he, pos = c(1, 1))
 ```
 
@@ -202,24 +222,28 @@ ceplane.plot(he, pos = c(1, 1))
 
 ``` r
 
+
 ceplane.plot(he, graph = "ggplot2", pos = c(0, 0))
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-12-5.png)
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", pos = c(0, 1))
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-12-6.png)
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", pos = c(1, 0))
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-12-7.png)
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", pos = c(1, 1))
 ```
 
@@ -228,6 +252,7 @@ ceplane.plot(he, graph = "ggplot2", pos = c(1, 1))
 Using key words for the corners of the plot area for base R.
 
 ``` r
+
 options(bcea.graph="base")
 ceplane.plot(he, pos = "bottomright")
 ```
@@ -235,18 +260,21 @@ ceplane.plot(he, pos = "bottomright")
 ![](ceplane_files/figure-html/unnamed-chunk-13-1.png)
 
 ``` r
+
 ceplane.plot(he, pos = "topright")
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-13-2.png)
 
 ``` r
+
 ceplane.plot(he, pos = "topleft")
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-13-3.png)
 
 ``` r
+
 ceplane.plot(he, pos = "bottomleft")
 ```
 
@@ -255,24 +283,28 @@ ceplane.plot(he, pos = "bottomleft")
 and for ggplot2 this is outside of the plot area on each side.
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", pos = "right")
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-14-1.png)
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", pos = "top")
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-14-2.png)
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", pos = "left")
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-14-3.png)
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", pos = "bottom")
 ```
 
@@ -283,18 +315,21 @@ We can also adjust the layout of the ggplot2 legend to a single line
 give a location as follows.
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", pos = "verticaltop")
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-15-1.png)
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", pos = "horizontalbottom")
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-15-2.png)
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", pos = "verticalbottom")
 ```
 
@@ -308,6 +343,7 @@ willingness-to-pay label e.g. “k = 25000”.
 The default is
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2")
 ```
 
@@ -317,6 +353,7 @@ The simplest argument is to set the value of the willingness-to-pay
 threshold using `wtp`.
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", wtp = 10000)
 ```
 
@@ -326,24 +363,28 @@ Alternatively, we can pass a list of arguments to `wtp` to modify the
 appearance of the label.
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", wtp = list(value = 10000))
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-18-1.png)
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", wtp = list(value = 10000, color = "blue"))
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-18-2.png)
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", wtp = list(color = "blue"))
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-18-3.png)
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", wtp = list(size = 5))
 ```
 
@@ -352,6 +393,7 @@ ceplane.plot(he, graph = "ggplot2", wtp = list(size = 5))
 To hide the text assign `size = 0`.
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", wtp = list(size = 0))
 ```
 
@@ -362,6 +404,7 @@ willingness-to-pay line by default. When this would mean the label is
 off the bottom of the plot it is positioned at the bottom left corner.
 
 ``` r
+
 data("Vaccine")
 he <- bcea(eff, cost, ref=2)
 
@@ -371,24 +414,28 @@ ceplane.plot(he, graph = "ggplot2")
 ![](ceplane_files/figure-html/unnamed-chunk-20-1.png)
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", wtp = 1000, xlim = c(-0.0005, 0.0015))
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-20-2.png)
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", wtp = 10000, xlim = c(-0.0005, 0.0015))
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-20-3.png)
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", wtp = 25000, xlim = c(-0.0005, 0.0015))
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-20-4.png)
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", wtp = 50000, xlim = c(-0.0005, 0.0015))
 ```
 
@@ -398,12 +445,14 @@ The position of the willingness to pay label can be adjusted using the
 `label.pos` argument and a logical value.
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", wtp = 1000, xlim = c(-0.0005, 0.0015), label.pos = TRUE)
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-21-1.png)
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", wtp = 1000, xlim = c(-0.0005, 0.0015), label.pos = FALSE)
 ```
 
@@ -413,6 +462,7 @@ A direct way of specifying the position of the label is to use the `wtp`
 argument and set the `y` value in a list.
 
 ``` r
+
 ceplane.plot(he, graph = "ggplot2", wtp = list(y = 8))
 ```
 
@@ -421,6 +471,7 @@ ceplane.plot(he, graph = "ggplot2", wtp = list(y = 8))
 For base `R`
 
 ``` r
+
 options(bcea.graph = "base")
 ceplane.plot(he)  # default
 ```
@@ -428,42 +479,49 @@ ceplane.plot(he)  # default
 ![](ceplane_files/figure-html/unnamed-chunk-23-1.png)
 
 ``` r
+
 ceplane.plot(he, wtp = 1000, xlim = c(-0.0005, 0.0015))
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-24-1.png)
 
 ``` r
+
 ceplane.plot(he, wtp = 10000, xlim = c(-0.0005, 0.0015))
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-24-2.png)
 
 ``` r
+
 ceplane.plot(he, wtp = 25000, xlim = c(-0.0005, 0.0015))
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-24-3.png)
 
 ``` r
+
 ceplane.plot(he, wtp = 50000, xlim = c(-0.0005, 0.0015))
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-24-4.png)
 
 ``` r
+
 ceplane.plot(he, wtp = 1000, xlim = c(-0.0005, 0.0015), label.pos = TRUE)
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-25-1.png)
 
 ``` r
+
 ceplane.plot(he, wtp = 1000, xlim = c(-0.0005, 0.0015), label.pos = FALSE)
 ```
 
 ![](ceplane_files/figure-html/unnamed-chunk-25-2.png)
 
 ``` r
+
 ##TODO: not yet implemented ggplot syntax for base R
 
 # ceplane.plot(he, wtp = list(color = "blue"))

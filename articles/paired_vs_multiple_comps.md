@@ -29,11 +29,13 @@ command `options(bcea.graph="...")`. Choices are `ggplot2`, `base` or
 `p` are recognised alteratives to `ggplot2` or `plotly`, respectively.
 
 ``` r
+
 data("Smoking")
 he <- bcea(eff, cost, ref = 4, Kmax = 500)
 ```
 
 ``` r
+
 par(mfrow = c(2,1))
 ceac.plot(he, graph = "base")
 abline(h = 0.5, lty = 2)
@@ -53,10 +55,12 @@ interventions using the
 function.
 
 ``` r
+
 he.multi <- multi.ce(he)
 ```
 
 ``` r
+
 par(mfrow = c(2, 1))
 ceac.plot(he.multi, graph = "base")
 abline(h = 0.5, lty = 2)

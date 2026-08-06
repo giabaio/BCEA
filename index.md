@@ -1,10 +1,11 @@
-# BCEA: Bayesian cost-effectiveness analysis
-
-![](reference/figures/logo.png)
+BCEA: Bayesian cost-effectiveness analysis
+![](reference/figures/logo.png) ================
 
 [![Build
 Status](https://app.travis-ci.com/n8thangreen/BCEA.svg?branch=dev)](https://app.travis-ci.com/n8thangreen/BCEA)
 [![R-CMD-check](https://github.com/n8thangreen/BCEA/actions/workflows/check-standard.yaml/badge.svg?branch=dev)](https://github.com/n8thangreen/BCEA/actions/workflows/check-standard.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/n8thangreen/BCEA/branch/dev/graph/badge.svg)](https://app.codecov.io/gh/n8thangreen/BCEA)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/BCEA)](https://cran.r-project.org/package=BCEA)
 [![CRAN_Download_Badge](https://cranlogs.r-pkg.org/badges/BCEA)](https://cran.r-project.org/package=BCEA)
 [![CRAN_Download_Badge](https://cranlogs.r-pkg.org/badges/grand-total/BCEA?color=orange)](https://cran.r-project.org/package=BCEA)
@@ -47,6 +48,7 @@ Install the [released version from
 CRAN](https://cran.r-project.org/package=BCEA) with
 
 ``` r
+
 install.packages("BCEA")
 ```
 
@@ -55,6 +57,7 @@ and more often than the stable one) can be installed from
 `r-universe.dev`, using the following command
 
 ``` r
+
 install.packages(
   'BCEA', 
   repos = c('https://giabaio.r-universe.dev', 'https://cloud.r-project.org')
@@ -65,6 +68,7 @@ Alternatively, you can intall the development version using `remotes`,
 with the following command.
 
 ``` r
+
 install.packages("remotes")
 remotes::install_github("giabaio/BCEA")
 ```
@@ -74,6 +78,7 @@ including [Rtools](https://cran.r-project.org/bin/windows/Rtools/)
 first, e.g. by running
 
 ``` r
+
 pkgs <- c("MASS", "Rtools", "remotes")
 repos <- "https://cran.rstudio.com"
 install.packages(pkgs, repos = repos, dependencies = "Depends")

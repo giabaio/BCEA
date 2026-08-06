@@ -25,6 +25,7 @@ To create the plots in BCEA we first call the
 function.
 
 ``` r
+
 data(Smoking)
 
 treats <- c("No intervention", "Self-help", "Individual counselling", "Group counselling")
@@ -34,6 +35,7 @@ bcea_smoke <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 - base R
 
 ``` r
+
 # all interventions
 ceef.plot(bcea_smoke)
 #> 
@@ -53,6 +55,7 @@ ceef.plot(bcea_smoke)
 ![](ceef_files/figure-html/unnamed-chunk-3-1.png)
 
 ``` r
+
 
 # subset
 setComparisons(bcea_smoke) <- c(1,3)
@@ -74,6 +77,7 @@ ceef.plot(bcea_smoke)
 
 ``` r
 
+
 # check numbering and legend
 setComparisons(bcea_smoke) <- c(3,1)
 ceef.plot(bcea_smoke)
@@ -94,6 +98,7 @@ ceef.plot(bcea_smoke)
 
 ``` r
 
+
 setComparisons(bcea_smoke) <- c(3,2)
 ceef.plot(bcea_smoke)
 #> 
@@ -113,6 +118,7 @@ ceef.plot(bcea_smoke)
 
 ``` r
 
+
 setComparisons(bcea_smoke) <- 1
 ceef.plot(bcea_smoke)
 #> 
@@ -130,6 +136,7 @@ ceef.plot(bcea_smoke)
 ![](ceef_files/figure-html/unnamed-chunk-3-5.png)
 
 ``` r
+
 
 # add interventions back in
 setComparisons(bcea_smoke) <- c(1,3)
@@ -152,6 +159,7 @@ ceef.plot(bcea_smoke)
 - ggplot
 
 ``` r
+
 bcea_smoke <- bcea(eff, cost, ref = 4, interventions = treats, Kmax = 500)
 
 # all interventions
@@ -174,6 +182,7 @@ ceef.plot(bcea_smoke, graph = "ggplot")
 
 ``` r
 
+
 # subset
 setComparisons(bcea_smoke) <- c(1,3)
 ceef.plot(bcea_smoke, graph = "ggplot")
@@ -193,6 +202,7 @@ ceef.plot(bcea_smoke, graph = "ggplot")
 ![](ceef_files/figure-html/unnamed-chunk-4-2.png)
 
 ``` r
+
 
 # check numbering and legend
 setComparisons(bcea_smoke) <- c(3,1)
@@ -214,6 +224,7 @@ ceef.plot(bcea_smoke, graph = "ggplot")
 
 ``` r
 
+
 setComparisons(bcea_smoke) <- c(3,2)
 ceef.plot(bcea_smoke, graph = "ggplot")
 #> 
@@ -233,6 +244,7 @@ ceef.plot(bcea_smoke, graph = "ggplot")
 
 ``` r
 
+
 setComparisons(bcea_smoke) <- 1
 ceef.plot(bcea_smoke, graph = "ggplot")
 #> 
@@ -250,6 +262,7 @@ ceef.plot(bcea_smoke, graph = "ggplot")
 ![](ceef_files/figure-html/unnamed-chunk-4-5.png)
 
 ``` r
+
 
 # add interventions back in
 setComparisons(bcea_smoke) <- c(1,3)
@@ -272,6 +285,7 @@ ceef.plot(bcea_smoke, graph = "ggplot")
 Check legend position argument:
 
 ``` r
+
 # base R
 ceef.plot(bcea_smoke, pos = c(1,0))
 #> 
@@ -290,6 +304,7 @@ ceef.plot(bcea_smoke, pos = c(1,0))
 ![](ceef_files/figure-html/unnamed-chunk-5-1.png)
 
 ``` r
+
 ceef.plot(bcea_smoke, pos = c(1,1))
 #> 
 #> Cost-effectiveness efficiency frontier summary 
@@ -308,6 +323,7 @@ ceef.plot(bcea_smoke, pos = c(1,1))
 
 ``` r
 
+
 ceef.plot(bcea_smoke, pos = TRUE)
 #> 
 #> Cost-effectiveness efficiency frontier summary 
@@ -325,6 +341,7 @@ ceef.plot(bcea_smoke, pos = TRUE)
 ![](ceef_files/figure-html/unnamed-chunk-5-3.png)
 
 ``` r
+
 ceef.plot(bcea_smoke, pos = FALSE)
 #> 
 #> Cost-effectiveness efficiency frontier summary 
@@ -343,6 +360,7 @@ ceef.plot(bcea_smoke, pos = FALSE)
 
 ``` r
 
+
 ceef.plot(bcea_smoke, pos = "topleft")
 #> 
 #> Cost-effectiveness efficiency frontier summary 
@@ -360,6 +378,7 @@ ceef.plot(bcea_smoke, pos = "topleft")
 ![](ceef_files/figure-html/unnamed-chunk-5-5.png)
 
 ``` r
+
 ceef.plot(bcea_smoke, pos = "topright")
 #> 
 #> Cost-effectiveness efficiency frontier summary 
@@ -377,6 +396,7 @@ ceef.plot(bcea_smoke, pos = "topright")
 ![](ceef_files/figure-html/unnamed-chunk-5-6.png)
 
 ``` r
+
 ceef.plot(bcea_smoke, pos = "bottomleft")
 #> 
 #> Cost-effectiveness efficiency frontier summary 
@@ -394,6 +414,7 @@ ceef.plot(bcea_smoke, pos = "bottomleft")
 ![](ceef_files/figure-html/unnamed-chunk-5-7.png)
 
 ``` r
+
 ceef.plot(bcea_smoke, pos = "bottomright")
 #> 
 #> Cost-effectiveness efficiency frontier summary 
@@ -411,6 +432,7 @@ ceef.plot(bcea_smoke, pos = "bottomright")
 ![](ceef_files/figure-html/unnamed-chunk-5-8.png)
 
 ``` r
+
 
 # ggplot2
 ceef.plot(bcea_smoke, graph = "ggplot", pos = c(1,0))
@@ -430,6 +452,7 @@ ceef.plot(bcea_smoke, graph = "ggplot", pos = c(1,0))
 ![](ceef_files/figure-html/unnamed-chunk-5-9.png)
 
 ``` r
+
 ceef.plot(bcea_smoke, graph = "ggplot", pos = c(1,1))
 #> 
 #> Cost-effectiveness efficiency frontier summary 
@@ -448,6 +471,7 @@ ceef.plot(bcea_smoke, graph = "ggplot", pos = c(1,1))
 
 ``` r
 
+
 ceef.plot(bcea_smoke, graph = "ggplot", pos = TRUE)
 #> 
 #> Cost-effectiveness efficiency frontier summary 
@@ -465,6 +489,7 @@ ceef.plot(bcea_smoke, graph = "ggplot", pos = TRUE)
 ![](ceef_files/figure-html/unnamed-chunk-5-11.png)
 
 ``` r
+
 ceef.plot(bcea_smoke, graph = "ggplot", pos = FALSE)
 #> 
 #> Cost-effectiveness efficiency frontier summary 
@@ -483,6 +508,7 @@ ceef.plot(bcea_smoke, graph = "ggplot", pos = FALSE)
 
 ``` r
 
+
 ceef.plot(bcea_smoke, graph = "ggplot", pos = "top")
 #> 
 #> Cost-effectiveness efficiency frontier summary 
@@ -500,6 +526,7 @@ ceef.plot(bcea_smoke, graph = "ggplot", pos = "top")
 ![](ceef_files/figure-html/unnamed-chunk-5-13.png)
 
 ``` r
+
 ceef.plot(bcea_smoke, graph = "ggplot", pos = "bottom")
 #> 
 #> Cost-effectiveness efficiency frontier summary 
@@ -517,6 +544,7 @@ ceef.plot(bcea_smoke, graph = "ggplot", pos = "bottom")
 ![](ceef_files/figure-html/unnamed-chunk-5-14.png)
 
 ``` r
+
 ceef.plot(bcea_smoke, graph = "ggplot", pos = "left")
 #> 
 #> Cost-effectiveness efficiency frontier summary 
@@ -534,6 +562,7 @@ ceef.plot(bcea_smoke, graph = "ggplot", pos = "left")
 ![](ceef_files/figure-html/unnamed-chunk-5-15.png)
 
 ``` r
+
 ceef.plot(bcea_smoke, graph = "ggplot", pos = "right")
 #> 
 #> Cost-effectiveness efficiency frontier summary 
@@ -553,6 +582,7 @@ ceef.plot(bcea_smoke, graph = "ggplot", pos = "right")
 ### Flipping plot
 
 ``` r
+
 ceef.plot(bcea_smoke,
           flip = TRUE,
           dominance = FALSE,
@@ -564,6 +594,7 @@ ceef.plot(bcea_smoke,
 ![](ceef_files/figure-html/unnamed-chunk-6-1.png)
 
 ``` r
+
 
 ceef.plot(bcea_smoke,
           dominance = TRUE,
@@ -578,6 +609,7 @@ ceef.plot(bcea_smoke,
 ### Start from origin or smallest (e,c).
 
 ``` r
+
 ceef.plot(bcea_smoke,
           flip = TRUE,
           dominance = TRUE,
@@ -589,6 +621,7 @@ ceef.plot(bcea_smoke,
 ![](ceef_files/figure-html/unnamed-chunk-7-1.png)
 
 ``` r
+
 
 ceef.plot(bcea_smoke,
           dominance = TRUE,
@@ -603,6 +636,7 @@ ceef.plot(bcea_smoke,
 ### Negative cost or effectiveness
 
 ``` r
+
 data("Smoking")
 
 cost[, 4] <- -cost[, 4]
@@ -628,6 +662,7 @@ ceef.plot(bcea_smoke, graph = "ggplot")
 ![](ceef_files/figure-html/unnamed-chunk-8-1.png)
 
 ``` r
+
 ceef.plot(bcea_smoke, graph = "base")
 #> Costs are negative, the frontier will not start from the origins
 #> 
@@ -648,6 +683,7 @@ ceef.plot(bcea_smoke, graph = "base")
 
 ``` r
 
+
 ceef.plot(bcea_smoke, start.from.origins = TRUE, graph = "ggplot")
 #> Costs are negative, the frontier will not start from the origins
 #> 
@@ -667,6 +703,7 @@ ceef.plot(bcea_smoke, start.from.origins = TRUE, graph = "ggplot")
 ![](ceef_files/figure-html/unnamed-chunk-8-3.png)
 
 ``` r
+
 ceef.plot(bcea_smoke, start.from.origins = TRUE, graph = "base")
 #> Costs are negative, the frontier will not start from the origins
 #> 
@@ -687,6 +724,7 @@ ceef.plot(bcea_smoke, start.from.origins = TRUE, graph = "base")
 
 ``` r
 
+
 setComparisons(bcea_smoke) <- c(1,2)
 ceef.plot(bcea_smoke, graph = "ggplot")
 #> 
@@ -705,6 +743,7 @@ ceef.plot(bcea_smoke, graph = "ggplot")
 ![](ceef_files/figure-html/unnamed-chunk-8-5.png)
 
 ``` r
+
 ceef.plot(bcea_smoke, graph = "base")
 #> 
 #> Cost-effectiveness efficiency frontier summary 
@@ -722,6 +761,7 @@ ceef.plot(bcea_smoke, graph = "base")
 ![](ceef_files/figure-html/unnamed-chunk-8-6.png)
 
 ``` r
+
 
 eff[, 3] <- -eff[, 3]
 bcea_smoke <- bcea(eff, cost, ref = 3, interventions = treats, Kmax = 500)
@@ -744,6 +784,7 @@ ceef.plot(bcea_smoke, graph = "ggplot")
 ![](ceef_files/figure-html/unnamed-chunk-8-7.png)
 
 ``` r
+
 ceef.plot(bcea_smoke, graph = "base")
 #> Costs and benefits are negative, the frontier will not start from the origins
 #> 
@@ -763,6 +804,7 @@ ceef.plot(bcea_smoke, graph = "base")
 ![](ceef_files/figure-html/unnamed-chunk-8-8.png)
 
 ``` r
+
 
 
 data("Smoking")
@@ -787,6 +829,7 @@ ceef.plot(bcea_smoke, graph = "ggplot")
 ![](ceef_files/figure-html/unnamed-chunk-8-9.png)
 
 ``` r
+
 ceef.plot(bcea_smoke, graph = "base")
 #> Benefits are negative, the frontier will not start from the origins
 #> 

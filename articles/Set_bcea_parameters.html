@@ -12,8 +12,8 @@
 <link rel="icon" sizes="any" href="../favicon.ico">
 <link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Set bcea() Parameters: Constructor and Setters">
@@ -188,7 +188,7 @@ function for 2 different reference groups.</p>
 <span><span class="co">#&gt;  - attr(*, "class")= chr [1:2] "bcea" "list"</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_ref1</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" width="576"></p>
+<p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="576"></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">he_ref2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">eff</span>, <span class="va">cost</span>,</span>
 <span>                ref <span class="op">=</span> <span class="fl">2</span>,           </span>
@@ -281,7 +281,7 @@ equivalent ways.</p>
 <span><span class="co">#&gt;  $ comp         : int [1:3] 2 3 4</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_comp234</span>, wtp <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" width="576"></p>
+<p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" alt="" width="576"></p>
 <p>Let us compare against only groups 2.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">he_comp2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bcea.html">bcea</a></span><span class="op">(</span><span class="va">eff</span>, <span class="va">cost</span>,</span>
@@ -299,7 +299,7 @@ equivalent ways.</p>
 <span><span class="co">#&gt;  $ comp         : num 2</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_comp2</span>, wtp <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-12-1.png" class="r-plt" width="576"></p>
+<p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-12-1.png" class="r-plt" alt="" width="576"></p>
 <p>We can achieve the same thing using the appropriate setter.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/setComparisons.html">setComparisons</a></span><span class="op">(</span><span class="va">he_comp234</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
@@ -313,7 +313,7 @@ equivalent ways.</p>
 <span><span class="co">#&gt;  $ comp         : num 2</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_comp234</span>, wtp <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" width="576"></p>
+<p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" alt="" width="576"></p>
 <p>We can select multiple comparison groups too. Let us compare against
 only groups 2 and 4.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
@@ -331,7 +331,7 @@ only groups 2 and 4.</p>
 <span><span class="co">#&gt;  $ comp         : num [1:2] 2 4</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_comp24</span>, wtp <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" width="576"></p>
+<p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" alt="" width="576"></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/setComparisons.html">setComparisons</a></span><span class="op">(</span><span class="va">he_comp234</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span><span class="op">)</span></span>
 <span></span>
@@ -344,17 +344,17 @@ only groups 2 and 4.</p>
 <span><span class="co">#&gt;  $ comp         : num [1:2] 2 4</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_comp24</span>, wtp <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-15-1.png" class="r-plt" width="576"></p>
+<p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-15-1.png" class="r-plt" alt="" width="576"></p>
 <p>Further, a <code>bcea</code> object with all comparison groups can be
 passed to other functions such as <code>ceplane.plot</code> and
 <code>ceac.plot</code> with a <code>comparison</code> argument, which
 will do the modifications using these functions internally instead.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_comp234</span>, comparison <span class="op">=</span> <span class="fl">2</span>, wtp <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-16-1.png" class="r-plt" width="576"></p>
+<p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-16-1.png" class="r-plt" alt="" width="576"></p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ceplane.plot.html">ceplane.plot</a></span><span class="op">(</span><span class="va">he_comp234</span>, comparison <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">4</span><span class="op">)</span>, wtp <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-16-2.png" class="r-plt" width="576"></p>
+<p><img src="Set_bcea_parameters_files/figure-html/unnamed-chunk-16-2.png" class="r-plt" alt="" width="576"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -367,7 +367,7 @@ will do the modifications using these functions internally instead.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

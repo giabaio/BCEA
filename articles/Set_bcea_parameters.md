@@ -1,6 +1,7 @@
 # Set bcea() Parameters: Constructor and Setters
 
 ``` r
+
 library(BCEA)
 #> Registered S3 method overwritten by 'BCEA':
 #>   method     from
@@ -18,6 +19,7 @@ There are several arguments passed to
 specify the form of the analysis. These are
 
 ``` r
+
 bcea(eff, cost,
      ref = 1,
      interventions = NULL,
@@ -49,6 +51,7 @@ package setter functions.
 Load cost-effectiveness data.
 
 ``` r
+
 data(Vaccine)
 ```
 
@@ -56,6 +59,7 @@ We first create `bcea` object using the constructor function for 2
 different reference groups.
 
 ``` r
+
 he_ref1 <- bcea(eff, cost,
                 ref = 1,           
                 interventions = treats,
@@ -117,6 +121,7 @@ ceplane.plot(he_ref1)
 ![](Set_bcea_parameters_files/figure-html/unnamed-chunk-4-1.png)
 
 ``` r
+
 he_ref2 <- bcea(eff, cost,
                 ref = 2,           
                 interventions = treats,
@@ -134,6 +139,7 @@ str(he_ref2[c("n_comparators", "ICER", "ref", "comp")])
 Alternatively, we can do the same by modifying the first output.
 
 ``` r
+
 setReferenceGroup(he_ref1) <- 2
 
 str(he_ref1[c("n_comparators", "ICER", "ref", "comp")])
@@ -150,6 +156,7 @@ str(he_ref1[c("n_comparators", "ICER", "ref", "comp")])
 In the same way as above we can change `Kmax` in 2 equivalent ways.
 
 ``` r
+
 he_Kmax1 <- bcea(eff, cost,
                  ref = 1,           
                  interventions = treats,
@@ -166,6 +173,7 @@ str(he_Kmax1[c("n_comparators", "ICER", "ref", "comp", "Kmax")])
 ```
 
 ``` r
+
 he_Kmax2 <- bcea(eff, cost,
                  ref = 2,           
                  interventions = treats,
@@ -182,6 +190,7 @@ str(he_Kmax2[c("n_comparators", "ICER", "ref", "comp", "Kmax")])
 ```
 
 ``` r
+
 setKmax(he_Kmax1) <- 2000
 
 str(he_Kmax1[c("n_comparators", "ICER", "ref", "comp", "Kmax")])
@@ -199,12 +208,14 @@ str(he_Kmax1[c("n_comparators", "ICER", "ref", "comp", "Kmax")])
 Lets load some data with more than two groups.
 
 ``` r
+
 data(Smoking)
 ```
 
 Defaults is all other groups which in this case is 2, 3 and 4.
 
 ``` r
+
 he_comp234 <- bcea(eff, cost,
                    ref = 1,           
                    interventions = treats,
@@ -226,6 +237,7 @@ ceplane.plot(he_comp234, wtp = 2000)
 Let us compare against only groups 2.
 
 ``` r
+
 he_comp2 <- bcea(eff, cost,
                  ref = 1,
                  .comparison = 2,
@@ -248,6 +260,7 @@ ceplane.plot(he_comp2, wtp = 2000)
 We can achieve the same thing using the appropriate setter.
 
 ``` r
+
 setComparisons(he_comp234) <- 2
 
 str(he_comp234[c("n_comparators", "ICER", "ref", "comp")])
@@ -267,6 +280,7 @@ We can select multiple comparison groups too. Let us compare against
 only groups 2 and 4.
 
 ``` r
+
 he_comp24 <- bcea(eff, cost,
                   ref = 1,
                   .comparison = c(2,4),
@@ -286,6 +300,7 @@ ceplane.plot(he_comp24, wtp = 2000)
 ![](Set_bcea_parameters_files/figure-html/unnamed-chunk-14-1.png)
 
 ``` r
+
 setComparisons(he_comp234) <- c(2,4)
 
 str(he_comp234[c("n_comparators", "ICER", "ref", "comp")])
@@ -307,12 +322,14 @@ other functions such as `ceplane.plot` and `ceac.plot` with a
 functions internally instead.
 
 ``` r
+
 ceplane.plot(he_comp234, comparison = 2, wtp = 2000)
 ```
 
 ![](Set_bcea_parameters_files/figure-html/unnamed-chunk-16-1.png)
 
 ``` r
+
 ceplane.plot(he_comp234, comparison = c(2,4), wtp = 2000)
 ```
 

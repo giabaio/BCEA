@@ -170,6 +170,7 @@ Andrea Berardi, Gianluca Baio
 ## Examples
 
 ``` r
+
 ## create the bcea object m for the smoking cessation example
 data(Smoking)
 m <- bcea(eff, cost, ref = 4, Kmax = 500, interventions = treats)

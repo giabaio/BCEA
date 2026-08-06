@@ -7,20 +7,24 @@ of expected incremental benefit (EIB) plots using the BCEA package.
 
 ## Two interventions only
 
-This is the simplest case, usually an alternative intervention ($i = 1$)
-versus status-quo ($i = 0$).
+This is the simplest case, usually an alternative intervention ($`i=1`$)
+versus status-quo ($`i=0`$).
 
 The plot is based on the incremental benefit as a function of the
-willingness to pay $k$.
+willingness to pay $`k`$.
 
-$$IB(\theta) = k\Delta_{e} - \Delta_{c}$$
+``` math
+IB(\theta) = k \Delta_e - \Delta_c
+```
 
-Using the set of $S$ posterior samples, the EIB is approximated by
+Using the set of $`S`$ posterior samples, the EIB is approximated by
 
-$$\frac{1}{S}\sum\limits_{s}^{S}IB\left( \theta_{s} \right)$$
+``` math
+\frac{1}{S} \sum_s^S IB(\theta_s)
+```
 
-where $\theta_{s}$ is the realised configuration of the parameters
-$\theta$ in correspondence of the $s$-th simulation.
+where $`\theta_s`$ is the realised configuration of the parameters
+$`\theta`$ in correspondence of the $`s`$-th simulation.
 
 #### R code
 
@@ -29,6 +33,7 @@ To calculate these in BCEA we use the
 function.
 
 ``` r
+
 data(Vaccine)
 
 he <-
@@ -47,32 +52,38 @@ command `options(bcea.graph="...")`. Choices are `ggplot2`, `base` or
 `p` are recognised alteratives to `ggplot2` or `plotly`, respectively.
 
 ``` r
+
 eib.plot(he)
 ```
 
 ![](eib_files/figure-html/unnamed-chunk-3-1.png)
 
 The vertical line represents the break-even value corresponding to
-$k^{*}$ indicating that above that threshold the alternative treatment
+$`k^*`$ indicating that above that threshold the alternative treatment
 is more cost-effective than the status-quo.
 
-$$k^{*} = \min\{ k:\text{EIB} > 0\}$$
+``` math
+k^* = \min\{ k : \mbox{EIB} > 0 \}
+```
 
 This will be at the point the curve crosses the *x*-axis.
 
 ``` r
+
 eib.plot(he, graph = "base")
 ```
 
 ![](eib_files/figure-html/unnamed-chunk-4-1.png)
 
 ``` r
+
 eib.plot(he, graph = "ggplot2")
 ```
 
 ![](eib_files/figure-html/unnamed-chunk-4-2.png)
 
 ``` r
+
 # ceac.plot(he, graph = "plotly")
 ```
 
@@ -80,6 +91,7 @@ Other plotting arguments can be specified such as title, line colours
 and theme.
 
 ``` r
+
 eib.plot(he,
          graph = "ggplot2",
          main = "my title",
@@ -93,16 +105,18 @@ Credible interval can also be plotted using the `plot.cri` logical
 argument.
 
 ``` r
+
 eib.plot(he, plot.cri = FALSE)
 ```
 
 ![](eib_files/figure-html/unnamed-chunk-6-1.png)
 
 In the `ggplot2` implementation, it is possible to modify the formatting
-of the numerical labels in the $x -$ and $y -$ axis using `ggplot2`
+of the numerical labels in the $`x-`$ and $`y-`$ axis using `ggplot2`
 failities, such as in the following code.
 
 ``` r
+
 # Resets the formatting on the x-axis to simple numbers 
 eib.plot(he) + scale_x_continuous()
 #> Scale for x is already present.
@@ -112,6 +126,7 @@ eib.plot(he) + scale_x_continuous()
 ![](eib_files/figure-html/unnamed-chunk-7-1.png)
 
 ``` r
+
 
 # Uses currency style with £ symbol
 eib.plot(he) + scale_y_continuous(labels=scales::dollar_format(prefix="£"))
@@ -130,14 +145,18 @@ The curves are for pair-wise comparisons against a status-quo and the
 vertical lines and k\* annotation is for simultaneous comparisons.
 
 Without loss of generality, if we assume status quo intervention
-$i = 0$, then we wish to calculate
+$`i=0`$, then we wish to calculate
 
-$$\frac{1}{S}\sum\limits_{s}^{S}IB\left( \theta_{s}^{i0} \right)\;\;\text{for each}\; i$$
+``` math
+\frac{1}{S} \sum_s^S IB(\theta^{i0}_s) \;\; \mbox{for each} \; i
+```
 
 The break-even points represent no preference between the two best
-interventions at $k$.
+interventions at $`k`$.
 
-$$k_{i}^{*} = \min\{ k:\text{EIB}\left( \theta^{i} \right) > \text{EIB}\left( \theta^{j} \right)\}$$
+``` math
+k^*_i = \min\{ k : \mbox{EIB}(\theta^i) > \mbox{EIB}(\theta^j) \}
+```
 
 Only the right-most of these will be where the curves cross the x-axis.
 
@@ -148,6 +167,7 @@ This is the default plot for
 so we simply follow the same steps as above with the new data set.
 
 ``` r
+
 data(Smoking)
 
 treats <- c("No intervention", "Self-help",
@@ -163,6 +183,7 @@ For example, we can change the main title and the EIB line colours to
 green.
 
 ``` r
+
 eib.plot(he,
          graph = "base",
          main = "my title",
@@ -172,6 +193,7 @@ eib.plot(he,
 ![](eib_files/figure-html/unnamed-chunk-9-1.png)
 
 ``` r
+
 eib.plot(he,
          graph = "ggplot2",
          main = "my title",
@@ -184,6 +206,7 @@ Credible interval can also be plotted as before. This isn’t recommended
 in this case since its hard to understand with so many lines.
 
 ``` r
+
 eib.plot(he, plot.cri = TRUE)
 ```
 
@@ -194,30 +217,35 @@ eib.plot(he, plot.cri = TRUE)
 For base R,
 
 ``` r
+
 eib.plot(he, pos = FALSE, graph = "base") # bottom right
 ```
 
 ![](eib_files/figure-html/unnamed-chunk-12-1.png)
 
 ``` r
+
 eib.plot(he, pos = c(0, 0), graph = "base")
 ```
 
 ![](eib_files/figure-html/unnamed-chunk-12-2.png)
 
 ``` r
+
 eib.plot(he, pos = c(0, 1), graph = "base")
 ```
 
 ![](eib_files/figure-html/unnamed-chunk-12-3.png)
 
 ``` r
+
 eib.plot(he, pos = c(1, 0), graph = "base")
 ```
 
 ![](eib_files/figure-html/unnamed-chunk-12-4.png)
 
 ``` r
+
 eib.plot(he, pos = c(1, 1), graph = "base")
 ```
 
@@ -226,6 +254,7 @@ eib.plot(he, pos = c(1, 1), graph = "base")
 For `ggplot2`,
 
 ``` r
+
 ##TODO:
 eib.plot(he, graph = "ggplot2", pos = c(0, 0))
 ```
@@ -233,18 +262,21 @@ eib.plot(he, graph = "ggplot2", pos = c(0, 0))
 ![](eib_files/figure-html/unnamed-chunk-13-1.png)
 
 ``` r
+
 eib.plot(he, graph = "ggplot2", pos = c(0, 1))
 ```
 
 ![](eib_files/figure-html/unnamed-chunk-13-2.png)
 
 ``` r
+
 eib.plot(he, graph = "ggplot2", pos = c(1, 0))
 ```
 
 ![](eib_files/figure-html/unnamed-chunk-13-3.png)
 
 ``` r
+
 eib.plot(he, graph = "ggplot2", pos = c(1, 1))
 ```
 
@@ -253,6 +285,7 @@ eib.plot(he, graph = "ggplot2", pos = c(1, 1))
 Define colour palette for different colour for each EIB line.
 
 ``` r
+
 mypalette <- RColorBrewer::brewer.pal(3, "Accent")
 
 eib.plot(he,
@@ -263,6 +296,7 @@ eib.plot(he,
 ![](eib_files/figure-html/unnamed-chunk-14-1.png)
 
 ``` r
+
 
 eib.plot(he,
          graph = "ggplot2",

@@ -5,6 +5,7 @@
 ## R code
 
 ``` r
+
 data(Vaccine, package = "BCEA")
 treats <- c("Status quo", "Vaccination")
 
@@ -19,12 +20,14 @@ EVPPI <- BCEA::evppi(m, c("beta.1." , "beta.2."), inp$mat)
 ```
 
 ``` r
+
 plot(EVPPI)
 ```
 
 ![](evppi_files/figure-html/unnamed-chunk-3-1.png)
 
 ``` r
+
 # deprecated (single parameter) methods
 EVPPI.so <- BCEA::evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "so", n.blocks = 50)
 EVPPI.sad <- BCEA::evppi(m, c("beta.1.", "beta.2."), inp$mat, method = "sad", n.seps = 1)
@@ -34,6 +37,7 @@ plot(EVPPI.sad)
 ```
 
 ``` r
+
 # Compute the EVPPI using INLA/SPDE
 x_inla <- BCEA::evppi(he = m, 39:40, input = inp$mat)
 
@@ -53,6 +57,7 @@ lines(x_gp$k, x_gp$evppi, col = "blue")
 
 ``` r
 
+
 # zoom in
 plot(x_inla$k, x_inla$evppi, type = "l", lwd = 2, lty = 2)
 lines(x_gam$k, x_gam$evppi, col = "red")
@@ -62,6 +67,7 @@ lines(x_gp$k, x_gp$evppi, col = "blue")
 ![](evppi_files/figure-html/unnamed-chunk-5-2.png)
 
 ``` r
+
 data(Smoking)
 treats <- c("No intervention", "Self-help",
             "Individual counselling", "Group counselling")

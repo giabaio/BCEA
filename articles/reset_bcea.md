@@ -6,6 +6,7 @@ When running `BCEA`, we create objects that belong in a special `bcea`
 “class”
 
 ``` r
+
 data(Vaccine)
 m=bcea(eff,cost,ref=2,interventions=treats)
 class(m)
@@ -17,19 +18,21 @@ may consider the “mixed analysis”, which accounts for the potential
 market shares of the interventions being compared
 
 ``` r
+
 mixedAn(m)=c(.25,.75)
 class(m)
 #> [1] "mixedAn" "bcea"    "list"
 ```
 
-— in this case, we assume that intervention $t = 1$ has 25% of the
-market and intervetion $t = 2$ has the remaining 75%.
+— in this case, we assume that intervention $`t=1`$ has 25% of the
+market and intervetion $`t=2`$ has the remaining 75%.
 
 This operation changes the nature of the `m` object, to which we add
 relevant quantities/variables and an additional class `mixedAn`. This
 unlocks new plotting methods. For instance, when we do
 
 ``` r
+
 plot(m)
 #> Warning in plot.mixedAn(m): 'plot.mixedAn' is deprecated.
 #> Use 'evi.plot' instead.
@@ -49,6 +52,7 @@ Interestingly, because we do not remove the class `bcea` from the object
 For instance
 
 ``` r
+
 BCEA:::plot.bcea(m)
 ```
 
@@ -63,6 +67,7 @@ In addition, methods for which a `mixedAn` option is not available
 object of the class `bcea` too and so if we try
 
 ``` r
+
 ceac.plot(m)
 ```
 
@@ -76,6 +81,7 @@ Similar reasoning applies if we use the `CEriskav` class, which we can
 do by calling
 
 ``` r
+
 CEriskav(m)=c(.001,.002,.003)
 class(m)
 #> [1] "CEriskav" "mixedAn"  "bcea"     "list"
@@ -85,6 +91,7 @@ This adds another class to the object `m` and unlocks other `plot`
 methods. Now `CEriskav` becomes the default class and so
 
 ``` r
+
 plot(m)
 ```
 
@@ -94,6 +101,7 @@ generates the specific graph to perform the analysis including risk
 aversion. But
 
 ``` r
+
 BCEA:::plot.mixedAn(m)
 #> Warning in BCEA:::plot.mixedAn(m): 'BCEA:::plot.mixedAn' is deprecated.
 #> Use 'evi.plot' instead.
@@ -111,6 +119,7 @@ simply use the
 function.
 
 ``` r
+
 m=reset_bcea(m)
 class(m)
 #> [1] "bcea" "list"
