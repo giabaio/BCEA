@@ -29,6 +29,9 @@ Useful links:
 
 Authors:
 
+- Gianluca Baio <g.baio@ucl.ac.uk>
+  ([ORCID](https://orcid.org/0000-0003-4314-2570)) \[copyright holder\]
+
 - Andrea Berardi <a.berardi@ucl.ac.uk>
   ([ORCID](https://orcid.org/0000-0002-2906-496X))
 
