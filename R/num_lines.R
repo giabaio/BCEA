@@ -6,6 +6,7 @@
 #' @name num_lines
 #' @param dat Data
 #' @keywords internal
+#' @export
 #' 
 num_lines <- function(dat) {
   UseMethod('num_lines', dat)
@@ -24,18 +25,21 @@ num_lines.bcea <- function(dat) {
 }
 
 #' @rdname num_lines
+#' @export
 #' 
 num_lines.evppi <- function(dat) {
   2
 }
 
 #' @rdname num_lines
+#' @export
 #' 
 num_lines.CEriskav <- function(dat) {
   dat$n_comparators
 }
 
 #' @rdname num_lines
+#' @export
 #' 
 num_lines.default <- function(dat) {
   dat$n_comparisons

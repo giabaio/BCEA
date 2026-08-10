@@ -121,6 +121,5 @@ ceplane.plot(he,
              graph = "ggplot2",
              wtp=200,
              theme = ggplot2::theme_linedraw())
-             
 }
 \keyword{hplot}

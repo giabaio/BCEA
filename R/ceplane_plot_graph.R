@@ -65,6 +65,7 @@ NULL
 #' 
 #' @return For base R returns a plot
 #' @keywords hplot
+#' @export
 #' 
 ceplane_plot_base.bcea <- function(he,
                                    pos_legend,
@@ -130,6 +131,7 @@ ceplane_plot_base <- function(he, ...) {
 #'              graph = "ggplot2",
 #'              wtp=200,
 #'              theme = ggplot2::theme_linedraw())
+#' @export
 #'              
 ceplane_plot_ggplot.bcea <- function(he,
                                      pos_legend,
@@ -231,6 +233,7 @@ ceplane_plot_ggplot <- function(he, ...) {
 #' @rdname ceplane_plot_graph
 #'  
 #' @return For \pkg{plotly} returns a plot in the Viewer
+#' @export
 #' 
 ceplane_plot_plotly.bcea <- function(he,
                                      wtp = 25000,

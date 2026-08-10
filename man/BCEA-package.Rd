@@ -26,6 +26,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Gianluca Baio \email{g.baio@ucl.ac.uk} (\href{https://orcid.org/0000-0003-4314-2570}{ORCID}) [copyright holder]
   \item Andrea Berardi \email{a.berardi@ucl.ac.uk} (\href{https://orcid.org/0000-0002-2906-496X}{ORCID})
   \item Anna Heath \email{anna.heath@sickkids.ca} (\href{https://orcid.org/0000-0002-7263-4251}{ORCID})
   \item Nathan Green \email{n.green@ucl.ac.uk} (\href{https://orcid.org/0000-0003-2745-1736}{ORCID})
