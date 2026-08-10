@@ -10,9 +10,9 @@
 \usage{
 make.report(...)
 
-mce.plot(mce, pos = c(1, 0.5), graph = c("base", "ggplot2"), ...)
+mce.plot(mce, pos = c(1, 0.5), graph = options("bcea.graph"), ...)
 
-plot.mixedAn(x, y.limits=NULL, pos=c(0,1), graph=c("base","ggplot2"),...)
+plot.mixedAn(x, y.limits=NULL, pos=c(0,1), graph=options("bcea.graph"),...)
 }
 \arguments{
 \item{...}{Arguments to be passed to methods, such as graphical parameters
@@ -30,9 +30,13 @@ bottom of the plot. Default value is \code{c(0,1)}, that is in the topleft
 corner inside the plot area.}
 
 \item{graph}{A string used to select the graphical engine to use for
-plotting. Should (partial-)match the two options \code{"base"} or
-\code{"ggplot2"}. Default value is \code{"base"}. The \code{"plotly"} option is not
-implemented for this particular graph.}
+plotting. Should (partial-) match the three options \code{"base"},
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"ggplot2"}. This is set
+globally upon loading \code{BCEA} and can be modified for instance by using
+\code{options("bcea.graph"="base")}, or \verb{options("bcea.graph="plotly")}. Partial
+matching still applies (so \code{gg}, or \code{g}, or \code{pl}, or \code{p} also work). Not
+all plotting functions have a \code{"plotly"} implementation, yet -- see the
+help for the specific functions.}
 
 \item{x}{An object of class \code{mixedAn}, given as output of the call to
 the function \code{\link[=mixedAn]{mixedAn()}}.}

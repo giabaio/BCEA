@@ -50,11 +50,12 @@ level of the intervals can be also set, see \ldots{} for more details.}
 
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-) match the three options \code{"base"},
-\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}. This is set globally
-upon loading \code{BCEA} and can be modified for instance by using
-\code{options("bcea.graph"="gg")}, or \verb{options("bcea.graph="plotly")}. Partial
-matching still applies (so \code{gg} or \code{pl} also work). Not all plotting
-functions have a \code{"plotly"} implementation, yet -- see help for the specifics.}
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"ggplot2"}. This is set
+globally upon loading \code{BCEA} and can be modified for instance by using
+\code{options("bcea.graph"="base")}, or \verb{options("bcea.graph="plotly")}. Partial
+matching still applies (so \code{gg}, or \code{g}, or \code{pl}, or \code{p} also work). Not
+all plotting functions have a \code{"plotly"} implementation, yet -- see the
+help for the specific functions.}
 
 \item{...}{If \code{graph="ggplot2"} and a named theme object is supplied,
 it will be added to the ggplot object. Additional arguments:

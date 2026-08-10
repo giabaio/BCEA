@@ -6,7 +6,12 @@
   
   Ubar <- OL.star <- evi.star <- NULL
   
-  value <- value %||% rep(1, he$n_comparators)/he$n_comparators
+  if (is.null(value)) {
+    value <- value %||% rep(1, he$n_comparators)/he$n_comparators
+  } else {
+    # Automatic normalisation of the market-shares
+    if (sum(value)!=1) {value=value/sum(value)}
+  }
   
   Ubar <- compute_Ubar(he, value)
   OL.star <- he$Ustar - Ubar

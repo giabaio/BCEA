@@ -12,10 +12,7 @@
 #' alternatively it can be in form of a logical variable, with `TRUE`
 #' indicating to use the first standard and `FALSE` to use the second one.
 #' Default value is `c(1,0.5)`, that is on the right inside the plot area.
-#' @param graph A string used to select the graphical engine to use for
-#' plotting. Should (partial-)match the two options `"base"` or
-#' `"ggplot2"`. Default value is `"base"`. The `"plotly"` option is not 
-#' implemented for this particular graph.
+#' @template args-graph
 #' @param ...  Optional arguments. For example, it is possible to specify the
 #' colours to be used in the plot. This is done in a vector
 #' `color=c(...)`. The length of the vector colors needs to be the same as
@@ -72,7 +69,7 @@
 #' 
 mce.plot <- function(mce,
                      pos = c(1, 0.5),
-                     graph = c("base", "ggplot2"),
+                     graph = options("bcea.graph"),
                      ...) {
   # lifecycle::deprecate_warn("2.4.1", "mce.plot()", "ceac.plot()")
   .Deprecated(new = "ceac.plot", old = "mce.plot")
@@ -81,15 +78,8 @@ mce.plot <- function(mce,
   #base.graphics <- ifelse(isTRUE(pmatch(graph,c("base","ggplot2"))==2),FALSE,TRUE) 
   
   # Matches to the possible options, but if there's an error defaults to "base"
-  # graph <- match.arg(graph)
-  graph = tryCatch(
-    match.arg(graph),
-    error = function(e) {
-      message("The 'plotly' graph is not implemented yet. Defaulting to 'base'")
-      "base"
-    }
-  )
-  
+  graph <- unlist(graph)
+
   exArgs <- list(...)
   # Allows to specify colours for the plots
   # If the user doesn't specify anything, use defaults

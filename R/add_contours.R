@@ -34,7 +34,7 @@ add_contours <- function(he, params) {
           add = TRUE,
           levels = levels,
           col = pts_col[i],
-          lwd = params$contour$size,
+          lwd = params$contour$linewidth,
           drawlabels = TRUE)
       }
       if (!is.null(nlevels)) {
@@ -44,7 +44,7 @@ add_contours <- function(he, params) {
           density$z,
           add = TRUE,
           col = pts_col[i],
-          lwd = params$contour$size,
+          lwd = params$contour$linewidth,
           nlevels = nlevels,
           drawlabels = FALSE)
       }

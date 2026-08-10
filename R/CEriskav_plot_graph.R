@@ -3,7 +3,6 @@
 ##      look at original code
 ##      can we just use existing code?
 
-
 #' @name CEriskav_plot_graph
 #' @title Cost-effectiveness Plot Including a Parameter of Risk Aversion
 #'
@@ -16,12 +15,14 @@ NULL
 
 #' @rdname CEriskav_plot_graph
 #' @title CEriskav base R version
+#' @importFrom grDevices recordPlot
 #'
 CEriskav_plot_base <- function(he, pos_legend) {
 
   default_comp <- 1
   pos_legend <- where_legend(he, pos_legend)
 
+  # This creates two separate plots
   matplot(x = he$k,
           y = he$eibr[, default_comp, ],
           type = "l",
@@ -33,6 +34,7 @@ CEriskav_plot_base <- function(he, pos_legend) {
           ylim = range(he$eibr))
 
   text <- paste("r = ", he$r, sep = "")
+  eibr_plot=grDevices::recordPlot()
 
   # if the first value for r is small enough,
   # consider close to 0 and print label accordingly
@@ -63,6 +65,9 @@ CEriskav_plot_base <- function(he, pos_legend) {
          cex = 0.9,
          box.lty = 0)
   abline(h = 0, col = "grey")
+  evir_plot=grDevices::recordPlot()
+  
+  invisible(list(eib = eibr_plot, evi = evir_plot))
 }
 
 
@@ -70,6 +75,7 @@ CEriskav_plot_base <- function(he, pos_legend) {
 #' @title CEriskav ggplot2 version
 #'
 CEriskav_plot_ggplot <- function(he, pos_legend) {
+  
   default_comp <- 1
   linetypes <- rep(c(1, 2, 3, 4, 5, 6), ceiling(he$R / 6))[1:he$R]
   
@@ -80,7 +86,7 @@ CEriskav_plot_ggplot <- function(he, pos_legend) {
   }
   
   legend_params <- make_legend_ggplot(he, pos_legend)
-  
+
   ## Reshape eibr data
   eib_dat <- he$eibr[, default_comp, , drop = FALSE] |>
     as_tibble(.name_repair = ~ as.character(1:he$R)) |>

@@ -1,3 +1,27 @@
+# BCEA 2.4.84
+
+_August 2026_
+
+* Adds unit tests + coverage action + badges"
+
+_November 2025_
+
+* Make `ggplot2` the default graphical engine. Vignettes fixed to account for this.
+
+* Fixes `plot.evppi` and `ib.plot` to use `linewidth` instead of deprecated `size` command in the `ggplot2` version.
+
+* Updates `mce.plot` and `plot.mixedAn` (which are in fact deprecated) as well as `plot.evppi` to use the global option for graphical engine
+
+* In fact, there was a problem with how `mixedAn` handled the market shares. Now fixed. Also handles `plot.mixedAn` if the request is for a `plotly` graph, which isn't implemented.
+
+* Adds a new function `reset_bcea`, which can reset a `BCEA` objects modified by either or `CEriskav`/`mixedAn` to its original status. Also adds documentation and a vignette for the `pkgdown` site. 
+
+* Modifies the graphical output of `CEriskav` if `graph="base"`. Now the object can be saved with name and the two graphs called separately.
+
+* Adds automatic normalisation of the vector of market shares in `mixedAn.R` + fix the deprecated plot + add some more description in the help.
+
+* Adds a method to the `make_legend_ggplot.R` function to deal with `CEriskav` objects.
+
 # BCEA 2.4.83
 
 _November 2025_

@@ -4,7 +4,7 @@
 \alias{plot.CEriskav}
 \title{Plots EIB and EVPI for the Risk Aversion Case}
 \usage{
-\method{plot}{CEriskav}(x, pos = "topright", graph = options("bcea.graph"), ...)
+\method{plot}{CEriskav}(x, pos = c(1, 1), graph = options("bcea.graph"), ...)
 }
 \arguments{
 \item{x}{An object of the class \code{CEriskav}, a subclass of \code{bcea},
@@ -23,11 +23,12 @@ bottom of the plot.}
 
 \item{graph}{A string used to select the graphical engine to use for
 plotting. Should (partial-) match the three options \code{"base"},
-\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"base"}. This is set globally
-upon loading \code{BCEA} and can be modified for instance by using
-\code{options("bcea.graph"="gg")}, or \verb{options("bcea.graph="plotly")}. Partial
-matching still applies (so \code{gg} or \code{pl} also work). Not all plotting
-functions have a \code{"plotly"} implementation, yet -- see help for the specifics.}
+\code{"ggplot2"} or \code{"plotly"}. Default value is \code{"ggplot2"}. This is set
+globally upon loading \code{BCEA} and can be modified for instance by using
+\code{options("bcea.graph"="base")}, or \verb{options("bcea.graph="plotly")}. Partial
+matching still applies (so \code{gg}, or \code{g}, or \code{pl}, or \code{p} also work). Not
+all plotting functions have a \code{"plotly"} implementation, yet -- see the
+help for the specific functions.}
 
 \item{...}{Arguments to be passed to methods, such as graphical parameters
 (see \code{\link[=par]{par()}}).}
@@ -80,10 +81,15 @@ r <- c(1e-10, 0.005, 0.020, 0.035)
 \donttest{
    plot(m)
 }
-## Alternative options, using ggplot2
+# Alternative options, using base
 \donttest{
-   plot(m, graph = "ggplot2")
+   plot(m, graph = "base")
 }
+# Can also save the plots to an object
+p=plot(m)
+# And plot them separately
+p$eib
+p$evi
 
 }
 \references{

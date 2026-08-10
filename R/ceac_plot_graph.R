@@ -23,6 +23,7 @@ ceac_plot_base <- function(he,
 
 #' @rdname ceac_plot_graph
 #' @keywords hplot
+#' @export
 #' 
 ceac_plot_base.pairwise <- function(he,
                                     pos_legend,
@@ -36,6 +37,7 @@ ceac_plot_base.pairwise <- function(he,
 
 #' @rdname ceac_plot_graph
 #' @keywords hplot
+#' @export
 #'
 ceac_plot_base.bcea <- function(he,
                                 pos_legend,
@@ -86,6 +88,7 @@ ceac_plot_ggplot <- function(he,
 
 #' @rdname ceac_plot_graph
 #' @keywords hplot
+#' @export
 #' 
 ceac_plot_ggplot.pairwise <- function(he,
                                       pos_legend,
@@ -98,6 +101,7 @@ ceac_plot_ggplot.pairwise <- function(he,
 
 #' @rdname ceac_plot_graph
 #' @keywords hplot
+#' @export
 #' 
 ceac_plot_ggplot.bcea <- function(he,
                                   pos_legend,
@@ -174,6 +178,7 @@ ceac_plot_plotly <- function(he,
 
 #' @rdname ceac_plot_graph
 #' @keywords hplot
+#' @export
 #' 
 ceac_plot_plotly.pairwise <- function(he,
                                       pos_legend,
@@ -186,6 +191,7 @@ ceac_plot_plotly.pairwise <- function(he,
 
 #' @rdname ceac_plot_graph
 #' @keywords hplot
+#' @export
 #' 
 ceac_plot_plotly.bcea <- function(he,
                                   pos_legend,

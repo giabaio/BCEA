@@ -113,7 +113,6 @@ ceplane.plot.bcea <- function(he,
                               pos = "topleft",
                               graph = options("bcea.graph"),
                               ...) {
-#  graph <- match.arg(graph)
   graph <- unlist(graph)
   
   he <- setComparisons(he, comparison)
