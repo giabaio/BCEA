@@ -11,6 +11,9 @@
   [`sim_table()`](https://n8thangreen.github.io/BCEA/reference/sim_table.md)
   again in the background (related to
   [\#95](https://github.com/giabaio/BCEA/issues/95))
+- Update the test for the
+  [`summary()`](https://rdrr.io/r/base/summary.html) function to comply
+  with the changes above.
 
 *August 2026*
 
