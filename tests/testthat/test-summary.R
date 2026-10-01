@@ -27,8 +27,9 @@ test_that("eib in summary print is same as bcea", {
   
   eib_from_summary=function(bcea_obj,wtp) {
     out=capture.output(summary(bcea_obj,wtp=wtp))
-    row=grep("vs",out,value=TRUE)[1]
-    as.double(strsplit(trimws(row),"\\s+")[[1]][5])
+    hdr=grep("EIB",out)
+    toks=strsplit(trimws(out[hdr+1]),"\\s+")[[1]]
+    as.double(toks[length(toks)-2])
   }
   
   expect_equal(tolerance=0.0001,
