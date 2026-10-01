@@ -2,7 +2,7 @@
 
 _October 2026_
 
-* Minor changes to `summary()` to add to the print-out the expected differential cost and benefit summaries; also slightly improve the function, by calling only the relevant values from within the `he` object, rather than running `sim_table()` again in the background (related to #95)
+* Minor changes to `summary()` to add to the print-out the expected differential cost and benefit summaries; also slightly improve the function, by calling only the relevant values from within the `he` object, rather than running `sim_table()` again in the background (related to [#95](https://github.com/giabaio/BCEA/issues/95))
 
 _August 2026_
 
