@@ -23,18 +23,21 @@ test_that("eib in summary print is same as bcea", {
   
   load(test_path("ce_vaccine.RData"))
   
-  vacc_bcea <- bcea(eff, cost, ref = 1, interventions = c("1", "2"))
+  vacc_bcea=bcea(eff,cost,ref=1,interventions=c("1","2"))
   
-  capture_wtp <- capture.output(summary(vacc_bcea, wtp = 20000))
+  eib_from_summary=function(bcea_obj,wtp) {
+    out=capture.output(summary(bcea_obj,wtp=wtp))
+    hdr=grep("EIB",out)
+    toks=strsplit(trimws(out[hdr+1]),"\\s+")[[1]]
+    as.double(toks[length(toks)-2])
+  }
   
-  expect_equal(tolerance = 0.0001,
-               as.double(strsplit(capture_wtp[17], split = " ")[[1]][4]),
+  expect_equal(tolerance=0.0001,
+               eib_from_summary(vacc_bcea,20000),
                vacc_bcea$eib[201])
   
-  capture_wtp <- capture.output(summary(vacc_bcea, wtp = 30000))
-  
-  expect_equal(tolerance = 0.0001,
-               as.double(strsplit(capture_wtp[17], split = " ")[[1]][4]),
+  expect_equal(tolerance=0.0001,
+               eib_from_summary(vacc_bcea,30000),
                vacc_bcea$eib[301])
 })
 
