@@ -1,5 +1,9 @@
 # BCEA 2.4.84
 
+_October 2026_
+
+* Minor changes to `summary()` to add to the print-out the expected differential cost and benefit summaries; also slightly improve the function, by calling only the relevant values from within the `he` object, rather than running `sim_table()` again in the background (related to #95)
+
 _August 2026_
 
 * Adds unit tests + coverage action + badges"
