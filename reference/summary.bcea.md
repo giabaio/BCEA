@@ -57,12 +57,13 @@ data(Vaccine)
 he <- bcea(eff, cost, interventions = treats, ref = 2)
 summary(he)
 #> 
-#> Cost-effectiveness analysis summary 
+#> Cost-effectiveness analysis summary
 #> 
 #> Reference intervention:  Vaccination
 #> Comparator intervention: Status Quo
 #> 
-#> Optimal decision: choose Status Quo for k < 20100 and Vaccination for k >= 20100
+#> Optimal decision: choose Status Quo for k < 20100
+#>                          Vaccination for k >= 20100
 #> 
 #> 
 #> Analysis for willingness to pay parameter k = 25000
@@ -71,10 +72,14 @@ summary(he)
 #> Status Quo               -36.054
 #> Vaccination              -34.826
 #> 
+#>                           Average cost differential
+#> Vaccination vs Status Quo                     5.036
+#>                           Average benefit differential
+#> Vaccination vs Status Quo                   0.00025058
+#> 
 #>                              EIB  CEAC  ICER
 #> Vaccination vs Status Quo 1.2284 0.529 20098
 #> 
 #> Optimal intervention (max expected net benefit) for k = 25000: Vaccination
-#>            
-#> EVPI 2.4145
+#> EVPI: 2.4145
 ```

@@ -46,7 +46,7 @@ evaluation."><meta property="og:image" content="https://n8thangreen.github.io/BC
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Summary Method for Objects of Class <code>bcea</code></h1>
-      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/main/R/summary.bcea.R" class="external-link"><code>R/summary.bcea.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/dev/R/summary.bcea.R" class="external-link"><code>R/summary.bcea.R</code></a></small>
       <div class="d-none name"><code>summary.bcea.Rd</code></div>
     </div>
 
@@ -112,12 +112,13 @@ CRC.</p>
 <span class="r-in"><span><span class="va">he</span> <span class="op">&lt;-</span> <span class="fu"><a href="bcea.html">bcea</a></span><span class="op">(</span><span class="va">eff</span>, <span class="va">cost</span>, interventions <span class="op">=</span> <span class="va">treats</span>, ref <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">he</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Cost-effectiveness analysis summary </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Cost-effectiveness analysis summary</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Reference intervention:  Vaccination</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Comparator intervention: Status Quo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Optimal decision: choose Status Quo for k &lt; 20100 and Vaccination for k &gt;= 20100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimal decision: choose Status Quo for k &lt; 20100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Vaccination for k &gt;= 20100</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Analysis for willingness to pay parameter k = 25000</span>
@@ -126,12 +127,16 @@ CRC.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Status Quo               -36.054</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Vaccination              -34.826</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Average cost differential</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Vaccination vs Status Quo                     5.036</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Average benefit differential</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Vaccination vs Status Quo                   0.00025058</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                              EIB  CEAC  ICER</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Vaccination vs Status Quo 1.2284 0.529 20098</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimal intervention (max expected net benefit) for k = 25000: Vaccination</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EVPI 2.4145</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EVPI: 2.4145</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

@@ -50,7 +50,7 @@ an object of the class "bcea".'><meta property="og:image" content="https://n8tha
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Create Bayesian Cost-Effectiveness Analysis Object</h1>
-      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/main/R/bcea.R" class="external-link"><code>R/bcea.R</code></a>, <a href="https://github.com/giabaio/BCEA/blob/main/R/bcea.default.R" class="external-link"><code>R/bcea.default.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/giabaio/BCEA/blob/dev/R/bcea.R" class="external-link"><code>R/bcea.R</code></a>, <a href="https://github.com/giabaio/BCEA/blob/dev/R/bcea.default.R" class="external-link"><code>R/bcea.default.R</code></a></small>
       <div class="d-none name"><code>bcea.Rd</code></div>
     </div>
 
@@ -233,12 +233,13 @@ ISSN 1477-0334.
 <span class="r-in"><span>      wtp<span class="op">=</span><span class="fl">25000</span>  <span class="co"># selects the particular value for k </span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Cost-effectiveness analysis summary </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Cost-effectiveness analysis summary</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Reference intervention:  Vaccination</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Comparator intervention: Status Quo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Optimal decision: choose Status Quo for k &lt; 20100 and Vaccination for k &gt;= 20100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimal decision: choose Status Quo for k &lt; 20100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          Vaccination for k &gt;= 20100</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Analysis for willingness to pay parameter k = 25000</span>
@@ -247,12 +248,16 @@ ISSN 1477-0334.
 <span class="r-out co"><span class="r-pr">#&gt;</span> Status Quo               -36.054</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Vaccination              -34.826</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Average cost differential</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Vaccination vs Status Quo                     5.036</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           Average benefit differential</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Vaccination vs Status Quo                   0.00025058</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                              EIB  CEAC  ICER</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Vaccination vs Status Quo 1.2284 0.529 20098</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimal intervention (max expected net benefit) for k = 25000: Vaccination</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EVPI 2.4145</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EVPI: 2.4145</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span></span></span>

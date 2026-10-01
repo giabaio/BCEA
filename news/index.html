@@ -44,12 +44,14 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/giabaio/BCEA/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/giabaio/BCEA/blob/dev/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.4.84" id="bcea-2484">BCEA 2.4.84<a class="anchor" aria-label="anchor" href="#bcea-2484"></a></h2>
-<p><em>August 2026</em></p>
+<p><em>October 2026</em></p>
+<ul><li>Minor changes to <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> to add to the print-out the expected differential cost and benefit summaries; also slightly improve the function, by calling only the relevant values from within the <code>he</code> object, rather than running <code><a href="../reference/sim_table.html">sim_table()</a></code> again in the background (related to <a href="https://github.com/giabaio/BCEA/issues/95" class="external-link">#95</a>)</li>
+</ul><p><em>August 2026</em></p>
 <ul><li>Adds unit tests + coverage action + badges”</li>
 </ul><p><em>November 2025</em></p>
 <ul><li><p>Make <code>ggplot2</code> the default graphical engine. Vignettes fixed to account for this.</p></li>

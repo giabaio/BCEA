@@ -2,6 +2,16 @@
 
 ## BCEA 2.4.84
 
+*October 2026*
+
+- Minor changes to [`summary()`](https://rdrr.io/r/base/summary.html) to
+  add to the print-out the expected differential cost and benefit
+  summaries; also slightly improve the function, by calling only the
+  relevant values from within the `he` object, rather than running
+  [`sim_table()`](https://n8thangreen.github.io/BCEA/reference/sim_table.md)
+  again in the background (related to
+  [\#95](https://github.com/giabaio/BCEA/issues/95))
+
 *August 2026*
 
 - Adds unit tests + coverage action + badges”
